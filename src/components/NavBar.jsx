@@ -1,9 +1,7 @@
 "use client";
 import { useState } from "react";
-import { Dialog, DialogPanel } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import MyDialog from "./navbar/Dialog";
 
 export default function NavBar() {
