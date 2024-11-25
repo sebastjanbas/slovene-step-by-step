@@ -2,18 +2,21 @@ import Link from "next/link";
 
 const people = [
     {
+        id: 1,
         name: ["Oleksandr", "Tyutyunnyk"],
         role: "CEO / Main Teacher",
         fluentIn: ["Slovene", "English", "Russian"],
         imageUrl: "/foto-oleksandr3.jpg",
     },
     {
+        id: 2,
         name: ["Manca", "Levašič"],
         role: "Professional Teacher",
         fluentIn: ["Slovene", "English"],
         imageUrl: "https://placehold.co/600x600",
     },
     {
+        id: 3,
         name: ["Teja", "Šabec"],
         role: "Professional Teacher",
         fluentIn: ["Slovene", "English"],
@@ -39,7 +42,7 @@ export default function MeetTheTeamPage() {
                     className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2 xl:grid-cols-3"
                 >
                     {people.map((person) => (
-                        <li key={person.name}>
+                        <li key={person.id}>
                             <div className="flex gap-x-6 shadow-xl border rounded-2xl h-60 max-w-96 sm:transition-all sm:duration-300 sm:hover:translate-y-[-5px]">
                                 <div className="flex flex-col items-start m-5 justify-between">
                                     <img
