@@ -70,7 +70,7 @@ export default function MeetTheTeamPage() {
                                     <div className="text-sm/6 font-semibold text-gray-500">
                                         <p>Speaking:</p>
                                         {person.fluentIn.map((item) => (
-                                            <span className="flex gap-2 items-center">
+                                            <span key={item} className="flex gap-2 items-center">
                                                 <img
                                                     src={"/checkmark.svg"}
                                                     alt="checkmark"
