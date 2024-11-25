@@ -1,6 +1,11 @@
 import NavBar from "@/components/NavBar";
 import "./global.css";
 
+export const metadata = {
+  title: "Slovene Step By Step",
+  description: "The best way to learn slovene",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
