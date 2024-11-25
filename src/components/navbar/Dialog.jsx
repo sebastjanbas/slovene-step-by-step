@@ -20,7 +20,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="fixed inset-0 z-40 bg-black/50"
+                            className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm px-6 py-6 shadow-lg"
                         />
 
                         <DialogPanel>
@@ -29,7 +29,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                 animate={{ x: 0 }} // Slide into view
                                 exit={{ x: "100%" }} // Slide out to the right
                                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                                className="fixed inset-y-0 right-0 z-50 w-full sm:max-w-sm bg-white px-6 py-6 shadow-lg"
+                                className="fixed inset-y-0 right-0 z-50 w-full sm:max-w-sm bg-white px-6 py-6 rounded-xl"
                             >
                                 <div className="flex items-center justify-between">
                                     <Link href="/" className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
