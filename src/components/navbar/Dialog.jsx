@@ -36,7 +36,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                         <span className="sr-only">Your Company</span>
                                         <img
                                             alt="Company Logo"
-                                            src="/Logo.svg"
+                                            src="https://generalseba.github.io/slovene-step-by-step/Logo.svg"
                                             className="h-8 w-auto"
                                         />
                                     </Link>
