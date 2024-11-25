@@ -4,6 +4,7 @@ import "./global.css";
 export const metadata = {
   title: "Slovene Step By Step",
   description: "The best way to learn slovene",
+  icon: "https://generalseba.github.io/slovene-step-by-step/icon.svg",
 };
 
 export default function RootLayout({ children }) {
