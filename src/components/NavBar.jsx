@@ -14,6 +14,8 @@ export default function NavBar() {
         { name: "Company", href: "/about-us" },
     ];
 
+    const link = "https://generalseba.github.io/slovene-step-by-step";
+
     return (
         <header className="absolute inset-x-0 top-0 z-50">
             <nav
@@ -23,7 +25,7 @@ export default function NavBar() {
                 <div className="flex lg:flex-1">
                     <Link href="/" className="-m-1.5 p-1.5">
                         <span className="sr-only">Slovene Step By Step</span>
-                        <img alt="Company Logo" src="/Logo.svg" className="h-8 w-auto" />
+                        <img alt="Company Logo" src={`${link}/Logo.svg`} className="h-8 w-auto" />
                     </Link>
                 </div>
                 <div className="flex lg:hidden">

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation }) {
+    const link = "https://generalseba.github.io/slovene-step-by-step";
     return (
         <div>
             <AnimatePresence mode="wait" initial={false}>
@@ -36,7 +37,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                         <span className="sr-only">Your Company</span>
                                         <img
                                             alt="Company Logo"
-                                            src="https://generalseba.github.io/slovene-step-by-step/Logo.svg"
+                                            src={`${link}/Logo.svg`}
                                             className="h-8 w-auto"
                                         />
                                     </Link>

@@ -6,7 +6,7 @@ const people = [
         name: ["Oleksandr", "Tyutyunnyk"],
         role: "CEO / Main Teacher",
         fluentIn: ["Slovene", "English", "Russian"],
-        imageUrl: "/foto-oleksandr3.jpg",
+        imageUrl: "https://generalseba.github.io/slovene-step-by-step/foto-oleksandr3.jpg",
     },
     {
         id: 2,
@@ -23,6 +23,8 @@ const people = [
         imageUrl: "https://placehold.co/600x600",
     },
 ];
+
+const link = "https://generalseba.github.io/slovene-step-by-step";
 
 export default function MeetTheTeamPage() {
     return (
@@ -72,7 +74,7 @@ export default function MeetTheTeamPage() {
                                         {person.fluentIn.map((item) => (
                                             <span key={item} className="flex gap-2 items-center">
                                                 <img
-                                                    src={"/checkmark.svg"}
+                                                    src={`${link}/checkmark.svg`}
                                                     alt="checkmark"
                                                     className="size-4"
                                                 />
