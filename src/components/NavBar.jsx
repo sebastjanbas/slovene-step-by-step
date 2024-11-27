@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import MyDialog from "./navbar/Dialog";
+import MyDialog from "./navbar/MyDialog";
 
 export default function NavBar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -10,7 +10,7 @@ export default function NavBar() {
     const navigation = [
         { name: "Product", href: "/products" },
         { name: "Features", href: "#" },
-        { name: "Marketplace", href: "#" },
+        { name: "Languages", href: "#" },
         { name: "Company", href: "/about-us" },
     ];
 

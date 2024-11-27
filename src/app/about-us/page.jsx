@@ -1,4 +1,4 @@
-import Link from "next/link";
+import HelperPage from "@/components/about/HelperPage";
 
 const people = [
     {
@@ -6,7 +6,16 @@ const people = [
         name: ["Oleksandr", "Tyutyunnyk"],
         role: "CEO / Main Teacher",
         fluentIn: ["Slovene", "English", "Russian"],
-        imageUrl: "https://generalseba.github.io/slovene-step-by-step/foto-oleksandr3.jpg",
+        imageUrl:
+            "https://generalseba.github.io/slovene-step-by-step/foto-oleksandr3.jpg",
+        description: `My name is Oleksandr, and I have been living in Slovenia for over 10 years. 
+        I completed both school and high school entirely in Slovenian, and I am currently a student at the University of Ljubljana.
+        Over the years of living and studying in a Slovenian-speaking environment, I have gained extensive experience in the practical use of the language, spelling, and, most importantly, in everyday conversational Slovenian.
+        My experience as a tutor has helped me develop effective teaching methods tailored to the individual needs of each student. 
+        I strive to create a comfortable atmosphere in my lessons, which enhances motivation and ensures maximum learning effectiveness.
+        Thanks to my experience living and studying in Slovenia, I offer personalized lessons that cover both everyday conversational situations and exam preparation. My goal is to help you not only master the language but also feel confident when communicating. 
+        Let's work together to overcome language barriers and achieve your language goals!
+        `,
     },
     {
         id: 2,
@@ -14,6 +23,11 @@ const people = [
         role: "Professional Teacher",
         fluentIn: ["Slovene", "English"],
         imageUrl: "https://placehold.co/600x600",
+        description: `My name is Manca, and I specialize in teaching Slovenian as a language instructor. 
+        For me, it's important not only to share knowledge but also to help students confidently use the language in real-life situations.
+        My lessons are always focused on practice. Together, we develop conversational skills, explore grammar through engaging examples, and actively train listening comprehension. I strive to make classes as interactive and enjoyable as possible so that students can immediately apply what they've learned in practical settings.
+        I believe that the key to language learning is confidence and motivation, which is why my lessons are conducted in a friendly and supportive atmosphere where everyone feels at ease. Together, we uncover the unique aspects of the Slovenian language and culture, making learning both useful and inspiring.
+        `
     },
     {
         id: 3,
@@ -21,6 +35,14 @@ const people = [
         role: "Professional Teacher",
         fluentIn: ["Slovene", "English"],
         imageUrl: "https://placehold.co/600x600",
+        description: `My name is Tea, and I love sharing the beauty and uniqueness of the Slovenian language with others. 
+        Teaching it is my profession, but my passion for languages goes far beyond just one. 
+        During my studies at the University of Ljubljana, I also learned Russian and Italian, which helps me better understand the challenges of learning a new language.
+        In my lessons, I strive to create a friendly and comfortable atmosphere. 
+        I always take into account the interests and goals of each student, ensuring that the classes are not only practical but also engaging. 
+        Together, we explore the intricacies of the language, discuss fascinating topics, and practice real-life communication. 
+        For me, teaching is more than just a job — it’s a way to share culture, connect with people from all walks of life, and help them discover Slovenia.
+        `
     },
 ];
 
@@ -39,54 +61,7 @@ export default function MeetTheTeamPage() {
                         we do and dedicated to delivering the best results for our clients.
                     </p>
                 </div>
-                <ul
-                    role="list"
-                    className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2 xl:grid-cols-3"
-                >
-                    {people.map((person) => (
-                        <li key={person.id}>
-                            <div className="flex gap-x-6 shadow-xl border rounded-2xl h-60 max-w-96 sm:transition-all sm:duration-300 sm:hover:translate-y-[-5px]">
-                                <div className="flex flex-col items-start m-5 justify-between">
-                                    <img
-                                        alt="Profile photo"
-                                        src={person.imageUrl}
-                                        className="size-20 rounded-full"
-                                    />
-                                    <Link
-                                        href="#"
-                                        className="text-sm/6 font-semibold text-gray-900"
-                                    >
-                                        About <span aria-hidden="true">&rarr;</span>
-                                    </Link>
-                                </div>
-                                <div className="m-5">
-                                    <h3 className="text-lg/normal font-semibold tracking-tight text-gray-900 m-0">
-                                        {person.name[0]}
-                                    </h3>
-                                    <h3 className="text-2xl/none font-semibold tracking-tight text-gray-900 mb-5">
-                                        {person.name[1]}
-                                    </h3>
-                                    <div className="text-sm/6 font-semibold text-indigo-600 flex gap-1 items-center">
-                                        <p>{person.role}</p>
-                                    </div>
-                                    <div className="text-sm/6 font-semibold text-gray-500">
-                                        <p>Speaking:</p>
-                                        {person.fluentIn.map((item) => (
-                                            <span key={item} className="flex gap-2 items-center">
-                                                <img
-                                                    src={`${link}/checkmark.svg`}
-                                                    alt="checkmark"
-                                                    className="size-4"
-                                                />
-                                                {item}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                <HelperPage people={people} link={link} />
             </div>
         </div>
     );
