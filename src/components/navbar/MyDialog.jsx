@@ -29,12 +29,13 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                 initial={{ x: "100%" }} // Start off-screen
                                 animate={{ x: 0 }} // Slide into view
                                 exit={{ x: "100%" }} // Slide out to the right
-                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                transition={{ duration: 1, ease: ["easeIn", "easeOut"], type: "spring", bounce: 0.5 }}
+                                // transition={{ duration: 0.3, ease: "easeInOut" }}
                                 className="fixed inset-y-0 right-0 z-50 w-full sm:max-w-sm bg-white px-6 py-6 rounded-xl"
                             >
                                 <div className="flex items-center justify-between">
-                                    <Link href="/" className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
-                                        <span className="sr-only">Your Company</span>
+                                    <Link href={"/"} className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
+                                        <span className="sr-only">Company</span>
                                         <img
                                             alt="Company Logo"
                                             src={`${link}/Logo.svg`}

@@ -8,14 +8,11 @@ const people = [
         fluentIn: ["Slovene", "English", "Russian"],
         imageUrl:
             "https://generalseba.github.io/slovene-step-by-step/foto-oleksandr3.jpg",
-        description: `My name is Oleksandr, and I have been living in Slovenia for over 10 years. 
-        I completed both school and high school entirely in Slovenian, and I am currently a student at the University of Ljubljana.
-        Over the years of living and studying in a Slovenian-speaking environment, I have gained extensive experience in the practical use of the language, spelling, and, most importantly, in everyday conversational Slovenian.
-        My experience as a tutor has helped me develop effective teaching methods tailored to the individual needs of each student. 
-        I strive to create a comfortable atmosphere in my lessons, which enhances motivation and ensures maximum learning effectiveness.
-        Thanks to my experience living and studying in Slovenia, I offer personalized lessons that cover both everyday conversational situations and exam preparation. My goal is to help you not only master the language but also feel confident when communicating. 
-        Let's work together to overcome language barriers and achieve your language goals!
-        `,
+        education: "University of Ljubljana",
+        nativeLanguage: "Russian",
+        languageExperience: "Extensive practical experience in Slovene, including spelling, grammar, and conversational fluency",
+        tutoringExperience: "5 years of Tutoring experience",
+        goal: "Dedication to helping students build confidence and overcome language barriers",
     },
     {
         id: 2,
@@ -23,26 +20,23 @@ const people = [
         role: "Professional Teacher",
         fluentIn: ["Slovene", "English"],
         imageUrl: "https://placehold.co/600x600",
-        description: `My name is Manca, and I specialize in teaching Slovenian as a language instructor. 
-        For me, it's important not only to share knowledge but also to help students confidently use the language in real-life situations.
-        My lessons are always focused on practice. Together, we develop conversational skills, explore grammar through engaging examples, and actively train listening comprehension. I strive to make classes as interactive and enjoyable as possible so that students can immediately apply what they've learned in practical settings.
-        I believe that the key to language learning is confidence and motivation, which is why my lessons are conducted in a friendly and supportive atmosphere where everyone feels at ease. Together, we uncover the unique aspects of the Slovenian language and culture, making learning both useful and inspiring.
-        `
+        education: "University of Ljubljana",
+        nativeLanguage: "Slovene",
+        languageExperience: "Native speaker",
+        tutoringExperience: "4 years of tutoring experience",
+        goal: "",
     },
     {
         id: 3,
         name: ["Teja", "Šabec"],
         role: "Professional Teacher",
-        fluentIn: ["Slovene", "English"],
+        fluentIn: ["Slovene", "Italian", "English"],
         imageUrl: "https://placehold.co/600x600",
-        description: `My name is Tea, and I love sharing the beauty and uniqueness of the Slovenian language with others. 
-        Teaching it is my profession, but my passion for languages goes far beyond just one. 
-        During my studies at the University of Ljubljana, I also learned Russian and Italian, which helps me better understand the challenges of learning a new language.
-        In my lessons, I strive to create a friendly and comfortable atmosphere. 
-        I always take into account the interests and goals of each student, ensuring that the classes are not only practical but also engaging. 
-        Together, we explore the intricacies of the language, discuss fascinating topics, and practice real-life communication. 
-        For me, teaching is more than just a job — it’s a way to share culture, connect with people from all walks of life, and help them discover Slovenia.
-        `
+        education: "University of Ljubljana",
+        nativeLanguage: "Slovene",
+        languageExperience: "Native speaker",
+        tutoringExperience: "5 years of tutoring experience",
+        goal: "Teaching is more than just a job — it's a way to share culture, connect with people from all walks of life, and help them discover Slovenia.",
     },
 ];
 

@@ -10,7 +10,7 @@ export default function HelperPage({ people, link }) {
     const chosenPerson = people.find(person => person.id === member);
 
     return (
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl lg:px-8">
             <ul
                 role="list"
                 className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2 xl:grid-cols-3"

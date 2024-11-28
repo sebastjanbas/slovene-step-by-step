@@ -9,8 +9,9 @@ function Card({ person, link, setMemberDetailsOpen, setMember }) {
     }
 
     return (
-        <div className="flex gap-x-6 shadow-xl border rounded-2xl h-60 max-w-96 sm:transition-all sm:duration-300 sm:hover:translate-y-[-5px]">
-            <div className="flex flex-col items-start m-5 justify-between">
+        // <div className="flex justify-evenly shadow-xl border rounded-2xl min-h-60 max-w-96 min-w-64 sm:transition-all sm:duration-300 sm:hover:translate-y-[-5px]">
+        <div className="flex gap-x-2 md:gap-x-6 lg:gap-x-10 shadow-xl border rounded-2xl min-h-60 max-w-96 min-w-64 sm:transition-all sm:duration-300 sm:hover:translate-y-[-5px]">
+            <div className="flex flex-col items-start mt-5 mb-5 ml-5 justify-between">
                 <img
                     alt="Profile photo"
                     src={person.imageUrl}
@@ -31,7 +32,7 @@ function Card({ person, link, setMemberDetailsOpen, setMember }) {
                     About <span aria-hidden="true">&rarr;</span>
                 </button>
             </div>
-            <div className="m-5">
+            <div className="mt-5 mr-5 mb-5">
                 <h3 className="text-lg/normal font-semibold tracking-tight text-gray-900 m-0">
                     {person.name[0]}
                 </h3>
