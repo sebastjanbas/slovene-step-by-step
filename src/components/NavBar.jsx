@@ -11,7 +11,7 @@ export default function NavBar() {
         { name: "Product", href: "/products" },
         { name: "Features", href: "#" },
         { name: "Languages", href: "#" },
-        { name: "Company", href: "/about-us" },
+        { name: "About Us", href: "/about-us" },
     ];
 
     const link = "https://generalseba.github.io/slovene-step-by-step";

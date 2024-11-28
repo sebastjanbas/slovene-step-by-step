@@ -29,7 +29,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                 initial={{ x: "100%" }} // Start off-screen
                                 animate={{ x: 0 }} // Slide into view
                                 exit={{ x: "100%" }} // Slide out to the right
-                                transition={{ duration: 1, ease: ["easeIn", "easeOut"], type: "spring", bounce: 0.5 }}
+                                transition={{ duration: 0.8, ease: ["easeIn", "linear"], type: "spring" }}
                                 // transition={{ duration: 0.3, ease: "easeInOut" }}
                                 className="fixed inset-y-0 right-0 z-50 w-full sm:max-w-sm bg-white px-6 py-6 rounded-xl"
                             >

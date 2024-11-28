@@ -36,7 +36,7 @@ export default function DialogAbout({
                                     initial={{ scale: "10%", opacity: 0 }} // Start off-screen
                                     animate={{ scale: "100%", opacity: 1 }} // Slide into view
                                     exit={{ scale: "10%", opacity: 0 }} // Slide out to the right
-                                    transition={{ duration: 1, ease: ["easeIn", "easeOut"], type: "spring", bounce: 0.5 }}
+                                    transition={{ duration: 0.8, ease: ["easeIn", "linear"], type: "spring" }}
                                     // className="z-50 bg-white px-6 py-6 w-96 h-96 md:w-md lg:w-xl lg:h-auto rounded-xl shadow-lg"
                                     className="z-50 bg-white px-6 py-6 w-4/5 sm:w-3/5 md:w-3/5 lg:w-2/3 xl:w-2/4 max-h-[80%] rounded-xl shadow-lg overflow-auto"
                                     onClick={(e) => e.stopPropagation()}
