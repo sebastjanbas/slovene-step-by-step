@@ -10,7 +10,7 @@ function Card({ person, link, setMemberDetailsOpen, setMember }) {
 
     return (
         // <div className="flex justify-evenly shadow-xl border rounded-2xl min-h-60 max-w-96 min-w-64 sm:transition-all sm:duration-300 sm:hover:translate-y-[-5px]">
-        <div className="flex gap-x-2 md:gap-x-6 lg:gap-x-10 shadow-xl border rounded-2xl min-h-60 max-w-96 min-w-64 sm:transition-all sm:duration-300 sm:hover:translate-y-[-5px]">
+        <div className="flex bg-white gap-x-2 md:gap-x-6 lg:gap-x-10 shadow-xl border rounded-2xl min-h-60 max-w-96 min-w-64 sm:transition-all sm:duration-300 sm:hover:translate-y-[-5px]">
             <div className="flex flex-col items-start mt-5 mb-5 ml-5 justify-between">
                 <img
                     alt="Profile photo"

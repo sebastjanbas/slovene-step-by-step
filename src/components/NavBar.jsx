@@ -9,7 +9,7 @@ export default function NavBar() {
 
     const navigation = [
         { name: "Product", href: "/products" },
-        { name: "Features", href: "#" },
+        { name: "Features", href: "/features" },
         { name: "Languages", href: "#" },
         { name: "About Us", href: "/about-us" },
     ];
@@ -50,7 +50,7 @@ export default function NavBar() {
                     ))}
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <Link href="#" className="text-sm/6 font-semibold text-gray-900">
+                    <Link href={"/log-in"} className="text-sm/6 font-semibold text-gray-900">
                         Log in <span aria-hidden="true">&rarr;</span>
                     </Link>
                 </div>

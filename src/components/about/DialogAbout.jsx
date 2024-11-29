@@ -27,22 +27,52 @@ export default function DialogAbout({
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.3 }}
                             className="fixed inset-0 w-full bg-black/50 backdrop-blur-sm px-6 py-6 shadow-lg"
-
                         />
 
                         <DialogPanel>
-                            <div className="fixed inset-0 flex justify-center items-center" onClick={handleClose}>
+                            <div
+                                className="fixed inset-0 flex justify-center items-center"
+                                onClick={handleClose}
+                            >
                                 <motion.div
                                     initial={{ scale: "10%", opacity: 0 }} // Start off-screen
                                     animate={{ scale: "100%", opacity: 1 }} // Slide into view
                                     exit={{ scale: "10%", opacity: 0 }} // Slide out to the right
-                                    transition={{ duration: 0.8, ease: ["easeIn", "linear"], type: "spring" }}
+                                    transition={{
+                                        duration: 0.8,
+                                        ease: ["easeIn", "linear"],
+                                        type: "spring",
+                                    }}
                                     // className="z-50 bg-white px-6 py-6 w-96 h-96 md:w-md lg:w-xl lg:h-auto rounded-xl shadow-lg"
                                     className="z-50 bg-white px-6 py-6 w-4/5 sm:w-3/5 md:w-3/5 lg:w-2/3 xl:w-2/4 max-h-[80%] rounded-xl shadow-lg overflow-auto"
                                     onClick={(e) => e.stopPropagation()}
                                 >
                                     <div className="flex items-start justify-between">
                                         <div></div>
+                                        <div
+                                            aria-hidden="true"
+                                            className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+                                        >
+                                            <div
+                                                style={{
+                                                    clipPath:
+                                                        "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+                                                }}
+                                                className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#3AAFA9] to-[#FCAB10] opacity-40 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+                                            />
+                                        </div>
+                                        <div
+                                            aria-hidden="true"
+                                            className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+                                        >
+                                            <div
+                                                style={{
+                                                    clipPath:
+                                                        "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+                                                }}
+                                                className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#3AAFA9] to-[#7F96FF] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+                                            />
+                                        </div>
                                         <button
                                             type="button"
                                             onClick={handleClose}

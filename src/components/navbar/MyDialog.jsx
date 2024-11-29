@@ -67,11 +67,11 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                         </div>
                                         <div className="py-6">
                                             <Link
-                                                href="#"
+                                                href={"/log-in"}
                                                 className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                                                 onClick={() => setMobileMenuOpen(false)}
                                             >
-                                                Log in
+                                                Log in <span aria-hidden="true">&rarr;</span>
                                             </Link>
                                         </div>
                                     </div>

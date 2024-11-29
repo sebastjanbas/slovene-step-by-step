@@ -44,7 +44,7 @@ export default function Hero() {
                         >
                             Get started
                         </Link>
-                        <Link href={"/details"} className="text-sm/6 font-semibold text-gray-900">
+                        <Link href={"/features"} className="text-sm/6 font-semibold text-gray-900">
                             Learn more <span aria-hidden="true">→</span>
                         </Link>
                     </div>
