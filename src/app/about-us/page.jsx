@@ -1,4 +1,5 @@
 import HelperPage from "@/components/about/HelperPage";
+import { metadata } from "../layout";
 
 const people = [
     {
