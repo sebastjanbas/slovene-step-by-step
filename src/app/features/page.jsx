@@ -1,3 +1,6 @@
+import BentoGrid from "@/components/BentoGrid";
+import SvgBlob from "@/components/ui/svg-blob";
+
 function DetailsPage() {
     return (
         <div>
@@ -19,14 +22,16 @@ function DetailsPage() {
                         Learn Slovenian online with experienced teachers!
                     </h1>
                     <p className="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
-                        The best way to learn Slovene and make your dreams a reality.
+                        We offer a professional approach, flexible schedule and an individual training program, fully tailored to your goals and needs.
                     </p>
                 </div>
             </div>
+            <BentoGrid />
             <div
                 aria-hidden="true"
                 className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
             >
+                <SvgBlob color={"green"} />
                 <div
                     style={{
                         clipPath:
