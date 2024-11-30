@@ -97,7 +97,7 @@ export default function BentoGrid() {
                         </div>
 
                         <div className="hidden lg:gap-3 lg:px-8 lg:py-8 lg:col-span-2 lg:row-span-1 lg:flex flex-col justify-center items-center shadow-lg border rounded-3xl">
-                            <img className="size-10" src="/Logo.svg" alt="Company Logo" />
+                            <img className="size-10" src={`${link}/Logo.svg`} alt="Company Logo" />
                             <h1 className="uppercase text-center text-[0.590rem] text-[#5C6BC0] font-bold">
                                 Slovene Step By Step
                             </h1>
