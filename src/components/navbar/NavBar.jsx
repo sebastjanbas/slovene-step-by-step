@@ -1,20 +1,15 @@
 "use client";
 import { useState } from "react";
+import { navigation, link } from "@/lib/docs"
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import MyDialog from "./navbar/MyDialog";
+import MyDialog from "./MyDialog";
+import { usePathname } from "next/navigation";
+
 
 export default function NavBar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-    const navigation = [
-        { name: "Product", href: "/products" },
-        { name: "Features", href: "/features" },
-        { name: "Languages", href: "#" },
-        { name: "About Us", href: "/about-us" },
-    ];
-
-    const link = "https://generalseba.github.io/slovene-step-by-step";
+    const pathname = usePathname().replace("/", "");
 
     return (
         <header className="absolute inset-x-0 top-0 z-50">
@@ -43,14 +38,14 @@ export default function NavBar() {
                         <Link
                             key={item.name}
                             href={item.href}
-                            className="text-sm/6 font-semibold text-gray-900"
+                            className={`text-sm/6 font-semibold ${item.name.toLowerCase().replace(" ", "-") === pathname ? "text-indigo-500" : "text-gray-900"} hover:text-indigo-500 `}
                         >
                             {item.name}
                         </Link>
                     ))}
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <Link href={"/log-in"} className="text-sm/6 font-semibold text-gray-900">
+                    <Link href={"/log-in"} className={`text-sm/6 font-semibold ${pathname === "log-in" ? "text-indigo-500" : "text-gray-900"}`}>
                         Log in <span aria-hidden="true">&rarr;</span>
                     </Link>
                 </div>

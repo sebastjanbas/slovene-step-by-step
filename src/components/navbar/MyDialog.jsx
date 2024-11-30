@@ -2,9 +2,13 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { link } from "@/lib/docs"
+import { usePathname } from "next/navigation";
 
 export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation }) {
-    const link = "https://generalseba.github.io/slovene-step-by-step";
+
+    const pathname = usePathname().replace("/", "");
+
     return (
         <div>
             <AnimatePresence mode="wait" initial={false}>
@@ -58,7 +62,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                                 <Link
                                                     key={item.name}
                                                     href={item.href}
-                                                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                                    className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 ${item.name.toLowerCase().replace(" ", "-") === pathname ? "text-indigo-500" : "text-black"}`}
                                                     onClick={() => setMobileMenuOpen(false)}
                                                 >
                                                     {item.name}
@@ -68,7 +72,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                         <div className="py-6">
                                             <Link
                                                 href={"/log-in"}
-                                                className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                                                className={`-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold hover:bg-gray-50 ${pathname === "log-in" ? "text-indigo-500" : "text-gray-900"}`}
                                                 onClick={() => setMobileMenuOpen(false)}
                                             >
                                                 Log in <span aria-hidden="true">&rarr;</span>

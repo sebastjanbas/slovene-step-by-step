@@ -1,4 +1,4 @@
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/navbar/NavBar";
 import "./global.css";
 import AnimatedLayout from "@/components/ui/AnimatedLayout";
 
