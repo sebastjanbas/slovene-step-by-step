@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { link } from "@/lib/docs";
+import SvgBlobContainer from "@/components/ui/svg-blob-container";
+import SvgBlob from "@/components/ui/svg-blob";
 
 export const metadata = {
     title: "Page not found!",
@@ -8,7 +10,11 @@ export const metadata = {
 export default function NotFoundPage() {
     return (
         <>
-            <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+
+            <SvgBlobContainer top={true}>
+                <SvgBlob color={"blue"} />
+            </SvgBlobContainer>
+            <main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
                 <img className="size-20 mb-10" src={`${link}/Logo.svg`} alt="Company Logo" />
                 <div className="text-center">
                     <p className="text-base font-semibold text-indigo-600">404</p>
@@ -25,6 +31,9 @@ export default function NotFoundPage() {
                     </div>
                 </div>
             </main>
+            <SvgBlobContainer top={false}>
+                <SvgBlob color={"green"} />
+            </SvgBlobContainer>
         </>
     );
 }
