@@ -6,12 +6,14 @@ import Lottie from "lottie-react";
 import teacherAnimation from "@/animations/teacher-animation.json";
 import supportAnimation from "@/animations/support.json";
 import personalizedLearningAnimation from "@/animations/personalized-learning.json";
+import videoCallAnimation from "@/animations/video-call.json";
 import { useRef } from "react";
 
 export default function BentoGrid() {
-    const teacherA = useRef(null);
-    const supportA = useRef(null);
-    const personalizedA = useRef(null);
+    const teacherA = useRef();
+    const supportA = useRef();
+    const personalizedA = useRef();
+    const videoCallA = useRef();
     return (
         <>
             <SvgBlobContainer top={true}>
@@ -28,19 +30,27 @@ export default function BentoGrid() {
                     </p>
                     <div className="mt-10 flex flex-col lg:grid gap-4 sm:mt-16 lg:grid-cols-10 lg:grid-rows-10">
                         <div className="px-8 py-8 gap-8 lg:col-span-6 lg:row-span-3 flex flex-col justify-around items-center shadow-lg border rounded-3xl">
-                            <div>
-                                <h2 className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
-                                    Online lessons
-                                </h2>
-                                <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
-                                    Learn Slovenian from the comfort of your home! Our lessons are
-                                    conducted via Skype, offering flexibility and convenience no
-                                    matter where you are. Connect with experienced teachers and
-                                    immerse yourself in engaging, interactive sessions tailored to
-                                    your goals.
-                                </p>
+                            <div className="w-full flex flex-col lg:flex-row items-center">
+                                <div>
+                                    <h2 className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                                        Online lessons
+                                    </h2>
+                                    <p className="mt-2 max-w-lg text-sm/6 text-gray-600 max-lg:text-center">
+                                        Learn Slovenian from the comfort of your home! Our lessons
+                                        are conducted via Skype, offering flexibility and
+                                        convenience no matter where you are. Connect with
+                                        experienced teachers and immerse yourself in engaging,
+                                        interactive sessions tailored to your goals.
+                                    </p>
+                                </div>
+                                <Lottie
+                                    className="hidden lg:flex"
+                                    lottieRef={videoCallA}
+                                    animationData={videoCallAnimation}
+                                    loop={false}
+                                />
                             </div>
-                            <div className="flex items-center gap-5">
+                            <div className="flex flex-col lg:flex-row items-center gap-5">
                                 <Lottie lottieRef={teacherA} animationData={teacherAnimation} />
                                 <div>
                                     <h2 className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
@@ -88,22 +98,25 @@ export default function BentoGrid() {
                             </p>
 
                             <Lottie
-                                className="h-52"
+                                className="size-2/5 lg:size-3/5"
                                 lottieRef={supportA}
                                 animationData={supportAnimation}
-                                onComplete={() => supportA.current.pause()}
                                 loop={false}
                             />
                         </div>
 
                         <div className="hidden lg:gap-3 lg:px-8 lg:py-8 lg:col-span-2 lg:row-span-1 lg:flex flex-col justify-center items-center shadow-lg border rounded-3xl">
-                            <img className="size-10" src={`${link}/Logo.svg`} alt="Company Logo" />
+                            <img
+                                className="size-10"
+                                src={`${link}/Logo.svg`}
+                                alt="Company Logo"
+                            />
                             <h1 className="uppercase text-center text-[0.590rem] text-[#5C6BC0] font-bold">
                                 Slovene Step By Step
                             </h1>
                         </div>
 
-                        <div className="px-8 py-8 col-span-6 row-span-2 flex justify-center items-center shadow-lg border rounded-3xl">
+                        <div className="px-8 py-8 col-span-6 row-span-2 flex flex-col lg:flex-row justify-center items-center shadow-lg border rounded-3xl">
                             <div>
                                 <h2 className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
                                     Personalized learning plans
@@ -116,6 +129,7 @@ export default function BentoGrid() {
                                 </p>
                             </div>
                             <Lottie
+                                className="size-7/12 lg:size-auto"
                                 lottieRef={personalizedA}
                                 animationData={personalizedLearningAnimation}
                                 onComplete={() => {
