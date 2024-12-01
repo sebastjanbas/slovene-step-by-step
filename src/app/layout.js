@@ -1,3 +1,4 @@
+import React from "react";
 import NavBar from "@/components/navbar/NavBar";
 import "./global.css";
 import AnimatedLayout from "@/components/ui/AnimatedLayout";
@@ -15,13 +16,11 @@ export default function RootLayout({ children }) {
         href="https://generalseba.github.io/slovene-step-by-step/icon.svg"
       />
       <body>
+        <NavBar />
         <AnimatedLayout>
-          <div className="bg-white">
-            <NavBar />
-            <div className="relative isolate px-6 pt-14 lg:px-8">
-              {children}
-            </div>
-          </div>
+          <main className="relative isolate px-6 pt-14 lg:px-8">
+            {children}
+          </main>
         </AnimatedLayout>
       </body>
     </html>

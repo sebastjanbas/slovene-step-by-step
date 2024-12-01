@@ -1,18 +1,19 @@
 "use client";
 import { useState } from "react";
-import { navigation, link } from "@/lib/docs"
+import { navigation, link } from "@/lib/docs";
+import { validLinks } from "@/lib/docs";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import MyDialog from "./MyDialog";
 import { usePathname } from "next/navigation";
 
-
 export default function NavBar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const pathname = usePathname().replace("/", "");
+    const pathname = usePathname();
+    const showNav = validLinks.some((link) => pathname === link.href);
 
     return (
-        <header className="absolute inset-x-0 top-0 z-50">
+        <header className={showNav ? "absolute inset-x-0 top-0 z-50" : "hidden"}>
             <nav
                 aria-label="Global"
                 className="flex items-center justify-between p-6 lg:px-8"
@@ -20,7 +21,11 @@ export default function NavBar() {
                 <div className="flex lg:flex-1">
                     <Link href="/" className="-m-1.5 p-1.5">
                         <span className="sr-only">Slovene Step By Step</span>
-                        <img alt="Company Logo" src={`${link}/Logo.svg`} className="h-8 w-auto" />
+                        <img
+                            alt="Company Logo"
+                            src={`${link}/Logo.svg`}
+                            className="h-8 w-auto"
+                        />
                     </Link>
                 </div>
                 <div className="flex lg:hidden">
@@ -38,19 +43,30 @@ export default function NavBar() {
                         <Link
                             key={item.name}
                             href={item.href}
-                            className={`text-sm/6 font-semibold ${item.name.toLowerCase().replace(" ", "-") === pathname ? "text-indigo-500" : "text-gray-900"} hover:text-indigo-500 `}
+                            className={`text-sm/6 font-semibold ${item.href === pathname
+                                ? "text-indigo-500"
+                                : "text-gray-900"
+                                } hover:text-indigo-500 `}
                         >
                             {item.name}
                         </Link>
                     ))}
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <Link href={"/log-in"} className={`text-sm/6 font-semibold ${pathname === "log-in" ? "text-indigo-500" : "text-gray-900"}`}>
+                    <Link
+                        href={"/log-in"}
+                        className={`text-sm/6 font-semibold ${pathname === "/log-in" ? "text-indigo-500" : "text-gray-900"
+                            }`}
+                    >
                         Log in <span aria-hidden="true">&rarr;</span>
                     </Link>
                 </div>
             </nav>
-            <MyDialog navigation={navigation} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+            <MyDialog
+                navigation={navigation}
+                mobileMenuOpen={mobileMenuOpen}
+                setMobileMenuOpen={setMobileMenuOpen}
+            />
         </header>
     );
 }
