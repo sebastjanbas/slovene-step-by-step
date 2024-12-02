@@ -1,6 +1,4 @@
 "use client";
-import SvgBlob from "./ui/svg-blob";
-import SvgBlobContainer from "./ui/svg-blob-container";
 import { link } from "@/lib/docs";
 import Lottie from "lottie-react";
 import teacherAnimation from "@/animations/teacher-animation.json";

@@ -1,4 +1,5 @@
-import React from 'react';
+import Countdown from "@/components/ui/Countdown";
+import React from "react";
 
 export default function ProductsPage() {
     return (
@@ -17,14 +18,16 @@ export default function ProductsPage() {
             </div>
             <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
                 <div className="text-center">
+                    <Countdown border={false} date={"2025-01-01"} />
                     <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
                         Products
                     </h1>
                     <p className="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
-                        Products Coming Soon!
+                        Products Coming!
                     </p>
                 </div>
             </div>
+
             <div
                 aria-hidden="true"
                 className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
@@ -40,4 +43,3 @@ export default function ProductsPage() {
         </section>
     );
 }
-
