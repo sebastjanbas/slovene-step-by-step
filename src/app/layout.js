@@ -11,11 +11,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <link
-        rel="icon"
-        href="https://generalseba.github.io/slovene-step-by-step/icon.svg"
-      />
+    <html lang="en" suppressHydrationWarning>
+
+      <head>
+        <link
+          rel="icon"
+          href="https://generalseba.github.io/slovene-step-by-step/icon.svg"
+        />
+      </head>
       <body>
         <ThemeProvider
           attribute="class"
