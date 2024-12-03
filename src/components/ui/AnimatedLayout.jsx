@@ -8,7 +8,6 @@ export default function AnimatedLayout({ children }) {
 
     return (
         <motion.div
-            className="bg-white"
             key={pathname}
             initial={{ opacity: 0, y: -60 }}
             animate={{ opacity: 1, y: 0 }}

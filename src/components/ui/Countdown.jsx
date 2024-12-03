@@ -13,7 +13,7 @@ const MINUTE = SECOND * 60;
 const HOUR = MINUTE * 60;
 const DAY = HOUR * 24;
 
-const Countdown = ({ date = "2026-01-01", border = true }) => {
+const Countdown = ({ date = "2026-01-01", border = false }) => {
     const [isTimeUp, setIsTimeUp] = useState(false);
 
     return (
@@ -50,7 +50,7 @@ const Countdown = ({ date = "2026-01-01", border = true }) => {
                     <div className="flex pr-2 items-center justify-center gap-1 font-mono md:gap-2">
                         <Lottie animationData={timerAnimation} className="size-10 m-0 p-0" />
                         <div className="relative overflow-hidden text-center">
-                            <span className="block text-sm font-bold text-indigo-400 sm:text-md lg:text-lg">
+                            <span className="block text-sm font-bold text-indigo-400 dark:text-indigo-300 sm:text-md lg:text-lg">
                                 Time is up
                             </span>
                         </div>
@@ -69,12 +69,12 @@ const CountdownItem = ({ unit, text, date, setTimeUp }) => {
             <div className="relative overflow-hidden text-center">
                 <span
                     ref={ref}
-                    className="block text-xs/6 font-bold text-indigo-400 sm:text-lg/8 lg:text-lg/loose"
+                    className="block text-xs/6 font-bold text-indigo-400 dark:text-indigo-300 sm:text-lg/8 lg:text-lg/loose"
                 >
                     {time}
                 </span>
             </div>
-            <span className="text-xs font-bold text-indigo-400 md:text-sm lg:text-base">
+            <span className="text-xs font-bold text-indigo-400 dark:text-indigo-300 md:text-sm lg:text-base">
                 {text}
             </span>
         </div>
