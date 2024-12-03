@@ -14,10 +14,10 @@ export default function NavBar() {
     const showNav = validLinks.some((link) => pathname === link.href);
 
     return (
-        <header className={showNav ? "sticky bg-white/80 rounded-b-xl dark:bg-[#121212]/80 backdrop-blur-md inset-x-0 top-0 z-50" : "hidden"}>
+        <header className={showNav ? "sticky bg-white/80 dark:bg-transparent/70 border-b-[1px] border-gray-900 dark:border-gray-500 backdrop-blur-md inset-x-0 top-0 z-50" : "hidden"}>
             <nav
                 aria-label="Global"
-                className="flex items-center justify-between p-6 lg:px-8"
+                className="flex items-center justify-between px-6 py-2 lg:px-8"
             >
                 <div className="flex lg:flex-1">
                     <Link href="/" className="-m-1.5 p-1.5">
@@ -25,7 +25,7 @@ export default function NavBar() {
                         <img
                             alt="Company Logo"
                             src={`${link}/Logo.svg`}
-                            className="h-8 w-auto"
+                            className="h-6 sm:h-8 w-auto"
                         />
                     </Link>
                 </div>
