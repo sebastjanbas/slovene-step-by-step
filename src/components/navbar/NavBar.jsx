@@ -14,7 +14,7 @@ export default function NavBar() {
     const showNav = validLinks.some((link) => pathname === link.href);
 
     return (
-        <header className={showNav ? "sticky bg-white/80 dark:bg-transparent/70 border-b-[1px] border-gray-900 dark:border-gray-500 backdrop-blur-md inset-x-0 top-0 z-50" : "hidden"}>
+        <header className={showNav ? "sticky bg-white/60 dark:bg-transparent/70 border-b-[1px] border-gray-300 dark:border-gray-500 backdrop-blur-md inset-x-0 top-0 z-50" : "hidden"}>
             <nav
                 aria-label="Global"
                 className="flex items-center justify-between px-6 py-2 lg:px-8"
