@@ -1,14 +1,17 @@
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
+// import Link from "next/link";
+import { Link } from '@/i18n/routing';
 import { motion, AnimatePresence } from "framer-motion";
 import { link } from "@/lib/docs"
 import { usePathname } from "next/navigation";
 import { ThemButton } from "../ui/ApearanceSwitchButton";
+import { useTranslations } from 'next-intl';
 
 export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation }) {
 
     const pathname = usePathname();
+    const t = useTranslations('Navbar');
 
     return (
         <div>
@@ -66,20 +69,20 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                                 <Link
                                                     key={item.name}
                                                     href={item.href}
-                                                    className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-indigo-300 dark:hover:bg-[#121212] ${item.href === pathname ? "text-indigo-500 dark:text-indigo-300" : "text-gray-900 dark:text-gray-200"}`}
+                                                    className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-indigo-300 dark:hover:bg-[#121212] ${pathname.includes(item.href) ? "text-indigo-500 dark:text-indigo-300" : "text-gray-900 dark:text-gray-200"}`}
                                                     onClick={() => setMobileMenuOpen(false)}
                                                 >
-                                                    {item.name}
+                                                    {t(item.name)}
                                                 </Link>
                                             ))}
                                         </div>
                                         <div className="py-6">
                                             <Link
                                                 href={"/log-in"}
-                                                className={`-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-indigo-300 dark:hover:bg-[#121212] ${pathname === "/log-in" ? "text-indigo-500 dark:text-indigo-300" : "text-gray-900 dark:text-gray-200"}`}
+                                                className={`-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-indigo-300 dark:hover:bg-[#121212] ${pathname.includes("/log-in") ? "text-indigo-500 dark:text-indigo-300" : "text-gray-900 dark:text-gray-200"}`}
                                                 onClick={() => setMobileMenuOpen(false)}
                                             >
-                                                Log in <span aria-hidden="true">&rarr;</span>
+                                                {t("Log-in")} <span aria-hidden="true">&rarr;</span>
                                             </Link>
                                         </div>
                                     </div>

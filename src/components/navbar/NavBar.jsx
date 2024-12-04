@@ -1,20 +1,21 @@
 "use client";
 import { useState } from "react";
 import { navigation, link } from "@/lib/docs";
-import { validLinks } from "@/lib/docs";
+import { Link } from '@/i18n/routing';
+// import Link from "next/link";
 import { Bars3Icon } from "@heroicons/react/24/outline";
-import Link from "next/link";
 import MyDialog from "./MyDialog";
 import { usePathname } from "next/navigation";
 import { ThemButton } from "../ui/ApearanceSwitchButton";
+import { useTranslations } from 'next-intl';
 
 export default function NavBar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const pathname = usePathname();
-    const showNav = validLinks.some((link) => pathname === link.href);
+    const t = useTranslations('Navbar');
 
     return (
-        <header className={showNav ? "sticky bg-white/60 dark:bg-transparent/70 border-b-[1px] border-gray-300 dark:border-gray-500 backdrop-blur-md inset-x-0 top-0 z-50" : "hidden"}>
+        <header className={"sticky bg-white/60 dark:bg-transparent/70 border-b-[1px] border-gray-300 dark:border-gray-500 backdrop-blur-md inset-x-0 top-0 z-50"}>
             <nav
                 aria-label="Global"
                 className="flex items-center justify-between px-6 py-2 lg:px-8"
@@ -44,12 +45,12 @@ export default function NavBar() {
                         <Link
                             key={item.name}
                             href={item.href}
-                            className={`text-sm/6 font-semibold ${item.href === pathname
+                            className={`text-sm/6 font-semibold ${pathname.includes(item.href)
                                 ? "text-indigo-500 dark:text-indigo-300"
                                 : "text-gray-900 dark:text-white"
                                 } hover:text-indigo-500 dark:hover:text-indigo-300 `}
                         >
-                            {item.name}
+                            {t(item.name)}
                         </Link>
                     ))}
                 </div>
@@ -57,10 +58,10 @@ export default function NavBar() {
                     <ThemButton />
                     <Link
                         href={"/log-in"}
-                        className={`text-sm/6 font-semibold ${pathname === "/log-in" ? "text-indigo-500 dark:text-indigo-300" : "text-gray-900 dark:text-white"
+                        className={`text-sm/6 font-semibold ${pathname.includes("/log-in") ? "text-indigo-500 dark:text-indigo-300" : "text-gray-900 dark:text-white"
                             } hover:text-indigo-500 dark:hover:text-indigo-300`}
                     >
-                        Log in <span aria-hidden="true">&rarr;</span>
+                        {t("log-in")} <span aria-hidden="true">&rarr;</span>
                     </Link>
                 </div>
             </nav>

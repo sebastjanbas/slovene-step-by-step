@@ -1,10 +1,10 @@
 export const link = "https://generalseba.github.io/slovene-step-by-step";
 
 export const navigation = [
-    { name: "Products", href: "/products" },
-    { name: "Features", href: "/features" },
-    { name: "Languages", href: "#" },
-    { name: "About Us", href: "/about-us" },
+    { name: "products", href: "/products" },
+    { name: "features", href: "/features" },
+    { name: "languages", href: "#" },
+    { name: "about-us", href: "/about-us" },
 ];
 
 export const validLinks = [

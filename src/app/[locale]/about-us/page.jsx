@@ -1,7 +1,8 @@
 import HelperPage from "@/components/about/HelperPage";
-import { people, link } from "@/lib/docs"
+import { people, link } from "@/lib/docs";
 
 export default function MeetTheTeamPage() {
+
     return (
         <section>
             <div

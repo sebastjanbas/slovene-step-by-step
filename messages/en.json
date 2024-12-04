@@ -1,0 +1,53 @@
+{
+  "HomePage": {
+    "announcement": "Announcement",
+    "announcement-link": "Learn more",
+    "title": "Become Fluent in Slovene",
+    "under-title": "The best way to learn Slovene and make your dreams a reality.",
+    "action-button": "Get started",
+    "more-info-button" : "Learn more",
+    "why-us": "Why choose us",
+    "why-us-sub": "Learn faster",
+
+    "bento-c1-title": "Online lessons",
+    "bento-c1-desc": "Learn Slovene from the comfort of your home! Our lessons are conducted via Skype, offering flexibility and convenience no matter where you are. Connect with experienced teachers and immerse yourself in engaging, interactive sessions tailored to your goals.",
+    "bento-c1-title2": "Free trial lesson",
+    "bento-c1-desc2": "During this lesson you will get acquainted with our methodology, learn the details of the program and get answers to all your questions.",
+    "bento-c2-title": "Become part of a community ",
+    "bento-c2-desc": "Join our vibrant community of over 1,200 learners on Telegram! Share experiences, ask questions, and practice Slovenian with fellow students in a supportive and engaging environment. Learning is better together!",
+    "bento-c3-title": "Support every step of the way",
+    "bento-c3-desc": "Stay on track with help from our dedicated course curator. From answering your questions to providing valuable feedback, we're here to make your learning journey smooth and successful.",
+    "bento-c4-title": "Personalized learning plans",
+    "bento-c4-desc": "Achieve your goals faster with a program designed just for you. Whether you're learning for travel, work, or relocation, our tailored approach ensures every lesson is relevant and effective…",
+    "Happy students": "Happy students",
+    "Lessons Conducted": "Lessons Conducted",
+    "Student Satisfaction": "Student Satisfaction"
+  },
+  "Navbar": {
+    "products": "Products",
+    "features": "Features",
+    "languages": "Languages",
+    "about-us": "About us",
+    "log-in": "Log in"
+  },
+
+  "About us": {
+    "title": "Meet the team",
+    "subtitle": "We're a dynamic group of individuals who are passionate about what we do and dedicated to delivering the best results for our clients."
+  },
+
+  "Log in": {
+    "title": "Log in",
+    "subtitle": "Log in coming soon!"
+  },
+
+  "ProductsPage": {
+    "title": "Products",
+    "description": "Coming Soon!"
+  },
+  "NotFoundPage": {
+    "title": "Page not found",
+    "description": "Sorry, we couldn't find the page you're looking for.",
+    "backButton": "Back to home"
+  }
+}

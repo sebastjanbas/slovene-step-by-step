@@ -2,6 +2,7 @@ import SvgBlob from "@/components/ui/svg-blob";
 import SvgBlobContainer from "@/components/ui/svg-blob-container";
 
 export default function LogInPage() {
+
     return (
         <section>
             <SvgBlobContainer top={true}>
@@ -20,8 +21,6 @@ export default function LogInPage() {
             <SvgBlobContainer top={false}>
                 <SvgBlob color={"green"} />
             </SvgBlobContainer>
-
         </section>
     );
 }
-

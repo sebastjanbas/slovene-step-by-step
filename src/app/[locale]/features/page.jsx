@@ -1,6 +1,7 @@
 import SvgBlob from "@/components/ui/svg-blob";
 
 function DetailsPage() {
+
     return (
         <div>
             <div
@@ -21,7 +22,8 @@ function DetailsPage() {
                         Learn Slovenian online with experienced teachers!
                     </h1>
                     <p className="mt-8 text-pretty text-lg font-medium text-gray-500 dark:text-gray-400 sm:text-xl/8">
-                        We offer a professional approach, flexible schedule and an individual training program, fully tailored to your goals and needs.
+                        We offer a professional approach, flexible schedule and an
+                        individual training program, fully tailored to your goals and needs.
                     </p>
                 </div>
             </div>

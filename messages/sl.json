@@ -1,0 +1,49 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "about": "Go to the about page",
+    "why-us": "Zakaj izbrati nas",
+    "why-us-sub": "-",
+    "bento-c1-title": "Spletno poučevanje",
+    "bento-c1-desc": "Učenje na voljo iz udobja svojega doma! Naše lekcije potekajo preko Skypa, kar ponuja prilagodljivost in udobje, ne glede na to, kje ste. Povežite se z izkušenimi učitelji in se potopite v privlačne, interaktivne ure, prilagojene vašim ciljem.",
+    
+    "bento-c1-title2": "Prva ura je na nas",
+    "bento-c1-desc2": "Med to lekcijo se boste seznanili z našo metodologijo, izvedeli podrobnosti programa in dobili odgovore na vsa vaša vprašanja.",
+    "bento-c2-title": "Postani član",
+    "bento-c2-desc": "Postani član hitro rastoče skupnosti več kot 1200 učencev na Telegramu! Delite izkušnje, postavljajte vprašanja in vadite slovenščino s součenci v spodbujajočem in perspektivnem okolju.",
+    "bento-c3-title": "Podpora na vsakem koraku",
+    "bento-c3-desc": "Ostanite na pravi poti s pomočjo našega predanega kustosa tečaja. Od odgovorov na vaša vprašanja do zagotavljanja dragocenih povratnih informacij, tukaj smo, da naredimo vaše učenje gladko in uspešno.",
+    "bento-c4-title": "Vam prilagojen program",
+    "bento-c4-desc": "Hitreje dosegajte svoje cilje s programom, ki je zasnovan samo za vas. Ne glede na to, ali se učite za potovanje, delo ali selitev, naš prilagojeni pristop zagotavlja, da je vsaka lekcija zanimiva in učinkovita ...",
+    "stat-text1": "Zadovolni učenci",
+    "stat-text2": "Opravljenih lekcij",
+    "stat-text3": "Uspešnost učencev"
+},
+
+  "Navbar": {
+    "products": "Produkti",
+    "features": "Drugo",
+    "languages": "Jeziki ",
+    "about-us": "Kdo smo",
+    "log-in": "Prijava"
+  },
+
+  "About us": {
+    "title": "Naša ekipa",
+    "subtitle": "Smo dinamična skupina posameznikov, ki so navdušeni nad tem, kar počnemo, in predani zagotavljanju najboljših rezultatov za naše stranke."
+  },
+
+  "Log in": {
+    "title": "Prijava",
+    "subtitle": "Prijava na voljo kmalu!"
+  },
+  "ProductsPage": {
+    "title": "Produkti",
+    "description": "Na voljo kmalu!"
+  },
+  "NotFoundPage": {
+    "title": "Stran ne obstaja",
+    "description": "Željene spletne strani ni bilo mogoče doseči",
+    "backButton": "Nazaj domov"
+  }
+}
