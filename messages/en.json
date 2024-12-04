@@ -2,7 +2,9 @@
   "HomePage": {
     "announcement": "Announcement",
     "announcement-link": "Learn more",
-    "title": "Become Fluent in Slovene",
+    "title-1": "Become",
+    "title-strong": " Fluent ",
+    "title-2": "in Slovene",
     "under-title": "The best way to learn Slovene and make your dreams a reality.",
     "action-button": "Get started",
     "more-info-button" : "Learn more",
@@ -19,6 +21,7 @@
     "bento-c3-desc": "Stay on track with help from our dedicated course curator. From answering your questions to providing valuable feedback, we're here to make your learning journey smooth and successful.",
     "bento-c4-title": "Personalized learning plans",
     "bento-c4-desc": "Achieve your goals faster with a program designed just for you. Whether you're learning for travel, work, or relocation, our tailored approach ensures every lesson is relevant and effective…",
+    
     "Happy students": "Happy students",
     "Lessons Conducted": "Lessons Conducted",
     "Student Satisfaction": "Student Satisfaction"
@@ -51,3 +54,4 @@
     "backButton": "Back to home"
   }
 }
+

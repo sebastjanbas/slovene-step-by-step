@@ -1,12 +1,19 @@
 {
   "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page",
+    "announcement": "Obvestilo",
+    "announcement-link": "Izvedi več",
+    "title-1": "Postani",
+    "title-strong": " velemojster ",
+    "title-2": "Slovenskega jezika",
+    "under-title": "Najboljša platforma za učenje Slovenščine",
+    "action-button": "Get started",
+    "more-info-button": "Izvedi več",
+
     "why-us": "Zakaj izbrati nas",
     "why-us-sub": "-",
     "bento-c1-title": "Spletno poučevanje",
     "bento-c1-desc": "Učenje na voljo iz udobja svojega doma! Naše lekcije potekajo preko Skypa, kar ponuja prilagodljivost in udobje, ne glede na to, kje ste. Povežite se z izkušenimi učitelji in se potopite v privlačne, interaktivne ure, prilagojene vašim ciljem.",
-    
+
     "bento-c1-title2": "Prva ura je na nas",
     "bento-c1-desc2": "Med to lekcijo se boste seznanili z našo metodologijo, izvedeli podrobnosti programa in dobili odgovore na vsa vaša vprašanja.",
     "bento-c2-title": "Postani član",
@@ -15,10 +22,11 @@
     "bento-c3-desc": "Ostanite na pravi poti s pomočjo našega predanega kustosa tečaja. Od odgovorov na vaša vprašanja do zagotavljanja dragocenih povratnih informacij, tukaj smo, da naredimo vaše učenje gladko in uspešno.",
     "bento-c4-title": "Vam prilagojen program",
     "bento-c4-desc": "Hitreje dosegajte svoje cilje s programom, ki je zasnovan samo za vas. Ne glede na to, ali se učite za potovanje, delo ali selitev, naš prilagojeni pristop zagotavlja, da je vsaka lekcija zanimiva in učinkovita ...",
-    "stat-text1": "Zadovolni učenci",
-    "stat-text2": "Opravljenih lekcij",
-    "stat-text3": "Uspešnost učencev"
-},
+
+    "Happy students": "Zadovolni učenci",
+    "Lessons Conducted": "Opravljenih lekcij",
+    "Student Satisfaction": "Uspešnost učencev"
+  },
 
   "Navbar": {
     "products": "Produkti",

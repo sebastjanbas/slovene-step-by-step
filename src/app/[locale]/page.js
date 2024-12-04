@@ -4,7 +4,7 @@ import Stats from "@/components/Stats";
 import { useTranslations } from 'next-intl';
 
 export default function Home() {
-  const t = useTranslations('NotFoundPage');
+  const t = useTranslations('HomePage');
 
   return (
     <main> 

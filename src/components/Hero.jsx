@@ -25,7 +25,7 @@ export default function Hero() {
                 </div>
                 <div className="text-center">
                     <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 dark:text-gray-200 sm:text-7xl">
-                        {t("title")}
+                        {t("title-1")}<strong className='text-indigo-500'>{t("title-strong")}</strong>{t("title-2")}
                     </h1>
                     <p className="mt-8 text-pretty text-lg font-medium text-gray-500 dark:text-gray-400 sm:text-xl/8">
                         {t("under-title")}
