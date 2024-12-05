@@ -2276,6 +2276,10 @@ video {
     font-size: 1.125rem;
     line-height: 2;
   }
+
+  .lg\:dark\:bg-\[\#121212\]\/70:is(.dark *) {
+    background-color: rgb(18 18 18 / 0.7);
+  }
 }
 
 @media (min-width: 1280px) {

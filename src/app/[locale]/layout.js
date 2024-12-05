@@ -11,7 +11,21 @@ import { setRequestLocale } from "next-intl/server";
 export const metadata = {
   title: "Slovene Step By Step",
   description: "The best way to learn slovene",
+  
+  keywords: ["Learn Slovene", "Slovene courses", "Slovene", "Course"],
+  // metadataBase: new URL(""),
+  
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en" : "/en",
+      "sl" : "/sl",
+      "ru" : "/ru",
+    }
+  },
   openGraph: {
+    url: "https://generalseba.github.io/slovene-step-by-step",
+    siteName: "Slovene Step By Step",
     images:
       "https://generalseba.github.io/slovene-step-by-step/meta-image-link.jpg",
   },
@@ -21,7 +35,10 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function RootLayout({ children, params: { locale } }) {
+export default async function RootLayout({ children, params}) {
+
+  const { locale } = await params;
+
   // Ensure that the incoming `locale` is valid
   if (!routing.locales.includes(locale)) {
     notFound();
@@ -29,7 +46,7 @@ export default async function RootLayout({ children, params: { locale } }) {
 
   // Providing all messages to the client
   // side is the easiest way to get started
-  const messages = await getMessages();
+  const messages = await getMessages(locale);
 
   // Enable static rendering
   await setRequestLocale(locale);
@@ -43,7 +60,7 @@ export default async function RootLayout({ children, params: { locale } }) {
         />
       </head>
       <body>
-          <NextIntlClientProvider messages={messages}>
+          <NextIntlClientProvider messages={messages} locale={locale}>
             <NavBar />
             <AnimatedLayout>
               <main className="relative isolate px-6 pt-14 lg:px-8">
