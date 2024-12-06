@@ -12,6 +12,12 @@ import { ThemeProvider } from "@/components/ui/ThemeProvider";
 export const metadata = {
   title: "Become fluent in Slovene",
   description: "The best way to learn slovene",
+  openGraph: {
+      siteName: "Slovene Step By Step",
+      images: "https://slovene-step-by-step.vercel.app/meta-image-link.jpg",
+      url: "https://slovene-step-by-step.vercel.app/"
+
+  },
 };
 
 export function generateStaticParams() {
