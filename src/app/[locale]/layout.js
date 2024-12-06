@@ -10,14 +10,15 @@ import { setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 
 export const metadata = {
-  title: "Slovene Step By Step",
+  title: "Become fluent in Slovene",
   description: "The best way to learn slovene",
   openGraph: {
-    images:
-      "https://generalseba.github.io/slovene-step-by-step/meta-image-link.jpg",
+      site_name: "Slovene Step By Step",
+      images: "/meta-image-link.jpg",
+      url: "https://slovene-step-by-step.vercel.app/"
+
   },
 };
-
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
