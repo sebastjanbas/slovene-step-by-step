@@ -11,18 +11,7 @@ import { setRequestLocale } from "next-intl/server";
 export const metadata = {
   title: "Slovene Step By Step",
   description: "The best way to learn slovene",
-  
   keywords: ["Learn Slovene", "Slovene courses", "Slovene", "Course"],
-  // metadataBase: new URL(""),
-  
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en" : "/en",
-      "sl" : "/sl",
-      "ru" : "/ru",
-    }
-  },
   openGraph: {
     url: "https://generalseba.github.io/slovene-step-by-step",
     siteName: "Slovene Step By Step",
