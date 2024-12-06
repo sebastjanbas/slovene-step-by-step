@@ -46,7 +46,7 @@ export default async function Layout({ children, params}) {
         />
       </head>
       <body>
-          <NextIntlClientProvider messages={messages} locale={locale}>
+          <NextIntlClientProvider messages={messages}>
             <NavBar />
             <AnimatedLayout>
               <main className="relative isolate px-6 pt-14 lg:px-8">
