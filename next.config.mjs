@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
     output: 'export', // Required for static export
     basePath: 'https://generalseba.github.io/slovene-step-by-step/',
+    trailingSlash: true, // Ensure static export works properly
 };
 
  
