@@ -25,7 +25,7 @@ export default function NavBar() {
                         <span className="sr-only">Slovene Step By Step</span>
                         <img
                             alt="Company Logo"
-                            src={`${link}/Logo.svg`}
+                            src={`/Logo.svg`}
                             className="h-6 sm:h-8 w-auto"
                         />
                     </Link>

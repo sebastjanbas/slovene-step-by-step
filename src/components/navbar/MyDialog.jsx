@@ -3,7 +3,6 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 // import Link from "next/link";
 import { Link } from '@/i18n/routing';
 import { motion, AnimatePresence } from "framer-motion";
-import { link } from "@/lib/docs"
 import { usePathname } from "next/navigation";
 import { ThemButton } from "../ui/ApearanceSwitchButton";
 import { useTranslations } from 'next-intl';
@@ -46,7 +45,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                         <span className="sr-only">Company</span>
                                         <img
                                             alt="Company Logo"
-                                            src={`${link}/Logo.svg`}
+                                            src={`/Logo.svg`}
                                             className="h-8 w-auto"
                                         />
                                     </Link>

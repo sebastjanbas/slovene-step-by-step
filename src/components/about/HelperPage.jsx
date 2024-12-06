@@ -3,7 +3,7 @@ import Card from "@/components/about/Card";
 import { useState } from "react";
 import DialogAbout from "./DialogAbout";
 
-export default function HelperPage({ people, link }) {
+export default function HelperPage({ people }) {
     const [memberDetailsOpen, setMemberDetailsOpen] = useState(false);
     const [member, setMember] = useState(null);
 
@@ -19,7 +19,6 @@ export default function HelperPage({ people, link }) {
                     <li key={person.id}>
                         <Card
                             setMember={setMember}
-                            link={link}
                             person={person}
                             setMemberDetailsOpen={setMemberDetailsOpen}
                         />

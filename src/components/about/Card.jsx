@@ -1,6 +1,6 @@
 // import Link from "next/link";
 
-function Card({ person, link, setMemberDetailsOpen, setMember }) {
+function Card({ person, setMemberDetailsOpen, setMember }) {
 
 
     const handleClick = () => {
@@ -47,7 +47,7 @@ function Card({ person, link, setMemberDetailsOpen, setMember }) {
                     {person.fluentIn.map((item) => (
                         <span key={item} className="flex gap-2 items-center">
                             <img
-                                src={`${link}/checkmark.svg`}
+                                src={`/checkmark.svg`}
                                 alt="checkmark"
                                 className="size-4"
                             />

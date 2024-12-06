@@ -1,5 +1,4 @@
 // import Link from "next/link";
-import { link } from "@/lib/docs";
 import SvgBlobContainer from "@/components/ui/svg-blob-container";
 import SvgBlob from "@/components/ui/svg-blob";
 import { useTranslations } from 'next-intl';
@@ -22,7 +21,7 @@ export default function NotFoundPage() {
                 <SvgBlob color={"blue"} />
             </SvgBlobContainer>
             <main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
-                <img className="size-20 mb-10" src={`${link}/Logo.svg`} alt="Company Logo" />
+                <img className="size-20 mb-10" src={`/Logo.svg`} alt="Company Logo" />
                 <div className="text-center">
                     <p className="text-base font-semibold text-indigo-600 dark:text-indigo-400">404</p>
                     <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl dark:text-gray-200">

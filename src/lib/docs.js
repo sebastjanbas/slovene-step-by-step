@@ -1,5 +1,3 @@
-export const link = "https://generalseba.github.io/slovene-step-by-step";
-
 export const navigation = [
     { name: "products", href: "/products" },
     { name: "features", href: "/features" },
@@ -29,7 +27,7 @@ export const people = [
         role: "CEO / Main Teacher",
         fluentIn: ["Slovene", "English", "Russian"],
         imageUrl:
-            `${link}/foto-oleksandr3.jpg`,
+            `/foto-oleksandr3.jpg`,
         education: "University of Ljubljana",
         nativeLanguage: "Russian",
         languageExperience:

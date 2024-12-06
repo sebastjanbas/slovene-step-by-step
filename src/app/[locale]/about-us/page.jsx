@@ -1,5 +1,5 @@
 import HelperPage from "@/components/about/HelperPage";
-import { people, link } from "@/lib/docs";
+import { people } from "@/lib/docs";
 import { useTranslations } from 'next-intl';
 // import { routing } from "../../../i18n/routing";
 
@@ -68,7 +68,7 @@ export default function MeetTheTeamPage() {
                     className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#3AAFA9] to-[#FCAB10] opacity-40 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
                 />
             </div>
-            <HelperPage people={people} link={link} />
+            <HelperPage people={people} />
         </section>
     );
 }

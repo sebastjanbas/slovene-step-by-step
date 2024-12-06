@@ -1,5 +1,4 @@
 "use client";
-import { link } from "@/lib/docs";
 import Lottie from "lottie-react";
 import teacherAnimation from "@/animations/teacher-animation.json";
 import supportAnimation from "@/animations/support.json";
@@ -59,7 +58,7 @@ export default function BentoGrid() {
                         <div className="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 dark:border-gray-800 bg-gray-900 shadow-2xl">
                             <img
                                 className="size-full object-cover object-top"
-                                src={`${link}/phone.png`}
+                                src={`/phone.png`}
                                 alt="phone demo"
                             />
                         </div>
@@ -85,7 +84,7 @@ export default function BentoGrid() {
                 <div className="hidden lg:gap-3 lg:px-8 lg:py-8 lg:col-span-2 lg:row-span-1 lg:flex flex-col justify-center items-center shadow-lg border rounded-3xl">
                     <img
                         className="size-10"
-                        src={`${link}/Logo.svg`}
+                        src={`/Logo.svg`}
                         alt="Company Logo"
                     />
                     <h1 className="uppercase text-center text-[0.590rem] text-[#5C6BC0] font-bold">
