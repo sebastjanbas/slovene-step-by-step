@@ -1,6 +1,8 @@
 import SvgBlob from "@/components/ui/svg-blob";
+import { useTranslations } from 'next-intl';
 
 function DetailsPage() {
+    const t = useTranslations('HomePage');
 
     return (
         <div>

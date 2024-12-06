@@ -1,8 +1,9 @@
 import HelperPage from "@/components/about/HelperPage";
 import { people, link } from "@/lib/docs";
+import { useTranslations } from 'next-intl';
 
 export default function MeetTheTeamPage() {
-
+    const t = useTranslations('HomePage');
     return (
         <section>
             <div

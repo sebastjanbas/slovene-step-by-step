@@ -1,7 +1,9 @@
 import SvgBlob from "@/components/ui/svg-blob";
 import SvgBlobContainer from "@/components/ui/svg-blob-container";
+import { useTranslations } from 'next-intl';
 
 export default function LogInPage() {
+    const t = useTranslations('HomePage');
 
     return (
         <section>
