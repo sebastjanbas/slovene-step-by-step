@@ -35,7 +35,7 @@ export default async function Layout({ children, params}) {
   const messages = await getMessages(locale);
 
   // Enable static rendering
-  await setRequestLocale(locale);
+  // await setRequestLocale(locale);
 
   return (
     <html lang={locale} suppressHydrationWarning>
