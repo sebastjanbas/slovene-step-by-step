@@ -11,10 +11,7 @@ import { setRequestLocale } from "next-intl/server";
 export const metadata = {
   title: "Slovene Step By Step",
   description: "The best way to learn slovene",
-  keywords: ["Learn Slovene", "Slovene courses", "Slovene", "Course"],
   openGraph: {
-    url: "https://generalseba.github.io/slovene-step-by-step",
-    siteName: "Slovene Step By Step",
     images:
       "https://generalseba.github.io/slovene-step-by-step/meta-image-link.jpg",
   },
