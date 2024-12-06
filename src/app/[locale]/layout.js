@@ -13,13 +13,13 @@ export const metadata = {
   description: "The best way to learn slovene",
   openGraph: {
     images:
-      "https://generalseba.github.io/slovene-step-by-step/meta-image-link.jpg",
+    "https://generalseba.github.io/slovene-step-by-step/meta-image-link.jpg",
   },
 };
 
-// export function generateStaticParams() {
-//   return routing.locales.map((locale) => ({ locale }));
-// }
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export default async function LocaleLayout({ children, params: {locale}}) {
 
@@ -35,7 +35,7 @@ export default async function LocaleLayout({ children, params: {locale}}) {
   const messages = await getMessages(locale);
 
   // Enable static rendering
-  // await setRequestLocale(locale);
+  await setRequestLocale(locale);
 
   return (
     <html lang={locale} suppressHydrationWarning>

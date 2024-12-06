@@ -1,6 +1,11 @@
 import SvgBlob from "@/components/ui/svg-blob";
 import SvgBlobContainer from "@/components/ui/svg-blob-container";
 import { useTranslations } from 'next-intl';
+import { routing } from "../../../i18n/routing";
+
+export function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
+}
 
 export default function LogInPage() {
     const t = useTranslations('HomePage');
