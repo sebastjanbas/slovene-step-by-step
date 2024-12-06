@@ -27,7 +27,6 @@ export default function HelperPage({ people }) {
             </ul>
             <DialogAbout
                 person={chosenPerson}
-                link={link}
                 memberDetailsOpen={memberDetailsOpen}
                 setMemberDetailsOpen={setMemberDetailsOpen}
             />
