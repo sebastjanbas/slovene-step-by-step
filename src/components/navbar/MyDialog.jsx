@@ -6,8 +6,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ThemButton } from "../ui/ApearanceSwitchButton";
 import { useTranslations } from 'next-intl';
+import LanguageSwitcher from "./language-swithcher";
 
-export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation }) {
+export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation, locale }) {
 
     const pathname = usePathname();
     const t = useTranslations('Navbar');
@@ -50,6 +51,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                         />
                                     </Link>
                                     <div className="flex justify-center items-center">
+                                        <LanguageSwitcher locale={locale} />
                                         <ThemButton />
                                         <button
                                             type="button"
@@ -81,7 +83,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                                 className={`-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-indigo-300 dark:hover:bg-[#121212] ${pathname.includes("/log-in") ? "text-indigo-500 dark:text-indigo-300" : "text-gray-900 dark:text-gray-200"}`}
                                                 onClick={() => setMobileMenuOpen(false)}
                                             >
-                                                {t("Log-in")} <span aria-hidden="true">&rarr;</span>
+                                                {t("log-in")} <span aria-hidden="true">&rarr;</span>
                                             </Link>
                                         </div>
                                     </div>

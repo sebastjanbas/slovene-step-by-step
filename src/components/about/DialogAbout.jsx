@@ -91,7 +91,7 @@ export default function DialogAbout({
                                             {person.fluentIn.map((item) => (
                                                 <span key={item} className="flex gap-2 items-center">
                                                     <img
-                                                        src={`${link}/checkmark.svg`}
+                                                        src={`/checkmark.svg`}
                                                         alt="checkmark"
                                                         className="size-4"
                                                     />

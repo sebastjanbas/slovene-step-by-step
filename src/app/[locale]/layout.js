@@ -7,13 +7,14 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "../../i18n/routing";
 import { setRequestLocale } from "next-intl/server";
+import { ThemeProvider } from "@/components/ui/ThemeProvider";
 
 export const metadata = {
   title: "Slovene Step By Step",
   description: "The best way to learn slovene",
   openGraph: {
     images:
-    "https://generalseba.github.io/slovene-step-by-step/meta-image-link.jpg",
+      "https://generalseba.github.io/slovene-step-by-step/meta-image-link.jpg",
   },
 };
 
@@ -21,8 +22,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function LocaleLayout({ children, params: {locale}}) {
-
+export default async function LocaleLayout({ children, params: { locale } }) {
   // const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
@@ -46,14 +46,21 @@ export default async function LocaleLayout({ children, params: {locale}}) {
         />
       </head>
       <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <NextIntlClientProvider messages={messages}>
-            <NavBar />
+            <NavBar locale={locale} />
             <AnimatedLayout>
               <main className="relative isolate px-6 pt-14 lg:px-8">
                 {children}
               </main>
             </AnimatedLayout>
           </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

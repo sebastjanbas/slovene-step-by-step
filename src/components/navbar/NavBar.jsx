@@ -8,8 +8,9 @@ import MyDialog from "./MyDialog";
 import { usePathname } from "next/navigation";
 import { ThemButton } from "../ui/ApearanceSwitchButton";
 import { useTranslations } from 'next-intl';
+import LanguageSwitcher from "./language-swithcher";
 
-export default function NavBar() {
+export default function NavBar({ locale }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const pathname = usePathname();
     const t = useTranslations('Navbar');
@@ -55,6 +56,7 @@ export default function NavBar() {
                     ))}
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center">
+                    <LanguageSwitcher locale={locale} />
                     <ThemButton />
                     <Link
                         href={"/log-in"}
@@ -69,6 +71,7 @@ export default function NavBar() {
                 navigation={navigation}
                 mobileMenuOpen={mobileMenuOpen}
                 setMobileMenuOpen={setMobileMenuOpen}
+                locale={locale}
             />
         </header>
     );
