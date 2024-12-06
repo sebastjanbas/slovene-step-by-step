@@ -2,11 +2,11 @@ import BentoGrid from "@/components/BentoGrid";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import { useTranslations } from 'next-intl';
-import { routing } from "../../i18n/routing";
+// import { routing } from "../../i18n/routing";
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+// export function generateStaticParams() {
+//   return routing.locales.map((locale) => ({ locale }));
+// }
 
 export default function Home() {
   const t = useTranslations('HomePage');
