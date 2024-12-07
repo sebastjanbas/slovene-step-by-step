@@ -7,7 +7,6 @@ import SvgBlob from "../ui/svg-blob";
 export default function DialogAbout({
     memberDetailsOpen,
     setMemberDetailsOpen,
-    link,
     person,
 }) {
     const handleClose = () => {
