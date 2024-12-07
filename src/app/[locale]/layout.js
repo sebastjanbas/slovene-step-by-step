@@ -11,7 +11,7 @@ import { ThemeProvider } from "@/components/ui/ThemeProvider";
 
 export const metadata = {
   title: "Become fluent in Slovene",
-  description: "The best way to learn slovene",
+  description: "Slovene Step by Step personalized Slovene lessons tailored to your goals. Learn online at your convenience with experienced teachers and join a supportive community of over 1,200 members. Start today and achieve your language goals with Slovene Step by Step!",
   icons: {
     icon: "https://slovene-step-by-step.vercel.app/icon.svg",
   },

@@ -14,8 +14,8 @@ export default function LanguageSwitcher({ locale }) {
     };
 
     return (
-        <div className="mx-5 bg-transparent">
-            <select value={lang} onChange={handleLangChange} name="language-switcher">
+        <div className="mx-5">
+            <select value={lang} onChange={handleLangChange} className="outline-none" name="language-switcher">
                 <option value="en">en</option>
                 <option value="sl">sl</option>
                 <option value="ru">ru</option>
