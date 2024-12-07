@@ -17,7 +17,7 @@ export const metadata = {
   },
   openGraph: {
       siteName: "Slovene Step By Step",
-      images: "https://slovene-step-by-step.vercel.app/meta-image-link.jpg",
+      images: ["https://slovene-step-by-step.vercel.app/meta-image-link.jpg"],
       url: "https://slovene-step-by-step.vercel.app/"
 
   },
