@@ -1,4 +1,19 @@
 {
+  "Metadata": {
+    "home-title": "Postani velemojster Slovenskega jezika",
+    "home-desc": "Slovenščina Korak za korakom prilagojene ure slovenščine, prilagojene vašim ciljem. Učite se na spletu, ko vam ustreza, z izkušenimi učitelji in se pridružite podporni skupnosti z več kot 1200 člani. Začnite danes in dosegajte svoje jezikovne cilje s slovenščino Korak za korakom!",
+    "about-title": "O nas",
+    "about-desc": "Pri Slovenski korak za korakom smo predani zagotavljanju personaliziranih izkušenj učenja slovenskega jezika. Naša ekipa izkušenih učiteljev v kombinaciji s prilagodljivim urnikom zagotavlja, da se lahko učite v svojem tempu.",
+    "features-title": "Drugo",
+    "features-desc": "",
+    "log-title": "Prijava",
+    "log-desc": "",
+    "products-title": "Produkti",
+    "products-desc": "",
+    "notfound-title":"Stran ne obstaja",
+    "notfound-desc":""
+  },
+
   "HomePage": {
     "announcement": "Obvestilo",
     "announcement-link": "Izvedi več",
@@ -41,6 +56,10 @@
     "subtitle": "Smo dinamična skupina posameznikov, ki so navdušeni nad tem, kar počnemo, in predani zagotavljanju najboljših rezultatov za naše stranke."
   },
 
+  "Features" : {
+    "title": "Drugo"
+  },
+  
   "Log in": {
     "title": "Prijava",
     "subtitle": "Prijava na voljo kmalu!"
@@ -53,5 +72,13 @@
     "title": "Stran ne obstaja",
     "description": "Željene spletne strani ni bilo mogoče doseči",
     "backButton": "Nazaj domov"
+  },
+
+  "Countdown": {
+    "days": "dni",
+    "hours": "ur",
+    "minutes": "minut",
+    "seconds": "sekund",
+    "times-up": "Čas je potekel!"
   }
 }

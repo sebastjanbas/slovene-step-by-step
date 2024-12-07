@@ -3,11 +3,15 @@ import SvgBlob from "@/components/ui/svg-blob";
 import SvgBlobContainer from "@/components/ui/svg-blob-container";
 import React from "react";
 import { useTranslations } from 'next-intl';
-// import { routing } from "../../../i18n/routing";
+import { getTranslations } from 'next-intl/server';
 
-// export function generateStaticParams() {
-//     return routing.locales.map((locale) => ({ locale }));
-// }
+export async function generateMetadata({ params: { locale } }) {
+    const t = await getTranslations({ locale, namespace: "Metadata" });
+    return {
+        title: t("products-title"),
+        //   description: t("products-desc"),
+    };
+}
 
 export default function ProductsPage() {
 

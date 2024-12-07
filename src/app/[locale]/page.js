@@ -2,6 +2,15 @@ import BentoGrid from "@/components/BentoGrid";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
+
+export async function generateMetadata({ params: { locale } }) {
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+  return {
+    title: t("home-title"),
+    description: t("home-desc"),
+  };
+}
 
 export default function Home() {
   const t = useTranslations('HomePage');

@@ -11,15 +11,15 @@ import { ThemeProvider } from "@/components/ui/ThemeProvider";
 
 export const metadata = {
   title: "Become fluent in Slovene",
-  description: "Slovene Step by Step personalized Slovene lessons tailored to your goals. Learn online at your convenience with experienced teachers and join a supportive community of over 1,200 members. Start today and achieve your language goals with Slovene Step by Step!",
+  description:
+    "Slovene Step by Step personalized Slovene lessons tailored to your goals. Learn online at your convenience with experienced teachers and join a supportive community of over 1,200 members. Start today and achieve your language goals with Slovene Step by Step!",
   icons: {
     icon: "https://slovene-step-by-step.vercel.app/icon.svg",
   },
   openGraph: {
-      siteName: "Slovene Step By Step",
-      images: ["https://slovene-step-by-step.vercel.app/meta-image-link.jpg"],
-      url: "https://slovene-step-by-step.vercel.app/"
-
+    siteName: "Slovene Step By Step",
+    images: ["https://slovene-step-by-step.vercel.app/meta-image-link.jpg"],
+    url: "https://slovene-step-by-step.vercel.app/",
   },
 };
 

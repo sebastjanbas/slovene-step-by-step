@@ -3,15 +3,19 @@ import SvgBlobContainer from "@/components/ui/svg-blob-container";
 import SvgBlob from "@/components/ui/svg-blob";
 import { useTranslations } from 'next-intl';
 import { routing } from "../i18n/routing";
+import { getTranslations } from 'next-intl/server';
 
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }
 
+export async function generateMetadata({ params: { locale } }) {
+    const t = await getTranslations({ locale, namespace: 'Metadata' });
 
-export const metadata = {
-    title: "Page not found!",
-};
+    return {
+        title: t('notfound-title')
+    };
+}
 
 export default function NotFoundPage() {
     const t = useTranslations('NotFoundPage');

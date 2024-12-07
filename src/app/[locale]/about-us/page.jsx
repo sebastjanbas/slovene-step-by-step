@@ -1,14 +1,18 @@
 import HelperPage from "@/components/about/HelperPage";
 import { people } from "@/lib/docs";
-import { useTranslations } from 'next-intl';
-// import { routing } from "../../../i18n/routing";
+import { useTranslations } from "next-intl";
+import { getTranslations } from 'next-intl/server';
 
-// export function generateStaticParams() {
-//     return routing.locales.map((locale) => ({ locale }));
-// }
+export async function generateMetadata({ params: { locale } }) {
+    const t = await getTranslations({ locale, namespace: "Metadata" });
+    return {
+        title: t("about-title"),
+        description: t("about-desc"),
+    };
+}
 
 export default function MeetTheTeamPage() {
-    const t = useTranslations('About us');
+    const t = useTranslations("About us");
     return (
         <section>
             <div

@@ -3,6 +3,7 @@ import { useAnimate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Lottie from "lottie-react";
 import timerAnimation from "@/animations/timer-animation.json";
+import { useTranslations } from "next-intl";
 
 // Usage for date:
 //  <Countdown border={false} date={"2025-01-01T15:01:12Z"} />
@@ -15,43 +16,53 @@ const DAY = HOUR * 24;
 
 const Countdown = ({ date = "2026-01-01", border = false }) => {
     const [isTimeUp, setIsTimeUp] = useState(false);
+    const t = useTranslations("Countdown");
 
     return (
         <div className="py-2 my-5">
-            <div className={border ? "inline-flex items-center space-x-0 md:space-x-2 border-b-[1px] border-indigo-400" : "inline-flex items-center space-x-0 md:space-x-2"}>
+            <div
+                className={
+                    border
+                        ? "inline-flex items-center space-x-0 md:space-x-2 border-b-[1px] border-indigo-400"
+                        : "inline-flex items-center space-x-0 md:space-x-2"
+                }
+            >
                 {!isTimeUp ? (
                     <>
                         <CountdownItem
                             unit="Day"
-                            text="days"
+                            text={t("days")}
                             date={date}
                             setTimeUp={setIsTimeUp}
                         />
                         <CountdownItem
                             unit="Hour"
-                            text="hours"
+                            text={t("hours")}
                             date={date}
                             setTimeUp={setIsTimeUp}
                         />
                         <CountdownItem
                             unit="Minute"
-                            text="minutes"
+                            text={t("minutes")}
                             date={date}
                             setTimeUp={setIsTimeUp}
                         />
                         <CountdownItem
                             unit="Second"
-                            text="seconds"
+                            text={t("seconds")}
                             date={date}
                             setTimeUp={setIsTimeUp}
                         />
                     </>
                 ) : (
                     <div className="flex pr-2 items-center justify-center gap-1 font-mono md:gap-2">
-                        <Lottie animationData={timerAnimation} className="size-10 m-0 p-0" />
+                        <Lottie
+                            animationData={timerAnimation}
+                            className="size-10 m-0 p-0"
+                        />
                         <div className="relative overflow-hidden text-center">
                             <span className="block text-sm font-bold text-indigo-400 dark:text-indigo-300 sm:text-md lg:text-lg">
-                                Time is up
+                                {t("times-up")}
                             </span>
                         </div>
                     </div>

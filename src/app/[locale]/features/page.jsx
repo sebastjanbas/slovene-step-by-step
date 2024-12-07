@@ -1,10 +1,14 @@
 import SvgBlob from "@/components/ui/svg-blob";
 import { useTranslations } from 'next-intl';
-// import { routing } from "../../../i18n/routing";
+import { getTranslations } from 'next-intl/server';
 
-// export function generateStaticParams() {
-//     return routing.locales.map((locale) => ({ locale }));
-// }
+export async function generateMetadata({ params: { locale } }) {
+    const t = await getTranslations({ locale, namespace: "Metadata" });
+    return {
+        title: t("features-title"),
+        // description: t("home-desc"),
+    };
+}
 
 function DetailsPage() {
     const t = useTranslations('HomePage');
