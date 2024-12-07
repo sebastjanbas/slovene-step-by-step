@@ -12,6 +12,9 @@ import { ThemeProvider } from "@/components/ui/ThemeProvider";
 export const metadata = {
   title: "Become fluent in Slovene",
   description: "The best way to learn slovene",
+  icons: {
+    icon: "https://slovene-step-by-step.vercel.app/icon.svg",
+  },
   openGraph: {
       siteName: "Slovene Step By Step",
       images: "https://slovene-step-by-step.vercel.app/meta-image-link.jpg",
@@ -41,12 +44,6 @@ export default async function LocaleLayout({ children, params: { locale } }) {
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <head>
-        <link
-          rel="icon"
-          href="https://generalseba.github.io/slovene-step-by-step/icon.svg"
-        />
-      </head>
       <body>
         <ThemeProvider
           attribute="class"
