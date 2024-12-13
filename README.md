@@ -1,37 +1,50 @@
-<<<<<<< HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Slovene Step by Step
 
-## Getting Started
+Welcome to the Slovene Step by Step project! This is an online language learning platform designed to help users master Slovenian through personalized lessons. Whether you’re learning for travel, work, or relocation, our program offers flexibility, experienced teachers, and a strong community support system.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Description](#description)
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Visit](#visit)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Description
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Slovene Step by Step is an online language learning platform that offers personalized Slovenian lessons tailored to your individual goals. Our program includes:
+• Free Trial Lesson: Explore our methodology and get acquainted with the program.
+• Flexible Online Lessons: Available via Skype, accessible from anywhere.
+• Tailored Learning Plans: Customized to your objectives, whether for travel, work, or relocation.
+• Community Support: Join a vibrant Telegram group with over 1,200 members for practice and support.
+• Experienced Teachers: Learn from a team of professional teachers and a native lecturer.
+• Flexible Schedule: Individual, pair, and group lessons to fit your needs.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+1. Free Trial Lesson:
+   • Get a taste of our methodology and program details.
+   • Duration: 45 minutes.
+   • No commitment required.
+2. Flexible Online Lessons:
+   • Conducted via Skype, ensuring convenience.
+   • Choose from individual, pair, or group lessons.
+3. Community Engagement:
+   • 1,200+ active Telegram group members.
+   • Practice with peers, ask questions, and share experiences.
+4. Tailored Learning Plans:
+   • Personalized content adapted to your goals.
+   • Progress tracking and feedback from course curator.
+5. Experienced Teachers:
+   • Russian-speaking professors and native lecturers.
+   • Practical and immersive learning experiences.
 
-To learn more about Next.js, take a look at the following resources:
+# Getting Started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Prerequisites
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    •	You need an internet connection to access online lessons.
+    •	A Skype account for conducting lessons.
 
-## Deploy on Vercel
+## Visit
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+https://slovene-step-by-step.vercel.app/

@@ -6,13 +6,13 @@ import { useTheme } from "next-themes";
 export function ThemButton() {
     const { theme, setTheme } = useTheme();
     return (
-        <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className="border-[1px] border-gray-900 dark:border-gray-300 rounded-full p-1 mr-5 ">
+        <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className="border-gray-900 dark:border-gray-300 rounded-full p-1 mr-5 ">
             {/* moon */}
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="#111827"
-                className="size-5 block dark:hidden"
+                className="size-4 block dark:hidden"
             >
                 <path
                     fillRule="evenodd"
