@@ -16,7 +16,7 @@ export default function NavBar({ locale }) {
     const t = useTranslations('Navbar');
 
     return (
-        <header className={"sticky bg-white/60 dark:bg-transparent/70 lg:dark:bg-[#121212]/70 border-b-[1px] border-gray-300 dark:border-gray-500 backdrop-blur-md inset-x-0 top-0 z-50"}>
+        <header className={"sticky py-1 lg:py-2 bg-white/60 dark:bg-transparent/70 lg:dark:bg-[#121212]/70 border-b-[1px] border-gray-300 dark:border-gray-500 backdrop-blur-md inset-x-0 top-0 z-50"}>
             <nav
                 aria-label="Global"
                 className="flex items-center justify-between px-6 py-2 lg:px-8"
@@ -27,7 +27,7 @@ export default function NavBar({ locale }) {
                         <img
                             alt="Company Logo"
                             src={`/Logo.svg`}
-                            className="h-6 sm:h-8 w-auto"
+                            className="h-7 w-auto"
                         />
                     </Link>
                 </div>

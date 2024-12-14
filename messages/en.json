@@ -24,9 +24,25 @@
     "under-title": "The best way to learn Slovene and make your dreams a reality.",
     "action-button": "Get started",
     "more-info-button" : "Learn more",
+
+
+    "why-slovene-title" : "Why should you learn Slovene?",
+    "why-slovene-subtitle" : "Knowledge is King",
+    "why-slovene-text1" : "Mastering Slovene is the key to unlocking unparalleled opportunities and truly integrating into this vibrant society.",
+    "why-slovene-text2" : "Whether you are relocating, studying, or working, learning Slovene makes daily life smoother. From building connections to meeting residency requirements, it is the key to integration. Do not let language barriers hold you back. Learning Slovene is your ticket to a successful, enriched, and fulfilling life in Slovenia.",
+    "why-slovene-point1-strong" : "Elevate your career.",
+    "why-slovene-point1" : "Mastering Slovene is essential for advancing your career in Slovenia. Improve your job prospects by becoming fluent in the local language.",
+    "why-slovene-point2-strong" : "Seamless social integration.",
+    "why-slovene-point2" : "Learning Slovene allows you to fully integrate into Slovenian society, making social connections easier and more meaningful.",
+    "why-slovene-point3-strong" : "Education and personal growth.",
+    "why-slovene-point3" : "Whether for personal enrichment or academic purposes, fluency in Slovene will open new doors for learning and self-development.",
+    "why-slovene-text3": "Slovene unlocks Slovenia's rich traditions, iconic works like poet France Prešeren's, and authentic connections with locals. It enhances your experience of stunning landscapes like Lake Bled while opening career opportunities in a growing economy. With its unique grammar, Slovene is a rewarding challenge and a way to preserve a rare linguistic heritage.",
+
+
+
+
     "why-us": "Why choose us",
     "why-us-sub": "Learn faster",
-
     "bento-c1-title": "Online lessons",
     "bento-c1-desc": "Learn Slovene from the comfort of your home! Our lessons are conducted via Skype, offering flexibility and convenience no matter where you are. Connect with experienced teachers and immerse yourself in engaging, interactive sessions tailored to your goals.",
     "bento-c1-title2": "Free trial lesson",
@@ -38,6 +54,10 @@
     "bento-c4-title": "Personalized learning plans",
     "bento-c4-desc": "Achieve your goals faster with a program designed just for you. Whether you're learning for travel, work, or relocation, our tailored approach ensures every lesson is relevant and effective…",
     
+
+    "stats-title" : "Our achievements", 
+    "stats-subtitle": "Stats",
+
     "Happy students": "Happy students",
     "Lessons Conducted": "Lessons Conducted",
     "Student Satisfaction": "Student Satisfaction"

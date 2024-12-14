@@ -14,8 +14,8 @@ export default function Hero() {
             </SvgBlobContainer>
             <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
                 <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                    {/* <div className="hidden"> */}
-                    <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 dark:text-gray-200 ring-1 ring-gray-900/10 dark:ring-gray-200/25 hover:ring-gray-900/20">
+                    <div className="hidden">
+                        {/* <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 dark:text-gray-200 ring-1 ring-gray-900/10 dark:ring-gray-200/25 hover:ring-gray-900/20"> */}
                         {t("announcement")}{" "}
                         <Link href="#" className="font-semibold text-indigo-500 dark:text-indigo-400">
                             <span aria-hidden="true" className="absolute inset-0" />
@@ -25,7 +25,7 @@ export default function Hero() {
                 </div>
                 <div className="text-center">
                     <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 dark:text-gray-200 sm:text-7xl">
-                        {t("title-1")}<strong className='text-indigo-500'>{t("title-strong")}</strong>{t("title-2")}
+                        {t("title-1")}<strong className='text-indigo-500'>{t("title-strong")}</strong><br />{t("title-2")}
                     </h1>
                     <p className="mt-8 text-pretty text-lg font-medium text-gray-500 dark:text-gray-400 sm:text-xl/8">
                         {t("under-title")}

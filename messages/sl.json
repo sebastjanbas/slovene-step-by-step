@@ -10,8 +10,8 @@
     "log-desc": "",
     "products-title": "Produkti",
     "products-desc": "",
-    "notfound-title":"Stran ne obstaja",
-    "notfound-desc":""
+    "notfound-title": "Stran ne obstaja",
+    "notfound-desc": ""
   },
 
   "HomePage": {
@@ -23,6 +23,18 @@
     "under-title": "Najboljša platforma za učenje Slovenščine",
     "action-button": "Pričnite zdaj",
     "more-info-button": "Izvedi več",
+
+    "why-slovene-title" : "Zakaj bi se morali učiti slovenščino?",
+    "why-slovene-subtitle" : "Znanje je kralj",
+    "why-slovene-text1" : "Obvladovanje slovenščine je ključ do odklepanja neprimerljivih priložnosti in resničnega vključevanja v to živahno družbo.",
+    "why-slovene-text2" : "Ne glede na to, ali se preselite, študirate ali delate, učenje slovenščine olajša vsakodnevno življenje. Od vzpostavljanja povezav do izpolnjevanja zahtev glede stalnega prebivališča je ključ do integracije. Naj vas jezikovne ovire ne zadržijo. Učenje slovenščine je vaša vstopnica za uspešno, obogateno in izpolnjujoče življenje v Sloveniji.",
+    "why-slovene-point1-strong" : "Dvigni svojo kariero.",
+    "why-slovene-point1" : "Obvladanje slovenščine je nujno za napredovanje v vaši karieri v Sloveniji. Izboljšajte svoje zaposlitvene možnosti tako, da začnete tekoče govoriti lokalni jezik.",
+    "why-slovene-point2-strong" : "Brezhibna socialna integracija.",
+    "why-slovene-point2" : "Učenje slovenščine vam omogoča popolno vključitev v slovensko družbo, socialno povezovanje pa postane lažje in bolj smiselno.",
+    "why-slovene-point3-strong" : "Izobraževanje in osebna rast.",
+    "why-slovene-point3" : "Ne glede na to, ali gre za osebno obogatitev ali za akademske namene, vam bo tekoče znanje slovenščine odprlo nova vrata za učenje in samorazvoj.",
+    "why-slovene-text3": "Slovenščina odpira bogato slovensko tradicijo, ikonična dela, kot je delo pesnika Franceta Prešerna, in pristne povezave z domačini. Izboljša vašo izkušnjo osupljivih pokrajin, kot je Blejsko jezero, hkrati pa odpira poklicne priložnosti v rastočem gospodarstvu. Slovenščina je s svojo edinstveno slovnico hvaležen izziv in način ohranjanja redke jezikovne dediščine.",
 
     "why-us": "Zakaj izbrati nas",
     "why-us-sub": "-",
@@ -37,6 +49,9 @@
     "bento-c3-desc": "Ostanite na pravi poti s pomočjo našega predanega kustosa tečaja. Od odgovorov na vaša vprašanja do zagotavljanja dragocenih povratnih informacij, tukaj smo, da naredimo vaše učenje gladko in uspešno.",
     "bento-c4-title": "Vam prilagojen program",
     "bento-c4-desc": "Hitreje dosegajte svoje cilje s programom, ki je zasnovan samo za vas. Ne glede na to, ali se učite za potovanje, delo ali selitev, naš prilagojeni pristop zagotavlja, da je vsaka lekcija zanimiva in učinkovita ...",
+
+    "stats-title": "Our achievements",
+    "stats-subtitle": "Stats",
 
     "Happy students": "Zadovolni učenci",
     "Lessons Conducted": "Opravljenih lekcij",
@@ -56,10 +71,10 @@
     "subtitle": "Smo dinamična skupina posameznikov, ki so navdušeni nad tem, kar počnemo, in predani zagotavljanju najboljših rezultatov za naše stranke."
   },
 
-  "Features" : {
+  "Features": {
     "title": "Drugo"
   },
-  
+
   "Log in": {
     "title": "Prijava",
     "subtitle": "Prijava na voljo kmalu!"
