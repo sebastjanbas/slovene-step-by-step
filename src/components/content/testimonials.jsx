@@ -40,16 +40,16 @@ const Carousel = ({ data, stars = false }) => {
                     }}
                 >
                     {data.map((review) => (
-                        <SplideSlide className="bg-transparent px-2 lg:px-4" key={review.id}>
-                            <div className="flex lg:flex-row flex-col items-center justify-center lg:justify-between bg-white shadow-lg dark:bg-black dark:lg:bg-[#121212] dark:border-[1px] dark:border-gray-700 px-4 py-10 lg:px-10 rounded-3xl gap-8">
+                        <SplideSlide className="bg-transparent px-2 md:px-4" key={review.id}>
+                            <div className="flex md:flex-row flex-col items-center justify-center md:justify-between bg-white shadow-lg dark:bg-black dark:lg:bg-[#121212] dark:border-[1px] dark:border-gray-700 px-4 py-10 lg:px-10 rounded-3xl gap-8">
                                 <img
                                     className="size-36 mb-4 object-cover rounded-full"
                                     src={review.image}
                                     alt="Profile photo"
                                 />
-                                <div className="inline-block text-center lg:text-left mb-4 text-lg">
+                                <div className="inline-block text-center md:text-left mb-4 text-lg">
                                     <p className="text-sm">{review.text}</p>
-                                    <div className="flex flex-col lg:flex-row justify-start lg:gap-8 pt-4">
+                                    <div className="flex flex-col md:flex-row justify-start md:gap-8 pt-4">
                                         <div>
                                             <p className="text-xl font-bold ">{review.name}</p>
                                             <p className="text-sm font-normal text-gray-400">{review.role}</p>

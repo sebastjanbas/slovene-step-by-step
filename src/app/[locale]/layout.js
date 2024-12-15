@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import { routing } from "../../i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
+import Footer from "@/components/content/footer";
 
 export const metadata = {
   title: "Become fluent in Slovene",
@@ -57,6 +58,7 @@ export default async function LocaleLayout({ children, params: { locale } }) {
               <main className="relative isolate px-6 pt-14 lg:px-8">
                 {children}
               </main>
+              <Footer />
             </AnimatedLayout>
           </NextIntlClientProvider>
         </ThemeProvider>
