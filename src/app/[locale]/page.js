@@ -1,10 +1,11 @@
 import BentoGrid from "@/components/BentoGrid";
 import DetailsPageHero from "@/components/content/details-page";
-import Testimonials from "@/components/content/testimonials";
+import Carousel from "@/components/content/testimonials";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
+import { reviews } from "@/lib/docs";
 
 export async function generateMetadata({ params: { locale } }) {
   const t = await getTranslations({ locale, namespace: "Metadata" });
@@ -42,7 +43,7 @@ export default function Home() {
         <Stats />
       </div>
 
-      <Testimonials />
+      <Carousel data={reviews} stars={true} />
     </main>
   );
 }

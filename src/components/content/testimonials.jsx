@@ -1,10 +1,9 @@
 "use client";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
-import '@splidejs/react-splide/css/sea-green';
-import { reviews } from "@/lib/docs";
+import "./carousel.css";
 
-const Testimonials = () => {
+const Carousel = ({ data, stars = false }) => {
     return (
         <section className="w-full lg:max-w-[800px] flex flex-col justify-center h-screen box-border mx-auto">
             <div className="text-center mb-8 lg:mb-16">
@@ -40,27 +39,32 @@ const Testimonials = () => {
                         type: "loop",
                     }}
                 >
-                    {reviews.map((review) => (
+                    {data.map((review) => (
                         <SplideSlide className="bg-transparent px-2 lg:px-4" key={review.id}>
-                            <div className="flex lg:flex-row flex-col justify-between bg-white shadow-lg dark:bg-black dark:lg:bg-[#121212] dark:border-[1px] dark:border-gray-700 p-10 rounded-3xl gap-8">
+                            <div className="flex lg:flex-row flex-col items-center justify-center lg:justify-between bg-white shadow-lg dark:bg-black dark:lg:bg-[#121212] dark:border-[1px] dark:border-gray-700 px-4 py-10 lg:px-10 rounded-3xl gap-8">
                                 <img
                                     className="size-36 mb-4 object-cover rounded-full"
                                     src={review.image}
-                                    alt=""
+                                    alt="Profile photo"
                                 />
-                                <div className="inline-block mb-4 text-lg">
+                                <div className="inline-block text-center lg:text-left mb-4 text-lg">
                                     <p className="text-sm">{review.text}</p>
-                                    <div className="info">
-                                        <div className="text-sm/8 text-[rgb(254,216,79)]">
-                                            {review.stars.map((star, index) =>
-                                                star ? (
-                                                    <span key={index}>&#9733;</span>
-                                                ) : (
-                                                    <span key={index}>&#9734;</span>
-                                                )
-                                            )}
+                                    <div className="flex flex-col lg:flex-row justify-start lg:gap-8 pt-4">
+                                        <div>
+                                            <p className="text-xl font-bold ">{review.name}</p>
+                                            <p className="text-sm font-normal text-gray-400">{review.role}</p>
                                         </div>
-                                        <p className="text-xl font-bold ">{review.name}</p>
+                                        {stars &&
+                                            <div className="text-sm/8 text-[rgb(254,216,79)]">
+                                                {review.stars.map((star, index) =>
+                                                    star ? (
+                                                        <span key={index} className="p-[2px]" >&#9733;</span>
+                                                    ) : (
+                                                        <span key={index} className="p-[2px]" >&#9734;</span>
+                                                    )
+                                                )}
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -72,4 +76,4 @@ const Testimonials = () => {
     );
 };
 
-export default Testimonials;
+export default Carousel;
