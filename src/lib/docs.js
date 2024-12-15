@@ -60,3 +60,31 @@ export const people = [
         goal: "Teaching is more than just a job — it's a way to share culture, connect with people from all walks of life, and help them discover Slovenia.",
     },
 ];
+
+
+export const reviews = [
+    {
+      id: 1,
+      image:
+        'https://images.unsplash.com/photo-1605462863863-10d9e47e15ee?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      name: 'Vlad Lisin',
+      text: 'I have been studying for about 6 months now, during which time I have improved my level from zdravo (hello) - hvala (thank you), to full-fledged conversations with Slovenians on a regular basis. I would characterize the teachers as a responsible and professional specialists and therefore I highly recommend this program if you want to learn Slovenian.',
+      stars: [true, true, true, true, true],
+    },
+    {
+      id: 2,
+      image:
+        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      name: 'Anna Kotelnikova',
+      text: 'I am learning Slovenian from scratch. I want to thank my teacher for the individual approach, interesting lessons and good explanations of the material. I recommend it to everyone!',
+      stars: [true, true, true, true, true],
+    },
+    {
+        id: 3,
+        image:
+        'https://images.unsplash.com/photo-1463453091185-61582044d556?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        name: 'Alexander Molchanov',
+        text: "The course is great, I've been studying for six months. It really works. Before that I tried to study on my own - it didn't work.",
+        stars: [true, true, true, true, true],
+    },
+  ];

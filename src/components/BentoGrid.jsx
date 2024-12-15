@@ -16,8 +16,8 @@ export default function BentoGrid() {
     const t = useTranslations('HomePage');
     return (
         <>
-            <div className="mt-10 flex flex-col lg:grid gap-8 sm:mt-16 lg:grid-cols-10 lg:grid-rows-6">
-                <div className="px-8 py-8 gap-8 lg:col-span-6 lg:row-span-3 flex flex-col justify-around items-center shadow-lg dark:shadow-none dark:border-[1px] dark:border-gray-700 border rounded-3xl">
+            <div className="mt-10 flex flex-col lg:grid gap-8 sm:mt-16 lg:grid-cols-10 lg:grid-rows-5">
+                <div className="px-8 py-8 gap-8 lg:col-span-6 lg:row-span-3 flex flex-col justify-around items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl">
                     <div className="w-full flex flex-col lg:flex-row items-center">
                         <div>
                             <h2 className="mt-2 text-lg font-medium tracking-tight text-gray-950 dark:text-indigo-400 max-lg:text-center">
@@ -47,7 +47,7 @@ export default function BentoGrid() {
                     </div>
                 </div>
 
-                <div className="px-8 py-8 lg:col-span-4 lg:row-span-4 flex flex-col justify-center items-center shadow-lg dark:shadow-none dark:border-[1px] dark:border-gray-700 border rounded-3xl">
+                <div className="px-8 py-8 lg:col-span-4 lg:row-span-3 flex flex-col justify-center items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl">
                     <h2 className="mt-2 text-lg font-medium tracking-tight text-gray-950 dark:text-indigo-400 max-lg:text-center">
                         {t("bento-c2-title")}
                     </h2>
@@ -65,7 +65,7 @@ export default function BentoGrid() {
                     </div>
                 </div>
 
-                <div className="px-8 py-8 lg:col-span-4 lg:row-span-3 flex flex-col justify-center items-center shadow-lg dark:shadow-none dark:border-[1px] dark:border-gray-700 border rounded-3xl">
+                <div className="px-8 py-8 lg:col-span-4 lg:row-span-2 flex flex-col justify-center items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl">
                     <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 dark:text-indigo-400 max-lg:text-center">
                         {t("bento-c3-title")}
                     </p>
@@ -81,7 +81,8 @@ export default function BentoGrid() {
                     />
                 </div>
 
-                <div className="hidden lg:gap-3 lg:px-8 lg:py-8 lg:col-span-2 lg:row-span-1 lg:flex flex-col justify-center items-center shadow-lg dark:shadow-none dark:border-[1px] dark:border-gray-700 border rounded-3xl">
+                {/* <div className="hidden lg:gap-3 lg:px-8 lg:py-8 lg:col-span-2 lg:row-span-1 lg:flex flex-col justify-center items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl"> */}
+                <div className="hidden">
                     <img
                         className="size-10"
                         src={`/Logo.svg`}
@@ -92,7 +93,7 @@ export default function BentoGrid() {
                     </h1>
                 </div>
 
-                <div className="px-8 py-8 col-span-6 row-span-2 flex flex-col lg:flex-row justify-center items-center shadow-lg dark:shadow-none dark:border-[1px] dark:border-gray-700 border rounded-3xl">
+                <div className="px-8 py-8 col-span-6 row-span-2 flex flex-col lg:flex-row justify-center items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl">
                     <div>
                         <h2 className="mt-2 text-lg font-medium tracking-tight text-gray-950 dark:text-indigo-400 max-lg:text-center">
                             {t("bento-c4-title")}
