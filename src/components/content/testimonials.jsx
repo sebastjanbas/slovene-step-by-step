@@ -5,7 +5,7 @@ import "./carousel.css";
 
 const Carousel = ({ data, stars = false }) => {
     return (
-        <section className="w-full lg:max-w-[800px] flex flex-col justify-center h-screen box-border mx-auto">
+        <section className="w-full lg:max-w-[800px] flex flex-col justify-center box-border mx-auto py-24 sm:py-32">
             <div className="text-center mb-8 lg:mb-16">
                 <h2 className="text-base/7 font-semibold text-indigo-600 dark:text-indigo-500">
                     What members are saying.

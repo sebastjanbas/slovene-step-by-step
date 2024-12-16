@@ -33,7 +33,7 @@ export default function Home() {
           <BentoGrid />
         </div>
       </div>
-      <div className="mt-20">
+      <div className="py-24 sm:py-32">
         <h2 className="text-center text-base/7 font-semibold text-indigo-600 dark:text-indigo-400">
           {t("stats-subtitle")}
         </h2>

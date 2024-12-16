@@ -43,9 +43,6 @@ export default function Hero() {
                     </div>
                 </div>
             </div>
-            <SvgBlobContainer top={false}>
-                <SvgBlob color={"green"} />
-            </SvgBlobContainer>
         </>
     );
 }
