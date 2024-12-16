@@ -22,9 +22,9 @@ export const routing = defineRouting({
       ru: '/o-нас'
     },
  
-    '/products': {
-      en: '/products',
-      sl: '/produkti',
+    '/courses': {
+      en: '/courses',
+      sl: '/tecaji',
       ru: '/продукты'
     },
  
@@ -33,6 +33,24 @@ export const routing = defineRouting({
       sl: '/izvedite-vec',
       ru:'/функции'
     },
+
+    '/pricing': {
+      en: '/pricing',
+      sl: '/cena',
+      ru: '/ценообразование',
+    },
+
+    '/info/faq': {
+      en: '/info/faq',
+      sl: '/info/vprasanja',
+      ru: '/info/vprasanja',
+    },
+    
+    '/info/contact-us': {
+      en: '/info/contact-us',
+      sl: '/info/kontakti',
+      ru: '/info/kontakti',
+    },
  
     // Also (optional) catch-all segments are supported
     '/log-in': {
@@ -40,7 +58,7 @@ export const routing = defineRouting({
       sl: '/prijava',
       ru: '/регистрация'
 
-    }
+    },
   }
 
 });

@@ -37,27 +37,27 @@ export default function Footer() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-5">
                 <div className="flex flex-col">
                     <h1 className="mb-5 text-gray-900 dark:text-gray-200 font-semibold">Title 1</h1>
-                    <div><Link href="#" className="hover:underline text-gray-500 dark:text-gray-400">Link1</Link></div>
-                    <div><Link href="#" className="hover:underline text-gray-500 dark:text-gray-400">Link2</Link></div>
-                    <div><Link href="#" className="hover:underline text-gray-500 dark:text-gray-400">Link3</Link></div>
+                    <div><Link href="#" className="text-gray-500 dark:text-gray-400">Link1</Link></div>
+                    <div><Link href="#" className="text-gray-500 dark:text-gray-400">Link2</Link></div>
+                    <div><Link href="#" className="text-gray-500 dark:text-gray-400">Link3</Link></div>
                 </div>
                 <div className="flex flex-col">
                     <h1 className="mb-5 text-gray-900 dark:text-gray-200 font-semibold">Quick Links</h1>
                     <div><Link href={"/"} className="hover:underline text-gray-500 dark:text-gray-400">Home</Link></div>
-                    <div><Link href={"/products"} className="hover:underline text-gray-500 dark:text-gray-400">Products</Link></div>
-                    <div><Link href="#" className="hover:underline text-gray-500 dark:text-gray-400">Pricing</Link></div>
+                    <div><Link href={"/courses"} className="hover:underline text-gray-500 dark:text-gray-400">Courses</Link></div>
+                    <div><Link href={"/pricing"} className="hover:underline text-gray-500 dark:text-gray-400">Pricing</Link></div>
                 </div>
                 <div className="flex flex-col">
                     <h1 className="mb-5 text-gray-900 dark:text-gray-200 font-semibold">Company</h1>
                     <div><Link href={"/about-us"} className="hover:underline text-gray-500 dark:text-gray-400">About</Link></div>
-                    <div><Link href="#" className="hover:underline text-gray-500 dark:text-gray-400">Contact us</Link></div>
-                    <div><Link href="#" className="hover:underline text-gray-500 dark:text-gray-400">FAQ</Link></div>
+                    <div><Link href={"/info/contact-us"} className="hover:underline text-gray-500 dark:text-gray-400">Contact us</Link></div>
+                    <div><Link href={"/info/faq"} className="hover:underline text-gray-500 dark:text-gray-400">FAQ</Link></div>
                 </div>
                 <div className="flex flex-col">
                     <h1 className="mb-5 text-gray-900 dark:text-gray-200 font-semibold">Legal</h1>
-                    <div><Link href="#" className="hover:underline text-gray-500 dark:text-gray-400">Terms of service</Link></div>
-                    <div><Link href="#" className="hover:underline text-gray-500 dark:text-gray-400">Privacy policy</Link></div>
-                    <div><Link href="#" className="hover:underline text-gray-500 dark:text-gray-400">License</Link></div>
+                    <div><Link href="#" className="text-gray-500 dark:text-gray-400">Terms of service</Link></div>
+                    <div><Link href="#" className="text-gray-500 dark:text-gray-400">Privacy policy</Link></div>
+                    <div><Link href="#" className="text-gray-500 dark:text-gray-400">License</Link></div>
                 </div>
             </div>
             <div className="mt-10">

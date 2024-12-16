@@ -1,16 +1,8 @@
 export const navigation = [
-  { name: "products", href: "/products" },
+  { name: "products", href: "/courses" },
+  { name: "pricing", href: "/pricing" },
   { name: "features", href: "/features" },
-  { name: "languages", href: "#" },
   { name: "about-us", href: "/about-us" },
-];
-
-export const validLinks = [
-  { href: "/" },
-  { href: "/products" },
-  { href: "/features" },
-  { href: "/about-us" },
-  { href: "/log-in" },
 ];
 
 export const stats = [

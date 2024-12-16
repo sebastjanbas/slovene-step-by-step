@@ -59,9 +59,9 @@
   },
 
   "Navbar": {
-    "products": "Produkti",
+    "products": "Tečaji",
     "features": "Drugo",
-    "languages": "Jeziki ",
+    "pricing": "Cena",
     "about-us": "Kdo smo",
     "log-in": "Prijava"
   },
