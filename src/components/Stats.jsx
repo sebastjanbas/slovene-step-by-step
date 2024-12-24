@@ -1,21 +1,48 @@
+"use client";
 import { stats } from "@/lib/docs";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap/all";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from 'react';
 import { useTranslations } from 'next-intl';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Stats() {
     const t = useTranslations('HomePage');
+    const numbersRef = useRef([]);
+
+    useGSAP(() => {
+        stats.forEach((stat, index) => {
+            gsap.from(numbersRef.current[index], {
+                innerHTML: 0,
+                duration: 2,
+                snap: { innerHTML: 1 },
+                scrollTrigger: {
+                    trigger: numbersRef.current[index],
+                    start: "top center",
+                    once: true
+                },
+                onUpdate: function () {
+                    this.targets()[0].innerHTML = Math.ceil(this.targets()[0].innerHTML);
+                }
+            });
+        });
+    });
+
     return (
         <div className="mx-auto max-w-7xl px-6 pt-10 lg:px-8">
             <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center md:grid-cols-3">
-                {stats.map((stat) => (
+                {stats.map((stat, index) => (
                     <div key={stat.id} className="mx-auto flex max-w-xs flex-col gap-y-4">
                         <dt className="text-base/7 text-gray-600 dark:text-gray-400">{t(stat.title)}</dt>
                         <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-200 sm:text-5xl">
-                            {stat.value}
+                            <span ref={el => numbersRef.current[index] = el}>{stat.value}</span>
+                            <span> {stat.symbol}</span>
                         </dd>
                     </div>
                 ))}
             </dl>
         </div>
-    )
+    );
 }
-

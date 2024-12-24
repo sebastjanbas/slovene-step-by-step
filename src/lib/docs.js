@@ -6,9 +6,9 @@ export const navigation = [
 ];
 
 export const stats = [
-  { id: 1, title: "Happy students", value: "250+" },
-  { id: 2, title: "Lessons Conducted", value: "2500+" },
-  { id: 3, title: "Student Satisfaction", value: "92%" },
+  { id: 1, title: "Happy students", value: "250", symbol: "+" },
+  { id: 2, title: "Lessons Conducted", value: "3000", symbol: "h" }, // in hours
+  { id: 3, title: "Student Satisfaction", value: "92", symbol: "%" }, // in percent
 ];
 
 export const people = [

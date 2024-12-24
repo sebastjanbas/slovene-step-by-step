@@ -1,8 +1,43 @@
+"use client";
+import { useGSAP } from '@gsap/react';
 import { RocketLaunchIcon, ChatBubbleLeftRightIcon, ArrowTrendingUpIcon, BookOpenIcon } from '@heroicons/react/20/solid'
+import gsap, { ScrollTrigger } from 'gsap/all';
 import { useTranslations } from "next-intl";
+
+gsap.registerPlugin(ScrollTrigger);
 
 
 export default function DetailsPageHero() {
+
+    useGSAP(() => {
+
+        const elements = ["#subtitle", "#title", "#text1", "#text2", "#point1", "#point2", "#point3", "#test3"];
+        elements.forEach((element) => {
+            gsap.from(element, {
+                x: "-20%",
+                opacity: 0,
+                ease: "power1.inOut",
+                scrollTrigger: {
+                    trigger: element,
+                    start: "bottom bottom",
+                    end: "top 50%",
+                    scrub: true,
+                }
+            })
+
+        })
+        gsap.from("#image", {
+            x: "20%",
+            opacity: 0,
+            ease: "power1.inOut",
+            scrollTrigger: {
+                trigger: "#text1",
+                start: "bottom bottom",
+                end: "top 50%",
+                scrub: true,
+            }
+        })
+    })
 
     const t = useTranslations("HomePage");
 
@@ -38,17 +73,17 @@ export default function DetailsPageHero() {
                 <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                     <div className="lg:pr-4">
                         <div className="lg:max-w-lg">
-                            <p className="text-base/7 font-semibold text-indigo-600 dark:text-indigo-500">{t("why-slovene-subtitle")}</p>
-                            <h1 className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 dark:text-gray-200 sm:text-5xl">
+                            <p id='subtitle' className="text-base/7 font-semibold text-indigo-600 dark:text-indigo-500">{t("why-slovene-subtitle")}</p>
+                            <h1 id='title' className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 dark:text-gray-200 sm:text-5xl">
                                 {t("why-slovene-title")}
                             </h1>
-                            <p className="mt-6 text-xl/8 text-gray-700 dark:text-gray-300">
+                            <p id='text1' className="mt-6 text-xl/8 text-gray-700 dark:text-gray-300">
                                 {t("why-slovene-text1")}
                             </p>
                         </div>
                     </div>
                 </div>
-                <div className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+                <div id='image' className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
                     <img
                         alt=""
                         src="https://placehold.co/300x200"
@@ -61,30 +96,30 @@ export default function DetailsPageHero() {
                 <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                     <div className="lg:pr-4 lg:block sm:flex sm:justify-center">
                         <div className="max-w-xl text-base/7 text-gray-700 dark:text-gray-300 lg:max-w-lg">
-                            <p>
+                            <p id="text2">
                                 {t("why-slovene-text2")}
                             </p>
                             <ul role="list" className="mt-8 space-y-8 text-gray-600 dark:text-gray-300">
-                                <li className="flex gap-x-3">
+                                <li id='point1' className="flex gap-x-3">
                                     <RocketLaunchIcon aria-hidden="true" className="mt-1 size-5 flex-none text-indigo-600 dark:text-indigo-500" />
                                     <span>
                                         <strong className="font-semibold text-gray-900 dark:text-gray-200">{t("why-slovene-point1-strong")}</strong> {t("why-slovene-point1")}
                                     </span>
                                 </li>
-                                <li className="flex gap-x-3">
+                                <li id='point2' className="flex gap-x-3">
                                     <ChatBubbleLeftRightIcon aria-hidden="true" className="mt-1 size-5 flex-none text-indigo-600 dark:text-indigo-500" />
                                     <span>
                                         <strong className="font-semibold text-gray-900 dark:text-gray-200">{t("why-slovene-point2-strong")}</strong> {t("why-slovene-point2")}
                                     </span>
                                 </li>
-                                <li className="flex gap-x-3">
+                                <li id='point3' className="flex gap-x-3">
                                     <BookOpenIcon aria-hidden="true" className="mt-1 size-5 flex-none text-indigo-600 dark:text-indigo-500" />
                                     <span>
                                         <strong className="font-semibold text-gray-900 dark:text-gray-200">{t("why-slovene-point3-strong")}</strong> {t("why-slovene-point3")}
                                     </span>
                                 </li>
                             </ul>
-                            <p className="mt-8">
+                            <p id='test3' className="mt-8">
                                 {t("why-slovene-text3")}
                             </p>
                         </div>
