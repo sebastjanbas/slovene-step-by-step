@@ -53,10 +53,10 @@ export const routing = defineRouting({
     },
  
     // Also (optional) catch-all segments are supported
-    '/log-in': {
-      en: '/log-in',
-      sl: '/prijava',
-      ru: '/регистрация'
+    '/auth/login': {
+      en: '/auth/login',
+      sl: '/auth/prijava',
+      ru: '/auth/регистрация'
 
     },
   }

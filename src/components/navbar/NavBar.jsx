@@ -59,8 +59,8 @@ export default function NavBar({ locale }) {
                     <LanguageSwitcher locale={locale} />
                     <ThemButton />
                     <Link
-                        href={"/log-in"}
-                        className={`text-sm/6 font-semibold ${pathname.includes("/log-in") ? "text-indigo-500 dark:text-indigo-300" : "text-gray-900 dark:text-white"
+                        href={"/auth/login"}
+                        className={`text-sm/6 font-semibold ${pathname.includes("/login") ? "text-indigo-500 dark:text-indigo-300" : "text-gray-900 dark:text-white"
                             } hover:text-indigo-500 dark:hover:text-indigo-300`}
                     >
                         {t("log-in")} <span aria-hidden="true">&rarr;</span>

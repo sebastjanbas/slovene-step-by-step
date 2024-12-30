@@ -1,9 +1,8 @@
-import Countdown from "@/components/ui/Countdown";
-import SvgBlob from "@/components/ui/svg-blob";
-import SvgBlobContainer from "@/components/ui/svg-blob-container";
 import React from "react";
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
+import { createClient } from '@/utils/supabase/server'
+import { redirect } from "next/navigation";
+import ProductsClient from "@/components/content/courses";
 
 export async function generateMetadata({ params: { locale } }) {
     const t = await getTranslations({ locale, namespace: "Metadata" });
@@ -13,29 +12,18 @@ export async function generateMetadata({ params: { locale } }) {
     };
 }
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
 
-    const t = useTranslations('ProductsPage');
+    const supabase = await createClient()
+    const { data, error } = await supabase.auth.getUser()
+    if (error || !data.user) {
+        redirect('/auth/login')
+    }
 
     return (
         <section>
-            <SvgBlobContainer top={true}>
-                <SvgBlob color={"blue"} />
-            </SvgBlobContainer>
-            <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-                <div className="text-center">
-                    <Countdown border={false} date={"2025-01-01"} />
-                    <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 dark:text-gray-200 sm:text-7xl">
-                        {t("title")}
-                    </h1>
-                    <p className="mt-8 text-pretty text-lg font-medium text-gray-500 dark:text-gray-400 sm:text-xl/8">
-                        {t("description")}
-                    </p>
-                </div>
-            </div>
-            <SvgBlobContainer top={false}>
-                <SvgBlob color={"green"} />
-            </SvgBlobContainer>
+            <h1>Welcome {data.user.email}</h1>
+            <ProductsClient />
         </section>
     );
 }

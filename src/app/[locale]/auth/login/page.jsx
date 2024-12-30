@@ -1,7 +1,10 @@
+import { LoginForm } from "@/components/auth/LoginForm";
 import SvgBlob from "@/components/ui/svg-blob";
 import SvgBlobContainer from "@/components/ui/svg-blob-container";
+import { createClient } from "@/utils/supabase/server";
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
+import { redirect } from "next/navigation";
 
 
 export async function generateMetadata({ params: { locale } }) {
@@ -12,15 +15,26 @@ export async function generateMetadata({ params: { locale } }) {
     };
 }
 
-export default function LogInPage() {
+export default async function LogInPage() {
+
+    const supabase = await createClient();
+
+    const { data, error } = await supabase.auth.getUser();
+    if (data.user) {
+        redirect('/');
+    }
+
     const t = useTranslations('Log in');
 
     return (
-        <section>
+        <section className="h-screen">
             <SvgBlobContainer top={true}>
                 <SvgBlob color={"blue"} />
             </SvgBlobContainer>
-            <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+            <div className="flex justify-center items-center">
+                <LoginForm />
+            </div>
+            {/* <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
                 <div className="text-center">
                     <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 dark:text-gray-200 sm:text-7xl">
                         {t("title")}
@@ -29,7 +43,7 @@ export default function LogInPage() {
                         {t("subtitle")}
                     </p>
                 </div>
-            </div>
+            </div> */}
             <SvgBlobContainer top={false}>
                 <SvgBlob color={"green"} />
             </SvgBlobContainer>
