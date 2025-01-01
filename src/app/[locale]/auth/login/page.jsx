@@ -2,7 +2,6 @@ import { LoginForm } from "@/components/auth/LoginForm";
 import SvgBlob from "@/components/ui/svg-blob";
 import SvgBlobContainer from "@/components/ui/svg-blob-container";
 import { createClient } from "@/utils/supabase/server";
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { redirect } from "next/navigation";
 
@@ -23,8 +22,6 @@ export default async function LogInPage() {
     if (data.user) {
         redirect('/');
     }
-
-    const t = useTranslations('Log in');
 
     return (
         <section className="h-screen">

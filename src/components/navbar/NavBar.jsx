@@ -2,18 +2,24 @@
 import { useState } from "react";
 import { navigation, link } from "@/lib/docs";
 import { Link } from '@/i18n/routing';
-// import Link from "next/link";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import MyDialog from "./MyDialog";
 import { usePathname } from "next/navigation";
 import { ThemButton } from "../ui/ApearanceSwitchButton";
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from "./language-swithcher";
+import { LogoutButton } from "@/components/auth/LogoutButton"
+import { useAuth } from "../auth/AuthProvider";
+
+
 
 export default function NavBar({ locale }) {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const pathname = usePathname();
     const t = useTranslations('Navbar');
+    const { user, loading } = useAuth();
+
+
 
     return (
         <header className={"sticky py-1 lg:py-2 bg-white/60 dark:bg-transparent/70 lg:dark:bg-[#121212]/70 border-b-[1px] border-gray-300 dark:border-gray-500 backdrop-blur-md inset-x-0 top-0 z-50"}>
@@ -58,13 +64,21 @@ export default function NavBar({ locale }) {
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center">
                     <LanguageSwitcher locale={locale} />
                     <ThemButton />
-                    <Link
-                        href={"/auth/login"}
-                        className={`text-sm/6 font-semibold ${pathname.includes("/login") ? "text-indigo-500 dark:text-indigo-300" : "text-gray-900 dark:text-white"
-                            } hover:text-indigo-500 dark:hover:text-indigo-300`}
-                    >
-                        {t("log-in")} <span aria-hidden="true">&rarr;</span>
-                    </Link>
+                    {loading ? (
+                        <span>Loading...</span>
+                    ) : user ? (
+                        <LogoutButton>Log Out</LogoutButton>
+                    ) : (
+                        <Link
+                            href="/auth/login"
+                            className={`text-sm/6 font-semibold ${pathname.includes("/login")
+                                ? "text-indigo-500 dark:text-indigo-300"
+                                : "text-gray-900 dark:text-white"
+                                } hover:text-indigo-500 dark:hover:text-indigo-300`}
+                        >
+                            {t("log-in")} <span aria-hidden="true">&rarr;</span>
+                        </Link>
+                    )}
                 </div>
             </nav>
             <MyDialog

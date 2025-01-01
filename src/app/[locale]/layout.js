@@ -51,7 +51,7 @@ export default async function LocaleLayout({ children, params: { locale } }) {
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-        >
+          >
           <NextIntlClientProvider messages={messages}>
             <NavBar locale={locale} />
             <AnimatedLayout>

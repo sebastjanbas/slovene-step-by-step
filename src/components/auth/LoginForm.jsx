@@ -31,17 +31,23 @@ export const LoginForm = () => {
         },
     });
 
-    const onSubmit = (values) => {
+    const onSubmit = async (values) => {
         setError("");
         setSuccess("");
 
-        startTransition(() => {
-            login(values).then((data) => {
-                if (data.error) {
-                    if (data.twoFactor === false) form.reset();
-                    setError(data.error);
-                }
-            });
+        startTransition(async () => {
+            const response = await login(values);
+
+            if (response.error) {
+                setError(response.error);
+                form.reset();
+                return;
+            }
+
+            if (response.success) {
+                setSuccess("Logged in successfully!");
+                window.location.href = '/'; // reload the page for client components
+            }
         });
     };
 

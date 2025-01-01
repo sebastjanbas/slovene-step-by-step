@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import { getTranslations } from 'next-intl/server';
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from "next/navigation";
@@ -13,16 +13,15 @@ export async function generateMetadata({ params: { locale } }) {
 }
 
 export default async function ProductsPage() {
-
-    const supabase = await createClient()
-    const { data, error } = await supabase.auth.getUser()
-    if (error || !data.user) {
-        redirect('/auth/login')
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+        redirect("/auth/login");
     }
 
     return (
         <section>
-            <h1>Welcome {data.user.email}</h1>
+            <h1>Welcome {user.email}</h1>
             <ProductsClient />
         </section>
     );
