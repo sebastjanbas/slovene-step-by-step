@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl'
 import SvgBlobContainer from "@/components/ui/svg-blob-container"
 import SvgBlob from "@/components/ui/svg-blob"
-import Countdown from "@/components/ui/countdown"
+import Countdown from "@/components/ui/Countdown"
 
 export default function ProductsClient() {
     const t = useTranslations('ProductsPage')
