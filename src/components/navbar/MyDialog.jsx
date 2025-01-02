@@ -7,11 +7,14 @@ import { usePathname } from "next/navigation";
 import { ThemButton } from "../ui/ApearanceSwitchButton";
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from "./language-swithcher";
+import { useAuth } from "../auth/AuthProvider";
+import { LogoutButton } from "../auth/LogoutButton";
 
 export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation, locale }) {
 
     const pathname = usePathname();
     const t = useTranslations('Navbar');
+    const { user, loading } = useAuth();
 
     return (
         <div>
@@ -78,13 +81,21 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                             ))}
                                         </div>
                                         <div className="py-6">
-                                            <Link
-                                                href={"/auth/login"}
-                                                className={`-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-indigo-300 dark:hover:bg-[#121212] ${pathname.includes("/login") ? "text-indigo-500 dark:text-indigo-300" : "text-gray-900 dark:text-gray-200"}`}
-                                                onClick={() => setMobileMenuOpen(false)}
-                                            >
-                                                {t("log-in")} <span aria-hidden="true">&rarr;</span>
-                                            </Link>
+                                            {loading ? (
+                                                <span>Loading...</span>
+                                            ) : user ? (
+                                                <LogoutButton>Log Out</LogoutButton>
+                                            ) : (
+                                                <Link
+                                                    href="/auth/login"
+                                                    className={`text-sm/6 font-semibold ${pathname.includes("/login")
+                                                        ? "text-indigo-500 dark:text-indigo-300"
+                                                        : "text-gray-900 dark:text-white"
+                                                        } hover:text-indigo-500 dark:hover:text-indigo-300`}
+                                                >
+                                                    {t("log-in")} <span aria-hidden="true">&rarr;</span>
+                                                </Link>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

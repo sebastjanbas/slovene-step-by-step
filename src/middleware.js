@@ -34,6 +34,6 @@ export const config = {
   matcher: [
     '/', 
     '/(sl|ru|en)/:path*',
-    '/((?!api|_next/static|_next/image|images|assets|favicon.ico|auth/confirm|.*\\.(?:svg|jpg|jpeg|png|gif|ico)$).*)',
+    '/((?!api|_next/static|_next/image|images|assets|favicon.ico|auth/confirm|auth/callback|.*\\.(?:svg|jpg|jpeg|png|gif|ico)$).*)',
   ]
 };

@@ -18,7 +18,7 @@ export async function generateMetadata({ params: { locale } }) {
 export default function Home() {
 
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <Hero />
       <DetailsPageHero />
       <div className="flex py-24 sm:py-32 w-full items-center justify-center">

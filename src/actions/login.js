@@ -2,34 +2,52 @@
 
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@/utils/supabase/server'
-import { redirect } from 'next/navigation'
 import { LoginSchema } from '@/schemas'
+import { redirect } from 'next/navigation';
 
 export async function login(values) {
       
-      const validateField = LoginSchema.safeParse(values);
-  
-      if (!validateField.success) {
-          return { error: 'Invalid fields' };
-      }
-  
-      const supabase = await createClient()
+    const validateField = LoginSchema.safeParse(values);
+
+    if (!validateField.success) {
+        return { error: 'Invalid fields' };
+    }
+
+    const supabase = await createClient()
+
+    const data = {
+    email: validateField.data.email,
+    password: validateField.data.password,
+    }
+    const { error } = await supabase.auth.signInWithPassword(data)
+
+
+    if (error) {
+        console.log("ERROR: ", error.code);
+        return { error: "Something went wrong" }
+    }
     
-      const data = {
-        email: validateField.data.email,
-        password: validateField.data.password,
-      }
-      const { error } = await supabase.auth.signInWithPassword(data)
-    
-    
-      if (error) {
-          console.log("ERROR: ", error.code);
-          return { error: "Something went wrong" }
-      }
-      
-      revalidatePath("/", "layout");
-      // revalidatePath("/");
-      return { success: 'Login successful!' }
+    revalidatePath("/", "layout");
+    return { success: 'Login successful!' }
 
   
-  }
+}
+
+export async function OAuthSignIn(provider) {
+    const supabase = await createClient()
+    const { data, error } = await supabase.auth.signInWithOAuth({ 
+        provider: provider,
+        options: {
+            // redirectTo: "https://<YOURWEBSITE>/auth/callback",
+            redirectTo: "http://localhost:3000/auth/callback",
+            queryParams: {
+                access_type: 'offline',
+                prompt: 'consent',
+              },
+        }
+    })
+
+    if (data.url) {
+        redirect(data.url) // use the redirect API for your server framework
+    }
+}

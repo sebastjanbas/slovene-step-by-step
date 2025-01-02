@@ -13,8 +13,8 @@ const AuthLayout = ({ children }) => {
                 </div>
                 <div className='h-full w-full'>
                     {children}
+                    <Disclaimer />
                 </div>
-                <Disclaimer />
             </div>
         </div>
     )

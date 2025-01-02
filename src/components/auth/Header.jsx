@@ -9,7 +9,7 @@ export const Header = ({ label, title }) => {
     return (
         <div className="w-full flex flex-col gap-y-4 items-start justify-center">
             <p className="text-indigo-500 text-sm">{label}</p>
-            <h1 className={cn("text-3xl font-semibold text-gray-900", font.className)}>{title}</h1>
+            <h1 className={cn("text-3xl font-semibold text-gray-900 dark:text-gray-200", font.className)}>{title}</h1>
         </div>
     );
 };

@@ -104,7 +104,7 @@ export const LoginForm = () => {
                                     <Button
                                         size={"sm"}
                                         variant={"link"}
-                                        className="p-0 text-indigo-500 hover:text-indigo-800"
+                                        className="p-0 text-indigo-500"
                                         asChild
                                     >
                                         <Link href="/auth/reset-password">

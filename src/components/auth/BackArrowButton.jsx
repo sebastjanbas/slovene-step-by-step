@@ -7,17 +7,18 @@ export const BackArrowButton = () => {
     const router = useRouter();
 
     const handleBack = () => {
-        try {
-            // Check if we can go back
-            if (!window.history.state || window.history.state.idx === 0) {
-                router.push('/');
-                return;
-            }
-        } catch {
-            router.push('/');
-            return;
-        }
-        router.back();
+        // try {
+        //     // Check if we can go back
+        //     if (!window.history.state || window.history.state.idx === 0) {
+        //         router.push('/');
+        //         return;
+        //     }
+        // } catch {
+        //     router.push('/');
+        //     return;
+        // }
+        // router.back();
+        router.push('/');
     }
 
     return (
