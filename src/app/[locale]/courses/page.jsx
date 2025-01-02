@@ -21,7 +21,12 @@ export default async function ProductsPage() {
 
     return (
         <section>
-            <h1>Welcome {user.email}</h1>
+            <div className="flex items-end justify-center gap-x-4 mt-8">
+                <h1 className="text-3xl">Welcome:</h1>
+                <p className="text-pretty text-lg font-medium text-indigo-500 dark:text-gray-400 sm:text-xl/8">
+                    {user.user_metadata.full_name}
+                </p>
+            </div>
             <ProductsClient />
         </section>
     );
