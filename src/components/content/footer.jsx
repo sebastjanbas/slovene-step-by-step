@@ -1,6 +1,14 @@
+"use client";
 import { Link } from "@/i18n/routing";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+
+    const pathname = usePathname();
+    if (pathname.includes("/auth")) {
+        return null;
+    }
+
     return (
         <footer className="m-10">
             <div className="py-16 border-t-[1px] border-gray-500">

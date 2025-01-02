@@ -19,7 +19,9 @@ export default function NavBar({ locale }) {
     const t = useTranslations('Navbar');
     const { user, loading } = useAuth();
 
-
+    if (pathname.includes("/auth")) {
+        return null;
+    }
 
     return (
         <header className={"sticky py-1 lg:py-2 bg-white/60 dark:bg-transparent/70 lg:dark:bg-[#121212]/70 border-b-[1px] border-gray-300 dark:border-gray-500 backdrop-blur-md inset-x-0 top-0 z-50"}>

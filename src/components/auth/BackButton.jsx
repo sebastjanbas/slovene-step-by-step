@@ -3,10 +3,13 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
 
-export const BackButton = ({ label, href }) => {
+export const BackButton = ({ label, linkLabel, href }) => {
     return (
-        <Button size={"sm"} variant={"link"} className="font-normal w-full" asChild>
-            <Link href={href}>{label}</Link>
-        </Button>
+        <span className="flex gap-x-2 justify-center items-center w-full">
+            <p>{label}</p>
+            <Button size={"sm"} variant={"link"} className="font-normal text-indigo-500" asChild>
+                <Link className="px-0" href={href}>{linkLabel}</Link>
+            </Button>
+        </span>
     );
 };

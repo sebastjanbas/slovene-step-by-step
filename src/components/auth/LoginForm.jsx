@@ -54,7 +54,9 @@ export const LoginForm = () => {
     return (
         <CardWrapper
             headerLabel="Welcome back"
+            headerTitle="Log in"
             backButtonLabel="Don't have an account?"
+            backButtonLinkLabel="Sign up"
             backButtonHref="/auth/signup"
             showSocial
         >
@@ -72,11 +74,11 @@ export const LoginForm = () => {
                                         <Input
                                             {...field}
                                             disabled={isPending}
-                                            placeholder="john.doe@example.com"
+                                            placeholder="example@mail.com"
                                             type="email"
                                         />
                                     </FormControl>
-                                    <FormMessage>
+                                    <FormMessage className="text-red-500">
                                         {form.formState.errors.email?.message}
                                     </FormMessage>
                                 </FormItem>
@@ -88,16 +90,6 @@ export const LoginForm = () => {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>Password</FormLabel>
-                                    <Button
-                                        size={"sm"}
-                                        variant={"link"}
-                                        className="float-right p-0"
-                                        asChild
-                                    >
-                                        <Link href="/auth/reset-password">
-                                            Forgot password?
-                                        </Link>
-                                    </Button>
                                     <FormControl>
                                         <Input
                                             {...field}
@@ -106,15 +98,25 @@ export const LoginForm = () => {
                                             type="password"
                                         />
                                     </FormControl>
-                                    <FormMessage>
+                                    <FormMessage className="text-red-500">
                                         {form.formState.errors.password?.message}
                                     </FormMessage>
+                                    <Button
+                                        size={"sm"}
+                                        variant={"link"}
+                                        className="p-0 text-indigo-500 hover:text-indigo-800"
+                                        asChild
+                                    >
+                                        <Link href="/auth/reset-password">
+                                            Forgot password?
+                                        </Link>
+                                    </Button>
                                 </FormItem>
                             )}
                         />
                     </div>
                     <FormError message={error} />
-                    <Button disabled={isPending} type="submit" className="w-full">
+                    <Button variant={"mine"} disabled={isPending} type="submit" className="w-full">
                         Log in
                     </Button>
                 </form>

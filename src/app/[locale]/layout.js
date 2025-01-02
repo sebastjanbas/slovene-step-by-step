@@ -55,7 +55,8 @@ export default async function LocaleLayout({ children, params: { locale } }) {
           <NextIntlClientProvider messages={messages}>
             <NavBar locale={locale} />
             <AnimatedLayout>
-              <main className="relative isolate px-6 pt-14 lg:px-8">
+              {/* <main className="relative isolate px-6 pt-14 lg:px-8"> */}
+              <main>
                 {children}
               </main>
               <Footer />

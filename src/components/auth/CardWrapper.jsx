@@ -2,32 +2,36 @@
 
 import React from "react";
 
-import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@/components/ui/card";
 import { Header } from "./Header";
 import { Social } from "./Social";
 import { BackButton } from "./BackButton";
+import { Divider } from "./Divider";
 
 
 export const CardWrapper = ({
     children,
     headerLabel,
+    headerTitle,
     backButtonLabel,
+    backButtonLinkLabel,
     backButtonHref,
     showSocial,
 }) => {
     return (
-        <Card className="w-[400px]">
+        <Card className="w-full h-full md:max-w-[400px]">
             <CardHeader>
-                <Header label={headerLabel} />
+                <Header title={headerTitle} label={headerLabel} />
             </CardHeader>
             <CardContent>{children}</CardContent>
+            <Divider />
             {showSocial && (
                 <CardFooter>
                     <Social />
                 </CardFooter>
             )}
             <CardFooter>
-                <BackButton label={backButtonLabel} href={backButtonHref} />
+                <BackButton linkLabel={backButtonLinkLabel} label={backButtonLabel} href={backButtonHref} />
             </CardFooter>
         </Card>
     );

@@ -25,7 +25,7 @@ export async function signup(values) {
         password: validateField.data.password,
         options: {
             data: {
-                name: validateField.data.firstName + ' ' + validateField.data.lastName,
+                full_name: validateField.data.firstName + ' ' + validateField.data.lastName,
             },
         },
     }

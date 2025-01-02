@@ -14,7 +14,7 @@ export default function DetailsPageHero() {
         const elements = ["#subtitle", "#title", "#text1", "#text2", "#point1", "#point2", "#point3", "#test3"];
         elements.forEach((element) => {
             gsap.from(element, {
-                x: "-20%",
+                y: "50%",
                 opacity: 0,
                 ease: "power1.inOut",
                 scrollTrigger: {
@@ -27,13 +27,13 @@ export default function DetailsPageHero() {
 
         })
         gsap.from("#image", {
-            x: "20%",
+            y: "50%",
             opacity: 0,
             ease: "power1.inOut",
             scrollTrigger: {
                 trigger: "#text1",
                 start: "bottom bottom",
-                end: "top 50%",
+                end: "top 20%",
                 scrub: true,
             }
         })
@@ -42,7 +42,7 @@ export default function DetailsPageHero() {
     const t = useTranslations("HomePage");
 
     return (
-        <div className="relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+        <div className="relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:px-0">
             {/* <div className="absolute inset-0 -z-10 overflow-hidden">
                 <svg
                     aria-hidden="true"

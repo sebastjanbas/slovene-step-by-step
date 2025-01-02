@@ -50,29 +50,31 @@ export const SignupForm = () => {
     return (
         <CardWrapper
             headerLabel="Create an account"
+            headerTitle={"Get your free account"}
             backButtonLabel="Already have an account?"
             backButtonHref="/auth/login"
+            backButtonLinkLabel={"Log in"}
             showSocial
         >
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <div className="space-y-4">
-                        <div className="inline-flex space-x-4 items-start">
+                        <div className="inline-flex space-x-4 items-start w-full">
                             <FormField
                                 control={form.control}
                                 name="firstName"
                                 render={({ field }) => (
-                                    <FormItem>
+                                    <FormItem className="w-1/2">
                                         <FormLabel>First Name</FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
                                                 disabled={isPending}
-                                                placeholder="John"
+                                                placeholder="First Name"
                                                 type="text"
                                             />
                                         </FormControl>
-                                        <FormMessage>
+                                        <FormMessage className="text-red-500">
                                             {form.formState.errors.firstName?.message}
                                         </FormMessage>
                                     </FormItem>
@@ -82,17 +84,17 @@ export const SignupForm = () => {
                                 control={form.control}
                                 name="lastName"
                                 render={({ field }) => (
-                                    <FormItem>
+                                    <FormItem className="w-1/2">
                                         <FormLabel>Last Name</FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
                                                 disabled={isPending}
-                                                placeholder="Doe"
+                                                placeholder="Last Name"
                                                 type="text"
                                             />
                                         </FormControl>
-                                        <FormMessage>
+                                        <FormMessage className="text-red-500">
                                             {form.formState.errors.lastName?.message}
                                         </FormMessage>
                                     </FormItem>
@@ -109,11 +111,11 @@ export const SignupForm = () => {
                                         <Input
                                             {...field}
                                             disabled={isPending}
-                                            placeholder="john.doe@example.com"
+                                            placeholder="example@mail.com"
                                             type="email"
                                         />
                                     </FormControl>
-                                    <FormMessage>
+                                    <FormMessage className="text-red-500">
                                         {form.formState.errors.email?.message}
                                     </FormMessage>
                                 </FormItem>
@@ -133,7 +135,7 @@ export const SignupForm = () => {
                                             type="password"
                                         />
                                     </FormControl>
-                                    <FormMessage>
+                                    <FormMessage className="text-red-500">
                                         {form.formState.errors.password?.message}
                                     </FormMessage>
                                 </FormItem>
@@ -153,7 +155,7 @@ export const SignupForm = () => {
                                             type="password"
                                         />
                                     </FormControl>
-                                    <FormMessage>
+                                    <FormMessage className="text-red-500">
                                         {form.formState.errors.confirmPassword?.message}
                                     </FormMessage>
                                 </FormItem>
@@ -162,7 +164,7 @@ export const SignupForm = () => {
                     </div>
                     <FormError message={error} />
                     <FormSuccess message={success} />
-                    <Button disabled={isPending} type="submit" className="w-full">
+                    <Button disabled={isPending} variant={"mine"} type="submit" className="w-full">
                         Create an account
                     </Button>
                 </form>
