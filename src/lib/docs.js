@@ -80,3 +80,26 @@ export const reviews = [
     stars: [true, true, true, true, true],
   },
 ];
+
+export const footerLinks = {
+  Title1: [
+    { name: "Link1", href: "#" },
+    { name: "Link2", href: "#" },
+    { name: "Link3", href: "#" },
+  ],
+  QuickLinks: [
+    { name: "Home", href: "/" },
+    { name: "Courses", href: "/courses" },
+    { name: "Pricing", href: "/pricing" },
+  ],
+  Company: [
+    { name: "About", href: "/about-us" },
+    { name: "Contact us", href: "/info/contact-us" },
+    { name: "FAQ", href: "/info/faq" },
+  ],
+  Legal: [
+    { name: "Terms of service", href: "#" },
+    { name: "Privacy policy", href: "#" },
+    { name: "License", href: "#" },
+  ],
+};

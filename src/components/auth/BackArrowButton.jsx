@@ -23,7 +23,7 @@ export const BackArrowButton = () => {
 
     return (
         <button className='' onClick={handleBack}>
-            <MdArrowBackIos size={24} className='text-gray-700 dark:text-gray-400' />
+            <MdArrowBackIos size={24} className='text-custom-light-4 dark:text-custom-dark-4' />
         </button>
     )
 }

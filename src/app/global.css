@@ -1213,6 +1213,10 @@ video {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.flex-row {
+  flex-direction: row;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -1621,6 +1625,30 @@ video {
 
 .fill-gray-50 {
   fill: #f9fafb;
+}
+
+.fill-current {
+  fill: currentColor;
+}
+
+.fill-custom-light-4 {
+  fill: #FFE66D;
+}
+
+.fill-slate-400 {
+  fill: #94a3b8;
+}
+
+.fill-slate-500 {
+  fill: #64748b;
+}
+
+.fill-emerald-400 {
+  fill: #34d399;
+}
+
+.fill-custom-light-2 {
+  fill: #4ECDC4;
 }
 
 .stroke-gray-200 {
@@ -2560,6 +2588,14 @@ video {
 
 .dark\:fill-gray-800\/20:is(.dark *) {
   fill: rgb(31 41 55 / 0.2);
+}
+
+.dark\:fill-custom-dark-4:is(.dark *) {
+  fill: #27AE60;
+}
+
+.dark\:fill-custom-dark-2:is(.dark *) {
+  fill: #E74C3C;
 }
 
 .dark\:stroke-gray-500\/20:is(.dark *) {
