@@ -103,3 +103,50 @@ export const footerLinks = {
     { name: "License", href: "#" },
   ],
 };
+
+export const offers = [
+  {
+      name: 'Duo Plan',
+      id: 'tier-duo',
+      href: '#',
+      priceMonthly: '€12',
+      description: "The perfect plan to learn Slovene with a partner, whether a friend, colleague, or family member. Enjoy shared motivation and tailored, interactive lessons.",
+      features: [
+        "Interactive and engaging sessions",
+        "Practice with a friend or family member",
+        "Flexible schedule and customized materials",
+        "Modern teaching methods.",
+      ],
+      featured: false,
+    },
+    {
+      name: 'Individual',
+      id: 'tier-individual',
+      href: '#',
+      priceMonthly: '€15',
+      description: "The perfect plan if you're just getting started with Slovene. Benefit from interactive sessions and flexible scheduling to fit your busy lifestyle.",
+      features: [
+        "One-on-one lessons tailored to your goals",
+        "+ 1 additional free class",
+        "Interactive and engaging sessions",
+        "Flexible schedule and customized materials",
+        "Modern teaching methods.",
+      ],
+      featured: true,
+    },
+    {
+      name: 'Family Plan',
+      id: 'tier-family',
+      href: '#',
+      priceMonthly: '€10',
+      description: "The perfect plan for small groups, ideal for families or friends. Enjoy collaborative lessons with group activities and shared goals for a fun, effective experience.",
+      features: [
+        "Fun, collaborative lessons",
+        "Interactive and engaging sessions",
+        "Practice with a friend or family member",
+        "Modern teaching methods.",
+        
+      ],
+      featured: false,
+  },
+]

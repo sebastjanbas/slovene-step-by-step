@@ -1,3 +1,4 @@
+import PricingContent from "@/components/content/pricing-page";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
@@ -13,7 +14,7 @@ export default function PricingPage() {
     // const t = useTranslations("HeroPage");
     return (
         <div>
-            <h1>Pricing</h1>
+            <PricingContent />
         </div>
     );
 }
