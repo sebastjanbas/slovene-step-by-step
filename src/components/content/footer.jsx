@@ -16,7 +16,7 @@ export default function Footer() {
                     <span className="sr-only">Slovene Step By Step</span>
                     <img alt="Company Logo" src={`/Logo.svg`} />
                 </div>
-                <p className="my-8 text-gray-700 dark:text-gray-300">
+                <p className="my-8 text-custom-light-2 dark:text-custom-dark-2">
                     The best way to learn Slovene and make your dreams a reality.
                 </p>
                 <div className="flex gap-x-5">
@@ -44,32 +44,32 @@ export default function Footer() {
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-5">
                 <div className="flex flex-col">
-                    <h1 className="mb-5 text-gray-900 dark:text-gray-200 font-semibold">Title 1</h1>
-                    <div><Link href="#" className="text-gray-500 dark:text-gray-400">Link1</Link></div>
-                    <div><Link href="#" className="text-gray-500 dark:text-gray-400">Link2</Link></div>
-                    <div><Link href="#" className="text-gray-500 dark:text-gray-400">Link3</Link></div>
+                    <h1 className="mb-5 text-custom-light-1 dark:text-custom-dark-1 font-semibold">Title 1</h1>
+                    <div><Link href="#" className="text-custom-light-4 dark:text-custom-dark-4">Link1</Link></div>
+                    <div><Link href="#" className="text-custom-light-4 dark:text-custom-dark-4">Link2</Link></div>
+                    <div><Link href="#" className="text-custom-light-4 dark:text-custom-dark-4">Link3</Link></div>
                 </div>
                 <div className="flex flex-col">
-                    <h1 className="mb-5 text-gray-900 dark:text-gray-200 font-semibold">Quick Links</h1>
-                    <div><Link href={"/"} className="hover:underline text-gray-500 dark:text-gray-400">Home</Link></div>
-                    <div><Link href={"/courses"} className="hover:underline text-gray-500 dark:text-gray-400">Courses</Link></div>
-                    <div><Link href={"/pricing"} className="hover:underline text-gray-500 dark:text-gray-400">Pricing</Link></div>
+                    <h1 className="mb-5 text-custom-light-1 dark:text-custom-dark-1 font-semibold">Quick Links</h1>
+                    <div><Link href={"/"} className="hover:underline text-custom-light-4 dark:text-custom-dark-4">Home</Link></div>
+                    <div><Link href={"/courses"} className="hover:underline text-custom-light-4 dark:text-custom-dark-4">Courses</Link></div>
+                    <div><Link href={"/pricing"} className="hover:underline text-custom-light-4 dark:text-custom-dark-4">Pricing</Link></div>
                 </div>
                 <div className="flex flex-col">
-                    <h1 className="mb-5 text-gray-900 dark:text-gray-200 font-semibold">Company</h1>
-                    <div><Link href={"/about-us"} className="hover:underline text-gray-500 dark:text-gray-400">About</Link></div>
-                    <div><Link href={"/info/contact-us"} className="hover:underline text-gray-500 dark:text-gray-400">Contact us</Link></div>
-                    <div><Link href={"/info/faq"} className="hover:underline text-gray-500 dark:text-gray-400">FAQ</Link></div>
+                    <h1 className="mb-5 text-custom-light-1 dark:text-custom-dark-1 font-semibold">Company</h1>
+                    <div><Link href={"/about-us"} className="hover:underline text-custom-light-4 dark:text-custom-dark-4">About</Link></div>
+                    <div><Link href={"/info/contact-us"} className="hover:underline text-custom-light-4 dark:text-custom-dark-4">Contact us</Link></div>
+                    <div><Link href={"/info/faq"} className="hover:underline text-custom-light-4 dark:text-custom-dark-4">FAQ</Link></div>
                 </div>
                 <div className="flex flex-col">
-                    <h1 className="mb-5 text-gray-900 dark:text-gray-200 font-semibold">Legal</h1>
-                    <div><Link href="#" className="text-gray-500 dark:text-gray-400">Terms of service</Link></div>
-                    <div><Link href="#" className="text-gray-500 dark:text-gray-400">Privacy policy</Link></div>
-                    <div><Link href="#" className="text-gray-500 dark:text-gray-400">License</Link></div>
+                    <h1 className="mb-5 text-custom-light-1 dark:text-custom-dark-1 font-semibold">Legal</h1>
+                    <div><Link href="#" className="text-custom-light-4 dark:text-custom-dark-4">Terms of service</Link></div>
+                    <div><Link href="#" className="text-custom-light-4 dark:text-custom-dark-4">Privacy policy</Link></div>
+                    <div><Link href="#" className="text-custom-light-4 dark:text-custom-dark-4">License</Link></div>
                 </div>
             </div>
             <div className="mt-10">
-                <p>&copy; 2024 Slovene Step By Step. All rights reserved.</p>
+                <p className="text-custom-light-3 dark:text-custom-dark-3">&copy; 2024 Slovene Step By Step. All rights reserved.</p>
             </div>
         </footer>
     );

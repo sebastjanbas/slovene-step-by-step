@@ -59,7 +59,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                         <button
                                             type="button"
                                             onClick={() => setMobileMenuOpen(false)}
-                                            className="-m-2.5 rounded-md p-2.5 text-gray-700 dark:text-gray-200"
+                                            className="-m-2.5 rounded-md p-2.5 text-custom-light-4 dark:text-custom-dark-4"
                                         >
                                             <span className="sr-only">Close menu</span>
                                             <XMarkIcon aria-hidden="true" className="size-6" />
@@ -73,7 +73,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                                 <Link
                                                     key={item.name}
                                                     href={item.href}
-                                                    className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-indigo-300 dark:hover:bg-[#121212] ${pathname.includes(item.href) ? "text-indigo-500 dark:text-indigo-300" : "text-gray-900 dark:text-gray-200"}`}
+                                                    className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-custom-accent-d dark:hover:bg-[#121212] ${pathname.includes(item.href) ? "text-custom-accent-l dark:text-custom-accent-d" : "text-custom-light-2 dark:text-custom-dark-2"}`}
                                                     onClick={() => setMobileMenuOpen(false)}
                                                 >
                                                     {t(item.name)}
@@ -89,9 +89,9 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                                 <Link
                                                     href="/auth/login"
                                                     className={`text-sm/6 font-semibold ${pathname.includes("/login")
-                                                        ? "text-indigo-500 dark:text-indigo-300"
-                                                        : "text-gray-900 dark:text-white"
-                                                        } hover:text-indigo-500 dark:hover:text-indigo-300`}
+                                                        ? "text-custom-accent-l dark:text-custom-accent-d"
+                                                        : "text-custom-light-2 dark:text-custom-dark-2"
+                                                        } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
                                                 >
                                                     {t("log-in")} <span aria-hidden="true">&rarr;</span>
                                                 </Link>

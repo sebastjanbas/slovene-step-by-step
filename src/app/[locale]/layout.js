@@ -56,6 +56,7 @@ export default async function LocaleLayout({ children, params: { locale } }) {
             <NavBar locale={locale} />
             <AnimatedLayout>
               {/* <main className="relative isolate px-6 pt-14 lg:px-8"> */}
+              {/* <main className="bg-custom-gradient from-white to-emerald-400"> */}
               <main>
                 {children}
               </main>

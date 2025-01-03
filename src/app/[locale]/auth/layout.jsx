@@ -5,7 +5,7 @@ const AuthLayout = ({ children }) => {
 
     return (
         <div className='m-0 h-screen w-screen flex md:flex-row-reverse flex-col'>
-            <div className='hidden md:flex md:h-full w-full bg-indigo-500'>
+            <div className='hidden md:flex md:h-full w-full bg-custom-accent-l dark:bg-custom-accent-d'>
             </div>
             <div className='h-full flex flex-col w-full'>
                 <div className='flex items-center py-4 px-8'>

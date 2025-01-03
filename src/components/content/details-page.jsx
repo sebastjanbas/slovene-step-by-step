@@ -73,11 +73,11 @@ export default function DetailsPageHero() {
                 <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                     <div className="lg:pr-4">
                         <div className="lg:max-w-lg">
-                            <p id='subtitle' className="text-base/7 font-semibold text-indigo-600 dark:text-indigo-500">{t("why-slovene-subtitle")}</p>
-                            <h1 id='title' className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 dark:text-gray-200 sm:text-5xl">
+                            <p id='subtitle' className="text-base/7 font-semibold text-custom-accent-l dark:text-custom-accent-d">{t("why-slovene-subtitle")}</p>
+                            <h1 id='title' className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-custom-light-1 dark:text-custom-dark-1 sm:text-5xl">
                                 {t("why-slovene-title")}
                             </h1>
-                            <p id='text1' className="mt-6 text-xl/8 text-gray-700 dark:text-gray-300">
+                            <p id='text1' className="mt-6 text-xl/8 text-custom-light-2 dark:text-custom-dark-2">
                                 {t("why-slovene-text1")}
                             </p>
                         </div>
@@ -87,35 +87,35 @@ export default function DetailsPageHero() {
                     <img
                         alt=""
                         src="https://placehold.co/300x200"
-                        className="w-[48rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
+                        className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
                     />
-                    <h1 className="mt-6 text-xl/8 text-gray-700 dark:text-gray-300">
+                    <h1 className="mt-6 text-xl/8 text-custom-light-3 dark:text-custom-dark-3">
                         Image of the app or product
                     </h1>
                 </div>
                 <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                     <div className="lg:pr-4 lg:block sm:flex sm:justify-center">
-                        <div className="max-w-xl text-base/7 text-gray-700 dark:text-gray-300 lg:max-w-lg">
+                        <div className="max-w-xl text-base/7 text-custom-light-3 dark:text-custom-dark-3 lg:max-w-lg">
                             <p id="text2">
                                 {t("why-slovene-text2")}
                             </p>
-                            <ul role="list" className="mt-8 space-y-8 text-gray-600 dark:text-gray-300">
+                            <ul role="list" className="mt-8 space-y-8 text-custom-light-3 dark:text-custom-dark-3">
                                 <li id='point1' className="flex gap-x-3">
-                                    <RocketLaunchIcon aria-hidden="true" className="mt-1 size-5 flex-none text-indigo-600 dark:text-indigo-500" />
+                                    <RocketLaunchIcon aria-hidden="true" className="mt-1 size-5 flex-none text-custom-accent-l dark:text-custom-accent-d" />
                                     <span>
-                                        <strong className="font-semibold text-gray-900 dark:text-gray-200">{t("why-slovene-point1-strong")}</strong> {t("why-slovene-point1")}
+                                        <strong className="font-semibold text-custom-light-1 dark:text-custom-dark-1">{t("why-slovene-point1-strong")}</strong> {t("why-slovene-point1")}
                                     </span>
                                 </li>
                                 <li id='point2' className="flex gap-x-3">
-                                    <ChatBubbleLeftRightIcon aria-hidden="true" className="mt-1 size-5 flex-none text-indigo-600 dark:text-indigo-500" />
+                                    <ChatBubbleLeftRightIcon aria-hidden="true" className="mt-1 size-5 flex-none text-custom-accent-l dark:text-custom-accent-d" />
                                     <span>
-                                        <strong className="font-semibold text-gray-900 dark:text-gray-200">{t("why-slovene-point2-strong")}</strong> {t("why-slovene-point2")}
+                                        <strong className="font-semibold text-custom-light-1 dark:text-custom-dark-1">{t("why-slovene-point2-strong")}</strong> {t("why-slovene-point2")}
                                     </span>
                                 </li>
                                 <li id='point3' className="flex gap-x-3">
-                                    <BookOpenIcon aria-hidden="true" className="mt-1 size-5 flex-none text-indigo-600 dark:text-indigo-500" />
+                                    <BookOpenIcon aria-hidden="true" className="mt-1 size-5 flex-none text-custom-accent-l dark:text-custom-accent-d" />
                                     <span>
-                                        <strong className="font-semibold text-gray-900 dark:text-gray-200">{t("why-slovene-point3-strong")}</strong> {t("why-slovene-point3")}
+                                        <strong className="font-semibold text-custom-light-1 dark:text-custom-dark-1">{t("why-slovene-point3-strong")}</strong> {t("why-slovene-point3")}
                                     </span>
                                 </li>
                             </ul>

@@ -35,8 +35,8 @@ export default function Stats() {
             <dl className="grid grid-cols-1 gap-x-8 gap-y-16 text-center md:grid-cols-3">
                 {stats.map((stat, index) => (
                     <div key={stat.id} className="mx-auto flex max-w-xs flex-col gap-y-4">
-                        <dt className="text-base/7 text-gray-600 dark:text-gray-400">{t(stat.title)}</dt>
-                        <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-200 sm:text-5xl">
+                        <dt className="text-base/7 text-custom-light-3 dark:text-custom-dark-3">{t(stat.title)}</dt>
+                        <dd className="order-first text-3xl font-semibold tracking-tight text-custom-light-2 dark:text-custom-dark-2 sm:text-5xl">
                             <span ref={el => numbersRef.current[index] = el}>{stat.value}</span>
                             <span> {stat.symbol}</span>
                         </dd>

@@ -7,10 +7,10 @@ const Carousel = ({ data, stars = false }) => {
     return (
         <section className="w-full lg:max-w-[800px] flex flex-col justify-center box-border mx-auto py-24 sm:py-32">
             <div className="text-center mb-8 lg:mb-16">
-                <h2 className="text-base/7 font-semibold text-indigo-600 dark:text-indigo-500">
+                <h2 className="text-base/7 font-semibold text-custom-accent-l dark:text-custom-accent-d">
                     What members are saying.
                 </h2>
-                <h1 className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 dark:text-gray-200 sm:text-5xl">
+                <h1 className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-custom-light-1 dark:text-custom-dark-1 sm:text-5xl">
                     Testimonials
                 </h1>
             </div>
@@ -18,12 +18,12 @@ const Carousel = ({ data, stars = false }) => {
             <div className="relative select-none lg:px-4">
                 <blockquote>
                     <img
-                        className="absolute -z-1 top-1 -left-2 block"
+                        className="hidden absolute -z-1 top-1 -left-2 md:block"
                         src={"/blockquote.svg"}
                         alt="quote sign"
                     />
                     <img
-                        className="absolute -z-1 -bottom-3 -right-2 rotate-180 block"
+                        className="hidden absolute -z-1 -bottom-3 -right-2 rotate-180 md:block"
                         src={"/blockquote.svg"}
                         alt="quote sign"
                     />
@@ -48,11 +48,11 @@ const Carousel = ({ data, stars = false }) => {
                                     alt="Profile photo"
                                 />
                                 <div className="inline-block text-center md:text-left mb-4 text-lg">
-                                    <p className="text-sm">{review.text}</p>
+                                    <p className="text-sm text-custom-light-3 dark:text-custom-light-3">{review.text}</p>
                                     <div className="flex flex-col md:flex-row justify-start md:gap-8 pt-4">
                                         <div>
-                                            <p className="text-xl font-bold ">{review.name}</p>
-                                            <p className="text-sm font-normal text-gray-400">{review.role}</p>
+                                            <p className="text-xl font-bold text-custom-light-1 dark:text-custom-dark-1">{review.name}</p>
+                                            <p className="text-sm font-normal text-custom-light-2 dark:text-custom-dark-2">{review.role}</p>
                                         </div>
                                         {stars &&
                                             <div className="text-sm/8 text-[rgb(254,216,79)]">

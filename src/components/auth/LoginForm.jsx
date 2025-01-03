@@ -104,7 +104,7 @@ export const LoginForm = () => {
                                     <Button
                                         size={"sm"}
                                         variant={"link"}
-                                        className="p-0 text-indigo-500"
+                                        className="p-0 text-custom-accent-l dark:text-custom-accent-d"
                                         asChild
                                     >
                                         <Link href="/auth/reset-password">

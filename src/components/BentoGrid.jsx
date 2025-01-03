@@ -70,10 +70,10 @@ export default function BentoGrid() {
                 <div id="card1" className="px-8 py-8 gap-8 lg:col-span-6 lg:row-span-3 flex flex-col justify-around items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl">
                     <div className="w-full flex flex-col lg:flex-row items-center">
                         <div>
-                            <h2 id="card2-start" className="mt-2 text-lg font-medium tracking-tight text-gray-950 dark:text-indigo-400 max-lg:text-center">
+                            <h2 id="card2-start" className="mt-2 text-lg font-medium tracking-tight text-custom-light-1 dark:text-custom-dark-1 max-lg:text-center">
                                 {t("bento-c1-title")}
                             </h2>
-                            <p className="mt-2 max-w-lg text-sm/6 text-gray-600 dark:text-gray-300 max-lg:text-center">
+                            <p className="mt-2 max-w-lg text-sm/6 text-custom-light-3 dark:text-custom-dark-3 max-lg:text-center">
                                 {t("bento-c1-desc")}
                             </p>
                         </div>
@@ -87,10 +87,10 @@ export default function BentoGrid() {
                     <div id="card1-start" className="flex flex-col lg:flex-row items-center gap-5">
                         <Lottie lottieRef={teacherA} animationData={teacherAnimation} />
                         <div>
-                            <h2 className="mt-2 text-lg font-medium tracking-tight text-gray-950 dark:text-indigo-400 max-lg:text-center">
+                            <h2 className="mt-2 text-lg font-medium tracking-tight text-custom-light-1 dark:text-custom-dark-1 max-lg:text-center">
                                 {t("bento-c1-title2")}
                             </h2>
-                            <p className="mt-2 max-w-lg text-sm/6 text-gray-600 dark:text-gray-300 max-lg:text-center">
+                            <p className="mt-2 max-w-lg text-sm/6 text-custom-light-3 dark:text-custom-dark-3 max-lg:text-center">
                                 {t("bento-c1-desc2")}
                             </p>
                         </div>
@@ -98,10 +98,10 @@ export default function BentoGrid() {
                 </div>
 
                 <div id="card2" className="px-8 py-8 lg:col-span-4 lg:row-span-3 flex flex-col justify-center items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl">
-                    <h2 className="mt-2 text-lg font-medium tracking-tight text-gray-950 dark:text-indigo-400 max-lg:text-center">
+                    <h2 className="mt-2 text-lg font-medium tracking-tight text-custom-light-1 dark:text-custom-dark-1 max-lg:text-center">
                         {t("bento-c2-title")}
                     </h2>
-                    <p className="mt-2 max-w-lg text-sm/6 text-gray-600 dark:text-gray-300 max-lg:text-center">
+                    <p className="mt-2 max-w-lg text-sm/6 text-custom-light-3 dark:text-custom-dark-3 max-lg:text-center">
                         {t("bento-c2-desc")}
                     </p>
                     <div className="relative min-h-[20rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
@@ -116,10 +116,10 @@ export default function BentoGrid() {
                 </div>
 
                 <div id="card3" className="px-8 py-8 lg:col-span-4 lg:row-span-2 flex flex-col justify-center items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl">
-                    <h2 className="mt-2 text-lg font-medium tracking-tight text-gray-950 dark:text-indigo-400 max-lg:text-center">
+                    <h2 className="mt-2 text-lg font-medium tracking-tight text-custom-light-1 dark:text-custom-dark-1 max-lg:text-center">
                         {t("bento-c3-title")}
                     </h2>
-                    <p className="mt-2 max-w-lg text-sm/6 text-gray-600 dark:text-gray-300 max-lg:text-center">
+                    <p className="mt-2 max-w-lg text-sm/6 text-custom-light-3 dark:text-custom-dark-3 max-lg:text-center">
                         {t("bento-c3-desc")}
                     </p>
 
@@ -138,17 +138,17 @@ export default function BentoGrid() {
                         src={`/Logo.svg`}
                         alt="Company Logo"
                     />
-                    <h1 className="uppercase text-center text-[0.590rem] text-[#5C6BC0] font-bold">
+                    <h1 className="uppercase text-center text-[0.590rem] text-custom-accent-l dark:text-custom-accent-d font-bold">
                         Slovene Step By Step
                     </h1>
                 </div>
 
                 <div id="card4" className="px-8 py-8 col-span-6 row-span-2 flex flex-col lg:flex-row justify-center items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl">
                     <div>
-                        <h2 className="mt-2 text-lg font-medium tracking-tight text-gray-950 dark:text-indigo-400 max-lg:text-center">
+                        <h2 className="mt-2 text-lg font-medium tracking-tight text-custom-light-1 dark:text-custom-dark-1 max-lg:text-center">
                             {t("bento-c4-title")}
                         </h2>
-                        <p id="card3-start" className="mt-2 max-w-lg text-sm/6 text-gray-600 dark:text-gray-300 max-lg:text-center">
+                        <p id="card3-start" className="mt-2 max-w-lg text-sm/6 text-custom-light-3 dark:text-custom-dark-3 max-lg:text-center">
                             {t("bento-c4-desc")}
                         </p>
                     </div>

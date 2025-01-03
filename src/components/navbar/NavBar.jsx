@@ -43,7 +43,7 @@ export default function NavBar({ locale }) {
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(true)}
-                        className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 dark:text-white"
+                        className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-custom-light-1 dark:text-custom-dark-1"
                     >
                         <span className="sr-only">Open main menu</span>
                         <Bars3Icon aria-hidden="true" className="size-6" />
@@ -55,9 +55,9 @@ export default function NavBar({ locale }) {
                             key={item.name}
                             href={item.href}
                             className={`text-sm/6 font-semibold ${pathname.includes(item.href)
-                                ? "text-indigo-500 dark:text-indigo-300"
-                                : "text-gray-900 dark:text-white"
-                                } hover:text-indigo-500 dark:hover:text-indigo-300 `}
+                                ? "text-custom-accent-l dark:text-custom-accent-d"
+                                : "text-custom-light-2 dark:text-custom-dark-2"
+                                } hover:text-custom-accent-l dark:hover:text-custom-accent-d `}
                         >
                             {t(item.name)}
                         </Link>
@@ -67,16 +67,16 @@ export default function NavBar({ locale }) {
                     <LanguageSwitcher locale={locale} />
                     <ThemButton />
                     {loading ? (
-                        <span>Loading...</span>
+                        <span className="text-custom-light-2 dark:text-custom-dark-2">Loading...</span>
                     ) : user ? (
                         <LogoutButton>Log Out</LogoutButton>
                     ) : (
                         <Link
                             href="/auth/login"
                             className={`text-sm/6 font-semibold ${pathname.includes("/login")
-                                ? "text-indigo-500 dark:text-indigo-300"
-                                : "text-gray-900 dark:text-white"
-                                } hover:text-indigo-500 dark:hover:text-indigo-300`}
+                                ? "text-custom-accent-l dark:text-custom-accent-d"
+                                : "text-custom-light-2 dark:text-custom-dark-2"
+                                } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
                         >
                             {t("log-in")} <span aria-hidden="true">&rarr;</span>
                         </Link>

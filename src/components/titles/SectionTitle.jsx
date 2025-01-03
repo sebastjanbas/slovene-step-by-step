@@ -25,10 +25,10 @@ const SectionTitle = ({ id, translations, header, paragraph, children }) => {
     return (
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
             <div id={id}>
-                <h2 className="text-center text-base/7 font-semibold text-indigo-600 dark:text-indigo-400">
+                <h2 className="text-center text-base/7 font-semibold text-custom-accent-l dark:text-custom-accent-d">
                     {t(header)}
                 </h2>
-                <p className="mx-auto mt-2 max-w-lg text-balance text-center text-4xl font-semibold tracking-tight text-gray-950 dark:text-gray-200 sm:text-5xl">
+                <p className="mx-auto mt-2 max-w-lg text-balance text-center text-4xl font-semibold tracking-tight text-custom-light-1 dark:text-custom-dark-1 sm:text-5xl">
                     {t(paragraph)}
                 </p>
             </div>
