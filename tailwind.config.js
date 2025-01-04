@@ -51,25 +51,29 @@ module.exports = {
 				'5': 'hsl(var(--chart-5))'
 			},
 			  custom: {
-				'button-l': "#FF6B6B",
+				'button-l': "#e99f77",
 				'button-d': "#4ECDC4",
-				'button-hover-l': "#FF8787",
+				'button-hover-l': "#EABAA0",
 				'button-hover-d': "#45B7AF",
-				'accent-l': "#FFE66D",
+				'accent-l': "#e99f77",
 				'accent-d': "#FF6B6B",
-				'light-1': '#FF6B6B',
-				'light-2': '#4ECDC4',
-				'light-3': '#456DFF',
-				'light-4': '#FFE66D',
+				'light-1': '#2a2745',
+				'light-2': '#464370',
+				'light-3': '#040316',
+				'light-4': '#040316',
 				'dark-1': '#2C3E50',
 				'dark-2': '#E74C3C',
 				'dark-3': '#3498DB',
-				'dark-4': '#27AE60',
+				'dark-4': '#040316',
 			  }
 		},
 		  backgroundImage: {
 			'custom-gradient': 'radial-gradient(ellipse at top, var(--tw-gradient-stops))',
-			'custom-gradient-linear': 'linear-gradient(30deg, var(--tw-gradient-stops))'
+			'custom-gradient-linear': 'linear-gradient(30deg, var(--tw-gradient-stops))',
+			'custom-gradient-300deg' : "linear-gradient(300deg, rgba(42,39,69,1) 0%, rgba(139,100,95,1) 71%, rgba(233,159,119,1) 100%)",
+			'custom-gradient-120deg' : "linear-gradient(120deg, rgba(70,67,112,1) 0%, rgba(158,117,116,1) 49%, rgba(233,159,119,1) 100%)",
+			'custom-gradient-0deg' : "linear-gradient(0deg, rgba(70,67,112,1) 0%, rgba(125,123,155,1) 60%, rgba(255,255,255,1) 100%)",
+			'custom-gradient-radial': 'linear-gradient(25deg, rgba(42,39,69,1) 0%, rgba(70,67,112,1) 43%, rgba(187,170,184,1) 100%)',
 		  },
 		borderRadius: {
 			lg: 'var(--radius)',
