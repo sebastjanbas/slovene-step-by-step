@@ -1,7 +1,9 @@
+
+
 export const navigation = [
   { name: "products", href: "/courses" },
   { name: "pricing", href: "/pricing" },
-  { name: "features", href: "/features" },
+  // { name: "features", href: "/features" },
   { name: "about-us", href: "/about-us" },
 ];
 
