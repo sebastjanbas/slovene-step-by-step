@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { navigation, link } from "@/lib/docs";
+import { navigation, link, navigationPublic, navigationPrivate } from "@/lib/docs";
 import { Link } from '@/i18n/routing';
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import MyDialog from "./MyDialog";
@@ -50,7 +50,19 @@ export default function NavBar({ locale }) {
                     </button>
                 </div>
                 <div className="hidden lg:flex lg:gap-x-12">
-                    {navigation.map((item) => (
+                    {navigationPrivate.map((item) => (
+                        <a
+                            key={item.name}
+                            href={item.href}
+                            className={`text-sm/6 font-semibold ${pathname.includes(item.href)
+                                ? "text-custom-accent-l dark:text-custom-accent-d"
+                                : "text-custom-light-2 dark:text-custom-dark-2"
+                                } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
+                        >
+                            {t(item.name)}
+                        </a>
+                    ))}
+                    {navigationPublic.map((item) => (
                         <Link
                             key={item.name}
                             href={item.href}
@@ -84,7 +96,8 @@ export default function NavBar({ locale }) {
                 </div>
             </nav>
             <MyDialog
-                navigation={navigation}
+                navigationPublic={navigationPublic}
+                navigationPrivate={navigationPrivate}
                 mobileMenuOpen={mobileMenuOpen}
                 setMobileMenuOpen={setMobileMenuOpen}
                 locale={locale}

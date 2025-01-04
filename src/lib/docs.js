@@ -1,7 +1,8 @@
 
-
-export const navigation = [
+export const navigationPrivate = [
   { name: "products", href: "/courses" },
+]
+export const navigationPublic = [
   { name: "pricing", href: "/pricing" },
   // { name: "features", href: "/features" },
   { name: "about-us", href: "/about-us" },

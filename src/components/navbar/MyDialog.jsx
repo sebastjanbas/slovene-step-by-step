@@ -10,7 +10,7 @@ import LanguageSwitcher from "./language-swithcher";
 import { useAuth } from "../auth/AuthProvider";
 import { LogoutButton } from "../auth/LogoutButton";
 
-export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation, locale }) {
+export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigationPublic, navigationPrivate, locale }) {
 
     const pathname = usePathname();
     const t = useTranslations('Navbar');
@@ -69,7 +69,18 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                 <div className="mt-6 flow-root">
                                     <div className="-my-6 divide-y divide-gray-500/10">
                                         <div className="space-y-2 py-6">
-                                            {navigation.map((item) => (
+                                            {navigationPrivate.map((item) => (
+                                                <a
+                                                    key={item.name}
+                                                    href={item.href}
+                                                    className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-custom-accent-d dark:hover:bg-[#121212] ${pathname.includes(item.href) ? "text-custom-accent-l dark:text-custom-accent-d" : "text-custom-light-2 dark:text-custom-dark-2"}`}
+                                                    onClick={() => setMobileMenuOpen(false)}
+                                                >
+                                                    {t(item.name)}
+                                                </a>
+                                            ))}
+
+                                            {navigationPublic.map((item) => (
                                                 <Link
                                                     key={item.name}
                                                     href={item.href}
