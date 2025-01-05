@@ -3,9 +3,6 @@ import { Link } from "@/i18n/routing";
 import { usePathname } from "next/navigation";
 import { footerLinks } from "@/lib/docs";
 import { SocialLinks } from "../ui/social-links";
-import resolveConfig from "tailwindcss/resolveConfig";
-import tailwindConfig from "../../../tailwind.config";
-import { useEffect, useState } from "react";
 
 export default function Footer() {
     const pathname = usePathname();
@@ -14,7 +11,6 @@ export default function Footer() {
     }
 
     const socialLinkSize = "26";
-    const themeColor = resolveConfig(tailwindConfig).theme.colors.custom["light-2"];
 
     return (
         <footer className="m-10">
@@ -139,12 +135,12 @@ export default function Footer() {
                     </h1>
                     {footerLinks.Personal.map((item) => (
                         <div key={item.name}>
-                            <Link
+                            <a
                                 href={item.href}
                                 className="hover:underline text-custom-light-4 dark:text-custom-dark-4"
                             >
                                 {item.name}
-                            </Link>
+                            </a>
                         </div>
                     ))}
                 </div>

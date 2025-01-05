@@ -1,7 +1,5 @@
-import React, { use } from "react";
+import React from "react";
 import { getTranslations } from 'next-intl/server';
-import { createClient } from '@/utils/supabase/server'
-import { redirect } from "next/navigation";
 import ProductsClient from "@/components/content/courses";
 
 export async function generateMetadata({ params: { locale } }) {
@@ -13,12 +11,6 @@ export async function generateMetadata({ params: { locale } }) {
 }
 
 export default async function ProductsPage() {
-    const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
-        redirect("/auth/login");
-    }
-
     return (
         <section>
             <div className="flex items-end justify-center gap-x-4 mt-8">
