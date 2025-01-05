@@ -84,8 +84,8 @@ export default function Hero() {
 
     return (
         <>
-            <div className="">
-                {/* <BoxDecoration /> */}
+            <div className="h-screen">
+                <BoxDecoration />
                 <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
                     <div className="mb-8 flex justify-center">
                         <div className="relative rounded-full px-3 py-1 text-sm/6 text-custom-light-2 dark:text-custom-dark-2 ring-1 ring-gray-900/10 dark:ring-gray-200/25 hover:ring-gray-900/20">
@@ -104,13 +104,13 @@ export default function Hero() {
                             {t("under-title")}
                         </p>
                         <div className="mt-10 flex items-center justify-center gap-x-6">
-                            <Link
+                            <a
                                 ref={buttonRef}
                                 href={"/courses"}
                                 className="rounded-2xl bg-custom-button-l dark:bg-custom-button-d/75 px-3.5 py-2.5 text-sm font-semibold text-white dark:text-gray-200 shadow-sm hover:bg-custom-button-hover-l dark:hover:bg-custom-button-hover-d focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
                                 {t("action-button")}
-                            </Link>
+                            </a>
                         </div>
                     </div>
                 </div>

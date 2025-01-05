@@ -51,6 +51,36 @@ export const routing = defineRouting({
       sl: '/info/kontakti',
       ru: '/info/kontakti',
     },
+
+    '/legal/terms-of-service': {
+      en: '/legal/terms-of-service',
+      sl: '/pravne/pogoji',
+      ru: '/legal/terms-of-service',
+    },
+
+    '/legal/privacy-policy': {
+      en: '/legal/privacy-policy',
+      sl: '/pravne/zasebnost',
+      ru: '/legal/privacy-policy',
+    },
+
+    '/legal/license': {
+      en: '/legal/license',
+      sl: '/pravne/licenca',
+      ru: '/legal/license',
+    },
+
+    '/profile/settings' : {
+      en: '/profile/settings',
+      sl: '/profil/nastavitve',
+      ru: '/profile/настройки',
+    },
+
+    '/profile' : {
+      en: '/profile',
+      sl: '/profil',
+      ru: '/profile',
+    },
  
     // Also (optional) catch-all segments are supported
     '/auth/login': {

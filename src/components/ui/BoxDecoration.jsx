@@ -1,15 +1,12 @@
 "use client";
+import { cn } from '@/lib/utils';
 import React from 'react'
 
-export const BoxDecoration = () => {
+export const BoxDecoration = ({ className }) => {
     return (
-        <div className="grid grid-cols-4 gap-4 p-8 lg:grid-cols-6">
-            <div className="col-span-4 p-4 bg-gray-200 dark:bg-gray-800 rounded-lg"></div>
-            <div className="col-span-4 p-4 bg-gray-200 dark:bg-gray-800 rounded-lg"></div>
-            <div className="col-span-4 p-4 bg-gray-200 dark:bg-gray-800 rounded-lg"></div>
-            <div className="col-span-4 p-4 bg-gray-200 dark:bg-gray-800 rounded-lg"></div>
-            <div className="col-span-4 p-4 bg-gray-200 dark:bg-gray-800 rounded-lg"></div>
-            <div className="col-span-4 p-4 bg-gray-200 dark:bg-gray-800 rounded-lg"></div>
+        <div className={cn("absolute", className)}>
+            <div className="col-span-5 row-span-10 p-4 bg-gray-200 dark:bg-gray-800 rounded-lg"></div>
+
         </div>
     );
 };

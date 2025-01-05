@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { navigation, link, navigationPublic, navigationPrivate } from "@/lib/docs";
+import { navigationPublic, navigationPrivate } from "@/lib/docs";
 import { Link } from '@/i18n/routing';
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import MyDialog from "./MyDialog";
@@ -10,6 +10,7 @@ import { useTranslations } from 'next-intl';
 import LanguageSwitcher from "./language-swithcher";
 import { LogoutButton } from "@/components/auth/LogoutButton"
 import { useAuth } from "../auth/AuthProvider";
+import { UserButton } from "../auth/UserButton";
 
 
 
@@ -81,7 +82,7 @@ export default function NavBar({ locale }) {
                     {loading ? (
                         <span className="text-custom-light-2 dark:text-custom-dark-2">Loading...</span>
                     ) : user ? (
-                        <LogoutButton>Log Out</LogoutButton>
+                        <UserButton dialog={false} />
                     ) : (
                         <Link
                             href="/auth/login"

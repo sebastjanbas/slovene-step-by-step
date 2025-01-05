@@ -28,6 +28,14 @@ export default async function ProductsPage() {
                 </p>
             </div>
             <ProductsClient />
+            <div className="my-10 mx-32">
+                <pre className="bg-[#121212] text-white p-10 rounded-2xl">
+                    <h1 className="mb-5">{user.user_metadata.full_name}'s JSON information:</h1>
+                    <code>
+                        {JSON.stringify(user, null, 2)}
+                    </code>
+                </pre>
+            </div>
         </section>
     );
 }

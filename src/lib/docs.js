@@ -85,15 +85,15 @@ export const reviews = [
 ];
 
 export const footerLinks = {
-  Title1: [
-    { name: "Link1", href: "#" },
-    { name: "Link2", href: "#" },
+  Personal: [
+    { name: "Profile", href: "/profile" },
+    { name: "Settings", href: "/profile/settings" },
     { name: "Link3", href: "#" },
   ],
   QuickLinks: [
-    { name: "Home", href: "/" },
-    { name: "Courses", href: "/courses" },
-    { name: "Pricing", href: "/pricing" },
+    { name: "Home", href: "/", server: false },
+    { name: "Courses", href: "/courses", server: true },
+    { name: "Pricing", href: "/pricing", server: false },
   ],
   Company: [
     { name: "About", href: "/about-us" },
@@ -101,9 +101,9 @@ export const footerLinks = {
     { name: "FAQ", href: "/info/faq" },
   ],
   Legal: [
-    { name: "Terms of service", href: "#" },
-    { name: "Privacy policy", href: "#" },
-    { name: "License", href: "#" },
+    { name: "Terms of service", href: "/legal/terms-of-service" },
+    { name: "Privacy policy", href: "/legal/privacy-policy" },
+    { name: "License", href: "/legal/license" },
   ],
 };
 

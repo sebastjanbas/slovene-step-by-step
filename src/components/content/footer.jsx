@@ -135,9 +135,9 @@ export default function Footer() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-5">
                 <div className="flex flex-col">
                     <h1 className="mb-5 text-custom-light-1 dark:text-custom-dark-1 font-semibold">
-                        Title 1
+                        Personal
                     </h1>
-                    {footerLinks.Title1.map((item) => (
+                    {footerLinks.Personal.map((item) => (
                         <div key={item.name}>
                             <Link
                                 href={item.href}
@@ -154,12 +154,21 @@ export default function Footer() {
                     </h1>
                     {footerLinks.QuickLinks.map((item) => (
                         <div key={item.name}>
-                            <Link
-                                href={item.href}
-                                className="hover:underline text-custom-light-4 dark:text-custom-dark-4"
-                            >
-                                {item.name}
-                            </Link>
+                            {item.server ? (
+                                <a
+                                    href={item.href}
+                                    className="hover:underline text-custom-light-4 dark:text-custom-dark-4">
+                                    {item.name}
+                                </a>
+                            ) : (
+                                <Link
+                                    href={item.href}
+                                    className="hover:underline text-custom-light-4 dark:text-custom-dark-4"
+                                >
+                                    {item.name}
+                                </Link>
+
+                            )}
                         </div>
                     ))}
                 </div>
