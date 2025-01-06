@@ -28,3 +28,12 @@ export const SignupSchema = z.object({
         message: "Please confirm your password",
     }),
 });
+
+export const ResetPasswordSchema = z.object({
+    password: z.string().min(8, {
+        message: "Minimum 8 characters",
+    }),
+    confirmPassword: z.string().min(8, {
+        message: "Please confirm your password",
+    }),
+});
