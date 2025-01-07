@@ -18,8 +18,10 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/auth/FormError";
 import { FormSuccess } from "@/components/auth/FormSuccess";
 import { signup } from "@/actions/signup";
+import { useTranslations } from "next-intl";
 
 export const SignupForm = () => {
+    const t = useTranslations("Sign up");
     const [isPending, setTransition] = useTransition();
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
@@ -49,11 +51,11 @@ export const SignupForm = () => {
 
     return (
         <CardWrapper
-            headerLabel="Create an account"
-            headerTitle={"Get your free account"}
-            backButtonLabel="Already have an account?"
+            headerLabel={t("label")}
+            headerTitle={t("title")}
+            backButtonLabel={t("link-text")}
             backButtonHref="/auth/login"
-            backButtonLinkLabel={"Log in"}
+            backButtonLinkLabel={t("link")}
             showSocial
         >
             <Form {...form}>
@@ -65,12 +67,12 @@ export const SignupForm = () => {
                                 name="firstName"
                                 render={({ field }) => (
                                     <FormItem className="w-1/2">
-                                        <FormLabel>First Name</FormLabel>
+                                        <FormLabel>{t("first-name")}</FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
                                                 disabled={isPending}
-                                                placeholder="First Name"
+                                                placeholder={t("first-name")}
                                                 type="text"
                                             />
                                         </FormControl>
@@ -85,12 +87,12 @@ export const SignupForm = () => {
                                 name="lastName"
                                 render={({ field }) => (
                                     <FormItem className="w-1/2">
-                                        <FormLabel>Last Name</FormLabel>
+                                        <FormLabel>{t("last-name")}</FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
                                                 disabled={isPending}
-                                                placeholder="Last Name"
+                                                placeholder={t("last-name")}
                                                 type="text"
                                             />
                                         </FormControl>
@@ -106,7 +108,7 @@ export const SignupForm = () => {
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Email</FormLabel>
+                                    <FormLabel>{(t("email"))}</FormLabel>
                                     <FormControl>
                                         <Input
                                             {...field}
@@ -126,7 +128,7 @@ export const SignupForm = () => {
                             name="password"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Password</FormLabel>
+                                    <FormLabel>{t("password")}</FormLabel>
                                     <FormControl>
                                         <Input
                                             {...field}
@@ -146,7 +148,7 @@ export const SignupForm = () => {
                             name="confirmPassword"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Confirm Password</FormLabel>
+                                    <FormLabel>{t("confirm-password")}</FormLabel>
                                     <FormControl>
                                         <Input
                                             {...field}
@@ -165,7 +167,7 @@ export const SignupForm = () => {
                     <FormError message={error} />
                     <FormSuccess message={success} />
                     <Button disabled={isPending} variant={"mine"} type="submit" className="w-full">
-                        Create an account
+                        {t("button")}
                     </Button>
                 </form>
             </Form>

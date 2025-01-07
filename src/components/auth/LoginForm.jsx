@@ -1,5 +1,5 @@
 "use client";
-import React, { startTransition, useState, useTransition } from "react";
+import React, { startTransition, use, useState, useTransition } from "react";
 import { CardWrapper } from "./CardWrapper";
 import { useForm } from "react-hook-form";
 import { LoginSchema } from "@/schemas";
@@ -17,8 +17,10 @@ import { Button } from "@/components/ui/button";
 import { FormError } from "./FormError";
 import { login } from "@/actions/login";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export const LoginForm = () => {
+    const t = useTranslations("Log in");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [isPending, setTransition] = useTransition();
@@ -53,10 +55,10 @@ export const LoginForm = () => {
 
     return (
         <CardWrapper
-            headerLabel="Welcome back"
-            headerTitle="Log in"
-            backButtonLabel="Don't have an account?"
-            backButtonLinkLabel="Sign up"
+            headerLabel={t("label")}
+            headerTitle={t("title")}
+            backButtonLabel={t("link-text")}
+            backButtonLinkLabel={t("link")}
             backButtonHref="/auth/signup"
             showSocial
         >
@@ -69,7 +71,7 @@ export const LoginForm = () => {
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Email</FormLabel>
+                                    <FormLabel>{t("email")}</FormLabel>
                                     <FormControl>
                                         <Input
                                             {...field}
@@ -89,7 +91,7 @@ export const LoginForm = () => {
                             name="password"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Password</FormLabel>
+                                    <FormLabel>{t("password")}</FormLabel>
                                     <FormControl>
                                         <Input
                                             {...field}
@@ -108,7 +110,7 @@ export const LoginForm = () => {
                                         asChild
                                     >
                                         <Link href="/auth/reset-password">
-                                            Forgot password?
+                                            {t("forgot-password")}
                                         </Link>
                                     </Button>
                                 </FormItem>
@@ -117,7 +119,7 @@ export const LoginForm = () => {
                     </div>
                     <FormError message={error} />
                     <Button variant={"mine"} disabled={isPending} type="submit" className="w-full">
-                        Log in
+                        {t("button")}
                     </Button>
                 </form>
             </Form>

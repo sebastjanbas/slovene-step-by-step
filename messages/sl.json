@@ -66,6 +66,11 @@
     "log-in": "Prijava"
   },
 
+  "Banner" : {
+    "title": "POMEMBNO",
+    "message": "Naša spletna stran je trenutno v razvoju! Nekatere funkcije morda še niso na voljo, vendar se trudimo, da bi vam kmalu zagotovili popolno izkušnjo. Hvala za potrpežljivost!"
+  },
+
   "About us": {
     "title": "Naša ekipa",
     "subtitle": "Smo dinamična skupina posameznikov, ki so navdušeni nad tem, kar počnemo, in predani zagotavljanju najboljših rezultatov za naše stranke."
@@ -75,10 +80,40 @@
     "title": "Drugo"
   },
 
-  "Log in": {
+ "Log in": {
+    "label": "Dobrodošli nazaj!",
     "title": "Prijava",
-    "subtitle": "Prijava na voljo kmalu!"
+    "email": "Email",
+    "password": "Geslo",
+    "forgot-password": "Pozabljeno geslo?",
+    "button": "Prijava",
+    "or-divider": "ALI",
+    "continue-apple": "Nadaljujte z Apple",
+    "continue-google": "Nadaljujte z Google",
+    "link-text": "Nimate računa?",
+    "link": "Registracija"
   },
+  
+  "Sign up" : {
+    "label": "Ustvari račun",
+    "title": "Ustvari brezplačen račun",
+    "first-name": "Ime",
+    "last-name": "Priimek",
+    "email": "Email",
+    "password": "Geslo",
+    "confirm-password": "Potrdi geslo",
+    "button": "Ustvari račun",
+    "link-text": "Že imate račun?",
+    "link": "Prijava"
+  },
+
+  "Disclaimer" : {
+    "text": "Z vpisom se strinjate z našimi ",
+    "link-terms" : "Pogoji uporabe",
+    "and" : " in ",
+    "link-privacy" : "Pravilnikom o zasebnosti"
+  },
+  
   "ProductsPage": {
     "title": "Produkti",
     "description": "Na voljo kmalu!"

@@ -70,6 +70,11 @@
     "log-in": "Log in"
   },
 
+  "Banner" : {
+    "title": "ATTENTION",
+    "message": "Our website is currently under development! Some features may not be available yet, but we're working hard to bring you the full experience soon. Thank you for your patience!"
+  },
+
   "About us": {
     "title": "Meet the team",
     "subtitle": "We're a dynamic group of individuals who are passionate about what we do and dedicated to delivering the best results for our clients."
@@ -80,8 +85,37 @@
   },
   
   "Log in": {
+    "label": "Welcome back!",
     "title": "Log in",
-    "subtitle": "Log in coming soon!"
+    "email": "Email",
+    "password": "Password",
+    "forgot-password": "Forgot password?",
+    "button": "Log in",
+    "or-divider": "OR",
+    "continue-apple": "Continue with Apple",
+    "continue-google": "Continue with Google",
+    "link-text": "Don't have an account?",
+    "link": "Sign up"
+  },
+  
+  "Sign up" : {
+    "label": "Create an account",
+    "title": "Get your free account",
+    "first-name": "First Name",
+    "last-name": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "confirm-password": "Confirm Password",
+    "button": "Create an account",
+    "link-text": "Already have an account?",
+    "link": "Log in"
+  },
+
+  "Disclaimer" : {
+    "text": "By logging in, you agree to our ",
+    "link-terms" : "Terms of Service",
+    "and" : " and ",
+    "link-privacy" : "Privacy Policy"
   },
   
   "ProductsPage": {
@@ -100,6 +134,18 @@
     "minutes": "minutes",
     "seconds": "seconds",
     "times-up": "Time is up"
+  },
+
+  "Error Messages" : {
+    "":"",
+    "Please enter a valid email address": "Please enter a valid email address",
+    "Please enter your password" : "Please enter your password",
+    "Enter your first name" : "Enter your first name",
+    "Enter your last name"  : "Enter your last name",
+    "Minimum 8 characters"  : "Minimum 8 characters",
+    "Please confirm your password" : "Please confirm your password"
   }
+
+
 }
 

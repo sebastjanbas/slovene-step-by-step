@@ -1,5 +1,6 @@
 "use client";
 import { XMarkIcon } from '@heroicons/react/20/solid'
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { FiAlertTriangle } from "react-icons/fi";
 
@@ -7,6 +8,7 @@ export default function Banner() {
 
     const [show, setShow] = useState(true);
 
+    const t = useTranslations("Banner");
 
     return (
         <div className={show ? 'block' : 'hidden'}>
@@ -14,11 +16,11 @@ export default function Banner() {
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                     <div className="text-sm/6 text-white">
                         <FiAlertTriangle className="mx-2 inline size-5 text-white -translate-y-[2.5px]" />
-                        <strong className="text-lg font-semibold">ATTENTION</strong>
+                        <strong className="text-lg font-semibold">{t("title")}</strong>
                         <svg viewBox="0 0 2 2" aria-hidden="true" className="mx-2 inline size-0.5 fill-current">
                             <circle r={1} cx={1} cy={1} />
                         </svg>
-                        Our website is currently under development! Some features may not be available yet, but we’re working hard to bring you the full experience soon. Thank you for your patience!
+                        {t("message")}
                         <FiAlertTriangle className="mx-2 inline size-5 text-white -translate-y-[2.5px]" />
                     </div>
                 </div>

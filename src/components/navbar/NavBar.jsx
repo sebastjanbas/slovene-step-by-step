@@ -8,7 +8,6 @@ import { usePathname } from "next/navigation";
 import { ThemButton } from "../ui/ApearanceSwitchButton";
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from "./language-swithcher";
-import { LogoutButton } from "@/components/auth/LogoutButton"
 import { useAuth } from "../auth/AuthProvider";
 import { UserButton } from "../auth/UserButton";
 

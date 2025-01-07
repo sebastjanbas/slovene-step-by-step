@@ -6,8 +6,10 @@ import { BsApple } from "react-icons/bs";
 
 import { Button } from "@/components/ui/button";
 import { OAuthSignIn } from "@/actions/login";
+import { useTranslations } from "next-intl";
 
 export const Social = () => {
+    const t = useTranslations("Log in");
     const handleOAuth = (provider) => {
         OAuthSignIn(provider)
     };
@@ -22,7 +24,7 @@ export const Social = () => {
                 onClick={() => { }}
             >
                 <BsApple className="w-16 h-16 text-custom-light-3 dark:text-custom-dark-3" />
-                <p className="text-custom-light-3 dark:text-custom-dark-3">Continue with Apple</p>
+                <p className="text-custom-light-3 dark:text-custom-dark-3">{t("continue-apple")}</p>
             </Button>
             <Button
                 size={"lg"}
@@ -32,7 +34,7 @@ export const Social = () => {
             >
                 <FaGoogle className=" hidden w-5 h-5 dark:block dark:text-custom-dark-3" />
                 <FcGoogle className="dark:hidden block w-5 h-5" />
-                <p className="text-custom-light-3 dark:text-custom-dark-3">Continue with Google</p>
+                <p className="text-custom-light-3 dark:text-custom-dark-3">{t("continue-google")}</p>
             </Button>
         </div>
     );
