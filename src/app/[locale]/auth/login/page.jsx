@@ -1,6 +1,4 @@
 import { LoginForm } from "@/components/auth/LoginForm";
-import SvgBlob from "@/components/ui/svg-blob";
-import SvgBlobContainer from "@/components/ui/svg-blob-container";
 import { createClient } from "@/utils/supabase/server";
 import { getTranslations } from 'next-intl/server';
 import { redirect } from "next/navigation";

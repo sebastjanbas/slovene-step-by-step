@@ -98,7 +98,7 @@ export const footerLinks = {
   Company: [
     { name: "About", href: "/about-us" },
     { name: "Contact us", href: "/info/contact-us" },
-    { name: "FAQ", href: "/info/faq" },
+    { name: "FAQ", href: "/pricing#FAQ" },
   ],
   Legal: [
     { name: "Terms of service", href: "/legal/terms-of-service" },
