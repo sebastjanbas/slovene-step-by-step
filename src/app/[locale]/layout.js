@@ -10,7 +10,6 @@ import { setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import Footer from "@/components/content/footer";
 import Banner from "@/components/ui/Banner";
-import { Toaster } from "sonner";
 
 export const metadata = {
   title: "Become fluent in Slovene",
@@ -56,14 +55,13 @@ export default async function LocaleLayout({ children, params: { locale } }) {
           >
           <NextIntlClientProvider messages={messages}>
             <div className="sticky top-0 z-50">
-            {/* <Banner /> */}
+            <Banner />
             <NavBar locale={locale} />
             </div>
             <AnimatedLayout>
               {/* <main className="relative isolate px-6 pt-14 lg:px-8"> */}
               {/* <main className="bg-custom-gradient from-white to-emerald-400"> */}
               <main>
-              <Toaster richColors position="top-center" />
                 {children}
               </main>
               <Footer />

@@ -15,10 +15,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FormError } from "./FormError";
 import { updatePassword } from "@/actions/reset-password";
+import { toast } from "sonner";
 
 export const UpdatePasswordForm = () => {
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
     const [isPending, setTransition] = useTransition();
 
     const form = useForm({
@@ -30,20 +29,18 @@ export const UpdatePasswordForm = () => {
     });
 
     const onSubmit = async (values) => {
-        setError("");
-        setSuccess("");
 
         startTransition(async () => {
             const response = await updatePassword(values);
 
             if (response.error) {
-                setError(response.error);
+                toast.error(response.error);
                 form.reset();
                 return;
             }
 
             if (response.success) {
-                setSuccess(response.success);
+                toast.success(response.success);
                 window.location.href = '/'; // reload the page for client components
             }
         });
@@ -94,7 +91,6 @@ export const UpdatePasswordForm = () => {
                         )}
                     />
                 </div>
-                <FormError message={error} />
                 <Button variant={"mine"} disabled={isPending} type="submit" className="w-full">
                     Reset Password
                 </Button>

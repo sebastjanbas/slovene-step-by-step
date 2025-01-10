@@ -38,6 +38,7 @@ export const updatePassword = async (values) => {
 
   if (error) {
     console.log("ERROR: ", error.code);
+    if (error.code === "same_password") return { error: "Please enter a new password" };
     return { error: "Something went wrong" };
   }
 
