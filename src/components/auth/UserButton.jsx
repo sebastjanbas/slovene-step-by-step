@@ -58,7 +58,7 @@ export const UserButton = ({ dialog, children }) => {
                 <DropdownMenuSeparator className="bg-custom-accent-l" />
                 <DropdownMenuItem className="w-full -translate-x-2">
                     <Button variant="link" asChild>
-                        <a href={"/profile"}>
+                        <a href={"/dashboard"}>
                             <CgProfile className="h-5 w-5 text-custom-accent-l" />
                             Profile
                         </a>
@@ -66,7 +66,7 @@ export const UserButton = ({ dialog, children }) => {
                 </DropdownMenuItem>
                 <DropdownMenuItem className="w-full -translate-x-2">
                     <Button variant="link" asChild>
-                        <a href={"/profile/settings"}>
+                        <a href={"/dashboard/settings"}>
                             <IoSettingsOutline className="h-5 w-5 text-custom-accent-l" />
                             Settings
                         </a>

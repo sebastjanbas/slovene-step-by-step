@@ -70,16 +70,16 @@ export const routing = defineRouting({
       ru: '/legal/license',
     },
 
-    '/profile/settings' : {
-      en: '/profile/settings',
+    '/dashboard/settings' : {
+      en: '/dashboard/settings',
       sl: '/profil/nastavitve',
-      ru: '/profile/настройки',
+      ru: '/dashboard/настройки',
     },
 
-    '/profile' : {
-      en: '/profile',
+    '/dashboard' : {
+      en: '/dashboard',
       sl: '/profil',
-      ru: '/profile',
+      ru: '/dashboard',
     },
  
     // Also (optional) catch-all segments are supported

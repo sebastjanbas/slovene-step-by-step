@@ -6,7 +6,7 @@ import { SocialLinks } from "../ui/social-links";
 
 export default function Footer() {
     const pathname = usePathname();
-    if (pathname.includes("/auth")) {
+    if (pathname.includes("/auth") || pathname.includes("/dashboard")) {
         return null;
     }
 

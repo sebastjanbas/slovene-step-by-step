@@ -19,7 +19,7 @@ export default function NavBar({ locale }) {
     const t = useTranslations('Navbar');
     const { user, loading } = useAuth();
 
-    if (pathname.includes("/auth")) {
+    if (pathname.includes("/auth") || pathname.includes("/dashboard")) {
         return null;
     }
 
