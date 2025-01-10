@@ -34,7 +34,7 @@ export const UserButton = ({ dialog, children }) => {
                 {dialog ? (
                     <span className="flex items-center gap-x-4 w-full cursor-pointer border-[1px] border-custom-accent-l rounded-xl p-2 -translate-x-2">
                         <Avatar className={avatarStyles.avatar}>
-                            <AvatarImage className={avatarStyles.image} src={user.user_metadata.picture} />
+                            <AvatarImage className={avatarStyles.image} src={user.user_metadata.avatar_url} />
                             <AvatarFallback className={avatarStyles.fallback}>
                                 <FaUser className="text-white" />
                             </AvatarFallback>
@@ -43,7 +43,7 @@ export const UserButton = ({ dialog, children }) => {
                     </span>
                 ) : (
                     <Avatar className={avatarStyles.avatar}>
-                        <AvatarImage className={avatarStyles.image} src={user.user_metadata.picture} />
+                        <AvatarImage className={avatarStyles.image} src={user.user_metadata.avatar_url} />
                         <AvatarFallback className={avatarStyles.fallback}>
                             <FaUser className="text-white" />
                         </AvatarFallback>

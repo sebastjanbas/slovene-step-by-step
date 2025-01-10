@@ -18,11 +18,10 @@ import { FormError } from "./FormError";
 import { login } from "@/actions/login";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 export const LoginForm = () => {
     const t = useTranslations("Log in");
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
     const [isPending, setTransition] = useTransition();
 
     const form = useForm({
@@ -34,20 +33,18 @@ export const LoginForm = () => {
     });
 
     const onSubmit = async (values) => {
-        setError("");
-        setSuccess("");
 
         startTransition(async () => {
             const response = await login(values);
 
             if (response.error) {
-                setError(response.error);
                 form.reset();
+                toast.error(response.error);
                 return;
             }
 
             if (response.success) {
-                setSuccess("Logged in successfully!");
+                toast.success(response.success);
                 window.location.href = '/'; // reload the page for client components
             }
         });
@@ -117,7 +114,7 @@ export const LoginForm = () => {
                             )}
                         />
                     </div>
-                    <FormError message={error} />
+                    {/* <FormError message={error} /> */}
                     <Button variant={"mine"} disabled={isPending} type="submit" className="w-full">
                         {t("button")}
                     </Button>

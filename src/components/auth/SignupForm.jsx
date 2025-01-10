@@ -15,15 +15,14 @@ import {
 } from "../ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FormError } from "@/components/auth/FormError";
 import { FormSuccess } from "@/components/auth/FormSuccess";
 import { signup } from "@/actions/signup";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 export const SignupForm = () => {
     const t = useTranslations("Sign up");
     const [isPending, setTransition] = useTransition();
-    const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
 
     const form = useForm({
@@ -38,14 +37,21 @@ export const SignupForm = () => {
     });
 
     const onSubmit = (values) => {
-        setError("");
         setSuccess("");
 
-        startTransition(() => {
-            signup(values).then((data) => {
-                setError(data.error);
-                setSuccess(data.success);
-            });
+        startTransition(async () => {
+            const response = await signup(values);
+
+            if (response.error) {
+                form.reset();
+                toast.error(response.error);
+                return;
+            }
+
+            if (response.success) {
+                // toast.success(response.success);
+                setSuccess(response.success);
+            }
         });
     };
 
@@ -164,7 +170,7 @@ export const SignupForm = () => {
                             )}
                         />
                     </div>
-                    <FormError message={error} />
+                    {/* <FormError message={error} /> */}
                     <FormSuccess message={success} />
                     <Button disabled={isPending} variant={"mine"} type="submit" className="w-full">
                         {t("button")}

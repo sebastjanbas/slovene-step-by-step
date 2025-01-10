@@ -20,21 +20,27 @@ export async function signup(values) {
 
     const supabase = await createClient()
       
-    const data = {
+    const userData = {
         email: validateField.data.email,
         password: validateField.data.password,
         options: {
             data: {
                 full_name: validateField.data.firstName + ' ' + validateField.data.lastName,
+                // avatar_url: "https://gravatar.com/avatar",
             },
         },
     }
-  
-    const { error } = await supabase.auth.signUp(data)
-  
-    console.log("SINGING IN THE USER ... ");
+    
+    const { data, error } = await supabase.auth.signUp(userData)
+
+    if (data.user.identities.length === 0) {
+        return {error: 'User already exists'}
+    }
 
     if (error) {
+        console.log("ERROR: ", error)
+        if (error.code === "email_address_invalid") return { error: "Invalid email address" }
+        if (error.code === "user_already_exists") return { error: "User already exists" }
         return { error: "Something went wrong" }
     }
     

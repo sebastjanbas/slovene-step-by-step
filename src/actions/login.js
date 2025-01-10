@@ -19,11 +19,14 @@ export async function login(values) {
     email: validateField.data.email,
     password: validateField.data.password,
     }
+
     const { error } = await supabase.auth.signInWithPassword(data)
 
 
     if (error) {
         console.log("ERROR: ", error.code);
+        if (error.code === "invalid_credentials") return { error: "Invalid credentials" }
+        if (error.code === "email_not_confirmed") return { error: "Email not confirmed" }
         return { error: "Something went wrong" }
     }
     

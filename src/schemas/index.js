@@ -19,7 +19,7 @@ export const SignupSchema = z.object({
         message: "Enter your last name",
     }),
     email: z.string().email({
-        message: 'Please enter a valid email address',
+        message: 'Invalid email address',
     }),
     password: z.string().min(8, {
         message: "Minimum 8 characters",
