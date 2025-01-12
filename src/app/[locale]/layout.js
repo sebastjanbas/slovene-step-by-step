@@ -55,7 +55,7 @@ export default async function LocaleLayout({ children, params: { locale } }) {
           >
           <NextIntlClientProvider messages={messages}>
             <div className="sticky top-0 z-50">
-            <Banner textColor={"text-[#DC770A]"} bgColor={"bg-[#FFFFD0]"} />
+            {/* <Banner textColor={"text-[#DC770A]"} bgColor={"bg-[#FFFFD0]"} /> */}
             <NavBar locale={locale} />
             </div>
             <AnimatedLayout>

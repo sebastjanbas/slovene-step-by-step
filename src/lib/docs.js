@@ -1,6 +1,6 @@
 
 export const navigationPrivate = [
-  { name: "products", href: "/courses" },
+  { name: "products", href: "dashboard/courses" },
 ]
 export const navigationPublic = [
   { name: "pricing", href: "/pricing" },
