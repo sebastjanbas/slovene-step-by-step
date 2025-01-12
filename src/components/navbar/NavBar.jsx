@@ -24,7 +24,7 @@ export default function NavBar({ locale }) {
     }
 
     return (
-        <header className={"relative py-1 lg:py-2 bg-white/60 dark:bg-transparent/70 lg:dark:bg-[#121212]/70 border-b-[1px] border-gray-300 dark:border-gray-500 backdrop-blur-md inset-x-0 top-0 z-50"}>
+        <header className={"relative py-1 lg:py-2 bg-white/60 dark:bg-[#121212]/60 border-b-[1px] border-gray-300 dark:border-gray-700 backdrop-blur-md inset-x-0 top-0 z-50"}>
             <nav
                 aria-label="Global"
                 className="flex items-center justify-between px-6 py-2 lg:px-8"
@@ -56,7 +56,7 @@ export default function NavBar({ locale }) {
                             href={item.href}
                             className={`text-sm/6 font-semibold ${pathname.includes(item.href)
                                 ? "text-custom-accent-l dark:text-custom-accent-d"
-                                : "text-custom-light-2 dark:text-custom-dark-2"
+                                : "text-custom-light-3 dark:text-custom-dark-3"
                                 } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
                         >
                             {t(item.name)}
@@ -68,7 +68,7 @@ export default function NavBar({ locale }) {
                             href={item.href}
                             className={`text-sm/6 font-semibold ${pathname.includes(item.href)
                                 ? "text-custom-accent-l dark:text-custom-accent-d"
-                                : "text-custom-light-2 dark:text-custom-dark-2"
+                                : "text-custom-light-3 dark:text-custom-dark-3"
                                 } hover:text-custom-accent-l dark:hover:text-custom-accent-d `}
                         >
                             {t(item.name)}
@@ -87,7 +87,7 @@ export default function NavBar({ locale }) {
                             href="/auth/login"
                             className={`text-sm/6 font-semibold ${pathname.includes("/login")
                                 ? "text-custom-accent-l dark:text-custom-accent-d"
-                                : "text-custom-light-2 dark:text-custom-dark-2"
+                                : "text-custom-light-3 dark:text-custom-dark-3"
                                 } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
                         >
                             {t("log-in")} <span aria-hidden="true">&rarr;</span>

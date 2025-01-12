@@ -41,18 +41,18 @@ const Carousel = ({ data, stars = false }) => {
                 >
                     {data.map((review) => (
                         <SplideSlide className="bg-transparent px-2 md:px-4" key={review.id}>
-                            <div className="flex md:flex-row flex-col items-center justify-center md:justify-between bg-white shadow-lg dark:bg-black dark:lg:bg-[#121212] dark:border-[1px] dark:border-gray-700 px-4 py-10 lg:px-10 rounded-3xl gap-8">
+                            <div className="flex md:flex-row flex-col items-center justify-center md:justify-between bg-white shadow-lg dark:bg-[#121212] dark:border-[1px] dark:border-gray-700 px-4 py-10 lg:px-10 rounded-3xl gap-8">
                                 <img
                                     className="size-36 mb-4 object-cover rounded-full"
                                     src={review.image}
                                     alt="Profile photo"
                                 />
                                 <div className="inline-block text-center md:text-left mb-4 text-lg">
-                                    <p className="text-sm text-custom-light-3 dark:text-custom-light-3">{review.text}</p>
+                                    <p className="text-sm text-custom-light-3 dark:text-custom-dark-1">{review.text}</p>
                                     <div className="flex flex-col md:flex-row justify-start md:gap-8 pt-4">
                                         <div>
                                             <p className="text-xl font-bold text-custom-light-1 dark:text-custom-dark-1">{review.name}</p>
-                                            <p className="text-sm font-normal text-custom-light-2 dark:text-custom-dark-2">{review.role}</p>
+                                            <p className="text-sm font-normal text-custom-accent-l dark:text-custom-accent-d">{review.role}</p>
                                         </div>
                                         {stars &&
                                             <div className="text-sm/8 text-[rgb(254,216,79)]">

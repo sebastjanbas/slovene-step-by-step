@@ -19,7 +19,7 @@ export default function Footer() {
                     <span className="sr-only">Slovene Step By Step</span>
                     <img alt="Company Logo" src={`/Logo.svg`} />
                 </div>
-                <p className="my-8 text-custom-light-2 dark:text-custom-dark-2">
+                <p className="my-8 text-custom-light-3 dark:text-custom-dark-3">
                     The best way to learn Slovene and make your dreams a reality.
                 </p>
                 <div className="flex flex-row items-center gap-x-5">

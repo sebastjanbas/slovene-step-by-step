@@ -38,7 +38,7 @@ export const UserButton = () => {
                     </AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className={"bg-white py-4 px-6 w-56 text-start"} align={"end"}>
+            <DropdownMenuContent className={"bg-white dark:bg-[#121212]/90 dark:border-gray-700 py-4 px-6 w-56 text-start"} align={"end"}>
                 <DropdownMenuLabel>
                     {user ? user.user_metadata.full_name : "My Account"}
                 </DropdownMenuLabel>

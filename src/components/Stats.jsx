@@ -35,10 +35,10 @@ export default function Stats() {
         <div className="mx-auto w-full lg:max-w-7xl px-6 pt-10 lg:px-8">
             <dl className="grid grid-cols-1 gap-x-5 gap-y-1 text-center md:grid-cols-3">
                 {stats.map((stat, index) => (
-                    <div key={stat.id} className="bg-[#f4f4f6] shadow-md mt-20 py-6 px-10  lg:py-10 lg:px-20 rounded-2xl mx-auto flex max-w-xs flex-col gap-y-2">
+                    <div key={stat.id} className="bg-[#f4f4f6] dark:bg-[#171717] shadow-md mt-20 py-6 px-10  lg:py-10 lg:px-20 rounded-2xl mx-auto flex max-w-xs flex-col gap-y-2">
                         <div className='flex-grow border-t border-[8px] -translate-y-5 border-custom-accent-l/70'></div>
                         <dt className="text-base/7 text-custom-light-3 dark:text-custom-dark-3">{t(stat.title)}</dt>
-                        <dd className="order-first text-3xl lg:text-4xl xl:text-5xl font-semibold tracking-tight text-custom-light-2 dark:text-custom-dark-2">
+                        <dd className="order-first text-3xl lg:text-4xl xl:text-5xl font-semibold tracking-tight text-custom-light-2 dark:text-custom-dark-3">
                             <span ref={el => numbersRef.current[index] = el}>{stat.value}</span>
                             <span> {stat.symbol}</span>
                         </dd>

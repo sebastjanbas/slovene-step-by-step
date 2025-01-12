@@ -20,7 +20,7 @@ export default async function ProductsPage() {
     return (
         <section>
             <div className="flex items-center justify-center mt-8">
-                <h1 className="text-7xl font-semibold text-custom-light-1">Courses</h1>
+                <h1 className="text-7xl font-semibold text-custom-light-1 dark:text-custom-dark-1">Courses</h1>
             </div>
             <div className="overflow-x-hidden mx-14">
                 <Courses />

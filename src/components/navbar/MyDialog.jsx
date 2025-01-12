@@ -45,7 +45,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                 exit={{ x: "100%" }} // Slide out to the right
                                 transition={{ duration: 0.5, ease: ["easeIn", "easeOut"], type: "spring" }}
                                 // transition={{ duration: 0.3, ease: "easeInOut" }}
-                                className="fixed inset-y-0 right-0 z-50 w-full sm:max-w-sm bg-white dark:bg-[#121212] px-6 py-6 rounded-xl flex flex-col justify-between"
+                                className="fixed inset-y-0 right-0 z-50 w-full sm:max-w-sm bg-white dark:bg-[#121212] px-6 py-6 rounded-l-xl flex flex-col justify-between"
                             >
                                 <div>
                                     <div className="flex items-center justify-between">
@@ -77,7 +77,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                                     <a
                                                         key={item.name}
                                                         href={item.href}
-                                                        className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-custom-accent-d dark:hover:bg-[#121212] ${pathname.includes(item.href) ? "text-custom-accent-l dark:text-custom-accent-d" : "text-custom-light-2 dark:text-custom-dark-2"}`}
+                                                        className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-custom-accent-d dark:hover:bg-[#121212] ${pathname.includes(item.href) ? "text-custom-accent-l dark:text-custom-accent-d" : "text-custom-light-3 dark:text-custom-dark-3"}`}
                                                         onClick={() => setMobileMenuOpen(false)}
                                                     >
                                                         {t(item.name)}
@@ -88,7 +88,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                                     <Link
                                                         key={item.name}
                                                         href={item.href}
-                                                        className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-custom-accent-d dark:hover:bg-[#121212] ${pathname.includes(item.href) ? "text-custom-accent-l dark:text-custom-accent-d" : "text-custom-light-2 dark:text-custom-dark-2"}`}
+                                                        className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-custom-accent-d dark:hover:bg-[#121212] ${pathname.includes(item.href) ? "text-custom-accent-l dark:text-custom-accent-d" : "text-custom-light-3 dark:text-custom-dark-3"}`}
                                                         onClick={() => setMobileMenuOpen(false)}
                                                     >
                                                         {t(item.name)}
@@ -105,7 +105,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                                 href="/auth/login"
                                                 className={`text-sm/6 font-semibold ${pathname.includes("/login")
                                                     ? "text-custom-accent-l dark:text-custom-accent-d"
-                                                    : "text-custom-light-2 dark:text-custom-dark-2"
+                                                    : "text-custom-light-3 dark:text-custom-dark-3"
                                                     } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
                                             >
                                                 {t("log-in")} <span aria-hidden="true">&rarr;</span>

@@ -52,19 +52,19 @@ module.exports = {
   			},
   			custom: {
   				'button-l': '#e99f77',
-  				'button-d': '#4ECDC4',
-  				'button-hover-l': '#EABAA0',
-  				'button-hover-d': '#45B7AF',
+  				'button-d': '#e99f77',
+  				'button-hover-l': '#c3744a',
+  				'button-hover-d': '#c3744a',
   				'accent-l': '#e99f77',
-  				'accent-d': '#FF6B6B',
+  				'accent-d': '#e99f77',
   				'light-1': '#2a2745',
   				'light-2': '#464370',
   				'light-3': '#040316',
   				'light-4': '#040316',
-  				'dark-1': '#2C3E50',
-  				'dark-2': '#E74C3C',
-  				'dark-3': '#3498DB',
-  				'dark-4': '#040316'
+  				'dark-1': '#ffffff',
+  				'dark-2': '#a49fea',
+  				'dark-3': '#cfcfd2',
+  				'dark-4': '#cfcfd2'
   			}
   		},
   		backgroundImage: {
