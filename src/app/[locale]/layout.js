@@ -63,8 +63,8 @@ export default async function LocaleLayout({ children, params: { locale } }) {
               {/* <main className="bg-custom-gradient from-white to-emerald-400"> */}
               <main className="bg-white dark:bg-[#121212]">
                 {children}
-              <Footer />
               </main>
+              <Footer />
             </AnimatedLayout>
           </NextIntlClientProvider>
         </ThemeProvider>

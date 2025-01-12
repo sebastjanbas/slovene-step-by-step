@@ -13,7 +13,7 @@ export default function Footer() {
     const socialLinkSize = "26";
 
     return (
-        <footer className="m-10">
+        <footer className="bg-white dark:bg-[#121212] p-10">
             <div className="py-16 border-t-[1px] border-gray-500">
                 <div className="size-8">
                     <span className="sr-only">Slovene Step By Step</span>

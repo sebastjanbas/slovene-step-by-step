@@ -19,10 +19,13 @@ import { login } from "@/actions/login";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+import { EyeDropperIcon, EyeIcon, EyeSlashIcon, LockClosedIcon, LockOpenIcon } from "@heroicons/react/20/solid";
+import { set } from "zod";
 
 export const LoginForm = () => {
     const t = useTranslations("Log in");
     const [isPending, setTransition] = useTransition();
+    const [showPassword, setShowPassword] = useState(false);
 
     const form = useForm({
         resolver: zodResolver(LoginSchema),
@@ -38,7 +41,7 @@ export const LoginForm = () => {
             const response = await login(values);
 
             if (response.error) {
-                form.reset();
+                form.resetField("password");
                 toast.error(response.error);
                 return;
             }
@@ -90,12 +93,22 @@ export const LoginForm = () => {
                                 <FormItem>
                                     <FormLabel>{t("password")}</FormLabel>
                                     <FormControl>
-                                        <Input
-                                            {...field}
-                                            disabled={isPending}
-                                            placeholder="*****"
-                                            type="password"
-                                        />
+                                        <div className="flex h-10 w-full rounded-[6px] border border-gray-400 dark:border-gray-800 bg-background text-base">
+                                            <input
+                                                className="flex h-10 w-full  bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                                {...field}
+                                                disabled={isPending}
+                                                placeholder="*****"
+                                                type={showPassword ? "text" : "password"}
+                                            />
+                                            <div className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 w-10" onClick={() => setShowPassword(!showPassword)}>
+                                                {showPassword ? (
+                                                    <EyeIcon className="h-6 w-6" />
+                                                ) : (
+                                                    <EyeSlashIcon className="h-6 w-6" />
+                                                )}
+                                            </div>
+                                        </div>
                                     </FormControl>
                                     <FormMessage className="text-red-500">
                                         {form.formState.errors.password?.message}

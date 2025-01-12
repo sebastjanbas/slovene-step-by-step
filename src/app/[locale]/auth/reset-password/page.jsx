@@ -31,11 +31,11 @@ const ResetPasswordPage = () => {
     };
 
     return (
-        <div className="relative h-full w-full overflow-hidden flex flex-col justify-center items-center">
-            <h1 className="text-4xl font-semibold text-balance text-custom-light-1">
+        <div className="relative bg-white dark:bg-[#121212] h-full w-full overflow-hidden flex flex-col justify-center items-center">
+            <h1 className="text-4xl font-semibold text-balance text-custom-light-1 dark:text-custom-dark-1">
                 Forgot your Password?
             </h1>
-            <p className="mt-5 text-md text-custom-light-2">
+            <p className="mt-5 text-md text-custom-light-2 dark:text-custom-dark-3">
                 Enter your email address to reset your password
             </p>
             <FormError message={error} />
