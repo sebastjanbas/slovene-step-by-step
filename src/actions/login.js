@@ -42,7 +42,8 @@ export async function OAuthSignIn(provider) {
         provider: provider,
         options: {
             // redirectTo: "https://<YOURWEBSITE>/auth/callback",
-            redirectTo: "http://localhost:3000/auth/callback",
+            // redirectTo: "http://localhost:3000/auth/callback",
+            redirectTo: "https://slovene-step-by-step.vercel.app/auth/callback",
             queryParams: {
                 access_type: 'offline',
                 prompt: 'consent',
