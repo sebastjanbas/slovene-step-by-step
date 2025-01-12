@@ -83,7 +83,7 @@ export default function NavBar({ locale }) {
                     ) : user ? (
                         <UserButton dialog={false} />
                     ) : (
-                        <Link
+                        <a
                             href="/auth/login"
                             className={`text-sm/6 font-semibold ${pathname.includes("/login")
                                 ? "text-custom-accent-l dark:text-custom-accent-d"
@@ -91,7 +91,7 @@ export default function NavBar({ locale }) {
                                 } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
                         >
                             {t("log-in")} <span aria-hidden="true">&rarr;</span>
-                        </Link>
+                        </a>
                     )}
                 </div>
             </nav>

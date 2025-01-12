@@ -101,7 +101,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                 <div className="w-full">
                                     <div className="w-full flex justify-between items-center">
                                         {!user ? (
-                                            <Link
+                                            <a
                                                 href="/auth/login"
                                                 className={`text-sm/6 font-semibold ${pathname.includes("/login")
                                                     ? "text-custom-accent-l dark:text-custom-accent-d"
@@ -109,7 +109,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                                     } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
                                             >
                                                 {t("log-in")} <span aria-hidden="true">&rarr;</span>
-                                            </Link>
+                                            </a>
                                         ) : loading ? (
                                             <span>Loading...</span>
                                         ) : (
