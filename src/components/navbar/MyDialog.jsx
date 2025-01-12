@@ -10,6 +10,8 @@ import LanguageSwitcher from "./language-swithcher";
 import { useAuth } from "../auth/AuthProvider";
 import { LogoutButton } from "../auth/LogoutButton";
 import { UserButton } from "../auth/UserButton";
+import { Button } from "../ui/button";
+import { Cog6ToothIcon } from "@heroicons/react/20/solid";
 
 export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigationPublic, navigationPrivate, locale }) {
 
@@ -41,7 +43,7 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                 initial={{ x: "100%" }} // Start off-screen
                                 animate={{ x: 0 }} // Slide into view
                                 exit={{ x: "100%" }} // Slide out to the right
-                                transition={{ duration: 0.8, ease: ["easeIn", "linear"], type: "spring" }}
+                                transition={{ duration: 0.5, ease: ["easeIn", "easeOut"], type: "spring" }}
                                 // transition={{ duration: 0.3, ease: "easeInOut" }}
                                 className="fixed inset-y-0 right-0 z-50 w-full sm:max-w-sm bg-white dark:bg-[#121212] px-6 py-6 rounded-xl flex flex-col justify-between"
                             >
@@ -97,23 +99,34 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
                                     </div>
                                 </div>
                                 <div className="w-full">
-                                    {loading ? (
-                                        <span>Loading...</span>
-                                    ) : user ? (
-                                        <UserButton dialog={true}>
-                                            <span>{user.user_metadata.full_name}</span>
-                                        </UserButton>
-                                    ) : (
-                                        <Link
-                                            href="/auth/login"
-                                            className={`text-sm/6 font-semibold ${pathname.includes("/login")
-                                                ? "text-custom-accent-l dark:text-custom-accent-d"
-                                                : "text-custom-light-2 dark:text-custom-dark-2"
-                                                } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
-                                        >
-                                            {t("log-in")} <span aria-hidden="true">&rarr;</span>
-                                        </Link>
-                                    )}
+                                    <div className="w-full flex justify-between items-center">
+                                        {!user ? (
+                                            <Link
+                                                href="/auth/login"
+                                                className={`text-sm/6 font-semibold ${pathname.includes("/login")
+                                                    ? "text-custom-accent-l dark:text-custom-accent-d"
+                                                    : "text-custom-light-2 dark:text-custom-dark-2"
+                                                    } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
+                                            >
+                                                {t("log-in")} <span aria-hidden="true">&rarr;</span>
+                                            </Link>
+                                        ) : loading ? (
+                                            <span>Loading...</span>
+                                        ) : (
+                                            <>
+                                                <Button variant="link" className="p-0" asChild>
+                                                    <Link href={"/dashboard/settings"} className="flex items-center gap-2">
+                                                        <Cog6ToothIcon />
+                                                        <p>
+                                                            Settings
+                                                        </p>
+                                                    </Link>
+                                                </Button>
+                                                <UserButton />
+                                            </>
+
+                                        )}
+                                    </div>
                                 </div>
                             </motion.div>
                         </DialogPanel>

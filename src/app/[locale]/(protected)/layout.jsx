@@ -1,7 +1,6 @@
-import { BackArrowButton } from "@/components/auth/BackArrowButton";
+import { DashboardHeader } from "@/components/courses/DashboardHeader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { createClient } from "@/utils/supabase/server";
-import Image from "next/image";
 import { redirect } from "next/navigation";
 import { FaUser } from "react-icons/fa";
 
@@ -16,22 +15,7 @@ const ProtectedLayout = async ({ children }) => {
     return (
         <>
             <div className="flex flex-col h-screen overflow-hidden">
-                <header className="border-b-[1px] border-gray-300">
-                    <div className="flex flex-row justify-between items-center px-5 py-3">
-                        <div>
-                            <BackArrowButton />
-                        </div>
-                        <div className="flex flex-row items-center gap-x-5">
-                            <Image
-                                src="/logo.svg"
-                                alt="Logo"
-                                width={35}
-                                height={35}
-                            />
-                            <h1 className="text-custom-light-1 text-xl font-bold">My App</h1>
-                        </div>
-                    </div>
-                </header>
+                <DashboardHeader />
                 <div className="flex flex-row h-full">
                     <div className="hidden lg:flex sticky flex-col top-0 h-full w-96 border-r-[1px] border-gray-300">
                         <div className="flex flex-row gap-4 items-center px-6 py-4 border-b-[1px] border-gray-300">
