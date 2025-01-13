@@ -40,12 +40,12 @@ export default function MyDialog({ mobileMenuOpen, setMobileMenuOpen, navigation
 
                         <DialogPanel>
                             <motion.div
-                                initial={{ x: "100%" }} // Start off-screen
-                                animate={{ x: 0 }} // Slide into view
-                                exit={{ x: "100%" }} // Slide out to the right
-                                transition={{ duration: 0.5, ease: ["easeIn", "easeOut"], type: "spring" }}
+                                initial={{ y: "100%" }} // Start off-screen
+                                animate={{ y: 0 }} // Slide into view
+                                exit={{ y: "100%" }} // Slide out to the bottom
+                                transition={{ duration: 0.3, ease: "easeInOut", type: "" }}
                                 // transition={{ duration: 0.3, ease: "easeInOut" }}
-                                className="fixed inset-y-0 right-0 z-50 w-full sm:max-w-sm bg-white dark:bg-[#121212] px-6 py-6 rounded-l-xl flex flex-col justify-between"
+                                className="fixed overflow-auto top-[10vh] inset-x-0 z-50 h-[90vh] bg-white dark:bg-[#121212] px-6 py-6 rounded-t-xl flex flex-col justify-between"
                             >
                                 <div>
                                     <div className="flex items-center justify-between">
