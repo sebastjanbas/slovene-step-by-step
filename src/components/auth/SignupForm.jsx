@@ -19,10 +19,11 @@ import { FormSuccess } from "@/components/auth/FormSuccess";
 import { signup } from "@/actions/signup";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+import { PasswordInput } from "./TogglePassword";
 
 export const SignupForm = () => {
     const t = useTranslations("Sign up");
-    const [isPending, setTransition] = useTransition();
+    const [isPending, startTransition] = useTransition();
     const [success, setSuccess] = useState("");
 
     const form = useForm({
@@ -43,7 +44,8 @@ export const SignupForm = () => {
             const response = await signup(values);
 
             if (response.error) {
-                form.reset();
+                form.resetField("password");
+                form.resetField("confirmPassword");
                 toast.error(response.error);
                 return;
             }
@@ -136,12 +138,7 @@ export const SignupForm = () => {
                                 <FormItem>
                                     <FormLabel>{t("password")}</FormLabel>
                                     <FormControl>
-                                        <Input
-                                            {...field}
-                                            disabled={isPending}
-                                            placeholder="*****"
-                                            type="password"
-                                        />
+                                        <PasswordInput field={field} isPending={isPending} />
                                     </FormControl>
                                     <FormMessage className="text-red-500">
                                         {form.formState.errors.password?.message}
@@ -156,12 +153,7 @@ export const SignupForm = () => {
                                 <FormItem>
                                     <FormLabel>{t("confirm-password")}</FormLabel>
                                     <FormControl>
-                                        <Input
-                                            {...field}
-                                            disabled={isPending}
-                                            placeholder="*****"
-                                            type="password"
-                                        />
+                                        <PasswordInput field={field} isPending={isPending} />
                                     </FormControl>
                                     <FormMessage className="text-red-500">
                                         {form.formState.errors.confirmPassword?.message}

@@ -37,3 +37,9 @@ export const ResetPasswordSchema = z.object({
         message: "Please confirm your password",
     }),
 });
+
+export const ResetPasswordEmail = z.object({
+    email: z.string().email({
+        message: 'Please enter a valid email address',
+    })
+})

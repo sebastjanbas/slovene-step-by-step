@@ -1,13 +1,22 @@
 "use server";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/utils/supabase/server";
-import { ResetPasswordSchema } from "@/schemas";
+import { ResetPasswordEmail, ResetPasswordSchema } from "@/schemas";
 
-export const resetPassword = async (email) => {
+export const resetPassword = async (values) => {
+
+  const validateEmail = ResetPasswordEmail.safeParse(values);
+
+  if (!validateEmail.success) {
+    return { error: "Invalid email" };
+  }
+
+  const { email } = validateEmail.data;
+
   const supabase = await createClient();
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-    // redirectTo: "http://localhost:3000/auth/update-password",
-    redirectTo: "https://slovene-step-by-step.vercel.app/auth/update-password",
+    redirectTo: "http://localhost:3000/auth/update-password",
+    // redirectTo: "https://slovene-step-by-step.vercel.app/auth/update-password",
   });
 
     if (error) {

@@ -1,5 +1,5 @@
 "use client";
-import React, { startTransition, useState, useTransition } from "react";
+import React, { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { ResetPasswordSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,14 +11,13 @@ import {
     FormLabel,
     FormMessage,
 } from "../ui/form";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FormError } from "./FormError";
 import { updatePassword } from "@/actions/reset-password";
 import { toast } from "sonner";
+import { PasswordInput } from "./TogglePassword";
 
 export const UpdatePasswordForm = () => {
-    const [isPending, setTransition] = useTransition();
+    const [isPending, startTransition] = useTransition();
 
     const form = useForm({
         resolver: zodResolver(ResetPasswordSchema),
@@ -57,12 +56,7 @@ export const UpdatePasswordForm = () => {
                             <FormItem>
                                 <FormLabel>Password</FormLabel>
                                 <FormControl>
-                                    <Input
-                                        {...field}
-                                        disabled={isPending}
-                                        placeholder="*****"
-                                        type="password"
-                                    />
+                                    <PasswordInput field={field} isPending={isPending} />
                                 </FormControl>
                                 <FormMessage className="text-red-500">
                                     {form.formState.errors.password?.message}
@@ -77,12 +71,7 @@ export const UpdatePasswordForm = () => {
                             <FormItem>
                                 <FormLabel>Confirm Password</FormLabel>
                                 <FormControl>
-                                    <Input
-                                        {...field}
-                                        disabled={isPending}
-                                        placeholder="*****"
-                                        type="password"
-                                    />
+                                    <PasswordInput field={field} isPending={isPending} />
                                 </FormControl>
                                 <FormMessage className="text-red-500">
                                     {form.formState.errors.confirmPassword?.message}
