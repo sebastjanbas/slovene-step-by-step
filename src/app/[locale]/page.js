@@ -16,23 +16,44 @@ export async function generateMetadata({ params: { locale } }) {
 }
 
 export default function Home() {
-
   return (
     <main className="overflow-x-hidden">
       <Hero />
       <DetailsPageHero />
       <div className="flex py-24 sm:py-32 w-full items-center justify-center">
-        <SectionTitle translations={"HomePage"} id="why-us" header={"why-us"} paragraph={"why-us-sub"}>
+        <SectionTitle
+          translations={"HomePage"}
+          id="why-us"
+          header={"why-us"}
+          paragraph={"why-us-sub"}
+        >
           <BentoGrid />
         </SectionTitle>
       </div>
       <div className="py-24 sm:py-32">
-        <SectionTitle translations={"HomePage"} id="statistics" header={"stats-subtitle"} paragraph={"stats-title"}>
-        <Stats />
+        <SectionTitle
+          translations={"HomePage"}
+          id="statistics"
+          header={"stats-subtitle"}
+          paragraph={"stats-title"}
+        >
+          <Stats />
         </SectionTitle>
       </div>
 
-      <Carousel title data={reviews} stars={true} />
+      <div className="text-center mb-8 lg:mb-16">
+        <h2 className="text-base/7 font-semibold text-custom-accent-l dark:text-custom-accent-d">
+          What members are saying.
+        </h2>
+        <h1 className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-custom-light-1 dark:text-custom-dark-1 sm:text-5xl">
+          Testimonials
+        </h1>
+      </div>
+      <div className="w-full flex justify-center items-center">
+        <div className="max-w-sm sm:max-w-xl md:max-w-3xl lg:max-w-5xl">
+          <Carousel data={reviews} />
+        </div>
+      </div>
     </main>
   );
 }

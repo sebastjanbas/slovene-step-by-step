@@ -3,27 +3,18 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import "./carousel.css";
 
-const Carousel = ({ title, data, stars = false }) => {
+const Carousel = ({ data, stars = false }) => {
     return (
-        <section className="w-full lg:max-w-[800px] flex flex-col justify-center box-border mx-auto py-24 sm:py-32">
-            {title && <div className="text-center mb-8 lg:mb-16">
-                <h2 className="text-base/7 font-semibold text-custom-accent-l dark:text-custom-accent-d">
-                    What members are saying.
-                </h2>
-                <h1 className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-custom-light-1 dark:text-custom-dark-1 sm:text-5xl">
-                    Testimonials
-                </h1>
-            </div>}
-
+        <>
             <div className="relative select-none lg:px-4">
                 <blockquote>
                     <img
-                        className="hidden absolute -z-1 top-1 -left-2 md:block"
+                        className="hidden absolute -z-1 top-1 -left-2 lg:block"
                         src={"/blockquote.svg"}
                         alt="quote sign"
                     />
                     <img
-                        className="hidden absolute -z-1 -bottom-3 -right-2 rotate-180 md:block"
+                        className="hidden absolute -z-1 -bottom-3 -right-2 rotate-180 lg:block"
                         src={"/blockquote.svg"}
                         alt="quote sign"
                     />
@@ -72,7 +63,7 @@ const Carousel = ({ title, data, stars = false }) => {
                     ))}
                 </Splide>
             </div>
-        </section>
+        </>
     );
 };
 
