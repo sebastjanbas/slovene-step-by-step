@@ -63,9 +63,9 @@ export default function MeetTheTeamPage() {
             </div>
 
             <div className="mx-auto max-w-7xl lg:px-8">
-                <SectionTitle header={"Why We Do What We Do"} paragraph={"Bridging Cultures, Empowering People"}>
+                <SectionTitle header={"Why We Do What We Do"} paragraph={"Bridging Cultures, Empowering People"} textOrientation="text-start">
                     <div className="flex w-full gap-10 flex-row justify-between">
-                        <div className="text-start text-md/6 space-y-10">
+                        <div className="text-start text-pretty text-md/6 space-y-10">
                             <p >
                                 At Slovene Step by Step, our mission is to empower individuals from diverse backgrounds by providing personalized, engaging, and effective language learning experiences. We strive to bridge cultural gaps and foster connections by helping our students not only learn a language but also feel at home in their new environments. Through expert guidance, flexible learning options, and a supportive community, we aim to make language learning accessible and enjoyable for everyone.
                             </p>
@@ -87,10 +87,10 @@ export default function MeetTheTeamPage() {
                         </div>
                     </div>
                 </SectionTitle>
-                <div className="mx-5 mt-20 lg:mt-40">
-                    <img className="rounded-3xl" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80" alt="Transition photo" />
+                <div className="mx-auto mt-20 lg:mt-40">
+                    <img className="rounded-none lg:rounded-3xl" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80" alt="Transition photo" />
                 </div>
-                <SectionTitle paragraph={"The People Behind the Program"} header={"Passionate. Experienced. Dedicated."}>
+                <SectionTitle paragraph={"The People Behind the Program"} header={"Passionate. Experienced. Dedicated."} textOrientation="text-center">
                     <div className="flex items-center justify-center">
                         <div className="max-w-5xl text-center">
                             <p className="text-lg ">
@@ -103,40 +103,44 @@ export default function MeetTheTeamPage() {
                     <People people={people} />
                 </div>
                 <div className="mx-auto mt-10 max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-                    <AccordionCustom
-                        data={[
-                            {
-                                trigger: "Learn More", content: [
-                                    "At Slovene Step by Step, our team is made up of passionate educators, experienced linguists, and dedicated support staff who share a common goal: helping our students succeed. Each member brings a unique set of skills and a deep commitment to creating a personalized, engaging learning experience.",
-                                    "Our tutors, many of whom are native speakers, take pride in guiding students through their language-learning journey, providing support every step of the way. Whether it’s mastering the basics or refining advanced skills, we’re here to inspire confidence, foster growth, and celebrate each milestone.",
-                                    "Together, we’re more than a team—we’re a community that believes in the power of language to connect, empower, and transform lives."
-                                ]
-                            }
-                        ]}
-                    />
+                    <div className="text-center lg:text-start text-md/6 space-y-10 flex flex-col items-center justify-center">
+                        <AccordionCustom
+                            data={[
+                                {
+                                    trigger: "Read More", content: [
+                                        "At Slovene Step by Step, our team is made up of passionate educators, experienced linguists, and dedicated support staff who share a common goal: helping our students succeed. Each member brings a unique set of skills and a deep commitment to creating a personalized, engaging learning experience.",
+                                        "Our tutors, many of whom are native speakers, take pride in guiding students through their language-learning journey, providing support every step of the way. Whether it’s mastering the basics or refining advanced skills, we’re here to inspire confidence, foster growth, and celebrate each milestone.",
+                                        "Together, we’re more than a team—we’re a community that believes in the power of language to connect, empower, and transform lives."
+                                    ]
+                                }
+                            ]}
+                        />
+                    </div>
                 </div>
 
-                <SectionTitle header={"Hear from Our Students"} paragraph={"Real Stories, Real Results"} />
+                <SectionTitle header={"Hear from Our Students"} paragraph={"Real Stories, Real Results"} textOrientation="text-center lg:text-start" />
                 <div className="w-full flex justify-center items-center">
                     <div className="max-w-sm sm:max-w-xl md:max-w-3xl lg:max-w-5xl">
                         <Carousel data={reviews} />
                     </div>
                 </div>
-                <div className="text-start text-md/6 space-y-10 flex flex-col items-center justify-center">
-                    <AccordionCustom
-                        data={[
-                            {
-                                trigger: "Read More", content: [
-                                    "The true measure of our success lies in the voices of our students. Through personalized lessons and dedicated guidance, Slovene Step by Step has helped countless individuals achieve their language goals and thrive in their personal and professional lives.",
-                                    "From newcomers confidently navigating life in Slovenia to professionals expanding their career opportunities, our program has made a lasting impact. Students consistently highlight the supportive environment, the practical language skills they’ve gained, and how the lessons have boosted their confidence and integration into new communities.",
-                                    "These stories are a testament to the transformative power of language learning, and we’re proud to celebrate every success with our students."
-                                ]
-                            }
-                        ]}
-                    />
+                <div className="mx-auto mt-10 max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+                    <div className="text-center lg:text-start text-md/6 space-y-10 flex flex-col items-center justify-center">
+                        <AccordionCustom
+                            data={[
+                                {
+                                    trigger: "Read More", content: [
+                                        "The true measure of our success lies in the voices of our students. Through personalized lessons and dedicated guidance, Slovene Step by Step has helped countless individuals achieve their language goals and thrive in their personal and professional lives.",
+                                        "From newcomers confidently navigating life in Slovenia to professionals expanding their career opportunities, our program has made a lasting impact. Students consistently highlight the supportive environment, the practical language skills they’ve gained, and how the lessons have boosted their confidence and integration into new communities.",
+                                        "These stories are a testament to the transformative power of language learning, and we’re proud to celebrate every success with our students."
+                                    ]
+                                }
+                            ]}
+                        />
+                    </div>
                 </div>
-                <SectionTitle header={"Join Our Community"} paragraph={"Take the First Step Towards Your Goals"}>
-                    <div className="text-start text-md/6 space-y-10">
+                <SectionTitle header={"Join Our Community"} paragraph={"Take the First Step Towards Your Goals"} textOrientation="text-center lg:text-start">
+                    <div className="text-center lg:text-start text-md/6 space-y-10">
                         <p>
                             Ready to start a language-learning journey tailored just for you? Whether you’re looking to improve your skills, connect with a new culture, or gain confidence in your everyday interactions, Slovene Step by Step is here to guide you.
 
@@ -148,7 +152,7 @@ export default function MeetTheTeamPage() {
 
                     </div>
 
-                    <div className="flex flex-row mt-16 mb-52 gap-5 items-center justify-center">
+                    <div className="flex flex-row mt-16 mb-52 gap-5 items-center justify-center lg:justify-start">
                         <Button variant={"mine"} asChild>
                             <Link href={"/dashboard"}>
                                 Start Your Journey

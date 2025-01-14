@@ -13,7 +13,7 @@ function Card({ person }) {
             </div>
             <div>
                 <h3 className="font-semibold">{person.name[0] + " " + person.name[1]}</h3>
-                <p className="text-sm text-gray-500 dark:text-gray-600">{person.role}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{person.role}</p>
             </div>
 
         </div>
