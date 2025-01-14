@@ -86,8 +86,8 @@ export default function DetailsPageHero() {
                 <div id='image' className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
                     <img
                         alt=""
-                        src="https://placehold.co/300x200"
-                        className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
+                        src="https://images.pexels.com/photos/10041233/pexels-photo-10041233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                        className="w-[48rem] h-[56rem] object-cover scale-x-[-1] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
                     />
                     <h1 className="mt-6 text-xl/8 text-custom-light-3 dark:text-custom-dark-3">
                         Image of the app or product

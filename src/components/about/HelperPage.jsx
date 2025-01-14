@@ -3,7 +3,7 @@ import Card from "@/components/about/Card";
 import { useState } from "react";
 import DialogAbout from "./DialogAbout";
 
-export default function HelperPage({ people }) {
+export default function People({ people }) {
     const [memberDetailsOpen, setMemberDetailsOpen] = useState(false);
     const [member, setMember] = useState(null);
 

@@ -8,16 +8,12 @@ import { ThemButton } from "../ui/ApearanceSwitchButton";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./language-swithcher";
 import { useAuth } from "../auth/AuthProvider";
-import { LogoutButton } from "../auth/LogoutButton";
-import { UserButton } from "../auth/UserButton";
-import { Button } from "../ui/button";
-import { Cog6ToothIcon } from "@heroicons/react/20/solid";
+
 
 export default function MyDialog({
     mobileMenuOpen,
     setMobileMenuOpen,
-    navigationPublic,
-    navigationPrivate,
+    webNavigation,
     locale,
 }) {
     const pathname = usePathname();
@@ -49,16 +45,14 @@ export default function MyDialog({
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                                // transition={{ duration: 0.3, ease: "easeInOut" }}
-                                // className="fixed overflow-auto top-0 inset-x-0 z-50 h-screen bg-gray-200 dark:bg-[#242424] bg-overlay px-6 py-6 rounded-t-xl flex flex-col justify-between"
                                 className="bg-white dark:bg-[#242424] fixed overflow-hidden inset-0 z-50 h-screen max-h-screen w-screen supports-[height:100cqh]:h-[100cqh] supports-[height:100svh]:h-[100svh]"
                             >
                                 <div className="absolute h-16 px-6 py-9 flex items-center justify-between w-screen left-0 top-0 z-50 bg-white dark:bg-[#242424]">
-                                    {/* <div className="flex items-center justify-between"> */}
                                     <Link
                                         href="/"
                                         type="button"
                                         className="block w-auto h-6 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:ring-offset-4 focus-visible:ring-offset-background-alternative focus-visible:rounded-sm"
+                                        onClick={() => setMobileMenuOpen(false)}
                                     >
                                         <span className="sr-only">Slovene Step By Step</span>
                                         <img
@@ -67,7 +61,6 @@ export default function MyDialog({
                                             className="h-7 w-auto"
                                         />
                                     </Link>
-                                    {/* <div className="flex justify-center items-center"> */}
                                     {/* <LanguageSwitcher locale={locale} /> */}
                                     {/* <ThemButton /> */}
                                     <button
@@ -79,38 +72,17 @@ export default function MyDialog({
                                         <span className="sr-only">Close menu</span>
                                         <XMarkIcon aria-hidden="true" className="size-6" />
                                     </button>
-                                    {/* </div> */}
-                                    {/* </div> */}
                                 </div>
                                 <div className="max-h-screen flex flex-col justify-between supports-[height:100cqh]:h-[100cqh] supports-[height:100svh]:h-[100svh] overflow-y-auto pt-20 pb-32 px-4">
-                                    {/* <div className="mt-6 flow-root"> */}
-                                    {/* <div className="-my-6 divide-y divide-gray-500/10"> */}
-
                                     <div className=" flex flex-col space-y-1">
-                                        {navigationPrivate.map((item) => (
-                                            <div
-                                                key={item.name}
-                                                className="border-b border-gray-200 dark:border-white/10"
-                                            >
-                                                <a
-                                                    href={item.href}
-                                                    // className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-custom-accent-d dark:hover:bg-[#121212] ${pathname.includes(item.href) ? "text-custom-accent-l dark:text-custom-accent-d" : "text-custom-light-3 dark:text-custom-dark-3"}`}
-                                                    className="block py-2 pl-3 pr-4 text-base font-medium text-foreground hover:bg-surface-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:rounded"
-                                                    onClick={() => setMobileMenuOpen(false)}
-                                                >
-                                                    {t(item.name)}
-                                                </a>
-                                            </div>
-                                        ))}
 
-                                        {navigationPublic.map((item) => (
+                                        {webNavigation.map((item) => (
                                             <div
                                                 key={item.name}
-                                                className="border-b border-gray-200 dark:border-white/10"
+                                                className="border-b border-gray-200 dark:border-white/10 hover:bg-gray-200/30 dark:hover:bg-white/5"
                                             >
                                                 <Link
                                                     href={item.href}
-                                                    // className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-custom-accent-d dark:hover:bg-[#121212] ${pathname.includes(item.href) ? "text-custom-accent-l dark:text-custom-accent-d" : "text-custom-light-3 dark:text-custom-dark-3"}`}
                                                     className="block py-2 pl-3 pr-4 text-base font-medium text-foreground hover:bg-surface-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:rounded"
                                                     onClick={() => setMobileMenuOpen(false)}
                                                 >
@@ -121,16 +93,29 @@ export default function MyDialog({
                                     </div>
                                     <div className="absolute bottom-0 mb-10">
                                         <div className="w-full flex justify-between items-center">
-                                            <a
-                                                href="/auth/login"
-                                                className="block py-2 pl-3 pr-4 text-base font-medium text-foreground hover:bg-surface-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:rounded"
-                                            // className={`text-sm/6 font-semibold ${pathname.includes("/login")
-                                            //     ? "text-custom-accent-l dark:text-custom-accent-d"
-                                            //     : "text-custom-light-3 dark:text-custom-dark-3"
-                                            //     } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
-                                            >
-                                                <p className="truncate">Dashboard</p>
-                                            </a>
+                                            {!user ? (
+                                                <a
+                                                    href="/auth/login"
+                                                    className="block py-2 pl-3 pr-4 text-base font-medium text-foreground hover:bg-surface-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:rounded"
+                                                // className={`text-sm/6 font-semibold ${pathname.includes("/login")
+                                                //     ? "text-custom-accent-l dark:text-custom-accent-d"
+                                                //     : "text-custom-light-3 dark:text-custom-dark-3"
+                                                //     } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
+                                                >
+                                                    <p className="truncate">Log in</p>
+                                                </a>
+                                            ) : (
+                                                <a
+                                                    href="/dashboard"
+                                                    className="block py-2 pl-3 pr-4 text-base font-medium text-foreground hover:bg-surface-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:rounded"
+                                                // className={`text-sm/6 font-semibold ${pathname.includes("/login")
+                                                //     ? "text-custom-accent-l dark:text-custom-accent-d"
+                                                //     : "text-custom-light-3 dark:text-custom-dark-3"
+                                                //     } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
+                                                >
+                                                    <p className="truncate">Dashboard</p>
+                                                </a>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

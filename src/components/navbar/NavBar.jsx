@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { navigationPublic, navigationPrivate } from "@/lib/docs";
+import { webNavigation } from "@/lib/docs";
 import { Link } from '@/i18n/routing';
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import MyDialog from "./MyDialog";
@@ -24,13 +24,11 @@ export default function NavBar({ locale }) {
     }
 
     return (
-        <header className={"relative py-1 lg:py-2 bg-white/90 dark:bg-[#121212]/90 border-b-[1px] border-gray-300 dark:border-gray-700 backdrop-blur-md inset-x-0 top-0 z-40"}>
+        <header className="relative py-1 lg:py-2 bg-white/90 dark:bg-[#121212]/90 border-b-[1px] border-gray-300 dark:border-gray-700 backdrop-blur-md inset-x-0 top-0 z-40">
             <nav
                 aria-label="Global"
-                // className="flex items-center justify-between px-6 py-2 lg:px-8"
                 className="relative flex justify-between items-center h-16 mx-auto lg:container lg:px-16 xl:px-20"
             >
-                {/* <div className="flex lg:flex-1"> */}
                 <div className="flex items-center px-6 lg:px-0 flex-1 sm:items-stretch justify-between">
                     <div className="flex items-center">
                         <div className="flex items-center flex-shrink-0">
@@ -47,33 +45,7 @@ export default function NavBar({ locale }) {
 
                         <nav className="relative z-10 flex-1 items-center justify-center hidden pl-8 sm:space-x-4 lg:flex h-16">
                             <ul className="group flex flex-1 list-none items-center justify-center space-x-1">
-
-                                {navigationPrivate.map((item) => (
-                                    <li
-                                        className="text-sm font-medium"
-                                        key={item.name}
-                                    >
-
-                                        <a
-                                            href={item.href}
-                                            className="group/menu-item flex items-center text-sm hover:text-custom-accent-l select-none gap-3 rounded-md p-2 leading-none no-underline outline-none focus-visible:ring-2 focus-visible:ring-foreground-lighter group-hover:bg-transparent text-foreground focus-visible:text-brand-link"
-                                        // className={`text-sm/6 font-semibold ${pathname.includes(item.href)
-                                        //     ? "text-custom-accent-l dark:text-custom-accent-d"
-                                        //     : "text-custom-light-3 dark:text-custom-dark-3"
-                                        //     } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
-                                        >
-                                            <div className="flex flex-col justify-center">
-                                                <div className="flex items-center gap-1">
-                                                    <p className="leading-snug text-foreground group-hover/menu-item:text-brand-link">
-
-                                                        {t(item.name)}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                ))}
-                                {navigationPublic.map((item) => (
+                                {webNavigation.map((item) => (
                                     <li
                                         className="text-sm font-medium"
                                         key={item.name}
@@ -82,11 +54,6 @@ export default function NavBar({ locale }) {
                                         <Link
                                             href={item.href}
                                             className="group/menu-item flex items-center text-sm hover:text-custom-accent-l select-none gap-3 rounded-md p-2 leading-none no-underline outline-none focus-visible:ring-2 focus-visible:ring-foreground-lighter group-hover:bg-transparent text-foreground focus-visible:text-brand-link"
-
-                                        // className={`text-sm/6 font-semibold ${pathname.includes(item.href)
-                                        //     ? "text-custom-accent-l dark:text-custom-accent-d"
-                                        //     : "text-custom-light-3 dark:text-custom-dark-3"
-                                        //     } hover:text-custom-accent-l dark:hover:text-custom-accent-d `}
                                         >
                                             <div className="flex flex-col justify-center">
                                                 <div className="flex items-center gap-1">
@@ -103,38 +70,41 @@ export default function NavBar({ locale }) {
                             <div className="absolute left-0 top-full flex justify-center"></div>
                         </nav>
                     </div>
-                    {/* <div className="hidden md:flex lg:flex-1 md:justify-end md:items-center"> */}
                     <div className="flex items-center gap-2">
                         {/* <LanguageSwitcher locale={locale} />
                             <ThemButton /> */}
                         {loading ? (
                             <span className="text-custom-light-2 dark:text-custom-dark-3">Loading...</span>
                         ) : user ? (
-                            <UserButton dialog={false} />
+                            <>
+                                <UserButton dialog={false} />
+                                <a
+                                    href="/dashboard"
+                                    className="relative justify-center cursor-pointer items-center space-x-2 text-center font-regular ease-out duration-200 rounded-[8px] outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-400 dark:bg-brand-500 hover:bg-brand/80 dark:hover:bg-brand/50 text-foreground border-brand-500/75 dark:border-brand/30 hover:border-brand-600 dark:hover:border-brand focus-visible:outline-brand-600 data-[state=open]:bg-brand-400/80 dark:data-[state=open]:bg-brand-500/80 data-[state=open]:outline-brand-600 text-xs px-2.5 py-1 h-[26px] hidden lg:block"
+                                >
+                                    <p className="truncate">
+                                        Dashboard
+                                    </p>
+                                </a>
+                            </>
                         ) : (
                             <a
                                 href="/auth/login"
                                 className="relative justify-center cursor-pointer items-center space-x-2 text-center font-regular ease-out duration-200 rounded-[8px] outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-400 dark:bg-brand-500 hover:bg-brand/80 dark:hover:bg-brand/50 text-foreground border-brand-500/75 dark:border-brand/30 hover:border-brand-600 dark:hover:border-brand focus-visible:outline-brand-600 data-[state=open]:bg-brand-400/80 dark:data-[state=open]:bg-brand-500/80 data-[state=open]:outline-brand-600 text-xs px-2.5 py-1 h-[26px] hidden lg:block"
-                            // className={`text-sm/6 font-semibold ${pathname.includes("/login")
-                            //     ? "text-custom-accent-l dark:text-custom-accent-d"
-                            //     : "text-custom-light-3 dark:text-custom-dark-3"
-                            //     } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
                             >
                                 <p className="truncate">
-                                    Dashboard
+                                    Log in
                                 </p>
                             </a>
                         )}
                     </div>
                 </div>
-                {/* <div className="flex md:hidden"> */}
                 <div className="inset-y-0 flex mr-2 items-center px-4 lg:hidden">
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(true)}
                         className="text-foreground-lighter focus:ring-transparent bg-transparent hover:text-foreground-light transition-colors hover:bg-overlay inline-flex items-center justify-center rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-inset"
                         aria-expanded="false"
-                    // className="-m-2.5 inline-flex items-center justify-center bg-white dark:bg-[#161616] border-[1px] border-gray-200 dark:border-[#1E1E1E] rounded-[8px] p-1 text-custom-light-1 dark:text-custom-dark-1"
                     >
                         <span className="sr-only">Open main menu</span>
                         <Bars3Icon aria-hidden="true" className="size-6 text-gray-400 dark:text-gray-400" />
@@ -142,8 +112,7 @@ export default function NavBar({ locale }) {
                 </div>
             </nav>
             <MyDialog
-                navigationPublic={navigationPublic}
-                navigationPrivate={navigationPrivate}
+                webNavigation={webNavigation}
                 mobileMenuOpen={mobileMenuOpen}
                 setMobileMenuOpen={setMobileMenuOpen}
                 locale={locale}
