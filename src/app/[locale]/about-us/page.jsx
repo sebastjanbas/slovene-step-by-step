@@ -2,9 +2,18 @@ import People from "@/components/about/HelperPage";
 import Carousel from "@/components/content/testimonials";
 import Stats from "@/components/Stats";
 import SectionTitle from "@/components/titles/SectionTitle";
+import { Button } from "@/components/ui/button";
+import {
+    Accordion,
+    AccordionItem,
+    AccordionTrigger,
+    AccordionContent,
+} from '@/components/ui/accordion-motion';
+import { ChevronUp } from 'lucide-react';
 import { people, reviews } from "@/lib/docs";
 import { useTranslations } from "next-intl";
 import { getTranslations } from 'next-intl/server';
+import Link from "next/link";
 
 export async function generateMetadata({ params: { locale } }) {
     const t = await getTranslations({ locale, namespace: "Metadata" });
@@ -18,7 +27,7 @@ export default function MeetTheTeamPage() {
     const t = useTranslations("About us");
     return (
         <section className="overflow-x-hidden">
-            <div className="relative py-32 md:py-48 lg:-translate-y-20 px-5 lg:px-20">
+            <div className="relative py-32 md:py-48 lg:-translate-y-56 px-5 lg:px-20">
                 <div className="lg:hidden hidden absolute inset-0 mx-0 sm:mx-20 md:grid grid-cols-3 grid-rows-20 gap-y-5">
                     <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
                     <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
@@ -100,63 +109,97 @@ export default function MeetTheTeamPage() {
                     <img className="rounded-3xl" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80" alt="Transition photo" />
                 </div>
                 <SectionTitle paragraph={"The People Behind the Program"} header={"Passionate. Experienced. Dedicated."}>
-                    <div className="text-start text-md/6 space-y-10">
-                        <p>
-                            At Slovene Step by Step, our team is made up of passionate educators, experienced linguists, and dedicated support staff who share a common goal: helping our students succeed. Each member brings a unique set of skills and a deep commitment to creating a personalized, engaging learning experience.
-                        </p>
-
-                        <p>
-
-                            Our tutors, many of whom are native speakers, take pride in guiding students through their language-learning journey, providing support every step of the way. Whether it’s mastering the basics or refining advanced skills, we’re here to inspire confidence, foster growth, and celebrate each milestone.
-                        </p>
-                        <p>
-                            Together, we’re more than a team—we’re a community that believes in the power of language to connect, empower, and transform lives.
-                        </p>
+                    <div className="flex items-center justify-center">
+                        <div className="max-w-5xl text-center">
+                            <p className="text-lg ">
+                                We’re a dynamic group of individuals who are passionate about what we do and dedicated to delivering the best results for our clients.
+                            </p>
+                        </div>
                     </div>
                 </SectionTitle>
                 <div className="w-full mt-10">
                     <People people={people} />
-                    <div>
-
-                    </div>
                 </div>
+                <div className="mx-auto mt-10 max-w-2xl px-6 lg:max-w-7xl lg:px-8">
+                    <Accordion
+                        className='flex w-full flex-col divide-y divide-zinc-200 dark:divide-zinc-700'
+                        transition={{ duration: 0.2, ease: 'easeInOut' }}
+                    >
+                        <AccordionItem value='learn-more' className='py-2'>
+                            <AccordionTrigger className='w-full text-left text-custom-light-1 dark:text-custom-dark-1'>
+                                <div className='flex items-center justify-between'>
+                                    <div className="">Learn More</div>
+                                    <ChevronUp className='h-4 w-4 text-custom-light-1 transition-transform duration-200 group-data-[expanded]:-rotate-180 dark:text-custom-dark-1' />
+                                </div>
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                <div className="text-start text-md/6 space-y-10">
+                                    <p>
+                                        At Slovene Step by Step, our team is made up of passionate educators, experienced linguists, and dedicated support staff who share a common goal: helping our students succeed. Each member brings a unique set of skills and a deep commitment to creating a personalized, engaging learning experience.
+                                    </p>
+
+                                    <p>
+
+                                        Our tutors, many of whom are native speakers, take pride in guiding students through their language-learning journey, providing support every step of the way. Whether it’s mastering the basics or refining advanced skills, we’re here to inspire confidence, foster growth, and celebrate each milestone.
+                                    </p>
+                                    <p>
+                                        Together, we’re more than a team—we’re a community that believes in the power of language to connect, empower, and transform lives.
+                                    </p>
+                                </div>
+                            </AccordionContent>
+                        </AccordionItem>
+
+                    </Accordion>
+                </div>
+
                 <SectionTitle header={"Hear from Our Students"} paragraph={"Real Stories, Real Results"}>
-                    <div className="text-start text-sm/6 space-y-10">
-                        <p>
-                            The true measure of our success lies in the voices of our students. Through personalized lessons and dedicated guidance, Slovene Step by Step has helped countless individuals achieve their language goals and thrive in their personal and professional lives.
-                        </p>
-                        <p>
+                    <div className="text-start text-md/6 space-y-10 flex flex-col items-center justify-center">
+                        <div className="">
+                            <p>
+                                The true measure of our success lies in the voices of our students. Through personalized lessons and dedicated guidance, Slovene Step by Step has helped countless individuals achieve their language goals and thrive in their personal and professional lives.
+                            </p>
+                        </div>
+                        <div className="">
+                            <p>
+                                From newcomers confidently navigating life in Slovenia to professionals expanding their career opportunities, our program has made a lasting impact. Students consistently highlight the supportive environment, the practical language skills they’ve gained, and how the lessons have boosted their confidence and integration into new communities.
+                            </p>
+                        </div>
+                        <div className="">
+                            <p>
+                                These stories are a testament to the transformative power of language learning, and we’re proud to celebrate every success with our students.
+                            </p>
+                        </div>
 
-                            From newcomers confidently navigating life in Slovenia to professionals expanding their career opportunities, our program has made a lasting impact. Students consistently highlight the supportive environment, the practical language skills they’ve gained, and how the lessons have boosted their confidence and integration into new communities.
-                        </p>
-
-                        <p>
-                            These stories are a testament to the transformative power of language learning, and we’re proud to celebrate every success with our students.
-
-                        </p>
                     </div>
                     <Carousel data={reviews} />
                 </SectionTitle>
                 <SectionTitle header={"Join Our Community"} paragraph={"Take the First Step Towards Your Goals"}>
-                    <div className="text-start text-sm/6 space-y-10">
+                    <div className="text-start text-md/6 space-y-10">
                         <p>
-                            Ready to embark on a language-learning journey tailored just for you? Whether you’re looking to improve your skills, connect with a new culture, or gain confidence in your everyday interactions, Slovene Step by Step is here to guide you.
+                            Ready to start a language-learning journey tailored just for you? Whether you’re looking to improve your skills, connect with a new culture, or gain confidence in your everyday interactions, Slovene Step by Step is here to guide you.
 
                         </p>
                         <p>
                             Sign up for a free trial lesson today and experience firsthand how personalized, engaging, and effective our program can be. Join our growing community of language learners and connect with expert tutors who are passionate about helping you succeed.
 
                         </p>
-                        <p>
-                            Want to learn more? Explore our Features page to discover how our unique approach can transform your language learning experience. Start your journey now and take the first step toward achieving your goals!
 
-                        </p>
+                    </div>
 
-
+                    <div className="flex flex-row mt-16 mb-52 gap-5 items-center justify-center">
+                        <Button variant={"mine"} asChild>
+                            <Link href={"/dashboard"}>
+                                Start Your Journey
+                            </Link>
+                        </Button>
+                        <Button variant={"link"} asChild>
+                            <Link href={"/pricing"}>
+                                View Pricing
+                            </Link>
+                        </Button>
                     </div>
                 </SectionTitle>
             </div >
-            {/* <People people={people} /> */}
         </section >
     );
 }

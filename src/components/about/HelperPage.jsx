@@ -7,7 +7,7 @@ export default function People({ people }) {
         <div className="mx-auto w-full px-8">
             <ul
                 role="list"
-                className="flex items-center justify-evenly flex-wrap gap-10"
+                className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6"
             >
                 {people.map((person) => (
                     <li key={person.id}>

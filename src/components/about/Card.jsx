@@ -6,7 +6,7 @@ function Card({ person }) {
         <div className="flex flex-col items-center gap-3 justify-center text-center">
             <div>
                 <img
-                    className="size-24 rounded-full object-cover"
+                    className="size-24 rounded-full object-cover shadow-lg"
                     src={person.imageUrl}
                     alt={person.name}
                 />
