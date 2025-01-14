@@ -71,8 +71,8 @@ export default function NavBar({ locale }) {
                         </nav>
                     </div>
                     <div className="flex items-center gap-2">
-                        {/* <LanguageSwitcher locale={locale} />
-                            <ThemButton /> */}
+                        {/* <LanguageSwitcher locale={locale} /> */}
+                        <ThemButton />
                         {loading ? (
                             <span className="text-custom-light-2 dark:text-custom-dark-3">Loading...</span>
                         ) : user ? (

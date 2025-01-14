@@ -89,9 +89,6 @@ export default function DetailsPageHero() {
                         src="https://images.pexels.com/photos/10041233/pexels-photo-10041233.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                         className="w-[48rem] h-[56rem] object-cover scale-x-[-1] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
                     />
-                    <h1 className="mt-6 text-xl/8 text-custom-light-3 dark:text-custom-dark-3">
-                        Image of the app or product
-                    </h1>
                 </div>
                 <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                     <div className="lg:pr-4 lg:block sm:flex sm:justify-center">

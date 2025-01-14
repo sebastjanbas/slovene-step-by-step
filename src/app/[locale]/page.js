@@ -27,12 +27,12 @@ export default function Home() {
         </SectionTitle>
       </div>
       <div className="py-24 sm:py-32">
-        <SectionTitle translations={"HomePage"} id="stats" header={"stats-subtitle"} paragraph={"stats-title"}>
+        <SectionTitle translations={"HomePage"} id="statistics" header={"stats-subtitle"} paragraph={"stats-title"}>
         <Stats />
         </SectionTitle>
       </div>
 
-      <Carousel data={reviews} stars={true} />
+      <Carousel title data={reviews} stars={true} />
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import People from "@/components/about/HelperPage";
 import Carousel from "@/components/content/testimonials";
+import Stats from "@/components/Stats";
 import SectionTitle from "@/components/titles/SectionTitle";
 import { people, reviews } from "@/lib/docs";
 import { useTranslations } from "next-intl";
@@ -16,85 +17,90 @@ export async function generateMetadata({ params: { locale } }) {
 export default function MeetTheTeamPage() {
     const t = useTranslations("About us");
     return (
-        <section>
-            <div className="py-32 sm:py-48 lg:py-56 px-5 lg:px-20">
-                <div className="flex flex-col lg:flex-row mx-auto w-full justify-center items-center gap-3 lg:gap-10">
+        <section className="overflow-x-hidden">
+            <div className="relative py-32 md:py-48 lg:-translate-y-20 px-5 lg:px-20">
+                <div className="lg:hidden hidden absolute inset-0 mx-0 sm:mx-20 md:grid grid-cols-3 grid-rows-20 gap-y-5">
+                    <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
+                    <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
+                    <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl"><img className="w-full h-full object-cover rounded-xl opacity-50" src="https://images.pexels.com/photos/3182755/pexels-photo-3182755.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                    <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
+                    <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
+                    <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
+                    <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl"><img className="w-full h-full object-cover rounded-xl opacity-10" src="https://images.pexels.com/photos/3277806/pexels-photo-3277806.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                    <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
+                    <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl"><img className="w-full h-full object-cover rounded-xl opacity-15" src="https://images.pexels.com/photos/3183172/pexels-photo-3183172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                    <div className="h-80 w-56 col-span-1 translate-y-2 row-span-3 rounded-xl"><img className="w-full h-full object-cover rounded-xl opacity-10 sm:opacity-25" src="https://images.pexels.com/photos/7437493/pexels-photo-7437493.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                    <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl"><img className="w-full h-full object-cover rounded-xl opacity-50" src="https://images.pexels.com/photos/12903169/pexels-photo-12903169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                </div>
+                <div className="relative z-10 flex flex-col text-center lg:text-start lg:flex-row mx-auto w-full justify-center items-center gap-3 lg:gap-10">
                     <div className="max-w-xl mb-10">
-                        <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 dark:text-gray-200 sm:text-7xl">
+
+                        <h1 className="text-balance text-5xl font-semibold tracking-tight text-custom-light-1 dark:text-custom-dark-1 sm:text-7xl">
                             Discover Our Story
                         </h1>
-                        <h2 className="mt-8 text-pretty text-lg font-medium text-gray-500 dark:text-gray-400 sm:text-xl/8">
+                        <h2 className="mt-8 text-pretty text-lg font-medium text-custom-light-2 dark:text-custom-dark-2 sm:text-xl/8">
                             Building Connections Through Language
                         </h2>
-                        <p>
-                            At Slovene Step by Step, we help individuals from all backgrounds master new languages and confidently embrace new cultures. Starting with Russian speakers in Slovenia, we’ve expanded to offer personalized lessons in Italian, Spanish, German, and more.
+                        <div className="text-custom-light-3 dark:text-custom-dark-3">
+                            <p>
+                                At Slovene Step by Step, we help individuals from all backgrounds master new languages and confidently embrace new cultures. Our personalized approach, expert instructors, and supportive community create an engaging learning experience that empowers students to achieve their goals.
 
-                        </p>
-                        <br />
-                        <p>
-                            Join our community, sign up for a free trial lesson, and take the first step toward achieving your language goals today!
-                        </p>
+                            </p>
+                            <br />
+                            <p>
+                                Join our community, sign up for a free trial lesson, and take the first step toward achieving your language goals today!
+                            </p>
+                        </div>
 
                     </div>
                     <div className="translate-y-24">
-                        <div className="grid grid-cols-3 grid-rows-20 gap-5">
+                        <div className="hidden lg:grid grid-cols-3 grid-rows-20 gap-y-4 gap-x-5">
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
-                            <div className="h-80 w-56  col-span-1 row-span-3 rounded-xl"><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3182755/pexels-photo-3182755.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
-                            <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
-
+                            <div className="h-80 w-56  col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none"><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3182755/pexels-photo-3182755.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
-
-                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl"><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3277806/pexels-photo-3277806.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
-                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl"><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3183172/pexels-photo-3183172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
-                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl"><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/7437493/pexels-photo-7437493.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
-                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl"><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/12903169/pexels-photo-12903169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
-
-
-
+                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3277806/pexels-photo-3277806.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                            <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
+                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3183172/pexels-photo-3183172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/7437493/pexels-photo-7437493.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/12903169/pexels-photo-12903169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="mt-16">
+            <div className="mt-0 md:mt-96 lg:mt-0 mx-auto max-w-7xl lg:px-8">
                 <SectionTitle header={"Why We Do What We Do"} paragraph={"Bridging Cultures, Empowering People"}>
-                    <div className="text-start text-sm/6 space-y-10">
-                        <p >
-                            At Slovene Step by Step, our mission is to empower individuals from diverse backgrounds by providing personalized, engaging, and effective language learning experiences. We strive to bridge cultural gaps and foster connections by helping our students not only learn a language but also feel at home in their new environments. Through expert guidance, flexible learning options, and a supportive community, we aim to make language learning accessible and enjoyable for everyone.
-                        </p>
-                        <div className="space-y-5">
-                            <p>
-                                We envision a world where language barriers no longer hinder opportunities or integration. What began as a platform to support Russian-speaking migrants navigating life in Slovenia has grown into a vibrant hub for learners from various linguistic and cultural backgrounds.
+                    <div className="flex w-full gap-10 flex-row justify-between">
+                        <div className="text-start text-md/6 space-y-10">
+                            <p >
+                                At Slovene Step by Step, our mission is to empower individuals from diverse backgrounds by providing personalized, engaging, and effective language learning experiences. We strive to bridge cultural gaps and foster connections by helping our students not only learn a language but also feel at home in their new environments. Through expert guidance, flexible learning options, and a supportive community, we aim to make language learning accessible and enjoyable for everyone.
                             </p>
-                            <p>
-                                Our goal is to become a leading language learning platform in Slovenia and beyond, helping individuals unlock their full potential through language mastery. We aspire to build a global community of learners, united by their passion for growth, connection, and cultural exchange.
+                            <div className="space-y-5">
+                                <p>
+                                    We envision a world where language barriers no longer hinder opportunities or integration. What began as a platform to support Russian-speaking migrants navigating life in Slovenia has grown into a vibrant hub for learners from various linguistic and cultural backgrounds.
+                                </p>
+                                <p>
+                                    Our goal is to become a leading language learning platform in Slovenia and beyond, helping individuals unlock their full potential through language mastery. We aspire to build a global community of learners, united by their passion for growth, connection, and cultural exchange.
 
-                            </p>
-                            <p>
-                                Through innovative teaching methods, dedicated instructors, and a commitment to excellence, Slovene Step by Step continues to pave the way for language learners worldwide.
-                            </p>
+                                </p>
+                                <p>
+                                    Through innovative teaching methods, dedicated instructors, and a commitment to excellence, Slovene Step by Step continues to pave the way for language learners worldwide.
+                                </p>
+                            </div>
                         </div>
-
+                        <div className="hidden lg:block w-full">
+                            <Stats vertical size={{ text: "text-3xl", space: "px-6 py-4", w: "w-[200px]" }} />
+                        </div>
                     </div>
                 </SectionTitle>
-                <div className="py-24 sm:py-32">
-                    <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        <div className="max-w-xl mb-10">
-                            <h2 className="text-pretty text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
-                                Meet our Team
-                            </h2>
-                            <p className="mt-6 text-lg/8 text-gray-600">
-                                We're a dynamic group of individuals who are passionate about what
-                                we do and dedicated to delivering the best results for our clients.
-                            </p>
-                        </div>
-                    </div>
+                <div className="mx-5 mt-20 lg:mt-40">
+                    <img className="rounded-3xl" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80" alt="Transition photo" />
                 </div>
                 <SectionTitle paragraph={"The People Behind the Program"} header={"Passionate. Experienced. Dedicated."}>
-                    <div className="text-start text-sm/6 space-y-10">
+                    <div className="text-start text-md/6 space-y-10">
                         <p>
                             At Slovene Step by Step, our team is made up of passionate educators, experienced linguists, and dedicated support staff who share a common goal: helping our students succeed. Each member brings a unique set of skills and a deep commitment to creating a personalized, engaging learning experience.
                         </p>
@@ -108,6 +114,12 @@ export default function MeetTheTeamPage() {
                         </p>
                     </div>
                 </SectionTitle>
+                <div className="w-full mt-10">
+                    <People people={people} />
+                    <div>
+
+                    </div>
+                </div>
                 <SectionTitle header={"Hear from Our Students"} paragraph={"Real Stories, Real Results"}>
                     <div className="text-start text-sm/6 space-y-10">
                         <p>
