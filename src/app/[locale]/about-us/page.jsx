@@ -48,15 +48,15 @@ export default function MeetTheTeamPage() {
                         <div className="hidden lg:grid grid-cols-3 grid-rows-20 gap-y-4 gap-x-5">
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
-                            <div className="h-80 w-56  col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none"><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3182755/pexels-photo-3182755.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                            <div className="h-80 w-56  col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none"><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/2472854/pexels-photo-2472854.jpeg?auto=compress&cs=tinysrgb&w=800" alt="About us" /></div>
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
-                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3277806/pexels-photo-3277806.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3312569/pexels-photo-3312569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
-                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3183172/pexels-photo-3183172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
-                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/7437493/pexels-photo-7437493.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
-                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/12903169/pexels-photo-12903169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3389508/pexels-photo-3389508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3214968/pexels-photo-3214968.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/30206761/pexels-photo-30206761/free-photo-of-bled-castle-on-cliff-in-autumn-slovenia.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@ export default function MeetTheTeamPage() {
                     </div>
                 </SectionTitle>
                 <div className="mx-auto mt-20 lg:mt-40">
-                    <img className="rounded-none lg:rounded-3xl" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80" alt="Transition photo" />
+                    <img className="aspect-video object-cover rounded-none lg:rounded-3xl" src="https://images.pexels.com/photos/25053927/pexels-photo-25053927/free-photo-of-a-river-runs-through-a-city-with-buildings-on-both-sides.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Transition photo" />
                 </div>
                 <SectionTitle paragraph={"The People Behind the Program"} header={"Passionate. Experienced. Dedicated."} textOrientation="text-center">
                     <div className="flex items-center justify-center">
