@@ -104,5 +104,14 @@ module.exports = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"),
+	function ({ addUtilities }) {
+		addUtilities({
+		  '.text-stroke': {
+			'-webkit-text-stroke': '2px white', /* Change 1px to adjust thickness */
+			'text-fill-color': 'transparent',
+		  },
+		});
+	  },
+  ],
 };

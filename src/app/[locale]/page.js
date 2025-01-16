@@ -17,7 +17,7 @@ export async function generateMetadata({ params: { locale } }) {
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden">
+    <div className="overflow-hidden">
       <Hero />
       <DetailsPageHero />
       <div className="flex py-24 sm:py-32 w-full items-center justify-center">
@@ -54,6 +54,6 @@ export default function Home() {
           <Carousel data={reviews} />
         </div>
       </div>
-    </main>
+    </div>
   );
 }

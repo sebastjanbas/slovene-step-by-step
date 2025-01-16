@@ -21,7 +21,7 @@ export async function generateMetadata({ params: { locale } }) {
 export default function MeetTheTeamPage() {
     const t = useTranslations("About us");
     return (
-        <section className="overflow-x-hidden">
+        <section>
             <div className="relative py-32 md:py-48 lg:pt-5 lg:pb-20 px-5 lg:px-20">
                 <div className="relative z-10 flex flex-col text-center lg:text-start lg:flex-row mx-auto w-full justify-center items-center gap-3 lg:gap-10">
                     <div className="max-w-xl mb-10">
@@ -48,15 +48,33 @@ export default function MeetTheTeamPage() {
                         <div className="hidden lg:grid grid-cols-3 grid-rows-20 gap-y-4 gap-x-5">
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
-                            <div className="h-80 w-56  col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none"><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/2472854/pexels-photo-2472854.jpeg?auto=compress&cs=tinysrgb&w=800" alt="About us" /></div>
+                            <div className="h-80 w-56  col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none">
+                                <a href="#">
+                                    <img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/2472854/pexels-photo-2472854.jpeg?" alt="About us" />
+                                </a>
+                            </div>
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
-                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3312569/pexels-photo-3312569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none ">
+                                <a href="#">
+                                    <img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3312569/pexels-photo-3312569.jpeg?" alt="About us" />
+                                </a>
+                            </div>
                             <div className="h-24 w-10 col-span-1 row-span-1 bg-transparent"></div>
-                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3389508/pexels-photo-3389508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
-                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3214968/pexels-photo-3214968.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
-                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none "><img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/30206761/pexels-photo-30206761/free-photo-of-bled-castle-on-cliff-in-autumn-slovenia.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="About us" /></div>
+                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none ">
+                                <a href="#">
+                                    <img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3389508/pexels-photo-3389508.jpeg?" alt="About us" />
+                                </a>
+                            </div>
+                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none ">
+                                <a href="#">
+                                    <img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/3214968/pexels-photo-3214968.jpeg?" alt="About us" />
+                                </a>
+                            </div>
+                            <div className="h-80 w-56 col-span-1 row-span-3 rounded-xl shadow-gray-500 shadow-lg dark:shadow-none ">
+                                <img className="w-full h-full object-cover rounded-xl" src="https://images.pexels.com/photos/30206761/pexels-photo-30206761/free-photo-of-bled-castle-on-cliff-in-autumn-slovenia.jpeg?" alt="About us" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -88,7 +106,14 @@ export default function MeetTheTeamPage() {
                     </div>
                 </SectionTitle>
                 <div className="mx-auto mt-20 lg:mt-40">
-                    <img className="aspect-video object-cover rounded-none lg:rounded-3xl" src="https://images.pexels.com/photos/25053927/pexels-photo-25053927/free-photo-of-a-river-runs-through-a-city-with-buildings-on-both-sides.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Transition photo" />
+                    {/* <img className="aspect-video object-cover rounded-none lg:rounded-3xl" src="https://images.pexels.com/photos/25053927/pexels-photo-25053927/free-photo-of-a-river-runs-through-a-city-with-buildings-on-both-sides.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Transition photo" /> */}
+                    <img className="object-cover rounded-none lg:rounded-3xl" src="https://images.pexels.com/photos/7919/pexels-photo.jpg" alt="Transition photo" />
+                    <Button variant={"link"} asChild
+                        className="text-xs/3 flex items-center justify-end text-gray-600">
+                        <a target="_blank" href="https://www.pexels.com/photo/aerial-photography-of-cloudy-mountain-7919/">
+                            Bled Slovenia: Pixels.com
+                        </a>
+                    </Button>
                 </div>
                 <SectionTitle paragraph={"The People Behind the Program"} header={"Passionate. Experienced. Dedicated."} textOrientation="text-center">
                     <div className="flex items-center justify-center">
