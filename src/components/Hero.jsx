@@ -115,7 +115,7 @@ export default function Hero() {
                         <div ref={buttonRef} className="mt-10 flex items-center justify-center sm:justify-start gap-x-6">
                             <a
                                 href={"/courses"}
-                                className="rounded-2xl border-2 border-white bg-custom-button-l dark:bg-custom-button-d/75 px-3.5 py-2.5 text-sm font-semibold text-white dark:text-gray-200 shadow-sm hover:bg-custom-button-hover-l dark:hover:bg-custom-button-hover-d focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-custom-button-hover-l"
+                                className="rounded-2xl border-2 sm:border-none border-white bg-custom-button-l dark:bg-custom-button-d/75 px-3.5 py-2.5 text-sm font-semibold text-white dark:text-gray-200 shadow-sm hover:bg-custom-button-hover-l dark:hover:bg-custom-button-hover-d focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-custom-button-hover-l"
                             >
                                 {t("action-button")}
                             </a>

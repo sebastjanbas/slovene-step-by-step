@@ -5,7 +5,6 @@ import gsap from "gsap/all";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from 'react';
 import { useTranslations } from 'next-intl';
-import { Divider } from "./auth/Divider";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,11 +31,11 @@ export default function Stats({ vertical, size = { text: "text-3xl lg:text-4xl x
     });
 
     return (
-        <div className="mx-auto w-full lg:max-w-7xl px-6 lg:px-8">
-            <dl className={`grid ${vertical ? "grid-cols-1" : "grid-cols-3"} gap-x-5 gap-y-5 text-center`}>
+        <div className="flex justify-center items-center w-full px-6 lg:px-8">
+            <dl className={`flex ${vertical ? "flex-col" : "flex-col  md:flex-row"} gap-x-5 gap-y-5 text-center max-w-xl md:w-full`}>
                 {stats.map((stat, index) => (
-                    <div key={stat.id} className={`bg-[#f4f4f6] dark:bg-[#171717] shadow-md ${size.space} rounded-2xl mx-auto flex ${size.w} flex-col gap-y-2`}>
-                        <div className='flex-grow border-t border-[8px] -translate-y-5 border-custom-accent-l/70'></div>
+                    <div key={stat.id} className={`bg-[#f4f4f6] dark:bg-[#171717] shadow-md ${size.space} rounded-2xl w-full flex flex-col gap-y-2`}>
+                        <div className='flex-grow-0 mx-[15%] md:mx-0 border-t border-[8px] -translate-y-5 border-custom-accent-l/70'></div>
                         <dt className="text-base/7 text-custom-light-3 dark:text-custom-dark-3">{t(stat.title)}</dt>
                         <dd className={`order-first font-semibold ${size.text} tracking-tight text-custom-light-2 dark:text-custom-dark-3`}>
                             <span ref={el => numbersRef.current[index] = el}>{stat.value}</span>
