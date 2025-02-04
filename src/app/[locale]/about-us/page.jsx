@@ -1,4 +1,4 @@
-import People from "@/components/about/HelperPage";
+import People from "@/components/about/People";
 import Carousel from "@/components/content/testimonials";
 import Stats from "@/components/Stats";
 import SectionTitle from "@/components/titles/SectionTitle";

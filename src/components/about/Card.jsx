@@ -1,12 +1,16 @@
 "use client";
 
+import Image from "next/image";
+
 function Card({ person }) {
 
     return (
         <div className="flex flex-col items-center gap-3 justify-center text-center">
             <div>
-                <img
-                    className="size-24 rounded-full object-cover shadow-lg"
+                <Image
+                    width={96}
+                    height={96}
+                    className="rounded-full object-cover shadow-lg"
                     src={person.imageUrl}
                     alt={person.name}
                 />

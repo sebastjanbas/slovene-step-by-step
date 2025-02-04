@@ -24,7 +24,7 @@ export default function NavBar({ locale }) {
     }
 
     return (
-        <header className="relative bg-white/70 dark:bg-inherit py-1 lg:py-2 border-b-[1px] border-gray-300 dark:border-gray-700 backdrop-blur-md inset-x-0 top-0 z-40">
+        <header className="relative bg-white/80 dark:bg-[#121212]/80 py-1 lg:py-2 border-b-[1px] border-gray-300 dark:border-gray-700 backdrop-blur-md inset-x-0 top-0 z-40">
             <nav
                 aria-label="Global"
                 className="relative flex justify-between items-center h-16 mx-auto lg:container lg:px-16 xl:px-20"

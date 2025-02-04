@@ -32,7 +32,7 @@ export const people = [
     name: ["Sofiya", "Tyutyunnyk"],
     role: "Social Media Manager",
     fluentIn: ["Slovene", "English", "Russian"],
-    imageUrl: `https://scontent-sea1-1.cdninstagram.com/v/t39.30808-6/469998661_18248742496263664_5048433504089359441_n.jpg?stp=dst-jpg_e35_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xNDQweDE4MDAuc2RyLmYzMDgwOC5kZWZhdWx0X2ltYWdlIn0&_nc_ht=scontent-sea1-1.cdninstagram.com&_nc_cat=104&_nc_ohc=nf7BtEojSJsQ7kNvgEPN1xl&_nc_gid=f581e63a837c46f6be6b9ebe420a0692&edm=APoiHPcAAAAA&ccb=7-5&oh=00_AYDhB82PscfdHqY7KCpwoTGh7YwfpTQIq5PORHSbgxAA9g&oe=678C0B67`,
+    imageUrl: `/foto-sofia.jpg`,
   },
   {
     id: 4,
@@ -43,10 +43,17 @@ export const people = [
   },
   {
     id: 5,
-    name: ["Teja", "Šabec"],
+    name: ["Ksenija", "Šabec"],
     role: "Professional Teacher/Tutor",
-    fluentIn: ["Slovene", "Italian", "English"],
-    imageUrl: "/placeholder.svg",
+    fluentIn: ["Slovene", "Russian", "English"],
+    imageUrl: "/foto-ksenja.jpg",
+  },
+  {
+    id: 6,
+    name: ["Ela", "Remic"],
+    role: "Professional Teacher/Tutor",
+    fluentIn: ["Slovene", "Polish", "English"],
+    imageUrl: "/foto-ela.jpg",
   },
 ];
 
