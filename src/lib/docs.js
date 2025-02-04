@@ -114,7 +114,7 @@ export const offers = [
   {
       name: 'Duo Plan',
       id: 'tier-duo',
-      href: '#',
+      href: '/dashboard',
       priceMonthly: '€12',
       description: 'plan1-desc',
       features: [
@@ -128,7 +128,7 @@ export const offers = [
     {
       name: 'Individual',
       id: 'tier-individual',
-      href: '#',
+      href: 'dashboard',
       priceMonthly: '€15',
       description: "plan2-desc",
       features: [
@@ -143,7 +143,7 @@ export const offers = [
     {
       name: 'Family Plan',
       id: 'tier-family',
-      href: '#',
+      href: '/dashboard',
       priceMonthly: '€10',
       description: "plan3-desc",
       features: [

@@ -1,3 +1,4 @@
+import { UserButton } from "@/components/auth/UserButton";
 import { DashboardHeader } from "@/components/courses/DashboardHeader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { createClient } from "@/utils/supabase/server";
@@ -19,12 +20,13 @@ const ProtectedLayout = async ({ children }) => {
                 <div className="flex flex-row h-full">
                     <div className="hidden md:flex sticky flex-col top-0 h-full w-96 border-r-[1px] border-gray-300">
                         <div className="flex flex-row gap-4 items-center px-6 py-4 border-b-[1px] border-gray-300">
-                            <Avatar className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                            {/* <Avatar className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
                                 <AvatarImage src={user.user_metadata.avatar_url} className="aspect-square h-full w-full" />
                                 <AvatarFallback className="flex h-full w-full items-center justify-center rounded-full bg-custom-accent-l">
                                     <FaUser className="text-white" />
                                 </AvatarFallback>
-                            </Avatar>
+                            </Avatar> */}
+                            <UserButton />
                             <div>
                                 <h2 className="font-bold capitalize text-xl/tight">{user.user_metadata.full_name}</h2>
                                 <p className="text-custom-light-2 text-xs/tight">Free Plan</p>

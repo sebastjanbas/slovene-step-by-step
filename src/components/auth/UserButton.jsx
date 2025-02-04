@@ -15,7 +15,6 @@ import {
 
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 import { LogoutButton } from "./LogoutButton";
-import { Button } from "../ui/button";
 import { useAuth } from "./AuthProvider";
 
 const avatarStyles = {
@@ -32,7 +31,7 @@ export const UserButton = () => {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Avatar className={avatarStyles.avatar}>
-                    <AvatarImage className={avatarStyles.image} src={user.user_metadata.avatar_url} />
+                    <AvatarImage className={avatarStyles.image} src={user?.user_metadata.avatar_url} />
                     <AvatarFallback className={avatarStyles.fallback}>
                         <FaUser className="text-white" />
                     </AvatarFallback>

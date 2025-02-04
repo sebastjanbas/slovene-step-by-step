@@ -182,6 +182,17 @@
 
   },
 
+  "FAQ" : {
+    "q1": "What makes Slovene Step by Step different from other language learning programs?",
+    "q2": " Do I need any prior knowledge of Slovene (or other languages) to start?",
+    "q3": "How do online lessons work?",
+    "q4": "Can I try a lesson before committing to a full course?",
+    "a1": "Slovene Step by Step offers a personalized learning experience tailored to your needs. We focus on practical communication skills rather than just memorizing vocabulary. Our lessons are interactive and flexible, with experienced tutors who guide you step by step. Whether you’re a beginner or improving your fluency, we ensure a structured and engaging learning journey.",
+    "a2": "Not at all! Our program is designed for all levels, from complete beginners to advanced learners. If you already have some knowledge, we will assess your level and customize the lessons to help you progress efficiently.",
+    "a3": "Our lessons are conducted via live video sessions with experienced tutors. You’ll have interactive exercises, real-time feedback, and customized materials. You can choose your schedule and learn at your own pace, making it easy to fit language learning into your daily routine.",
+    "a4": "Yes! We offer a trial lesson so you can experience our teaching approach firsthand. This helps you understand how our program works and allows us to assess your level and learning goals. Sign up today and start your language journey with confidence!"
+  },
+
   "Features" : {
     "title": "Features"
   },

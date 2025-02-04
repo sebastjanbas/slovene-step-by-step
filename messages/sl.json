@@ -175,6 +175,17 @@
     "sec3-button": "Kontaktiraj nas"
   },
 
+  "FAQ" : {
+    "q1": "V čem se slovenščina Step by Step razlikuje od drugih programov učenja jezikov?",
+    "q2": "Ali za začetek potrebujem predznanje slovenščine (ali drugih jezikov)?",
+    "q3": "Kako potekajo spletne lekcije?",
+    "q4": "Ali lahko preizkusim lekcijo, preden se posvetim celotnemu tečaju?",
+    "a1": "Slovenščina Korak za korakom ponuja personalizirano učno izkušnjo, prilagojeno vašim potrebam. Osredotočeni smo na praktične komunikacijske veščine in ne le na pomnjenje besedišča. Naše lekcije so interaktivne in prilagodljive, z izkušenimi mentorji, ki vas vodijo korak za korakom. Ne glede na to, ali ste začetnik ali izboljšujete svojo tekočnost, zagotavljamo strukturirano in privlačno učno pot.",
+    "a2": "sploh ne! Naš program je zasnovan za vse stopnje, od popolnih začetnikov do naprednih učencev. Če že imate nekaj znanja, bomo ocenili vašo raven in prilagodili lekcije, da boste lažje napredovali.",
+    "a3": "Naše lekcije potekajo prek video sej v živo z izkušenimi mentorji. Imeli boste interaktivne vaje, povratne informacije v realnem času in prilagojena gradiva. Izberete lahko svoj urnik in se učite s svojim tempom, s čimer olajšate vključitev učenja jezikov v svojo dnevno rutino.",
+    "a4": "Ja! Ponujamo vam poskusno lekcijo, da lahko izkusite naš pristop poučevanja iz prve roke. To vam pomaga razumeti, kako deluje naš program, in nam omogoča, da ocenimo vašo raven in učne cilje. Prijavite se še danes in samozavestno začnite svoje jezikovno potovanje!"
+  },
+
   "Features": {
     "title": "Drugo"
   },
