@@ -56,8 +56,8 @@ export const reviews = [
     image:
       "https://images.unsplash.com/photo-1605462863863-10d9e47e15ee?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     name: "Vlad Lisin",
-    role: "Student",
-    text: "I have been studying for about 6 months now, during which time I have improved my level from zdravo (hello) - hvala (thank you), to full-fledged conversations with Slovenians on a regular basis. I would characterize the teachers as a responsible and professional specialists and therefore I highly recommend this program if you want to learn Slovenian.",
+    role: "student",
+    text: "student-VladLisin",
     stars: [true, true, true, true, true],
   },
   {
@@ -65,8 +65,8 @@ export const reviews = [
     image:
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     name: "Anna Kotelnikova",
-    role: "Student",
-    text: "I am learning Slovenian from scratch. I want to thank my teacher for the individual approach, interesting lessons and good explanations of the material. I recommend it to everyone!",
+    role: "student",
+    text: "student-AnnaKotelnikova",
     stars: [true, true, true, true, true],
   },
   {
@@ -74,8 +74,8 @@ export const reviews = [
     image:
       "https://images.unsplash.com/photo-1463453091185-61582044d556?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     name: "Alexander Molchanov",
-    role: "Student",
-    text: "The course is great, I've been studying for six months. It really works. Before that I tried to study on my own - it didn't work.",
+    role: "student",
+    text: "student-AlexanderMolchanov",
     stars: [true, true, true, true, true],
   },
 ];
@@ -84,7 +84,7 @@ export const footerLinks = {
   Personal: [
     { name: "Profile", href: "/profile" },
     { name: "Settings", href: "/profile/settings" },
-    { name: "Link3", href: "#" },
+    { name: "Dashboard", href: "/dashboard" },
   ],
   QuickLinks: [
     { name: "Home", href: "/", server: false },
@@ -109,12 +109,12 @@ export const offers = [
       id: 'tier-duo',
       href: '#',
       priceMonthly: '€12',
-      description: "The perfect plan to learn Slovene with a partner, whether a friend, colleague, or family member. Enjoy shared motivation and tailored, interactive lessons.",
+      description: 'plan1-desc',
       features: [
-        "Interactive and engaging sessions",
-        "Practice with a friend or family member",
-        "Flexible schedule and customized materials",
-        "Modern teaching methods.",
+        "plan1-feature1",
+        "plan1-feature2",
+        "plan1-feature3",
+        "plan1-feature4",
       ],
       featured: false,
     },
@@ -123,13 +123,13 @@ export const offers = [
       id: 'tier-individual',
       href: '#',
       priceMonthly: '€15',
-      description: "The perfect plan if you're just getting started with Slovene. Benefit from interactive sessions and flexible scheduling to fit your busy lifestyle.",
+      description: "plan2-desc",
       features: [
-        "One-on-one lessons tailored to your goals",
-        "+ 1 additional free class",
-        "Interactive and engaging sessions",
-        "Flexible schedule and customized materials",
-        "Modern teaching methods.",
+        "plan2-feature1",
+        "plan2-feature2",
+        "plan2-feature3",
+        "plan2-feature4",
+        "plan2-feature5",
       ],
       featured: true,
     },
@@ -138,13 +138,12 @@ export const offers = [
       id: 'tier-family',
       href: '#',
       priceMonthly: '€10',
-      description: "The perfect plan for small groups, ideal for families or friends. Enjoy collaborative lessons with group activities and shared goals for a fun, effective experience.",
+      description: "plan3-desc",
       features: [
-        "Fun, collaborative lessons",
-        "Interactive and engaging sessions",
-        "Practice with a friend or family member",
-        "Modern teaching methods.",
-        
+        "plan3-feature1",
+        "plan3-feature2",
+        "plan3-feature3",
+        "plan3-feature4",
       ],
       featured: false,
   },

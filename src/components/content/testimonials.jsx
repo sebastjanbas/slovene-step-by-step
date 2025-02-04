@@ -2,8 +2,10 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import "./carousel.css";
+import { useTranslations } from "next-intl";
 
 const Carousel = ({ data, stars = false }) => {
+    const t = useTranslations("Testimonials");
     return (
         <>
             <div className="relative select-none lg:px-4">
@@ -39,11 +41,11 @@ const Carousel = ({ data, stars = false }) => {
                                     alt="Profile photo"
                                 />
                                 <div className="inline-block text-center md:text-left mb-4 text-lg">
-                                    <p className="text-sm text-custom-light-3 dark:text-custom-dark-1">{review.text}</p>
+                                    <p className="text-sm text-custom-light-3 dark:text-custom-dark-1">{t(review.text)}</p>
                                     <div className="flex flex-col md:flex-row justify-start md:gap-8 pt-4">
                                         <div>
                                             <p className="text-xl font-bold text-custom-light-1 dark:text-custom-dark-1">{review.name}</p>
-                                            <p className="text-sm font-normal text-custom-accent-l dark:text-custom-accent-d">{review.role}</p>
+                                            <p className="text-sm font-normal text-custom-accent-l dark:text-custom-accent-d">{t(review.role)}</p>
                                         </div>
                                         {stars &&
                                             <div className="text-sm/8 text-[rgb(254,216,79)]">

@@ -9,6 +9,8 @@
     "features-desc": "",
     "log-title": "Log in",
     "log-desc": "",
+    "pricing-title": "Pricing",
+    "pricing-desc": "",
     "products-title": "Products",
     "products-desc": "",
     "notfound-title":"Not Found",
@@ -60,14 +62,44 @@
 
     "Happy students": "Happy students",
     "Lessons Conducted": "Lessons Conducted",
-    "Student Satisfaction": "Student Satisfaction"
+    "Student Satisfaction": "Student Satisfaction",
+
+    "testimonials-title" : "Testimonials",
+    "testimonials-subtitle" : "What members are saying"
   },
+
+
+  "Footer" : {
+    "title": "The best way to learn Slovene and make your dreams a reality.",
+    "group1": "Personal",
+    "group2": "Quick Links",
+    "group3": "Company",
+    "group4": "Legal",
+
+    "Profile": "Profile",
+    "Settings": "Settings",
+    "Dashboard": "Dashboard",
+
+    "Home": "Home",
+    "Courses": "Courses",
+    "Pricing": "Pricing",
+    
+    "About": "About",
+    "Contact us": "Contact us",
+    "FAQ": "FAQ",
+    
+    "Terms of service": "Terms of service",
+    "Privacy policy": "Privacy policy",
+    "License": "License"
+  },
+
   "Navbar": {
     "products": "Courses",
     "features": "Features",
     "pricing": "Pricing",
     "about-us": "About us",
-    "log-in": "Log in"
+    "log-in": "Log in",
+    "dashboard": "Dashboard"
   },
 
   "Banner" : {
@@ -76,8 +108,78 @@
   },
 
   "About us": {
-    "title": "Meet the team",
-    "subtitle": "We're a dynamic group of individuals who are passionate about what we do and dedicated to delivering the best results for our clients."
+    "title": "Discover Our Story",
+    "subtitle": "Building Connections Through Language",
+    "text1": "At Slovene Step by Step, we help individuals from all backgrounds master new languages and confidently embrace new cultures. Our personalized approach, expert instructors, and supportive community create an engaging learning experience that empowers students to achieve their goals.",
+    "text2": "Join our community, sign up for a free trial lesson, and take the first step toward achieving your language goals today!",
+
+    "sec2-title": "Bridging Cultures, Empowering People",
+    "sec2-subtitle": "Why We Do What We Do",
+    "sec2-par1": "At Slovene Step by Step, our mission is to empower individuals from diverse backgrounds by providing personalized, engaging, and effective language learning experiences. We strive to bridge cultural gaps and foster connections by helping our students not only learn a language but also feel at home in their new environments. Through expert guidance, flexible learning options, and a supportive community, we aim to make language learning accessible and enjoyable for everyone.",
+    "sec2-par2": "We envision a world where language barriers no longer hinder opportunities or integration. What began as a platform to support Russian-speaking migrants navigating life in Slovenia has grown into a vibrant hub for learners from various linguistic and cultural backgrounds.",
+    "sec2-par3": "Our goal is to become a leading language learning platform in Slovenia and beyond, helping individuals unlock their full potential through language mastery. We aspire to build a global community of learners, united by their passion for growth, connection, and cultural exchange.",
+    "sec2-par4": "Through innovative teaching methods, dedicated instructors, and a commitment to excellence, Slovene Step by Step continues to pave the way for language learners worldwide.",
+    
+    "sec3-title": "The People Behind the Program",
+    "sec3-subtitle": "Passionate. Experienced. Dedicated.",
+    "sec3-par1": "We’re a dynamic group of individuals who are passionate about what we do and dedicated to delivering the best results for our clients.",
+    "sec3-par2": "At Slovene Step by Step, our team is made up of passionate educators, experienced linguists, and dedicated support staff who share a common goal: helping our students succeed. Each member brings a unique set of skills and a deep commitment to creating a personalized, engaging learning experience.",
+    "sec3-par3": "Our tutors, many of whom are native speakers, take pride in guiding students through their language-learning journey, providing support every step of the way. Whether it’s mastering the basics or refining advanced skills, we’re here to inspire confidence, foster growth, and celebrate each milestone.",
+    "sec3-par4": "Together, we’re more than a team—we’re a community that believes in the power of language to connect, empower, and transform lives.",
+    
+    "sec4-title": "Real Stories, Real Results",
+    "sec4-subtitle": "Hear from our Students",
+    "sec4-par1": "The true measure of our success lies in the voices of our students. Through personalized lessons and dedicated guidance, Slovene Step by Step has helped countless individuals achieve their language goals and thrive in their personal and professional lives.",
+    "sec4-par2": "From newcomers confidently navigating life in Slovenia to professionals expanding their career opportunities, our program has made a lasting impact. Students consistently highlight the supportive environment, the practical language skills they’ve gained, and how the lessons have boosted their confidence and integration into new communities.",
+    "sec4-par3": "These stories are a testament to the transformative power of language learning, and we’re proud to celebrate every success with our students.",
+    
+    "sec5-title": "Take the First Step Towards Your Goals",
+    "sec5-subtitle": "Join Our Community",
+    "sec5-par1": "Ready to start a language-learning journey tailored just for you? Whether you’re looking to improve your skills, connect with a new culture, or gain confidence in your everyday interactions, Slovene Step by Step is here to guide you.",
+    "sec5-par2": "Sign up for a free trial lesson today and experience firsthand how personalized, engaging, and effective our program can be. Join our growing community of language learners and connect with expert tutors who are passionate about helping you succeed.",
+
+    "read-more": "Read More",
+
+    "button1": "Start Your Journey",
+    "button2": "View Pricing"
+  },
+
+  "Pricing" : {
+
+    "session": "session",
+
+    "title": "Choose the right plan for you",
+    "subtitle": "Pricing",
+    "text": "Find the perfect plan to master Slovene step by step. Tailored lessons, flexible options, and expert guidance to help you achieve your language goals with ease.",
+
+    "plan1-desc": "The perfect plan to learn Slovene with a partner, whether a friend, colleague, or family member. Enjoy shared motivation and tailored, interactive lessons.",
+    "plan1-feature1": "Interactive and engaging sessions",
+    "plan1-feature2": "Practice with a friend or family member",
+    "plan1-feature3": "Flexible schedule and customized materials",
+    "plan1-feature4": "Modern teaching methods.",
+    
+    "plan2-desc": "The perfect plan if you're just getting started with Slovene. Benefit from interactive sessions and flexible scheduling to fit your busy lifestyle.",
+    "plan2-feature1": "One-on-one lessons tailored to your goals",
+    "plan2-feature2": "+ 1 additional free class",
+    "plan2-feature3": "Interactive and engaging sessions",
+    "plan2-feature4": "Flexible schedule and customized materials",
+    "plan2-feature5": "Modern teaching methods.",
+    
+    "plan3-desc": "The perfect plan for small groups, ideal for families or friends. Enjoy collaborative lessons with group activities and shared goals for a fun, effective experience.",
+    "plan3-feature1": "Fun, collaborative lessons",
+    "plan3-feature2": "Interactive and engaging sessions",
+    "plan3-feature3": "Practice with a friend or family member",
+    "plan3-feature4": "Modern teaching methods.",
+  
+    "plan-button": "Get started today",
+
+    "sec2-title": "Frequently asked questions",
+    "sec2-subtitle": "Find answers to common questions about our plans and services. If you can’t find what you’re looking for, feel free to contact",
+
+    "sec3-title": "Have a question?",
+    "sec3-subtitle": "Ask us a question or send us a message. We are here to help you.",
+    "sec3-button": "Contact us"
+
   },
 
   "Features" : {
@@ -118,14 +220,17 @@
     "link-privacy" : "Privacy Policy"
   },
   
-  "ProductsPage": {
-    "title": "Products",
-    "description": "Coming Soon!"
-  },
   "NotFoundPage": {
     "title": "Page not found",
     "description": "Sorry, we couldn't find the page you're looking for.",
     "backButton": "Back to home"
+  },
+
+  "Testimonials": {
+    "student": "Student",
+    "student-VladLisin": "I have been studying for about 6 months now, during which time I have improved my level from zdravo (hello) - hvala (thank you), to full-fledged conversations with Slovenians on a regular basis. I would characterize the teachers as a responsible and professional specialists and therefore I highly recommend this program if you want to learn Slovenian.",
+    "student-AnnaKotelnikova": "I am learning Slovenian from scratch. I want to thank my teacher for the individual approach, interesting lessons and good explanations of the material. I recommend it to everyone!",
+    "student-AlexanderMolchanov": "The course is great, I've been studying for six months. It really works. Before that I tried to study on my own - it didn't work."
   },
 
   "Countdown": {

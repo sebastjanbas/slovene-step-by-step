@@ -44,7 +44,7 @@ const ResetPasswordPage = () => {
     };
 
     return (
-        <div className="relative bg-white dark:bg-[#121212] h-fit w-full overflow-hidden flex flex-col justify-center items-center">
+        <div className="relative h-fit w-full overflow-hidden flex flex-col justify-center items-center">
             <div className="w-96 mt-32">
                 <h1 className="text-4xl font-semibold text-balance text-custom-light-1 dark:text-custom-dark-1">
                     Forgot your Password?

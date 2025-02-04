@@ -1,6 +1,7 @@
 "use client";
 import { offers } from '@/lib/docs';
 import { CheckIcon } from '@heroicons/react/20/solid'
+import { useTranslations } from 'next-intl';
 
 
 function classNames(...classes) {
@@ -8,6 +9,7 @@ function classNames(...classes) {
 }
 
 export default function PricingContent() {
+    const t = useTranslations("Pricing");
     return (
 
         <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 md:max-w-4xl md:grid-cols-3">
@@ -39,10 +41,10 @@ export default function PricingContent() {
                         >
                             {tier.priceMonthly}
                         </span>
-                        <span className={classNames(tier.featured ? 'text-gray-100' : 'text-gray-100', 'text-base')}>/session</span>
+                        <span className={classNames(tier.featured ? 'text-gray-100' : 'text-custom-light-1 dark:text-gray-100', 'text-base')}>/{t("session")}</span>
                     </p>
                     <p className={classNames(tier.featured ? 'text-white dark:text-custom-dark-1' : 'text-custom-light-3 dark:text-custom-dark-1', 'mt-6 text-base/7')}>
-                        {tier.description}
+                        {t(tier.description)}
                     </p>
                     <ul
                         role="list"
@@ -57,9 +59,10 @@ export default function PricingContent() {
                                     aria-hidden="true"
                                     className={classNames(tier.featured ? 'text-custom-accent-l' : 'text-custom-accent-l', 'h-6 w-5 flex-none')}
                                 />
-                                {feature}
+                                {t(feature)}
                             </li>
                         ))}
+
                     </ul>
                     <a
                         href={tier.href}
@@ -71,7 +74,7 @@ export default function PricingContent() {
                             'mt-8 block rounded-xl px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:mt-10',
                         )}
                     >
-                        Get started today
+                        {t("plan-button")}
                     </a>
                 </div>
             ))}

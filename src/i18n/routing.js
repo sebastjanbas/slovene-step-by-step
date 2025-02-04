@@ -78,7 +78,7 @@ export const routing = defineRouting({
 
     '/dashboard' : {
       en: '/dashboard',
-      sl: '/profil',
+      sl: '/dashboard',
       ru: '/dashboard',
     },
  

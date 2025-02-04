@@ -27,19 +27,19 @@ export default function MeetTheTeamPage() {
                     <div className="max-w-xl mb-10">
 
                         <h1 className="text-balance text-5xl font-semibold tracking-tight text-custom-light-1 dark:text-custom-dark-1 sm:text-7xl">
-                            Discover Our Story
+                            {t("title")}
                         </h1>
                         <h2 className="mt-8 text-pretty text-lg font-medium text-custom-light-2 dark:text-custom-dark-2 sm:text-xl/8">
-                            Building Connections Through Language
+                            {t("subtitle")}
                         </h2>
                         <div className="text-custom-light-3 dark:text-custom-dark-3">
                             <p>
-                                At Slovene Step by Step, we help individuals from all backgrounds master new languages and confidently embrace new cultures. Our personalized approach, expert instructors, and supportive community create an engaging learning experience that empowers students to achieve their goals.
+                                {t("text1")}
 
                             </p>
                             <br />
                             <p>
-                                Join our community, sign up for a free trial lesson, and take the first step toward achieving your language goals today!
+                                {t("text2")}
                             </p>
                         </div>
 
@@ -81,22 +81,22 @@ export default function MeetTheTeamPage() {
             </div>
 
             <div className="mx-auto max-w-7xl lg:px-8">
-                <SectionTitle header={"Why We Do What We Do"} paragraph={"Bridging Cultures, Empowering People"} textOrientation="text-start">
+                <SectionTitle header={t("sec2-subtitle")} paragraph={t("sec2-title")} textOrientation="text-start">
                     <div className="flex w-full gap-10 flex-row justify-between">
                         <div className="text-start text-pretty text-md/6 space-y-10">
                             <p >
-                                At Slovene Step by Step, our mission is to empower individuals from diverse backgrounds by providing personalized, engaging, and effective language learning experiences. We strive to bridge cultural gaps and foster connections by helping our students not only learn a language but also feel at home in their new environments. Through expert guidance, flexible learning options, and a supportive community, we aim to make language learning accessible and enjoyable for everyone.
+                                {t("sec2-par1")}
                             </p>
                             <div className="space-y-5">
                                 <p>
-                                    We envision a world where language barriers no longer hinder opportunities or integration. What began as a platform to support Russian-speaking migrants navigating life in Slovenia has grown into a vibrant hub for learners from various linguistic and cultural backgrounds.
+                                    {t("sec2-par2")}
                                 </p>
                                 <p>
-                                    Our goal is to become a leading language learning platform in Slovenia and beyond, helping individuals unlock their full potential through language mastery. We aspire to build a global community of learners, united by their passion for growth, connection, and cultural exchange.
+                                    {t("sec2-par3")}
 
                                 </p>
                                 <p>
-                                    Through innovative teaching methods, dedicated instructors, and a commitment to excellence, Slovene Step by Step continues to pave the way for language learners worldwide.
+                                    {t("sec2-par4")}
                                 </p>
                             </div>
                         </div>
@@ -115,11 +115,11 @@ export default function MeetTheTeamPage() {
                         </a>
                     </Button>
                 </div>
-                <SectionTitle paragraph={"The People Behind the Program"} header={"Passionate. Experienced. Dedicated."} textOrientation="text-center">
+                <SectionTitle paragraph={t("sec3-title")} header={t("sec3-subtitle")} textOrientation="text-center">
                     <div className="flex items-center justify-center">
                         <div className="max-w-5xl text-center">
                             <p className="text-lg ">
-                                We’re a dynamic group of individuals who are passionate about what we do and dedicated to delivering the best results for our clients.
+                                {t("sec3-par1")}
                             </p>
                         </div>
                     </div>
@@ -132,10 +132,10 @@ export default function MeetTheTeamPage() {
                         <AccordionCustom
                             data={[
                                 {
-                                    trigger: "Read More", content: [
-                                        "At Slovene Step by Step, our team is made up of passionate educators, experienced linguists, and dedicated support staff who share a common goal: helping our students succeed. Each member brings a unique set of skills and a deep commitment to creating a personalized, engaging learning experience.",
-                                        "Our tutors, many of whom are native speakers, take pride in guiding students through their language-learning journey, providing support every step of the way. Whether it’s mastering the basics or refining advanced skills, we’re here to inspire confidence, foster growth, and celebrate each milestone.",
-                                        "Together, we’re more than a team—we’re a community that believes in the power of language to connect, empower, and transform lives."
+                                    trigger: t("read-more"), content: [
+                                        t("sec3-par2"),
+                                        t("sec3-par3"),
+                                        t("sec3-par4"),
                                     ]
                                 }
                             ]}
@@ -143,7 +143,7 @@ export default function MeetTheTeamPage() {
                     </div>
                 </div>
 
-                <SectionTitle header={"Hear from Our Students"} paragraph={"Real Stories, Real Results"} textOrientation="text-center lg:text-start" />
+                <SectionTitle header={t("sec4-subtitle")} paragraph={t("sec4-title")} textOrientation="text-center lg:text-start" />
                 <div className="w-full flex justify-center items-center">
                     <div className="max-w-sm sm:max-w-xl md:max-w-3xl lg:max-w-5xl">
                         <Carousel data={reviews} />
@@ -154,25 +154,23 @@ export default function MeetTheTeamPage() {
                         <AccordionCustom
                             data={[
                                 {
-                                    trigger: "Read More", content: [
-                                        "The true measure of our success lies in the voices of our students. Through personalized lessons and dedicated guidance, Slovene Step by Step has helped countless individuals achieve their language goals and thrive in their personal and professional lives.",
-                                        "From newcomers confidently navigating life in Slovenia to professionals expanding their career opportunities, our program has made a lasting impact. Students consistently highlight the supportive environment, the practical language skills they’ve gained, and how the lessons have boosted their confidence and integration into new communities.",
-                                        "These stories are a testament to the transformative power of language learning, and we’re proud to celebrate every success with our students."
+                                    trigger: t("read-more"), content: [
+                                        t("sec4-par1"),
+                                        t("sec4-par2"),
+                                        t("sec4-par3"),
                                     ]
                                 }
                             ]}
                         />
                     </div>
                 </div>
-                <SectionTitle header={"Join Our Community"} paragraph={"Take the First Step Towards Your Goals"} textOrientation="text-center lg:text-start">
+                <SectionTitle header={t("sec5-subtitle")} paragraph={t("sec5-title")} textOrientation="text-center lg:text-start">
                     <div className="text-center lg:text-start text-md/6 space-y-10">
                         <p>
-                            Ready to start a language-learning journey tailored just for you? Whether you’re looking to improve your skills, connect with a new culture, or gain confidence in your everyday interactions, Slovene Step by Step is here to guide you.
-
+                            {t("sec5-par1")}
                         </p>
                         <p>
-                            Sign up for a free trial lesson today and experience firsthand how personalized, engaging, and effective our program can be. Join our growing community of language learners and connect with expert tutors who are passionate about helping you succeed.
-
+                            {t("sec5-par2")}
                         </p>
 
                     </div>
@@ -180,12 +178,12 @@ export default function MeetTheTeamPage() {
                     <div className="flex flex-row mt-16 mb-52 gap-5 items-center justify-center lg:justify-start">
                         <Button variant={"mine"} asChild>
                             <Link href={"/dashboard"}>
-                                Start Your Journey
+                                {t("button1")}
                             </Link>
                         </Button>
                         <Button variant={"link"} asChild>
                             <Link href={"/pricing"}>
-                                View Pricing
+                                {t("button2")}
                             </Link>
                         </Button>
                     </div>

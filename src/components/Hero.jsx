@@ -106,16 +106,16 @@ export default function Hero() {
                         </div>
                     </div>
                     <div className="text-center sm:text-start">
-                        <h1 ref={titleRef} className="text-balance text-5xl font-semibold tracking-tight text-white sm:text-custom-light-1 sm:dark:text-custom-dark-1 md:text-6xl lg:text-7xl">
+                        <h1 ref={titleRef} className="text-balance text-5xl font-semibold tracking-tight text-white sm:text-custom-light-1 dark:text-custom-dark-1 md:text-6xl lg:text-7xl">
                             <div>{t("title-1")} <strong className='text-custom-accent-l'>{t("title-strong")}</strong>{t("title-2")}</div>
                         </h1>
-                        <p ref={subtitleRef} className="mt-8 outline-1 text-pretty text-lg font-medium text-white sm:text-custom-light-2 dark:text-custom-dark-2 sm:text-xl/8">
+                        <p ref={subtitleRef} className="mt-8 outline-1 text-pretty text-lg font-medium text-white sm:text-custom-light-2 dark:text-custom-dark-1 sm:text-xl/8">
                             {t("under-title")}
                         </p>
                         <div ref={buttonRef} className="mt-10 flex items-center justify-center sm:justify-start gap-x-6">
                             <a
-                                href={"/courses"}
-                                className="rounded-2xl border-2 sm:border-none border-white bg-custom-button-l dark:bg-custom-button-d/75 px-3.5 py-2.5 text-sm font-semibold text-white dark:text-gray-200 shadow-sm hover:bg-custom-button-hover-l dark:hover:bg-custom-button-hover-d focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-custom-button-hover-l"
+                                href={"/dashboard"}
+                                className="rounded-2xl border-2 sm:border-none border-white bg-custom-button-l px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-custom-button-hover-l dark:hover:bg-custom-button-hover-d focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-custom-button-hover-l"
                             >
                                 {t("action-button")}
                             </a>

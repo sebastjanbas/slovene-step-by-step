@@ -57,7 +57,7 @@ export default function DetailsPageHero() {
                         </div>
                     </div>
                 </div>
-                <div id='image' className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+                <div id='image' className="hidden lg:block -ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
                     <img
                         alt=""
                         src="/details-picture.png"

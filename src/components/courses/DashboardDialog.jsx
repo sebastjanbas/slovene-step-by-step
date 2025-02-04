@@ -8,6 +8,7 @@ import { ThemButton } from "../ui/ApearanceSwitchButton";
 import { useTranslations } from 'next-intl';
 import { useAuth } from "../auth/AuthProvider";
 import { UserButton } from "../auth/UserButton";
+import { Button } from "../ui/button";
 
 export default function DashboardDialog({ mobileMenuOpen, setMobileMenuOpen, navigation }) {
 
@@ -36,49 +37,28 @@ export default function DashboardDialog({ mobileMenuOpen, setMobileMenuOpen, nav
 
                         <DialogPanel>
                             <motion.div
-                                initial={{ x: "100%" }} // Start off-screen
-                                animate={{ x: 0 }} // Slide into view
-                                exit={{ x: "100%" }} // Slide out to the right
-                                transition={{ duration: 0.5, ease: ["easeIn", "easeOut"], type: "spring" }}
-                                className="fixed inset-y-0 right-0 z-50 w-full sm:max-w-sm bg-white dark:bg-[#121212] px-6 py-6 rounded-l-xl flex flex-col justify-between"
+                                initial={{ y: "100%" }} // Start off-screen
+                                animate={{ y: 0 }} // Slide into view
+                                exit={{ y: "100%" }} // Slide out to the right
+                                transition={{ duration: 0.3, ease: ["easeInOut", "easeOut"], type: "" }}
+                                className="fixed z-50 scale-100 gap-4 bg-[#171717] opacity-100 shadow-lg w-full border-t-2 border-[#242424] inset-x-0 bottom-0 rounded-t-xl overflow-hidden overflow-y-scroll h-[85dvh] py-2"
                             >
-                                <div>
-                                    <div className="flex items-center justify-end">
-                                        <div className="flex justify-center items-center">
-                                            <ThemButton />
-                                            <button
-                                                type="button"
-                                                onClick={() => setMobileMenuOpen(false)}
-                                                className="-m-2.5 rounded-md p-2.5 text-custom-light-4 dark:text-custom-dark-4"
-                                            >
-                                                <span className="sr-only">Close menu</span>
-                                                <XMarkIcon aria-hidden="true" className="size-6" />
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className="mt-6 flow-root">
-                                        <div className="-my-6 divide-y divide-gray-500/10">
-                                            <div className="space-y-2 py-6">
-                                                {navigation.map((item) => (
-                                                    <Link
-                                                        key={item.name}
-                                                        href={item.href}
-                                                        className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold hover:bg-gray-50 dark:hover:text-custom-accent-d dark:hover:bg-[#121212] ${pathname.endsWith(item.href) ? "text-custom-accent-l dark:text-custom-accent-d" : "text-custom-light-2 dark:text-custom-dark-2"}`}
-                                                        onClick={() => setMobileMenuOpen(false)}
-                                                    >
-                                                        {item.name}
-                                                    </Link>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="w-full flex justify-between items-center">
-                                    <Link href={"/dashboard/settings"}>
-                                        Settings
-                                    </Link>
-                                    <UserButton />
-                                </div>
+                                <ul className="flex flex-col gap-y-1 justify-start px-2 relative">
+                                    <Button className="relative h-10 w-full flex items-center rounded hover:bg-surface-200 group/item !bg-selection shadow-sm" asChild>
+                                        <Link href={"#"}>
+                                            <span className="absolute left-0 top-0 flex rounded h-10 w-10 items-center justify-center text-foreground-lighter group-hover/item:text-foreground-light transition-colors">
+                                                <XMarkIcon />
+                                            </span>
+                                            <span className="min-w-[128px] text-sm group-hover/item:text-gray-500 group-aria-current/item:text-gray-500 absolute left-10 md:left-7 md:group-data-[state=expanded]:left-12 opacity-100 md:opacity-0 md:group-data-[state=expanded]:opacity-100 text-gray-500 hover:text-foreground transition-all">Home</span>
+                                        </Link>
+                                    </Button>
+                                </ul>
+                                <ul className="flex flex-col px-2 pb-4 md:pb-0 gap-y-1">
+                                    <li>
+
+                                    </li>
+                                </ul>
+
                             </motion.div>
                         </DialogPanel>
                     </Dialog>

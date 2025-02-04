@@ -5,7 +5,7 @@ import { SplitScreen } from '@/components/auth/splitscreen'
 const AuthLayout = ({ children }) => {
 
     return (
-        <div className='bg-white dark:bg-[#121212] m-0 h-screen w-screen flex md:flex-row-reverse flex-col'>
+        <div className='m-0 h-screen w-screen flex md:flex-row-reverse flex-col'>
             <SplitScreen>
 
             </SplitScreen>

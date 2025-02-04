@@ -17,7 +17,7 @@ const ProtectedLayout = async ({ children }) => {
             <div className="flex flex-col h-screen overflow-hidden">
                 <DashboardHeader />
                 <div className="flex flex-row h-full">
-                    <div className="hidden lg:flex sticky flex-col top-0 h-full w-96 border-r-[1px] border-gray-300">
+                    <div className="hidden md:flex sticky flex-col top-0 h-full w-96 border-r-[1px] border-gray-300">
                         <div className="flex flex-row gap-4 items-center px-6 py-4 border-b-[1px] border-gray-300">
                             <Avatar className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
                                 <AvatarImage src={user.user_metadata.avatar_url} className="aspect-square h-full w-full" />

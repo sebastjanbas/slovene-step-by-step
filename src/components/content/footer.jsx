@@ -3,8 +3,12 @@ import { Link } from "@/i18n/routing";
 import { usePathname } from "next/navigation";
 import { footerLinks } from "@/lib/docs";
 import { SocialLinks } from "../ui/social-links";
+import { useTranslations } from "next-intl";
 
 export default function Footer() {
+
+    const t = useTranslations("Footer");
+
     const pathname = usePathname();
     if (pathname.includes("/auth") || pathname.includes("/dashboard")) {
         return null;
@@ -13,14 +17,14 @@ export default function Footer() {
     const socialLinkSize = "26";
 
     return (
-        <footer className="bg-white dark:bg-[#121212] p-10">
+        <footer className="p-10">
             <div className="py-16 border-t-[1px] border-gray-500">
                 <div className="size-8">
                     <span className="sr-only">Slovene Step By Step</span>
                     <img alt="Company Logo" src={`/Logo.svg`} />
                 </div>
                 <p className="my-8 text-custom-light-3 dark:text-custom-dark-3">
-                    The best way to learn Slovene and make your dreams a reality.
+                    {t("title")}
                 </p>
                 <div className="flex flex-row items-center gap-x-5">
                     <SocialLinks href={"#"} srOnly={"Slovene Step By Step | Facebook"}>
@@ -131,7 +135,7 @@ export default function Footer() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-5">
                 <div className="flex flex-col">
                     <h1 className="mb-5 text-custom-light-1 dark:text-custom-dark-1 font-semibold">
-                        Personal
+                        {t("group1")}
                     </h1>
                     {footerLinks.Personal.map((item) => (
                         <div key={item.name}>
@@ -139,7 +143,7 @@ export default function Footer() {
                                 href={item.href}
                                 className="hover:underline text-custom-light-4 dark:text-custom-dark-4"
                             >
-                                {item.name}
+                                {t(item.name)}
                             </a>
                         </div>
                     ))}
@@ -154,14 +158,14 @@ export default function Footer() {
                                 <a
                                     href={item.href}
                                     className="hover:underline text-custom-light-4 dark:text-custom-dark-4">
-                                    {item.name}
+                                    {t(item.name)}
                                 </a>
                             ) : (
                                 <Link
                                     href={item.href}
                                     className="hover:underline text-custom-light-4 dark:text-custom-dark-4"
                                 >
-                                    {item.name}
+                                    {t(item.name)}
                                 </Link>
 
                             )}
@@ -178,7 +182,7 @@ export default function Footer() {
                                 href={item.href}
                                 className="hover:underline text-custom-light-4 dark:text-custom-dark-4"
                             >
-                                {item.name}
+                                {t(item.name)}
                             </Link>
                         </div>
                     ))}
@@ -193,7 +197,7 @@ export default function Footer() {
                                 href={item.href}
                                 className="hover:underline text-custom-light-4 dark:text-custom-dark-4"
                             >
-                                {item.name}
+                                {t(item.name)}
                             </Link>
                         </div>
                     ))}

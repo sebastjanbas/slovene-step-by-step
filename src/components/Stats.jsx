@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Stats({ vertical, size = { text: "text-3xl lg:text-4xl xl:text-5xl", space: "py-6 px-10  lg:py-10 lg:px-20", w: "max-w-xs" } }) {
+export default function Stats({ vertical, size = { text: "text-3xl lg:text-4xl xl:text-5xl", space: "py-6 px-10  lg:py-10 lg:px-20" } }) {
     const t = useTranslations('HomePage');
     const numbersRef = useRef([]);
 
@@ -31,8 +31,8 @@ export default function Stats({ vertical, size = { text: "text-3xl lg:text-4xl x
     });
 
     return (
-        <div className="flex justify-center items-center w-full px-6 lg:px-8">
-            <dl className={`flex ${vertical ? "flex-col" : "flex-col  md:flex-row"} gap-x-5 gap-y-5 text-center max-w-xl md:w-full`}>
+        <div className="flex justify-center items-center w-xl lg:w-full px-6 lg:px-8">
+            <dl className={`flex ${vertical ? "flex-col" : "flex-col  md:flex-row"} gap-5 text-center w-full`}>
                 {stats.map((stat, index) => (
                     <div key={stat.id} className={`bg-[#f4f4f6] dark:bg-[#171717] shadow-md ${size.space} rounded-2xl w-full flex flex-col gap-y-2`}>
                         <div className='flex-grow-0 mx-[15%] md:mx-0 border-t border-[8px] -translate-y-5 border-custom-accent-l/70'></div>

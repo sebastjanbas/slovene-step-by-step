@@ -37,18 +37,17 @@ export default function Home() {
           header={"stats-subtitle"}
           paragraph={"stats-title"}
         >
+          <div className="flex justify-center items-center">
           <Stats />
+          </div>
         </SectionTitle>
       </div>
-
-      <div className="text-center mb-8 lg:mb-16">
-        <h2 className="text-base/7 font-semibold text-custom-accent-l dark:text-custom-accent-d">
-          What members are saying.
-        </h2>
-        <h1 className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-custom-light-1 dark:text-custom-dark-1 sm:text-5xl">
-          Testimonials
-        </h1>
-      </div>
+      <SectionTitle
+      translations={"HomePage"}
+      id="testimonials"
+      header={"testimonials-subtitle"}
+      paragraph={"testimonials-title"}
+      />
       <div className="w-full flex justify-center items-center">
         <div className="max-w-sm sm:max-w-xl md:max-w-3xl lg:max-w-5xl">
           <Carousel data={reviews} />

@@ -61,17 +61,19 @@ export default function MyDialog({
                                             className="h-7 w-auto"
                                         />
                                     </Link>
-                                    {/* <LanguageSwitcher locale={locale} /> */}
-                                    {/* <ThemButton /> */}
-                                    <button
-                                        type="button"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                        // className="-m-2.5 rounded-md p-2.5 text-custom-light-4 dark:text-custom-dark-4"
-                                        className="inline-flex items-center justify-center p-2 rounded-md text-foreground-lighter focus:ring-brand hover:text-foreground-light transition-colors focus:outline-none focus:ring-2 focus:ring-inset"
-                                    >
-                                        <span className="sr-only">Close menu</span>
-                                        <XMarkIcon aria-hidden="true" className="size-6" />
-                                    </button>
+                                    <div className="flex flex-row justify-center items-center gap-2">
+                                        <LanguageSwitcher locale={locale} />
+                                        <ThemButton />
+                                        <button
+                                            type="button"
+                                            onClick={() => setMobileMenuOpen(false)}
+                                            // className="-m-2.5 rounded-md p-2.5 text-custom-light-4 dark:text-custom-dark-4"
+                                            className="inline-flex items-center justify-center p-2 rounded-md text-foreground-lighter focus:ring-brand hover:text-foreground-light transition-colors focus:outline-none focus:ring-2 focus:ring-inset"
+                                        >
+                                            <span className="sr-only">Close menu</span>
+                                            <XMarkIcon aria-hidden="true" className="size-6" />
+                                        </button>
+                                    </div>
                                 </div>
                                 <div className="max-h-screen flex flex-col justify-between supports-[height:100cqh]:h-[100cqh] supports-[height:100svh]:h-[100svh] overflow-y-auto pt-20 pb-32 px-4">
                                     <div className=" flex flex-col space-y-1">

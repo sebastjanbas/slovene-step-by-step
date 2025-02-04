@@ -24,7 +24,7 @@ export default function NavBar({ locale }) {
     }
 
     return (
-        <header className="relative py-1 lg:py-2 bg-white/90 dark:bg-[#121212]/90 border-b-[1px] border-gray-300 dark:border-gray-700 backdrop-blur-md inset-x-0 top-0 z-40">
+        <header className="relative bg-white/70 dark:bg-inherit py-1 lg:py-2 border-b-[1px] border-gray-300 dark:border-gray-700 backdrop-blur-md inset-x-0 top-0 z-40">
             <nav
                 aria-label="Global"
                 className="relative flex justify-between items-center h-16 mx-auto lg:container lg:px-16 xl:px-20"
@@ -70,20 +70,20 @@ export default function NavBar({ locale }) {
                             <div className="absolute left-0 top-full flex justify-center"></div>
                         </nav>
                     </div>
-                    <div className="flex items-center gap-2">
-                        {/* <LanguageSwitcher locale={locale} /> */}
+                    <div className="hidden lg:flex items-center gap-2">
+                        <LanguageSwitcher locale={locale} />
                         <ThemButton />
                         {loading ? (
                             <span className="text-custom-light-2 dark:text-custom-dark-3">Loading...</span>
                         ) : user ? (
                             <>
-                                <UserButton dialog={false} />
+                                {/* <UserButton dialog={false} /> */}
                                 <a
                                     href="/dashboard"
-                                    className="relative justify-center cursor-pointer items-center space-x-2 text-center font-regular ease-out duration-200 rounded-[8px] outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-400 dark:bg-brand-500 hover:bg-brand/80 dark:hover:bg-brand/50 text-foreground border-brand-500/75 dark:border-brand/30 hover:border-brand-600 dark:hover:border-brand focus-visible:outline-brand-600 data-[state=open]:bg-brand-400/80 dark:data-[state=open]:bg-brand-500/80 data-[state=open]:outline-brand-600 text-xs px-2.5 py-1 h-[26px] hidden lg:block"
+                                    className="relative dark:border-gray-700 justify-center cursor-pointer items-center space-x-2 text-center font-regular ease-out duration-200 rounded-[8px] outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-400 dark:bg-brand-500 hover:bg-brand/80 dark:hover:bg-brand/50 text-foreground border-brand-500/75 dark:border-brand/30 hover:border-brand-600 dark:hover:border-brand focus-visible:outline-brand-600 data-[state=open]:bg-brand-400/80 dark:data-[state=open]:bg-brand-500/80 data-[state=open]:outline-brand-600 text-xs px-2.5 py-1 lg:px-4 lg:py-[15px] lg:rounded-xl h-[26px] hidden lg:flex lg:justify-center lg:items-center"
                                 >
                                     <p className="truncate">
-                                        Dashboard
+                                        {t("dashboard")}
                                     </p>
                                 </a>
                             </>
@@ -93,7 +93,7 @@ export default function NavBar({ locale }) {
                                 className="relative justify-center cursor-pointer items-center space-x-2 text-center font-regular ease-out duration-200 rounded-[8px] outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-400 dark:bg-brand-500 hover:bg-brand/80 dark:hover:bg-brand/50 text-foreground border-brand-500/75 dark:border-brand/30 hover:border-brand-600 dark:hover:border-brand focus-visible:outline-brand-600 data-[state=open]:bg-brand-400/80 dark:data-[state=open]:bg-brand-500/80 data-[state=open]:outline-brand-600 text-xs px-2.5 py-1 h-[26px] hidden lg:block"
                             >
                                 <p className="truncate">
-                                    Log in
+                                    {t("log-in")}
                                 </p>
                             </a>
                         )}
