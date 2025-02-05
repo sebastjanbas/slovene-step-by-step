@@ -47,7 +47,7 @@ export const people = [
   },
   {
     id: 5,
-    name: ["Ksenija", "Šabec"],
+    name: ["Ksenija", "Votiakova"],
     role: "Professional Teacher/Tutor",
     fluentIn: ["Slovene", "Russian", "English"],
     imageUrl: "/foto-ksenja.jpg",
