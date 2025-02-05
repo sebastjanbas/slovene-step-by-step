@@ -93,8 +93,8 @@ export const reviews = [
 
 export const footerLinks = {
   Personal: [
-    { name: "Profile", href: "/profile" },
-    { name: "Settings", href: "/profile/settings" },
+    { name: "Profile", href: "/settings" },
+    { name: "Settings", href: "/settings" },
     { name: "Dashboard", href: "/dashboard" },
   ],
   QuickLinks: [
@@ -104,7 +104,7 @@ export const footerLinks = {
   ],
   Company: [
     { name: "About", href: "/about-us" },
-    { name: "Contact us", href: "/info/contact-us" },
+    { name: "Contact us", href: "mailto:sebastjan.bas@gmail.com?cc=almn140803@gmail.com&subject=[Slovene Step By Step] - Support&body=<Enter your message here.>" },
     { name: "FAQ", href: "/pricing#FAQ" },
   ],
   Legal: [

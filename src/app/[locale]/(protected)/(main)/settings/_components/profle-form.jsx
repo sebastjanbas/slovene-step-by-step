@@ -76,7 +76,7 @@ const ProfileForm = ({ user, onUpdate }) => {
                 />
                 <Button
                     type="submit"
-                    className="self-start transition-all duration-300 hover:bg-[#2F006B] hover:text-white"
+                    className="self-start rounded-full transition-all duration-300 hover:bg-custom-button-hover-l hover:text-white"
                 >
                     {isLoading ? (
                         <>

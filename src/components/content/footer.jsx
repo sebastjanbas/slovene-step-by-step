@@ -11,7 +11,7 @@ export default function Footer() {
     const t = useTranslations("Footer");
 
     const pathname = usePathname();
-    if (pathname.includes("/auth") || pathname.includes("/dashboard")) {
+    if (pathname.includes("/auth") || pathname.includes("/legal")) {
         return null;
     }
 

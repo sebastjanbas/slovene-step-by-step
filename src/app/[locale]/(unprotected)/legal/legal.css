@@ -1,0 +1,56 @@
+@media (max-width: 768px) {
+  section {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  section {
+    width: 50rem;
+    place-self: center;
+  }
+}
+
+section {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  margin-top: 2rem;
+  text-wrap: wrap;
+}
+
+h1 {
+  font-size: 1.875rem /* 30px */;
+  line-height: 2.25rem /* 36px */;
+  font-weight: 500;
+}
+
+p {
+  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+}
+
+h2 {
+  font-size: 1.25rem /* 20px */;
+  line-height: 1.75rem /* 28px */;
+  font-weight: 500;
+  padding-bottom: 0.5rem;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 1.25rem /* 20px */;
+  padding-bottom: 1rem;
+}
+
+a {
+  color: blue;
+}
+a:hover {
+  text-decoration-line: underline;
+}
+
+h3 {
+  font-size: 1.125rem /* 18px */;
+  line-height: 1.75rem /* 28px */;
+  font-weight: 500;
+}
