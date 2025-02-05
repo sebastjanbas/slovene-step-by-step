@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { footerLinks } from "@/lib/docs";
 import { SocialLinks } from "../ui/social-links";
 import { useTranslations } from "next-intl";
+import Logo from "../icons/Logo";
 
 export default function Footer() {
 
@@ -21,7 +22,7 @@ export default function Footer() {
             <div className="py-16 border-t-[1px] border-gray-500">
                 <div className="size-8">
                     <span className="sr-only">Slovene Step By Step</span>
-                    <img alt="Company Logo" src={`/Logo.svg`} />
+                    <Logo />
                 </div>
                 <p className="my-8 text-custom-light-3 dark:text-custom-dark-3">
                     {t("title")}

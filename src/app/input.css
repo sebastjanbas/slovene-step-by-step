@@ -3,3 +3,7 @@
 @tailwind utilities;
 
 /* npx tailwindcss -i ./src/app/input.css -o ./src/app/global.css --watch; */
+
+*::-webkit-scrollbar {
+  display: none !important;
+}

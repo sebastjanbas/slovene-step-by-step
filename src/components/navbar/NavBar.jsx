@@ -10,6 +10,7 @@ import { useTranslations } from 'next-intl';
 import LanguageSwitcher from "./language-swithcher";
 import { useAuth } from "../auth/AuthProvider";
 import { UserButton } from "../auth/UserButton";
+import Logo from "../icons/Logo";
 
 
 
@@ -35,11 +36,7 @@ export default function NavBar({ locale }) {
 
                             <Link href="/" type="button" className="block w-auto h-6 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:ring-offset-4 focus-visible:ring-offset-background-alternative focus-visible:rounded-sm">
                                 <span className="sr-only">Slovene Step By Step</span>
-                                <img
-                                    alt="Company Logo"
-                                    src={`/Logo.svg`}
-                                    className="h-7 w-auto"
-                                />
+                                <Logo className={"size-5 h-7 w-auto"} />
                             </Link>
                         </div>
 
@@ -90,7 +87,7 @@ export default function NavBar({ locale }) {
                         ) : (
                             <a
                                 href="/auth/login"
-                                className="relative justify-center cursor-pointer items-center space-x-2 text-center font-regular ease-out duration-200 rounded-[8px] outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-400 dark:bg-brand-500 hover:bg-brand/80 dark:hover:bg-brand/50 text-foreground border-brand-500/75 dark:border-brand/30 hover:border-brand-600 dark:hover:border-brand focus-visible:outline-brand-600 data-[state=open]:bg-brand-400/80 dark:data-[state=open]:bg-brand-500/80 data-[state=open]:outline-brand-600 text-xs px-2.5 py-1 h-[26px] hidden lg:block"
+                                className="relative dark:border-gray-700 justify-center cursor-pointer items-center space-x-2 text-center font-regular ease-out duration-200 rounded-[8px] outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-400 dark:bg-brand-500 hover:bg-brand/80 dark:hover:bg-brand/50 text-foreground border-brand-500/75 dark:border-brand/30 hover:border-brand-600 dark:hover:border-brand focus-visible:outline-brand-600 data-[state=open]:bg-brand-400/80 dark:data-[state=open]:bg-brand-500/80 data-[state=open]:outline-brand-600 text-xs px-2.5 py-1 h-[26px] hidden lg:block"
                             >
                                 <p className="truncate">
                                     {t("log-in")}

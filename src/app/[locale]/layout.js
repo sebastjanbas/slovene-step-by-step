@@ -54,19 +54,10 @@ export default async function LocaleLayout({ children, params: { locale } }) {
           disableTransitionOnChange
           >
           <NextIntlClientProvider messages={messages}>
-            {/* <Banner textColor={"text-[#DC770A]"} bgColor={"bg-[#FFFFD0]"} /> */}
-            {/* <div className="sticky top-0 z-50"> */}
-            <div className="sticky top-0 z-40 transform" style={{transform: "translate3d(0,0,999px)"}}>
-            <NavBar locale={locale} />
-            <div className="absolute inset-0 h-full w-full bg-background/90 dark:bg-background/95 !opacity-100 transition-opacity"></div>
-            </div>
             <AnimatedLayout>
-              {/* <main className="relative isolate px-6 pt-14 lg:px-8"> */}
-              {/* <main className="bg-custom-gradient from-white to-emerald-400"> */}
-              <main>
+                <main>
                 {children}
-              </main>
-              <Footer />
+                </main>
             </AnimatedLayout>
           </NextIntlClientProvider>
         </ThemeProvider>

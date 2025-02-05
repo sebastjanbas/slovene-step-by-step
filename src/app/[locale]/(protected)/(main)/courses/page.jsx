@@ -18,13 +18,13 @@ export default async function ProductsPage() {
     const { data: { user } } = await supabase.auth.getUser();
 
     return (
-        <section>
-            <div className="flex items-center justify-center mt-8">
-                <h1 className="text-7xl font-semibold text-custom-light-1 dark:text-custom-dark-1">Courses</h1>
-            </div>
-            <div className="overflow-x-hidden mx-14">
+        <div className="flex flex-col gap-4">
+            <h1 className="sticky top-0 z-[10] flex items-center justify-between border-b border-gray-300 bg-background/50 p-6 text-4xl backdrop-blur-lg">
+                <span>Courses</span>
+            </h1>
+            <div className="flex flex-col gap-10 p-6">
                 <Courses />
             </div>
-        </section>
+        </div>
     );
 }

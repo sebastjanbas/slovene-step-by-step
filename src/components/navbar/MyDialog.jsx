@@ -8,6 +8,7 @@ import { ThemButton } from "../ui/ApearanceSwitchButton";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./language-swithcher";
 import { useAuth } from "../auth/AuthProvider";
+import Logo from "../icons/Logo";
 
 
 export default function MyDialog({
@@ -55,11 +56,7 @@ export default function MyDialog({
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         <span className="sr-only">Slovene Step By Step</span>
-                                        <img
-                                            alt="Company Logo"
-                                            src={`/Logo.svg`}
-                                            className="h-7 w-auto"
-                                        />
+                                        <Logo className="h-7 w-auto" />
                                     </Link>
                                     <div className="flex flex-row justify-center items-center gap-2">
                                         <LanguageSwitcher locale={locale} />

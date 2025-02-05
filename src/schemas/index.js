@@ -43,3 +43,13 @@ export const ResetPasswordEmail = z.object({
         message: 'Please enter a valid email address',
     })
 })
+
+
+export const EditUserProfileSchema = z.object({
+    name: z.string().min(1, {
+        message: "Enter your full name",
+    }),
+    email: z.string().email({
+        message: "Please enter a valid email address",
+    })
+})

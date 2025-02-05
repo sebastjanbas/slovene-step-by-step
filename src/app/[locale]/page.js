@@ -6,6 +6,8 @@ import Stats from "@/components/Stats";
 import { getTranslations } from "next-intl/server";
 import { reviews } from "@/lib/docs";
 import SectionTitle from "@/components/titles/SectionTitle";
+import NavBar from "@/components/navbar/NavBar";
+import Footer from "@/components/content/footer";
 
 export async function generateMetadata({ params: { locale } }) {
   const t = await getTranslations({ locale, namespace: "Metadata" });
@@ -15,8 +17,10 @@ export async function generateMetadata({ params: { locale } }) {
   };
 }
 
-export default function Home() {
+export default function Home({params: {locale}}) {
   return (
+    <>
+    <NavBar locale={locale} />
     <div className="overflow-hidden">
       <Hero />
       <DetailsPageHero />
@@ -26,7 +30,7 @@ export default function Home() {
           id="why-us"
           header={"why-us"}
           paragraph={"why-us-sub"}
-        >
+          >
           <BentoGrid />
         </SectionTitle>
       </div>
@@ -36,7 +40,7 @@ export default function Home() {
           id="statistics"
           header={"stats-subtitle"}
           paragraph={"stats-title"}
-        >
+          >
           <div className="flex justify-center items-center">
           <Stats />
           </div>
@@ -54,5 +58,7 @@ export default function Home() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
