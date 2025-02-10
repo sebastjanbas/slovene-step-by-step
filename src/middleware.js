@@ -34,7 +34,7 @@ export async function middleware(request) {
 export const config = {
   matcher: [
     '/', 
-    '/(sl|ru|en)/:path*',
+    '/(sl|ru|en|it)/:path*',
     '/((?!api|_next/static|_next/image|images|assets|favicon.ico|auth/confirm|auth/callback|auth/update-password|.*\\.(?:svg|jpg|jpeg|png|gif|ico)$).*)',
   ]
 };

@@ -4,7 +4,8 @@ import { getTranslations } from 'next-intl/server';
 import { redirect } from "next/navigation";
 
 
-export async function generateMetadata({ params: { locale } }) {
+export async function generateMetadata({ params }) {
+    const { locale } = await params;
     const t = await getTranslations({ locale, namespace: "Metadata" });
     return {
         title: t("log-title"),

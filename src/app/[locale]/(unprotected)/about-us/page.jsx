@@ -11,7 +11,8 @@ import Link from "next/link";
 import { AccordionCustom } from "@/components/ui/AccordionCustom";
 import Image from "next/image";
 
-export async function generateMetadata({ params: { locale } }) {
+export async function generateMetadata({ params }) {
+    const { locale } = await params;
     const t = await getTranslations({ locale, namespace: "Metadata" });
     return {
         title: t("about-title"),

@@ -30,7 +30,9 @@ export default function LanguageSwitcher({ locale }) {
             >
                 <option value="en">en</option>
                 <option value="sl">sl</option>
+                <option value="it">it</option>
                 <option value="ru">ru</option>
+
             </select>
         </div>
     );

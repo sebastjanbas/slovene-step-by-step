@@ -9,7 +9,8 @@ import SectionTitle from "@/components/titles/SectionTitle";
 import NavBar from "@/components/navbar/NavBar";
 import Footer from "@/components/content/footer";
 
-export async function generateMetadata({ params: { locale } }) {
+export async function generateMetadata({ params }) {
+  const {locale} = await params 
   const t = await getTranslations({ locale, namespace: "Metadata" });
   return {
     title: t("home-title"),
@@ -17,7 +18,9 @@ export async function generateMetadata({ params: { locale } }) {
   };
 }
 
-export default function Home({params: {locale}}) {
+export default async function Home({params}) {
+  const {locale} = await params
+
   return (
     <>
     <NavBar locale={locale} />

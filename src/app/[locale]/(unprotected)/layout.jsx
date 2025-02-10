@@ -2,7 +2,8 @@ import Footer from "@/components/content/footer";
 import NavBar from "@/components/navbar/NavBar";
 import React from "react";
 
-const UnprotectedLayout = ({ children, params: { locale } }) => {
+const UnprotectedLayout = async ({ children, params }) => {
+    const { locale } = await params;
     return (
         <>
             {/* <Banner textColor={"text-[#DC770A]"} bgColor={"bg-[#FFFFD0]"} /> */}

@@ -4,7 +4,8 @@ import { EmailComponent } from "@/components/info/EmailComponent";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
-export async function generateMetadata({ params: { locale } }) {
+export async function generateMetadata({ params }) {
+    const { locale } = await params;
     const t = await getTranslations({ locale, namespace: "Metadata" });
     return {
         title: t("pricing-title"),
