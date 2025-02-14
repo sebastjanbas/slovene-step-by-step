@@ -1,6 +1,15 @@
 import React from "react";
 import "../legal.css";
 
+export async function generateMetadata({ params }) {
+    const { locale } = await params
+    // const t = await getTranslations({ locale, namespace: "Metadata" });
+    return {
+        title: "License Agreement",
+        description: "License Agreement",
+    };
+}
+
 const LicenseePage = () => {
     return (
         <div className="flex flex-col justify-center items-center w-full mb-16">
