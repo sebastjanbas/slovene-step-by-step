@@ -23,11 +23,11 @@
     "title-strong": "Velemojster",
     "title-2": "Slovenskega jezika",
     "under-title": "Najboljša platforma za učenje Slovenščine",
-    "action-button": "Pričnite zdaj",
+    "action-button": "Začni zdaj",
     "more-info-button": "Izvedi več",
 
     "why-slovene-title" : "Zakaj bi se morali učiti slovenščino?",
-    "why-slovene-subtitle" : "Znanje je kralj",
+    "why-slovene-subtitle" : "Znanje je moč",
     "why-slovene-text1" : "Obvladovanje slovenščine je ključ do odklepanja neprimerljivih priložnosti in resničnega vključevanja v to živahno družbo.",
     "why-slovene-text2" : "Ne glede na to, ali se preselite, študirate ali delate, učenje slovenščine olajša vsakodnevno življenje. Od vzpostavljanja povezav do izpolnjevanja zahtev glede stalnega prebivališča je ključ do integracije. Naj vas jezikovne ovire ne zadržijo. Učenje slovenščine je vaša vstopnica za uspešno, obogateno in izpolnjujoče življenje v Sloveniji.",
     "why-slovene-point1-strong" : "Dvigni svojo kariero.",
@@ -109,7 +109,7 @@
 
     "sec2-title": "Premostitev kultur, opolnomočenje ljudi",
     "sec2-subtitle": "Zakaj delamo, kar delamo",
-    "sec2-par1": "Pri Slovene Step by Step je naše poslanstvo opolnomočiti posameznike iz različnih okolij z zagotavljanjem prilagojenih, privlačnih in učinkovitih izkušenj pri učenju jezikov. Prizadevamo si za premostitev kulturnih vrzeli in spodbujanje povezav tako, da našim učencem pomagamo ne le pri učenju jezika, ampak se tudi počutijo kot doma v novih okoljih. S strokovnim vodenjem, prilagodljivimi možnostmi učenja in podporno skupnostjo želimo narediti učenje jezikov dostopno in prijetno za vse.",
+    "sec2-par1": "Pri Slovenščina Korak za Korakom je naše poslanstvo opolnomočiti posameznike iz različnih okolij z zagotavljanjem prilagojenih, privlačnih in učinkovitih izkušenj pri učenju jezikov. Prizadevamo si za premostitev kulturnih vrzeli in spodbujanje povezav tako, da našim učencem pomagamo ne le pri učenju jezika, ampak se tudi počutijo kot doma v novih okoljih. S strokovnim vodenjem, prilagodljivimi možnostmi učenja in podporno skupnostjo želimo narediti učenje jezikov dostopno in prijetno za vse.",
     "sec2-par2": "Predstavljamo si svet, kjer jezikovne ovire ne ovirajo več priložnosti ali integracije. Kar se je začelo kot platforma za podporo rusko govorečim migrantom, ki živijo v Sloveniji, je preraslo v živahno središče za učence iz različnih jezikovnih in kulturnih okolij.",
     "sec2-par3": "Naš cilj je postati vodilna platforma za učenje jezikov v Sloveniji in širše, ki posameznikom pomaga sprostiti njihov polni potencial z obvladovanjem jezika. Prizadevamo si zgraditi globalno skupnost učencev, ki jih združuje njihova strast do rasti, povezovanja in kulturne izmenjave.",
     "sec2-par4": "Z inovativnimi metodami poučevanja, predanimi inštruktorji in zavezanostjo k odličnosti slovenščina korak za korakom še naprej utira pot za učence jezikov po vsem svetu.",
@@ -117,7 +117,7 @@
     "sec3-title": "Ljudje za programom",
     "sec3-subtitle": "Passionate. Experienced. Dedicated.",
     "sec3-par1": "Smo dinamična skupina posameznikov, ki so navdušeni nad tem, kar počnemo, in predani zagotavljanju najboljših rezultatov za naše stranke.",
-    "sec3-par2": "Pri Slovenskem Korak za korakom našo ekipo sestavljajo strastni pedagogi, izkušeni jezikoslovci in predano podporno osebje, ki ima skupen cilj: pomagati našim študentom do uspeha. Vsak član prinaša edinstven nabor veščin in globoko predanost ustvarjanju prilagojene, privlačne učne izkušnje.",
+    "sec3-par2": "Pri Slovenščina Korak za korakom našo ekipo sestavljajo posamezniki, izkušeni v različnih jezikih. Imaojo skupen cilj: pomagati našim študentom do uspeha. Vsak član prinaša edinstven nabor veščin in globoko predanost ustvarjanju prilagojene, privlačne učne izkušnje.",
     "sec3-par3": "Naši mentorji, med katerimi je veliko naravnih govorcev, so ponosni na to, da študente vodijo skozi njihovo pot učenja jezikov in jim nudijo podporo na vsakem koraku. Ne glede na to, ali gre za obvladovanje osnov ali izpopolnjevanje naprednih veščin, smo tukaj, da vzbujamo zaupanje, spodbujamo rast in praznujemo vsak mejnik.",
     "sec3-par4": "Skupaj smo več kot ekipa – smo skupnost, ki verjame v moč jezika za povezovanje, opolnomočenje in preoblikovanje življenj.",
     
@@ -146,25 +146,40 @@
     "subtitle": "Cenik",
     "text": "Poiščite popoln načrt za osvajanje slovenščine korak za korakom. Prilagojene lekcije, prilagodljive možnosti in strokovna navodila, ki vam bodo pomagali z lahkoto doseči jezikovne cilje.",
 
-    "plan1-desc": "Popoln načrt za učenje slovenščine s partnerjem, pa naj gre za prijatelja, sodelavca ali družinskega člana. Uživajte v skupni motivaciji in prilagojenih, interaktivnih lekcijah.",
-    "plan1-feature1": "Interaktivne in privlačne seje",
+    "plan1-desc": "Prilagodljiv načrt za učenje slovenščine v paru. Uživajte v skupni motivaciji in prilagojenih, interaktivnih lekcijah, ki trajajo 60 min.",
+    "plan1-feature1": "Poučne ure z naravnim govorcem in profesionalnim tutorjem",
     "plan1-feature2": "Vadite s prijateljem ali družinskim članom",
-    "plan1-feature3": "Prilagodljiv urnik in materiali po meri",
+    "plan1-feature3": "Prilagodljiv urnik in materijali",
     "plan1-feature4": "Sodobne metode poučevanja.",
+    "plan1-feature5": "Dostop do učnih materialov za izpit A1, A2, B1, B2, C1",
+    "plan1-feature6": "+ 1 dodatna brezplačna ura",
+    "plan1-feature7": "Dostop do šolskih materialov za učence, dijake in študente",
+    "plan1-feature8": "Zaseban telegram skupina",
+    "plan1-feature9": "Dostop do posnetkov preteklih predavanj",
     
-    "plan2-desc": "Popoln načrt, če šele začenjate s slovenščino. Izkoristite interaktivne seje in prilagodljiv urnik, ki bo ustrezal vašemu zasedenemu življenjskemu slogu.",
-    "plan2-feature1": "Lekcije ena na ena, prilagojene vašim ciljem",
-    "plan2-feature2": "+ 1 dodatni brezplačni razred",
-    "plan2-feature3": "Interaktivne in privlačne seje",
-    "plan2-feature4": "Prilagodljiv urnik in materiali po meri",
+    "plan2-desc": "Prilagodljiv načrt, če šele začenjate s slovenščino. Izkoristite 45 min interaktivne seje in prilagodljiv urnik, ki vam bo ustrezal.",
+    "plan2-feature1": "45 min individualne ure, prilagojene vašim ciljem",
+    "plan2-feature2": "+ 1 dodatna brezplačna ura",
+    "plan2-feature3": "Dostop do šolskih materialov za učence, dijake in študente",
+    "plan2-feature4": "Prilagodljiv urnik in materijali",
     "plan2-feature5": "Sodobne metode poučevanja.",
+    "plan2-feature6": "Dostop do učnih materialov za izpit A1, A2, B1, B2, C1",
+    "plan2-feature7": "Poučne ure z naravnim govorcem in profesionalnim tutorjem",
+    "plan2-feature8": "Zaseben tutor",
+    "plan2-feature9": "Dostop do posnetkov preteklih predavanj", 
+
     
-    "plan3-desc": "Popoln načrt za majhne skupine, idealen za družine ali prijatelje. Uživajte v sodelovalnih lekcijah s skupinskimi dejavnostmi in skupnimi cilji za zabavno in učinkovito izkušnjo.",
-    "plan3-feature1": "Zabavne, sodelovalne lekcije",
-    "plan3-feature2": "Interaktivne in privlačne seje",
+    "plan3-desc": "Prilagodljiv načrt za majhne skupine, idealen za družine ali prijatelje. Uživajte v 60 min lekcijah s skupinskimi dejavnostmi in skupnimi cilji.",
+    "plan3-feature1": "Zasebna telegram skupina",
+    "plan3-feature2": "Dostop do šolskih materialov za učence, dijake in študente",
     "plan3-feature3": "Vadite s prijateljem ali družinskim članom",
     "plan3-feature4": "Sodobne metode poučevanja.",
-  
+    "plan3-feature5": "Dostop do učnih materialov za izpit A1, A2, B1, B2, C1",
+    "plan3-feature6": "+ 1 dodatna brezplačna ura",
+    "plan3-feature7": "Poučne ure z naravnim govorcem in profesionalnim tutorjem",
+    "plan3-feature8": "Dostop do posnetkov preteklih predavanj",
+    "plan3-feature9": "Prilagodljiv urnik in materijali",
+    
     "plan-button": "Začni zdaj!",
 
     "sec2-title": "Pogosta vprašanja",
@@ -228,7 +243,10 @@
     "student": "Učenec",
     "student-VladLisin": "Študiram že približno 6 mesecev in v tem času sem svojo raven izboljšal od zdravo (pozdravljeni) - hvala (hvala) do rednih polnopravnih pogovorov s Slovenci. Učitelje bi označil za odgovorne in strokovne strokovnjake, zato vam ta program zelo priporočam, če se želite naučiti slovenščine.",
     "student-AnnaKotelnikova": "Slovenščino se učim od začetka. Rad bi se zahvalil svojemu učitelju za individualni pristop, zanimive lekcije in dobro razlago snovi. Priporočam vsem!",
-    "student-AlexanderMolchanov": "Tečaj je super, učim se šest mesecev. Res deluje. Pred tem sem poskušal študirati sam - ni šlo."
+    "student-AlexanderMolchanov": "Tečaj je super, učim se šest mesecev. Res deluje. Pred tem sem poskušal študirati sam - ni šlo.",
+    "student-EvgeniaRudakova": "Učim se s Sašo, nikoli ne zamuja, kar je zame zelo pomembno! Vsako uro se pogovarjamo in pregledujemo slovnico!",
+    "student-VioletaLisin": "Toplo priporočam! S fanti se je super udobno učiti slovenščine, pouk poteka v zelo prijaznem vzdušju, vse je jasno in ni dolgočasno!🫶",
+    "student-OlegKotelnikov": "Pozdravljeni vsi, ime mi je Oleg. Začetnikom v učenju slovenščine toplo priporočam ure s Sašo. Z njim je študirala vsa moja družina, žena in sin, žena pa še naprej študira. Zelo smo zadovoljni s predstavitvijo gradiva, Sasha vedno posluša vprašanja in komentarje. Zelo sem vesel, da sem ga spoznal, in sem zelo hvaležen za lekcije."
   },
   
   "ProductsPage": {

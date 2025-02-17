@@ -49,7 +49,7 @@ export default function PricingContent() {
                     <ul
                         role="list"
                         className={classNames(
-                            tier.featured ? 'text-white dark:text-custom-dark-1' : 'text-custom-light-3 dark:text-custom-dark-1',
+                            tier.featured ? 'text-white pb-10 dark:text-custom-dark-1' : 'text-custom-light-3 dark:text-custom-dark-1',
                             'mt-8 space-y-3 text-sm/6 sm:mt-10',
                         )}
                     >

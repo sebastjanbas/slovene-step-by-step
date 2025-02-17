@@ -65,7 +65,7 @@ export const reviews = [
   {
     id: 1,
     image:
-      "https://images.unsplash.com/photo-1605462863863-10d9e47e15ee?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "/foto-vlad.png",
     name: "Vlad Lisin",
     role: "student",
     text: "student-VladLisin",
@@ -74,7 +74,7 @@ export const reviews = [
   {
     id: 2,
     image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "/foto-anna.png",
     name: "Anna Kotelnikova",
     role: "student",
     text: "student-AnnaKotelnikova",
@@ -83,10 +83,37 @@ export const reviews = [
   {
     id: 3,
     image:
-      "https://images.unsplash.com/photo-1463453091185-61582044d556?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    name: "Alexander Molchanov",
+      "/foto-oleksiy.png",
+    name: "Oleksiy Molchanov",
     role: "student",
     text: "student-AlexanderMolchanov",
+    stars: [true, true, true, true, true],
+  },
+  {
+    id: 4,
+    image:
+      "/foto-evgenia.png",
+    name: "Evgenia Rudakova",
+    role: "student",
+    text: "student-EvgeniaRudakova",
+    stars: [true, true, true, true, true],
+  },
+  {
+    id: 5,
+    image:
+      "/foto-violeta.png",
+    name: "Violeta Lisin",
+    role: "student",
+    text: "student-VioletaLisin",
+    stars: [true, true, true, true, true],
+  },
+  {
+    id: 6,
+    image:
+      "/foto-oleg.png",
+    name: "Oleg Kotelnikov",
+    role: "student",
+    text: "student-OlegKotelnikov",
     stars: [true, true, true, true, true],
   },
 ];
@@ -126,6 +153,11 @@ export const offers = [
         "plan1-feature2",
         "plan1-feature3",
         "plan1-feature4",
+        "plan1-feature5",
+        "plan1-feature6",
+        "plan1-feature7",
+        "plan1-feature8",
+        "plan1-feature9",
       ],
       featured: false,
     },
@@ -141,6 +173,10 @@ export const offers = [
         "plan2-feature3",
         "plan2-feature4",
         "plan2-feature5",
+        "plan2-feature6",
+        "plan2-feature7",
+        "plan2-feature8",
+        "plan2-feature9",
       ],
       featured: true,
     },
@@ -155,6 +191,11 @@ export const offers = [
         "plan3-feature2",
         "plan3-feature3",
         "plan3-feature4",
+        "plan3-feature5",
+        "plan3-feature6",
+        "plan3-feature7",
+        "plan3-feature8",
+        "plan3-feature9",
       ],
       featured: false,
   },

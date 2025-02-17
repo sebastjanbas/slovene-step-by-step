@@ -152,24 +152,39 @@
     "subtitle": "Pricing",
     "text": "Find the perfect plan to master Slovene step by step. Tailored lessons, flexible options, and expert guidance to help you achieve your language goals with ease.",
 
-    "plan1-desc": "The perfect plan to learn Slovene with a partner, whether a friend, colleague, or family member. Enjoy shared motivation and tailored, interactive lessons.",
-    "plan1-feature1": "Interactive and engaging sessions",
+    "plan1-desc": "A flexible plan for learning Slovenian in pairs. Enjoy shared motivation and personalized, interactive 60-minute lessons.",
+    "plan1-feature1": "Lessons with a native speaker and a professional tutor",
     "plan1-feature2": "Practice with a friend or family member",
-    "plan1-feature3": "Flexible schedule and customized materials",
+    "plan1-feature3": "Flexible schedule and materials",
     "plan1-feature4": "Modern teaching methods.",
+    "plan1-feature5": "Access to study materials for the A1, A2, B1, B2, C1 exam",
+    "plan1-feature6": "+ 1 additional free class",
+    "plan1-feature7": "Access to school materials for pupils, students and students",
+    "plan1-feature8": "Private Telegram group",
+    "plan1-feature9": "Access to recordings of past lectures",
     
-    "plan2-desc": "The perfect plan if you're just getting started with Slovene. Benefit from interactive sessions and flexible scheduling to fit your busy lifestyle.",
-    "plan2-feature1": "One-on-one lessons tailored to your goals",
+    "plan2-desc": "A flexible plan if you're just starting out in Slovenian. Take advantage of 45-minute interactive sessions and a flexible schedule that works for you.",
+    "plan2-feature1": "45 min individual lessons tailored to your goals",
     "plan2-feature2": "+ 1 additional free class",
-    "plan2-feature3": "Interactive and engaging sessions",
-    "plan2-feature4": "Flexible schedule and customized materials",
+    "plan2-feature3": "Access to school materials for pupils, students and students",
+    "plan2-feature4": "Flexible schedule and materials",
     "plan2-feature5": "Modern teaching methods.",
+    "plan2-feature6": "Access to study materials for the A1, A2, B1, B2, C1 exam",
+    "plan2-feature7": "Lessons with a native speaker and a professional tutor",
+    "plan2-feature8": "Private tutor",
+    "plan2-feature9": "Access to recordings of past lectures", 
+
     
-    "plan3-desc": "The perfect plan for small groups, ideal for families or friends. Enjoy collaborative lessons with group activities and shared goals for a fun, effective experience.",
-    "plan3-feature1": "Fun, collaborative lessons",
-    "plan3-feature2": "Interactive and engaging sessions",
+    "plan3-desc": "A flexible plan for small groups, ideal for families or friends. Enjoy 60 min lessons with group activities and shared goals.",
+    "plan3-feature1": "Private Telegram group",
+    "plan3-feature2": "Access to school materials for pupils, students and students",
     "plan3-feature3": "Practice with a friend or family member",
     "plan3-feature4": "Modern teaching methods.",
+    "plan3-feature5": "Access to study materials for the A1, A2, B1, B2, C1 exam",
+    "plan3-feature6": "+ 1 additional free class",
+    "plan3-feature7": "Lessons with a native speaker and a professional tutor",
+    "plan3-feature8": "Access to recordings of past lectures",
+    "plan3-feature9": "Flexible schedule and materials",
   
     "plan-button": "Get started today",
 
@@ -241,7 +256,10 @@
     "student": "Student",
     "student-VladLisin": "I have been studying for about 6 months now, during which time I have improved my level from zdravo (hello) - hvala (thank you), to full-fledged conversations with Slovenians on a regular basis. I would characterize the teachers as a responsible and professional specialists and therefore I highly recommend this program if you want to learn Slovenian.",
     "student-AnnaKotelnikova": "I am learning Slovenian from scratch. I want to thank my teacher for the individual approach, interesting lessons and good explanations of the material. I recommend it to everyone!",
-    "student-AlexanderMolchanov": "The course is great, I've been studying for six months. It really works. Before that I tried to study on my own - it didn't work."
+    "student-AlexanderMolchanov": "The course is great, I've been studying for six months. It really works. Before that I tried to study on my own - it didn't work.",
+    "student-EvgeniaRudakova": "I study with Sasha, he is never late, which is very important to me! We talk and go over grammar every lesson!",
+    "student-VioletaLisin": "I highly recommend it! It's super comfortable to study Slovenian with the guys, the classes are held in a very friendly atmosphere, everything is clear and not boring!🫶",
+    "student-OlegKotelnikov": "Hello everyone, my name is Oleg. I highly recommend classes with Sasha to beginners in learning Slovenian. My whole family, my wife and son studied with him and my wife continues to study. We are very pleased with the presentation of the material, Sasha always listens to questions and comments. I am very glad to have met him and am very grateful for the lessons."
   },
 
   "Countdown": {
