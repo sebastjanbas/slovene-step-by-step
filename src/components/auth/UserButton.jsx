@@ -1,8 +1,6 @@
 "use client";
 
 import { FaUser } from "react-icons/fa";
-import { CgProfile } from "react-icons/cg";
-import { IoSettingsOutline } from "react-icons/io5";
 import { IoExitOutline } from "react-icons/io5";
 import {
     DropdownMenu,
@@ -26,6 +24,7 @@ const avatarStyles = {
 
 export const UserButton = () => {
     const { user } = useAuth();
+    console.log("USER INFO: ", user)
 
     return (
         <DropdownMenu>

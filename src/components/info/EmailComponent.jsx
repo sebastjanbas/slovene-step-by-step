@@ -1,7 +1,6 @@
 "use client";
 import React from 'react'
 import { Button } from '../ui/button';
-import Link from 'next/link';
 
 export const EmailComponent = ({ title, subtitle, buttontext }) => {
     return (

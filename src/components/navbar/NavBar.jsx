@@ -9,7 +9,6 @@ import { ThemButton } from "../ui/ApearanceSwitchButton";
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from "./language-swithcher";
 import { useAuth } from "../auth/AuthProvider";
-import { UserButton } from "../auth/UserButton";
 import Logo from "../icons/Logo";
 
 

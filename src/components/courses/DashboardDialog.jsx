@@ -5,10 +5,8 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from '@/i18n/routing';
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { ThemButton } from "../ui/ApearanceSwitchButton";
 import { useTranslations } from 'next-intl';
 import { useAuth } from "../auth/AuthProvider";
-import { UserButton } from "../auth/UserButton";
 import { Button } from "@/components/ui/button";
 import { menuOptions } from "@/lib/docs";
 

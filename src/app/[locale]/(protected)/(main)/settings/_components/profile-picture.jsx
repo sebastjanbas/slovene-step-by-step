@@ -1,43 +1,71 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import UploadcareButton from "./uplodcare-button";
+import { deleteImageUploadcare, updateUserAvatar } from "@/actions/update-user";
+import { toast } from "sonner";
+import UploadcareImage from "@uploadcare/nextjs-loader";
 
-export const ProfilePicture = ({ userImage, onDelete, onUpload }) => {
-    const router = useRouter();
-    const onRemoveProfileImage = async () => {
-        const response = await onDelete();
-        if (response) {
-            router.refresh();
-        }
-    };
 
-    return (
-        <div className="flex flex-col ">
-            <p className="text-lg text-white">Profile Picture</p>
-            <div className="flex h-[30vh] flex-col items-center justify-center">
-                {userImage ? (
-                    <>
-                        <div className="relative flex flex-col justify-center items-center h-full w-1/2">
-                            <div className="relative aspect-square max-w-[80%]">
-                                <img src={userImage} alt="User Image" />
-                            </div>
-                            <Button
-                                onClick={onRemoveProfileImage}
-                                className="relative bg-transparent text-white/70 hover:bg-transparent hover:text-white"
-                            >
-                                <X />
-                                Remove Logo
-                            </Button>
-                        </div>
-                    </>
-                ) : (
-                    // <UploadcareButton onUpload={onUpload} />
-                    <div>Upload button</div>
-                )}
+export const ProfilePicture = ({ userImage }) => {
+  const router = useRouter();
+
+  // extract id from url
+  function extractId(url) {
+    const pathname = new URL(url).pathname;
+    return pathname.split("/")[1];
+  }
+
+  const onRemoveProfileImage = async () => {
+
+    const imageId = extractId(userImage); // extract if from the url
+    const result = deleteImageUploadcare(imageId)
+
+    const response = await updateUserAvatar("");
+
+    if (response.error) {
+      toast.error(response.error);
+      return;
+    }
+
+    if (response.success) {
+      toast.success(response.success);
+      // window.location.href = "/settings"; // reload the page for client components
+      router.refresh(); // refresh the page
+    }
+  };
+
+  return (
+    <div className="flex flex-col ">
+      <p className="text-lg text-white">Profile Picture</p>
+      <div className="flex h-[30vh] flex-col items-center justify-center">
+        {userImage ? (
+          <>
+            <div className="relative flex flex-col gap-10 justify-center items-center h-full w-1/2">
+              <div className="relative aspect-square w-56">
+                <UploadcareImage
+                  src={userImage}
+                  width="512"
+                  height="512"
+                  alt="User Image"
+                />
+              </div>
+              <Button
+                onClick={onRemoveProfileImage}
+                variant={"link"}
+                className=""
+              >
+                <X />
+                Remove Logo
+              </Button>
             </div>
-        </div>
-    );
+          </>
+        ) : (
+          <UploadcareButton />
+        )}
+      </div>
+    </div>
+  );
 };

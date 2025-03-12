@@ -1,20 +1,25 @@
-import React from 'react'
+import React from "react";
 
 const DashboardPage = () => {
-    return (
-        <div className="flex flex-col gap-4">
-            <h1 className="sticky top-0 z-[10] flex items-center justify-between border-b border-gray-300 dark:border-white/20 bg-background/50 p-6 text-4xl backdrop-blur-lg">
-                <span>Dashboard</span>
-            </h1>
-            <div className="flex flex-col gap-10 p-6">
-                <div>
-                    <h2 className="text-2xl font-bold">Dashboard coming soon</h2>
-                    <p className="text-base text-white/50">
-                    </p>
-                </div>
-            </div>
+  return (
+    <>
+      <h1 className="w-full text-center text-5xl ">Dashboard</h1>
+      <div className="w-full flex flex-col md:flex-row  justify-center mt-10 gap-20 items-center p-5">
+        <div className="h-60 w-60 border-gray-500/50 border-[1px] flex justify-center items-center rounded-3xl">
+          STATS
         </div>
-    )
-}
+        <div className="h-60 w-60 border-gray-500/50 border-[1px] flex justify-center items-center rounded-3xl">
+          STATS
+        </div>
+        <div className="h-60 w-60 border-gray-500/50 border-[1px] flex justify-center items-center rounded-3xl">
+          STATS
+        </div>
+      </div>
+      <div className="mt-10 p-5">
+        More statistics
+      </div>
+    </>
+  );
+};
 
-export default DashboardPage
+export default DashboardPage;

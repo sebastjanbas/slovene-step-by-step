@@ -1,7 +1,3 @@
-import Course from "@/components/icons/course";
-import Home from "@/components/icons/home";
-import Payment from "@/components/icons/payment";
-import Settings from "@/components/icons/settings";
 
 export const webNavigation = [
   { name: "pricing", href: "/pricing" },
@@ -199,11 +195,4 @@ export const offers = [
       ],
       featured: false,
   },
-]
-
-export const menuOptions = [
-  { name: 'Dashboard', Component: Home, href: '/dashboard' },
-  { name: 'Settings', Component: Settings, href: '/settings' },
-  { name: 'Courses', Component: Course, href: '/courses'},
-  { name: 'Billing', Component: Payment, href: '#' },
 ]

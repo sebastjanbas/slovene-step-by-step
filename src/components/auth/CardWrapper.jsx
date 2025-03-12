@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Header } from "./Header";
 import { Social } from "./Social";
 import { BackButton } from "./BackButton";

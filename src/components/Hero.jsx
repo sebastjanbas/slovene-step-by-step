@@ -5,12 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from 'react';
 // import Link from "next/link";
 import { Link } from '@/i18n/routing';
-import SvgBlobContainer from "./ui/svg-blob-container";
-import SvgBlob from "./ui/svg-blob";
 import { useTranslations } from 'next-intl';
-import { BoxDecoration } from "./ui/BoxDecoration";
-import { Background } from "./ui/Background";
-
 
 gsap.registerPlugin(ScrollTrigger);
 

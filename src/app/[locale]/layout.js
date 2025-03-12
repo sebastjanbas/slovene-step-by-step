@@ -1,5 +1,5 @@
 import React from "react";
-import "../global.css";
+import "../input.css"
 import AnimatedLayout from "@/components/ui/AnimatedLayout";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";

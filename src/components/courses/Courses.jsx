@@ -1,5 +1,5 @@
 import React from 'react'
-import { Course } from './Course'
+// import { Course } from './Course'
 import { Skeleton } from './Skeleton'
 
 export const Courses = () => {

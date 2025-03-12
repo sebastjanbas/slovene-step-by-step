@@ -1,6 +1,6 @@
 "use client";
 import { useGSAP } from '@gsap/react';
-import { RocketLaunchIcon, ChatBubbleLeftRightIcon, ArrowTrendingUpIcon, BookOpenIcon } from '@heroicons/react/20/solid'
+import { RocketLaunchIcon, ChatBubbleLeftRightIcon, BookOpenIcon } from '@heroicons/react/20/solid'
 import gsap, { ScrollTrigger } from 'gsap/all';
 import { useTranslations } from "next-intl";
 

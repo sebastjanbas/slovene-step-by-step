@@ -1,9 +1,7 @@
 "use client";
 
 import { Bars3Icon, HomeIcon } from "@heroicons/react/20/solid";
-import { BackArrowButton } from "../auth/BackArrowButton";
 import { useState } from "react";
-import Image from "next/image";
 import DashboardDialog from "./DashboardDialog";
 import Link from "next/link";
 
