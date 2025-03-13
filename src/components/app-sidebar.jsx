@@ -1,13 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { Bot, Frame, Map, PieChart, Settings2 } from "lucide-react";
+import { Settings2 } from "lucide-react";
 
 import { GoVideo } from "react-icons/go";
 import { RxPencil2 } from "react-icons/rx";
+import { TiSpanner } from "react-icons/ti";
 
 import { NavMain } from "@/components/nav-main";
-// import { NavProjects } from "@/components/nav-projects";
+import { NavProjects } from "@/components/nav-projects";
 import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
@@ -85,25 +86,15 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
+      name: "Course Management",
+      url: "/management",
+      icon: TiSpanner,
     },
   ],
 };
 
 export function AppSidebar({ ...props }) {
-  const { user } = useAuth();
+  const { user, admin } = useAuth();
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -122,7 +113,7 @@ export function AppSidebar({ ...props }) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        {/* <NavProjects projects={data.projects} /> */}
+        {admin && <NavProjects projects={data.projects} />}
       </SidebarContent>
       <SidebarFooter>
         <div className="p-[2px]">

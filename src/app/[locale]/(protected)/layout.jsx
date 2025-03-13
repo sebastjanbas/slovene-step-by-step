@@ -1,5 +1,6 @@
 
 import { AppSidebar } from "@/components/app-sidebar"
+import ErrorHangling from "@/components/dashboard/error-handling";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -23,11 +24,12 @@ const ProtectedLayout = async ({ children }) => {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {
-    redirect("/auth/login");
+    redirect("/auth/login")
   }
 
   return (
     <SidebarProvider>
+      <ErrorHangling />
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">

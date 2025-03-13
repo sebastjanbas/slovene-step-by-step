@@ -28,6 +28,7 @@ import {
 import { Button } from "@headlessui/react";
 import { logout } from "@/actions/logout";
 import { useAuth } from "./auth/AuthProvider";
+import { Badge } from "./ui/badge";
 
 export function NavUser({ user }) {
   const { isMobile } = useSidebar();
@@ -64,7 +65,7 @@ export function NavUser({ user }) {
                     {user?.user_metadata.full_name}
                   </span>
                   {admin && (
-                    <span className="w-5 h-5 rounded-full bg-blue-500 flex justify-center items-center font-bold">
+                    <span className="w-5 h-5 rounded-full text-white bg-blue-500 flex justify-center items-center font-bold">
                       A
                     </span>
                   )}
@@ -94,9 +95,14 @@ export function NavUser({ user }) {
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">
+                <div className="flex flex-row justify-between items-center">
+                  <span className="truncate gap-3 font-semibold">
                     {user?.user_metadata.full_name}
                   </span>
+                  {admin && (
+                  <Badge className="bg-blue-500 text-white">ADMIN</Badge>
+                  )}
+                </div>
                   <span className="truncate text-xs">
                     {user?.user_metadata.email}
                   </span>
