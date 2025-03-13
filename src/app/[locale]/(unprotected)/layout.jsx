@@ -4,20 +4,17 @@ import SmoothScroll from "@/components/ui/smooth-scroll";
 import React from "react";
 
 const UnprotectedLayout = async ({ children, params }) => {
-    const { locale } = await params;
-    return (
-        <>
-            {/* <Banner textColor={"text-[#DC770A]"} bgColor={"bg-[#FFFFD0]"} /> */}
-            <div className="sticky top-0 z-50">
-                {/* <div className="sticky top-0 z-40 transform" style={{ transform: "translate3d(0,0,999px)" }}> */}
-                <NavBar locale={locale} />
-            </div>
-            <main>
-                {children}
-            </main>
-            <Footer />
-        </>
-    );
+  const { locale } = await params;
+  return (
+    <>
+      {/* <Banner textColor={"text-[#DC770A]"} bgColor={"bg-[#FFFFD0]"} /> */}
+      <div className="sticky top-0 z-50">
+        <NavBar locale={locale} />
+      </div>
+      <main>{children}</main>
+      <Footer />
+    </>
+  );
 };
 
 export default UnprotectedLayout;

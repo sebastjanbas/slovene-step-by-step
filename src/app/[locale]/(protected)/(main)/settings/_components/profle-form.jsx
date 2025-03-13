@@ -21,7 +21,6 @@ import { toast } from "sonner";
 const ProfileForm = ({ user }) => {
   const [isLoading, setLoading] = useState(false);
 
-
   const form = useForm({
     mode: "onChange",
     resolver: zodResolver(EditUserProfileSchema),
@@ -63,7 +62,12 @@ const ProfileForm = ({ user }) => {
                 User full name
               </FormLabel>
               <FormControl>
-                <Input {...field} placeholder="Name" type="text" />
+                <Input
+                  {...field}
+                  className="!focus:ring-0 !focus:outline-none !ring-transparent !outline-none"
+                  placeholder="Name"
+                  type="text"
+                />
               </FormControl>
               <FormMessage className="text-red-500" />
             </FormItem>

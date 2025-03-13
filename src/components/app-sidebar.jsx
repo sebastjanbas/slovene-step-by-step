@@ -78,7 +78,7 @@ const data = {
         },
         {
           title: "User settings",
-          url: "#",
+          url: "/settings",
         },
       ],
     },
@@ -110,7 +110,7 @@ export function AppSidebar({ ...props }) {
       <SidebarHeader>
         <div className="flex flex-row justify-start items-center gap-1">
           <Link href={"/dashboard"}>
-            <div className="h-fit w-fit scale-75 -translate-x-2 p-2 bg-transparent border-gray-400/50 border-[1px] rounded-xl flex justify-center items-center">
+            <div className="h-fit w-fit scale-75 -translate-x-1 p-2 bg-transparent border-gray-400/50 border-[1px] rounded-xl flex justify-center items-center">
               <Logo className="size-6" />
             </div>
           </Link>
@@ -125,7 +125,9 @@ export function AppSidebar({ ...props }) {
         {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
-        <ThemButton />
+        <div className="p-[2px]">
+          <ThemButton />
+        </div>
         <NavUser user={user} />
       </SidebarFooter>
       <SidebarRail />

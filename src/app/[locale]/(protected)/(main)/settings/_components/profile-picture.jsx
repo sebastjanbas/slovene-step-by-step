@@ -40,11 +40,11 @@ export const ProfilePicture = ({ userImage }) => {
   return (
     <div className="flex flex-col ">
       <p className="text-lg text-white">Profile Picture</p>
-      <div className="flex h-[30vh] flex-col items-center justify-center">
+      <div className="flex h-full flex-col items-center justify-center">
         {userImage ? (
           <>
             <div className="relative flex flex-col gap-10 justify-center items-center h-full w-1/2">
-              <div className="relative aspect-square w-56">
+              <div className="relative pt-10 aspect-square w-56">
                 <UploadcareImage
                   src={userImage}
                   width="512"
@@ -58,7 +58,7 @@ export const ProfilePicture = ({ userImage }) => {
                 className=""
               >
                 <X />
-                Remove Logo
+                Remove Profile Photo
               </Button>
             </div>
           </>
