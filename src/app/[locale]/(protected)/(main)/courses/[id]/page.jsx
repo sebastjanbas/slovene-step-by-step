@@ -6,12 +6,16 @@ import React from "react";
 const CourseDetailPage = async ({ params }) => {
   const { id: courseId } = await params;
   const supabase = await createClient();
+  const { data: courseTitle, error: courseError } = await supabase
+    .from("course")
+    .select("title")
+    .eq("id", courseId);
   const { data, error } = await supabase
     .from("video-lesson")
     .select("*")
     .eq("course_id", courseId);
 
-  if (error) {
+  if (error || courseError) {
     redirect(`/courses/${courseId}?error=Error trying to fetch course data`);
   }
   /*  {
@@ -28,21 +32,23 @@ const CourseDetailPage = async ({ params }) => {
 
   return (
     <>
-      <h1 className="text-4xl text-center w-full">Couse detail page</h1>
+      <h1 className="text-4xl text-center w-full">{courseTitle[0]?.title}</h1>
 
-      <p>Course ID: {params.id}</p>
+      <p>Course ID: {courseId}</p>
 
-      <div className="w-full h-full flex flex-wrap gap-10 p-10">
-        {data.map((video, i) => (
-          <div key={i} className="w-[400px]">
-            <Course
-              image={video.thumbnail_url}
-              title={video.title}
-              description={video.description}
-              href={"#"}
-            />
-          </div>
-        ))}
+      <div className="w-full h-full flex flex-wrap justify-center items-center gap-10 p-10">
+        {data
+          .sort((a, b) => a.order - b.order)
+          .map((video, i) => (
+            <div key={i} className="w-[400px]">
+              <Course
+                image={video.thumbnail_url}
+                title={video.title}
+                description={video.description}
+                href={`/courses/${courseId}/${video.id}`}
+              />
+            </div>
+          ))}
       </div>
     </>
   );

@@ -26,7 +26,7 @@ export default async function ProductsPage() {
       <h1 className="sticky top-0 z-[10] flex items-center justify-between border-b border-gray-300 bg-background/50 p-6 text-4xl backdrop-blur-lg">
         <span>Courses</span>
       </h1>
-      <div className="flex flex-wrap gap-10 p-6">
+      <div className="flex flex-wrap gap-10 justify-center items-center p-10">
         {data.map((course, i) => (
           <div key={i} className="w-[400px]">
             <Course
