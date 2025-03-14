@@ -27,13 +27,13 @@ const data = {
   navMain: [
     {
       title: "Video Lectures",
-      url: "#",
+      url: "/courses",
       icon: GoVideo,
       isActive: true,
       items: [
         {
           title: "Theme1",
-          url: "#",
+          url: "/courses",
         },
         {
           title: "Theme2",
