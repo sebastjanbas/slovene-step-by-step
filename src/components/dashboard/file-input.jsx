@@ -10,7 +10,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../ui/dialog";
-import { Progress } from "../ui/progress";
 import { createClient } from "@/utils/supabase/client";
 import { useForm } from "react-hook-form";
 import { UploadFilesSchema } from "@/schemas";

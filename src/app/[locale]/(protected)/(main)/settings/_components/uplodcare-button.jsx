@@ -26,8 +26,8 @@ function UploadcareButton() {
   return (
     <div>
       <FileUploaderRegular
-        sourceList="local, url, camera, dropbox"
-        classNameUploader="uc-dark uc-purple"
+        sourceList="local, url, camera"
+        classNameUploader="uc-orange"
         pubkey="f51ca2a664320901a3c3"
         onFileUploadSuccess={(event) => handleUpload(event)}
       />

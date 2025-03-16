@@ -8,20 +8,18 @@ import { deleteImageUploadcare, updateUserAvatar } from "@/actions/update-user";
 import { toast } from "sonner";
 import UploadcareImage from "@uploadcare/nextjs-loader";
 
+// extract id from url
+export function extractId(url) {
+  const pathname = new URL(url).pathname;
+  return pathname.split("/")[1];
+}
 
 export const ProfilePicture = ({ userImage }) => {
   const router = useRouter();
 
-  // extract id from url
-  function extractId(url) {
-    const pathname = new URL(url).pathname;
-    return pathname.split("/")[1];
-  }
-
   const onRemoveProfileImage = async () => {
-
     const imageId = extractId(userImage); // extract if from the url
-    const result = deleteImageUploadcare(imageId)
+    const result = deleteImageUploadcare(imageId);
 
     const response = await updateUserAvatar("");
 

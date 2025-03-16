@@ -62,3 +62,13 @@ export const UploadFilesSchema = z.object({
   }),
   file: z.instanceof(File, { message: "Invalid file" }),
 });
+
+export const EditCourseData = z.object({
+  title: z.string().min(1, {
+    message: "Enter a valid course name"
+  }),
+  description: z.string().min(1, {
+    message: "Enter a valid course description"
+  }),
+})
+
