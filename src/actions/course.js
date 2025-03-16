@@ -26,10 +26,13 @@ export const UpdateCourseInfo = async (id, values) => {
 
   const { error } = await supabase
     .from("course")
-    .update({ title: values.title, description: values.description })
+    .update({ title: values.title, description: values.description, order: values.order })
     .eq("id", id);
 
   if (error) {
+    if (error.code == "23505"){
+      return {error: "Course number already exists!"}
+    }
     return { error: "Something went wrong!" };
   } else {
     return { success: "Information updated successfully!" };
@@ -54,9 +57,13 @@ export const CreateCourse = async (values) => {
   const { error } = await supabase.from("course").insert({
     title: values.title,
     description: values.description,
+    order: values.order,
   });
 
   if (error) {
+    if (error.code == "23505"){
+      return {error: "Course number already exists!"}
+    }
     return { error: "Error occured when creating a course" };
   } else {
     return { success: "Course created successfully!" };

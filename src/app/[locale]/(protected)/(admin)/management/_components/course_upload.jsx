@@ -28,7 +28,7 @@ import {
 import { EditCourseData } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { DialogTitle } from "@radix-ui/react-dialog";
-import { Plus, Upload } from "lucide-react";
+import { Plus } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -42,6 +42,7 @@ const CourseUpload = () => {
     defaultValues: {
       title: "",
       description: "",
+      order: "",
     },
   });
 
@@ -54,11 +55,11 @@ const CourseUpload = () => {
     } else {
       form.reset();
       toast.success(result.success);
+      window.location.reload();
     }
 
     setIsUploading(false);
     setIsOpen(false);
-    window.location.reload();
   };
 
   return (
@@ -66,7 +67,7 @@ const CourseUpload = () => {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger onClick={() => setIsOpen(true)}>
-            <Plus className="text-foreground" />
+            <Plus className="-translate-x-2 size-5 text-foreground" />
           </TooltipTrigger>
           <TooltipContent>Add a Course</TooltipContent>
         </Tooltip>
@@ -111,6 +112,28 @@ const CourseUpload = () => {
                         disabled={isUploading}
                         className="!focus:ring-0 !focus:outline-none !ring-transparent !outline-none"
                         placeholder="Enter a description ..."
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="order"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Course Number</FormLabel>
+                    <FormDescription>
+                      Enter a positive number you want the course to be listed
+                    </FormDescription>
+                    <FormControl>
+                      <Input
+                        disabled={isUploading}
+                        type="number"
+                        className="!focus:ring-0 !focus:outline-none !ring-transparent !outline-none"
+                        placeholder="Course Number"
                         {...field}
                       />
                     </FormControl>

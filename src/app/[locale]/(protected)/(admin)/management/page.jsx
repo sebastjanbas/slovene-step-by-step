@@ -40,17 +40,20 @@ const ManagementPage = async () => {
                   <CourseUpload />
                 </CardHeader>
                 <CardContent className="space-y-2 p-1">
-                  {data?.map((course, i) => (
-                    <div key={i} className="w-full">
-                      <CourseEdit
-                        id={course.id}
-                        title={course.title}
-                        desc={course.description}
-                        image={course.thumbnail_url}
-                        date={course.created_at}
-                      />
-                    </div>
-                  ))}
+                  {data
+                    ?.sort((a, b) => a.order - b.order)
+                    .map((course, i) => (
+                      <div key={i} className="w-full">
+                        <CourseEdit
+                          id={course.id}
+                          title={course.title}
+                          desc={course.description}
+                          image={course.thumbnail_url}
+                          date={course.created_at}
+                          order={course.order}
+                        />
+                      </div>
+                    ))}
                 </CardContent>
               </Card>
             </TabsContent>

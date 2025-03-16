@@ -30,13 +30,13 @@ export function AppSidebar({ ...props }) {
   React.useEffect(() => {
     const runSupabase = async () => {
       const supabase = createClient();
-      const { data, error } = await supabase.from("course").select("id, title");
+      const { data, error } = await supabase.from("course").select("id, title, order");
 
       if (error) {
         redirect("/dashboard?error=Error loading courses in sidebar!")
       }
       let newArray = []
-      data.map((item) => {
+      data.sort((a,b) => a.order - b.order).map((item) => {
         newArray.push({title: item.title, url: `/courses/${item.id}`})
       })
 

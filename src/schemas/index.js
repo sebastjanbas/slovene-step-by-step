@@ -65,10 +65,16 @@ export const UploadFilesSchema = z.object({
 
 export const EditCourseData = z.object({
   title: z.string().min(1, {
-    message: "Enter a valid course name"
+    message: "Enter a valid course name",
   }),
   description: z.string().min(1, {
-    message: "Enter a valid course description"
+    message: "Enter a valid course description",
   }),
-})
-
+  order: z.coerce
+    .number({
+      required_error: "Course number is required",
+      invalid_type_error: "It must be a number",
+    })
+    .int({ message: "Munst be a whole number" })
+    .positive({ message: "Must be a positive number" }),
+});

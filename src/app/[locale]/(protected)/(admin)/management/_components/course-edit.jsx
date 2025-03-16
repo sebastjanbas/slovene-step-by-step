@@ -47,7 +47,7 @@ import ThumbnailUploader from "./thumbnail-upload";
 import { DeleteCourse, UpdateCourseInfo } from "@/actions/course";
 import { toast } from "sonner";
 
-const CourseEdit = ({ id, title, desc, image, date }) => {
+const CourseEdit = ({ id, title, desc, image, date, order }) => {
   const [isUploading, setIsUploading] = useState(false);
 
   function formatDate(dateStr) {
@@ -60,8 +60,9 @@ const CourseEdit = ({ id, title, desc, image, date }) => {
   const form = useForm({
     resolver: zodResolver(EditCourseData),
     defaultValues: {
-      title: "",
-      description: "",
+      title: title,
+      description: desc,
+      order: order,
     },
   });
 
@@ -74,10 +75,10 @@ const CourseEdit = ({ id, title, desc, image, date }) => {
     } else {
       form.reset();
       toast.success(result.success);
+      window.location.reload();
     }
 
     setIsUploading(false);
-    window.location.reload();
   };
 
   const handleDelete = async () => {
@@ -111,9 +112,7 @@ const CourseEdit = ({ id, title, desc, image, date }) => {
               <DropdownMenuContent className="p-3 w-56 rounded-md">
                 <DropdownMenuGroup>
                   <DialogTrigger className="w-full">
-                    <DropdownMenuItem onClick={() => setIsOpen(true)}>
-                      Edit
-                    </DropdownMenuItem>
+                    <DropdownMenuItem>Edit</DropdownMenuItem>
                   </DialogTrigger>
                   <AlertDialogTrigger className="w-full">
                     <DropdownMenuItem>Remove</DropdownMenuItem>
@@ -165,6 +164,29 @@ const CourseEdit = ({ id, title, desc, image, date }) => {
                             disabled={isUploading}
                             className="!focus:ring-0 !focus:outline-none !ring-transparent !outline-none"
                             placeholder="Enter a description ..."
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="order"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Course Number</FormLabel>
+                        <FormDescription>
+                          Enter a positive number you want the course to be
+                          listed
+                        </FormDescription>
+                        <FormControl>
+                          <Input
+                            disabled={isUploading}
+                            type="number"
+                            className="!focus:ring-0 !focus:outline-none !ring-transparent !outline-none"
+                            placeholder="Course Number"
                             {...field}
                           />
                         </FormControl>
