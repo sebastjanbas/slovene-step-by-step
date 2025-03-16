@@ -21,79 +21,88 @@ import Logo from "./icons/Logo";
 import { useAuth } from "./auth/AuthProvider";
 import Link from "next/link";
 import { ThemButton } from "./ui/ApearanceSwitchButton";
-
-// This is sample data.
-const data = {
-  navMain: [
-    {
-      title: "Video Lectures",
-      url: "/courses",
-      icon: GoVideo,
-      isActive: true,
-      items: [
-        {
-          title: "Theme1",
-          url: "/courses",
-        },
-        {
-          title: "Theme2",
-          url: "#",
-        },
-        {
-          title: "Theme3",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Excercises",
-      url: "#",
-      icon: RxPencil2,
-      items: [
-        {
-          title: "Topic1",
-          url: "#",
-        },
-        {
-          title: "Topic2",
-          url: "#",
-        },
-        {
-          title: "Topic3",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "Video settings",
-          url: "#",
-        },
-        {
-          title: "Excercise settigns",
-          url: "#",
-        },
-        {
-          title: "User settings",
-          url: "/settings",
-        },
-      ],
-    },
-  ],
-  projects: [
-    {
-      name: "Course Management",
-      url: "/management",
-      icon: TiSpanner,
-    },
-  ],
-};
+import { createClient } from "@/utils/supabase/client";
+import { redirect } from "next/navigation";
 
 export function AppSidebar({ ...props }) {
+  const [courseData, setCourseData] = React.useState([]);
+
+  React.useEffect(() => {
+    const runSupabase = async () => {
+      const supabase = createClient();
+      const { data, error } = await supabase.from("course").select("id, title");
+
+      if (error) {
+        redirect("/dashboard?error=Error loading courses in sidebar!")
+      }
+      let newArray = []
+      data.map((item) => {
+        newArray.push({title: item.title, url: `/courses/${item.id}`})
+      })
+
+      setCourseData(newArray);
+    };
+
+    runSupabase()
+  },[]);
+
+  const data = {
+    navMain: [
+      {
+        title: "Video Lectures",
+        url: "/courses",
+        icon: GoVideo,
+        isActive: true,
+        items: courseData, 
+      },
+      {
+        title: "Excercises",
+        url: "#",
+        icon: RxPencil2,
+        items: [
+          {
+            title: "Topic1",
+            url: "#",
+          },
+          {
+            title: "Topic2",
+            url: "#",
+          },
+          {
+            title: "Topic3",
+            url: "#",
+          },
+        ],
+      },
+      {
+        title: "Settings",
+        url: "#",
+        icon: Settings2,
+        items: [
+          {
+            title: "Video settings",
+            url: "#",
+          },
+          {
+            title: "Excercise settigns",
+            url: "#",
+          },
+          {
+            title: "User settings",
+            url: "/settings",
+          },
+        ],
+      },
+    ],
+    projects: [
+      {
+        name: "Course Management",
+        url: "/management",
+        icon: TiSpanner,
+      },
+    ],
+  };
+
   const { user, admin } = useAuth();
 
   return (

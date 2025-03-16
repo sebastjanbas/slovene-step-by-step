@@ -44,12 +44,11 @@ import { EditCourseData } from "@/schemas";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import ThumbnailUploader from "./thumbnail-upload";
-import { UpdateCourseInfo } from "@/actions/course";
+import { DeleteCourse, UpdateCourseInfo } from "@/actions/course";
 import { toast } from "sonner";
 
 const CourseEdit = ({ id, title, desc, image, date }) => {
   const [isUploading, setIsUploading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
   function formatDate(dateStr) {
     // format the date
@@ -73,15 +72,28 @@ const CourseEdit = ({ id, title, desc, image, date }) => {
     if (result.error) {
       toast.error(result.error);
     } else {
+      form.reset();
       toast.success(result.success);
     }
 
     setIsUploading(false);
-    setIsOpen(false);
+    window.location.reload();
+  };
+
+  const handleDelete = async () => {
+    const response = await DeleteCourse(id);
+
+    if (response.error) {
+      toast.error(response.error);
+    } else {
+      toast.success(response.success);
+    }
+
+    window.location.reload();
   };
 
   return (
-    <div className="flex py-5 px-10 overflow-hidden flex-row justify-between items-center w-full h-fit border-foreground border-[1px]">
+    <div className="flex py-5 px-10 overflow-hidden flex-row justify-between items-center w-full h-fit border-foreground/40 rounded-lg border-[1px]">
       <div className="flex flex-col w-full justify-start items-start ">
         <h1>{title}</h1>
         <p>{desc}</p>
@@ -90,7 +102,7 @@ const CourseEdit = ({ id, title, desc, image, date }) => {
         <p className="text-sm italic">Last edited: {formatDate(date)}</p>
       </div>
       <div>
-        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <Dialog>
           <AlertDialog>
             <DropdownMenu>
               <DropdownMenuTrigger>
@@ -184,7 +196,10 @@ const CourseEdit = ({ id, title, desc, image, date }) => {
               <AlertDialogFooter>
                 <AlertDialogCancel>Cancel</AlertDialogCancel>
                 <AlertDialogAction asChild>
-                  <Button className="bg-red-700 text-white hover:bg-red-500">
+                  <Button
+                    onClick={handleDelete}
+                    className="bg-red-700 text-white hover:bg-red-500"
+                  >
                     Continue
                   </Button>
                 </AlertDialogAction>
