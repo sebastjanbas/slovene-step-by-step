@@ -1,8 +1,6 @@
-import React from "react";
+import React, from "react";
 import { getTranslations } from "next-intl/server";
-import { createClient } from "@/utils/supabase/server";
-import { Course } from "@/components/courses/Course";
-import { redirect } from "next/navigation";
+import { CourseList } from "./[id]/[video]/_components/course-list";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -13,30 +11,14 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function ProductsPage() {
-  const supabase = await createClient();
-  const { data, error } = await supabase.from("course").select("*");
-
-  if (error) {
-    redirect("/courses?error=Error trying to fetch course data");
-  }
-
+export default function CoursePage() {
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="sticky top-0 z-[10] flex items-center justify-between border-b border-gray-300 bg-background/50 p-6 text-4xl backdrop-blur-lg">
-        <span>Courses</span>
+      <h1 className="w-full text-center text-5xl border-b-[1px] border-foreground/30 pb-5">
+        Courses
       </h1>
-      <div className="flex flex-wrap gap-10 justify-center items-center p-10">
-        {data.map((course, i) => (
-          <div key={i} className="w-[400px]">
-            <Course
-              image={course.thumbnail_url}
-              title={course.title}
-              description={course.description}
-              href={`/courses/${course.id}`}
-            />
-          </div>
-        ))}
+      <div className="flex flex-col lg:grid lg:grid-cols-2 2xl:grid-cols-3 gap-10 justify-center items-center p-10">
+          <CourseList />
       </div>
     </div>
   );

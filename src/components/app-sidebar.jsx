@@ -36,7 +36,7 @@ export function AppSidebar({ ...props }) {
         redirect("/dashboard?error=Error loading courses in sidebar!")
       }
       let newArray = []
-      data.sort((a,b) => a.order - b.order).map((item) => {
+      data.sort((a,b)=> a.order - b.order).map((item) => {
         newArray.push({title: item.title, url: `/courses/${item.id}`})
       })
 
