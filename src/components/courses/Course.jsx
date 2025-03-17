@@ -37,9 +37,15 @@ export const Course = ({ id, type }) => {
           {lessonData
             .sort((a, b) => a.order - b.order)
             .map((video, i) => (
-              <Link key={i} href={`/courses/${id}/${video.id}`}>
-                <span>{video.title}</span>
-              </Link>
+              <Button
+                key={i}
+                asChild
+                className="text-start bg-transparent flex justify-start items-center w-ful"
+              >
+                <Link href={`/courses/${id}/${video.id}`}>
+                  <span className="text-foreground">{video.title}</span>
+                </Link>
+              </Button>
             ))}
         </SheetDescription>
       </>
@@ -53,7 +59,11 @@ export const Course = ({ id, type }) => {
         {lessonData
           .sort((a, b) => a.order - b.order)
           .map((video, i) => (
-            <Button key={i} asClild className="text-start bg-transparent flex justify-start items-center w-full hover:bg-black/5 dark:hover:bg-white/10" >
+            <Button
+              key={i}
+              asChild
+              className="text-start bg-transparent flex justify-start items-center w-full hover:bg-black/5 dark:hover:bg-white/10"
+            >
               <Link href={`/courses/${id}/${video.id}`}>
                 <h1 className="text-foreground">{video.title}</h1>
               </Link>

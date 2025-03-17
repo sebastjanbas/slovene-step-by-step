@@ -16,7 +16,7 @@ const CourseLayout = async ({ children, params }) => {
 
   return (
     <div className="h-full w-full flex flex-row-reverse md:flex-row">
-      <div className="block md:hidden px-5 -translate-y-10">
+      <div className="block absolute md:hidden h-[10px] px-5 -translate-y-10">
         <Sheet>
           <SheetTrigger>
             <LuListVideo className="size-5" />

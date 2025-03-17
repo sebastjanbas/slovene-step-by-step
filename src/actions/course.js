@@ -10,9 +10,9 @@ export const UploadThumbnail = async (id, url, table, prevImageId) => {
 
   const supabase = await createClient();
   const { error } = await supabase
-    .from(table)
+    .from("course")
     .update({ thumbnail_url: url })
-    .eq("id", id.toString());
+    .eq("id", id);
 
   if (error) {
     return { error: error };

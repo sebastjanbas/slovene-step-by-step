@@ -94,10 +94,10 @@ const CourseEdit = ({ id, title, desc, image, date, order }) => {
   };
 
   return (
-    <div className="flex py-5 px-10 overflow-hidden flex-row justify-between items-center w-full h-fit border-foreground/40 rounded-lg border-[1px]">
+    <div className="flex py-3 md:py-5 px-5 md:px-10 overflow-hidden flex-row justify-between items-center w-full h-fit border-foreground/40 rounded-lg border-[1px]">
       <div className="flex flex-col w-full justify-start items-start ">
-        <h1>{title}</h1>
-        <p>{desc}</p>
+        <h1 className="text-lg">{title}</h1>
+        <p className="hidden md:block">{desc}</p>
       </div>
       <div className="w-full">
         <p className="text-sm italic">Last edited: {formatDate(date)}</p>
