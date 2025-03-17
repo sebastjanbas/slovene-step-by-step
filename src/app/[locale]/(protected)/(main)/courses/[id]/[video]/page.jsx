@@ -12,11 +12,8 @@ const VideoPage = async ({ params }) => {
     .select("*, course(title)")
     .eq("id", videoId);
 
-
-  const link = `/courses/${data[0]?.course_id}/${videoId}`;
-
   if (error) {
-    redirect(`/courses/${link}?error=Error fetching the video data`);
+    redirect(`/courses?error=Error fetching the video data`);
   }
 
   const { data: videoLink, error: videoError } = await supabase.storage
@@ -24,7 +21,7 @@ const VideoPage = async ({ params }) => {
     .createSignedUrl(data[0].video_path, 3600);
 
   if (videoError) {
-    redirect(`/courses/${link}?error=Error fetching the video`);
+    redirect(`/courses?error=Error fetching the video`);
   }
 
   //  ------------------ FOR YOUTUBE --------------------------
@@ -43,14 +40,13 @@ const VideoPage = async ({ params }) => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <h1 className="uppercase text-4xl text-center w-full">{data[0].course.title}</h1>
-      <div className="flex flex-col w-full h-fit justify-center items-center max-w-7xl p-20">
         <VideoPlayer
           source={videoLink.signedUrl}
           thumbnail={data[0]?.thumbnail_url}
         />
-        <h1 className="self-start text-start text-2xl mt-5 font-semibold">{data[0].title}</h1>
-        <p className="self-start text-start mt-3">{data[0].description}</p>
+      <div className="flex flex-col w-full p-5 h-[600px] justify-start items-center">
+        <h1 className="text-center text-5xl mt-20 font-semibold">{data[0].title}</h1>
+        <p className="self-start text-start mt-5">{data[0].description}</p>
       </div>
     </div>
   );

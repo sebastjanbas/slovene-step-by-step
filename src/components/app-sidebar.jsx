@@ -25,35 +25,55 @@ import { createClient } from "@/utils/supabase/client";
 import { redirect } from "next/navigation";
 
 export function AppSidebar({ ...props }) {
-  const [courseData, setCourseData] = React.useState([]);
+  const [courseData, setCourseData] = React.useState(null);
 
   React.useEffect(() => {
     const runSupabase = async () => {
       const supabase = createClient();
-      const { data, error } = await supabase.from("course").select("id, title, order");
+
+      const { data, error } = await supabase
+        .from("course")
+        .select("id, title, order, video-lesson:id (id, order)")
+        .order("order"); // Order courses
+
 
       if (error) {
-        redirect("/dashboard?error=Error loading courses in sidebar!")
+        redirect("/dashboard?error=Error loading courses in sidebar!");
       }
-      let newArray = []
-      data.sort((a,b)=> a.order - b.order).map((item) => {
-        newArray.push({title: item.title, url: `/courses/${item.id}`})
-      })
+      let newArray = [];
+      data.map((item) => {
+
+        if (item?.["video-lesson"].length > 0) {
+          item?.["video-lesson"].sort((a, b) => a.order - b.order);
+
+          const videoId = item?.["video-lesson"][0]?.id
+
+          newArray.push({
+            title: item.title,
+            url: "/courses/"+item.id+"/"+videoId,
+          });
+        } else {
+          newArray.push({
+            title: item.title,
+            url: "#",
+          });
+        }
+      });
 
       setCourseData(newArray);
     };
 
-    runSupabase()
-  },[]);
+    runSupabase();
+  }, []);
 
   const data = {
     navMain: [
       {
-        title: "Video Lectures",
+        title: "Courses",
         url: "/courses",
         icon: GoVideo,
         isActive: true,
-        items: courseData, 
+        items: courseData,
       },
       {
         title: "Excercises",

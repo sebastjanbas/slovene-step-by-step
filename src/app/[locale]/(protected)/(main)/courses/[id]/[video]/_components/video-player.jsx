@@ -6,7 +6,7 @@ const VideoPlayer = ({source, thumbnail}) => {
       <video
         width={1280}
         height={720}
-        className="w-full aspect-video rounded-3xl shadow-lg"
+        className="w-full aspect-video shadow-lg"
         controlsList="nodownload"
         controls
         poster={thumbnail}

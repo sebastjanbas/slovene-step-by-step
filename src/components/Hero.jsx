@@ -6,6 +6,7 @@ import { useRef } from 'react';
 // import Link from "next/link";
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -87,7 +88,7 @@ export default function Hero() {
             </div>
             <div className="relative h-screen sm:h-fit flex flex-row-reverse mx-8 gap-x-5 lg:gap-x-20 lg:max-w-7xl justify-self-center overflow-hidden">
                 <div className="hidden sm:block relative aspect-square sm:h-48 sm:mt-60 md:h-56 lg:h-96 lg:mt-40">
-                    <img className="aspect-square w-auto sm:h-48 md:h-56 lg:h-96 object-cover rounded-full bg-custom-accent-l" src="/herro-picture.png" alt="" />
+                    <Image height={400} width={400} className="aspect-square w-auto sm:h-48 md:h-56 lg:h-96 object-cover rounded-full bg-custom-accent-l" src="/herro-picture.png" alt="" />
                 </div>
                 <div className="w-full py-[calc(100vh-90vh)] sm:py-48 lg:py-56">
                     <div className="mb-8 flex justify-center">

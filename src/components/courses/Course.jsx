@@ -1,24 +1,65 @@
+"use client";
+import { createClient } from "@/utils/supabase/client";
+import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { redirect } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { SheetDescription, SheetTitle } from "../ui/sheet";
+import { Button } from "../ui/button";
 
-export const Course = ({ image, title, description, href }) => {
+export const Course = ({ id, type }) => {
+  const [lessonData, setLessonData] = useState(null);
+  useEffect(() => {
+    const supabase = createClient();
+    const fetchData = async () => {
+      const { data, error } = await supabase
+        .from("video-lesson")
+        .select("id, title, order, course(title)")
+        .eq("course_id", id);
+      if (error) {
+        redirect(`/courses/${id}?error=Error trying to fetch course data`);
+      }
+      setLessonData(data);
+    };
+
+    fetchData();
+  }, []);
+
+  if (lessonData === null) {
+    return <h1 className="animate-pulse">Loading ...</h1>;
+  }
+
+  if (type === "sheet") {
     return (
-        <section>
-            <Link href={href}>
-                <div className="flex flex-col items-center rounded-xl shadow-xl">
-                    <img
-                        className="rounded-t-xl h-[200px] w-[400px]"
-                        src={image}
-                        alt={title}
-                    />
-                    <div className="w-full px-6 py-3 flex justify-between">
-                        <div>
-                            <h1 className="text-2xl text-start font-bold">{title}</h1>
-                            <p className="text-lg">{description}</p>
-                        </div>
-                    </div>
-                </div>
-            </Link>
-        </section>
+      <>
+        <SheetTitle>{lessonData[0].course.title}</SheetTitle>
+        <SheetDescription className="flex flex-col">
+          {lessonData
+            .sort((a, b) => a.order - b.order)
+            .map((video, i) => (
+              <Link key={i} href={`/courses/${id}/${video.id}`}>
+                <span>{video.title}</span>
+              </Link>
+            ))}
+        </SheetDescription>
+      </>
     );
+  }
+
+  return (
+    <section className="p-5">
+      <h1 className="font-bold text-lg">{lessonData[0].course.title}</h1>
+      <div className="ml-1">
+        {lessonData
+          .sort((a, b) => a.order - b.order)
+          .map((video, i) => (
+            <Button key={i} asClild className="text-start bg-transparent flex justify-start items-center w-full hover:bg-black/5 dark:hover:bg-white/10" >
+              <Link href={`/courses/${id}/${video.id}`}>
+                <h1 className="text-foreground">{video.title}</h1>
+              </Link>
+            </Button>
+          ))}
+      </div>
+    </section>
+  );
 };
