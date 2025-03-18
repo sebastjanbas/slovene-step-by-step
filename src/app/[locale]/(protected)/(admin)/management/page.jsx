@@ -66,7 +66,7 @@ const ManagementPage = async () => {
                     <CardTitle>Videos</CardTitle>
                     <CardDescription>Manage your videos</CardDescription>
                   </div>
-                  <VideoUpload courseData={data} />
+                  <VideoUpload data={data} />
                 </CardHeader>
                 <CardContent className="space-y-2 p-1 gap-5">
                   {data.map((course, i) => (
@@ -75,12 +75,12 @@ const ManagementPage = async () => {
                       <div className="flex flex-row gap-5">
                         {course?.["video-lesson"]?.sort((a,b) => a.order - b.order).map((video, i) => (
                           <div key={i} className="">
-                            <p>{video.title}</p>
-                            <p>{video.description}</p>
-                            <p>{video.video_path}</p>
-                            <p>{video.duration}</p>
-                            <p>{video.order}</p>
-                            <p>{video.created_at}</p>
+                            <p>title: {video.title}</p>
+                            <p>desc: {video.description}</p>
+                            <p>path: {video.video_path}</p>
+                            <p>duration: {video.duration}</p>
+                            <p>order: {video.order}</p>
+                            <p>date: {video.created_at}</p>
                           </div>
                         ))}
                       </div>

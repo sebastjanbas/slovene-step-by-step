@@ -26,12 +26,16 @@ export const UpdateCourseInfo = async (id, values) => {
 
   const { error } = await supabase
     .from("course")
-    .update({ title: values.title, description: values.description, order: values.order })
+    .update({
+      title: values.title,
+      description: values.description,
+      order: values.order,
+    })
     .eq("id", id);
 
   if (error) {
-    if (error.code == "23505"){
-      return {error: "Course number already exists!"}
+    if (error.code == "23505") {
+      return { error: "Course number already exists!" };
     }
     return { error: "Something went wrong!" };
   } else {
@@ -61,8 +65,8 @@ export const CreateCourse = async (values) => {
   });
 
   if (error) {
-    if (error.code === "23505"){
-      return {error: "Course number already exists!"}
+    if (error.code === "23505") {
+      return { error: "Course number already exists!" };
     }
     return { error: "Error occured when creating a course" };
   } else {
@@ -73,7 +77,7 @@ export const CreateCourse = async (values) => {
 export const createVideo = async (values) => {
   const supabase = await createClient();
 
-  const {error} = await supabase.from("video-lesson").insert({
+  const { error } = await supabase.from("video-lesson").insert({
     title: values.title,
     course_id: values.courseId,
     description: values.description,
@@ -83,12 +87,11 @@ export const createVideo = async (values) => {
   });
 
   if (error) {
-    if (error.code === "23505"){
-
-      return {error: "Course number already exists!"}
+    if (error.code === "23505") {
+      return { error: "Video order number already exists!" };
     }
-    return { error: "Error occured when creating a course" };
+    return { error: "Error occured when creating a video" };
   } else {
-    return { success: "Course created successfully!" };
+    return { success: "Video created successfully!" };
   }
-}
+};

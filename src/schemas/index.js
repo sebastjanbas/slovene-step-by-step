@@ -83,6 +83,11 @@ export const EditVideoData = z.object({
   title: z.string().min(1, {
     message: "Enter a valid video name",
   }),
+  courseId: z
+    .string({
+      required_error: "Enter course ID",
+    })
+    .uuid({ message: "Enter a valid course ID" }),
   description: z.string().min(1, {
     message: "Enter a valid video description",
   }),
@@ -100,4 +105,10 @@ export const EditVideoData = z.object({
     })
     .int({ message: "Must be a whole number" })
     .positive({ message: "Must be a positive number" }),
+  videoPath: z
+    .string({
+      required_error: "Video path required",
+    })
+    .min(3),
+  file: z.instanceof(File, { message: "Invalid file" }),
 });
