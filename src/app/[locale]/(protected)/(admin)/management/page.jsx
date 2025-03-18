@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import VideoUpload from "./_components/VideoUpload";
 
 const ManagementPage = async () => {
   const supabase = await createClient();
@@ -65,7 +66,7 @@ const ManagementPage = async () => {
                     <CardTitle>Videos</CardTitle>
                     <CardDescription>Manage your videos</CardDescription>
                   </div>
-                  <CourseUpload />
+                  <VideoUpload courseData={data} />
                 </CardHeader>
                 <CardContent className="space-y-2 p-1 gap-5">
                   {data.map((course, i) => (

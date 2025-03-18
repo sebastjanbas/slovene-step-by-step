@@ -78,3 +78,26 @@ export const EditCourseData = z.object({
     .int({ message: "Munst be a whole number" })
     .positive({ message: "Must be a positive number" }),
 });
+
+export const EditVideoData = z.object({
+  title: z.string().min(1, {
+    message: "Enter a valid video name",
+  }),
+  description: z.string().min(1, {
+    message: "Enter a valid video description",
+  }),
+  duration: z.coerce
+    .number({
+      required_error: "Enter a duration in seconds",
+      invalid_type_error: "It must be a number",
+    })
+    .int({ message: "Must be a whole number" })
+    .positive({ message: "Must be a positive number" }),
+  order: z.coerce
+    .number({
+      required_error: "Video number is required",
+      invalid_type_error: "It must be a number",
+    })
+    .int({ message: "Must be a whole number" })
+    .positive({ message: "Must be a positive number" }),
+});

@@ -29,6 +29,7 @@ import { Button } from "@headlessui/react";
 import { logout } from "@/actions/logout";
 import { useAuth } from "./auth/AuthProvider";
 import { Badge } from "./ui/badge";
+import Link from "next/link";
 
 export function NavUser({ user }) {
   const { isMobile } = useSidebar();
@@ -118,10 +119,12 @@ export function NavUser({ user }) {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
+              <Link href="/settings">
               <DropdownMenuItem>
                 <BadgeCheck />
                 Account
               </DropdownMenuItem>
+              </Link>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
