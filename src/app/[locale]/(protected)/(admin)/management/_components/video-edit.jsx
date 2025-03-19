@@ -1,11 +1,20 @@
 "use client";
-import { createVideo } from "@/actions/course";
-import { Button } from "@/components/ui/button";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import "@uploadcare/react-uploader/core.css";
+import React, { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
@@ -17,105 +26,140 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { CreateVideoData } from "@/schemas";
-import { createClient } from "@/utils/supabase/client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { DialogTitle } from "@radix-ui/react-dialog";
-import { LoaderCircle, Plus } from "lucide-react";
-import React, { useState } from "react";
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { EditVideoData } from "@/schemas";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { DeleteVideo, UpdateVideoInfo } from "@/actions/course";
 import { toast } from "sonner";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-const CourseUpload = ({ data }) => {
+function formatDate(dateStr) {
+  // format the date
+  const date = new Date(dateStr);
+  const options = { day: "numeric", month: "long", year: "numeric" };
+  return date.toLocaleDateString("en-GB", options);
+}
+
+function formatVideoDuration(seconds) {
+  // Ensure seconds is a valid number
+  const totalSeconds = Number(seconds);
+
+  if (isNaN(totalSeconds) || totalSeconds < 0) {
+    return "0:00"; // Return a default value if invalid
+  }
+
+  const hrs = Math.floor(totalSeconds / 3600);
+  const mins = Math.floor((totalSeconds % 3600) / 60);
+  const secs = Math.floor(totalSeconds % 60);
+
+  return hrs > 0
+    ? `${hrs}:${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`
+    : `${mins}:${String(secs).padStart(2, "0")}`;
+}
+
+const VideoEdit = ({data,id, title, courseId, desc, order, duration, date }) => {
   const [isUploading, setIsUploading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
   const form = useForm({
-    resolver: zodResolver(CreateVideoData),
+    resolver: zodResolver(EditVideoData),
     defaultValues: {
-      courseId: "",
-      title: "",
-      description: "",
-      duration: "",
-      order: "",
-      videoPath: "",
-      file: null,
+      title: title,
+      courseId: courseId,
+      description: desc,
+      order: order,
+      duration: duration,
     },
   });
 
   const onSubmit = async (values) => {
-    const supabase = createClient();
-    const { file, ...newValues } = values;
-
     setIsUploading(true);
 
-    if (!file) {
-      toast.error("File Upload failed!");
-      return;
-    }
+    const result = await UpdateVideoInfo(id, values);
 
-    const { error } = await supabase.storage
-      .from("video-courses")
-      .upload(values.videoPath, values.file, {
-        cacheControl: "3600",
-        upsert: false,
-      });
-
-    if (error) {
-      toast.error(error.message);
-      form.reset();
-      setIsUploading(false);
-      setIsOpen(false);
-      return;
-    }
-
-    const response = await createVideo(newValues);
-
-    if (response.error) {
-      toast.error(response.error);
+    if (result.error) {
+      toast.error(result.error);
     } else {
       form.reset();
-      toast.success(response.success);
+      toast.success(result.success);
       window.location.reload();
     }
 
     setIsUploading(false);
-    setIsOpen(false);
+  };
+
+  const handleDelete = async () => {
+
+    const response = await DeleteVideo(id);
+
+    if (response.error) {
+      toast.error(response.error);
+    } else {
+      toast.success(response.success);
+    }
+
+    window.location.reload();
   };
 
   return (
-    <div>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger onClick={() => setIsOpen(true)}>
-            <Plus className="-translate-x-2 size-5 text-foreground" />
-          </TooltipTrigger>
-          <TooltipContent>Add a Video</TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="overflow-scroll h-[75vh]">
-          <DialogHeader>
-            <DialogTitle>Upload a Video</DialogTitle>
-            <DialogDescription>Fill the video information</DialogDescription>
-          </DialogHeader>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+    <div
+      className="flex flex-row gap-5 justify-between items-center border-foreground/50 border-[1px] rounded-xl py-3 px-5"
+    >
+      <div className="w-[20%]">
+        <span className="text-xl">{order}</span>
+      </div>
+      <div className="w-full">
+        <h1 className="text-lg font-semibold">{title}</h1>
+        <p className="hidden md:block">{desc}</p>
+      </div>
+      <div className="w-full">
+        <p>Created: {formatDate(date)}</p>
+        <p>length: {formatVideoDuration(duration)}</p>
+      </div>
+
+      <div>
+        <Dialog>
+          <AlertDialog>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <BsThreeDotsVertical />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="p-3 w-56 rounded-md">
+                <DropdownMenuGroup>
+                  <DialogTrigger className="w-full">
+                    <DropdownMenuItem>Edit</DropdownMenuItem>
+                  </DialogTrigger>
+                  <AlertDialogTrigger className="w-full">
+                    <DropdownMenuItem>Remove</DropdownMenuItem>
+                  </AlertDialogTrigger>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Edit Panel</DialogTitle>
+                <DialogDescription>
+                  Edit the properties of the video
+                </DialogDescription>
+              </DialogHeader>
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-8"
+                >
               <FormField
                 control={form.control}
                 name="courseId"
@@ -234,66 +278,37 @@ const CourseUpload = ({ data }) => {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="videoPath"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Video Path</FormLabel>
-                    <FormControl>
-                      <Input
-                        disabled={isUploading}
-                        className="!focus:ring-0 !focus:outline-none !ring-transparent !outline-none"
-                        placeholder="ex: <folder-name>/<file-name>"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="file"
-                render={({ field: { onChange, ...field } }) => (
-                  <FormItem>
-                    <FormLabel>File</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="file"
-                        disabled={isUploading}
-                        // accept=".jpg,.png,.pdf"
-                        onChange={(event) => {
-                          const file = event.target.files?.[0] || null;
-                          if (file) {
-                            form.setValue("file", file, {
-                              shouldValidate: true,
-                            });
-                          }
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <Button type="submit" disabled={isUploading}>
-                {isUploading ? (
-                  <>
-                    <LoaderCircle className="animate-spin mr-2" />
-                    <span>Uploading...</span>
-                  </>
-                ) : (
-                  <span>Upload Video</span>
-                )}
-              </Button>
-            </form>
-          </Form>
-        </DialogContent>
-      </Dialog>
+                  <Button type="submit">Save Changes</Button>
+                </form>
+              </Form>
+            </DialogContent>
+            <AlertDialogContent className="border-red-700 border-[1px]">
+              <AlertDialogHeader>
+                <AlertDialogTitle className="text-red-500 tracking-wider">
+                  Are you absolutely sure?
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete this
+                  video.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction asChild>
+                  <Button
+                    onClick={handleDelete}
+                    className="bg-red-700 text-white hover:bg-red-500"
+                  >
+                    Continue
+                  </Button>
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </Dialog>
+      </div>
     </div>
   );
 };
 
-export default CourseUpload;
+export default VideoEdit;

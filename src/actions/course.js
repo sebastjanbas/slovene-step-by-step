@@ -43,6 +43,31 @@ export const UpdateCourseInfo = async (id, values) => {
   }
 };
 
+export const UpdateVideoInfo = async (id, values) => {
+  const supabase = await createClient();
+
+  const { error } = await supabase
+    .from("video-lesson")
+    .update({
+      title: values.title,
+      course_id: values.courseId,
+      description: values.description,
+      order: values.order,
+      duration: values.duration,
+    })
+    .eq("id", id);
+
+  if (error) {
+    if (error.code == "23505") {
+      return { error: "Video order number already exists!" };
+    }
+    return { error: "Something went wrong!" };
+  } else {
+    return { success: "Information updated successfully!" };
+  }
+};
+
+
 export const DeleteCourse = async (id) => {
   const supabase = await createClient();
 
@@ -52,6 +77,19 @@ export const DeleteCourse = async (id) => {
     return { error: "Could not delete the course" };
   } else {
     return { success: "Course deleted successfully!" };
+  }
+};
+
+
+export const DeleteVideo = async (id) => {
+  const supabase = await createClient();
+
+  const response = await supabase.from("video-lesson").delete().eq("id", id);
+
+  if (response.error) {
+    return { error: "Could not delete the video" };
+  } else {
+    return { success: "Video deleted successfully!" };
   }
 };
 

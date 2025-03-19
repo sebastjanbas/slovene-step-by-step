@@ -12,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import VideoUpload from "./_components/VideoUpload";
+import VideoEdit from "./_components/video-edit";
 
 const ManagementPage = async () => {
   const supabase = await createClient();
@@ -70,19 +71,30 @@ const ManagementPage = async () => {
                 </CardHeader>
                 <CardContent className="space-y-2 p-1 gap-5">
                   {data.map((course, i) => (
-                    <div key={i} className="w-full py-3 md:py-5 px-5 md:px-10 rounded-lg border-[1px] border-foreground/50">
-                      <h1 className="text-xl font-semibold tracking-wide pb-3">{course.title}</h1>
-                      <div className="flex flex-row gap-5">
-                        {course?.["video-lesson"]?.sort((a,b) => a.order - b.order).map((video, i) => (
-                          <div key={i} className="">
-                            <p>title: {video.title}</p>
-                            <p>desc: {video.description}</p>
-                            <p>path: {video.video_path}</p>
-                            <p>duration: {video.duration}</p>
-                            <p>order: {video.order}</p>
-                            <p>date: {video.created_at}</p>
-                          </div>
-                        ))}
+                    <div
+                      key={i}
+                      className="w-full py-3 md:py-5 px-5 md:px-10 rounded-lg border-[1px] border-foreground/50"
+                    >
+                      <h1 className="text-xl font-semibold tracking-wide pb-3">
+                        {course.title}
+                      </h1>
+                      <div className="flex flex-col gap-5">
+                        {course?.["video-lesson"]
+                          ?.sort((a, b) => a.order - b.order)
+                          .map((video, i) => (
+                            <div key={i}>
+                              <VideoEdit
+                                data={data}
+                                id={video.id}
+                                title={video.title}
+                                courseId={video.course_id}
+                                desc={video.description}
+                                order={video.order}
+                                duration={video.duration}
+                                date={video.created_at}
+                              />
+                            </div>
+                          ))}
                       </div>
                     </div>
                   ))}

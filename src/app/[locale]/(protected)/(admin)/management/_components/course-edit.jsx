@@ -47,15 +47,15 @@ import ThumbnailUploader from "./thumbnail-upload";
 import { DeleteCourse, UpdateCourseInfo } from "@/actions/course";
 import { toast } from "sonner";
 
+function formatDate(dateStr) {
+  // format the date
+  const date = new Date(dateStr);
+  const options = { day: "numeric", month: "long", year: "numeric" };
+  return date.toLocaleDateString("en-GB", options);
+}
+
 const CourseEdit = ({ id, title, desc, image, date, order }) => {
   const [isUploading, setIsUploading] = useState(false);
-
-  function formatDate(dateStr) {
-    // format the date
-    const date = new Date(dateStr);
-    const options = { day: "numeric", month: "long", year: "numeric" };
-    return date.toLocaleDateString("en-GB", options);
-  }
 
   const form = useForm({
     resolver: zodResolver(EditCourseData),
