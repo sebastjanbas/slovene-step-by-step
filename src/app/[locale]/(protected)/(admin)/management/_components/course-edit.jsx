@@ -100,7 +100,7 @@ const CourseEdit = ({ id, title, desc, image, date, order }) => {
         <p className="hidden md:block">{desc}</p>
       </div>
       <div className="w-full">
-        <p className="text-sm italic">Last edited: {formatDate(date)}</p>
+        <p className="text-sm italic">Created: <br className="block md:hidden" /> {formatDate(date)}</p>
       </div>
       <div>
         <Dialog>

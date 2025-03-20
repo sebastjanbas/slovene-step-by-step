@@ -14,10 +14,10 @@ export async function generateMetadata({ params }) {
 export default function CoursePage() {
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="w-full text-center text-5xl border-b-[1px] border-foreground/30 pb-5">
+      <h1 className="w-full text-center text-5xl md:text-6xl xl:text-7xl mt-10 font-light tracking-tighter pb-5">
         Courses
       </h1>
-      <div className="flex flex-col lg:grid lg:grid-cols-2 2xl:grid-cols-3 gap-10 justify-center items-center p-10">
+      <div className="flex flex-col lg:grid lg:grid-cols-2 2xl:grid-cols-3 gap-10 justify-center items-center p-5 md:p-10">
           <CourseList />
       </div>
     </div>

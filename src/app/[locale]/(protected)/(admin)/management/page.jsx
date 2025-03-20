@@ -28,14 +28,14 @@ const ManagementPage = async () => {
   return (
     <>
       <div className="w-full h-[90vh] my-10">
-        <h1 className="w-full text-center text-5xl ">Management</h1>
+        <h1 className="w-fit flex self-center justify-self-center text-center text-5xl md:text-6xl xl:text-7xl tracking-tighter font-light">Control Pannel</h1>
         <div className="w-full h-fit mt-10 px-10 justify-center items-center">
-          <Tabs defaultValue="account" className="w-full">
+          <Tabs defaultValue="courses" className="w-full">
             <TabsList className="w-full justify-start">
-              <TabsTrigger value="account">Courses</TabsTrigger>
+              <TabsTrigger value="courses">Courses</TabsTrigger>
               <TabsTrigger value="videos">Videos</TabsTrigger>
             </TabsList>
-            <TabsContent value="account">
+            <TabsContent value="courses">
               <Card>
                 <CardHeader className="flex flex-row justify-between items-start p-1">
                   <div>
@@ -73,7 +73,7 @@ const ManagementPage = async () => {
                   {data.map((course, i) => (
                     <div
                       key={i}
-                      className="w-full py-3 md:py-5 px-5 md:px-10 rounded-lg border-[1px] border-foreground/50"
+                      className="w-full py-3 md:py-2 px-3 md:px-10 rounded-lg border-[1px] border-foreground/50"
                     >
                       <h1 className="text-xl font-semibold tracking-wide pb-3">
                         {course.title}

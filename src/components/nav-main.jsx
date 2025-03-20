@@ -33,8 +33,8 @@ export function NavMain({ items }) {
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton tooltip={item.title}>
-                  {item.icon && <item.icon />}
-                  <a href={item.url}>
+                  <a className="inline-flex items-center gap-3" href={item.url}>
+                  {item.icon && <item.icon className="size-4" />}
                     <span>{item.title}</span>
                   </a>
                   <ChevronRight className="ml-auto transition-transform duration-300 group-data-[state=open]/collapsible:rotate-90" />

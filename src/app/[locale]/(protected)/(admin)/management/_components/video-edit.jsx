@@ -116,18 +116,18 @@ const VideoEdit = ({data,id, title, courseId, desc, order, duration, date }) => 
 
   return (
     <div
-      className="flex flex-row gap-5 justify-between items-center border-foreground/50 border-[1px] rounded-xl py-3 px-5"
+      className="flex flex-row gap-5 justify-between items-center border-foreground/50 border-[1px] rounded-xl py-2 px-4"
     >
       <div className="w-[20%]">
         <span className="text-xl">{order}</span>
       </div>
       <div className="w-full">
-        <h1 className="text-lg font-semibold">{title}</h1>
+        <h1 className="text-md font-semibold">{title}</h1>
         <p className="hidden md:block">{desc}</p>
       </div>
-      <div className="w-full">
-        <p>Created: {formatDate(date)}</p>
-        <p>length: {formatVideoDuration(duration)}</p>
+      <div className="w-[30%]">
+        <p className="hidden md:block">{formatDate(date)}</p>
+        <p className="inline-flex gap-2"><span className="hidden md:block">length: </span>{formatVideoDuration(duration)}</p>
       </div>
 
       <div>
@@ -148,7 +148,7 @@ const VideoEdit = ({data,id, title, courseId, desc, order, duration, date }) => 
                 </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>
-            <DialogContent>
+            <DialogContent className="h-[70vh] overflow-scroll">
               <DialogHeader>
                 <DialogTitle>Edit Panel</DialogTitle>
                 <DialogDescription>
