@@ -9,11 +9,14 @@ import {
 import { RiFullscreenExitLine, RiFullscreenLine } from "react-icons/ri";
 import { TbPictureInPictureOn } from "react-icons/tb";
 import "../video.module.css";
+import { Slider } from "@/components/ui/slider";
 
 const VideoPlayer = ({ source }) => {
+  const [isMobile, setIsMobile] = useState(false);
   const videoRef = useRef(null);
   const containerRef = useRef(null);
   const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(100);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isPIP, setIsPIP] = useState(false);
@@ -60,6 +63,13 @@ const VideoPlayer = ({ source }) => {
     }
   };
 
+  const handleVolumeChange = (value) => {
+    const newVolume = value[0];
+    setVolume(newVolume);
+
+    if (videoRef.current) videoRef.current.volume = newVolume / 100;
+  };
+
   const handleKeyDown = (e) => {
     switch (e.code) {
       case "Space":
@@ -86,6 +96,10 @@ const VideoPlayer = ({ source }) => {
   };
 
   useEffect(() => {
+    if (window.innerWidth < 769) setIsMobile(true);
+  }, []);
+
+  useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
@@ -98,7 +112,7 @@ const VideoPlayer = ({ source }) => {
       className="relative w-full flex justify-center items-center mx-auto group"
     >
       <div
-        className={`absolute z-50 transition-opacity flex flex-row gap-5 justify-center items-center duration-200 ease-in-out group-hover:opacity-100 ${isPlaying ? "opacity-0" : "opacity-100"}`}
+        className={`hidden md:flex absolute z-50 transition-opacity flex-row gap-5 justify-center items-center duration-200 ease-in-out group-hover:opacity-100 ${isPlaying ? "opacity-0" : "opacity-100"}`}
       >
         <button
           className="bg-none border-none p-0"
@@ -128,11 +142,11 @@ const VideoPlayer = ({ source }) => {
         </button>
       </div>
       <div
-        className={`absolute bottom-0 left-0 bg-none right-0 z-50 transition-opacity duration-200 ease-in-out group-hover:opacity-100 ${isPlaying ? "opacity-0" : "opacity-100"}`}
+        className={`hidden md:block absolute bottom-0 left-0 bg-none right-0 z-50 transition-opacity duration-200 ease-in-out group-hover:opacity-100 ${isPlaying ? "opacity-0" : "opacity-100"}`}
       >
         <div></div>
-        <div className="flex px-2 py-1 justify-between items-center">
-          <div className="flex flex-row items-center gap-2">
+        <div className="flex px-2 py-1 w-full justify-between items-center">
+          <div className="w-full max-w-40 flex flex-row items-center gap-2">
             <button
               className="bg-none border-none p-0 size-8"
               onClick={handlePlay}
@@ -153,37 +167,22 @@ const VideoPlayer = ({ source }) => {
                 </svg>
               )}
             </button>
-            <div className="flex flex-row items-center gap-2">
+            <div className="flex w-full flex-row items-center gap-2">
               <button onClick={mute} className="bg-none border-none p-0">
-                {!isMuted ? (
+                {!isMuted && volume !== 0 ? (
                   <SpeakerWaveIcon className="size-7 text-white" />
                 ) : (
                   <SpeakerXMarkIcon className="size-7 text-white" />
                 )}
               </button>
-              <input
-                type="range"
+              <span className="hidden w-12 text-right">{volume}</span>
+              <Slider
+                className="w-full"
                 min={0}
-                max={1}
-                step="any"
-                defaultValue={1}
-                className={` hidden
-    w-32 h-1 appearance-none bg-gray-300 rounded-lg transition-all duration-200 ease-in-out
-    focus:outline-none
-    [&::-webkit-slider-thumb]:appearance-none 
-    [&::-webkit-slider-thumb]:w-3 
-    [&::-webkit-slider-thumb]:h-3 
-    [&::-webkit-slider-thumb]:bg-red-500      /* Change circle color */
-    [&::-webkit-slider-thumb]:rounded-full 
-    [&::-webkit-slider-thumb]:cursor-pointer
-
-    [&::-moz-range-thumb]:appearance-none 
-    [&::-moz-range-thumb]:w-3 
-    [&::-moz-range-thumb]:h-3 
-    [&::-moz-range-thumb]:bg-blue-500          /* Change circle color for Firefox */
-    [&::-moz-range-thumb]:rounded-full 
-    [&::-moz-range-thumb]:cursor-pointer
-  `}
+                max={100}
+                defaultValue={[100]}
+                onValueChange={handleVolumeChange}
+                step={1}
               />
             </div>
           </div>
@@ -210,7 +209,7 @@ const VideoPlayer = ({ source }) => {
       </div>
       <video
         ref={videoRef}
-        controls={false}
+        controls={isMobile}
         controlsList="nodownload"
         width={1280}
         height={720}
