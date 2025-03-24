@@ -1,0 +1,7 @@
+
+
+
+#volume-control:hover #volume-slider {
+  width: 1000px; /* Expands the input on hover */
+  
+}

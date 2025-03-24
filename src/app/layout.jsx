@@ -1,7 +1,6 @@
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import "./input.css"
 import { Toaster } from "sonner";
-import { Manrope } from "next/font/google";
 
 
 export const metadata = {
@@ -51,17 +50,11 @@ export const metadata = {
     },
 }
 
-
-const manrope = Manrope({
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
-  subsets: ["latin"]
-})
-
 export default function RootLayout({ children }) {
 
     return (
         <html suppressHydrationWarning>
-            <body className="font-mantropeFont">
+            <body>
                 <Toaster richColors position="top-center" />
                 <AuthProvider>
                     {children}
