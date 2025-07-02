@@ -43,13 +43,6 @@ export const people = [
   },
   {
     id: 5,
-    name: ["Ksenija", "Votiakova"],
-    role: "Professional Teacher/Tutor",
-    fluentIn: ["Slovene", "Russian", "English"],
-    imageUrl: "/foto-ksenja.jpg",
-  },
-  {
-    id: 6,
     name: ["Ela", "Remic"],
     role: "Professional Teacher/Tutor",
     fluentIn: ["Slovene", "Polish", "English"],
