@@ -17,10 +17,10 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import Logo from "./icons/Logo";
+import { IconLogo } from "./icons/icon-logo";
 import { useAuth } from "./auth/AuthProvider";
 import Link from "next/link";
-import { ThemButton } from "./ui/ApearanceSwitchButton";
+import { ThemButton } from "./ui/appearance-switch-button";
 import { createClient } from "@/utils/supabase/client";
 import { redirect } from "next/navigation";
 
@@ -50,7 +50,7 @@ export function AppSidebar({ ...props }) {
 
           newArray.push({
             title: item.title,
-            url: "/courses/"+item.id+"/"+videoId,
+            url: "/courses/" + item.id + "/" + videoId,
           });
         } else {
           newArray.push({
@@ -131,7 +131,7 @@ export function AppSidebar({ ...props }) {
         <div className="flex flex-row justify-start items-center gap-1">
           <Link href={"/dashboard"}>
             <div className="h-fit w-fit scale-75 -translate-x-1 p-2 bg-transparent border-gray-400/50 border-[1px] rounded-xl flex justify-center items-center">
-              <Logo className="size-6" />
+              <IconLogo className="size-6" />
             </div>
           </Link>
           <div className="truncate">

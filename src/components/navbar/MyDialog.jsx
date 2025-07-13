@@ -4,11 +4,11 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "@/i18n/routing";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { ThemButton } from "../ui/ApearanceSwitchButton";
+import { ThemButton } from "../ui/appearance-switch-button";
 import { useTranslations } from "next-intl";
-import LanguageSwitcher from "./language-swithcher";
+import LanguageSwitcher from "./language-switcher";
 import { useAuth } from "../auth/AuthProvider";
-import Logo from "../icons/Logo";
+import { IconLogo } from "../icons/icon-logo";
 
 
 export default function MyDialog({
@@ -56,7 +56,7 @@ export default function MyDialog({
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         <span className="sr-only">Slovene Step By Step</span>
-                                        <Logo className="h-7 w-auto" />
+                                        <IconLogo className="h-7 w-auto" />
                                     </Link>
                                     <div className="flex flex-row justify-center items-center gap-2">
                                         <LanguageSwitcher locale={locale} />
