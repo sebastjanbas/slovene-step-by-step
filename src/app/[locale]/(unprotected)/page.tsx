@@ -6,8 +6,6 @@ import Stats from "@/components/stats";
 import { getTranslations } from "next-intl/server";
 import { reviews } from "@/lib/docs";
 import SectionTitle from "@/components/titles/section-title";
-import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -18,16 +16,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Home() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (user) {
-    redirect("/dashboard");
-  }
-
+export default function Home() {
   return (
     <>
       <div className="overflow-hidden">

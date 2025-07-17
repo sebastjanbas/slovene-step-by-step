@@ -74,25 +74,9 @@ export const routing = defineRouting({
 
     '/dashboard/settings' : {
       en: '/dashboard/settings',
-      sl: '/profil/nastavitve',
+      sl: '/dashboard/nastavitve',
       ru: '/dashboard/настройки',
       it: '/dashboard/impostazioni'
-    },
-
-    '/dashboard' : {
-      en: '/dashboard',
-      sl: '/dashboard',
-      ru: '/dashboard',
-      it: '/dashboard'
-    },
- 
-    // Also (optional) catch-all segments are supported
-    '/auth/login': {
-      en: '/auth/login',
-      sl: '/auth/prijava',
-      ru: '/auth/регистрация',
-      it: '/auth/accesso'
-
     },
   }
 

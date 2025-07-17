@@ -1,40 +1,25 @@
-import createMiddleware from 'next-intl/middleware';
-import {routing} from './i18n/routing';
-import { updateSession } from '@/utils/supabase/middleware'
-import { redirect } from 'next/dist/server/api-utils';
- 
-// export async function middleware(request) {
-//   return await updateSession(request)
-// }
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import createMiddleware from 'next-intl/middleware'
 
-// export default createMiddleware(routing);
- 
+const intlMiddleware = createMiddleware({
+  locales: ['en', 'it', 'ru', 'sl'],
+  defaultLocale: 'en',
+})
 
-// export const config = {
-//   // Match only internationalized pathnames
-//   // matcher: ['/', '/(sl|ru|en)/:path*']
-//   matcher: [
-//     '/', 
-//     '/(sl|ru|en)/:path*',
-//     '/((?!_next/static|_next/image|favicon.ico|public).*)'
-//   ]
-// };
+const isDashboardRoute = createRouteMatcher(['/(en|it|ru|sl)/d','/d(.*)'])
 
-export async function middleware(request) {
-  // Handle i18n routing
-  const i18nMiddleware = createMiddleware(routing);
-  const response = await i18nMiddleware(request);
-  
-  // Handle auth session
-  await updateSession(request);
-  
-  return response;
-}
+export default clerkMiddleware(async (auth, request) => {
+
+  if (isDashboardRoute(request)) await auth.protect()
+
+  return intlMiddleware(request)
+})
 
 export const config = {
   matcher: [
-    '/', 
-    '/(sl|ru|en|it)/:path*',
-    '/((?!api|_next/static|_next/image|images|assets|favicon.ico|auth/confirm|auth/callback|auth/update-password|.*\\.(?:svg|jpg|jpeg|png|gif|ico)$).*)',
-  ]
-};
+    // Skip Next.js internals and all static files, unless found in search params
+    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    // Always run for API routes
+    '/(api|trpc)(.*)',
+  ],
+}
