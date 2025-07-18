@@ -9,7 +9,8 @@ import { setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "sonner";
 import { AuthProvider } from "@/components/auth/AuthProvider";
-import { ClerkProvider } from "@clerk/nextjs";
+import { headers } from "next/headers";
+import { auth } from "@clerk/nextjs/server";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -31,26 +32,24 @@ export default async function LocaleLayout({ children, params }) {
   await setRequestLocale(locale);
 
   return (
-    <ClerkProvider>
-      <html lang={locale} suppressHydrationWarning>
-        <body>
-          <Toaster richColors position="top-center" />
-          <NextIntlClientProvider messages={messages}>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <AnimatedLayout>
-                <AuthProvider>
-                  <main>{children}</main>
-                </AuthProvider>
-              </AnimatedLayout>
-            </ThemeProvider>
-          </NextIntlClientProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang={locale} suppressHydrationWarning>
+      <body>
+        <Toaster richColors position="top-center" />
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <AnimatedLayout>
+              <AuthProvider>
+                <main>{children}</main>
+              </AuthProvider>
+            </AnimatedLayout>
+          </ThemeProvider>
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }

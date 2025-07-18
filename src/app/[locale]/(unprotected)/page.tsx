@@ -1,4 +1,3 @@
-import BentoGrid from "@/components/bento-grid";
 import DetailsPageHero from "@/components/content/details-page";
 import Carousel from "@/components/content/testimonials";
 import Hero from "@/components/hero-section";
@@ -6,6 +5,7 @@ import Stats from "@/components/stats";
 import { getTranslations } from "next-intl/server";
 import { reviews } from "@/lib/docs";
 import SectionTitle from "@/components/titles/section-title";
+import BentoGridWrapper from "@/components/bento-grid-wrapper";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -29,7 +29,7 @@ export default function Home() {
             header={"why-us"}
             paragraph={"why-us-sub"}
           >
-            <BentoGrid />
+            <BentoGridWrapper />
           </SectionTitle>
         </div>
         <div className="py-24 sm:py-32">

@@ -6,8 +6,15 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { auth } from "@clerk/nextjs/server"
+import { redirect } from "next/navigation";
 
-const ProtectedLayout = ({ children }) => {
+const ProtectedLayout = async ({ children }) => {
+  const { userId } = await auth();
+
+  if (!userId) {
+    redirect("/sign-in")
+  }
 
   return (
     <SidebarProvider>

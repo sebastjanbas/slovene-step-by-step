@@ -1,3 +1,4 @@
+import { UserButton } from "@clerk/nextjs";
 import { TriangleAlert } from "lucide-react";
 import React from "react";
 
@@ -14,6 +15,7 @@ const DashboardPage = () => {
         <div className="h-60 w-60 border-gray-500/50 border-[1px] flex justify-center items-center rounded-3xl">
           STATS
         </div>
+        <UserButton />
         <div className="h-60 w-60 border-gray-500/50 border-[1px] flex justify-center items-center rounded-3xl">
           STATS
         </div>
