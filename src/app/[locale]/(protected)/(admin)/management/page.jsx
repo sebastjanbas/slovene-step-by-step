@@ -1,7 +1,4 @@
-import { createClient } from "@/utils/supabase/server";
-import React from "react";
 import CourseEdit from "./_components/course-edit";
-import { redirect } from "next/navigation";
 import CourseUpload from "./_components/course_upload";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -15,16 +12,6 @@ import VideoUpload from "./_components/VideoUpload";
 import VideoEdit from "./_components/video-edit";
 
 const ManagementPage = async () => {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("course")
-    .select("*, video-lesson:id (*)")
-    .order("order");
-
-  if (error) {
-    redirect("/management?error=Something went wrong!");
-  }
-
   return (
     <>
       <div className="w-full h-[90vh] my-10">

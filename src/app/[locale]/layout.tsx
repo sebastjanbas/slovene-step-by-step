@@ -8,7 +8,6 @@ import { routing } from "../../i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "sonner";
-import { AuthProvider } from "@/components/auth/AuthProvider";
 import { headers } from "next/headers";
 import { auth } from "@clerk/nextjs/server";
 
@@ -43,9 +42,7 @@ export default async function LocaleLayout({ children, params }) {
             disableTransitionOnChange
           >
             <AnimatedLayout>
-              <AuthProvider>
-                <main>{children}</main>
-              </AuthProvider>
+              <main>{children}</main>
             </AnimatedLayout>
           </ThemeProvider>
         </NextIntlClientProvider>

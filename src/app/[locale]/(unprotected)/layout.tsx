@@ -1,17 +1,9 @@
 import Footer from "@/components/content/footer";
 import NavBar from "@/components/navbar/navbar";
 import React from "react";
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
 
-const UnprotectedLayout = async ({ children, params }) => {
-  const { locale } = await params;
-
-  const { userId } = await auth();
-
-  if (userId) {
-    redirect("/dashboard");
-  }
+const UnprotectedLayout = ({ children, params }) => {
+  const { locale } = params;
 
   return (
     <>

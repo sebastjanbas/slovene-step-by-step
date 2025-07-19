@@ -3,19 +3,19 @@ import { useState } from "react";
 import { webNavigation } from "@/lib/docs";
 import { Link } from "@/i18n/routing";
 import { Bars3Icon } from "@heroicons/react/24/outline";
-import MyDialog from "./MyDialog";
 import { usePathname } from "next/navigation";
 import { ThemButton } from "../ui/appearance-switch-button";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./language-switcher";
-import { useAuth } from "../auth/AuthProvider";
 import { IconLogo } from "../icons/icon-logo";
+import { useUser } from "@clerk/nextjs";
+import MobileNavigationDialog from "./mobile-navigation-dialog";
 
 export default function NavBar({ locale }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const t = useTranslations("Navbar");
-  const { user, loading } = useAuth() as { user: any; loading: boolean };
+  const { user } = useUser();
 
   if (pathname.includes("/auth") || pathname.includes("/legal")) {
     return null;
@@ -65,9 +65,7 @@ export default function NavBar({ locale }) {
           <div className="hidden lg:flex items-center gap-2">
             <LanguageSwitcher locale={locale} />
             <ThemButton />
-            {loading ? (
-              <span className="text-light-2 dark:text-dark-3">Loading...</span>
-            ) : user ? (
+            {user ? (
               <>
                 {/* <UserButton dialog={false} /> */}
                 <a
@@ -102,7 +100,7 @@ export default function NavBar({ locale }) {
           </button>
         </div>
       </nav>
-      <MyDialog
+      <MobileNavigationDialog
         webNavigation={webNavigation}
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
