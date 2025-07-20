@@ -4,12 +4,12 @@ import { webNavigation } from "@/lib/docs";
 import { Link } from "@/i18n/routing";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
-import { ThemButton } from "../ui/appearance-switch-button";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./language-switcher";
-import { IconLogo } from "../icons/icon-logo";
 import { useUser } from "@clerk/nextjs";
 import MobileNavigationDialog from "./mobile-navigation-dialog";
+import { IconLogo } from "@/components/icons/icon-logo";
+import { ThemButton } from "@/components/ui/appearance-switch-button";
 
 export default function NavBar({ locale }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

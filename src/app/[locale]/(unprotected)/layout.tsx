@@ -1,5 +1,5 @@
 import Footer from "@/components/content/footer";
-import NavBar from "@/components/navbar/navbar";
+import NavBar from "@/components/content/navbar/navbar";
 import React from "react";
 
 const UnprotectedLayout = ({ children, params }) => {

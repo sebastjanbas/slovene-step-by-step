@@ -1,14 +1,14 @@
 import People from "@/components/about/people";
 import Carousel from "@/components/content/testimonials";
-import Stats from "@/components/stats";
-import SectionTitle from "@/components/titles/section-title";
+import Stats from "@/components/content/stats";
+import SectionTitle from "@/components/content/titles/section-title";
 import { Button } from "@/components/ui/button";
 
 import { people, reviews } from "@/lib/docs";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
-import { AccordionCustom } from "@/components/ui/AccordionCustom";
+import { AccordionCustom } from "@/components/content/faq-accordion";
 import Image from "next/image";
 
 export async function generateMetadata({ params }) {

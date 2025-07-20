@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 import { useGSAP } from "@gsap/react";
 import gsap, { ScrollTrigger } from "gsap/all";
 import Image from "next/image";
-import { IconLogo } from "./icons/icon-logo";
+import { IconLogo } from "../icons/icon-logo";
 
 gsap.registerPlugin(ScrollTrigger);
 
