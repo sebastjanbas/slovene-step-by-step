@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Lottie from "lottie-react";
 import teacherAnimation from "@/animations/teacher-animation.json";

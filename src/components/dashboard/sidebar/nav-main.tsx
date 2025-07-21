@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Tooltip, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function NavMain({
   items,

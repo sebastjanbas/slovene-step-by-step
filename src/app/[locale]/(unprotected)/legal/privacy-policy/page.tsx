@@ -1,7 +1,7 @@
 import "../legal.css";
 
-export async function generateMetadata({ params }) {
-  const { locale } = await params;
+export async function generateMetadata() {
+  // const { locale } = await params;
   // const t = await getTranslations({ locale, namespace: "Metadata" });
   return {
     title: "Privacy Policy",
@@ -293,7 +293,7 @@ const PrivacyPolicyPage = () => {
         </p>
       </section>
       <section>
-        <h2>11. CHILDREN'S PRIVACY</h2>
+        <h2>11. CHILDREN&apos;S PRIVACY</h2>
         <p>
           Our services are not intended for children under 13. If we discover
           that we have collected personal data from a child without parental

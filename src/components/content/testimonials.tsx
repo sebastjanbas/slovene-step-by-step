@@ -11,12 +11,16 @@ const Carousel = ({ data, stars = false }) => {
     <>
       <div className="relative select-none lg:px-4">
         <blockquote>
-          <img
+          <Image
+            width={600}
+            height={600}
             className="hidden absolute -z-1 top-1 -left-2 lg:block"
             src={"/blockquote.svg"}
             alt="quote sign"
           />
-          <img
+          <Image
+            width={600}
+            height={600}
             className="hidden absolute -z-1 -bottom-3 -right-2 rotate-180 lg:block"
             src={"/blockquote.svg"}
             alt="quote sign"
@@ -70,7 +74,7 @@ const Carousel = ({ data, stars = false }) => {
                             <span key={index} className="p-[2px]">
                               &#9734;
                             </span>
-                          ),
+                          )
                         )}
                       </div>
                     )}

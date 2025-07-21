@@ -24,8 +24,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { SignOutButton, useUser } from "@clerk/nextjs";
-import { Skeleton } from "@/components/ui/skeleton";
+import { SignOutButton } from "@clerk/nextjs";
 
 export function NavUser({
   user,

@@ -3,8 +3,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap/all";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
-// import Link from "next/link";
-import { Link } from "@/i18n/routing";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
@@ -117,7 +116,7 @@ export default function Hero() {
             <div className="hidden">
               {t("announcement")}{" "}
               <Link
-                href={"#" as any}
+                href={"#"}
                 className="font-semibold text-custom-accent-l dark:text-custom-accent-d"
               >
                 <span aria-hidden="true" className="absolute inset-0" />

@@ -1,7 +1,7 @@
 import "../legal.css";
 
-export async function generateMetadata({ params }) {
-  const { locale } = await params;
+export async function generateMetadata() {
+  // const { locale } = await params;
   // const t = await getTranslations({ locale, namespace: "Metadata" });
   return {
     title: "License Agreement",

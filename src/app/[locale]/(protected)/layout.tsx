@@ -1,11 +1,7 @@
 import { UserProvider } from "@/components/dashboard/auth/UserContext";
 import { SiteHeader } from "@/components/dashboard/sidebar/app-header";
 import { AppSidebar } from "@/components/dashboard/sidebar/app-sidebar";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { PropsWithChildren } from "react";

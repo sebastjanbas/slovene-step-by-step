@@ -1,6 +1,5 @@
 import createMiddleware from 'next-intl/middleware';
 import {routing} from './i18n/routing';
-import { redirect } from 'next/dist/server/api-utils';
 import { clerkMiddleware } from '@clerk/nextjs/server';
  
 // export async function middleware(request) {

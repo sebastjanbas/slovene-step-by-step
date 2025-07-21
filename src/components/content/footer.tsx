@@ -1,10 +1,10 @@
 "use client";
-import { Link } from "@/i18n/routing";
 import { usePathname } from "next/navigation";
 import { footerLinks } from "@/lib/docs";
 import { SocialLinks } from "../ui/social-links";
 import { useTranslations } from "next-intl";
 import { IconLogo } from "../icons/icon-logo";
+import Link from "next/link";
 
 export default function Footer() {
   const t = useTranslations("Footer");
@@ -13,19 +13,6 @@ export default function Footer() {
   if (pathname.includes("/auth") || pathname.includes("/legal")) {
     return null;
   }
-
-  type linkType =
-    | "/"
-    | "/settings"
-    | "/dashboard"
-    | "/courses"
-    | "/pricing"
-    | "/about-us"
-    | "/pricing#FAQ"
-    | "/legal/terms-of-service"
-    | "/legal/privacy-policy"
-    | "/legal/license"
-    | "mailto:sebastjan.bas@gmail.com?cc=almn140803@gmail.com&subject=[Slovene Step By Step] - Support&body=<Enter your message here.>";
 
   const socialLinkSize = "26";
 
@@ -137,7 +124,7 @@ export default function Footer() {
           {footerLinks.Personal.map((item) => (
             <div key={item.name}>
               <a
-                href={item.href as linkType}
+                href={item.href}
                 className="hover:underline text-light-4 dark:text-dark-4"
               >
                 {t(item.name)}
@@ -153,14 +140,14 @@ export default function Footer() {
             <div key={item.name}>
               {item.server ? (
                 <a
-                  href={item.href as linkType}
+                  href={item.href}
                   className="hover:underline text-light-4 dark:text-dark-4"
                 >
                   {t(item.name)}
                 </a>
               ) : (
                 <Link
-                  href={item.href as any}
+                  href={item.href}
                   className="hover:underline text-light-4 dark:text-dark-4"
                 >
                   {t(item.name)}
@@ -176,7 +163,7 @@ export default function Footer() {
           {footerLinks.Company.map((item) => (
             <div key={item.name}>
               <Link
-                href={item.href as any}
+                href={item.href}
                 className="hover:underline text-light-4 dark:text-dark-4"
               >
                 {t(item.name)}
@@ -191,7 +178,7 @@ export default function Footer() {
           {footerLinks.Legal.map((item) => (
             <div key={item.name}>
               <Link
-                href={item.href as any}
+                href={item.href}
                 className="hover:underline text-light-4 dark:text-dark-4"
               >
                 {t(item.name)}

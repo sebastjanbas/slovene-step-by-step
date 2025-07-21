@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { webNavigation } from "@/lib/docs";
-import { Link } from "@/i18n/routing";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -10,6 +9,7 @@ import { useUser } from "@clerk/nextjs";
 import MobileNavigationDialog from "./mobile-navigation-dialog";
 import { IconLogo } from "@/components/icons/icon-logo";
 import { ThemButton } from "@/components/ui/appearance-switch-button";
+import Link from "next/link";
 
 export default function NavBar({ locale }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -45,7 +45,7 @@ export default function NavBar({ locale }) {
                 {webNavigation.map((item) => (
                   <li className="text-sm font-medium" key={item.name}>
                     <Link
-                      href={item.href as any}
+                      href={item.href}
                       className="group/menu-item flex items-center text-sm hover:text-accent select-none gap-3 rounded-md p-2 leading-none no-underline outline-none focus-visible:ring-2 focus-visible:ring-foreground-lighter group-hover:bg-transparent text-foreground focus-visible:text-brand-link"
                     >
                       <div className="flex flex-col justify-center">
@@ -68,20 +68,20 @@ export default function NavBar({ locale }) {
             {user ? (
               <>
                 {/* <UserButton dialog={false} /> */}
-                <a
+                <Link
                   href="/dashboard"
                   className="relative dark:border-gray-700 justify-center cursor-pointer items-center space-x-2 text-center font-regular ease-out duration-200 rounded-[8px] outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-400 dark:bg-brand-500 hover:bg-brand/80 dark:hover:bg-brand/50 text-foreground border-brand-500/75 dark:border-brand/30 hover:border-brand-600 dark:hover:border-brand focus-visible:outline-brand-600 data-[state=open]:bg-brand-400/80 dark:data-[state=open]:bg-brand-500/80 data-[state=open]:outline-brand-600 text-xs px-2.5 py-1 lg:px-4 lg:py-[15px] lg:rounded-xl h-[26px] hidden lg:flex lg:justify-center lg:items-center"
                 >
                   <p className="truncate">{t("dashboard")}</p>
-                </a>
+                </Link>
               </>
             ) : (
-              <a
+              <Link
                 href="/sign-in"
                 className="relative dark:border-gray-700 justify-center cursor-pointer items-center space-x-2 text-center font-regular ease-out duration-200 rounded-[8px] outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-400 dark:bg-brand-500 hover:bg-brand/80 dark:hover:bg-brand/50 text-foreground border-brand-500/75 dark:border-brand/30 hover:border-brand-600 dark:hover:border-brand focus-visible:outline-brand-600 data-[state=open]:bg-brand-400/80 dark:data-[state=open]:bg-brand-500/80 data-[state=open]:outline-brand-600 text-xs px-2.5 py-1 h-[26px] hidden lg:block"
               >
                 <p className="truncate">{t("log-in")}</p>
-              </a>
+              </Link>
             )}
           </div>
         </div>

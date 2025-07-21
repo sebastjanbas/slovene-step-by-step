@@ -5,16 +5,12 @@ import {
   IconBrandParsinta,
   IconCalendarCheck,
   IconCalendarWeek,
-  IconChartBar,
   IconClubs,
   IconDashboard,
   IconDotsVertical,
   IconFlask,
-  IconFolder,
   IconHelp,
-  IconListDetails,
   IconProgressCheck,
-  IconSearch,
   IconSettings,
   IconTrophy,
   IconUsers,
@@ -34,7 +30,6 @@ import { NavDocuments } from "./nav-documents";
 import { NavSecondary } from "./nav-secondary";
 import { NavUser } from "./nav-user";
 import { IconLogo } from "@/components/icons/icon-logo";
-import { useUser } from "@clerk/nextjs";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useUserInfo } from "../auth/UserContext";
 

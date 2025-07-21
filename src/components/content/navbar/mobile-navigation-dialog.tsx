@@ -1,13 +1,13 @@
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 // import Link from "next/link";
-import { Link } from "@/i18n/routing";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./language-switcher";
 import { IconLogo } from "@/components/icons/icon-logo";
 import { ThemButton } from "@/components/ui/appearance-switch-button";
 import { useUser } from "@clerk/nextjs";
+import Link from "next/link";
 
 export default function MobileNavigationDialog({
   mobileMenuOpen,
@@ -89,7 +89,7 @@ export default function MobileNavigationDialog({
                     <div className="absolute bottom-0 mb-10">
                       <div className="w-full flex justify-between items-center">
                         {!user ? (
-                          <a
+                          <Link
                             href="/sign-in"
                             className="block py-2 pl-3 pr-4 text-base font-medium text-foreground hover:bg-surface-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:rounded"
                             // className={`text-sm/6 font-semibold ${pathname.includes("/login")
@@ -98,9 +98,9 @@ export default function MobileNavigationDialog({
                             //     } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
                           >
                             <p className="truncate">Log in</p>
-                          </a>
+                          </Link>
                         ) : (
-                          <a
+                          <Link
                             href="/dashboard"
                             className="block py-2 pl-3 pr-4 text-base font-medium text-foreground hover:bg-surface-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:rounded"
                             // className={`text-sm/6 font-semibold ${pathname.includes("/login")
@@ -109,7 +109,7 @@ export default function MobileNavigationDialog({
                             //     } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
                           >
                             <p className="truncate">Dashboard</p>
-                          </a>
+                          </Link>
                         )}
                       </div>
                     </div>

@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import { routing } from "../i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { IconLogo } from "@/components/icons/icon-logo";
+import Link from "next/link";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -34,12 +35,12 @@ export default function NotFoundPage() {
               {t("description")}
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
+              <Link
                 href="/"
                 className="font-semibold text-accent dark:text-accent-foreground hover:underline"
               >
                 <span aria-hidden="true">&larr;</span> {t("backButton")}
-              </a>
+              </Link>
             </div>
           </div>
         </main>
