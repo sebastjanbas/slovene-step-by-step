@@ -5,9 +5,9 @@ import { Link } from "@/i18n/routing";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./language-switcher";
-import { useUser } from "@clerk/nextjs";
 import { IconLogo } from "@/components/icons/icon-logo";
 import { ThemButton } from "@/components/ui/appearance-switch-button";
+import { useUser } from "@clerk/nextjs";
 
 export default function MobileNavigationDialog({
   mobileMenuOpen,
@@ -108,9 +108,7 @@ export default function MobileNavigationDialog({
                             //     : "text-custom-light-3 dark:text-custom-dark-3"
                             //     } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
                           >
-                            <p className="truncate">
-                              Dashboard {user.fullName}
-                            </p>
+                            <p className="truncate">Dashboard</p>
                           </a>
                         )}
                       </div>

@@ -50,7 +50,7 @@ export default function MeetTheTeamPage() {
                     height={320}
                     className="w-full h-full object-cover rounded-xl"
                     src="https://images.pexels.com/photos/2472854/pexels-photo-2472854.jpeg?"
-                    alt="About us"
+                    alt="Slovene Beach"
                   />
                 </a>
               </div>
@@ -64,7 +64,7 @@ export default function MeetTheTeamPage() {
                     height={320}
                     className="w-full h-full object-cover rounded-xl"
                     src="https://images.pexels.com/photos/3312569/pexels-photo-3312569.jpeg?"
-                    alt="About us"
+                    alt="Slovene Mountains"
                   />
                 </a>
               </div>
@@ -76,7 +76,7 @@ export default function MeetTheTeamPage() {
                     height={320}
                     className="w-full h-full object-cover rounded-xl"
                     src="https://images.pexels.com/photos/3389508/pexels-photo-3389508.jpeg?"
-                    alt="About us"
+                    alt="Snowy Slovene Mountains"
                   />
                 </a>
               </div>
@@ -87,7 +87,7 @@ export default function MeetTheTeamPage() {
                     height={320}
                     className="w-full h-full object-cover rounded-xl"
                     src="https://images.pexels.com/photos/3214968/pexels-photo-3214968.jpeg?"
-                    alt="About us"
+                    alt="Island Bled Slovenia"
                   />
                 </a>
               </div>
@@ -97,7 +97,7 @@ export default function MeetTheTeamPage() {
                   height={320}
                   className="w-full h-full object-cover rounded-xl"
                   src="https://images.pexels.com/photos/30206761/pexels-photo-30206761/free-photo-of-bled-castle-on-cliff-in-autumn-slovenia.jpeg?"
-                  alt="About us"
+                  alt="Bled Castle On Cliff In Autumn, Slovenia"
                 />
               </div>
             </div>

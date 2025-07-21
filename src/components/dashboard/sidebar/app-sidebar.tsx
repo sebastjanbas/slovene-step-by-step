@@ -44,6 +44,7 @@ const data = {
       title: "Dashboard",
       url: "/dashboard",
       icon: IconDashboard,
+      disabled: false,
     },
     {
       title: "Courses",
@@ -55,16 +56,19 @@ const data = {
       title: "Calendar",
       url: "#",
       icon: IconCalendarWeek,
+      disabled: false,
     },
     {
       title: "Language Club",
       url: "#",
       icon: IconClubs,
+      disabled: false,
     },
     {
       title: "Tutors",
       url: "#",
       icon: IconUsers,
+      disabled: false,
     },
     {
       title: "Daily Practice",
@@ -90,16 +94,19 @@ const data = {
       name: "My Lessons",
       url: "#",
       icon: IconCalendarCheck,
+      disabled: true,
     },
     {
       name: "Achievements",
       url: "#",
       icon: IconTrophy,
+      disabled: true,
     },
     {
       name: "Progress",
       url: "#",
       icon: IconProgressCheck,
+      disabled: true,
     },
   ],
 };

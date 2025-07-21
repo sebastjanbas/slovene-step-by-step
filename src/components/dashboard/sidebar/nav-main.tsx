@@ -11,6 +11,8 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { Tooltip, TooltipTrigger } from "@/components/ui/tooltip";
 
 export function NavMain({
   items,
@@ -19,7 +21,7 @@ export function NavMain({
     title: string;
     url: string;
     icon?: Icon;
-    disabled?: boolean;
+    disabled: boolean;
   }[];
 }) {
   return (
@@ -28,6 +30,7 @@ export function NavMain({
         <SidebarMenu>
           <SidebarMenuItem className="flex items-center gap-2">
             <SidebarMenuButton
+              disabled
               tooltip="Create an appointment"
               className="bg-primary cursor-pointer text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
             >
@@ -48,7 +51,18 @@ export function NavMain({
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton tooltip={item.title} asChild>
-                <Link href={item.url}>
+                <Link
+                  // href={item.url}
+                  href={item.disabled ? "#" : item.url}
+                  onClick={(e) => item.disabled && e.preventDefault()}
+                  aria-disabled={item.disabled}
+                  tabIndex={item.disabled ? -1 : 0}
+                  className={cn(
+                    "pointer-events-auto", // or "none" if disabled
+                    item.disabled &&
+                      "pointer-events-none opacity-50 cursor-not-allowed"
+                  )}
+                >
                   <item.icon />
                   <span>{item.title}</span>
                 </Link>

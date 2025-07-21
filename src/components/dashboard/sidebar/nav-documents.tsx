@@ -25,6 +25,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export function NavDocuments({
   items,
@@ -33,18 +34,32 @@ export function NavDocuments({
     name: string;
     url: string;
     icon: Icon;
+    disabled: boolean;
   }[];
 }) {
   const { isMobile } = useSidebar();
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>My Progress</SidebarGroupLabel>
+      <SidebarGroupLabel>
+        My Progress <span className="pl-5 opacity-50 italic">Coming Soon</span>
+      </SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
-              <Link href={item.url}>
+              <Link
+                // href={item.url}
+                href={item.disabled ? "#" : item.url}
+                onClick={(e) => item.disabled && e.preventDefault()}
+                aria-disabled={item.disabled}
+                tabIndex={item.disabled ? -1 : 0}
+                className={cn(
+                  "pointer-events-auto", // or "none" if disabled
+                  item.disabled &&
+                    "pointer-events-none opacity-50 cursor-not-allowed"
+                )}
+              >
                 <item.icon />
                 <span>{item.name}</span>
               </Link>

@@ -23,7 +23,7 @@ export function FAQ() {
       defaultValue="getting-started"
     >
       <AccordionItem value="getting-started" className="py-2">
-        <AccordionTrigger className="hover:no-underline w-full pt-2 text-left text-light-1 dark:text-dark-1">
+        <AccordionTrigger className="text-lg hover:no-underline w-full pt-2 text-left text-light-1 dark:text-dark-1">
           {t("q1")}
         </AccordionTrigger>
         <AccordionContent className="flex flex-col gap-4 text-balance">
@@ -31,7 +31,7 @@ export function FAQ() {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="properties" className="py-2">
-        <AccordionTrigger className="hover:no-underline w-full pt-2 text-left text-light-1 dark:text-dark-1">
+        <AccordionTrigger className="text-lg hover:no-underline w-full pt-2 text-left text-light-1 dark:text-dark-1">
           {t("q2")}
         </AccordionTrigger>
         <AccordionContent className="flex flex-col gap-4 text-balance">
@@ -39,7 +39,7 @@ export function FAQ() {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="advanced-usage" className="py-2">
-        <AccordionTrigger className="hover:no-underline w-full pt-2 text-left text-light-1 dark:text-dark-1">
+        <AccordionTrigger className="text-lg hover:no-underline w-full pt-2 text-left text-light-1 dark:text-dark-1">
           {t("q3")}
         </AccordionTrigger>
         <AccordionContent className="flex flex-col gap-4 text-balance">
@@ -47,7 +47,7 @@ export function FAQ() {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="community-and-support" className="py-2">
-        <AccordionTrigger className="hover:no-underline w-full pt-2 text-left text-light-1 dark:text-dark-1">
+        <AccordionTrigger className="text-lg hover:no-underline w-full pt-2 text-left text-light-1 dark:text-dark-1">
           {t("q4")}
         </AccordionTrigger>
         <AccordionContent className="flex flex-col gap-4 text-balance">
