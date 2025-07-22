@@ -1,13 +1,21 @@
+import CalendarDashboard from "@/components/dashboard/content/calendar-dashboard";
 import React from "react";
 
-const DashboardPage = () => {
+const DashboardPage = ({ params }) => {
+  const { locale } = params;
+
   return (
-    <>
-      <h1 className="w-full mt-10 font-bol font-light tracking-tighter text-center text-5xl md:text-6xl xl:text-7xl ">
-        Dashboard
-      </h1>
-      <div className="animate-fade animate-in animate-out">Test</div>
-    </>
+    <main className="h-full w-full overflow-hidden p-10">
+      <div>
+        <h1>Hi Sebastjan!</h1>
+        <div className="flex flex-row justify-between items-center gap-20">
+          <ul>
+            <li></li>
+          </ul>
+          <CalendarDashboard locale={locale} />
+        </div>
+      </div>
+    </main>
   );
 };
 

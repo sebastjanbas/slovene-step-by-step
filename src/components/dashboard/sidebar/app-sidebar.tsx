@@ -49,19 +49,19 @@ const data = {
     },
     {
       title: "Calendar",
-      url: "#",
+      url: "/calendar",
       icon: IconCalendarWeek,
       disabled: false,
     },
     {
       title: "Language Club",
-      url: "#",
+      url: "/language-club",
       icon: IconClubs,
       disabled: false,
     },
     {
       title: "Tutors",
-      url: "#",
+      url: "/tutors",
       icon: IconUsers,
       disabled: false,
     },
