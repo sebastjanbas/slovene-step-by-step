@@ -11,6 +11,13 @@ import { DayButton, DayPicker, getDefaultClassNames } from "react-day-picker";
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 
+type CalendarEvent = {
+  id: string;
+  date: string; // "YYYY-MM-DD"
+  title: string;
+  color: string; // Tailwind class or hex like "bg-red-500" or "#ff0000"
+};
+
 function Calendar({
   className,
   classNames,
@@ -19,11 +26,24 @@ function Calendar({
   buttonVariant = "ghost",
   formatters,
   components,
+  events = [],
   ...props
 }: React.ComponentProps<typeof DayPicker> & {
   buttonVariant?: React.ComponentProps<typeof Button>["variant"];
+  events?: CalendarEvent[];
 }) {
   const defaultClassNames = getDefaultClassNames();
+
+  // Group events by date (e.g. "2025-07-22")
+  const eventMap: Record<string, CalendarEvent[]> = events.reduce(
+    (acc, event) => {
+      const dateKey = event.date;
+      if (!acc[dateKey]) acc[dateKey] = [];
+      acc[dateKey].push(event);
+      return acc;
+    },
+    {} as Record<string, CalendarEvent[]>
+  );
 
   return (
     <DayPicker
@@ -155,7 +175,9 @@ function Calendar({
             <ChevronDownIcon className={cn("size-4", className)} {...props} />
           );
         },
-        DayButton: CalendarDayButton,
+        DayButton: (props) => (
+          <CalendarDayButton {...props} eventMap={eventMap} />
+        ),
         WeekNumber: ({ children, ...props }) => {
           return (
             <td {...props}>
@@ -176,8 +198,11 @@ function CalendarDayButton({
   className,
   day,
   modifiers,
+  eventMap,
   ...props
-}: React.ComponentProps<typeof DayButton>) {
+}: React.ComponentProps<typeof DayButton> & {
+  eventMap: Record<string, CalendarEvent[]>;
+}) {
   const defaultClassNames = getDefaultClassNames();
 
   const ref = React.useRef<HTMLButtonElement>(null);
@@ -185,28 +210,47 @@ function CalendarDayButton({
     if (modifiers.focused) ref.current?.focus();
   }, [modifiers.focused]);
 
+  const dateKey = day.date.toLocaleDateString("sv-SE"); // e.g. "2025-07-23"
+
+  const events = eventMap[dateKey] || [];
+
+  const weekendClass = modifiers.weekend ? "bg-foreground/5" : "";
+
   return (
-    <Button
-      ref={ref}
-      variant="ghost"
-      size="icon"
-      data-day={day.date.toLocaleDateString()}
-      data-selected-single={
-        modifiers.selected &&
-        !modifiers.range_start &&
-        !modifiers.range_end &&
-        !modifiers.range_middle
-      }
-      data-range-start={modifiers.range_start}
-      data-range-end={modifiers.range_end}
-      data-range-middle={modifiers.range_middle}
-      className={cn(
-        "data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-ring/50 dark:hover:text-accent-foreground flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-[3px] data-[range-end=true]:rounded-md data-[range-end=true]:rounded-r-md data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-md data-[range-start=true]:rounded-l-md [&>span]:text-xs [&>span]:opacity-70",
-        defaultClassNames.day,
-        className
+    <>
+      <Button
+        ref={ref}
+        variant="ghost"
+        size="lg"
+        data-day={day.date.toLocaleDateString()}
+        data-selected-single={
+          modifiers.selected &&
+          !modifiers.range_start &&
+          !modifiers.range_end &&
+          !modifiers.range_middle
+        }
+        data-range-start={modifiers.range_start}
+        data-range-end={modifiers.range_end}
+        data-range-middle={modifiers.range_middle}
+        className={cn(
+          "cursor-pointer relative rounded-md data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-ring/50 dark:hover:text-accent-foreground flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-[3px] data-[range-end=true]:rounded-md data-[range-end=true]:rounded-r-md data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-md data-[range-start=true]:rounded-l-md [&>span]:text-xs [&>span]:opacity-70",
+          weekendClass,
+          defaultClassNames.day,
+          className
+        )}
+        {...props}
+      />
+      {events.length > 0 && (
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-0.5 mt-1 z-10">
+          {events.map((event, idx) => (
+            <span
+              key={idx}
+              className={cn("w-4 h-1.5 rounded-full", event.color)}
+            />
+          ))}
+        </div>
       )}
-      {...props}
-    />
+    </>
   );
 }
 
