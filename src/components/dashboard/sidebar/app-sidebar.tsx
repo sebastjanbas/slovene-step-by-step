@@ -7,7 +7,6 @@ import {
   IconCalendarWeek,
   IconClubs,
   IconDashboard,
-  IconDotsVertical,
   IconFlask,
   IconHelp,
   IconProgressCheck,
@@ -19,7 +18,6 @@ import {
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -28,10 +26,7 @@ import {
 import { NavMain } from "./nav-main";
 import { NavDocuments } from "./nav-documents";
 import { NavSecondary } from "./nav-secondary";
-import { NavUser } from "./nav-user";
 import { IconLogo } from "@/components/icons/icon-logo";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useUserInfo } from "../auth/UserContext";
 
 const data = {
   navMain: [
@@ -107,7 +102,7 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const user = useUserInfo();
+  // const user = useUserInfo();
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -115,10 +110,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
+              className="data-[slot=sidebar-menu-button]:!p-1.5 hover:bg-transparent hover:text-background dark:text-foreground"
             >
               <a href="#">
-                <IconLogo className="!size-6" fillColor="fill-foreground" />
+                <IconLogo
+                  className="!size-6"
+                  fillColor="fill-background dark:fill-foreground"
+                />
                 <span className="text-base font-semibold">
                   Slovenščina Korak za Korakom
                 </span>
@@ -132,7 +130,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavDocuments items={data.myProgress} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter>
+      {/* <SidebarFooter>
         {!user ? (
           <Skeleton>
             <SidebarMenuButton
@@ -141,8 +139,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <div className="h-8 w-8 rounded-lg bg-foreground/30" />
               <div className="grid flex-1 gap-1 text-left text-sm leading-tight">
-                <div className="w-24 h-3 bg-foreground/30" />
-                <div className="w-full h-2 bg-foreground/15" />
+                <div className="w-24 h-3 bg-foreground/30 rounded-full" />
+                <div className="w-full h-2 bg-foreground/15 rounded-full" />
               </div>
               <IconDotsVertical className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -150,7 +148,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         ) : (
           <NavUser user={user} />
         )}
-      </SidebarFooter>
+      </SidebarFooter> */}
     </Sidebar>
   );
 }

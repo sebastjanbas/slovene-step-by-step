@@ -3,9 +3,31 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { usePathname } from "@/i18n/routing";
+import { useUserInfo } from "../auth/user-context";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  IconCreditCard,
+  IconLogout,
+  IconNotification,
+  IconUserCircle,
+} from "@tabler/icons-react";
+import { SignOutButton } from "@clerk/nextjs";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const user = useUserInfo();
+  if (!user) {
+    return <p>LOADING</p>;
+  }
   return (
     <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
@@ -18,16 +40,72 @@ export function SiteHeader() {
           {pathname.replace("/", "").replaceAll("-", " ")}
         </h1>
         <div className="ml-auto flex items-center gap-2">
-          <Button variant="ghost" asChild size="sm" className="hidden sm:flex">
-            <a
-              href="https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard"
-              rel="noopener noreferrer"
-              target="_blank"
-              className="dark:text-foreground"
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild className="cursor-pointer">
+              <Button
+                variant="ghost"
+                className="hover:bg-transparent gap-5 !focus:outline-none outline-none focus-visible:outline-none border-none focus:border-none focus-visible:border-none focus:ring-0 focus-visible:ring-0"
+              >
+                <div className="grid flex-1 text-right text-sm leading-tight">
+                  <span className="truncate font-medium">{user.name}</span>
+                  <span className="text-muted-foreground truncate text-xs">
+                    {user.email}
+                  </span>
+                </div>
+                <Avatar className="h-11 w-11 rounded-full">
+                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarFallback className="rounded-full">
+                    {user.name[0]}
+                  </AvatarFallback>
+                </Avatar>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+              side={"bottom"}
+              align="end"
+              sideOffset={4}
             >
-              GitHub
-            </a>
-          </Button>
+              <DropdownMenuLabel className="p-0 font-normal">
+                <div className="flex flex-col justify-center items-center gap-2 px-1 py-1.5 text-left text-sm">
+                  <Avatar className="h-16 w-16 rounded-full">
+                    <AvatarImage src={user.avatar} alt={user.name} />
+                    <AvatarFallback className="rounded-full">
+                      {user.name[0]}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="grid flex-1 text-center text-sm leading-tight">
+                    <span className="truncate font-medium">{user.name}</span>
+                    <span className="text-muted-foreground truncate text-xs">
+                      {user.email}
+                    </span>
+                  </div>
+                </div>
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem disabled>
+                  <IconUserCircle />
+                  Account
+                </DropdownMenuItem>
+                <DropdownMenuItem disabled>
+                  <IconCreditCard />
+                  Billing
+                </DropdownMenuItem>
+                <DropdownMenuItem disabled>
+                  <IconNotification />
+                  Notifications
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <SignOutButton>
+                <DropdownMenuItem className="cursor-pointer">
+                  <IconLogout />
+                  Log out
+                </DropdownMenuItem>
+              </SignOutButton>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>

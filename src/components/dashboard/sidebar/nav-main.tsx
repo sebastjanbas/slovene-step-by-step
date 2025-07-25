@@ -31,7 +31,7 @@ export function NavMain({
             <SidebarMenuButton
               disabled
               tooltip="Create an appointment"
-              className="bg-primary cursor-pointer text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
+              className="bg-background cursor-pointer text-foreground hover:bg-background/80 active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
             >
               <IconCirclePlusFilled />
               <span>Book a Lesson</span>
@@ -41,7 +41,7 @@ export function NavMain({
               className="size-8 cursor-pointer group-data-[collapsible=icon]:opacity-0"
               variant="outline"
             >
-              <IconMail />
+              <IconMail className="text-foreground" />
               <span className="sr-only">Inbox</span>
             </Button>
           </SidebarMenuItem>

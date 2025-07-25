@@ -6,6 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
 import { format, isSameDay } from "date-fns";
 import { enUS, it, Locale, ru, sl } from "date-fns/locale";
 import React, { useState } from "react";
@@ -41,32 +42,7 @@ const localeMap: Record<string, Locale> = {
   },
 };
 
-// Sample events
-const events = [
-  {
-    id: "1",
-    date: "2025-07-25",
-    title: "Grammar Workshop",
-    description: "Join our grammar Q&A workshop at 18:00",
-    color: "bg-emerald-400",
-  },
-  {
-    id: "2",
-    date: "2025-07-26",
-    title: "Speaking Practice",
-    description: "Group speaking session with native tutors",
-    color: "bg-yellow-400",
-  },
-  {
-    id: "3",
-    date: "2025-07-26",
-    title: "Speaking Practice",
-    description: "Group speaking session with native tutors",
-    color: "bg-blue-400",
-  },
-];
-
-const CalendarDashboard = ({ locale }) => {
+const CalendarDashboard = ({ locale, events }) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const dateFnsLocale = localeMap[locale] ?? localeMap["en"]; // fallback to English
 
@@ -99,7 +75,7 @@ const CalendarDashboard = ({ locale }) => {
         modifiersClassNames={{
           hasEvent: "relative has-event",
         }}
-        className="rounded-md border p-4"
+        className="rounded-2xl border p-4 w-full md:w-fit h-auto pb-14 md:pb-4"
       />
 
       <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
@@ -115,9 +91,20 @@ const CalendarDashboard = ({ locale }) => {
           ) : (
             <ul className="space-y-2">
               {eventsOnSelectedDay.map((event) => (
-                <li key={event.id} className={event.color}>
-                  <h3 className="font-bold">{event.title}</h3>
-                  <p className="text-sm text-gray-500">{event.description}</p>
+                <li
+                  key={event.id}
+                  className="relative flex items-center justify-start"
+                >
+                  <div
+                    className={cn(
+                      "absolute bottom-1/2 translate-y-1/2 left-2 h-10 w-1 rounded-full",
+                      event.color
+                    )}
+                  />
+                  <div className="translate-x-6">
+                    <h3 className="font-bold">{event.title}</h3>
+                    <p className="text-sm text-gray-500">{event.description}</p>
+                  </div>
                 </li>
               ))}
             </ul>
