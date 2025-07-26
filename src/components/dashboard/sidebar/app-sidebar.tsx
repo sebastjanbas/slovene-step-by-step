@@ -46,7 +46,7 @@ const data = {
       title: "Calendar",
       url: "/calendar",
       icon: IconCalendarWeek,
-      disabled: false,
+      disabled: true,
     },
     {
       title: "Language Club",
@@ -130,25 +130,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavDocuments items={data.myProgress} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
-      {/* <SidebarFooter>
-        {!user ? (
-          <Skeleton>
-            <SidebarMenuButton
-              size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-            >
-              <div className="h-8 w-8 rounded-lg bg-foreground/30" />
-              <div className="grid flex-1 gap-1 text-left text-sm leading-tight">
-                <div className="w-24 h-3 bg-foreground/30 rounded-full" />
-                <div className="w-full h-2 bg-foreground/15 rounded-full" />
-              </div>
-              <IconDotsVertical className="ml-auto size-4" />
-            </SidebarMenuButton>
-          </Skeleton>
-        ) : (
-          <NavUser user={user} />
-        )}
-      </SidebarFooter> */}
     </Sidebar>
   );
 }

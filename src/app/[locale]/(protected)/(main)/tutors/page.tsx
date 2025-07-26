@@ -15,7 +15,7 @@ const TutorsPage = () => {
     <main className="h-[90vh] w-full pt-8 px-8">
       <h1 className="text-4xl pb-8 tracking-tight">Please select your Tutor</h1>
 
-      <div className="grid grid-cols-3 grid-rows-1 gap-5">
+      <div className="grid grid-cols-1 grid-rows-3 md:grid-cols-3 md:grid-rows-1 gap-5">
         <Card className="pt-0 overflow-hidden rounded-3xl max-w-xl">
           <div className="w-full overflow-hidden h-auto aspect-video">
             <Image

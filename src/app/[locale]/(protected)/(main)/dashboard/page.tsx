@@ -1,7 +1,5 @@
 import CalendarDashboard from "@/components/dashboard/content/calendar-dashboard";
-import CalendarEvent from "@/components/dashboard/content/calendar-event";
 import Greeting from "@/components/dashboard/content/greeting";
-import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 
 const DashboardPage = ({ params }) => {
@@ -75,31 +73,13 @@ const DashboardPage = ({ params }) => {
   ];
 
   return (
-    <main className="h-[90vh] w-full p-8">
-      <Greeting />
-      <div className="flex flex-col-reverse md:flex-row justify-between items-center md:items-stretch w-full gap-6 pb-6">
-        {/* <Skeleton className="flex-1 h-80 md:h-auto w-full"> */}
-        <div className="bg-none w-full md:bg-foreground/5 rounded-2xl flex justify-start items-start text-foreground/50 md:p-5 max-h-[16rem] md:max-h-[30rem] overflow-y-scroll">
-          {events.length !== 0 ? (
-            <ul className="flex flex-col gap-5 justify-center items-center w-full">
-              {events.map((props) => (
-                <li key={props.id} className="w-full">
-                  <CalendarEvent locale={locale} {...props} />
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="italic">You have no event scheduled</p>
-          )}
-        </div>
-        {/* </Skeleton> */}
+    <main className="h-[90vh] w-full flex flex-row">
+      <div className="flex-3/4 p-5">
+        <Greeting />
+      </div>
+      <div className="flex-1/4 bg-[#F9F8FC] dark:bg-foreground/5 flex justify-center items-start">
         <CalendarDashboard events={events} locale={locale} />
       </div>
-      <Skeleton>
-        <div className="h-[19rem] w-full bg-foreground/5 rounded-2xl flex justify-center items-center text-foreground/50">
-          Coming Soon
-        </div>
-      </Skeleton>
     </main>
   );
 };

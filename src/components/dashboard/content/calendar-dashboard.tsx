@@ -75,7 +75,7 @@ const CalendarDashboard = ({ locale, events }) => {
         modifiersClassNames={{
           hasEvent: "relative has-event",
         }}
-        className="rounded-2xl border p-4 w-full md:w-fit h-auto pb-14 md:pb-4"
+        className="rounded-2xl bg-transparent p-4 w-full md:w-fit h-auto pb-14 md:pb-4"
       />
 
       <Dialog open={isModalOpen} onOpenChange={setModalOpen}>

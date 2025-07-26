@@ -100,7 +100,7 @@ function Calendar({
         caption_label: cn(
           "select-none font-medium",
           captionLayout === "label"
-            ? "text-sm"
+            ? "text-2xl text-dark-2 font-medium"
             : "rounded-xl pl-2 pr-1 flex items-center gap-1 text-sm h-8 [&>svg]:text-muted-foreground [&>svg]:size-3.5",
           defaultClassNames.caption_label
         ),
@@ -130,7 +130,7 @@ function Calendar({
         range_middle: cn("rounded-none", defaultClassNames.range_middle),
         range_end: cn("rounded-r-md bg-accent", defaultClassNames.range_end),
         today: cn(
-          "bg-accent text-accent-foreground rounded-xl data-[selected=true]:rounded-none",
+          "bg-[#F5E9FA] dark:bg-foreground/20 text-accent-foreground rounded-xl data-[selected=true]:rounded-none",
           defaultClassNames.today
         ),
         outside: cn(
@@ -214,7 +214,9 @@ function CalendarDayButton({
 
   const events = eventMap[dateKey] || [];
 
-  const weekendClass = modifiers.weekend ? "bg-foreground/5" : "";
+  const weekendClass = modifiers.weekend
+    ? "bg-[#EAE9F7]/40 dark:bg-foreground/10"
+    : "";
 
   return (
     <>

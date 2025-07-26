@@ -7,7 +7,9 @@ const Greeting = () => {
   if (!user) {
     return (
       <div className="inline-flex gap-2 justify-center items-center pb-3">
-        <h1 className="text-2xl md:text-4xl">Hi</h1>
+        <h1 className="text-2xl md:text-4xl pb-3 tracking-tight">
+          Welcome back
+        </h1>
       </div>
     );
   }
