@@ -1,7 +1,6 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogTrigger,
@@ -19,17 +18,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Separator } from "@/components/ui/separator";
-import PasswordForm from "./password-form";
 import { Skeleton } from "@/components/ui/skeleton";
+import PasswordForm from "./password-form";
 
 const PasswordCard = () => {
-  const { user, isLoaded } = useUser();
+  const { isLoaded } = useUser();
   const [open, setOpen] = useState(false);
-
-  console.log(user);
-  // Only render if user has password enabled
-  // if (!user.passwordEnabled) return null;
 
   return (
     <Card className="w-full max-w-4xl rounded-2xl p-1 bg-accent border-none">
@@ -46,10 +40,8 @@ const PasswordCard = () => {
         )}
         <Dialog open={open} onOpenChange={setOpen}>
           <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Button variant="outline" className="!py-0 !px-2 cursor-pointer">
-                <IconDots />
-              </Button>
+            <DropdownMenuTrigger className="p-1 cursor-pointer rounded-sm border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50">
+              <IconDots size={14} />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="shadow-lg">
               <DialogTrigger asChild className="cursor-pointer">
@@ -59,12 +51,12 @@ const PasswordCard = () => {
               </DialogTrigger>
             </DropdownMenuContent>
           </DropdownMenu>
+
           <DialogContent className="rounded-2xl px-0" showCloseButton={false}>
-            <DialogHeader className="px-6">
-              <DialogTitle className="font-medium">Change Password</DialogTitle>
+            <DialogHeader className="hidden">
+              <DialogTitle>Change Password</DialogTitle>
             </DialogHeader>
-            <Separator />
-            <div className="px-6">
+            <div className="flex flex-col w-full justify-center items-center px-6">
               <PasswordForm />
             </div>
           </DialogContent>

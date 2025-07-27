@@ -15,9 +15,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { useUser } from "@clerk/nextjs";
+import { useReverification, useUser } from "@clerk/nextjs";
+import { LoaderCircle } from "lucide-react";
+import { VerificationComponent } from "./verification-component";
+import { SessionVerificationLevel } from "@clerk/types";
 
 const formSchema = z.object({
+  currentPassword: z.string().min(8).max(50),
   password: z.string().min(8).max(50),
   confirmPassword: z.string().min(8).max(50),
 });
@@ -25,22 +29,36 @@ const formSchema = z.object({
 const PasswordForm = () => {
   const { user } = useUser();
   const [error, setError] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [needsReverification, setNeedsReverification] = useState<{
+    complete: () => void;
+    cancel: () => void;
+    level: SessionVerificationLevel | undefined;
+  } | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      currentPassword: "",
       password: "",
       confirmPassword: "",
     },
   });
-  const handlePasswordChange = async ({ password }: { password: string }) => {
-    try {
-      await user.updatePassword({ newPassword: password });
-      toast.success("Password updated successfully");
-    } catch (error: any) {
-      toast.error(error.errors?.[0]?.message || "Failed to update password");
+
+  const changePassword = useReverification(
+    async (vals: { currentPassword: string; newPassword: string }) => {
+      return await user.updatePassword({
+        currentPassword: vals.currentPassword,
+        newPassword: vals.newPassword,
+      });
+    },
+    {
+      onNeedsReverification: ({ complete, cancel, level }) => {
+        setNeedsReverification({ complete, cancel, level });
+      },
     }
-  };
+  );
+
   const handleEscapeClick = () => {
     const event = new KeyboardEvent("keydown", {
       key: "Escape",
@@ -53,67 +71,129 @@ const PasswordForm = () => {
     document.dispatchEvent(event);
   };
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setError("");
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
     if (values.password !== values.confirmPassword) {
-      setError("Password do not match!");
+      setError("Passwords do not match!");
+      setIsSubmitting(false);
+      return;
     }
 
-    handlePasswordChange({ password: values.password });
+    try {
+      await changePassword({
+        currentPassword: values.currentPassword,
+        newPassword: values.password,
+      });
+      toast.success("Password updated successfully");
+      handleEscapeClick();
+    } catch (err: any) {
+      toast.error(err.errors?.[0]?.message || "Update failed");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>New password</FormLabel>
-              <FormControl>
-                <Input
-                  type="password"
-                  placeholder="Enter new password"
-                  className="focus-visible:ring-0"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
+      {needsReverification ? (
+        <VerificationComponent
+          level={needsReverification.level}
+          onComplete={() => {
+            needsReverification.complete();
+            setNeedsReverification(null);
+            setIsSubmitting(false);
+          }}
+          onCancel={() => {
+            needsReverification.cancel();
+            setNeedsReverification(null);
+            setIsSubmitting(false);
+          }}
         />
-        <FormField
-          control={form.control}
-          name="confirmPassword"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Confirm password</FormLabel>
-              <FormControl>
-                <Input
-                  type="password"
-                  className="focus-visible:ring-0"
-                  placeholder="Enter confirm new password"
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage>{error}</FormMessage>
-            </FormItem>
-          )}
-        />
-        <div className="flex flex-row items-center gap-2">
-          <Button
-            type="button"
-            onClick={handleEscapeClick}
-            variant="outline"
-            className="flex-1/2 rounded-xl cursor-pointer"
-          >
-            Close
-          </Button>
-          <Button type="submit" className="flex-1/2 rounded-xl cursor-pointer">
-            Submit
-          </Button>
-        </div>
-      </form>
+      ) : (
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 w-10/12"
+        >
+          <FormField
+            control={form.control}
+            name="currentPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Current password</FormLabel>
+                <FormControl>
+                  <Input
+                    disabled={isSubmitting}
+                    type="password"
+                    placeholder="Enter your current password"
+                    className="focus-visible:ring-0 py-0"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>New password</FormLabel>
+                <FormControl>
+                  <Input
+                    disabled={isSubmitting}
+                    type="password"
+                    placeholder="Enter new password"
+                    className="focus-visible:ring-0 py-0"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Confirm password</FormLabel>
+                <FormControl>
+                  <Input
+                    disabled={isSubmitting}
+                    type="password"
+                    className="focus-visible:ring-0"
+                    placeholder="Enter confirm new password"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage>{error}</FormMessage>
+              </FormItem>
+            )}
+          />
+          <div className="flex flex-col items-center gap-2">
+            <Button
+              disabled={isSubmitting}
+              type="submit"
+              className="w-full rounded-xl cursor-pointer"
+            >
+              {isSubmitting ? (
+                <LoaderCircle className="animate-spin" />
+              ) : (
+                "Submit"
+              )}
+            </Button>
+            <Button
+              disabled={isSubmitting}
+              type="button"
+              onClick={handleEscapeClick}
+              variant="outline"
+              className="w-full rounded-xl cursor-pointer"
+            >
+              Close
+            </Button>
+          </div>
+        </form>
+      )}
     </Form>
   );
 };
