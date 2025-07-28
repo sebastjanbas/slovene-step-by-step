@@ -39,8 +39,7 @@ export default function Hero() {
 
       // Single color comparison
       if (word.trim() === strongWord) {
-        wordContainer.className =
-          "text-light-1 sm:text-accent sm:dark:text-accent-foreground";
+        wordContainer.className = "text-sl-accent";
       }
 
       word.split("").forEach((char) => {
@@ -112,13 +111,9 @@ export default function Hero() {
         </div>
         <div className="w-full py-[calc(100vh-90vh)] sm:py-48 lg:py-56">
           <div className="mb-8 flex justify-center">
-            {/* <div className="relative rounded-full px-3 py-1 text-sm/6 text-custom-light-2 dark:text-custom-dark-2 ring-1 ring-gray-900/10 dark:ring-gray-200/25 hover:ring-gray-900/20"> */}
             <div className="hidden">
               {t("announcement")}{" "}
-              <Link
-                href={"#"}
-                className="font-semibold text-custom-accent-l dark:text-custom-accent-d"
-              >
+              <Link href={"#"} className="font-semibold text-">
                 <span aria-hidden="true" className="absolute inset-0" />
                 {t("announcement-link")} <span aria-hidden="true">&rarr;</span>
               </Link>
@@ -127,7 +122,7 @@ export default function Hero() {
           <div className="text-center sm:text-start">
             <h1
               ref={titleRef}
-              className="text-balance text-5xl font-semibold tracking-tight text-white sm:text-light-1 dark:text-dark-1 md:text-6xl lg:text-7xl"
+              className="text-balance text-5xl font-semibold tracking-tight text-sl-primary md:text-6xl lg:text-7xl"
             >
               <div>
                 {t("title-1")}{" "}
@@ -137,7 +132,7 @@ export default function Hero() {
             </h1>
             <p
               ref={subtitleRef}
-              className="mt-8 text-pretty text-lg font-medium text-white sm:text-light-2 dark:text-dark-1 sm:text-xl/8"
+              className="mt-8 text-pretty text-lg font-medium text-sl-secondary sm:text-xl/8"
             >
               {t("under-title")}
             </p>
@@ -147,7 +142,7 @@ export default function Hero() {
             >
               <a
                 href={"/dashboard"}
-                className="rounded-2xl border-2 sm:border-none border-white bg-button px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-button-hover transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-custom-button-hover-l"
+                className="rounded-2xl bg-sl-accent hover:bg-sl-accent-hover px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors duration-200 ease-in-out"
               >
                 {t("action-button")}
               </a>

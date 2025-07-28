@@ -109,90 +109,94 @@ const PasswordForm = () => {
           }}
         />
       ) : (
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-10/12"
-        >
-          <FormField
-            control={form.control}
-            name="currentPassword"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Current password</FormLabel>
-                <FormControl>
-                  <Input
-                    disabled={isSubmitting}
-                    type="password"
-                    placeholder="Enter your current password"
-                    className="focus-visible:ring-0 py-0"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>New password</FormLabel>
-                <FormControl>
-                  <Input
-                    disabled={isSubmitting}
-                    type="password"
-                    placeholder="Enter new password"
-                    className="focus-visible:ring-0 py-0"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="confirmPassword"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Confirm password</FormLabel>
-                <FormControl>
-                  <Input
-                    disabled={isSubmitting}
-                    type="password"
-                    className="focus-visible:ring-0"
-                    placeholder="Enter confirm new password"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage>{error}</FormMessage>
-              </FormItem>
-            )}
-          />
-          <div className="flex flex-col items-center gap-2">
-            <Button
-              disabled={isSubmitting}
-              type="submit"
-              className="w-full rounded-xl cursor-pointer"
-            >
-              {isSubmitting ? (
-                <LoaderCircle className="animate-spin" />
-              ) : (
-                "Submit"
+        <>
+          <h1 className="text-lg font-semibold tracking-[-0.001rem] pb-1">
+            Change Password
+          </h1>
+          <p className="text-sm text-foreground/60 pb-6">
+            Enter your current and new passwords
+          </p>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-8 w-10/12"
+          >
+            <FormField
+              control={form.control}
+              name="currentPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Current password</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isSubmitting}
+                      type="password"
+                      placeholder="Enter your current password"
+                      className="focus-visible:ring-0 py-0"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
               )}
-            </Button>
-            <Button
-              disabled={isSubmitting}
-              type="button"
-              onClick={handleEscapeClick}
-              variant="outline"
-              className="w-full rounded-xl cursor-pointer"
-            >
-              Close
-            </Button>
-          </div>
-        </form>
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>New password</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isSubmitting}
+                      type="password"
+                      placeholder="Enter new password"
+                      className="focus-visible:ring-0 py-0"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Confirm password</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isSubmitting}
+                      type="password"
+                      className="focus-visible:ring-0"
+                      placeholder="Enter confirm new password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage>{error}</FormMessage>
+                </FormItem>
+              )}
+            />
+            <div className="flex flex-col items-center gap-2">
+              <Button disabled={isSubmitting} type="submit" className="w-full">
+                {isSubmitting ? (
+                  <LoaderCircle className="animate-spin" />
+                ) : (
+                  "Submit"
+                )}
+              </Button>
+              <Button
+                disabled={isSubmitting}
+                type="button"
+                onClick={handleEscapeClick}
+                variant="outline"
+                className="w-full"
+              >
+                Close
+              </Button>
+            </div>
+          </form>
+        </>
       )}
     </Form>
   );

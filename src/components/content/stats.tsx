@@ -53,12 +53,10 @@ export default function Stats({
             key={stat.id}
             className={`bg-[#f4f4f6] max-w-[300px] xl:max-w-[500px] w-full dark:bg-[#171717] shadow-md ${size.space} rounded-2xl w-full flex flex-col gap-y-2`}
           >
-            <div className="flex-grow-0 mx-[15%] md:mx-0 border-t border-[8px] -translate-y-5 border-accent/70"></div>
-            <dt className="text-base/6 text-light-3 dark:text-dark-3">
-              {t(stat.title)}
-            </dt>
+            <div className="flex-grow-0 mx-[15%] md:mx-0 border-t border-[8px] -translate-y-5 border-sl-accent/70 rounded-[3px]"></div>
+            <dt className="text-base/6 text-sl-primary">{t(stat.title)}</dt>
             <dd
-              className={`order-first font-semibold ${size.text} tracking-tight text-light-2 dark:text-dark-3`}
+              className={`order-first font-semibold ${size.text} tracking-tight text-sl-secondary`}
             >
               <span
                 ref={(el) => {

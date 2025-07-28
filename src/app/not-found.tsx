@@ -28,16 +28,16 @@ export default function NotFoundPage() {
             <p className="text-base font-semibold text-accent dark:text-accent-foreground">
               404
             </p>
-            <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-light-1 sm:text-7xl dark:text-dark-1">
+            <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-sl-primary sm:text-7xl">
               {t("title")}
             </h1>
-            <p className="mt-6 text-pretty text-lg font-medium text-light-2 dark:text-dark-2 sm:text-xl/8">
+            <p className="mt-6 text-pretty text-lg font-medium text-sl-secondary sm:text-xl/8">
               {t("description")}
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
                 href="/"
-                className="font-semibold text-accent dark:text-accent-foreground hover:underline"
+                className="font-semibold text-sl-accent hover:underline"
               >
                 <span aria-hidden="true">&larr;</span> {t("backButton")}
               </Link>

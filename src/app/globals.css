@@ -46,34 +46,14 @@
 
   /* custom colors  */
   /* FIX COLORS - move the dark theme to the .dark section and rename them */
-  --color-light-1: var(--light-1);
-  --color-light-2: var(--light-2);
-  --color-light-3: var(--light-3);
-  --color-light-4: var(--light-4);
-  --color-dark-1: var(--dark-1);
-  --color-dark-2: var(--dark-2);
-  --color-dark-3: var(--dark-3);
-  --color-dark-4: var(--dark-4);
-  --color-button: var(--button);
-  --color-button-hover: var(--button-h);
+  --color-sl-primary: var(--sl-primary);
+  --color-sl-secondary: var(--sl-secondary);
+  --color-sl-accent: var(--sl-accent);
+  --color-sl-accent-hover: var(--sl-accent-hover);
 }
 
 :root {
   --radius: 0.625rem;
-
-  --accent-0: oklch(76.607% 0.10373 49.043);
-  --accent-1: oklch(76.607% 0.10373 49.043);
-  --light-1: oklch(29.121% 0.05397 287.127);
-  --light-2: oklch(40.688% 0.07454 285.625);
-  --light-3: oklch(12.275% 0.00289 285.903);
-  --light-4: oklch(11.827% 0.04582 280.662);
-  --dark-1: oklch(100% 0.00011 271.152);
-  --dark-2: oklch(73.531% 0.1076 286.481);
-  --dark-3: oklch(85.539% 0.0042 285.971);
-  --dark-4: oklch(85.539% 0.0042 285.971);
-  --button: oklch(76.607% 0.10373 49.043);
-  --button-h: oklch(63.662% 0.11472 47.799);
-
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -108,6 +88,12 @@
   --sidebar-ring: oklch(0.708 0 0);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
+
+  /* Custom Colors  */
+  --sl-primary: oklch(29.121% 0.05397 287.127);
+  --sl-secondary: oklch(40.688% 0.07454 285.625);
+  --sl-accent: oklch(76.607% 0.10373 49.043);
+  --sl-accent-hover: oklch(63.662% 0.11472 47.799);
 }
 
 .dark {
@@ -142,6 +128,12 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* Custom colors   */
+  --sl-primary: oklch(100% 0.00011 271.152);
+  --sl-secondary: oklch(73.531% 0.1076 286.481);
+  --sl-accent: oklch(76.607% 0.10373 49.043);
+  --sl-accent-hover: oklch(63.662% 0.11472 47.799);
 }
 
 @layer base {

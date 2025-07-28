@@ -43,7 +43,7 @@ const SectionTitle = ({
       <div id={id} className="w-full mb-10 mt-40">
         <h2
           className={cn(
-            "text-base/7 font-semibold text-accent dark:text-accent-foreground",
+            "text-base/7 font-semibold text-sl-accent",
             textOrientation
           )}
         >
@@ -51,7 +51,7 @@ const SectionTitle = ({
         </h2>
         <p
           className={cn(
-            "mt-2 text-balance text-4xl font-semibold tracking-tight text-light-1 dark:text-dark-1 sm:text-5xl",
+            "mt-2 text-balance text-4xl font-semibold tracking-tight text-sl-primary sm:text-5xl",
             textOrientation
           )}
         >

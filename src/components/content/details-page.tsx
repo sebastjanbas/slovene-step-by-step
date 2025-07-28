@@ -59,20 +59,17 @@ export default function DetailsPageHero() {
             <div className="lg:max-w-lg">
               <p
                 id="subtitle"
-                className="text-base/7 font-semibold text-accent dark:text-accent-foreground"
+                className="text-base/7 font-semibold text-sl-accent"
               >
                 {t("why-slovene-subtitle")}
               </p>
               <h1
                 id="title"
-                className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-light-1 dark:text-dark-1 sm:text-5xl"
+                className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-sl-primary sm:text-5xl"
               >
                 {t("why-slovene-title")}
               </h1>
-              <p
-                id="text1"
-                className="mt-6 text-xl/8 text-light-2 dark:text-dark-2"
-              >
+              <p id="text1" className="mt-6 text-xl/8 text-sl-secondary">
                 {t("why-slovene-text1")}
               </p>
             </div>
@@ -87,24 +84,21 @@ export default function DetailsPageHero() {
             height={720}
             alt="Details picture"
             src="/details-picture.png"
-            className="w-full aspect-[16/11] object-cover max-w-none bg-gray-200 rounded-3xl shadow-xl sm:w-[57rem]"
+            className="w-full aspect-[16/11] object-cover max-w-none bg-accent rounded-3xl shadow-xl sm:w-[57rem]"
           />
         </div>
         <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
           <div className="lg:pr-4 lg:block sm:flex sm:justify-center">
-            <div className="max-w-xl text-base/7 text-light-3 dark:text-dark-3 lg:max-w-lg">
+            <div className="max-w-xl text-base/7 text-primary lg:max-w-lg">
               <p id="text2">{t("why-slovene-text2")}</p>
-              <ul
-                role="list"
-                className="mt-8 space-y-8 text-light-3 dark:text-dark-3"
-              >
+              <ul role="list" className="mt-8 space-y-8 text-sl-primary">
                 <li id="point1" className="flex gap-x-3">
                   <RocketLaunchIcon
                     aria-hidden="true"
-                    className="mt-1 size-5 flex-none text-accent dark:text-accent-foreground"
+                    className="mt-1 size-5 flex-none text-sl-accent"
                   />
                   <span>
-                    <strong className="font-semibold text-light-1 dark:text-dark-1">
+                    <strong className="font-semibold text-sl-primary">
                       {t("why-slovene-point1-strong")}
                     </strong>{" "}
                     {t("why-slovene-point1")}
@@ -113,10 +107,10 @@ export default function DetailsPageHero() {
                 <li id="point2" className="flex gap-x-3">
                   <ChatBubbleLeftRightIcon
                     aria-hidden="true"
-                    className="mt-1 size-5 flex-none text-accent dark:text-accent-foreground"
+                    className="mt-1 size-5 flex-none text-sl-accent"
                   />
                   <span>
-                    <strong className="font-semibold text-light-1 dark:text-dark-1">
+                    <strong className="font-semibold text-sl-primary">
                       {t("why-slovene-point2-strong")}
                     </strong>{" "}
                     {t("why-slovene-point2")}
@@ -125,10 +119,10 @@ export default function DetailsPageHero() {
                 <li id="point3" className="flex gap-x-3">
                   <BookOpenIcon
                     aria-hidden="true"
-                    className="mt-1 size-5 flex-none text-accent dark:text-accent-foreground"
+                    className="mt-1 size-5 flex-none text-sl-accent"
                   />
                   <span>
-                    <strong className="font-semibold text-light-1 dark:text-dark-1">
+                    <strong className="font-semibold text-sl-primary">
                       {t("why-slovene-point3-strong")}
                     </strong>{" "}
                     {t("why-slovene-point3")}

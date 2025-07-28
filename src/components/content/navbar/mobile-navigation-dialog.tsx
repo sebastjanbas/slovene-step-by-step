@@ -61,7 +61,6 @@ export default function MobileNavigationDialog({
                       <button
                         type="button"
                         onClick={() => setMobileMenuOpen(false)}
-                        // className="-m-2.5 rounded-md p-2.5 text-custom-light-4 dark:text-custom-dark-4"
                         className="inline-flex items-center justify-center p-2 rounded-md text-foreground-lighter focus:ring-brand hover:text-foreground-light transition-colors focus:outline-none focus:ring-2 focus:ring-inset"
                       >
                         <span className="sr-only">Close menu</span>
@@ -92,10 +91,6 @@ export default function MobileNavigationDialog({
                           <Link
                             href="/sign-in"
                             className="block py-2 pl-3 pr-4 text-base font-medium text-foreground hover:bg-surface-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:rounded"
-                            // className={`text-sm/6 font-semibold ${pathname.includes("/login")
-                            //     ? "text-custom-accent-l dark:text-custom-accent-d"
-                            //     : "text-custom-light-3 dark:text-custom-dark-3"
-                            //     } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
                           >
                             <p className="truncate">Log in</p>
                           </Link>
@@ -103,10 +98,6 @@ export default function MobileNavigationDialog({
                           <Link
                             href="/dashboard"
                             className="block py-2 pl-3 pr-4 text-base font-medium text-foreground hover:bg-surface-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:rounded"
-                            // className={`text-sm/6 font-semibold ${pathname.includes("/login")
-                            //     ? "text-custom-accent-l dark:text-custom-accent-d"
-                            //     : "text-custom-light-3 dark:text-custom-dark-3"
-                            //     } hover:text-custom-accent-l dark:hover:text-custom-accent-d`}
                           >
                             <p className="truncate">Dashboard</p>
                           </Link>

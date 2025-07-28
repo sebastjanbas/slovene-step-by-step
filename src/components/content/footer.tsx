@@ -23,7 +23,7 @@ export default function Footer() {
           <span className="sr-only">Slovene Step By Step</span>
           <IconLogo />
         </div>
-        <p className="my-8 text-light-3 dark:text-dark-3">{t("title")}</p>
+        <p className="my-8 text-sl-primary">{t("title")}</p>
         <div className="flex flex-row items-center gap-x-5">
           <SocialLinks
             href={"https://t.me/slovenscina_korak_za_korakom"}
@@ -33,7 +33,7 @@ export default function Footer() {
               width={socialLinkSize}
               height={socialLinkSize}
               viewBox="0 0 48 48"
-              className="fill-light-4 dark:fill-dark-4"
+              className="fill-sl-primary"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -52,7 +52,7 @@ export default function Footer() {
               width={socialLinkSize}
               height={socialLinkSize}
               viewBox="0 0 48 48"
-              className="fill-light-4 dark:fill-dark-4"
+              className="fill-sl-primary"
               xmlns="http://www.w3.org/2000/svg"
             >
               <g clipPath="url(#clip0_17_63)">
@@ -84,7 +84,7 @@ export default function Footer() {
               width={socialLinkSize}
               height={socialLinkSize}
               viewBox="0 0 48 48"
-              className="fill-light-4 dark:fill-dark-4"
+              className="fill-sl-primary"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -98,7 +98,7 @@ export default function Footer() {
                             width={socialLinkSize}
                             height={socialLinkSize}
                             viewBox="0 0 48 48"
-                            className="fill-light-4 dark:fill-dark-4"
+                            className="fill-sl-primary"
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <g clipPath="url(#clip0_17_61)">
@@ -118,37 +118,27 @@ export default function Footer() {
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-5">
         <div className="flex flex-col">
-          <h1 className="mb-5 text-light-1 dark:text-dark-1 font-semibold">
-            {t("group1")}
-          </h1>
+          <h1 className="mb-5 text-sl-primary font-semibold">{t("group1")}</h1>
           {footerLinks.Personal.map((item) => (
             <div key={item.name}>
-              <a
-                href={item.href}
-                className="hover:underline text-light-4 dark:text-dark-4"
-              >
+              <a href={item.href} className="hover:underline text-sl-primary">
                 {t(item.name)}
               </a>
             </div>
           ))}
         </div>
         <div className="flex flex-col">
-          <h1 className="mb-5 text-light-1 dark:text-dark-1 font-semibold">
-            Quick Links
-          </h1>
+          <h1 className="mb-5 text-sl-primary font-semibold">Quick Links</h1>
           {footerLinks.QuickLinks.map((item) => (
             <div key={item.name}>
               {item.server ? (
-                <a
-                  href={item.href}
-                  className="hover:underline text-light-4 dark:text-dark-4"
-                >
+                <a href={item.href} className="hover:underline text-sl-primary">
                   {t(item.name)}
                 </a>
               ) : (
                 <Link
                   href={item.href}
-                  className="hover:underline text-light-4 dark:text-dark-4"
+                  className="hover:underline text-sl-primary"
                 >
                   {t(item.name)}
                 </Link>
@@ -157,14 +147,12 @@ export default function Footer() {
           ))}
         </div>
         <div className="flex flex-col">
-          <h1 className="mb-5 text-light-1 dark:text-dark-1 font-semibold">
-            Company
-          </h1>
+          <h1 className="mb-5 text-sl-primary font-semibold">Company</h1>
           {footerLinks.Company.map((item) => (
             <div key={item.name}>
               <Link
                 href={item.href}
-                className="hover:underline text-light-4 dark:text-dark-4"
+                className="hover:underline text-sl-primary"
               >
                 {t(item.name)}
               </Link>
@@ -172,14 +160,12 @@ export default function Footer() {
           ))}
         </div>
         <div className="flex flex-col">
-          <h1 className="mb-5 text-light-1 dark:text-dark-1 font-semibold">
-            Legal
-          </h1>
+          <h1 className="mb-5 text-sl-primary font-semibold">Legal</h1>
           {footerLinks.Legal.map((item) => (
             <div key={item.name}>
               <Link
                 href={item.href}
-                className="hover:underline text-light-4 dark:text-dark-4"
+                className="hover:underline text-sl-primary"
               >
                 {t(item.name)}
               </Link>
@@ -188,7 +174,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="mt-10">
-        <p className="text-light-3 dark:text-dark-3">
+        <p className="text-sl-primary">
           &copy; 2024 Slovene Step By Step. All rights reserved.
         </p>
       </div>

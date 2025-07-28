@@ -154,7 +154,7 @@ export default function BentoGrid() {
         {/* <div className="hidden lg:gap-3 lg:px-8 lg:py-8 lg:col-span-2 lg:row-span-1 lg:flex flex-col justify-center items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl"> */}
         <div className="hidden">
           <IconLogo className="size-10" />
-          <h1 className="uppercase text-center text-[0.590rem] text-custom-accent-l dark:text-custom-accent-d font-bold">
+          <h1 className="uppercase text-center text-[0.590rem] text-sl-accent font-bold">
             Slovene Step By Step
           </h1>
         </div>

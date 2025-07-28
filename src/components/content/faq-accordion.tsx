@@ -15,7 +15,7 @@ export const AccordionCustom = ({ data }) => {
           value={item.trigger}
           className="py-2 w-full flex flex-col justify-center items-center"
         >
-          <AccordionTrigger className="hover:no-underline cursor-pointer w-fit text-left text-custom-light-1 dark:text-custom-dark-1">
+          <AccordionTrigger className="hover:no-underline cursor-pointer w-fit text-left text-sl-primary">
             {item.trigger}
           </AccordionTrigger>
           <AccordionContent>
@@ -23,7 +23,7 @@ export const AccordionCustom = ({ data }) => {
               {item.content.map((content, contentIndex) => (
                 <p
                   key={contentIndex}
-                  className="text-base px-1 text-custom-light-3 dark:text-custom-dark-3"
+                  className="text-base px-1 text-sl-primary"
                 >
                   {content}
                 </p>
