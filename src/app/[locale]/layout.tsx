@@ -1,11 +1,12 @@
 import React from "react";
 import "../globals.css";
-import AnimatedLayout from "@/components/ui/AnimatedLayout";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "../../i18n/routing";
 import { setRequestLocale } from "next-intl/server";
+import { ThemeProvider } from "@/components/ui/theme-provider";
+import { Toaster } from "sonner";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -29,10 +30,16 @@ export default async function LocaleLayout({ children, params }) {
   return (
     <html lang={locale} suppressHydrationWarning>
       <body>
+        <Toaster richColors position="top-center" />
         <NextIntlClientProvider messages={messages}>
-          <AnimatedLayout>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
             <main>{children}</main>
-          </AnimatedLayout>
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

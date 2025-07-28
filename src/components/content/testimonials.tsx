@@ -11,13 +11,17 @@ const Carousel = ({ data, stars = false }) => {
     <>
       <div className="relative select-none lg:px-4">
         <blockquote>
-          <img
-            className="hidden absolute -z-1 top-1 -left-2 lg:block"
+          <Image
+            width={600}
+            height={600}
+            className="hidden absolute -z-1 top-1 -left-2 lg:block size-40"
             src={"/blockquote.svg"}
             alt="quote sign"
           />
-          <img
-            className="hidden absolute -z-1 -bottom-3 -right-2 rotate-180 lg:block"
+          <Image
+            width={600}
+            height={600}
+            className="hidden absolute -z-1 -bottom-3 -right-2 rotate-180 lg:block size-40"
             src={"/blockquote.svg"}
             alt="quote sign"
           />
@@ -47,15 +51,13 @@ const Carousel = ({ data, stars = false }) => {
                   alt="Profile photo"
                 />
                 <div className="inline-block text-center md:text-left mb-4 text-lg">
-                  <p className="text-sm text-light-3 dark:text-dark-1">
-                    {t(review.text)}
-                  </p>
+                  <p className="text-sm text-sl-primary">{t(review.text)}</p>
                   <div className="flex flex-col md:flex-row justify-start md:gap-8 pt-4">
                     <div>
-                      <p className="text-xl font-bold text-light-1 dark:text-dark-1">
+                      <p className="text-xl font-bold text-sl-primary">
                         {review.name}
                       </p>
-                      <p className="text-sm font-normal text-accent dark:text-accent-foreground">
+                      <p className="text-sm font-normal text-sl-accent">
                         {t(review.role)}
                       </p>
                     </div>
@@ -70,7 +72,7 @@ const Carousel = ({ data, stars = false }) => {
                             <span key={index} className="p-[2px]">
                               &#9734;
                             </span>
-                          ),
+                          )
                         )}
                       </div>
                     )}

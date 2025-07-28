@@ -1,8 +1,13 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
-export const IconLogo = ({ className }: { className?: string }) => {
-  const fillColor = "dark:fill-[#7F7F7F] fill-light-2";
+export const IconLogo = ({
+  className,
+  fillColor = "dark:fill-[#7F7F7F] fill-light-2",
+}: {
+  className?: string;
+  fillColor?: string;
+}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

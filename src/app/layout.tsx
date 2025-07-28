@@ -1,7 +1,5 @@
-import { AuthProvider } from "@/components/auth/AuthProvider";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
-import { Toaster } from "sonner";
-import { ThemeProvider } from "@/components/ui/theme-provider";
 
 export const metadata = {
   title: {
@@ -52,19 +50,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html suppressHydrationWarning>
-      <body>
-        <Toaster richColors position="top-center" />
-
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <AuthProvider>{children}</AuthProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <>
+      <ClerkProvider>{children}</ClerkProvider>
+    </>
   );
 }

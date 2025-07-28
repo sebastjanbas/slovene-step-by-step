@@ -1,7 +1,6 @@
 import createMiddleware from 'next-intl/middleware';
 import {routing} from './i18n/routing';
-import { updateSession } from '@/utils/supabase/middleware'
-import { redirect } from 'next/dist/server/api-utils';
+import { clerkMiddleware } from '@clerk/nextjs/server';
  
 // export async function middleware(request) {
 //   return await updateSession(request)
@@ -20,21 +19,23 @@ import { redirect } from 'next/dist/server/api-utils';
 //   ]
 // };
 
-export async function middleware(request) {
-  // Handle i18n routing
+export default clerkMiddleware(async (auth, req) => {
   const i18nMiddleware = createMiddleware(routing);
-  const response = await i18nMiddleware(request);
-  
-  // Handle auth session
-  await updateSession(request);
-  
+  const response = await i18nMiddleware(req);
+
   return response;
-}
+
+})
+
+
 
 export const config = {
   matcher: [
-    '/', 
+    // Match root or locale-prefixed paths only
+    '/',
     '/(sl|ru|en|it)/:path*',
-    '/((?!api|_next/static|_next/image|images|assets|favicon.ico|auth/confirm|auth/callback|auth/update-password|.*\\.(?:svg|jpg|jpeg|png|gif|ico)$).*)',
+
+    // Match all other paths EXCEPT /sign-in and _next, api, assets etc.
+    '/((?!sign-in|api|_next/static|_next/image|images|assets|favicon.ico|auth/confirm|auth/callback|auth/update-password|.*\\.(?:svg|jpg|jpeg|png|gif|ico)$).*)',
   ]
-};
+}

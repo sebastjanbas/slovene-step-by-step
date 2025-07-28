@@ -1,14 +1,14 @@
 import People from "@/components/about/people";
 import Carousel from "@/components/content/testimonials";
-import Stats from "@/components/stats";
-import SectionTitle from "@/components/titles/section-title";
+import Stats from "@/components/content/stats";
+import SectionTitle from "@/components/content/titles/section-title";
 import { Button } from "@/components/ui/button";
 
 import { people, reviews } from "@/lib/docs";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
-import { AccordionCustom } from "@/components/ui/AccordionCustom";
+import { AccordionCustom } from "@/components/content/faq-accordion";
 import Image from "next/image";
 
 export async function generateMetadata({ params }) {
@@ -27,13 +27,13 @@ export default function MeetTheTeamPage() {
       <div className="py-32 md:py-48 lg:pt-5 lg:pb-20 px-5 lg:px-20">
         <div className="flex flex-col text-center lg:text-start lg:flex-row mx-auto w-full justify-center items-center gap-3 lg:gap-10">
           <div className="max-w-xl mb-10">
-            <h1 className="text-balance text-5xl font-semibold tracking-tight text-light-1 dark:text-dark-1 sm:text-7xl">
+            <h1 className="text-balance text-5xl font-semibold tracking-tight text-sl-primary sm:text-7xl">
               {t("title")}
             </h1>
-            <h2 className="mt-8 text-pretty text-lg font-medium text-light-2 dark:text-dark-2 sm:text-xl/8">
+            <h2 className="mt-8 text-pretty text-lg font-medium text-sl-secondary sm:text-xl/8">
               {t("subtitle")}
             </h2>
-            <div className="text-light-3 dark:text-dark-3">
+            <div className="text-sl-primary">
               <p>{t("text1")}</p>
               <br />
               <p>{t("text2")}</p>
@@ -50,7 +50,7 @@ export default function MeetTheTeamPage() {
                     height={320}
                     className="w-full h-full object-cover rounded-xl"
                     src="https://images.pexels.com/photos/2472854/pexels-photo-2472854.jpeg?"
-                    alt="About us"
+                    alt="Slovene Beach"
                   />
                 </a>
               </div>
@@ -64,7 +64,7 @@ export default function MeetTheTeamPage() {
                     height={320}
                     className="w-full h-full object-cover rounded-xl"
                     src="https://images.pexels.com/photos/3312569/pexels-photo-3312569.jpeg?"
-                    alt="About us"
+                    alt="Slovene Mountains"
                   />
                 </a>
               </div>
@@ -76,7 +76,7 @@ export default function MeetTheTeamPage() {
                     height={320}
                     className="w-full h-full object-cover rounded-xl"
                     src="https://images.pexels.com/photos/3389508/pexels-photo-3389508.jpeg?"
-                    alt="About us"
+                    alt="Snowy Slovene Mountains"
                   />
                 </a>
               </div>
@@ -87,7 +87,7 @@ export default function MeetTheTeamPage() {
                     height={320}
                     className="w-full h-full object-cover rounded-xl"
                     src="https://images.pexels.com/photos/3214968/pexels-photo-3214968.jpeg?"
-                    alt="About us"
+                    alt="Island Bled Slovenia"
                   />
                 </a>
               </div>
@@ -97,7 +97,7 @@ export default function MeetTheTeamPage() {
                   height={320}
                   className="w-full h-full object-cover rounded-xl"
                   src="https://images.pexels.com/photos/30206761/pexels-photo-30206761/free-photo-of-bled-castle-on-cliff-in-autumn-slovenia.jpeg?"
-                  alt="About us"
+                  alt="Bled Castle On Cliff In Autumn, Slovenia"
                 />
               </div>
             </div>

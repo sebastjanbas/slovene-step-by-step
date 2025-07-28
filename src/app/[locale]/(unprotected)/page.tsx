@@ -1,13 +1,11 @@
-import BentoGrid from "@/components/bento-grid";
 import DetailsPageHero from "@/components/content/details-page";
 import Carousel from "@/components/content/testimonials";
-import Hero from "@/components/hero-section";
-import Stats from "@/components/stats";
+import Hero from "@/components/content/hero-section";
+import Stats from "@/components/content/stats";
 import { getTranslations } from "next-intl/server";
 import { reviews } from "@/lib/docs";
-import SectionTitle from "@/components/titles/section-title";
-import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
+import SectionTitle from "@/components/content/titles/section-title";
+import BentoGridWrapper from "@/components/content/bento-grid-wrapper";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -18,16 +16,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function Home() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (user) {
-    redirect("/dashboard");
-  }
-
+export default function Home() {
   return (
     <>
       <div className="overflow-hidden">
@@ -40,7 +29,7 @@ export default async function Home() {
             header={"why-us"}
             paragraph={"why-us-sub"}
           >
-            <BentoGrid />
+            <BentoGridWrapper />
           </SectionTitle>
         </div>
         <div className="py-24 sm:py-32">

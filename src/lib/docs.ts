@@ -135,7 +135,7 @@ export const offers = [
       name: 'Duo Plan',
       id: 'tier-duo',
       href: '/dashboard',
-      priceMonthly: '€12.5',
+      priceMonthly: '€12.50',
       description: 'plan1-desc',
       features: [
         "plan1-feature1",
