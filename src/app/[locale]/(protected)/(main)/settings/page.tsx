@@ -11,11 +11,24 @@ const SettingsPage = ({ params }) => {
       <Tabs defaultValue="account" className="w-full">
         <div className="flex justify-center items-center">
           <TabsList>
-            <TabsTrigger value="account">Account</TabsTrigger>
-            <TabsTrigger disabled value="billing">
+            <TabsTrigger
+              value="account"
+              className="data-[state=active]:bg-white"
+            >
+              Account
+            </TabsTrigger>
+            <TabsTrigger
+              disabled
+              value="billing"
+              className="data-[state=active]:bg-white"
+            >
               Billing
             </TabsTrigger>
-            <TabsTrigger disabled value="notifications">
+            <TabsTrigger
+              disabled
+              value="notifications"
+              className="data-[state=active]:bg-white"
+            >
               Notifications
             </TabsTrigger>
           </TabsList>

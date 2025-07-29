@@ -31,14 +31,14 @@ export function NavMain({
             <SidebarMenuButton
               disabled
               tooltip="Create an appointment"
-              className="bg-background cursor-pointer text-foreground hover:bg-background/80 active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
+              className="bg-white cursor-pointer text-foreground dark:text-background hover:bg-background/80 active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
             >
               <IconCirclePlusFilled />
               <span>Book a Lesson</span>
             </SidebarMenuButton>
             <Button
               size="icon"
-              className="size-8 cursor-pointer group-data-[collapsible=icon]:opacity-0"
+              className="size-8 bg-white cursor-pointer group-data-[collapsible=icon]:opacity-0"
               variant="outline"
             >
               <IconMail className="text-foreground" />

@@ -20,7 +20,7 @@ const EmailCard = ({ locale }) => {
       <CardHeader className="pt-5">
         <CardTitle>Email Addresses</CardTitle>
       </CardHeader>
-      <CardContent className="bg-background border border-foreground/10 rounded-2xl p-4">
+      <CardContent className="bg-white dark:bg-background border border-foreground/10 rounded-2xl p-4">
         {!isLoaded ? (
           <Skeleton className="h-10 w-full" />
         ) : (

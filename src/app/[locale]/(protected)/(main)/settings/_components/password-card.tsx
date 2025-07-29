@@ -30,7 +30,7 @@ const PasswordCard = () => {
       <CardHeader className="pt-5">
         <CardTitle>Password</CardTitle>
       </CardHeader>
-      <CardContent className="bg-background border border-foreground/10 rounded-2xl px-4 py-6 flex items-center justify-between">
+      <CardContent className="bg-white dark:bg-background border border-foreground/10 rounded-2xl px-4 py-6 flex items-center justify-between">
         {isLoaded ? (
           <div className="inline-flex justify-start items-center gap-2 text-foreground/80 text-xl">
             <Lock size={14} className="text-foreground/60" /> ••••••••••••••
@@ -40,7 +40,7 @@ const PasswordCard = () => {
         )}
         <Dialog open={open} onOpenChange={setOpen}>
           <DropdownMenu>
-            <DropdownMenuTrigger className="p-1 cursor-pointer rounded-sm border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50">
+            <DropdownMenuTrigger className="p-1 cursor-pointer rounded-sm border bg-white dark:bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:border-input dark:hover:bg-input/50">
               <IconDots size={14} />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="shadow-lg">

@@ -56,7 +56,7 @@ const AccountCard = () => {
         <CardHeader className="pt-5">
           <CardTitle>Personal Information</CardTitle>
         </CardHeader>
-        <CardContent className="bg-background border-1 border-foreground/10 rounded-2xl">
+        <CardContent className="bg-white dark:bg-background border-1 border-foreground/10 rounded-2xl">
           <div className="my-8">
             <div className="flex flex-row items-center gap-4">
               <div className="relative h-20 w-20 rounded-full overflow-hidden border">
@@ -86,7 +86,7 @@ const AccountCard = () => {
                     type="button"
                     variant="outline"
                     size="sm"
-                    className="cursor-pointer w-fit"
+                    className="cursor-pointer w-fit bg-white dark:bg-background"
                     onClick={handleFileClick}
                     disabled={isUploading}
                   >
@@ -94,7 +94,7 @@ const AccountCard = () => {
                   </Button>
                   <Button
                     variant="link"
-                    className="cursor-pointer"
+                    className="cursor-pointer text-indigo-400"
                     size="sm"
                     onClick={async () => {
                       try {

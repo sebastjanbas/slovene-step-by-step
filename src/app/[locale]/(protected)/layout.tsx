@@ -1,6 +1,7 @@
 import { UserProvider } from "@/components/dashboard/auth/user-context";
 import { SiteHeader } from "@/components/dashboard/sidebar/app-header";
 import { AppSidebar } from "@/components/dashboard/sidebar/app-sidebar";
+import BackgroundUpdater from "@/components/ui/background-updater";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
@@ -15,6 +16,7 @@ const ProtectedLayout = async ({ children }: PropsWithChildren) => {
 
   return (
     <>
+      <BackgroundUpdater />
       <UserProvider>
         <SidebarProvider
           style={
@@ -25,9 +27,11 @@ const ProtectedLayout = async ({ children }: PropsWithChildren) => {
           }
         >
           <AppSidebar variant="inset" />
-          <SidebarInset className="overflow-hidden">
+          <SidebarInset className="overflow-hidden bg-white dark:bg-background">
             <SiteHeader />
-            <main>{children}</main>
+            <main className="bg-white dark:bg-background h-[90vh] overflow-y-scroll">
+              {children}
+            </main>
           </SidebarInset>
         </SidebarProvider>
       </UserProvider>
