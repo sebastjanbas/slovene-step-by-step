@@ -41,7 +41,7 @@ const events = [
   {
     id: 4,
     tutor: "Oleksandr Tyutyunnyk",
-    date: "2025-07-30",
+    date: "2025-07-29",
     theme: "Weather",
     description:
       "We will talk about different types of weather and other stuff",
@@ -53,7 +53,7 @@ const events = [
   {
     id: 5,
     tutor: "Oleksandr Tyutyunnyk",
-    date: "2025-07-27",
+    date: "2025-07-29",
     theme: "Weather",
     description:
       "We will talk about different types of weather and other stuff",
@@ -65,7 +65,7 @@ const events = [
   {
     id: 6,
     tutor: "Oleksandr Tyutyunnyk",
-    date: "2025-07-30",
+    date: "2025-07-29",
     theme: "Weather",
     description:
       "We will talk about different types of weather and other stuff",
@@ -79,7 +79,7 @@ const events = [
 const LanguageClubPage = ({ params }) => {
   const { locale } = params;
   return (
-    <div className="p-5 flex flex-row h-auto min-h-[500px] overflow-hidden justify-between gap-5">
+    <div className="p-5 flex flex-col md:flex-row h-auto min-h-[500px] overflow-hidden justify-between gap-5">
       <LangComponents events={events} locale={locale} />
     </div>
   );

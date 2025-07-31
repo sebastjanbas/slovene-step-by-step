@@ -261,7 +261,9 @@ function CalendarDayButton({
               className={cn(
                 "h-1.5 w-4 rounded-full",
                 event.color ?? "bg-pink-200",
-                size === "calendarFullScreen" ? "w-8 h-3" : "h-1.5 w-4"
+                size === "calendarFullScreen"
+                  ? "h-1.5 w-4 md:w-8 md:h-3"
+                  : "h-1.5 w-4"
               )}
             />
           ))}

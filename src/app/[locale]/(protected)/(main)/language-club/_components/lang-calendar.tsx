@@ -56,8 +56,12 @@ const LangCalendar = ({ locale, events, date, setDate }) => {
       />
 
       <Button
-        className="absolute top-3.5 left-20"
-        onClick={() => setCurrentMonth(today)}
+        size="sm"
+        className="absolute top-3.5 left-14 md:left-20"
+        onClick={() => {
+          setDate(today);
+          setCurrentMonth(today);
+        }}
       >
         Today
       </Button>
