@@ -41,7 +41,7 @@ export function SiteHeader() {
           {!user ? (
             <Skeleton className="bg-transparent px-4">
               <div className="inline-flex justify-end items-center gap-5">
-                <div className="flex flex-col justify-end items-end flex-1 gap-1">
+                <div className="hidden md:flex flex-col justify-end items-end flex-1 gap-1">
                   <div className="bg-foreground/20 rounded-full w-20 h-3" />
                   <div className="bg-foreground/10 rounded-full w-40 h-2" />
                 </div>
@@ -55,7 +55,7 @@ export function SiteHeader() {
                   variant="ghost"
                   className="hover:bg-transparent gap-5 !focus:outline-none outline-none focus-visible:outline-none border-none focus:border-none focus-visible:border-none focus:ring-0 focus-visible:ring-0"
                 >
-                  <div className="grid flex-1 text-right text-sm leading-tight">
+                  <div className="hidden md:grid flex-1 text-right text-sm leading-tight">
                     <span className="truncate font-medium">{user.name}</span>
                     <span className="text-muted-foreground truncate text-xs">
                       {user.email}

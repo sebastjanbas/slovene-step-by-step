@@ -73,7 +73,7 @@ const DashboardPage = ({ params }) => {
   ];
 
   return (
-    <main className="w-full h-full flex flex-row">
+    <main className="w-full h-full flex flex-col md:flex-row">
       <div className="flex-3/4 p-5">
         <Greeting />
       </div>
