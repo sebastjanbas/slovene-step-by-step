@@ -1,23 +1,7 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  IconLanguage,
-  IconMapPin,
-  IconStopwatch,
-  IconUsers,
-} from "@tabler/icons-react";
 import React from "react";
+import LangComponents from "./_components/lang-components";
 
-const exampleData = [
+const events = [
   {
     id: 1,
     tutor: "Ela Remic",
@@ -45,7 +29,7 @@ const exampleData = [
   {
     id: 3,
     tutor: "Oleksandr Tyutyunnyk",
-    date: "2025-07-29",
+    date: "2025-08-01",
     theme: "Weather",
     description:
       "We will talk about different types of weather and other stuff",
@@ -57,7 +41,7 @@ const exampleData = [
   {
     id: 4,
     tutor: "Oleksandr Tyutyunnyk",
-    date: "2025-07-29",
+    date: "2025-07-30",
     theme: "Weather",
     description:
       "We will talk about different types of weather and other stuff",
@@ -69,7 +53,7 @@ const exampleData = [
   {
     id: 5,
     tutor: "Oleksandr Tyutyunnyk",
-    date: "2025-07-29",
+    date: "2025-07-27",
     theme: "Weather",
     description:
       "We will talk about different types of weather and other stuff",
@@ -81,7 +65,7 @@ const exampleData = [
   {
     id: 6,
     tutor: "Oleksandr Tyutyunnyk",
-    date: "2025-07-29",
+    date: "2025-07-30",
     theme: "Weather",
     description:
       "We will talk about different types of weather and other stuff",
@@ -95,52 +79,8 @@ const exampleData = [
 const LanguageClubPage = ({ params }) => {
   const { locale } = params;
   return (
-    <div className="p-5 flex flex-row">
-      <div className="flex-3/4">
-        <h1 className="text-2xl md:text-3xl tracking-tight">
-          Join the Slovene Language Club – Learn Slovene the Fun, Social Way!
-        </h1>
-      </div>
-      <div className="flex-1/4 h-[90vh] space-y-5 overflow-y-scroll">
-        {exampleData.map((event) => (
-          <Card key={event.id}>
-            <CardHeader>
-              <CardTitle>{event.theme}</CardTitle>
-              <CardDescription>{event.tutor}</CardDescription>
-              <CardAction>
-                {new Date(event.date).toLocaleDateString(locale, {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </CardAction>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <p>{event.description}</p>
-            </CardContent>
-            <CardFooter className="w-full flex flex-col justify-center items-start gap-5">
-              <div className="flex flex-row items-center gap-3">
-                <Badge>
-                  <IconLanguage /> {event.level}
-                </Badge>
-                <Badge variant="outline">
-                  <IconUsers />
-                  {event.maxApplicants}
-                </Badge>
-                <Badge variant="secondary">
-                  <IconStopwatch />
-                  {event.duration}
-                </Badge>
-
-                <Badge variant="outline">
-                  <IconMapPin /> {event.location}
-                </Badge>
-              </div>
-              <Button className="w-full">Schedule</Button>
-            </CardFooter>
-          </Card>
-        ))}
-      </div>
+    <div className="p-5 flex flex-row h-auto min-h-[500px] overflow-hidden justify-between gap-5">
+      <LangComponents events={events} locale={locale} />
     </div>
   );
 };

@@ -120,7 +120,7 @@ function Calendar({
           defaultClassNames.week_number
         ),
         day: cn(
-          "relative w-full h-full p-0 text-center [&:first-child[data-selected=true]_button]:rounded-l-xl [&:last-child[data-selected=true]_button]:rounded-r-xl group/day aspect-square select-none",
+          "relative w-full h-full p-0 [&:first-child[data-selected=true]_button]:rounded-l-xl [&:last-child[data-selected=true]_button]:rounded-r-xl group/day aspect-square select-none",
           defaultClassNames.day
         ),
         range_start: cn(
@@ -198,10 +198,13 @@ function CalendarDayButton({
   className,
   day,
   modifiers,
+  size = "calendar",
   eventMap,
   ...props
 }: React.ComponentProps<typeof DayButton> & {
   eventMap: Record<string, CalendarEvent[]>;
+} & {
+  size?: "default" | "sm" | "lg" | "calendar" | "icon" | "calendarFullScreen";
 }) {
   const defaultClassNames = getDefaultClassNames();
 
@@ -223,7 +226,7 @@ function CalendarDayButton({
       <Button
         ref={ref}
         variant="ghost"
-        size="calendar"
+        size={size}
         data-day={day.date.toLocaleDateString()}
         data-selected-single={
           modifiers.selected &&
@@ -236,6 +239,9 @@ function CalendarDayButton({
         data-range-middle={modifiers.range_middle}
         className={cn(
           "size-auto cursor-pointer relative rounded-xl data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-ring/50 dark:hover:text-accent-foreground flex aspect-square  w-full min-w-(--cell-size) flex-col gap-1 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-[3px] data-[range-end=true]:rounded-xl data-[range-end=true]:rounded-r-md data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-xl data-[range-start=true]:rounded-l-md [&>span]:text-xs [&>span]:opacity-70",
+          size === "calendarFullScreen"
+            ? "justify-start items-start p-5 data-[selected-single=true]:bg-primary/70 dark:data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground"
+            : "",
           weekendClass,
           defaultClassNames.day,
           className
@@ -243,11 +249,20 @@ function CalendarDayButton({
         {...props}
       />
       {events.length > 0 && (
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-0.5 mt-1 z-10">
+        <div
+          className={cn(
+            "absolute bottom-0 left-1/2 -translate-x-1/2 flex mt-1 cursor-pointer z-10",
+            size === "calendarFullScreen" ? "gap-1" : "gap-0.5"
+          )}
+        >
           {events.map((event, idx) => (
             <span
               key={idx}
-              className={cn("w-4 h-1.5 rounded-full", event.color)}
+              className={cn(
+                "h-1.5 w-4 rounded-full",
+                event.color ?? "bg-pink-200",
+                size === "calendarFullScreen" ? "w-8 h-3" : "h-1.5 w-4"
+              )}
             />
           ))}
         </div>
