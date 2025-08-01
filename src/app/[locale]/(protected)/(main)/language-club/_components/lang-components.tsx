@@ -16,19 +16,17 @@ const LangComponents = ({ events, locale }) => {
 
   return (
     <>
-      <div className="w-full md:max-w-4xl flex justify-center items-center">
-        <div className="md:w-full flex items-start justify-center h-full">
-          <LangCalendar
-            events={events}
-            locale={locale}
-            date={date}
-            setDate={setDate}
-          />
-        </div>
+      <div className="w-[100%] md:w-full md:max-w-4xl flex justify-center items-start">
+        <LangCalendar
+          events={events}
+          locale={locale}
+          date={date}
+          setDate={setDate}
+        />
       </div>
       <div
         className={cn(
-          "md:overflow-y-scroll md:max-h-[90vh] w-full flex justify-center items-center gap-5",
+          "md:overflow-y-scroll md:max-h-[90vh] w-full flex justify-center items-center gap-5 pt-5",
           !open
             ? "flex-row flex-wrap h-fit space-y-0"
             : "max-w-lg flex-col items-center justify-start"

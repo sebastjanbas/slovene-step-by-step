@@ -79,7 +79,7 @@ const events = [
 const LanguageClubPage = ({ params }) => {
   const { locale } = params;
   return (
-    <div className="p-5 flex flex-col md:flex-row h-auto w-full min-h-[500px] md:overflow-hidden justify-center items-center md:items-start gap-5">
+    <div className="p-5 flex flex-col md:flex-row h-auto w-full md:min-h-[800px] md:overflow-hidden justify-center items-center md:items-start gap-5 mb-20">
       <LangComponents events={events} locale={locale} />
     </div>
   );

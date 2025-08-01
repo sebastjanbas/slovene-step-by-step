@@ -58,18 +58,18 @@ const LangCalendar = ({ locale, events, date, setDate }) => {
           modifiersClassNames={{
             hasEvent: "relative has-event",
           }}
-          className="rounded-none bg-white dark:bg-background max-w-5xl p-4 md:w-full"
+          className="rounded-none bg-white dark:bg-background max-w-5xl p-4 w-full"
         />
 
         <Button
-          size={screenWidth < 400 ? "icon" : "sm"}
+          size={screenWidth < 450 ? "icon" : "sm"}
           className="absolute top-3.5 left-12 sm:left-20"
           onClick={() => {
             setDate(today);
             setCurrentMonth(today);
           }}
         >
-          {screenWidth < 400 ? "T" : "Today"}
+          {screenWidth < 450 ? "T" : "Today"}
         </Button>
       </>
     </div>
