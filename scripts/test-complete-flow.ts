@@ -1,5 +1,5 @@
 import { db } from "../src/db";
-import { langClubBookingsTable, langClubTable } from "../src/db/schema";
+import { langClubBookingsTable } from "../src/db/schema";
 
 async function testCompleteFlow() {
   try {
@@ -21,7 +21,7 @@ async function testCompleteFlow() {
     // 3. Simulate a new booking
     const testEvent = events[0];
     const testBooking = {
-      eventId: testEvent.id,
+      eventId: testEvent.id as number,
       userId: "test_user_123",
       stripeSessionId: "cs_test_session_" + Date.now(),
       stripePaymentIntentId: "pi_test_payment_" + Date.now(),
@@ -30,9 +30,22 @@ async function testCompleteFlow() {
     };
     
     console.log("💳 Creating test booking for event:", testEvent.theme);
-    
-    const result = await db.insert(langClubBookingsTable).values(testBooking).returning();
-    
+
+    let result;
+    try {
+      result = await db
+        .insert(langClubBookingsTable)
+        .values(testBooking)
+        .returning();
+    } catch (err) {
+      console.error("❌ Failed to create test booking:", err);
+      throw err;
+    }
+
+    if (!result || result.length === 0) {
+      throw new Error("Test booking was not created or no result returned.");
+    }
+
     console.log("✅ Test booking created successfully!");
     console.log("   Booking ID:", result[0].id);
     console.log("   Event:", testEvent.theme);
