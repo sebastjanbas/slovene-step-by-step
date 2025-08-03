@@ -1,86 +1,76 @@
 import React from "react";
 import LangComponents from "./_components/lang-components";
+import BookingToast from "./_components/booking-toast";
+import { db } from "@/db";
 
-const events = [
-  {
-    id: 1,
-    tutor: "Ela Remic",
-    date: "2025-07-31",
-    theme: "Cooking",
-    description:
-      "We will talk about cooking, writing an recipe in slovene from start to finish.",
-    level: "A1",
-    location: "Room 321, UEL",
-    maxApplicants: 8,
-    duration: 45,
-  },
-  {
-    id: 2,
-    tutor: "Oleksandr Tyutyunnyk",
-    date: "2025-07-29",
-    theme: "Weather",
-    description:
-      "We will talk about different types of weather and other stuff",
-    level: "B1",
-    location: "Room 321, UEL",
-    maxApplicants: 8,
-    duration: 45,
-  },
-  {
-    id: 3,
-    tutor: "Oleksandr Tyutyunnyk",
-    date: "2025-08-01",
-    theme: "Weather",
-    description:
-      "We will talk about different types of weather and other stuff",
-    level: "B1",
-    location: "Room 321, UEL",
-    maxApplicants: 8,
-    duration: 45,
-  },
-  {
-    id: 4,
-    tutor: "Oleksandr Tyutyunnyk",
-    date: "2025-07-29",
-    theme: "Weather",
-    description:
-      "We will talk about different types of weather and other stuff",
-    level: "B1",
-    location: "Room 321, UEL",
-    maxApplicants: 8,
-    duration: 45,
-  },
-  {
-    id: 5,
-    tutor: "Oleksandr Tyutyunnyk",
-    date: "2025-07-29",
-    theme: "Weather",
-    description:
-      "We will talk about different types of weather and other stuff",
-    level: "B1",
-    location: "Room 321, UEL",
-    maxApplicants: 8,
-    duration: 45,
-  },
-  {
-    id: 6,
-    tutor: "Oleksandr Tyutyunnyk",
-    date: "2025-07-29",
-    theme: "Weather",
-    description:
-      "We will talk about different types of weather and other stuff",
-    level: "B1",
-    location: "Room 321, UEL",
-    maxApplicants: 8,
-    duration: 45,
-  },
-];
+const LanguageClubPage = async ({ params, searchParams }) => {
+  const { locale } = await params;
+  const { success, canceled, session_id } = await searchParams;
 
-const LanguageClubPage = ({ params }) => {
-  const { locale } = params;
+  // Fetch events from database
+  const events = await db.query.langClubTable.findMany({
+    orderBy: (langClubTable, { asc }) => [asc(langClubTable.date)],
+  });
+
+  // Transform events to match the expected format
+  const transformedEvents = events.map((event) => ({
+    id: event.id,
+    tutor: event.tutor,
+    date: event.date.toISOString().split("T")[0], // Format as YYYY-MM-DD
+    theme: event.theme,
+    description: event.description || "",
+    level: event.level || "",
+    location: event.location,
+    maxApplicants: event.maxPeople || 8,
+    duration: event.duration || 45,
+    price: parseFloat(event.price.toString()),
+    stripeProductId: event.stripeProductId,
+    stripePriceId: event.stripePriceId,
+  }));
+
+  // Transform events for calendar display
+  const calendarEvents = events.map((event) => ({
+    id: event.id.toString(),
+    date: event.date.toISOString().split("T")[0], // Format as YYYY-MM-DD
+    title: event.theme,
+    color: "bg-pink-200", // You can customize colors based on level or other criteria
+  }));
+
+  // Handle success state - will be shown in dialog
+  let bookedEvent = null;
+
+  if (success && session_id) {
+    try {
+      // Get session details from Stripe to find the correct event
+      const sessionResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/stripe/get-session?session_id=${session_id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (sessionResponse.ok) {
+        const sessionData = await sessionResponse.json();
+        const eventId = parseInt(sessionData.eventId);
+
+        bookedEvent = transformedEvents.find((event) => event.id === eventId);
+      }
+    } catch (error) {
+      console.error("Error fetching session details:", error);
+    }
+  }
+
   return (
     <div className="p-5 flex flex-col md:flex-row h-auto w-full md:min-h-[800px] md:overflow-hidden justify-center items-center md:items-start gap-5 mb-20">
-      <LangComponents events={events} locale={locale} />
+      <BookingToast canceled={canceled} />
+      <LangComponents
+        events={transformedEvents}
+        calendarEvents={calendarEvents}
+        locale={locale}
+        bookedEvent={bookedEvent}
+      />
     </div>
   );
 };

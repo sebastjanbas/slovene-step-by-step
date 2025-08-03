@@ -20,11 +20,15 @@ import { clerkMiddleware } from '@clerk/nextjs/server';
 // };
 
 export default clerkMiddleware(async (auth, req) => {
+  // Skip i18n middleware for API routes
+  if (req.nextUrl.pathname.startsWith('/api/')) {
+    return;
+  }
+
   const i18nMiddleware = createMiddleware(routing);
   const response = await i18nMiddleware(req);
 
   return response;
-
 })
 
 
@@ -34,8 +38,9 @@ export const config = {
     // Match root or locale-prefixed paths only
     '/',
     '/(sl|ru|en|it)/:path*',
+    '/api/:path*',
 
-    // Match all other paths EXCEPT /sign-in and _next, api, assets etc.
-    '/((?!sign-in|api|_next/static|_next/image|images|assets|favicon.ico|auth/confirm|auth/callback|auth/update-password|.*\\.(?:svg|jpg|jpeg|png|gif|ico)$).*)',
+    // Match all other paths EXCEPT /sign-in and _next, assets etc.
+    '/((?!sign-in|_next/static|_next/image|images|assets|favicon.ico|auth/confirm|auth/callback|auth/update-password|.*\\.(?:svg|jpg|jpeg|png|gif|ico)$).*)',
   ]
 }

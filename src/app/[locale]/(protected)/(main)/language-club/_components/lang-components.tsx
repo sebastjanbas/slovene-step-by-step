@@ -2,10 +2,11 @@
 import React, { useState } from "react";
 import LangCalendar from "./lang-calendar";
 import LangCard from "./lang-card";
+import SuccessDialog from "./success-dialog";
 import { useSidebar } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 
-const LangComponents = ({ events, locale }) => {
+const LangComponents = ({ events, calendarEvents, locale, bookedEvent }) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const filteredEvents = events.filter((event) => {
     const selectedDate = date.toLocaleDateString("sv-SE"); // Local, correct timezone
@@ -13,12 +14,13 @@ const LangComponents = ({ events, locale }) => {
   });
 
   const { open } = useSidebar();
+  const [showSuccessDialog, setShowSuccessDialog] = useState(!!bookedEvent);
 
   return (
     <>
       <div className="w-[100%] md:w-full md:max-w-4xl flex justify-center items-start">
         <LangCalendar
-          events={events}
+          events={calendarEvents}
           locale={locale}
           date={date}
           setDate={setDate}
@@ -47,6 +49,15 @@ const LangComponents = ({ events, locale }) => {
           </p>
         )}
       </div>
+
+      {bookedEvent && (
+        <SuccessDialog
+          event={bookedEvent}
+          locale={locale}
+          open={showSuccessDialog}
+          onOpenChange={setShowSuccessDialog}
+        />
+      )}
     </>
   );
 };
