@@ -16,12 +16,13 @@ const LanguageClubPage = async ({ params, searchParams }) => {
   const transformedEvents = events.map((event) => ({
     id: event.id,
     tutor: event.tutor,
-    date: event.date.toISOString().split("T")[0], // Format as YYYY-MM-DD
+    date: event.date,
     theme: event.theme,
     description: event.description || "",
     level: event.level || "",
     location: event.location,
-    maxApplicants: event.maxPeople || 8,
+    maxBooked: event.maxBooked || 8,
+    spotsLeft: event.maxBooked - event.peopleBooked || 0,
     duration: event.duration || 45,
     price: parseFloat(event.price.toString()),
     stripeProductId: event.stripeProductId,
@@ -31,7 +32,7 @@ const LanguageClubPage = async ({ params, searchParams }) => {
   // Transform events for calendar display
   const calendarEvents = events.map((event) => ({
     id: event.id.toString(),
-    date: event.date.toISOString().split("T")[0], // Format as YYYY-MM-DD
+    date: event.date,
     title: event.theme,
     color: "bg-pink-200", // You can customize colors based on level or other criteria
   }));

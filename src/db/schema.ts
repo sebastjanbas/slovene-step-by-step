@@ -8,7 +8,8 @@ export const langClubTable = pgTable("lang_club", {
   description: text(),
   level: text(),
   location: text().notNull(),
-  maxPeople: integer(),
+  peopleBooked: integer().notNull().default(0),
+  maxBooked: integer().notNull().default(0),
   duration: integer(),
   price: decimal({ precision: 10, scale: 2 }).notNull().default("0"),
   stripeProductId: varchar({ length: 255 }),
@@ -26,4 +27,3 @@ export const langClubBookingsTable = pgTable("lang_club_bookings", {
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow(),
 });
-

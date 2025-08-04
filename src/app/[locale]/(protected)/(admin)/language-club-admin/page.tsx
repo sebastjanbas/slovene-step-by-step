@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { fromZonedTime } from "date-fns-tz";
 
 const LanguageClubAdmin = () => {
   const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ const LanguageClubAdmin = () => {
     description: "",
     level: "",
     location: "",
-    maxPeople: "",
+    maxBooked: "",
     duration: "",
     price: "",
   });
@@ -29,7 +30,10 @@ const LanguageClubAdmin = () => {
     setIsLoading(true);
 
     try {
-      const dateTime = new Date(`${formData.date}T${formData.time}`);
+      const dateTime = fromZonedTime(
+        `${formData.date}T${formData.time}`,
+        "Europe/Ljubljana"
+      );
 
       const response = await fetch("/api/admin/language-club", {
         method: "POST",
@@ -39,7 +43,7 @@ const LanguageClubAdmin = () => {
         body: JSON.stringify({
           ...formData,
           date: dateTime.toISOString(),
-          maxPeople: parseInt(formData.maxPeople),
+          maxBooked: parseInt(formData.maxBooked),
           duration: parseInt(formData.duration),
           price: parseFloat(formData.price),
         }),
@@ -64,7 +68,7 @@ const LanguageClubAdmin = () => {
         description: "",
         level: "",
         location: "",
-        maxPeople: "",
+        maxBooked: "",
         duration: "",
         price: "",
       });
@@ -147,6 +151,7 @@ const LanguageClubAdmin = () => {
             <div>
               <Label htmlFor="description">Description</Label>
               <Textarea
+                className="bg-white focus-visible:ring-1 focus-visible:ring-offset-0"
                 id="description"
                 name="description"
                 value={formData.description}
@@ -179,12 +184,12 @@ const LanguageClubAdmin = () => {
                 />
               </div>
               <div>
-                <Label htmlFor="maxPeople">Max People</Label>
+                <Label htmlFor="maxBooked">Max Booked</Label>
                 <Input
-                  id="maxPeople"
-                  name="maxPeople"
+                  id="maxBooked"
+                  name="maxBooked"
                   type="number"
-                  value={formData.maxPeople}
+                  value={formData.maxBooked}
                   onChange={handleChange}
                   required
                 />

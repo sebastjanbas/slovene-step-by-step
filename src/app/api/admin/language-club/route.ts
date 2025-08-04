@@ -21,13 +21,13 @@ export async function POST(request: NextRequest) {
       description,
       level,
       location,
-      maxPeople,
+      maxBooked,
       duration,
       price,
     } = await request.json();
 
     // Validate required fields
-    if (!tutor || !date || !theme || !location || !maxPeople || !duration || !price) {
+    if (!tutor || !date || !theme || !location || !maxBooked || !duration || !price) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -36,13 +36,13 @@ export async function POST(request: NextRequest) {
 
     // Create the event
     const newEvent = await db.insert(langClubTable).values({
-      tutor,
       date: new Date(date),
+      tutor,
       theme,
       description,
       level,
       location,
-      maxPeople,
+      maxBooked,
       duration,
       price: price.toString(),
     }).returning();

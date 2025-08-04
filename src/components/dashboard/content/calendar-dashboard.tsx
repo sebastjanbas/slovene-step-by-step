@@ -7,7 +7,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import { format, isSameDay } from "date-fns";
+import { isSameDay } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
 import { enUS, it, Locale, ru, sl } from "date-fns/locale";
 import React, { useState } from "react";
 
@@ -79,10 +80,17 @@ const CalendarDashboard = ({ locale, events }) => {
       />
 
       <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
-        <DialogContent>
+        <DialogContent className="bg-white dark:bg-foreground/5 rounded-2xl p-4">
           <DialogHeader>
             <DialogTitle>
-              Events on {date ? format(date, "PPP") : ""}
+              Events on{" "}
+              {date
+                ? date.toLocaleDateString(locale, {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })
+                : ""}
             </DialogTitle>
           </DialogHeader>
 
@@ -93,17 +101,31 @@ const CalendarDashboard = ({ locale, events }) => {
               {eventsOnSelectedDay.map((event) => (
                 <li
                   key={event.id}
-                  className="relative flex items-center justify-start"
+                  className="relative flex items-center justify-start bg-foreground/5 rounded-lg p-2 w-full min-h-24 h-full"
                 >
                   <div
                     className={cn(
-                      "absolute bottom-1/2 translate-y-1/2 left-2 h-10 w-1 rounded-full",
+                      "absolute bottom-1/2 translate-y-1/2 left-2 h-16 w-1 rounded-full",
                       event.color
                     )}
                   />
-                  <div className="translate-x-6">
+                  <div className="absolute top-2 right-4 text-xs font-medium italic text-foreground/50 flex flex-col gap-1">
+                    <span className="text-foreground">Language Club</span>
+                  </div>
+                  <div className="pl-6 w-full">
                     <h3 className="font-bold">{event.title}</h3>
                     <p className="text-sm text-gray-500">{event.description}</p>
+                    <div className="flex flex-row justify-end items-center pr-2 w-full">
+                      <span className="text-foreground/50 text-sm">
+                        {toZonedTime(
+                          event.date,
+                          "Europe/Ljubljana"
+                        ).toLocaleTimeString(locale, {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </span>
+                    </div>
                   </div>
                 </li>
               ))}

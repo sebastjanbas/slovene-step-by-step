@@ -20,6 +20,12 @@ import {
   IconCreditCard,
 } from "@tabler/icons-react";
 import { useToast } from "@/hooks/use-toast";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { toZonedTime } from "date-fns-tz";
 
 const LangCard = ({ locale, event }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -65,11 +71,24 @@ const LangCard = ({ locale, event }) => {
         <CardTitle>{event.theme}</CardTitle>
         <CardDescription>{event.tutor}</CardDescription>
         <CardAction>
-          {new Date(event.date).toLocaleDateString(locale, {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
+          <div className="flex flex-col gap-1 items-end">
+            <span>
+              {new Date(event.date).toLocaleDateString(locale, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </span>
+            <span className="text-sm text-muted-foreground">
+              {toZonedTime(event.date, "Europe/Ljubljana").toLocaleTimeString(
+                locale,
+                {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                }
+              )}
+            </span>
+          </div>
         </CardAction>
       </CardHeader>
       <CardContent className="space-y-3">
@@ -77,22 +96,51 @@ const LangCard = ({ locale, event }) => {
       </CardContent>
       <CardFooter className="w-full flex flex-col justify-center items-start gap-5">
         <div className="flex items-center justify-between w-full">
-          <span className="text-5xl font-medium text-green-500 dark:text-green-400">
-            €{event.price}
+          <span className="text-[45px] font-medium bg-gradient-to-br bg-clip-text text-transparent from-foreground via-foreground/10 to-foreground">
+            €{event.price.toFixed(2).toString().split(".")[0]}
+            <span className="text-[32px] font-medium">
+              {"." + event.price.toFixed(2).toString().split(".")[1]}
+            </span>
           </span>
           <div className="flex flex-col items-center gap-3">
             <div className="flex flex-row items-center gap-3 w-full">
-              <Badge>
-                <IconLanguage /> {event.level}
-              </Badge>
-              <Badge variant="outline">
-                <IconUsers />
-                {event.maxApplicants}
-              </Badge>
-              <Badge variant="secondary">
-                <IconStopwatch />
-                {event.duration}min
-              </Badge>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Badge>
+                    <IconLanguage /> {event.level}
+                  </Badge>
+                </TooltipTrigger>
+                <TooltipContent>
+                  Required knowledge: {event.level} level
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Badge
+                    variant="outline"
+                    className={
+                      event.spotsLeft > 2 ? "" : "text-red-500 border-red-300"
+                    }
+                  >
+                    <IconUsers />
+                    {event.spotsLeft > 0 ? event.spotsLeft : "Full"}
+                  </Badge>
+                </TooltipTrigger>
+                <TooltipContent>
+                  {event.spotsLeft > 0
+                    ? `${event.spotsLeft} spots left`
+                    : "No spots left"}
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Badge variant="secondary">
+                    <IconStopwatch />
+                    {event.duration}
+                  </Badge>
+                </TooltipTrigger>
+                <TooltipContent>{event.duration} minutes long</TooltipContent>
+              </Tooltip>
             </div>
             <Badge variant="outline" className="w-full">
               <IconMapPin /> {event.location}

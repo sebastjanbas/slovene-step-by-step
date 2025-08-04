@@ -20,7 +20,7 @@ const LangCalendar = ({ locale, events, date, setDate }) => {
 
   const eventMap: Record<string, CalendarEvent[]> = events.reduce(
     (acc, event) => {
-      const dateKey = event.date;
+      const dateKey = event.date.toLocaleDateString("en-CA");
       if (!acc[dateKey]) acc[dateKey] = [];
       acc[dateKey].push(event);
       return acc;

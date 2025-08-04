@@ -72,13 +72,13 @@ export const routing = defineRouting({
       it: '/legale/licenza'
     },
 
-    '/dashboard/settings' : {
-      en: '/dashboard/settings',
-      sl: '/dashboard/nastavitve',
-      ru: '/dashboard/настройки',
-      it: '/dashboard/impostazioni'
+    '/settings' : {
+      en: '/settings',
+      sl: '/nastavitve',
+      ru: '/настройки',
+      it: '/impostazioni'
     },
-  }
+  },
 
 });
  

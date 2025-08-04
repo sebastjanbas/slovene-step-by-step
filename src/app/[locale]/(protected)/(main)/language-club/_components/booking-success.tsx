@@ -3,6 +3,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { IconCheck, IconCalendar } from "@tabler/icons-react";
+import { toZonedTime } from "date-fns-tz";
 
 interface BookingSuccessProps {
   event: any;
@@ -28,11 +29,14 @@ const BookingSuccess = ({ event, locale }: BookingSuccessProps) => {
           <div className="flex items-center justify-center gap-2 text-sm">
             <IconCalendar className="w-4 h-4" />
             <span>
-              {new Date(event.date).toLocaleDateString(locale, {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
+              {toZonedTime(event.date, "Europe/Ljubljana").toLocaleDateString(
+                locale,
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                }
+              )}
             </span>
           </div>
           <p className="font-medium">{event.theme}</p>

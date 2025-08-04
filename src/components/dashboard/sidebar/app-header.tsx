@@ -22,6 +22,7 @@ import {
 } from "@tabler/icons-react";
 import { SignOutButton } from "@clerk/nextjs";
 import { Skeleton } from "@/components/ui/skeleton";
+import Link from "next/link";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -89,9 +90,14 @@ export function SiteHeader() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuItem disabled>
-                    <IconUserCircle />
-                    Account
+                  <DropdownMenuItem asChild>
+                    <Link
+                      href="/settings"
+                      className="cursor-pointer flex items-center gap-2 hover:bg-transparent"
+                    >
+                      <IconUserCircle />
+                      Account
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem disabled>
                     <IconCreditCard />

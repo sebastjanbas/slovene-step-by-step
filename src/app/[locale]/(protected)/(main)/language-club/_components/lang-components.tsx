@@ -9,8 +9,10 @@ import { cn } from "@/lib/utils";
 const LangComponents = ({ events, calendarEvents, locale, bookedEvent }) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const filteredEvents = events.filter((event) => {
-    const selectedDate = date.toLocaleDateString("sv-SE"); // Local, correct timezone
-    return event.date === selectedDate;
+    return (
+      event.date.toLocaleDateString("sv-SE") ===
+      date.toLocaleDateString("sv-SE")
+    );
   });
 
   const { open } = useSidebar();

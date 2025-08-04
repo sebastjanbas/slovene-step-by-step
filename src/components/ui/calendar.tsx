@@ -13,7 +13,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 
 export type CalendarEvent = {
   id: string;
-  date: string; // "YYYY-MM-DD"
+  date: Date;
   title: string;
   color: string; // Tailwind class or hex like "bg-red-500" or "#ff0000"
 };
@@ -34,10 +34,11 @@ function Calendar({
 }) {
   const defaultClassNames = getDefaultClassNames();
 
-  // Group events by date (e.g. "2025-07-22")
+  // Group events by date in user's timezone (e.g. "2025-07-22")
   const eventMap: Record<string, CalendarEvent[]> = events.reduce(
     (acc, event) => {
-      const dateKey = event.date;
+      // Use user's local timezone for consistent date grouping
+      const dateKey = event.date.toLocaleDateString("en-CA"); // YYYY-MM-DD format in local timezone
       if (!acc[dateKey]) acc[dateKey] = [];
       acc[dateKey].push(event);
       return acc;
@@ -213,7 +214,7 @@ function CalendarDayButton({
     if (modifiers.focused) ref.current?.focus();
   }, [modifiers.focused]);
 
-  const dateKey = day.date.toLocaleDateString("sv-SE"); // e.g. "2025-07-23"
+  const dateKey = day.date.toLocaleDateString("en-CA");
 
   const events = eventMap[dateKey] || [];
 
