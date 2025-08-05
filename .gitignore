@@ -42,5 +42,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-#stripe readme
-STRIPE_README.md
+#readme
+STRIPE_SETUP.md
+TRANSLATION_REORGANIZATION_SUMMARY.md
+

@@ -9,12 +9,12 @@ import { useUser } from "@clerk/nextjs";
 import MobileNavigationDialog from "./mobile-navigation-dialog";
 import { IconLogo } from "@/components/icons/icon-logo";
 import { ThemButton } from "@/components/ui/appearance-switch-button";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 export default function NavBar({ locale }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const t = useTranslations("Navbar");
+  const t = useTranslations("common");
   const { user } = useUser();
 
   if (pathname.includes("/auth") || pathname.includes("/legal")) {
@@ -45,13 +45,13 @@ export default function NavBar({ locale }) {
                 {webNavigation.map((item) => (
                   <li className="text-sm font-medium" key={item.name}>
                     <Link
-                      href={item.href}
+                      href={item.href as any}
                       className="group/menu-item flex items-center text-sm hover:text-accent select-none gap-3 rounded-md p-2 leading-none no-underline outline-none focus-visible:ring-2 focus-visible:ring-foreground-lighter group-hover:bg-transparent text-foreground focus-visible:text-brand-link"
                     >
                       <div className="flex flex-col justify-center">
                         <div className="flex items-center gap-1">
                           <p className="leading-snug text-foreground group-hover/menu-item:text-brand-link">
-                            {t(item.name)}
+                            {t(`navigation.${item.name}`)}
                           </p>
                         </div>
                       </div>
@@ -72,16 +72,16 @@ export default function NavBar({ locale }) {
                   href="/dashboard"
                   className="relative dark:border-gray-700 justify-center cursor-pointer items-center space-x-2 text-center font-regular ease-out duration-200 rounded-[8px] outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-400 dark:bg-brand-500 hover:bg-brand/80 dark:hover:bg-brand/50 text-foreground border-brand-500/75 dark:border-brand/30 hover:border-brand-600 dark:hover:border-brand focus-visible:outline-brand-600 data-[state=open]:bg-brand-400/80 dark:data-[state=open]:bg-brand-500/80 data-[state=open]:outline-brand-600 text-xs px-2.5 py-1 lg:px-4 lg:py-[15px] lg:rounded-xl h-[26px] hidden lg:flex lg:justify-center lg:items-center"
                 >
-                  <p className="truncate">{t("dashboard")}</p>
+                  <p className="truncate">{t("navigation.dashboard")}</p>
                 </Link>
               </>
             ) : (
-              <Link
+              <a
                 href="/sign-in"
                 className="relative dark:border-gray-700 justify-center cursor-pointer items-center space-x-2 text-center font-regular ease-out duration-200 rounded-[8px] outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-400 dark:bg-brand-500 hover:bg-brand/80 dark:hover:bg-brand/50 text-foreground border-brand-500/75 dark:border-brand/30 hover:border-brand-600 dark:hover:border-brand focus-visible:outline-brand-600 data-[state=open]:bg-brand-400/80 dark:data-[state=open]:bg-brand-500/80 data-[state=open]:outline-brand-600 text-xs px-2.5 py-1 h-[26px] hidden lg:block"
               >
-                <p className="truncate">{t("log-in")}</p>
-              </Link>
+                <p className="truncate">{t("buttons.log-in")}</p>
+              </a>
             )}
           </div>
         </div>
@@ -89,7 +89,7 @@ export default function NavBar({ locale }) {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
-            className="text-foreground-lighter focus:ring-transparent bg-transparent hover:text-foreground-light transition-colors hover:bg-overlay inline-flex items-center justify-center rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-inset"
+            className="text-foreground-lighter focus:ring-transparent bg-transparent hover:text-foreground-light transition-colors hover:bg-overlay inline-flex items-center justify-center rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-inset cursor-pointer"
             aria-expanded="false"
           >
             <span className="sr-only">Open main menu</span>

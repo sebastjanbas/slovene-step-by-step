@@ -6,15 +6,15 @@ import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "Metadata" });
+  const t = await getTranslations({ locale, namespace: "metadata.pricing" });
   return {
-    title: t("pricing-title"),
-    description: t("pricing-desc"),
+    title: t("title"),
+    description: t("description"),
   };
 }
 
 export default function PricingPage() {
-  const t = useTranslations("Pricing");
+  const t = useTranslations("pricing.hero");
   return (
     <section className="relative isolate px-6 py-24 sm:py-32 lg:px-8">
       <div className="mx-auto max-w-4xl text-center">
@@ -26,7 +26,7 @@ export default function PricingPage() {
         </p>
       </div>
       <p className="mx-auto mt-6 max-w-2xl text-pretty text-center text-lg font-medium text-sl-secondary sm:text-xl/8">
-        {t("text")}
+        {t("description")}
       </p>
 
       <PricingContent />
@@ -34,19 +34,9 @@ export default function PricingPage() {
         id="FAQ"
         className="mt-40 relative overflow-hidden py-16 sm:py-24 lg:py-32 mx-auto max-w-lg md:max-w-4xl px-6 lg:px-8"
       >
-        <h2 className="text-4xl font-semibold tracking-tight text-sl-primary">
-          {t("sec2-title")}
-        </h2>
-        <p className="mt-4 text-lg text-sl-secondary">{t("sec2-subtitle")}</p>
-        <div className="mt-8">
-          <FAQ />
-        </div>
+        <FAQ />
       </div>
-      <EmailComponent
-        title={t("sec3-title")}
-        subtitle={t("sec3-subtitle")}
-        buttontext={t("sec3-button")}
-      />
+      <EmailComponent />
     </section>
   );
 }

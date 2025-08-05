@@ -7,36 +7,37 @@ import { Button } from "@/components/ui/button";
 import { people, reviews } from "@/lib/docs";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import Link from "next/link";
 import { AccordionCustom } from "@/components/content/faq-accordion";
 import Image from "next/image";
+import { Link } from "@/i18n/routing";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "Metadata" });
+  const t = await getTranslations({ locale, namespace: "metadata.about" });
   return {
-    title: t("about-title"),
-    description: t("about-desc"),
+    title: t("title"),
+    description: t("description"),
   };
 }
 
 export default function MeetTheTeamPage() {
-  const t = useTranslations("About us");
+  const t = useTranslations("about");
+  const t2 = useTranslations("common.buttons");
   return (
     <section>
       <div className="py-32 md:py-48 lg:pt-5 lg:pb-20 px-5 lg:px-20">
         <div className="flex flex-col text-center lg:text-start lg:flex-row mx-auto w-full justify-center items-center gap-3 lg:gap-10">
           <div className="max-w-xl mb-10">
             <h1 className="text-balance text-5xl font-semibold tracking-tight text-sl-primary sm:text-7xl">
-              {t("title")}
+              {t("hero.title")}
             </h1>
             <h2 className="mt-8 text-pretty text-lg font-medium text-sl-secondary sm:text-xl/8">
-              {t("subtitle")}
+              {t("hero.subtitle")}
             </h2>
             <div className="text-sl-primary">
-              <p>{t("text1")}</p>
+              <p>{t("hero.text1")}</p>
               <br />
-              <p>{t("text2")}</p>
+              <p>{t("hero.text2")}</p>
             </div>
           </div>
           <div className="">
@@ -107,17 +108,17 @@ export default function MeetTheTeamPage() {
 
       <div className="mx-auto max-w-7xl lg:px-8">
         <SectionTitle
-          header={t("sec2-subtitle")}
-          paragraph={t("sec2-title")}
+          header={t("mission.subtitle")}
+          paragraph={t("mission.title")}
           textOrientation="text-start"
         >
           <div className="flex w-full gap-10 flex-row justify-between">
             <div className="text-start text-pretty text-md/6 space-y-10">
-              <p>{t("sec2-par1")}</p>
+              <p>{t("mission.text1")}</p>
               <div className="space-y-5">
-                <p>{t("sec2-par2")}</p>
-                <p>{t("sec2-par3")}</p>
-                <p>{t("sec2-par4")}</p>
+                <p>{t("mission.text2")}</p>
+                <p>{t("mission.text3")}</p>
+                <p>{t("mission.text4")}</p>
               </div>
             </div>
             <div className="hidden lg:block w-full">
@@ -148,35 +149,22 @@ export default function MeetTheTeamPage() {
           </Button>
         </div>
         <SectionTitle
-          paragraph={t("sec3-title")}
-          header={t("sec3-subtitle")}
+          paragraph={t("team.title")}
+          header={t("team.subtitle")}
           textOrientation="text-center"
         >
           <div className="flex items-center justify-center">
             <div className="max-w-5xl text-center">
-              <p className="text-lg ">{t("sec3-par1")}</p>
+              <p className="text-lg ">{t("team.text1")}</p>
             </div>
           </div>
         </SectionTitle>
         <div className="w-full mt-10">
           <People people={people} />
         </div>
-        <div className="mx-auto mt-10 max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-          <div className="text-center lg:text-start text-md/6 space-y-10 flex flex-col items-center justify-center">
-            <AccordionCustom
-              data={[
-                {
-                  trigger: t("read-more"),
-                  content: [t("sec3-par2"), t("sec3-par3"), t("sec3-par4")],
-                },
-              ]}
-            />
-          </div>
-        </div>
-
         <SectionTitle
-          header={t("sec4-subtitle")}
-          paragraph={t("sec4-title")}
+          header={t("testimonials.subtitle")}
+          paragraph={t("testimonials.title")}
           textOrientation="text-center lg:text-start"
         />
         <div className="w-full flex justify-center items-center">
@@ -184,34 +172,22 @@ export default function MeetTheTeamPage() {
             <Carousel data={reviews} />
           </div>
         </div>
-        <div className="mx-auto mt-10 max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-          <div className="text-center lg:text-start text-md/6 space-y-10 flex flex-col items-center justify-center">
-            <AccordionCustom
-              data={[
-                {
-                  trigger: t("read-more"),
-                  content: [t("sec4-par1"), t("sec4-par2"), t("sec4-par3")],
-                },
-              ]}
-            />
-          </div>
-        </div>
         <SectionTitle
-          header={t("sec5-subtitle")}
-          paragraph={t("sec5-title")}
+          header={t("contact.subtitle")}
+          paragraph={t("contact.title")}
           textOrientation="text-center lg:text-start"
         >
           <div className="text-center lg:text-start text-md/6 space-y-10">
-            <p>{t("sec5-par1")}</p>
-            <p>{t("sec5-par2")}</p>
+            <p>{t("contact.text1")}</p>
+            <p>{t("contact.text2")}</p>
           </div>
 
           <div className="flex flex-row mt-16 mb-52 gap-5 items-center justify-center lg:justify-start">
             <Button variant={"mine"} asChild>
-              <Link href={"/dashboard"}>{t("button1")}</Link>
+              <Link href={"/dashboard"}>{t2("start")}</Link>
             </Button>
             <Button variant={"link"} asChild>
-              <Link href={"/pricing"}>{t("button2")}</Link>
+              <Link href={"/pricing"}>{t2("pricing")}</Link>
             </Button>
           </div>
         </SectionTitle>

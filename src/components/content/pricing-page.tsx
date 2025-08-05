@@ -8,7 +8,8 @@ function classNames(...classes) {
 }
 
 export default function PricingContent() {
-  const t = useTranslations("Pricing");
+  const t = useTranslations("pricing.plans");
+  const t2 = useTranslations("pricing.cta");
   return (
     <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 md:max-w-4xl md:grid-cols-3">
       {offers.map((tier, tierIdx) => (
@@ -65,7 +66,7 @@ export default function PricingContent() {
               "mt-6 text-base/7"
             )}
           >
-            {t(tier.description)}
+            {t(`plan${tierIdx + 1}.description`)}
           </p>
           <ul
             role="list"
@@ -74,8 +75,8 @@ export default function PricingContent() {
               "mt-8 space-y-3 text-sm/6 sm:mt-10"
             )}
           >
-            {tier.features.map((feature) => (
-              <li key={feature} className="flex gap-x-3">
+            {tier.features.map((feature, i) => (
+              <li key={i} className="flex gap-x-3">
                 <CheckIcon
                   aria-hidden="true"
                   className={classNames(
@@ -83,7 +84,7 @@ export default function PricingContent() {
                     "h-6 w-5 flex-none"
                   )}
                 />
-                {t(feature)}
+                {t(`plan${tierIdx + 1}.features.${i}`)}
               </li>
             ))}
           </ul>
@@ -97,7 +98,7 @@ export default function PricingContent() {
               "mt-8 block rounded-xl px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-offset-2 sm:mt-10"
             )}
           >
-            {t("plan-button")}
+            {t2("button")}
           </a>
         </div>
       ))}

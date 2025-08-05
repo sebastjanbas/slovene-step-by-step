@@ -1,0 +1,285 @@
+{
+
+    "Metadata": {
+      "home-title": "Diventa fluente in sloveno",
+      "home-desc": "Lezioni di sloveno personalizzate passo dopo passo, su misura per i tuoi obiettivi. Impara online quando vuoi con insegnanti esperti e unisciti a una comunità di supporto di oltre 1.200 membri. Inizia oggi e raggiungi i tuoi obiettivi linguistici con Slovene Step by Step!",
+      "about-title": "Chi siamo",
+      "about-desc": "In Slovene Step by Step, ci dedichiamo a fornire esperienze di apprendimento della lingua slovena personalizzate. Il nostro team di insegnanti esperti, unito a un programma flessibile, garantisce che tu possa imparare al tuo ritmo.",
+      "features-title": "Features",
+      "features-desc": "",
+      "log-title": "Log in",
+      "log-desc": "",
+      "pricing-title": "Pricing",
+      "pricing-desc": "",
+      "products-title": "Products",
+      "products-desc": "",
+      "notfound-title":"Not Found",
+      "notfound-desc":""
+    },
+  
+    "HomePage": {
+      "announcement": "Announcement",
+      "announcement-link": "Learn more",
+      "title-1": "Diventa ",
+      "title-strong": "Fluente",
+      "title-2": "    in Sloveno",
+      "under-title": "Il modo migliore per imparare lo sloveno e realizzare i tuoi sogni.",
+      "action-button": "Iniziare",
+  
+  
+      "why-slovene-title" : "Perché dovresti imparare lo sloveno?",
+      "why-slovene-subtitle" : "La conoscenza è il re",
+      "why-slovene-text1" : "Conoscere lo sloveno è la chiave per accedere a opportunità senza pari e integrarsi veramente in questa vivace società.",
+      "why-slovene-text2" : "Che tu ti stia trasferendo, studiando o lavorando, imparare lo sloveno rende la vita quotidiana più fluida. Dalla creazione di connessioni al soddisfacimento dei requisiti di residenza, è la chiave per l'integrazione. Non lasciare che le barriere linguistiche ti trattengano. Imparare lo sloveno è il tuo biglietto per una vita di successo, arricchita e appagante in Slovenia.",
+      "why-slovene-point1-strong" : "Fai progredire la tua carriera.",
+      "why-slovene-point1" : "Padroneggiare lo sloveno è essenziale per progredire nella tua carriera in Slovenia. Migliora le tue prospettive di lavoro diventando fluente nella lingua locale.",
+      "why-slovene-point2-strong" : "Integrazione sociale perfetta.",
+      "why-slovene-point2" : "Imparare lo sloveno ti consentirà di integrarti pienamente nella società slovena, rendendo le relazioni sociali più semplici e significative.",
+      "why-slovene-point3-strong" : "Istruzione e crescita personale.",
+      "why-slovene-point3" : "Che sia per arricchimento personale o per scopi accademici, la padronanza della lingua slovena aprirà nuove porte all'apprendimento e allo sviluppo personale.",
+      "why-slovene-text3": "Lo sloveno svela le ricche tradizioni della Slovenia, opere iconiche come quella del poeta France Prešeren e legami autentici con la gente del posto. Arricchisce la tua esperienza di paesaggi mozzafiato come il lago di Bled, aprendo al contempo opportunità di carriera in un'economia in crescita. Con la sua grammatica unica, lo sloveno è una sfida gratificante e un modo per preservare un raro patrimonio linguistico.",
+  
+  
+  
+  
+      "why-us": "Perché sceglierci",
+      "why-us-sub": "Imparare più velocemente",
+      "bento-c1-title": "Lezioni online",
+      "bento-c1-desc": "Impara lo sloveno comodamente da casa tua! Le nostre lezioni si svolgono tramite Skype, offrendo flessibilità e comodità ovunque tu sia. Entra in contatto con insegnanti esperti e immergiti in sessioni coinvolgenti e interattive, su misura per i tuoi obiettivi.",
+      "bento-c1-title2": "Lezione di prova gratuita",
+      "bento-c1-desc2": "Durante questa lezione conoscerai la nostra metodologia, apprenderai i dettagli del programma e otterrai le risposte a tutte le tue domande.",
+      "bento-c2-title": "Diventa parte di una comunità",
+      "bento-c2-desc": "Unisciti alla nostra vivace comunità di oltre 1.200 studenti su Telegram! Condividi esperienze, fai domande e pratica lo sloveno con altri studenti in un ambiente stimolante e di supporto. Imparare è meglio insieme!",
+      "bento-c3-title": "Supporto in ogni fase del percorso",
+      "bento-c3-desc": "Rimani in pista con l'aiuto del nostro curatore di corsi dedicato. Dalle risposte alle tue domande al feedback prezioso, siamo qui per rendere il tuo percorso di apprendimento fluido e di successo.",
+      "bento-c4-title": "Piani di apprendimento personalizzati",
+      "bento-c4-desc": "Raggiungi i tuoi obiettivi più velocemente con un programma progettato apposta per te. Che tu stia imparando per viaggiare, lavorare o trasferirti, il nostro approccio personalizzato assicura che ogni lezione sia pertinente ed efficace...",
+      
+  
+      "stats-title" : "I nostri successi", 
+      "stats-subtitle": "Statistiche",
+  
+      "Happy students": "Studenti felici",
+      "Lessons Conducted": "Lezioni svolte",
+      "Student Satisfaction": "Soddisfazione degli studenti",
+  
+      "testimonials-title" : "Testimonianze",
+      "testimonials-subtitle" : "Cosa dicono i membri"
+    },
+  
+  
+    "Footer" : {
+      "title": "Il modo migliore per imparare lo sloveno e realizzare i tuoi sogni.",
+      "group1": "Personale",
+      "group2": "Collegamenti rapidi",
+      "group3": "Azienda",
+      "group4": "Legal",
+  
+      "Profile": "Profilo",
+      "Settings": "Impostazioni",
+      "Dashboard": "Dashboard",
+  
+      "Home": "Home",
+      "Courses": "Corsi",
+      "Pricing": "Prezzi",
+      
+      "About": "Chi siamo",
+      "Contact us": "Contattaci",
+      "FAQ": "FAQ",
+      
+      "Terms of service": "Termini di servizio",
+      "Privacy policy": "Politica sulla riservatezza",
+      "License": "Licenza"
+    },
+  
+    "Navbar": {
+      "products": "Corsi",
+      "features": "Features",
+      "pricing": "Prezzi",
+      "about-us": "Chi siamo",
+      "log-in": "Log in",
+      "dashboard": "Dashboard"
+    },
+  
+    "Banner" : {
+      "title": "ATTENZIONE",
+      "message": "Il nostro sito web è attualmente in fase di sviluppo! Alcune funzionalità potrebbero non essere ancora disponibili, ma stiamo lavorando duramente per offrirti presto l'esperienza completa. Grazie per la pazienza!"
+    },
+  
+    "About us": {
+      "title": "Scopri la nostra storia",
+      "subtitle": "Costruire connessioni attraverso il linguaggio",
+      "text1": "In Slovene Step by Step, aiutiamo persone di ogni estrazione a padroneggiare nuove lingue e ad abbracciare con sicurezza nuove culture. Il nostro approccio personalizzato, gli insegnanti esperti e la comunità di supporto creano un'esperienza di apprendimento coinvolgente che consente agli studenti di raggiungere i propri obiettivi.",
+      "text2": "Unisciti alla nostra community, registrati per una lezione di prova gratuita e fai oggi stesso il primo passo verso il raggiungimento dei tuoi obiettivi linguistici!",
+  
+      "sec2-title": "Creare ponti tra culture, dare potere alle persone",
+      "sec2-subtitle": "Perché facciamo quello che facciamo",
+      "sec2-par1": "In Slovene Step by Step, la nostra missione è quella di dare potere a persone con background diversi offrendo esperienze di apprendimento linguistico personalizzate, coinvolgenti ed efficaci. Ci impegniamo a colmare le lacune culturali e a promuovere connessioni aiutando i nostri studenti non solo a imparare una lingua, ma anche a sentirsi a casa nei loro nuovi ambienti. Attraverso una guida esperta, opzioni di apprendimento flessibili e una comunità di supporto, puntiamo a rendere l'apprendimento delle lingue accessibile e piacevole per tutti.",
+      "sec2-par2": "Immaginiamo un mondo in cui le barriere linguistiche non ostacolano più le opportunità o l'integrazione. Quella che è iniziata come una piattaforma per supportare i migranti di lingua russa che si muovono nella vita in Slovenia è cresciuta fino a diventare un vivace hub per studenti provenienti da diversi background linguistici e culturali.",
+      "sec2-par3": "Il nostro obiettivo è diventare una piattaforma leader per l'apprendimento delle lingue in Slovenia e oltre, aiutando gli individui a liberare il loro pieno potenziale attraverso la padronanza della lingua. Aspiriamo a costruire una comunità globale di studenti, uniti dalla loro passione per la crescita, la connessione e lo scambio culturale.",
+      "sec2-par4": "Grazie a metodi di insegnamento innovativi, insegnanti dedicati e un impegno verso l'eccellenza, Slovene Step by Step continua ad aprire la strada agli studenti di lingue in tutto il mondo.",
+      
+      "sec3-title": "Le persone dietro il programma",
+      "sec3-subtitle": "Appassionato. Esperto. Dedito.",
+      "sec3-par1": "Siamo un gruppo dinamico di persone appassionate di ciò che facciamo e impegnate a fornire i migliori risultati per i nostri clienti.",
+      "sec3-par2": "In Slovene Step by Step, il nostro team è composto da educatori appassionati, linguisti esperti e personale di supporto dedicato che condividono un obiettivo comune: aiutare i nostri studenti ad avere successo. Ogni membro porta con sé un set unico di competenze e un profondo impegno nel creare un'esperienza di apprendimento personalizzata e coinvolgente.",
+      "sec3-par3": "I nostri tutor, molti dei quali sono madrelingua, sono orgogliosi di guidare gli studenti nel loro percorso di apprendimento della lingua, fornendo supporto in ogni fase del percorso. Che si tratti di padroneggiare le basi o di perfezionare competenze avanzate, siamo qui per ispirare sicurezza, promuovere la crescita e celebrare ogni traguardo.",
+      "sec3-par4": "Insieme siamo più di una squadra: siamo una comunità che crede nel potere del linguaggio per connettere, rafforzare e trasformare le vite.",
+      
+      "sec4-title": "Storie vere, risultati veri",
+      "sec4-subtitle": "Ascolta i nostri studenti",
+      "sec4-par1": "La vera misura del nostro successo risiede nelle voci dei nostri studenti. Attraverso lezioni personalizzate e una guida dedicata, Slovene Step by Step ha aiutato innumerevoli persone a raggiungere i propri obiettivi linguistici e a prosperare nella propria vita personale e professionale.",
+      "sec4-par2": "Dai nuovi arrivati ​​che affrontano con sicurezza la vita in Slovenia ai professionisti che ampliano le loro opportunità di carriera, il nostro programma ha avuto un impatto duraturo. Gli studenti sottolineano costantemente l'ambiente di supporto, le competenze linguistiche pratiche che hanno acquisito e il modo in cui le lezioni hanno rafforzato la loro sicurezza e integrazione in nuove comunità.",
+      "sec4-par3": "Queste storie sono una testimonianza del potere trasformativo dell'apprendimento delle lingue e siamo orgogliosi di celebrare ogni successo con i nostri studenti.",
+      
+      "sec5-title": "Fai il primo passo verso i tuoi obiettivi",
+      "sec5-subtitle": "Unisciti alla nostra comunità",
+      "sec5-par1": "Pronti a iniziare un percorso di apprendimento linguistico su misura per voi? Che stiate cercando di migliorare le vostre competenze, di entrare in contatto con una nuova cultura o di acquisire sicurezza nelle vostre interazioni quotidiane, Slovene Step by Step è qui per guidarvi.",
+      "sec5-par2": "Iscriviti oggi stesso a una lezione di prova gratuita e scopri in prima persona quanto personalizzato, coinvolgente ed efficace può essere il nostro programma. Unisciti alla nostra crescente comunità di studenti di lingue e connettiti con tutor esperti che hanno la passione di aiutarti a raggiungere il successo.",
+  
+      "read-more": "Di più",
+  
+      "button1": "Inizia il tuo viaggio",
+      "button2": "Visualizza i prezzi"
+    },
+  
+    "Pricing" : {
+  
+      "session": "ora",
+  
+      "title": "Scegli il piano giusto per te",
+      "subtitle": "Prezzi",
+      "text": "Trova il piano perfetto per padroneggiare lo sloveno passo dopo passo. Lezioni su misura, opzioni flessibili e guida esperta per aiutarti a raggiungere i tuoi obiettivi linguistici con facilità.",
+  
+      "plan1-desc": "A flexible plan for learning Slovenian in pairs. Enjoy shared motivation and personalized, interactive 60-minute lessons.",
+    "plan1-feature1": "Lessons with a native speaker and a professional tutor",
+    "plan1-feature2": "Practice with a friend or family member",
+    "plan1-feature3": "Flexible schedule and materials",
+    "plan1-feature4": "Modern teaching methods.",
+    "plan1-feature5": "Access to study materials for the A1, A2, B1, B2, C1 exam",
+    "plan1-feature6": "+ 1 additional free class",
+    "plan1-feature7": "Access to school materials for pupils, students and students",
+    "plan1-feature8": "Private Telegram group",
+    "plan1-feature9": "Access to recordings of past lectures",
+    
+    "plan2-desc": "A flexible plan if you're just starting out in Slovenian. Take advantage of 45-minute interactive sessions and a flexible schedule that works for you.",
+    "plan2-feature1": "45 min individual lessons tailored to your goals",
+    "plan2-feature2": "+ 1 additional free class",
+    "plan2-feature3": "Access to school materials for pupils, students and students",
+    "plan2-feature4": "Flexible schedule and materials",
+    "plan2-feature5": "Modern teaching methods.",
+    "plan2-feature6": "Access to study materials for the A1, A2, B1, B2, C1 exam",
+    "plan2-feature7": "Lessons with a native speaker and a professional tutor",
+    "plan2-feature8": "Private tutor",
+    "plan2-feature9": "Access to recordings of past lectures", 
+
+    
+    "plan3-desc": "A flexible plan for small groups, ideal for families or friends. Enjoy 60 min lessons with group activities and shared goals.",
+    "plan3-feature1": "Private Telegram group",
+    "plan3-feature2": "Access to school materials for pupils, students and students",
+    "plan3-feature3": "Practice with a friend or family member",
+    "plan3-feature4": "Modern teaching methods.",
+    "plan3-feature5": "Access to study materials for the A1, A2, B1, B2, C1 exam",
+    "plan3-feature6": "+ 1 additional free class",
+    "plan3-feature7": "Lessons with a native speaker and a professional tutor",
+    "plan3-feature8": "Access to recordings of past lectures",
+    "plan3-feature9": "Flexible schedule and materials",
+    
+      "plan-button": "Inizia oggi",
+  
+      "sec2-title": "Domande frequenti",
+      "sec2-subtitle": "Trova le risposte alle domande più comuni sui nostri piani e servizi. Se non riesci a trovare ciò che stai cercando, non esitare a contattare",
+  
+      "sec3-title": "Hai una domanda?",
+      "sec3-subtitle": "Facci una domanda o inviaci un messaggio. Siamo qui per aiutarti.",
+      "sec3-button": "Contattaci"
+  
+    },
+  
+    "FAQ" : {
+      "q1": "Cosa differenzia Slovene Step by Step dagli altri programmi di apprendimento delle lingue?",
+      "q2": "Per iniziare è necessaria una conoscenza pregressa dello sloveno (o di altre lingue)?",
+      "q3": "Come funzionano le lezioni online?",
+      "q4": "Posso provare una lezione prima di impegnarmi in un corso completo?",
+      "a1": "Slovene Step by Step offre un'esperienza di apprendimento personalizzata, su misura per le tue esigenze. Ci concentriamo sulle capacità comunicative pratiche, piuttosto che sulla semplice memorizzazione del vocabolario. Le nostre lezioni sono interattive e flessibili, con tutor esperti che ti guidano passo dopo passo. Che tu sia un principiante o che tu stia migliorando la tua fluidità, ti garantiamo un percorso di apprendimento strutturato e coinvolgente.",
+      "a2": "Assolutamente no! Il nostro programma è progettato per tutti i livelli, dai principianti assoluti agli studenti avanzati. Se hai già qualche conoscenza, valuteremo il tuo livello e personalizzeremo le lezioni per aiutarti a progredire in modo efficiente.",
+      "a3": "Le nostre lezioni si svolgono tramite sessioni video in diretta con tutor esperti. Avrai esercizi interattivi, feedback in tempo reale e materiali personalizzati. Puoi scegliere il tuo programma e imparare al tuo ritmo, rendendo facile adattare l'apprendimento della lingua alla tua routine quotidiana.",
+      "a4": "Sì! Offriamo una lezione di prova in modo che tu possa sperimentare in prima persona il nostro approccio didattico. Questo ti aiuta a capire come funziona il nostro programma e ci consente di valutare il tuo livello e i tuoi obiettivi di apprendimento. Iscriviti oggi e inizia il tuo viaggio linguistico con sicurezza!"
+    },
+  
+    "Features" : {
+      "title": "Features"
+    },
+    
+    "Log in": {
+      "label": "Bentornato!",
+      "title": "Log in",
+      "email": "Email",
+      "password": "Password",
+      "forgot-password": "Ha dimenticato la password?",
+      "button": "Log in",
+      "or-divider": "O",
+      "continue-apple": "Continua con Apple",
+      "continue-google": "Continua con Google",
+      "link-text": "Non hai un account?",
+      "link": "Iscrizione"
+    },
+    
+    "Sign up" : {
+      "label": "Creare un account",
+      "title": "Ottieni il tuo account gratuito",
+      "first-name": "Nome di battesimo",
+      "last-name": "Cognome",
+      "email": "Email",
+      "password": "Password",
+      "confirm-password": "Conferma password",
+      "button": "Creare un account",
+      "link-text": "Hai già un account?",
+      "link": "Log in"
+    },
+  
+    "Disclaimer" : {
+      "text": "Accedendo accetti i nostri",
+      "link-terms" : "Termini di servizio",
+      "and" : "E",
+      "link-privacy" : "politica sulla riservatezza"
+    },
+    
+    "NotFoundPage": {
+      "title": "Pagina non trovata",
+      "description": "Spiacenti, non siamo riusciti a trovare la pagina che stai cercando.",
+      "backButton": "Torna alla home page"
+    },
+  
+    "Testimonials": {
+      "student": "Studente",
+      "student-VladLisin": "Studio da circa 6 mesi, durante i quali ho migliorato il mio livello da zdravo (ciao) - hvala (grazie), a conversazioni a pieno titolo con gli sloveni su base regolare. Definirei gli insegnanti come specialisti responsabili e professionali e quindi consiglio vivamente questo programma se vuoi imparare lo sloveno.",
+      "student-AnnaKotelnikova": "Sto imparando lo sloveno da zero. Voglio ringraziare il mio insegnante per l'approccio individuale, le lezioni interessanti e le buone spiegazioni del materiale. Lo consiglio a tutti!",
+      "student-AlexanderMolchanov": "Il corso è fantastico, studio da sei mesi. Funziona davvero. Prima ho provato a studiare da sola, ma non ha funzionato.",
+      "student-EvgeniaRudakova": "Studio con Sasha, non è mai in ritardo, il che è molto importante per me! Parliamo e ripassiamo la grammatica a ogni lezione!",
+    "student-VioletaLisin": "Lo consiglio vivamente! È super comodo studiare lo sloveno con i ragazzi, le lezioni si svolgono in un'atmosfera molto amichevole, tutto è chiaro e non noioso!🫶",
+    "student-OlegKotelnikov": "Ciao a tutti, mi chiamo Oleg. Consiglio vivamente le lezioni con Sasha ai principianti nell'apprendimento dello sloveno. Tutta la mia famiglia, mia moglie e mio figlio hanno studiato con lui e mia moglie continua a studiare. Siamo molto soddisfatti della presentazione del materiale, Sasha ascolta sempre domande e commenti. Sono molto contento di averlo incontrato e sono molto grato per le lezioni."
+    },
+  
+    "Countdown": {
+      "days": "giorni",
+      "hours": "ore",
+      "minutes": "minuti",
+      "seconds": "secondi",
+      "times-up": "Il tempo è scaduto"
+    },
+  
+    "Error Messages" : {
+      "":"",
+      "Please enter a valid email address": "Please enter a valid email address",
+      "Please enter your password" : "Please enter your password",
+      "Enter your first name" : "Enter your first name",
+      "Enter your last name"  : "Enter your last name",
+      "Minimum 8 characters"  : "Minimum 8 characters",
+      "Please confirm your password" : "Please confirm your password"
+    }
+  
+  
+  }
+  
+  

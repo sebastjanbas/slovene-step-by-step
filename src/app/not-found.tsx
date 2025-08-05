@@ -1,24 +1,23 @@
 // import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { routing } from "../i18n/routing";
+import { Link, routing } from "../i18n/routing";
 import { getTranslations } from "next-intl/server";
 import { IconLogo } from "@/components/icons/icon-logo";
-import Link from "next/link";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({ params: { locale } }) {
-  const t = await getTranslations({ locale, namespace: "Metadata" });
+  const t = await getTranslations({ locale, namespace: "metadata.not-found" });
 
   return {
-    title: t("notfound-title"),
+    title: t("title"),
   };
 }
 
 export default function NotFoundPage() {
-  const t = useTranslations("NotFoundPage");
+  const t = useTranslations("errors.not-found");
   return (
     <html lang="en">
       <body>
@@ -39,7 +38,7 @@ export default function NotFoundPage() {
                 href="/"
                 className="font-semibold text-sl-accent hover:underline"
               >
-                <span aria-hidden="true">&larr;</span> {t("backButton")}
+                <span aria-hidden="true">&larr;</span> {t("button")}
               </Link>
             </div>
           </div>

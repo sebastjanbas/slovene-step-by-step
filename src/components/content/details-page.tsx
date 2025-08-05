@@ -49,7 +49,7 @@ export default function DetailsPageHero() {
     });
   });
 
-  const t = useTranslations("HomePage");
+  const t = useTranslations("homepage.why-slovene");
 
   return (
     <div className="relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:px-0">
@@ -61,16 +61,16 @@ export default function DetailsPageHero() {
                 id="subtitle"
                 className="text-base/7 font-semibold text-sl-accent"
               >
-                {t("why-slovene-subtitle")}
+                {t("subtitle")}
               </p>
               <h1
                 id="title"
                 className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-sl-primary sm:text-5xl"
               >
-                {t("why-slovene-title")}
+                {t("title")}
               </h1>
               <p id="text1" className="mt-6 text-xl/8 text-sl-secondary">
-                {t("why-slovene-text1")}
+                {t("intro")}
               </p>
             </div>
           </div>
@@ -90,7 +90,7 @@ export default function DetailsPageHero() {
         <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
           <div className="lg:pr-4 lg:block sm:flex sm:justify-center">
             <div className="max-w-xl text-base/7 text-primary lg:max-w-lg">
-              <p id="text2">{t("why-slovene-text2")}</p>
+              <p id="text2">{t("text")}</p>
               <ul role="list" className="mt-8 space-y-8 text-sl-primary">
                 <li id="point1" className="flex gap-x-3">
                   <RocketLaunchIcon
@@ -99,9 +99,9 @@ export default function DetailsPageHero() {
                   />
                   <span>
                     <strong className="font-semibold text-sl-primary">
-                      {t("why-slovene-point1-strong")}
+                      {t("benefits.career.title")}
                     </strong>{" "}
-                    {t("why-slovene-point1")}
+                    {t("benefits.career.description")}
                   </span>
                 </li>
                 <li id="point2" className="flex gap-x-3">
@@ -111,9 +111,9 @@ export default function DetailsPageHero() {
                   />
                   <span>
                     <strong className="font-semibold text-sl-primary">
-                      {t("why-slovene-point2-strong")}
+                      {t("benefits.integration.title")}
                     </strong>{" "}
-                    {t("why-slovene-point2")}
+                    {t("benefits.integration.description")}
                   </span>
                 </li>
                 <li id="point3" className="flex gap-x-3">
@@ -123,14 +123,14 @@ export default function DetailsPageHero() {
                   />
                   <span>
                     <strong className="font-semibold text-sl-primary">
-                      {t("why-slovene-point3-strong")}
+                      {t("benefits.education.title")}
                     </strong>{" "}
-                    {t("why-slovene-point3")}
+                    {t("benefits.education.description")}
                   </span>
                 </li>
               </ul>
               <p id="test3" className="mt-8">
-                {t("why-slovene-text3")}
+                {t("conclusion")}
               </p>
             </div>
           </div>

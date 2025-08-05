@@ -20,7 +20,7 @@ export default function Stats({
     space: "py-6 px-10  lg:py-10 lg:px-20",
   },
 }: StatsProps) {
-  const t = useTranslations("HomePage");
+  const t = useTranslations("homepage.stats");
   const numbersRef = useRef([]);
 
   useGSAP(() => {
@@ -54,7 +54,9 @@ export default function Stats({
             className={`bg-[#f4f4f6] max-w-[300px] xl:max-w-[500px] w-full dark:bg-[#171717] shadow-md ${size.space} rounded-2xl w-full flex flex-col gap-y-2`}
           >
             <div className="flex-grow-0 mx-[15%] md:mx-0 border-t border-[8px] -translate-y-5 border-sl-accent/70 rounded-[3px]"></div>
-            <dt className="text-base/6 text-sl-primary">{t(stat.title)}</dt>
+            <dt className="text-base/6 text-sl-primary">
+              {t(`metrics.${stat.title}`)}
+            </dt>
             <dd
               className={`order-first font-semibold ${size.text} tracking-tight text-sl-secondary`}
             >

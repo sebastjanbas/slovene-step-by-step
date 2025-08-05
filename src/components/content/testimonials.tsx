@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 const Carousel = ({ data, stars = false }) => {
-  const t = useTranslations("Testimonials");
+  const t = useTranslations("homepage.testimonials");
   return (
     <>
       <div className="relative select-none lg:px-4">
@@ -51,14 +51,16 @@ const Carousel = ({ data, stars = false }) => {
                   alt="Profile photo"
                 />
                 <div className="inline-block text-center md:text-left mb-4 text-lg">
-                  <p className="text-sm text-sl-primary">{t(review.text)}</p>
+                  <p className="text-sm text-sl-primary">
+                    {t(`students.${review.text}`)}
+                  </p>
                   <div className="flex flex-col md:flex-row justify-start md:gap-8 pt-4">
                     <div>
                       <p className="text-xl font-bold text-sl-primary">
                         {review.name}
                       </p>
                       <p className="text-sm font-normal text-sl-accent">
-                        {t(review.role)}
+                        {t(`roles.${review.role}`)}
                       </p>
                     </div>
                     {stars && (

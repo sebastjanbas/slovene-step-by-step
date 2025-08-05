@@ -10,7 +10,7 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
-  const t = useTranslations("HomePage");
+  const t = useTranslations("homepage.hero");
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   const buttonRef = useRef(null);
@@ -20,8 +20,10 @@ export default function Hero() {
     const tl = gsap.timeline();
     const title = titleRef.current;
 
-    const fullText = `${t("title-1")} ${t("title-strong")} ${t("title-2")}`;
-    const strongWord = t("title-strong").trim();
+    const fullText = `${t("title.part1")} ${t("title.strong")} ${t(
+      "title.part2"
+    )}`;
+    const strongWord = t("title.strong").trim();
     title.innerHTML = "";
 
     const container = document.createElement("div");
@@ -116,7 +118,7 @@ export default function Hero() {
                 {t("announcement")}{" "}
                 <Link href={"#"} className="font-semibold text-">
                   <span aria-hidden="true" className="absolute inset-0" />
-                  {t("announcement-link")}{" "}
+                  {t.has("announcement-link") && t("announcement-link")}{" "}
                   <span aria-hidden="true">&rarr;</span>
                 </Link>
               </div>
@@ -127,16 +129,16 @@ export default function Hero() {
                 className="text-balance text-5xl font-semibold tracking-tight text-sl-primary md:text-6xl lg:text-7xl"
               >
                 <div>
-                  {t("title-1")}{" "}
-                  <strong className="text-accent">{t("title-strong")}</strong>
-                  {t("title-2")}
+                  {t("title.part1")}{" "}
+                  <strong className="text-accent">{t("title.strong")}</strong>
+                  {t("title.part2")}
                 </div>
               </h1>
               <p
                 ref={subtitleRef}
                 className="mt-8 text-pretty text-lg font-medium text-sl-secondary sm:text-xl/8"
               >
-                {t("under-title")}
+                {t("subtitle")}
               </p>
               <div
                 ref={buttonRef}
@@ -146,7 +148,7 @@ export default function Hero() {
                   href={"/dashboard"}
                   className="rounded-2xl bg-sl-accent hover:bg-sl-accent-hover px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors duration-200 ease-in-out"
                 >
-                  {t("action-button")}
+                  {t("cta.primary")}
                 </a>
               </div>
             </div>

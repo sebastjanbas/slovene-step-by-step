@@ -2,14 +2,14 @@
 export const webNavigation = [
   { name: "pricing", href: "/pricing" },
   // { name: "features", href: "/features" },
-  { name: "about-us", href: "/about-us" },
+  { name: "about", href: "/about-us" },
 
 ];
 
 export const stats = [
-  { id: 1, title: "Happy students", value: "250", symbol: "+" },
-  { id: 2, title: "Lessons Conducted", value: "3000", symbol: "h" }, // in hours
-  { id: 3, title: "Student Satisfaction", value: "92", symbol: "%" }, // in percent
+  { id: 1, title: "happy-students", value: "250", symbol: "+" },
+  { id: 2, title: "lessons-conducted", value: "3000", symbol: "h" }, // in hours
+  { id: 3, title: "student-satisfaction", value: "92", symbol: "%" }, // in percent
 ];
 
 export const people = [
@@ -57,7 +57,7 @@ export const reviews = [
       "/foto-vlad.png",
     name: "Vlad Lisin",
     role: "student",
-    text: "student-VladLisin",
+    text: "vlad-lisin",
     stars: [true, true, true, true, true],
   },
   {
@@ -66,7 +66,7 @@ export const reviews = [
       "/foto-anna.png",
     name: "Anna Kotelnikova",
     role: "student",
-    text: "student-AnnaKotelnikova",
+    text: "anna-kotelnikova",
     stars: [true, true, true, true, true],
   },
   {
@@ -75,7 +75,7 @@ export const reviews = [
       "/foto-oleksiy.png",
     name: "Oleksiy Molchanov",
     role: "student",
-    text: "student-AlexanderMolchanov",
+    text: "alexander-molchanov",
     stars: [true, true, true, true, true],
   },
   {
@@ -84,7 +84,7 @@ export const reviews = [
       "/foto-evgenia.png",
     name: "Evgenia Rudakova",
     role: "student",
-    text: "student-EvgeniaRudakova",
+    text: "evgenia-rudakova",
     stars: [true, true, true, true, true],
   },
   {
@@ -93,7 +93,7 @@ export const reviews = [
       "/foto-violeta.png",
     name: "Violeta Lisin",
     role: "student",
-    text: "student-VioletaLisin",
+    text: "violeta-lisin",
     stars: [true, true, true, true, true],
   },
   {
@@ -102,31 +102,31 @@ export const reviews = [
       "/foto-oleg.png",
     name: "Oleg Kotelnikov",
     role: "student",
-    text: "student-OlegKotelnikov",
+    text: "oleg-kotelnikov",
     stars: [true, true, true, true, true],
   },
 ];
 
 export const footerLinks = {
   Personal: [
-    { name: "Profile", href: "/settings" },
-    { name: "Settings", href: "/settings" },
-    { name: "Dashboard", href: "/dashboard" },
+    { name: "profile", href: "/settings" },
+    { name: "settings", href: "/settings" },
+    { name: "dashboard", href: "/dashboard" },
   ],
   QuickLinks: [
-    { name: "Home", href: "/", server: false },
-    { name: "Courses", href: "/courses", server: true },
-    { name: "Pricing", href: "/pricing", server: false },
+    { name: "home", href: "/", server: false },
+    { name: "pricing", href: "/pricing", server: false },
+    { name: "lang-club", href: "/lang-club", server: true },
   ],
   Company: [
-    { name: "About", href: "/about-us" },
-    { name: "Contact us", href: "mailto:sebastjan.bas@gmail.com?cc=almn140803@gmail.com&subject=[Slovene Step By Step] - Support&body=<Enter your message here.>" },
-    { name: "FAQ", href: "/pricing#FAQ" },
+    { name: "about", href: "/about-us" },
+    { name: "contact", href: "mailto:sebastjan.bas@gmail.com?cc=almn140803@gmail.com&subject=[Slovene Step By Step] - Support&body=<Enter your message here.>" },
+    { name: "faq", href: "/pricing#FAQ" },
   ],
   Legal: [
-    { name: "Terms of service", href: "/legal/terms-of-service" },
-    { name: "Privacy policy", href: "/legal/privacy-policy" },
-    { name: "License", href: "/legal/license" },
+    { name: "terms-of-service", href: "/legal/terms-of-service" },
+    { name: "privacy-policy", href: "/legal/privacy-policy" },
+    { name: "license", href: "/legal/license" },
   ],
 };
 

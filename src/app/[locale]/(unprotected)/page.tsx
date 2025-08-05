@@ -9,10 +9,10 @@ import BentoGridWrapper from "@/components/content/bento-grid-wrapper";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "Metadata" });
+  const t = await getTranslations({ locale, namespace: "metadata.home" });
   return {
-    title: t("home-title"),
-    description: t("home-desc"),
+    title: t("title"),
+    description: t("description"),
   };
 }
 
@@ -24,20 +24,20 @@ export default function Home() {
         <DetailsPageHero />
         <div className="flex py-24 sm:py-32 w-full items-center justify-center">
           <SectionTitle
-            translations={"HomePage"}
+            translations={"homepage.features"}
             id="why-us"
-            header={"why-us"}
-            paragraph={"why-us-sub"}
+            header={"title"}
+            paragraph={"subtitle"}
           >
             <BentoGridWrapper />
           </SectionTitle>
         </div>
         <div className="py-24 sm:py-32">
           <SectionTitle
-            translations={"HomePage"}
+            translations={"homepage.stats"}
             id="statistics"
-            header={"stats-subtitle"}
-            paragraph={"stats-title"}
+            header={"subtitle"}
+            paragraph={"title"}
           >
             <div className="flex justify-center items-center">
               <Stats />
@@ -45,10 +45,10 @@ export default function Home() {
           </SectionTitle>
         </div>
         <SectionTitle
-          translations={"HomePage"}
+          translations={"homepage.testimonials"}
           id="testimonials"
-          header={"testimonials-subtitle"}
-          paragraph={"testimonials-title"}
+          header={"subtitle"}
+          paragraph={"title"}
         />
         <div className="w-full flex justify-center items-center">
           <div className="max-w-sm sm:max-w-xl md:max-w-3xl lg:max-w-5xl">

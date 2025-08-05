@@ -78,6 +78,12 @@ export const routing = defineRouting({
       ru: '/настройки',
       it: '/impostazioni'
     },
+    '/dashboard': {
+      en: '/dashboard',
+      sl: '/dashboard',
+      ru: '/dashboard',
+      it: '/dashboard'
+    }
   },
 
 });

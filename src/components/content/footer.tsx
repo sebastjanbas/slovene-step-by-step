@@ -4,10 +4,10 @@ import { footerLinks } from "@/lib/docs";
 import { SocialLinks } from "../ui/social-links";
 import { useTranslations } from "next-intl";
 import { IconLogo } from "../icons/icon-logo";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 export default function Footer() {
-  const t = useTranslations("Footer");
+  const t = useTranslations("footer");
 
   const pathname = usePathname();
   if (pathname.includes("/auth") || pathname.includes("/legal")) {
@@ -118,56 +118,72 @@ export default function Footer() {
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-5">
         <div className="flex flex-col">
-          <h1 className="mb-5 text-sl-primary font-semibold">{t("group1")}</h1>
+          <h1 className="mb-5 text-sl-primary font-semibold">
+            {t("personal.title")}
+          </h1>
           {footerLinks.Personal.map((item) => (
             <div key={item.name}>
               <a href={item.href} className="hover:underline text-sl-primary">
-                {t(item.name)}
+                {t(`personal.${item.name}`)}
               </a>
             </div>
           ))}
         </div>
         <div className="flex flex-col">
-          <h1 className="mb-5 text-sl-primary font-semibold">Quick Links</h1>
+          <h1 className="mb-5 text-sl-primary font-semibold">
+            {t("links.title")}
+          </h1>
           {footerLinks.QuickLinks.map((item) => (
             <div key={item.name}>
-              {item.server ? (
+              {item.server ||
+              item.href.startsWith("mailto:") ||
+              item.href.includes("#") ? (
                 <a href={item.href} className="hover:underline text-sl-primary">
-                  {t(item.name)}
+                  {t(`links.${item.name}`)}
                 </a>
               ) : (
                 <Link
-                  href={item.href}
+                  href={item.href as any}
                   className="hover:underline text-sl-primary"
                 >
-                  {t(item.name)}
+                  {t(`links.${item.name}`)}
                 </Link>
               )}
             </div>
           ))}
         </div>
         <div className="flex flex-col">
-          <h1 className="mb-5 text-sl-primary font-semibold">Company</h1>
+          <h1 className="mb-5 text-sl-primary font-semibold">
+            {t("company.title")}
+          </h1>
           {footerLinks.Company.map((item) => (
             <div key={item.name}>
-              <Link
-                href={item.href}
-                className="hover:underline text-sl-primary"
-              >
-                {t(item.name)}
-              </Link>
+              {item.href.startsWith("mailto:") || item.href.includes("#") ? (
+                <a href={item.href} className="hover:underline text-sl-primary">
+                  {t(`company.${item.name}`)}
+                </a>
+              ) : (
+                <Link
+                  href={item.href as any}
+                  className="hover:underline text-sl-primary"
+                >
+                  {t(`company.${item.name}`)}
+                </Link>
+              )}
             </div>
           ))}
         </div>
         <div className="flex flex-col">
-          <h1 className="mb-5 text-sl-primary font-semibold">Legal</h1>
+          <h1 className="mb-5 text-sl-primary font-semibold">
+            {t("legal.title")}
+          </h1>
           {footerLinks.Legal.map((item) => (
             <div key={item.name}>
               <Link
-                href={item.href}
+                href={item.href as any}
                 className="hover:underline text-sl-primary"
               >
-                {t(item.name)}
+                {t(`legal.${item.name}`)}
               </Link>
             </div>
           ))}
@@ -175,7 +191,7 @@ export default function Footer() {
       </div>
       <div className="mt-10">
         <p className="text-sl-primary">
-          &copy; 2024 Slovene Step By Step. All rights reserved.
+          &copy; {t("copyright", { year: new Date().getFullYear() })}
         </p>
       </div>
     </footer>

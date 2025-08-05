@@ -61,7 +61,7 @@ export default function BentoGrid() {
     });
   });
 
-  const t = useTranslations("HomePage");
+  const t = useTranslations("homepage.features.cards");
   return (
     <>
       <div className="mt-10 flex flex-col lg:grid gap-8 sm:mt-16 lg:grid-cols-10 lg:grid-rows-5">
@@ -79,10 +79,10 @@ export default function BentoGrid() {
                 id="card2-start"
                 className="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center"
               >
-                {t("bento-c1-title")}
+                {t("online-lessons.title")}
               </h2>
               <p className="mt-2 max-w-lg text-sm/6 text-white max-lg:text-center">
-                {t("bento-c1-desc")}
+                {t("online-lessons.description")}
               </p>
             </div>
             <Lottie
@@ -99,10 +99,10 @@ export default function BentoGrid() {
             <Lottie lottieRef={teacherA} animationData={teacherAnimation} />
             <div>
               <h2 className="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center">
-                {t("bento-c1-title2")}
+                {t("trial-lesson.title")}
               </h2>
               <p className="mt-2 max-w-lg text-sm/6 text-white max-lg:text-center">
-                {t("bento-c1-desc2")}
+                {t("trial-lesson.description")}
               </p>
             </div>
           </div>
@@ -117,10 +117,10 @@ export default function BentoGrid() {
           }}
         >
           <h2 className="mt-2 text-lg font-medium tracking-tight text-black max-lg:text-center">
-            {t("bento-c2-title")}
+            {t("community.title")}
           </h2>
           <p className="mt-2 max-w-lg text-sm/6 text-black max-lg:text-center">
-            {t("bento-c2-desc")}
+            {t("community.description")}
           </p>
           <div className="relative min-h-[20rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
             <div className="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 dark:border-gray-800 bg-gray-900 shadow-2xl">
@@ -144,10 +144,10 @@ export default function BentoGrid() {
           }}
         >
           <h2 className="mt-2 text-lg font-medium tracking-tight text-white text-center">
-            {t("bento-c3-title")}
+            {t("support.title")}
           </h2>
           <p className="mt-2 max-w-lg text-sm/6 text-white text-center">
-            {t("bento-c3-desc")}
+            {t("support.description")}
           </p>
         </div>
 
@@ -169,13 +169,13 @@ export default function BentoGrid() {
         >
           <div>
             <h2 className="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center">
-              {t("bento-c4-title")}
+              {t("personalized.title")}
             </h2>
             <p
               id="card3-start"
               className="mt-2 max-w-lg text-sm/6 text-white max-lg:text-center"
             >
-              {t("bento-c4-desc")}
+              {t("personalized.description")}
             </p>
           </div>
           <Lottie

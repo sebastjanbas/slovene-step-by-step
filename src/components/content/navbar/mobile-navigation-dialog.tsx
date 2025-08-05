@@ -7,7 +7,7 @@ import LanguageSwitcher from "./language-switcher";
 import { IconLogo } from "@/components/icons/icon-logo";
 import { ThemButton } from "@/components/ui/appearance-switch-button";
 import { useUser } from "@clerk/nextjs";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 export default function MobileNavigationDialog({
   mobileMenuOpen,
@@ -15,7 +15,7 @@ export default function MobileNavigationDialog({
   webNavigation,
   locale,
 }) {
-  const t = useTranslations("Navbar");
+  const t = useTranslations("common");
   const { user } = useUser();
 
   return (
@@ -61,7 +61,7 @@ export default function MobileNavigationDialog({
                       <button
                         type="button"
                         onClick={() => setMobileMenuOpen(false)}
-                        className="inline-flex items-center justify-center p-2 rounded-md text-foreground-lighter focus:ring-brand hover:text-foreground-light transition-colors focus:outline-none focus:ring-2 focus:ring-inset"
+                        className="inline-flex items-center justify-center p-2 rounded-md text-foreground-lighter focus:ring-brand hover:text-foreground-light transition-colors focus:outline-none focus:ring-2 focus:ring-inset cursor-pointer"
                       >
                         <span className="sr-only">Close menu</span>
                         <XMarkIcon aria-hidden="true" className="size-6" />
@@ -80,7 +80,7 @@ export default function MobileNavigationDialog({
                             className="block py-2 pl-3 pr-4 text-base font-medium text-foreground hover:bg-surface-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:rounded"
                             onClick={() => setMobileMenuOpen(false)}
                           >
-                            {t(item.name)}
+                            {t(`navigation.${item.name}`)}
                           </Link>
                         </div>
                       ))}
@@ -88,18 +88,20 @@ export default function MobileNavigationDialog({
                     <div className="absolute bottom-0 mb-10">
                       <div className="w-full flex justify-between items-center">
                         {!user ? (
-                          <Link
+                          <a
                             href="/sign-in"
                             className="block py-2 pl-3 pr-4 text-base font-medium text-foreground hover:bg-surface-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:rounded"
                           >
-                            <p className="truncate">Log in</p>
-                          </Link>
+                            <p className="truncate">{t("buttons.log-in")}</p>
+                          </a>
                         ) : (
                           <Link
                             href="/dashboard"
                             className="block py-2 pl-3 pr-4 text-base font-medium text-foreground hover:bg-surface-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:rounded"
                           >
-                            <p className="truncate">Dashboard</p>
+                            <p className="truncate">
+                              {t("navigation.dashboard")}
+                            </p>
                           </Link>
                         )}
                       </div>
