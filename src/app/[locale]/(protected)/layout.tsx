@@ -32,7 +32,7 @@ const ProtectedLayout = async ({ children, params }: ProtectedLayoutProps) => {
             } as React.CSSProperties
           }
         >
-          <AppSidebar variant="inset" />
+          <AppSidebar variant="inset" locale={locale} />
           <SidebarInset className="overflow-hidden bg-white dark:bg-background">
             <SiteHeader />
             <main className="bg-white dark:bg-background h-[90vh] overflow-y-scroll">

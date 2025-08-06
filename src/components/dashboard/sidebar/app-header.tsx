@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import { usePathname } from "@/i18n/routing";
 import { useUserInfo } from "../auth/user-context";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -23,10 +22,13 @@ import {
 import { SignOutButton } from "@clerk/nextjs";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export function SiteHeader() {
   const pathname = usePathname();
   const user = useUserInfo();
+  const t = useTranslations("dashboard.user-navigation");
   return (
     <header className="flex bg-white dark:bg-background h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
@@ -36,7 +38,8 @@ export function SiteHeader() {
           className="mx-2 data-[orientation=vertical]:h-4"
         />
         <h1 className="text-base font-medium capitalize">
-          {pathname.replace("/", "").replaceAll("-", " ")}
+          {/* decodeURIComponent is used to decode the url encoded string (crilic symbols are now shown) */}
+          {decodeURIComponent(pathname.split("/").pop().replaceAll("-", " "))}
         </h1>
         <div className="ml-auto flex items-center gap-2">
           {!user ? (
@@ -96,23 +99,23 @@ export function SiteHeader() {
                       className="cursor-pointer flex items-center gap-2 hover:bg-transparent"
                     >
                       <IconUserCircle />
-                      Account
+                      {t("account")}
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem disabled>
                     <IconCreditCard />
-                    Billing
+                    {t("billing")}
                   </DropdownMenuItem>
                   <DropdownMenuItem disabled>
                     <IconNotification />
-                    Notifications
+                    {t("notifications")}
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <SignOutButton>
                   <DropdownMenuItem className="cursor-pointer">
                     <IconLogout />
-                    Log out
+                    {t("logout")}
                   </DropdownMenuItem>
                 </SignOutButton>
               </DropdownMenuContent>

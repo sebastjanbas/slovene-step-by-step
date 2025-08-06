@@ -56,7 +56,9 @@ export default function MobileNavigationDialog({
                       <IconLogo className="h-7 w-auto" />
                     </Link>
                     <div className="flex flex-row justify-center items-center gap-2">
-                      <LanguageSwitcher locale={locale} />
+                      <div className="w-fit mx-5">
+                        <LanguageSwitcher locale={locale} />
+                      </div>
                       <ThemButton />
                       <button
                         type="button"

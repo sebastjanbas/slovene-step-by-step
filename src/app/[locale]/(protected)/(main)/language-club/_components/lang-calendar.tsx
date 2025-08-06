@@ -7,12 +7,15 @@ import {
   CalendarEvent,
 } from "@/components/ui/calendar";
 import React, { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+import { IconHome } from "@tabler/icons-react";
 
 const LangCalendar = ({ locale, events, date, setDate }) => {
   const dateFnsLocale = localeMap[locale] ?? localeMap["en"]; // fallback to English
   const [screenWidth, setScreenWidth] = useState(0);
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today);
+  const t = useTranslations("dashboard.calendar");
 
   useEffect(() => {
     setScreenWidth(window.innerWidth);
@@ -69,7 +72,7 @@ const LangCalendar = ({ locale, events, date, setDate }) => {
             setCurrentMonth(today);
           }}
         >
-          {screenWidth < 450 ? "T" : "Today"}
+          {screenWidth < 450 ? <IconHome /> : t("today-button")}
         </Button>
       </>
     </div>

@@ -5,6 +5,7 @@ import LangCard from "./lang-card";
 import SuccessDialog from "./success-dialog";
 import { useSidebar } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 const LangComponents = ({ events, calendarEvents, locale, bookedEvent }) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -17,6 +18,7 @@ const LangComponents = ({ events, calendarEvents, locale, bookedEvent }) => {
 
   const { open } = useSidebar();
   const [showSuccessDialog, setShowSuccessDialog] = useState(!!bookedEvent);
+  const t = useTranslations("dashboard.calendar");
 
   return (
     <>
@@ -42,11 +44,12 @@ const LangComponents = ({ events, calendarEvents, locale, bookedEvent }) => {
           ))
         ) : (
           <p>
-            No events scheduled on{" "}
-            {date.toLocaleDateString(locale, {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
+            {t("no-events", {
+              date: date.toLocaleDateString(locale, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              }),
             })}
           </p>
         )}

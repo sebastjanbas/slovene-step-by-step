@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
 import { useUserInfo } from "../auth/user-context";
+import { useTranslations } from "next-intl";
 
 const Greeting = () => {
   const user = useUserInfo();
+  const t = useTranslations("dashboard");
   if (!user) {
     return (
       <div className="inline-flex gap-2 justify-center items-center pb-3">
@@ -14,10 +16,17 @@ const Greeting = () => {
     );
   }
   return (
-    <h1 className="block text-2xl md:text-4xl pb-3 tracking-tight">
-      Welcome back{" "}
-      <strong className="font-medium">{user.name.split(" ")?.[0]}</strong>!
-    </h1>
+    <h1
+      dangerouslySetInnerHTML={{
+        __html: t.markup("greeting", {
+          important: (chunks) => `
+          <strong style="font-weight: 500;">${chunks}</strong>
+          `,
+          name: user.name.split(" ")?.[0],
+        }),
+      }}
+      className="block text-2xl md:text-4xl pb-3 tracking-tight"
+    />
   );
 };
 

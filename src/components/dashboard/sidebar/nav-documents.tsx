@@ -11,6 +11,7 @@ import {
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Icon } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 
 export function NavDocuments({
   items,
@@ -22,12 +23,13 @@ export function NavDocuments({
     disabled: boolean;
   }[];
 }) {
+  const t = useTranslations("dashboard.sidebar.my-progress");
   // const { isMobile } = useSidebar();
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>
-        My Progress <span className="pl-5 opacity-50 italic">Coming Soon</span>
+        {t("title")} <span className="pl-5 opacity-50 italic">Coming Soon</span>
       </SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
@@ -46,7 +48,7 @@ export function NavDocuments({
                 )}
               >
                 <item.icon />
-                <span>{item.name}</span>
+                <span>{t(item.name)}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

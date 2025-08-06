@@ -11,6 +11,7 @@ import { isSameDay } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { enUS, it, Locale, ru, sl } from "date-fns/locale";
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export const localeMap: Record<string, Locale> = {
   en: {
@@ -46,7 +47,7 @@ export const localeMap: Record<string, Locale> = {
 const CalendarDashboard = ({ locale, events }) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const dateFnsLocale = localeMap[locale] ?? localeMap["en"]; // fallback to English
-
+  const t = useTranslations("dashboard.calendar");
   const [isModalOpen, setModalOpen] = useState(false);
 
   const eventsOnSelectedDay = events.filter((event) =>
@@ -83,19 +84,26 @@ const CalendarDashboard = ({ locale, events }) => {
         <DialogContent className="bg-white dark:bg-foreground/5 rounded-2xl p-4">
           <DialogHeader>
             <DialogTitle>
-              Events on{" "}
-              {date
-                ? date.toLocaleDateString(locale, {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })
-                : ""}
+              {t("event-on", {
+                date: date.toLocaleDateString(locale, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                }),
+              })}
             </DialogTitle>
           </DialogHeader>
 
           {eventsOnSelectedDay.length === 0 ? (
-            <p>No events for this day.</p>
+            <p className="text-center text-sm text-foreground/50">
+              {t("no-events", {
+                date: date.toLocaleDateString(locale, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                }),
+              })}
+            </p>
           ) : (
             <ul className="space-y-2">
               {eventsOnSelectedDay.map((event) => (

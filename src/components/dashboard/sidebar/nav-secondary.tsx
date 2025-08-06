@@ -12,9 +12,12 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { ThemButton } from "@/components/ui/appearance-switch-button";
+import LanguageSwitcher from "@/components/content/navbar/language-switcher";
+import { useTranslations } from "next-intl";
 
 export function NavSecondary({
   items,
+  locale,
   ...props
 }: {
   items: {
@@ -22,20 +25,23 @@ export function NavSecondary({
     url: string;
     icon: Icon;
   }[];
+  locale: string;
 } & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
+  const t = useTranslations("dashboard.sidebar.secondary");
   return (
     <SidebarGroup {...props}>
       <SidebarGroupContent>
         <SidebarMenu>
-          <SidebarMenuItem className="pl-[5px]">
+          <SidebarMenuItem className="pl-[5px] flex flex-col items-start gap-2 justify-start">
             <ThemButton />
+            <LanguageSwitcher locale={locale} />
           </SidebarMenuItem>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
                 <Link href={item.url}>
                   <item.icon />
-                  <span>{item.title}</span>
+                  <span>{t(item.title)}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

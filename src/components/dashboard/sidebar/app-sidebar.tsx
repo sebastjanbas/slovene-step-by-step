@@ -31,37 +31,37 @@ import { IconLogo } from "@/components/icons/icon-logo";
 const data = {
   navMain: [
     {
-      title: "Dashboard",
+      title: "dashboard",
       url: "/dashboard",
       icon: IconDashboard,
       disabled: false,
     },
     {
-      title: "Courses",
+      title: "courses",
       url: "#",
       icon: IconBrandParsinta,
       disabled: true,
     },
     {
-      title: "Calendar",
+      title: "calendar",
       url: "/calendar",
       icon: IconCalendarWeek,
       disabled: true,
     },
     {
-      title: "Language Club",
+      title: "language-club",
       url: "/language-club",
       icon: IconClubs,
       disabled: false,
     },
     {
-      title: "Tutors",
+      title: "tutors",
       url: "/tutors",
       icon: IconUsers,
       disabled: false,
     },
     {
-      title: "Daily Practice",
+      title: "dayly-practice",
       url: "#",
       icon: IconFlask,
       disabled: true,
@@ -69,31 +69,31 @@ const data = {
   ],
   navSecondary: [
     {
-      title: "Settings",
+      title: "settings",
       url: "/settings",
       icon: IconSettings,
     },
     {
-      title: "Get Help",
+      title: "get-help",
       url: "#",
       icon: IconHelp,
     },
   ],
   myProgress: [
     {
-      name: "My Lessons",
+      name: "my-lessons",
       url: "#",
       icon: IconCalendarCheck,
       disabled: true,
     },
     {
-      name: "Achievements",
+      name: "achievements",
       url: "#",
       icon: IconTrophy,
       disabled: true,
     },
     {
-      name: "Progress",
+      name: "progress",
       url: "#",
       icon: IconProgressCheck,
       disabled: true,
@@ -101,8 +101,10 @@ const data = {
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  // const user = useUserInfo();
+export function AppSidebar({
+  locale,
+  ...props
+}: React.ComponentProps<typeof Sidebar> & { locale: string }) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -128,7 +130,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data.navMain} />
         <NavDocuments items={data.myProgress} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        <NavSecondary
+          items={data.navSecondary}
+          className="mt-auto"
+          locale={locale}
+        />
       </SidebarContent>
     </Sidebar>
   );

@@ -40,14 +40,6 @@
       "title": "Pricing",
       "description": ""
     },
-    "features": {
-      "title": "Features",
-      "description": ""
-    },
-    "login": {
-      "title": "Log in",
-      "description": ""
-    },
     "not-found": {
       "title": "Not Found",
       "description": ""
@@ -232,16 +224,16 @@
       "text3": "Our goal is to become a leading language learning platform in Slovenia and beyond, helping individuals unlock their full potential through language mastery. We aspire to build a global community of learners, united by their passion for growth, connection, and cultural exchange.",
       "text4": "Through innovative teaching methods, dedicated instructors, and a commitment to excellence, Slovene Step by Step continues to pave the way for language learners worldwide."
     },
-    "team":{
+    "team": {
       "title": "The People Behind the Program",
       "subtitle": "Passionate. Experienced. Dedicated.",
       "text1": "We’re a dynamic group of individuals who are passionate about what we do and dedicated to delivering the best results for our clients."
     },
-    "testimonials":{
+    "testimonials": {
       "title": "What Our Students Say",
       "subtitle": "Hear from Our Students"
     },
-    "contact":{
+    "contact": {
       "title": "Take the First Step Towards Your Goals",
       "subtitle": "Join Our Community",
       "text1": "Ready to start a language-learning journey tailored just for you? Whether you’re looking to improve your skills, connect with a new culture, or gain confidence in your everyday interactions, Slovene Step by Step is here to guide you.",
@@ -249,41 +241,48 @@
     }
   },
 
-  "auth": {
-    "login": {
-      "title": "Log in",
-      "label": "Welcome back!",
-      "button": "Log in",
-      "link-text": "Don't have an account?",
-      "link": "Sign up"
+  "dashboard": {
+    "greeting": "Welcome back <important>{name}!</important>",
+    "user-navigation": {
+      "account": "Account",
+      "billing": "Billing",
+      "notifications": "Notifications",
+      "logout": "Log out"
     },
-    "signup": {
-      "title": "Get your free account",
-      "label": "Create an account",
-      "button": "Create an account",
-      "link-text": "Already have an account?",
-      "link": "Log in"
+    "sidebar": {
+      "main": {
+        "book-lesson": "Book a Lesson",
+        "dashboard": "Dashboard",
+        "courses": "Courses",
+        "calendar": "Calendar",
+        "language-club": "Language Club",
+        "tutors": "Tutors",
+        "dayly-practice": "Dayly Practice"
+      },
+      "secondary": {
+        "settings": "Settings",
+        "get-help": "Get Help"
+      },
+      "my-progress": {
+        "title": "My Progress",
+        "my-lessons": "My Lessons",
+        "achievements": "Achievements",
+        "progress": "Progress"
+      }
     },
-    "disclaimer": {
-      "text": "By logging in, you agree to our ",
-      "terms": "Terms of Service",
-      "and": " and ",
-      "privacy": "Privacy Policy"
+    "calendar": {
+      "next-event": "Your next event",
+      "today-button": "Today",
+      "no-events": "No events scheduled on {date}",
+      "event-on": "Events on {date}"
     }
   },
+
   "errors": {
     "not-found": {
       "title": "Page not found",
       "description": "Sorry, we couldn't find the page you're looking for.",
       "button": "Back to home"
-    },
-    "validation": {
-      "email": "Please enter a valid email address",
-      "password": "Please enter your password",
-      "first-name": "Enter your first name",
-      "last-name": "Enter your last name",
-      "confirm-password": "Please confirm your password",
-      "min-length": "Minimum 8 characters"
     }
   },
   "footer": {

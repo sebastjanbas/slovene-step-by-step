@@ -40,14 +40,6 @@
       "title": "Cenik",
       "description": ""
     },
-    "features": {
-      "title": "Drugo",
-      "description": ""
-    },
-    "login": {
-      "title": "Prijava",
-      "description": ""
-    },
     "not-found": {
       "title": "Stran ne obstaja",
       "description": ""
@@ -247,26 +239,40 @@
       "text2": "Prijavite se na brezplačno poskusno lekcijo še danes in na lastni koži izkusite, kako prilagojen, privlačen in učinkovit je lahko naš program. Pridružite se naši rastoči skupnosti učencev jezikov in se povežite s strokovnimi mentorji, ki vam strastno pomagajo do uspeha."
     }
   },
-  "auth": {
-    "login": {
-      "title": "Prijava",
-      "label": "Dobrodošli nazaj!",
-      "button": "Prijava",
-      "link-text": "Nimate računa?",
-      "link": "Registracija"
+  "dashboard": {
+    "greeting": "Pozdravljeni nazaj <important>{name}!</important>",
+    "user-navigation": {
+      "account": "Račun",
+      "billing": "Plačila",
+      "notifications": "Obveščanje",
+      "logout": "Odjava"
     },
-    "signup": {
-      "title": "Ustvari brezplačen račun",
-      "label": "Ustvari račun",
-      "button": "Ustvari račun",
-      "link-text": "Že imate račun?",
-      "link": "Prijava"
+    "sidebar": {
+      "main": {
+        "book-lesson": "Rezerviraj lekcijo",
+        "dashboard": "Dashboard",
+        "courses": "Tečaji",
+        "calendar": "Koledar",
+        "language-club": "Pogovorni klub",
+        "tutors": "Mentorji",
+        "dayly-practice": "Dnevne naloge"
+      },
+      "secondary": {
+        "settings": "Nastavitve",
+        "get-help": "Pomoč"
+      },
+      "my-progress": {
+        "title": "Moje napredek",
+        "my-lessons": "Moje lekcije",
+        "achievements": "Dosežki",
+        "progress": "Napredek"
+      }
     },
-    "disclaimer": {
-      "text": "Z vpisom se strinjate z našimi ",
-      "terms": "Pogoji uporabe",
-      "and": " in ",
-      "privacy": "Pravilnikom o zasebnosti"
+    "calendar": {
+      "next-event": "Vaš naslednji dogodek",
+      "today-button": "Danes",
+      "no-events": "Ni dogodkov za {date}",
+      "event-on": "Dogodki na {date}"
     }
   },
   "errors": {
@@ -274,14 +280,6 @@
       "title": "Stran ne obstaja",
       "description": "Željene spletne strani ni bilo mogoče doseči",
       "button": "Nazaj domov"
-    },
-    "validation": {
-      "email": "",
-      "password": "",
-      "first-name": "",
-      "last-name": "",
-      "confirm-password": "",
-      "min-length": ""
     }
   },
   "footer": {

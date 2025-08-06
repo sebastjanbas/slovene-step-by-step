@@ -64,7 +64,9 @@ export default function NavBar({ locale }) {
             </nav>
           </div>
           <div className="hidden lg:flex items-center gap-2">
-            <LanguageSwitcher locale={locale} />
+            <div className="w-fit mx-5">
+              <LanguageSwitcher locale={locale} />
+            </div>
             <ThemButton />
             {user ? (
               <>

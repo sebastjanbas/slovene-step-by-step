@@ -224,43 +224,56 @@
       "text3": "Наша цель — стать ведущей платформой для изучения языка в Словении и за ее пределами, помогая людям раскрыть свой полный потенциал посредством овладения языком. Мы стремимся создать глобальное сообщество учащихся, объединенных страстью к росту, общению и культурному обмену.",
       "text4": "Благодаря инновационным методам обучения, преданным своему делу преподавателям и стремлению к совершенству Slovene Step by Step продолжает прокладывать путь для изучающих языки по всему миру."
     },
-    "team":{
+    "team": {
       "title": "Люди, стоящие за программой",
       "subtitle": "Страстный. Опытный. Преданный.",
       "text1": "Мы — динамичная группа людей, увлеченных своим делом и стремящихся обеспечить наилучшие результаты для наших клиентов."
     },
-    "testimonials":{
+    "testimonials": {
       "title": "Реальные истории, реальные результаты",
       "subtitle": "Послушайте наших студентов"
     },
-    "contact":{
+    "contact": {
       "title": "Сделайте первый шаг к своим целям",
       "subtitle": "Присоединяйтесь к нашему сообществу",
       "text1": "Готовы начать путешествие по изучению языка, разработанное специально для вас? Хотите ли вы улучшить свои навыки, познакомиться с новой культурой или обрести уверенность в повседневном общении, Slovene Step by Step готов вам помочь.",
       "text2": "Зарегистрируйтесь на бесплатный пробный урок сегодня и испытайте на собственном опыте, насколько персонализированной, увлекательной и эффективной может быть наша программа. Присоединяйтесь к нашему растущему сообществу изучающих язык и общайтесь с опытными преподавателями, которые с энтузиазмом помогут вам добиться успеха."
     }
   },
-
-  "auth": {
-    "login": {
-      "title": "Log in",
-      "label": "Welcome back!",
-      "button": "Log in",
-      "link-text": "Don't have an account?",
-      "link": "Sign up"
+  "dashboard": {
+    "greeting": "Добро пожаловать <important>{name}!</important>",
+    "user-navigation": {
+      "account": "Аккаунт",
+      "billing": "Расчеты",
+      "notifications": "Уведомления",
+      "logout": "Выйти"
     },
-    "signup": {
-      "title": "Get your free account",
-      "label": "Create an account",
-      "button": "Create an account",
-      "link-text": "Already have an account?",
-      "link": "Log in"
+    "sidebar": {
+      "main": {
+        "book-lesson": "Записаться на урок",
+        "dashboard": "Dashboard",
+        "courses": "Курсы",
+        "calendar": "Календарь",
+        "language-club": "Языковой клуб",
+        "tutors": "Учителя",
+        "dayly-practice": "Ежедневные занятия"
+      },
+      "secondary": {
+        "settings": "Настройки",
+        "get-help": "Помощь"
+      },
+      "my-progress": {
+        "title": "Мой прогресс",
+        "my-lessons": "Мои занятия",
+        "achievements": "Достижения",
+        "progress": "Прогресс"
+      }
     },
-    "disclaimer": {
-      "text": "By logging in, you agree to our ",
-      "terms": "Terms of Service",
-      "and": " and ",
-      "privacy": "Privacy Policy"
+    "calendar": {
+      "next-event": "Ваше ближайшее событие",
+      "today-button": "Сегодня",
+      "no-events": "Нет событий на {date}",
+      "event-on": "События на {date}"
     }
   },
   "errors": {
@@ -268,14 +281,6 @@
       "title": "Страница не найдена",
       "description": "Извините, мы не смогли найти страницу, которую вы ищете.",
       "button": "Вернуться домой"
-    },
-    "validation": {
-      "email": "Please enter a valid email address",
-      "password": "Please enter your password",
-      "first-name": "Enter your first name",
-      "last-name": "Enter your last name",
-      "confirm-password": "Please confirm your password",
-      "min-length": "Minimum 8 characters"
     }
   },
   "footer": {

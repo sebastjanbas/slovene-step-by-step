@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 export function NavMain({
   items,
@@ -23,6 +24,7 @@ export function NavMain({
     disabled: boolean;
   }[];
 }) {
+  const t = useTranslations("dashboard.sidebar.main");
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
@@ -34,7 +36,7 @@ export function NavMain({
               className="bg-white cursor-pointer text-foreground dark:text-background hover:bg-background/80 active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
             >
               <IconCirclePlusFilled />
-              <span>Book a Lesson</span>
+              <span>{t("book-lesson")}</span>
             </SidebarMenuButton>
             <Button
               size="icon"
@@ -63,7 +65,7 @@ export function NavMain({
                   )}
                 >
                   <item.icon />
-                  <span>{item.title}</span>
+                  <span>{t(item.title)}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

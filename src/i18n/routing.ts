@@ -83,6 +83,18 @@ export const routing = defineRouting({
       sl: '/dashboard',
       ru: '/dashboard',
       it: '/dashboard'
+    },
+    "/language-club": {
+      en: '/language-club',
+      sl: '/pogovorni-klub',
+      ru: '/языковой-клуб',
+      it: '/club-linguistico'
+    },
+    "/tutors": {
+      en: '/tutors',
+      sl: '/mentorji',
+      ru: '/учителя',
+      it: '/tutori'
     }
   },
 

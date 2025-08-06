@@ -5,17 +5,8 @@ import { langClubBookingsTable, langClubTable } from "@/db/schema";
 import { auth } from "@clerk/nextjs/server";
 import { asc, eq } from "drizzle-orm";
 import React from "react";
-import { toZonedTime } from "date-fns-tz";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { IconCalendar } from "@tabler/icons-react";
-import { ExternalLink } from "lucide-react";
+
+import NextEventCard from "./_components/next-event-card";
 
 const DashboardPage = async ({ params }) => {
   const { locale } = await params;
@@ -55,52 +46,7 @@ const DashboardPage = async ({ params }) => {
         {events.length > 0 ? (
           events.map((event) => (
             <div key={event.id} className="flex flex-col gap-4 mt-4 ">
-              <Card className="w-full max-w-md mx-auto min-w-sm">
-                <CardHeader className="text-center text-2xl font-medium tracking-tight">
-                  <CardTitle>Your next event</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="text-center space-y-2">
-                    <div className="flex items-center justify-center gap-2 text-sm">
-                      <IconCalendar className="w-4 h-4" />
-                      <span>
-                        {toZonedTime(
-                          event.date,
-                          "Europe/Ljubljana"
-                        ).toLocaleDateString(locale, {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </span>
-                    </div>
-                    <p className="font-medium">{event.theme}</p>
-                    <p className="text-sm text-muted-foreground">
-                      with {event.tutor}
-                    </p>
-                  </div>
-                  <div className="text-center text-sm text-muted-foreground">
-                    <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${event.location}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Location:{" "}
-                      <span className="inline-flex items-center gap-1">
-                        {event.location} <ExternalLink className="w-4 h-4" />
-                      </span>
-                    </a>
-                    <p>Duration: {event.duration} minutes</p>
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Button variant="outline" className="w-full">
-                    Cancel
-                  </Button>
-                </CardFooter>
-              </Card>
+              <NextEventCard event={event} locale={locale} />
             </div>
           ))
         ) : (

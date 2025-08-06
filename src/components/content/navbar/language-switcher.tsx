@@ -14,7 +14,7 @@ export default function LanguageSwitcher({ locale }) {
   };
 
   return (
-    <div className="mx-5 relative">
+    <div className="relative w-fit">
       <div className="flex flex-row items-center justify-between gap-x-1 py-1 px-3 w-full text-sm text-sl-primary  bg-transparent border-[1px] shadow-sm border-gray-200 dark:border-gray-700 rounded-xl pointer-events-none">
         <span>{lang}</span>
         <ChevronDownIcon className="h-4 w-4 text-sl-primary" />
