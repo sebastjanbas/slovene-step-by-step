@@ -89,7 +89,7 @@ export default function MobileNavigationDialog({
                       <div className="w-full flex justify-between items-center">
                         {!user ? (
                           <a
-                            href="/sign-in"
+                            href={`/sign-in?locale=${locale}`}
                             className="block py-2 pl-3 pr-4 text-base font-medium text-foreground hover:bg-surface-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-foreground-lighter focus-visible:rounded"
                           >
                             <p className="truncate">{t("buttons.log-in")}</p>

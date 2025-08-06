@@ -59,8 +59,11 @@ export function VerificationComponent({
     }
 
     session?.startVerification({ level }).then(async (response) => {
-      reverificationRef.current = response;
-      await prepareEmailVerification(response);
+      reverificationRef.current =
+        response as unknown as SessionVerificationResource;
+      await prepareEmailVerification(
+        response as unknown as SessionVerificationResource
+      );
     });
   }, [level, prepareEmailVerification, session]);
 

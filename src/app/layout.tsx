@@ -1,5 +1,7 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
+import { LocaleProvider } from "@/contexts/locale-context";
+import { DynamicClerkProvider } from "@/components/providers/dynamic-clerk-provider";
+import { Suspense } from "react";
 
 export const metadata = {
   title: {
@@ -48,10 +50,15 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, params }) {
+  const { locale } = params || {};
+  const initialLocale = locale || "en";
+
   return (
-    <>
-      <ClerkProvider>{children}</ClerkProvider>
-    </>
+    <Suspense fallback={<div>Loading...</div>}>
+      <LocaleProvider initialLocale={initialLocale}>
+        <DynamicClerkProvider>{children}</DynamicClerkProvider>
+      </LocaleProvider>
+    </Suspense>
   );
 }

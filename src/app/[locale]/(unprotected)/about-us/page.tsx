@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { people, reviews } from "@/lib/docs";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { AccordionCustom } from "@/components/content/faq-accordion";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 

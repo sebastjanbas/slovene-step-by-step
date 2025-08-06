@@ -5,13 +5,19 @@ import BackgroundUpdater from "@/components/ui/background-updater";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { PropsWithChildren } from "react";
+import { ReactNode } from "react";
 
-const ProtectedLayout = async ({ children }: PropsWithChildren) => {
+interface ProtectedLayoutProps {
+  children: ReactNode;
+  params: { locale: string };
+}
+
+const ProtectedLayout = async ({ children, params }: ProtectedLayoutProps) => {
   const { userId } = await auth();
+  const { locale } = params;
 
   if (!userId) {
-    redirect("/sign-in");
+    redirect(`/sign-in?locale=${locale}`);
   }
 
   return (
