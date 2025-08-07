@@ -26,33 +26,24 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { toZonedTime } from "date-fns-tz";
+import { useTranslations } from "next-intl";
+import { createCheckoutSession } from "@/actions/create-checkout-session";
 
 const LangCard = ({ locale, event }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-
+  const t = useTranslations("dashboard.events");
   const handleBooking = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `${window.location.origin}/api/stripe/create-checkout-session`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ eventId: event.id }),
-        }
-      );
+      const result = await createCheckoutSession(event.id.toString(), locale);
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to create checkout session");
+      if (result.error) {
+        throw new Error(result.error);
       }
 
       // Redirect to Stripe checkout
-      window.location.href = data.url;
+      window.location.href = result.url;
     } catch (error) {
       console.error("Booking error:", error);
       toast({
@@ -111,7 +102,7 @@ const LangCard = ({ locale, event }) => {
                   </Badge>
                 </TooltipTrigger>
                 <TooltipContent>
-                  Required knowledge: {event.level} level
+                  {t("tooltip.level", { level: event.level })}
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
@@ -128,8 +119,8 @@ const LangCard = ({ locale, event }) => {
                 </TooltipTrigger>
                 <TooltipContent>
                   {event.spotsLeft > 0
-                    ? `${event.spotsLeft} spots left`
-                    : "No spots left"}
+                    ? t("tooltip.spots.spots-left", { spots: event.spotsLeft })
+                    : t("tooltip.spots.no-spots")}
                 </TooltipContent>
               </Tooltip>
               <Tooltip>
@@ -139,7 +130,9 @@ const LangCard = ({ locale, event }) => {
                     {event.duration}
                   </Badge>
                 </TooltipTrigger>
-                <TooltipContent>{event.duration} minutes long</TooltipContent>
+                <TooltipContent>
+                  {t("tooltip.duration", { duration: event.duration })}
+                </TooltipContent>
               </Tooltip>
             </div>
             <Badge variant="outline" className="w-full">
@@ -149,11 +142,11 @@ const LangCard = ({ locale, event }) => {
         </div>
         <Button className="w-full" onClick={handleBooking} disabled={isLoading}>
           {isLoading ? (
-            "Processing..."
+            t("processing")
           ) : (
             <>
               <IconCreditCard className="mr-2 h-4 w-4" />
-              Book Now
+              {t("book-now")}
             </>
           )}
         </Button>

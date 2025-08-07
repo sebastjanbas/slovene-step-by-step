@@ -8,7 +8,8 @@
       "sign-up": "Ustvari račun",
       "back-to-home": "Nazaj domov",
       "start": "Začnite zdaj!",
-      "pricing": "Cenik"
+      "pricing": "Cenik",
+      "cancel": "Prekliči"
     },
     "forms": {
       "email": "Email",
@@ -269,10 +270,25 @@
       }
     },
     "calendar": {
+      "today-button": "Danes"
+    },
+    "events": {
       "next-event": "Vaš naslednji dogodek",
-      "today-button": "Danes",
       "no-events": "Ni dogodkov za {date}",
-      "event-on": "Dogodki na {date}"
+      "event-on": "Dogodki na {date}",
+      "event-tutor": "izvaja {tutor}",
+      "event-location": "Lokacija: ",
+      "event-duration": "Trajanje: {duration} minut",
+      "tooltip": {
+        "level": "Priporočen nivo {level}",
+        "duration": "{duration} minut",
+        "spots": {
+          "no-spots": "Vsa mesta zasedena",
+          "spots-left": "{spots} mest na voljo"
+        }
+      },
+      "processing": "Rezervacija v teku...",
+      "book-now": "Rezerviraj zdaj"
     }
   },
   "errors": {

@@ -8,7 +8,8 @@
       "sign-up": "Create an account",
       "back-to-home": "Back to home",
       "start": "Start Your Journey",
-      "pricing": "View Pricing"
+      "pricing": "View Pricing",
+      "cancel": "Cancel"
     },
     "forms": {
       "email": "Email",
@@ -271,10 +272,25 @@
       }
     },
     "calendar": {
+      "today-button": "Today"
+    },
+    "events": {
       "next-event": "Your next event",
-      "today-button": "Today",
       "no-events": "No events scheduled on {date}",
-      "event-on": "Events on {date}"
+      "event-on": "Events on {date}",
+      "event-tutor": "with {tutor}",
+      "event-location": "Location: ",
+      "event-duration": "Duration: {duration} minutes",
+      "tooltip": {
+        "level": "Required knowledge: {level} level",
+        "duration": "{duration} minutes long",
+        "spots": {
+          "no-spots": "No spots left",
+          "spots-left": "{spots} spots left"
+        }
+      },
+      "processing": "Processing...",
+      "book-now": "Book Now"
     }
   },
 

@@ -8,7 +8,8 @@
       "sign-up": "Creare un account",
       "back-to-home": "Torna alla home page",
       "start": "Inizia il tuo viaggio!",
-      "pricing": "Visualizza i prezzi"
+      "pricing": "Visualizza i prezzi",
+      "cancel": "Annulla"
     },
     "forms": {
       "email": "Email",
@@ -269,10 +270,25 @@
       }
     },
     "calendar": {
+      "today-button": "Oggi"
+    },
+    "events": {
       "next-event": "Il tuo prossimo evento",
-      "today-button": "Oggi",
       "no-events": "Nessun evento programmato per {date}",
-      "event-on": "Eventi per {date}"
+      "event-on": "Eventi per {date}",
+      "event-tutor": "con {tutor}",
+      "event-location": "Location: ",
+      "event-duration": "Durata: {duration} minuti",
+      "tooltip": {
+        "level": "Livello richiesto: {level} livello",
+        "duration": "{duration} minuti",
+        "spots": {
+          "no-spots": "Nessun posto disponibile",
+          "spots-left": "{spots} posti disponibili"
+        }
+      },
+      "processing": "In corso...",
+      "book-now": "Prenota ora"
     }
   },
   "errors": {

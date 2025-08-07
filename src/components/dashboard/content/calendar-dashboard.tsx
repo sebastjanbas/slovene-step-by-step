@@ -47,7 +47,7 @@ export const localeMap: Record<string, Locale> = {
 const CalendarDashboard = ({ locale, events }) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const dateFnsLocale = localeMap[locale] ?? localeMap["en"]; // fallback to English
-  const t = useTranslations("dashboard.calendar");
+  const t = useTranslations("dashboard.events");
   const [isModalOpen, setModalOpen] = useState(false);
 
   const eventsOnSelectedDay = events.filter((event) =>

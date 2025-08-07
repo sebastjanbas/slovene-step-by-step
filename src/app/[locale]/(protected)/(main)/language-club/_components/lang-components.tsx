@@ -18,7 +18,7 @@ const LangComponents = ({ events, calendarEvents, locale, bookedEvent }) => {
 
   const { open } = useSidebar();
   const [showSuccessDialog, setShowSuccessDialog] = useState(!!bookedEvent);
-  const t = useTranslations("dashboard.calendar");
+  const t = useTranslations("dashboard.events");
 
   return (
     <>

@@ -8,7 +8,8 @@
       "sign-up": "Создать аккаунт",
       "back-to-home": "На главную",
       "start": "Начать сейчас",
-      "pricing": "Посмотреть цены"
+      "pricing": "Посмотреть цены",
+      "cancel": "Отменить"
     },
     "forms": {
       "email": "Email (example@gmail.com)",
@@ -270,10 +271,25 @@
       }
     },
     "calendar": {
+      "today-button": "Сегодня"
+    },
+    "events": {
       "next-event": "Ваше ближайшее событие",
-      "today-button": "Сегодня",
       "no-events": "Нет событий на {date}",
-      "event-on": "События на {date}"
+      "event-on": "События на {date}",
+      "event-tutor": "с {tutor}",
+      "event-location": "Место: ",
+      "event-duration": "Продолжительность: {duration} минут",
+      "tooltip": {
+        "level": "Требуемые знания: {level} уровень",
+        "duration": "{duration} минут",
+        "spots": {
+          "no-spots": "Нет мест",
+          "spots-left": "{spots} мест"
+        }
+      },
+      "processing": "Обработка...",
+      "book-now": "Записаться"
     }
   },
   "errors": {
