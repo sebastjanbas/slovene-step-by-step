@@ -9,7 +9,9 @@
       "back-to-home": "На главную",
       "start": "Начать сейчас",
       "pricing": "Посмотреть цены",
-      "cancel": "Отменить"
+      "cancel": "Отменить",
+      "cancel-booking": "Отменить бронирование",
+      "reschedule": "Перепланировать"
     },
     "forms": {
       "email": "Email (example@gmail.com)",

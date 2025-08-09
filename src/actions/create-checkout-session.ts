@@ -28,6 +28,10 @@ export const createCheckoutSession = async (eventId: string, locale: "en" | "it"
         if (!event) {
           return { error: "Event not found", status: 404 };
         }
+
+        if (event.peopleBooked >= event.maxBooked) {
+          return { error: "Event is full", status: 400 };
+        }
     
         // Check if user already has a paid booking for this specific event
         const existingBooking = await db.query.langClubBookingsTable.findFirst({

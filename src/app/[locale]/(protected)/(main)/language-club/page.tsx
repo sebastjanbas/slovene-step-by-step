@@ -2,6 +2,8 @@ import React from "react";
 import LangComponents from "./_components/lang-components";
 import BookingToast from "./_components/booking-toast";
 import { db } from "@/db";
+import { langClubTable } from "@/db/schema";
+import { eq } from "drizzle-orm";
 
 const LanguageClubPage = async ({ params, searchParams }) => {
   const { locale } = await params;
@@ -57,6 +59,14 @@ const LanguageClubPage = async ({ params, searchParams }) => {
         const eventId = parseInt(sessionData.eventId);
 
         bookedEvent = transformedEvents.find((event) => event.id === eventId);
+
+        // Update the event with the new number of people booked
+        await db
+          .update(langClubTable)
+          .set({
+            peopleBooked: bookedEvent.maxBooked - bookedEvent.spotsLeft + 1,
+          })
+          .where(eq(langClubTable.id, bookedEvent.id));
       }
     } catch (error) {
       console.error("Error fetching session details:", error);

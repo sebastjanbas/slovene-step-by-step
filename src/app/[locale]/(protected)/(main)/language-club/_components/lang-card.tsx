@@ -18,6 +18,7 @@ import {
   IconStopwatch,
   IconUsers,
   IconCreditCard,
+  IconLoader2,
 } from "@tabler/icons-react";
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -142,7 +143,10 @@ const LangCard = ({ locale, event }) => {
         </div>
         <Button className="w-full" onClick={handleBooking} disabled={isLoading}>
           {isLoading ? (
-            t("processing")
+            <>
+              <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
+              {t("processing")}
+            </>
           ) : (
             <>
               <IconCreditCard className="mr-2 h-4 w-4" />

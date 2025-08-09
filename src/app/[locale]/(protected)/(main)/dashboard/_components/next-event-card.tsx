@@ -1,3 +1,4 @@
+"use client";
 import {
   Card,
   CardContent,
@@ -9,10 +10,30 @@ import { IconCalendar, IconExternalLink } from "@tabler/icons-react";
 import { toZonedTime } from "date-fns-tz";
 import React from "react";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogTrigger,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogCancel,
+} from "@/components/ui/alert-dialog";
 
 const NextEventCard = ({ event, locale }) => {
   const t = useTranslations("dashboard.events");
+
+  const handleCancel = () => {
+    alert("cancel reservation");
+  };
+
+  const handleReschedule = () => {
+    alert("reschedule reservation");
+  };
+
   return (
     <Card className="w-full max-w-md mx-auto min-w-sm">
       <CardHeader className="text-center text-2xl font-medium tracking-tight">
@@ -54,9 +75,36 @@ const NextEventCard = ({ event, locale }) => {
           <p>{t("event-duration", { duration: event.duration })}</p>
         </div>
       </CardContent>
-      <CardFooter>
-        <Button variant="outline" className="w-full">
-          {useTranslations("common.buttons")("cancel")}
+      <CardFooter className="flex flex-row gap-5 items-center justify-center">
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant="outline" className="flex-1">
+              {useTranslations("common.buttons")("cancel-booking")}
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent className="bg-white dark:bg-background border-red-500 dark:border-red-500/30 border-2">
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to cancel your booking? This action cannot
+                be undone.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>
+                {useTranslations("common.buttons")("cancel")}
+              </AlertDialogCancel>
+              <AlertDialogAction
+                onClick={handleCancel}
+                className={buttonVariants({ variant: "destructive" })}
+              >
+                {useTranslations("common.buttons")("cancel-booking")}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+        <Button onClick={handleReschedule} variant="outline" className="flex-1">
+          {useTranslations("common.buttons")("reschedule")}
         </Button>
       </CardFooter>
     </Card>

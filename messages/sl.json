@@ -9,7 +9,9 @@
       "back-to-home": "Nazaj domov",
       "start": "Začnite zdaj!",
       "pricing": "Cenik",
-      "cancel": "Prekliči"
+      "cancel": "Prekliči",
+      "cancel-booking": "Prekliči rezervacijo",
+      "reschedule": "Menjava termina"
     },
     "forms": {
       "email": "Email",
@@ -284,7 +286,7 @@
         "duration": "{duration} minut",
         "spots": {
           "no-spots": "Vsa mesta zasedena",
-          "spots-left": "{spots} mest na voljo"
+          "spots-left": "{spots, plural, =1 {1 mesto} =2 {2 mesti} few {# mesta} other {# mest}} na voljo"
         }
       },
       "processing": "Rezervacija v teku...",

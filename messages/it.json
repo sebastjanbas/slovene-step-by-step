@@ -9,7 +9,9 @@
       "back-to-home": "Torna alla home page",
       "start": "Inizia il tuo viaggio!",
       "pricing": "Visualizza i prezzi",
-      "cancel": "Annulla"
+      "cancel": "Annulla",
+      "cancel-booking": "Annulla prenotazione",
+      "reschedule": "Rischedulare"
     },
     "forms": {
       "email": "Email",
@@ -224,16 +226,16 @@
       "text3": "Il nostro obiettivo è diventare una piattaforma leader per l'apprendimento delle lingue in Slovenia e oltre, aiutando gli individui a liberare il loro pieno potenziale attraverso la padronanza della lingua. Aspiriamo a costruire una comunità globale di studenti, uniti dalla loro passione per la crescita, la connessione e lo scambio culturale.",
       "text4": "Grazie a metodi di insegnamento innovativi, insegnanti dedicati e un impegno verso l'eccellenza, Slovene Step by Step continua ad aprire la strada agli studenti di lingue in tutto il mondo."
     },
-    "team":{
+    "team": {
       "title": "Le persone dietro il programma",
       "subtitle": "Appassionato. Esperto. Dedito.",
       "text1": "Siamo un gruppo dinamico di persone appassionate di ciò che facciamo e impegnate a fornire i migliori risultati per i nostri clienti."
     },
-    "testimonials":{
+    "testimonials": {
       "title": "Storie vere, risultati veri",
       "subtitle": "Ascolta i nostri studenti"
     },
-    "contact":{
+    "contact": {
       "title": "Fai il primo passo verso i tuoi obiettivi",
       "subtitle": "Unisciti alla nostra comunità",
       "text1": "Pronti a iniziare un percorso di apprendimento linguistico su misura per voi? Che stiate cercando di migliorare le vostre competenze, di entrare in contatto con una nuova cultura o di acquisire sicurezza nelle vostre interazioni quotidiane, Slovene Step by Step è qui per guidarvi.",

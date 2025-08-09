@@ -1,3 +1,4 @@
+"use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useSession } from "@clerk/clerk-react";
 import {
@@ -24,6 +25,7 @@ export function VerificationComponent({
 }) {
   const { session } = useSession();
   const [code, setCode] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
   const reverificationRef = useRef<SessionVerificationResource | undefined>(
     undefined
   );
@@ -122,10 +124,15 @@ export function VerificationComponent({
       </div>
       <div className="space-y-2 w-10/12">
         <Button
-          onClick={async () => handleVerificationAttempt()}
+          onClick={async () => {
+            setIsLoading(true);
+            await handleVerificationAttempt();
+            setIsLoading(false);
+          }}
           className="w-full"
+          disabled={isLoading}
         >
-          Complete
+          {isLoading ? "Verifying..." : "Complete"}
         </Button>
         <Button
           onClick={() => onCancel()}

@@ -23,7 +23,16 @@ const SuccessDialog = ({
   onOpenChange,
 }: SuccessDialogProps) => {
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog
+      open={open}
+      onOpenChange={(open) => {
+        onOpenChange(open);
+        if (!open) {
+          // Remove ?success and any query params, redirect to clean /language-club
+          window.location.replace(`/${locale}/language-club`);
+        }
+      }}
+    >
       <DialogContent className="border-none m-0 w-fit p-0">
         <DialogHeader className="hidden">
           <DialogTitle>Booking Successful!</DialogTitle>

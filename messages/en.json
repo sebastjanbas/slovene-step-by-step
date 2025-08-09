@@ -9,7 +9,9 @@
       "back-to-home": "Back to home",
       "start": "Start Your Journey",
       "pricing": "View Pricing",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "cancel-booking": "Cancel booking",
+      "reschedule": "Reschedule"
     },
     "forms": {
       "email": "Email",
