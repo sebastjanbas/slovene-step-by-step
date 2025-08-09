@@ -3,10 +3,10 @@ import Greeting from "@/components/dashboard/content/greeting";
 import { db } from "@/db";
 import { langClubBookingsTable, langClubTable } from "@/db/schema";
 import { auth } from "@clerk/nextjs/server";
-import { asc, eq } from "drizzle-orm";
+import { asc, eq, and } from "drizzle-orm";
 import React from "react";
 
-import NextEventCard from "./_components/next-event-card";
+import DashboardClient from "./_components/dashboard-client";
 
 const DashboardPage = async ({ params }) => {
   const { locale } = await params;
@@ -21,9 +21,16 @@ const DashboardPage = async ({ params }) => {
       location: langClubTable.location,
       duration: langClubTable.duration,
       theme: langClubTable.theme,
+      bookingId: langClubBookingsTable.id,
+      bookingStatus: langClubBookingsTable.status,
     })
     .from(langClubBookingsTable)
-    .where(eq(langClubBookingsTable.userId, userId))
+    .where(
+      and(
+        eq(langClubBookingsTable.userId, userId),
+        eq(langClubBookingsTable.status, "paid")
+      )
+    )
     .innerJoin(
       langClubTable,
       eq(langClubBookingsTable.eventId, langClubTable.id)
@@ -43,15 +50,7 @@ const DashboardPage = async ({ params }) => {
     <main className="w-full h-full flex flex-col md:flex-row">
       <div className="flex-3/4 p-5 flex flex-col gap-4 justify-start items-start">
         <Greeting />
-        {events.length > 0 ? (
-          events.map((event) => (
-            <div key={event.id} className="flex flex-col gap-4 mt-4 ">
-              <NextEventCard event={event} locale={locale} />
-            </div>
-          ))
-        ) : (
-          <p>No future events</p>
-        )}
+        <DashboardClient events={events} locale={locale} />
       </div>
       <div className="flex-1/4 bg-[#F9F8FC] dark:bg-foreground/5 flex justify-center items-start">
         <CalendarDashboard events={calendarEvents} locale={locale} />

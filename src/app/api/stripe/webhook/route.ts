@@ -65,6 +65,26 @@ export async function POST(request: NextRequest) {
           .where(eq(langClubBookingsTable.stripePaymentIntentId, charge.payment_intent as string));
         break;
 
+      case "charge.refund.updated":
+        const refund = event.data.object as Stripe.Refund;
+        
+        // Update booking status based on refund status
+        let refundStatus = "refunded";
+        if (refund.status === "failed") {
+          refundStatus = "paid"; // Revert back to paid if refund failed
+        } else if (refund.status === "pending") {
+          refundStatus = "refund_pending";
+        }
+        
+        await db
+          .update(langClubBookingsTable)
+          .set({
+            status: refundStatus,
+            updatedAt: new Date(),
+          })
+          .where(eq(langClubBookingsTable.stripePaymentIntentId, refund.payment_intent as string));
+        break;
+
       default:
         console.log(`Unhandled event type: ${event.type}`);
     }

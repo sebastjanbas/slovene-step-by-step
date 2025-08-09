@@ -81,7 +81,7 @@ const CalendarDashboard = ({ locale, events }) => {
       />
 
       <Dialog open={isModalOpen} onOpenChange={setModalOpen}>
-        <DialogContent className="bg-white dark:bg-foreground/5 rounded-2xl p-4">
+        <DialogContent className="bg-white dark:bg-background rounded-2xl p-4">
           <DialogHeader>
             <DialogTitle>
               {t("event-on", {

@@ -1,0 +1,250 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  IconCalendar,
+  IconMapPin,
+  IconStopwatch,
+  IconUsers,
+  IconLoader2,
+} from "@tabler/icons-react";
+import { toZonedTime } from "date-fns-tz";
+import { useRouter } from "@/i18n/routing";
+import {
+  getAvailableEvents,
+  rescheduleBooking,
+} from "@/actions/stripe-actions";
+import { toast } from "sonner";
+
+interface Event {
+  id: number;
+  theme: string;
+  date: Date;
+  tutor: string;
+  location: string;
+  duration: number;
+  maxBooked: number;
+  peopleBooked: number;
+  level: string;
+  price: number;
+}
+
+interface RescheduleDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  currentEvent: Event;
+  bookingId: number;
+  locale: string;
+}
+
+const RescheduleDialog = ({
+  open,
+  onOpenChange,
+  currentEvent,
+  bookingId,
+  locale,
+}: RescheduleDialogProps) => {
+  const [events, setEvents] = useState<Event[]>([]);
+  const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingEvents, setIsLoadingEvents] = useState(false);
+  // const t = useTranslations("dashboard.events");
+  const router = useRouter();
+  // Fetch available events for rescheduling
+  useEffect(() => {
+    if (open) {
+      fetchAvailableEvents();
+    }
+  }, [open]);
+
+  const fetchAvailableEvents = async () => {
+    setIsLoadingEvents(true);
+    try {
+      const response = await getAvailableEvents(currentEvent.id);
+
+      if (response.success) {
+        setEvents(response.events);
+      } else {
+        toast.error("Failed to load available events");
+      }
+    } catch (error) {
+      console.error("Error fetching events:", error);
+      toast.error("Failed to load available events");
+    } finally {
+      setIsLoadingEvents(false);
+    }
+  };
+
+  const handleReschedule = async () => {
+    if (!selectedEventId) {
+      toast.error("Please select an event to reschedule to");
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await rescheduleBooking(
+        bookingId.toString(),
+        selectedEventId.toString()
+      );
+
+      if (response.success) {
+        toast.success("Booking rescheduled successfully");
+        onOpenChange(false);
+        router.refresh();
+      } else {
+        toast.error(response.error || "Failed to reschedule booking");
+      }
+    } catch (error) {
+      console.error("Reschedule error:", error);
+      toast.error("Failed to reschedule booking");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const availableEvents = events.filter((event) => {
+    const spotsLeft = event.maxBooked - event.peopleBooked;
+    return spotsLeft > 0 && event.id !== currentEvent.id;
+  });
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-5xl max-h-[80vh] overflow-y-auto w-full">
+        <DialogHeader>
+          <DialogTitle>Reschedule Booking</DialogTitle>
+        </DialogHeader>
+
+        <div className="space-y-4">
+          <div className="p-4 bg-muted rounded-lg">
+            <h3 className="font-medium mb-2">Current Booking:</h3>
+            <p className="text-sm text-muted-foreground">
+              {currentEvent.theme} with {currentEvent.tutor}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              {toZonedTime(
+                currentEvent.date,
+                "Europe/Ljubljana"
+              ).toLocaleDateString(locale, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-medium mb-3">Select a new event:</h3>
+            {isLoadingEvents ? (
+              <div className="flex items-center justify-center p-8">
+                <IconLoader2 className="w-6 h-6 animate-spin" />
+                <span className="ml-2">Loading available events...</span>
+              </div>
+            ) : availableEvents.length > 0 ? (
+              <div className="grid gap-3 p-1 max-h-96 overflow-y-auto">
+                {availableEvents.map((event) => {
+                  const spotsLeft = event.maxBooked - event.peopleBooked;
+                  return (
+                    <Card
+                      key={event.id}
+                      className={`cursor-pointer transition-colors ${
+                        selectedEventId === event.id
+                          ? "ring-2 ring-primary"
+                          : "hover:bg-muted/50"
+                      }`}
+                      onClick={() => setSelectedEventId(event.id)}
+                    >
+                      <CardContent className="p-4">
+                        <div className="flex justify-between items-start">
+                          <div className="flex-1">
+                            <h4 className="font-medium">{event.theme}</h4>
+                            <p className="text-sm text-muted-foreground">
+                              with {event.tutor}
+                            </p>
+                            <div className="flex items-center gap-2 mt-2">
+                              <IconCalendar className="w-4 h-4" />
+                              <span className="text-sm">
+                                {toZonedTime(
+                                  event.date,
+                                  "Europe/Ljubljana"
+                                ).toLocaleDateString(locale, {
+                                  year: "numeric",
+                                  month: "long",
+                                  day: "numeric",
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                })}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-2 mt-1">
+                              <IconMapPin className="w-4 h-4" />
+                              <span className="text-sm">{event.location}</span>
+                            </div>
+                          </div>
+                          <div className="flex flex-col items-end gap-2">
+                            <Badge variant="outline">
+                              <IconStopwatch className="w-3 h-3 mr-1" />
+                              {event.duration}min
+                            </Badge>
+                            <Badge
+                              variant="outline"
+                              className={
+                                spotsLeft > 2
+                                  ? ""
+                                  : "text-red-500 border-red-300"
+                              }
+                            >
+                              <IconUsers className="w-3 h-3 mr-1" />
+                              {spotsLeft} spots left
+                            </Badge>
+                            <Badge variant="secondary">{event.level}</Badge>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            ) : (
+              <p className="text-center text-muted-foreground py-8">
+                No available events found for rescheduling.
+              </p>
+            )}
+          </div>
+        </div>
+
+        <DialogFooter>
+          <Button variant="outline" onClick={() => onOpenChange(false)}>
+            Cancel
+          </Button>
+          <Button
+            onClick={handleReschedule}
+            disabled={!selectedEventId || isLoading}
+          >
+            {isLoading ? (
+              <>
+                <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
+                Rescheduling...
+              </>
+            ) : (
+              "Reschedule Booking"
+            )}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+export default RescheduleDialog;

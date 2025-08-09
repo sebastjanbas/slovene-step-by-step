@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/tooltip";
 import { toZonedTime } from "date-fns-tz";
 import { useTranslations } from "next-intl";
-import { createCheckoutSession } from "@/actions/create-checkout-session";
+import { createCheckoutSession } from "@/actions/stripe-actions";
 
 const LangCard = ({ locale, event }) => {
   const [isLoading, setIsLoading] = useState(false);
