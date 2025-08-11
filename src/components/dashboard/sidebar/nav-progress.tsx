@@ -6,6 +6,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
   // useSidebar,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
@@ -13,7 +14,7 @@ import { cn } from "@/lib/utils";
 import { Icon } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
 
-export function NavDocuments({
+export function NavMyProgress({
   items,
 }: {
   items: {
@@ -24,7 +25,7 @@ export function NavDocuments({
   }[];
 }) {
   const t = useTranslations("dashboard.sidebar.my-progress");
-  // const { isMobile } = useSidebar();
+  const { isMobile, setOpenMobile } = useSidebar();
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
@@ -38,7 +39,15 @@ export function NavDocuments({
               <Link
                 // href={item.url}
                 href={item.disabled ? "#" : item.url}
-                onClick={(e) => item.disabled && e.preventDefault()}
+                onClick={(e) => {
+                  if (item.disabled) {
+                    e.preventDefault();
+                    return;
+                  }
+                  if (isMobile) {
+                    setOpenMobile(false);
+                  }
+                }}
                 aria-disabled={item.disabled}
                 tabIndex={item.disabled ? -1 : 0}
                 className={cn(

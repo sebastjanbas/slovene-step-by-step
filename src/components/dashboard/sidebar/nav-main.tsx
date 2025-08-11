@@ -9,6 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -25,6 +26,8 @@ export function NavMain({
   }[];
 }) {
   const t = useTranslations("dashboard.sidebar.main");
+  const { isMobile, setOpenMobile } = useSidebar();
+
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
@@ -55,7 +58,15 @@ export function NavMain({
                 <Link
                   // href={item.url}
                   href={item.disabled ? "#" : item.url}
-                  onClick={(e) => item.disabled && e.preventDefault()}
+                  onClick={(e) => {
+                    if (item.disabled) {
+                      e.preventDefault();
+                      return;
+                    }
+                    if (isMobile) {
+                      setOpenMobile(false);
+                    }
+                  }}
                   aria-disabled={item.disabled}
                   tabIndex={item.disabled ? -1 : 0}
                   className={cn(

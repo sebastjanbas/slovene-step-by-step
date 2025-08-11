@@ -9,11 +9,13 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { ThemButton } from "@/components/ui/appearance-switch-button";
 import LanguageSwitcher from "@/components/content/navbar/language-switcher";
 import { useTranslations } from "next-intl";
+import { cn } from "@/lib/utils";
 
 export function NavSecondary({
   items,
@@ -24,10 +26,12 @@ export function NavSecondary({
     title: string;
     url: string;
     icon: Icon;
+    disabled: boolean;
   }[];
   locale: string;
 } & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
   const t = useTranslations("dashboard.sidebar.secondary");
+  const { isMobile, setOpenMobile } = useSidebar();
   return (
     <SidebarGroup {...props}>
       <SidebarGroupContent>
@@ -39,7 +43,25 @@ export function NavSecondary({
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
-                <Link href={item.url}>
+                <Link
+                  href={item.disabled ? "#" : item.url}
+                  onClick={(e) => {
+                    if (item.disabled) {
+                      e.preventDefault();
+                      return;
+                    }
+                    if (isMobile) {
+                      setOpenMobile(false);
+                    }
+                  }}
+                  aria-disabled={item.disabled}
+                  tabIndex={item.disabled ? -1 : 0}
+                  className={cn(
+                    "pointer-events-auto", // or "none" if disabled
+                    item.disabled &&
+                      "pointer-events-none opacity-50 cursor-not-allowed"
+                  )}
+                >
                   <item.icon />
                   <span>{t(item.title)}</span>
                 </Link>

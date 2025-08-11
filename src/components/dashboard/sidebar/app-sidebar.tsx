@@ -24,7 +24,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { NavMain } from "./nav-main";
-import { NavDocuments } from "./nav-documents";
+import { NavMyProgress } from "./nav-progress";
 import { NavSecondary } from "./nav-secondary";
 import { IconLogo } from "@/components/icons/icon-logo";
 
@@ -72,11 +72,13 @@ const data = {
       title: "settings",
       url: "/settings",
       icon: IconSettings,
+      disabled: false,
     },
     {
       title: "get-help",
       url: "#",
       icon: IconHelp,
+      disabled: true,
     },
   ],
   myProgress: [
@@ -129,7 +131,7 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavDocuments items={data.myProgress} />
+        <NavMyProgress items={data.myProgress} />
         <NavSecondary
           items={data.navSecondary}
           className="mt-auto"
