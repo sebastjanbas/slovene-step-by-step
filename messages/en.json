@@ -260,7 +260,9 @@
         "calendar": "Calendar",
         "language-club": "Language Club",
         "tutors": "Tutors",
-        "dayly-practice": "Dayly Practice"
+        "dayly-practice": "Dayly Practice",
+        "admin": "Admin Dashboard",
+        "language-club-admin": "Language Club Admin"
       },
       "secondary": {
         "settings": "Settings",

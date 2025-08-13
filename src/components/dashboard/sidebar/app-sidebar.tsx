@@ -12,6 +12,7 @@ import {
   IconProgressCheck,
   IconSettings,
   IconTrophy,
+  IconUserCog,
   IconUsers,
 } from "@tabler/icons-react";
 
@@ -27,6 +28,7 @@ import { NavMain } from "./nav-main";
 import { NavMyProgress } from "./nav-progress";
 import { NavSecondary } from "./nav-secondary";
 import { IconLogo } from "@/components/icons/icon-logo";
+import { usePathname } from "@/i18n/routing";
 
 const data = {
   navMain: [
@@ -101,12 +103,56 @@ const data = {
       disabled: true,
     },
   ],
+  admin: [
+    {
+      title: "admin",
+      url: "/admin",
+      icon: IconUserCog,
+      disabled: false,
+    },
+    {
+      title: "language-club-admin",
+      url: "/admin/language-club-admin",
+      icon: IconClubs,
+      disabled: false,
+    },
+  ],
 };
 
 export function AppSidebar({
   locale,
   ...props
 }: React.ComponentProps<typeof Sidebar> & { locale: string }) {
+  const pathname = usePathname();
+  if (pathname.includes("admin")) {
+    return (
+      <Sidebar collapsible="offcanvas" {...props}>
+        <SidebarHeader>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <a href="#">
+                  <IconLogo
+                    className="!size-6"
+                    fillColor="fill-white dark:fill-foreground"
+                  />
+                  <span className="text-base font-semibold">Admin</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarHeader>
+        <SidebarContent>
+          <NavMain items={data.admin} />
+          <NavSecondary
+            items={data.navSecondary}
+            className="mt-auto"
+            locale={locale}
+          />
+        </SidebarContent>
+      </Sidebar>
+    );
+  }
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>

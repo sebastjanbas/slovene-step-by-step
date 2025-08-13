@@ -258,7 +258,9 @@
         "calendar": "Koledar",
         "language-club": "Pogovorni klub",
         "tutors": "Mentorji",
-        "dayly-practice": "Dnevne naloge"
+        "dayly-practice": "Dnevne naloge",
+        "admin": "Admin Dashboard",
+        "language-club-admin": "Admin Pogovorni klub"
       },
       "secondary": {
         "settings": "Nastavitve",

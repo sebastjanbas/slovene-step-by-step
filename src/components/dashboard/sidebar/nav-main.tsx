@@ -14,6 +14,7 @@ import {
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import { usePathname } from "@/i18n/routing";
 
 export function NavMain({
   items,
@@ -27,29 +28,33 @@ export function NavMain({
 }) {
   const t = useTranslations("dashboard.sidebar.main");
   const { isMobile, setOpenMobile } = useSidebar();
+  const pathname = usePathname();
+  const isAdmin = pathname.includes("admin");
 
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
         <SidebarMenu>
-          <SidebarMenuItem className="flex items-center gap-2">
-            <SidebarMenuButton
-              disabled
-              tooltip="Create an appointment"
-              className="bg-white cursor-pointer text-foreground dark:text-background hover:bg-background/80 active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
-            >
-              <IconCirclePlusFilled />
-              <span>{t("book-lesson")}</span>
-            </SidebarMenuButton>
-            <Button
-              size="icon"
-              className="size-8 bg-white cursor-pointer group-data-[collapsible=icon]:opacity-0"
-              variant="outline"
-            >
-              <IconMail className="text-foreground" />
-              <span className="sr-only">Inbox</span>
-            </Button>
-          </SidebarMenuItem>
+          {!isAdmin && (
+            <SidebarMenuItem className="flex items-center gap-2">
+              <SidebarMenuButton
+                disabled
+                tooltip="Create an appointment"
+                className="bg-white cursor-pointer text-foreground dark:text-background hover:bg-background/80 active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
+              >
+                <IconCirclePlusFilled />
+                <span>{t("book-lesson")}</span>
+              </SidebarMenuButton>
+              <Button
+                size="icon"
+                className="size-8 bg-white cursor-pointer group-data-[collapsible=icon]:opacity-0"
+                variant="outline"
+              >
+                <IconMail className="text-foreground" />
+                <span className="sr-only">Inbox</span>
+              </Button>
+            </SidebarMenuItem>
+          )}
         </SidebarMenu>
         <SidebarMenu>
           {items.map((item) => (

@@ -259,7 +259,9 @@
         "calendar": "Календарь",
         "language-club": "Языковой клуб",
         "tutors": "Учителя",
-        "dayly-practice": "Ежедневные занятия"
+        "dayly-practice": "Ежедневные занятия",
+        "admin": "Admin Dashboard",
+        "language-club-admin": "Admin Языкового клуба"
       },
       "secondary": {
         "settings": "Настройки",

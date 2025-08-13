@@ -84,6 +84,12 @@ export const routing = defineRouting({
       ru: '/dashboard',
       it: '/dashboard'
     },
+    "/admin": {
+      en: '/admin',
+      sl: '/admin',
+      ru: '/admin',
+      it: '/admin'
+    },
     "/language-club": {
       en: '/language-club',
       sl: '/pogovorni-klub',

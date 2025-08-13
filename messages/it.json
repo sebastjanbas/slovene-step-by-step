@@ -258,7 +258,9 @@
         "calendar": "Calendario",
         "language-club": "Club della lingua",
         "tutors": "Tutori",
-        "dayly-practice": "Pratica quotidiana"
+        "dayly-practice": "Pratica quotidiana",
+        "admin": "Admin Dashboard",
+        "language-club-admin": "Admin Club della lingua"
       },
       "secondary": {
         "settings": "Impostazioni",
