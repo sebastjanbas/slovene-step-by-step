@@ -14,7 +14,7 @@ interface ProtectedLayoutProps {
 
 const ProtectedLayout = async ({ children, params }: ProtectedLayoutProps) => {
   const { userId } = await auth();
-  const { locale } = params;
+  const { locale } = await params;
 
   if (!userId) {
     redirect(`/sign-in?locale=${locale}`);

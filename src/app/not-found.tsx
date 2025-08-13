@@ -7,8 +7,9 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
 export default async function NotFoundPage({ params }) {
-  const { locale } = await params;
-  const messages = await getMessages(locale);
+  // Handle case where params might be undefined (root not-found.tsx)
+  const locale = params ? (await params).locale : "en";
+  const messages = await getMessages(locale || "en");
   return (
     <NextIntlClientProvider messages={messages}>
       <html lang={locale}>
