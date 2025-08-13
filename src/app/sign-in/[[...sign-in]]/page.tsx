@@ -1,11 +1,19 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { SignIn } from "@clerk/nextjs";
+import { IconChevronLeft } from "@tabler/icons-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SigninPage() {
   return (
-    <div className="w-screen p-0 m-0 h-screen overflow-hidden flex justify-center items-center">
+    <div className="relative w-screen p-0 m-0 h-screen overflow-hidden flex justify-center items-center">
+      <Button variant="link" size="icon" className="absolute top-4 left-4">
+        <Link href="/">
+          <IconChevronLeft className="size-8" />
+        </Link>
+      </Button>
       <div className="flex flex-1/2 justify-center items-center">
         <SignIn
           appearance={{

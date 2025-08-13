@@ -1,23 +1,12 @@
 "use client";
 
-import { ReactNode, Suspense } from "react";
-import { LocaleProvider } from "@/contexts/locale-context";
-import { DynamicClerkProvider } from "@/components/providers/dynamic-clerk-provider";
+import { ReactNode } from "react";
 
-interface SignInLayoutProps {
-  children: ReactNode;
-}
-
-export default function SignInLayout({ children }: SignInLayoutProps) {
+export default function SignInLayout({ params, children }) {
+  const { locale } = params || {};
   return (
-    <html lang="en">
-      <body>
-        <Suspense fallback={<div>Loading...</div>}>
-          <LocaleProvider>
-            <DynamicClerkProvider>{children}</DynamicClerkProvider>
-          </LocaleProvider>
-        </Suspense>
-      </body>
+    <html lang={locale}>
+      <body>{children}</body>
     </html>
   );
 }

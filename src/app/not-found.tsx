@@ -1,49 +1,35 @@
-// import Link from "next/link";
-import { useTranslations } from "next-intl";
-import { Link, routing } from "../i18n/routing";
-import { getTranslations } from "next-intl/server";
 import { IconLogo } from "@/components/icons/icon-logo";
+import NotFound from "@/components/content/not-found";
+import { LocaleProvider } from "@/contexts/locale-context";
+import { DynamicClerkProvider } from "@/components/providers/dynamic-clerk-provider";
+import { Suspense } from "react";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
-
-export async function generateMetadata({ params: { locale } }) {
-  const t = await getTranslations({ locale, namespace: "metadata.not-found" });
-
-  return {
-    title: t("title"),
-  };
-}
-
-export default function NotFoundPage() {
-  const t = useTranslations("errors.not-found");
+export default async function NotFoundPage({ params }) {
+  const { locale } = await params;
+  const messages = await getMessages(locale);
   return (
-    <html lang="en">
-      <body>
-        <main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
-          <IconLogo className="size-20 mb-10" />
-          <div className="text-center">
-            <p className="text-base font-semibold text-accent dark:text-accent-foreground">
-              404
-            </p>
-            <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-sl-primary sm:text-7xl">
-              {t("title")}
-            </h1>
-            <p className="mt-6 text-pretty text-lg font-medium text-sl-secondary sm:text-xl/8">
-              {t("description")}
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <Link
-                href="/"
-                className="font-semibold text-sl-accent hover:underline"
-              >
-                <span aria-hidden="true">&larr;</span> {t("button")}
-              </Link>
-            </div>
-          </div>
-        </main>
-      </body>
-    </html>
+    <NextIntlClientProvider messages={messages}>
+      <html lang={locale}>
+        <body>
+          <Suspense fallback={<div>Loading...</div>}>
+            <LocaleProvider>
+              <DynamicClerkProvider>
+                <main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
+                  <IconLogo className="size-20 mb-10" />
+                  <div className="text-center">
+                    <p className="text-base font-semibold text-accent dark:text-accent-foreground">
+                      404
+                    </p>
+                    <NotFound />
+                  </div>
+                </main>
+              </DynamicClerkProvider>
+            </LocaleProvider>
+          </Suspense>
+        </body>
+      </html>
+    </NextIntlClientProvider>
   );
 }

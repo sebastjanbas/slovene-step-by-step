@@ -20,8 +20,6 @@ const ProtectedLayout = async ({ children, params }: ProtectedLayoutProps) => {
     redirect(`/sign-in?locale=${locale}`);
   }
 
-  redirect(`${locale}/dashboard`);
-
   return (
     <>
       <BackgroundUpdater />
