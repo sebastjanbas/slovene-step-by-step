@@ -56,7 +56,6 @@ const ManageUsers = () => {
           <SearchUsers />
         </div>
         <div className="flex flex-col gap-4 mt-4 w-full max-w-4xl mx-auto">
-          <div className="text-lg font-bold">Users</div>
           {loading ? (
             <div className="flex justify-center items-center h-full">
               <Loader2 className="animate-spin" />

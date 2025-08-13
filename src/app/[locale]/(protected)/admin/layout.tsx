@@ -4,9 +4,10 @@ import React from "react";
 
 const AdminLayout = async ({ children, params }) => {
   const isAdmin = await checkRole("admin");
+  const isModerator = await checkRole("moderator");
   const { locale } = await params;
-  if (!isAdmin) {
-    redirect({ href: "/dashboard", locale });
+  if (!isAdmin && !isModerator) {
+    redirect({ href: "/", locale });
     return null;
   }
   return <div className="flex flex-col gap-2">{children}</div>;

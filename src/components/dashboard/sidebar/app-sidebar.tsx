@@ -105,13 +105,13 @@ const data = {
   ],
   admin: [
     {
-      title: "admin",
+      title: "dashboard",
       url: "/admin",
       icon: IconUserCog,
       disabled: false,
     },
     {
-      title: "language-club-admin",
+      title: "language-club",
       url: "/admin/language-club-admin",
       icon: IconClubs,
       disabled: false,

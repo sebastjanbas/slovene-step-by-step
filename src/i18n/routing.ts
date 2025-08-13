@@ -90,6 +90,12 @@ export const routing = defineRouting({
       ru: '/admin',
       it: '/admin'
     },
+    "/admin/language-club-admin": {
+      en: '/admin/language-club-admin',
+      sl: '/admin/pogovorni-klub-admin',
+      ru: '/admin/языковой-клуб-admin',
+      it: '/admin/club-linguistico-admin'
+    },
     "/language-club": {
       en: '/language-club',
       sl: '/pogovorni-klub',

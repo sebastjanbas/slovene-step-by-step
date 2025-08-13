@@ -55,7 +55,7 @@ export default function RootLayout({ children, params }) {
   const initialLocale = locale || "en";
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense>
       <LocaleProvider initialLocale={initialLocale}>
         <DynamicClerkProvider>{children}</DynamicClerkProvider>
       </LocaleProvider>

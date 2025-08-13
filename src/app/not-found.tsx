@@ -13,10 +13,10 @@ export default async function NotFoundPage({ params }) {
     <NextIntlClientProvider messages={messages}>
       <html lang={locale}>
         <body>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense>
             <LocaleProvider>
               <DynamicClerkProvider>
-                <main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
+                <main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8 relative">
                   <IconLogo className="size-20 mb-10" />
                   <div className="text-center">
                     <p className="text-base font-semibold text-accent dark:text-accent-foreground">

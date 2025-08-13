@@ -4,8 +4,9 @@ import React from "react";
 
 const MainProtectedLayout = async ({ params, children }) => {
   const isAdmin = await checkRole("admin");
+  const isModerator = await checkRole("moderator");
   const { locale } = await params;
-  if (isAdmin) {
+  if (isAdmin || isModerator) {
     redirect({ href: "/admin", locale });
     return null;
   }

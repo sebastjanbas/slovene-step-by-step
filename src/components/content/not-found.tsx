@@ -1,12 +1,24 @@
 "use client";
 import { Link } from "@/i18n/routing";
+import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import React from "react";
+import { IconChevronLeft } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 
 const NotFound = () => {
   const t = useTranslations("errors.not-found");
+  const router = useRouter();
   return (
     <>
+      <Button
+        variant="link"
+        size="icon"
+        className="absolute top-4 left-4 cursor-pointer"
+        onClick={() => router.back()}
+      >
+        <IconChevronLeft className="size-8" />
+      </Button>
       <h1 className="mt-4 text-balance text-5xl font-semibold tracking-tight text-sl-primary sm:text-7xl">
         {t("title")}
       </h1>
