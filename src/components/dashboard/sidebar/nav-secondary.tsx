@@ -36,9 +36,13 @@ export function NavSecondary({
     <SidebarGroup {...props}>
       <SidebarGroupContent>
         <SidebarMenu>
-          <SidebarMenuItem className="pl-[5px] flex flex-col items-start gap-2 justify-start">
-            <ThemButton />
-            <LanguageSwitcher locale={locale} />
+          <SidebarMenuItem className="flex flex-col items-start gap-2 justify-start">
+            <SidebarMenuButton asChild>
+              <ThemButton className="rounded-lg w-fit" />
+            </SidebarMenuButton>
+            <SidebarMenuButton asChild>
+              <LanguageSwitcher className="rounded-lg w-fit" locale={locale} />
+            </SidebarMenuButton>
           </SidebarMenuItem>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
