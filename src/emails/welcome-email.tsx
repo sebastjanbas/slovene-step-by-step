@@ -1,32 +1,41 @@
-"use client";
-import { IconLogo } from "@/components/icons/icon-logo";
 import {
   Body,
-  Button,
-  Column,
-  Container,
   Head,
-  Heading,
   Html,
-  Link,
   Preview,
   pixelBasedPreset,
-  Row,
-  Section,
   Tailwind,
-  Text,
 } from "@react-email/components";
 import type * as React from "react";
+import WelcomeEmailContent from "./_components/welcom-email-content";
 
 interface WelcomeEmailProps {
   name: string;
   locale: string;
 }
 
-const baseUrl = "https://www.slovenscinakzk.com";
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL_IMAGE || "";
 
-export const WelcomeEmail = ({ name, locale }: WelcomeEmailProps) => {
-  const year = new Date().getFullYear();
+export const WelcomeEmail = ({ name, locale = "en" }: WelcomeEmailProps) => {
+  const translations = {
+    sl: {
+      preview:
+        "Dobrodošli v Slovenščina Korak za Korakom - Začnite svojo pot do slovenščine!",
+    },
+    en: {
+      preview:
+        "Welcome to Slovenščina Korak za Korakom - Start Your Slovene Learning Journey!",
+    },
+    it: {
+      preview:
+        "Benvenuto in Slovenščina Korak za Korakom - Inizia il tuo viaggio di apprendimento sloveno!",
+    },
+    ru: {
+      preview:
+        "Добро пожаловать в Slovenščina Korak za Korakom - Начните свой путь к изучению словенского языка!",
+    },
+  };
+
   return (
     <Html>
       <Head />
@@ -49,97 +58,19 @@ export const WelcomeEmail = ({ name, locale }: WelcomeEmailProps) => {
         }}
       >
         <Preview>
-          Welcome to Slovenščina Korak za Korakom - Start Your Slovene Learning
-          Journey!
+          {translations[locale as keyof typeof translations].preview}
         </Preview>
         <Body className="bg-offwhite font-sans text-base h-screen">
-          {/* Header with Logo */}
-          <Container className="bg-white p-45">
-            {/* Hero Image */}
-            <Section className="my-[16px]">
-              <IconLogo
-                fillColor="fill-slate-700"
-                className="mb-4 size-16 w-full px-auto"
-              />
-              <Section className="text-center">
-                <Text className="mt-[16px] font-semibold text-[18px] text-brand leading-[28px]">
-                  Slovenščina Korak za Korakom
-                </Text>
-                <Heading
-                  as="h1"
-                  className="font-semibold text-[36px] text-gray-900 leading-[40px] tracking-[0.4px]"
-                >
-                  Welcome, {name}!
-                </Heading>
-                <Text className="mt-[8px] text-[16px] text-gray-500 leading-[24px]">
-                  Welcome to our Slovene learning community. We&apos;re excited
-                  to have you on board!
-                </Text>
-                <Button
-                  className="mt-[16px] rounded-xl bg-brand px-[24px] py-[12px] font-semibold text-white"
-                  href={`${baseUrl}/${locale}/dashboard`}
-                >
-                  Get Started
-                </Button>
-              </Section>
-            </Section>
-          </Container>
-
-          {/* Footer */}
-          <Section className="mb-[40px] px-[32px] py-[40px]">
-            <Row>
-              <Column align="center">
-                <table>
-                  <tr>
-                    <td className="px-[10px]">
-                      <Link
-                        className="text-slate-700 [text-decoration:none] font-medium"
-                        href={`${baseUrl}/${locale}/dashboard`}
-                      >
-                        Dashboard
-                      </Link>
-                    </td>
-                    <td className="px-[10px]">
-                      <Link
-                        className="text-slate-700 [text-decoration:none] font-medium"
-                        href={`${baseUrl}/${locale}/about-us`}
-                      >
-                        About
-                      </Link>
-                    </td>
-                    <td className="px-[10px]">
-                      <Link
-                        className="text-slate-700 [text-decoration:none] font-medium"
-                        href={`${baseUrl}/${locale}/pricing`}
-                      >
-                        Pricing
-                      </Link>
-                    </td>
-                    <td className="px-[10px]">
-                      <Link
-                        className="text-slate-700 [text-decoration:none] font-medium"
-                        href="mailto:support@slovenscinakzk.com"
-                      >
-                        Contact
-                      </Link>
-                    </td>
-                  </tr>
-                </table>
-              </Column>
-            </Row>
-            <Text className="mb-45 text-center text-gray-400">
-              &copy; {year} Slovenščina Korak za Korakom, All Rights Reserved
-            </Text>
-          </Section>
+          <WelcomeEmailContent name={name} locale={locale} url={baseUrl} />
         </Body>
       </Tailwind>
     </Html>
   );
 };
 
-WelcomeEmail.PreviewProps = {
-  name: "John",
-  locale: "sl",
-} satisfies WelcomeEmailProps;
+// WelcomeEmail.PreviewProps = {
+//   name: "John",
+//   locale: "ru",
+// } satisfies WelcomeEmailProps;
 
 export default WelcomeEmail;

@@ -10,7 +10,8 @@
     "email": "email dev --dir src/emails",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
-    "db:seed": "bun run scripts/seed-database.ts"
+    "db:seed": "bun run scripts/seed-database.ts",
+    "test:webhook": "bun run scripts/test-clerk-webhook.ts"
   },
   "dependencies": {
     "@clerk/localizations": "^3.20.7",

@@ -1,12 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useLocale } from "@/contexts/locale-context";
 import { SignIn } from "@clerk/nextjs";
 import { IconChevronLeft } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function SigninPage() {
+  const { locale } = useLocale();
   return (
     <div className="relative w-screen p-0 m-0 h-screen overflow-hidden flex justify-center items-center">
       <Button variant="link" size="icon" className="absolute top-4 left-4">
@@ -31,6 +33,9 @@ export default function SigninPage() {
                 display: "none",
               },
             },
+          }}
+          unsafeMetadata={{
+            locale: locale,
           }}
         />
       </div>
