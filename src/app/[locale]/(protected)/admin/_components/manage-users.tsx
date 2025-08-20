@@ -20,7 +20,7 @@ interface Users {
 
 const ManageUsers = () => {
   const [users, setUsers] = useState<Users["users"]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
 
   useEffect(() => {

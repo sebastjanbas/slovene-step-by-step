@@ -55,16 +55,15 @@ const UserCard = ({ user }) => {
         open ? "flex-col lg:flex-row" : "flex-col md:flex-row"
       }`}
     >
-      <div className="columns-2 h-full w-full">
+      <div className="grid grid-cols-2 h-full w-full">
         <div className="flex flex-col gap-0">
           <div className="text-lg font-bold">
             {user.firstName} {user.lastName}
           </div>
-
           <div className="text-sm text-gray-500">{user.email}</div>
         </div>
 
-        <span className="inline-flex gap-2 items-center text-sm pt-1 font-semibold capitalize">
+        <span className="flex gap-2 items-start text-sm pt-1 font-semibold capitalize">
           <IconUserCog className={color} size={20} />
           {user.role ? user.role : "user"}
         </span>

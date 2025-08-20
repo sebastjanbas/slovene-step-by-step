@@ -60,7 +60,7 @@ export const WelcomeEmail = ({ name, locale = "en" }: WelcomeEmailProps) => {
         <Preview>
           {translations[locale as keyof typeof translations].preview}
         </Preview>
-        <Body className="bg-offwhite font-sans text-base h-screen">
+        <Body className="bg-offwhite font-sans text-base">
           <WelcomeEmailContent name={name} locale={locale} url={baseUrl} />
         </Body>
       </Tailwind>
