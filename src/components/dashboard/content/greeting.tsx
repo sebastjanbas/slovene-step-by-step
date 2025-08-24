@@ -8,11 +8,9 @@ const Greeting = () => {
   const t = useTranslations("dashboard");
   if (!user) {
     return (
-      <div className="inline-flex gap-2 justify-center items-center pb-3">
-        <h1 className="text-2xl md:text-4xl pb-3 tracking-tight">
-          Welcome back
-        </h1>
-      </div>
+      <h1 className="text-2xl md:text-4xl pb-3 tracking-tight">
+        {t("greeting-placeholder")}
+      </h1>
     );
   }
   return (
@@ -25,7 +23,7 @@ const Greeting = () => {
           name: user.name.split(" ")?.[0],
         }),
       }}
-      className="block text-2xl md:text-4xl pb-3 tracking-tight"
+      className="block text-2xl md:text-4xl tracking-tight"
     />
   );
 };

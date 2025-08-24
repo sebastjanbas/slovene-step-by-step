@@ -11,7 +11,9 @@
       "pricing": "Cenik",
       "cancel": "Prekliči",
       "cancel-booking": "Prekliči rezervacijo",
-      "reschedule": "Menjava termina"
+      "reschedule": "Menjava termina",
+      "loading": "Nalaganje...",
+      "cancelling": "Preklic v teku..."
     },
     "forms": {
       "email": "Email",
@@ -66,7 +68,7 @@
       "title": "Zakaj bi se morali učiti slovenščino?",
       "subtitle": "Znanje je moč",
       "intro": "Obvladovanje slovenščine je ključ do odklepanja neprimerljivih priložnosti in resničnega vključevanja v to živahno družbo.",
-      "text":"Ne glede na to, ali se preselite, študirate ali delate, učenje slovenščine olajša vsakodnevno življenje. Od vzpostavljanja povezav do izpolnjevanja zahtev glede stalnega prebivališča je ključ do integracije. Naj vas jezikovne ovire ne zadržijo. Učenje slovenščine je vaša vstopnica za uspešno, obogateno in izpolnjujoče življenje v Sloveniji.",
+      "text": "Ne glede na to, ali se preselite, študirate ali delate, učenje slovenščine olajša vsakodnevno življenje. Od vzpostavljanja povezav do izpolnjevanja zahtev glede stalnega prebivališča je ključ do integracije. Naj vas jezikovne ovire ne zadržijo. Učenje slovenščine je vaša vstopnica za uspešno, obogateno in izpolnjujoče življenje v Sloveniji.",
       "benefits": {
         "career": {
           "title": "Dvigni svojo kariero.",
@@ -226,16 +228,16 @@
       "text3": "Naš cilj je postati vodilna platforma za učenje jezikov v Sloveniji in širše, ki posameznikom pomaga sprostiti njihov polni potencial z obvladovanjem jezika. Prizadevamo si zgraditi globalno skupnost učencev, ki jih združuje njihova strast do rasti, povezovanja in kulturne izmenjave.",
       "text4": "Z inovativnimi metodami poučevanja, predanimi inštruktorji in zavezanostjo k odličnosti slovenščina korak za korakom še naprej utira pot za učence jezikov po vsem svetu."
     },
-    "team":{
+    "team": {
       "title": "Ljudje za programom",
       "subtitle": "Strastni. Izkušeni. Predan.",
       "text1": "Smo dinamična skupina posameznikov, ki so navdušeni nad tem, kar počnemo, in predani zagotavljanju najboljših rezultatov za naše stranke."
     },
-    "testimonials":{
+    "testimonials": {
       "title": "Resnične zgodbe, resnični rezultati",
       "subtitle": "Poslušajte naše študente"
     },
-    "contact":{
+    "contact": {
       "title": "Naredite prvi korak k svojim ciljem",
       "subtitle": "Pridružite se naši skupnosti",
       "text1": "Ste pripravljeni začeti potovanje učenja jezikov, prilagojeno samo vam? Ne glede na to, ali želite izboljšati svoje veščine, se povezati z novo kulturo ali pridobiti zaupanje v vsakodnevnih interakcijah, je Slovenščina korak za korakom tukaj, da vas vodi.",
@@ -244,6 +246,34 @@
   },
   "dashboard": {
     "greeting": "Pozdravljeni nazaj <important>{name}!</important>",
+    "greeting-placeholder": "Pozdravljeni",
+    "cancel-booking-dialog": {
+      "title": "Ste prepričani?",
+      "description": "Ste prepričani, da želite preklicati svojo rezervacijo? To dejanje ni mogoče razveljaviti."
+    },
+    "all-scheduled-events": {
+      "message": "Prijavljeni ste na {count, plural, =1 {1 dogodek} =2 {2 dogodka} few {# dogodke} other {# dogodkov}}.",
+      "no-future-events": "Ni rezerviranih dogodkov",
+      "link": "Poglej vse",
+      "event-view-card": {
+        "title": "Vsi dogodki",
+        "description": "Tukaj lahko vidite vse svoje dogodke.",
+        "status": "{status, select, paid {Plačano} booked {Rezervirano} other {Unknown}}",
+        "card-description": "S {name}"
+      }
+    },
+    "reschedule-dialog": {
+      "title": "Menjava termina",
+      "description": "Izberite novi termin za svojo rezervacijo.",
+      "current-event": "Trenutna rezervacija:",
+      "with": "{theme} z {tutor}",
+      "cancel": "Prekliči",
+      "reschedule": "Zamenjaj termin",
+      "rescheduling": "Zamenjava termina v teku...",
+      "loading": "Nalaganje dogodkov...",
+      "select-new": "Izberi novi dogodek",
+      "no-available-events": "Ni dogodkov za zamenjavo."
+    },
     "user-navigation": {
       "account": "Račun",
       "billing": "Plačila",

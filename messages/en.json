@@ -11,7 +11,9 @@
       "pricing": "View Pricing",
       "cancel": "Cancel",
       "cancel-booking": "Cancel booking",
-      "reschedule": "Reschedule"
+      "reschedule": "Reschedule",
+      "loading": "Loading...",
+      "cancelling": "Cancelling..."
     },
     "forms": {
       "email": "Email",
@@ -246,6 +248,34 @@
 
   "dashboard": {
     "greeting": "Welcome back <important>{name}!</important>",
+    "greeting-placeholder": "Welcome",
+    "cancel-booking-dialog": {
+      "title": "Are you absolutely sure?",
+      "description": "Are you sure you want to cancel your booking? This action cannot be undone."
+    },
+    "all-scheduled-events": {
+      "message": "You have {count, plural, =1 {1 event} other {# events}} coming up.",
+      "no-future-events": "No future events",
+      "link": "View all",
+      "event-view-card": {
+        "title": "All Scheduled Events",
+        "description": "Here you can see all your scheduled events.",
+        "status": "{status, select, paid {Paid} booked {Booked} other {Unknown}}",
+        "card-description": "With {name}"
+      },
+      "reschedule-dialog": {
+        "title": "Reschedule Booking",
+        "description": "Select a new event to reschedule your booking to.",
+        "current-event": "Current Booking:",
+        "with": "{theme} with {tutor}",
+        "cancel": "Cancel",
+        "reschedule": "Reschedule Booking",
+        "rescheduling": "Rescheduling...",
+        "loading": "Loading available events...",
+        "select-new": "Select new event",
+        "no-available-events": "No available events found for rescheduling."
+      }
+    },
     "user-navigation": {
       "account": "Account",
       "billing": "Billing",

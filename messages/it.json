@@ -11,7 +11,9 @@
       "pricing": "Visualizza i prezzi",
       "cancel": "Annulla",
       "cancel-booking": "Annulla prenotazione",
-      "reschedule": "Rischedulare"
+      "reschedule": "Rischedulare",
+      "loading": "Caricamento...",
+      "cancelling": "Cancellazione..."
     },
     "forms": {
       "email": "Email",
@@ -244,6 +246,34 @@
   },
   "dashboard": {
     "greeting": "Benvenuto <important>{name}!</important>",
+    "greeting-placeholder": "Benvenuto",
+    "cancel-booking-dialog": {
+      "title": "Sei sicuro?",
+      "description": "Sei sicuro di voler annullare la tua prenotazione? Questa azione non può essere annullata."
+    },
+    "all-scheduled-events": {
+      "message": "Hai {count, plural, =1 {1 evento} other {# eventi}} programmati.",
+      "no-future-events": "Nessun evento futuro",
+      "link": "Visualizza tutti",
+      "event-view-card": {
+        "title": "Tutti gli eventi",
+        "description": "Qui puoi vedere tutti i tuoi eventi programmati.",
+        "status": "{status, select, paid {Pagato} booked {Prenotato} other {Unknown}}",
+        "card-description": "Con {name}"
+      }
+    },
+    "reschedule-dialog": {
+      "title": "Rischedulare",
+      "description": "Seleziona un nuovo termine per la tua prenotazione.",
+      "current-event": "Evento corrente",
+      "with": "{theme} con {tutor}",
+      "cancel": "Annulla",
+      "reschedule": "Rischedulare prenotazione",
+      "rescheduling": "Rischedulazione...",
+      "loading": "Caricamento eventi disponibili...",
+      "select-new": "Seleziona nuovo evento",
+      "no-available-events": "Nessun evento disponibile per la rischedulazione."
+    },
     "user-navigation": {
       "account": "Account",
       "billing": "Fatture",

@@ -11,7 +11,9 @@
       "pricing": "Посмотреть цены",
       "cancel": "Отменить",
       "cancel-booking": "Отменить бронирование",
-      "reschedule": "Перепланировать"
+      "reschedule": "Перепланировать",
+      "loading": "Загрузка...",
+      "cancelling": "Отмена..."
     },
     "forms": {
       "email": "Email (example@gmail.com)",
@@ -245,6 +247,34 @@
   },
   "dashboard": {
     "greeting": "Добро пожаловать <important>{name}!</important>",
+    "greeting-placeholder": "Добро пожаловать",
+    "cancel-booking-dialog": {
+      "title": "Вы уверены?",
+      "description": "Вы уверены, что хотите отменить ваше бронирование? Это действие не может быть отменено."
+    },
+    "all-scheduled-events": {
+      "message": "У вас {count, plural, =1 {1 событие} other {# событий}} запланировано.",
+      "no-future-events": "Нет будущих событий",
+      "link": "Посмотреть все",
+      "event-view-card": {
+        "title": "Все запланированные события",
+        "description": "Здесь вы можете увидеть все ваши запланированные события.",
+        "status": "{status, select, paid {Оплачено} booked {Забронировано} other {Unknown}}",
+        "card-description": "С {name}"
+      }
+    },
+    "reschedule-dialog": {
+      "title": "Перепланирование",
+      "description": "Выберите новый термин для вашего бронирования.",
+      "current-event": "Текущее событие",
+      "with": "{theme} с {tutor}",
+      "cancel": "Отменить",
+      "reschedule": "Перепланировать",
+      "rescheduling": "Перепланирование...",
+      "loading": "Загрузка доступных событий...",
+      "select-new": "Выбрать новое событие",
+      "no-available-events": "Нет доступных событий для перепланирования."
+    },
     "user-navigation": {
       "account": "Аккаунт",
       "billing": "Расчеты",

@@ -38,10 +38,11 @@ import { useRouter } from "@/i18n/routing";
 import { toZonedTime } from "date-fns-tz";
 
 const EventViewCalendar = ({ event, locale }) => {
-  console.log("event", event);
   const [showRescheduleDialog, setShowRescheduleDialog] = useState(false);
   const [isCancelling, setIsCancelling] = useState(false);
-  const tC = useTranslations("common.buttons");
+  const t = useTranslations("common.buttons");
+  const d = useTranslations("dashboard.all-scheduled-events.event-view-card");
+  const d2 = useTranslations("dashboard.cancel-booking-dialog");
   const router = useRouter();
   const handleCancel = async () => {
     setIsCancelling(true);
@@ -68,7 +69,7 @@ const EventViewCalendar = ({ event, locale }) => {
         <CardHeader>
           <CardTitle className="font-medium">{event.theme}</CardTitle>
           <CardDescription className="text-sm text-muted-foreground">
-            With {event.tutor}
+            {event.tutor}
           </CardDescription>
           <CardAction className="text-sm text-muted-foreground">
             {toZonedTime(event.date, "Europe/Ljubljana").toLocaleDateString(
@@ -84,32 +85,39 @@ const EventViewCalendar = ({ event, locale }) => {
           </CardAction>
         </CardHeader>
         <CardContent className="space-y-2">
-          <div className="flex flex-row justify-between items-center w-full gap-5">
-            <div className="flex flex-row justify-start items-center gap-2">
-              <Badge variant="secondary">
-                <IconLanguage className="w-4 h-4" />
-                {event.level}
-              </Badge>
-              <Badge variant="secondary">
-                <IconClock className="w-4 h-4" />
-                {event.duration} min
-              </Badge>
-              <Badge variant="secondary">
-                <IconMapPin className="w-4 h-4" />
-                {event.location}
-              </Badge>
-              <Badge
-                variant={event.bookingStatus === "paid" ? "paid" : "success"}
-              >
-                <IconRosetteDiscountCheck className="w-4 h-4" />
-                {event.bookingStatus}
-              </Badge>
+          <div className="flex flex-col md:flex-row justify-between items-center w-full gap-5">
+            <div className="flex flex-col md:flex-row gap-2 w-full">
+              <div className="flex flex-row gap-2 justify-center items-center w-full">
+                <Badge variant="secondary" className="w-2/5 md:w-auto">
+                  <IconLanguage className="w-4 h-4" />
+                  {event.level}
+                </Badge>
+                <Badge variant="secondary" className="w-2/5 md:w-auto">
+                  <IconClock className="w-4 h-4" />
+                  {event.duration}
+                </Badge>
+              </div>
+              <div className="flex flex-row gap-2 justify-center items-center w-full">
+                <Badge variant="secondary" className="w-2/5 md:w-auto">
+                  <IconMapPin className="w-4 h-4" />
+                  {event.location}
+                </Badge>
+                <Badge
+                  variant={event.bookingStatus === "paid" ? "paid" : "success"}
+                  className="w-2/5 md:w-auto"
+                >
+                  <IconRosetteDiscountCheck className="w-4 h-4" />
+                  {d("status", {
+                    status: event.bookingStatus,
+                  })}
+                </Badge>
+              </div>
             </div>
             <div className="flex gap-2 w-full justify-end">
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button
-                    className="cursor-pointer"
+                    className="cursor-pointer w-1/2 md:w-auto"
                     variant="destructive"
                     size="sm"
                   >
@@ -118,20 +126,17 @@ const EventViewCalendar = ({ event, locale }) => {
                 </AlertDialogTrigger>
                 <AlertDialogContent className="bg-white dark:bg-background border-red-500 dark:border-red-500/30 border-2">
                   <AlertDialogHeader>
-                    <AlertDialogTitle>
-                      Are you absolutely sure?
-                    </AlertDialogTitle>
+                    <AlertDialogTitle>{d2("title")}</AlertDialogTitle>
                     <AlertDialogDescription>
-                      Are you sure you want to cancel your booking? This action
-                      cannot be undone.
+                      {d2("description")}
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>{tC("cancel")}</AlertDialogCancel>
+                    <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
                     <AlertDialogAction
                       onClick={() =>
                         toast.promise(handleCancel, {
-                          loading: "Cancelling...",
+                          loading: t("cancelling"),
                         })
                       }
                       disabled={isCancelling}
@@ -140,17 +145,17 @@ const EventViewCalendar = ({ event, locale }) => {
                       {isCancelling ? (
                         <>
                           <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
-                          Cancelling...
+                          {t("cancelling")}
                         </>
                       ) : (
-                        tC("cancel-booking")
+                        t("cancel-booking")
                       )}
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
               <Button
-                className="cursor-pointer"
+                className="cursor-pointer w-1/2 md:w-auto"
                 variant="secondary"
                 size="sm"
                 onClick={() => {

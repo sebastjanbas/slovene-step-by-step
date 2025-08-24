@@ -43,11 +43,11 @@ const DashboardPage = async ({ params }) => {
 
   return (
     <main className="w-full h-full flex flex-col md:flex-row">
-      <div className="flex-3/4 p-5 flex flex-col gap-4 justify-start items-start h-full">
+      <div className="flex-3/4 pl-5 py-5 flex flex-col gap-4 justify-start items-start h-full">
         <Greeting />
         <DashboardClient events={events} locale={locale} />
       </div>
-      <div className="flex-1/4 bg-[#F9F8FC] dark:bg-foreground/5 flex justify-center items-start h-full">
+      <div className="flex-1/4 bg-[#F9F8FC] dark:bg-foreground/5 flex justify-center items-start h-full rounded-b-2xl">
         <CalendarDashboard events={events} locale={locale} />
       </div>
     </main>

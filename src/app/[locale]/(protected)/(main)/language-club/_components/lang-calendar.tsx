@@ -13,12 +13,14 @@ import { IconHome } from "@tabler/icons-react";
 const LangCalendar = ({ locale, events, date, setDate }) => {
   const dateFnsLocale = localeMap[locale] ?? localeMap["en"]; // fallback to English
   const [screenWidth, setScreenWidth] = useState(0);
+  const [screenHeight, setScreenHeight] = useState(0);
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today);
   const t = useTranslations("dashboard.calendar");
 
   useEffect(() => {
     setScreenWidth(window.innerWidth);
+    setScreenHeight(window.innerHeight);
   }, [screenWidth]);
 
   const eventMap: Record<string, CalendarEvent[]> = events.reduce(
@@ -55,13 +57,18 @@ const LangCalendar = ({ locale, events, date, setDate }) => {
                 size="calendarFullScreen"
                 eventMap={eventMap}
                 {...props}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  maxHeight: screenHeight * 0.11,
+                }}
               />
             ),
           }}
           modifiersClassNames={{
             hasEvent: "relative has-event",
           }}
-          className="rounded-none bg-white dark:bg-background max-w-5xl p-4 w-full"
+          className="rounded-none bg-transparent dark:bg-background p-4 w-full h-full"
         />
 
         <Button

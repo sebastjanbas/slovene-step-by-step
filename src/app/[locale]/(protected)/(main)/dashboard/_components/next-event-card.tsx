@@ -33,6 +33,7 @@ import { cancelBooking } from "@/actions/stripe-actions";
 
 const NextEventCard = ({ event, locale }) => {
   const t = useTranslations("dashboard.events");
+  const d = useTranslations("dashboard.cancel-booking-dialog");
   const tC = useTranslations("common.buttons");
   const [isCancelling, setIsCancelling] = useState(false);
   const [showRescheduleDialog, setShowRescheduleDialog] = useState(false);
@@ -113,10 +114,9 @@ const NextEventCard = ({ event, locale }) => {
             </AlertDialogTrigger>
             <AlertDialogContent className="bg-white dark:bg-background border-red-500 dark:border-red-500/30 border-2 rounded-2xl">
               <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogTitle>{d("title")}</AlertDialogTitle>
                 <AlertDialogDescription>
-                  Are you sure you want to cancel your booking? This action
-                  cannot be undone.
+                  {d("description")}
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>

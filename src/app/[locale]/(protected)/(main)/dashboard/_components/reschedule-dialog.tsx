@@ -25,6 +25,7 @@ import {
   rescheduleBooking,
 } from "@/actions/stripe-actions";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 interface Event {
   id: number;
@@ -58,7 +59,8 @@ const RescheduleDialog = ({
   const [selectedEventId, setSelectedEventId] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingEvents, setIsLoadingEvents] = useState(false);
-  // const t = useTranslations("dashboard.events");
+  const t = useTranslations("dashboard.reschedule-dialog");
+  const d = useTranslations("dashboard.events");
   const router = useRouter();
   // Fetch available events for rescheduling
   useEffect(() => {
@@ -122,17 +124,18 @@ const RescheduleDialog = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="!max-w-2xl max-h-[80vh] overflow-y-auto w-full bg-white dark:bg-background rounded-2xl">
         <DialogHeader>
-          <DialogTitle>Reschedule Booking</DialogTitle>
-          <DialogDescription>
-            Select a new event to reschedule your booking to.
-          </DialogDescription>
+          <DialogTitle>{t("title")}</DialogTitle>
+          <DialogDescription>{t("description")}</DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4">
           <div className="p-4 bg-muted rounded-lg">
-            <h3 className="font-medium mb-2">Current Booking:</h3>
+            <h3 className="font-medium mb-2">{t("current-event")}</h3>
             <p className="text-sm text-muted-foreground">
-              {currentEvent.theme} with {currentEvent.tutor}
+              {t("with", {
+                theme: currentEvent.theme,
+                tutor: currentEvent.tutor,
+              })}
             </p>
             <p className="text-sm text-muted-foreground">
               {toZonedTime(
@@ -149,11 +152,11 @@ const RescheduleDialog = ({
           </div>
 
           <div>
-            <h3 className="font-medium mb-3">Select a new event:</h3>
+            <h3 className="font-medium mb-3">{t("select-new")}:</h3>
             {isLoadingEvents ? (
               <div className="flex items-center justify-center p-8">
                 <IconLoader2 className="w-6 h-6 animate-spin" />
-                <span className="ml-2">Loading available events...</span>
+                <span className="ml-2">{t("loading")}</span>
               </div>
             ) : availableEvents.length > 0 ? (
               <div className="grid gap-3 p-1 max-h-96 overflow-y-auto">
@@ -174,7 +177,10 @@ const RescheduleDialog = ({
                           <div className="flex-1">
                             <h4 className="font-medium">{event.theme}</h4>
                             <p className="text-sm text-muted-foreground">
-                              with {event.tutor}
+                              {t("with", {
+                                theme: event.theme,
+                                tutor: event.tutor,
+                              })}
                             </p>
                             <div className="flex items-center gap-2 mt-2">
                               <IconCalendar className="w-4 h-4" />
@@ -198,8 +204,8 @@ const RescheduleDialog = ({
                           </div>
                           <div className="flex flex-col items-end gap-2">
                             <Badge variant="outline">
-                              <IconStopwatch className="w-3 h-3 mr-1" />
-                              {event.duration}min
+                              <IconStopwatch className="w-3 h-3" />
+                              {event.duration}
                             </Badge>
                             <Badge
                               variant="outline"
@@ -210,7 +216,7 @@ const RescheduleDialog = ({
                               }
                             >
                               <IconUsers className="w-3 h-3 mr-1" />
-                              {spotsLeft} spots left
+                              {spotsLeft}
                             </Badge>
                             <Badge variant="secondary">{event.level}</Badge>
                           </div>
@@ -222,7 +228,7 @@ const RescheduleDialog = ({
               </div>
             ) : (
               <p className="text-center text-muted-foreground py-8">
-                No available events found for rescheduling.
+                {t("no-available-events")}
               </p>
             )}
           </div>
@@ -230,7 +236,7 @@ const RescheduleDialog = ({
 
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            Cancel
+            {t("cancel")}
           </Button>
           <Button
             onClick={handleReschedule}
@@ -239,10 +245,10 @@ const RescheduleDialog = ({
             {isLoading ? (
               <>
                 <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
-                Rescheduling...
+                {t("rescheduling")}
               </>
             ) : (
-              "Reschedule Booking"
+              t("reschedule")
             )}
           </Button>
         </DialogFooter>
