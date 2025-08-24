@@ -2,16 +2,35 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+function Card({
+  className,
+  ...props
+}: React.ComponentProps<"div"> & {
+  disabled?: boolean;
+  disabledText?: string;
+}) {
+  const { disabled, disabledText, ...restProps } = props;
   return (
     <div
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm relative",
         className
       )}
-      {...props}
-    />
+      {...restProps}
+    >
+      {disabled && (
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/80 dark:bg-black/70 rounded-lg">
+          <span className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">
+            Coming Soon
+          </span>
+          <span className="text-sm text-gray-500 dark:text-gray-400">
+            {disabledText}
+          </span>
+        </div>
+      )}
+      {props.children}
+    </div>
   );
 }
 

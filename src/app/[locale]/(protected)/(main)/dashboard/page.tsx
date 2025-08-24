@@ -3,7 +3,7 @@ import Greeting from "@/components/dashboard/content/greeting";
 import { db } from "@/db";
 import { langClubBookingsTable, langClubTable } from "@/db/schema";
 import { auth } from "@clerk/nextjs/server";
-import { asc, eq, and } from "drizzle-orm";
+import { asc, eq, and, or } from "drizzle-orm";
 import React from "react";
 
 import DashboardClient from "./_components/dashboard-client";
@@ -28,7 +28,10 @@ const DashboardPage = async ({ params }) => {
     .where(
       and(
         eq(langClubBookingsTable.userId, userId),
-        eq(langClubBookingsTable.status, "paid")
+        or(
+          eq(langClubBookingsTable.status, "paid"),
+          eq(langClubBookingsTable.status, "booked")
+        )
       )
     )
     .innerJoin(

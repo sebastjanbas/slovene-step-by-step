@@ -46,6 +46,7 @@ const NextEventCard = ({ event, locale }) => {
 
       if (response.success) {
         router.refresh();
+        toast.success(response.message || "Booking cancelled successfully");
       } else {
         toast.error(response.error || "Failed to cancel booking");
       }
@@ -124,9 +125,6 @@ const NextEventCard = ({ event, locale }) => {
                   onClick={() =>
                     toast.promise(handleCancel, {
                       loading: "Cancelling...",
-                      success:
-                        "Booking cancelled successfully. Refund will be processed.",
-                      error: "Failed to cancel booking",
                     })
                   }
                   disabled={isCancelling}

@@ -2,12 +2,95 @@
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/db";
 import { langClubBookingsTable, langClubTable } from "@/db/schema";
-import { and, eq, gt, ne } from "drizzle-orm";
+import { and, eq, gt, ne, or } from "drizzle-orm";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-07-30.basil",
 });
+
+// Direct booking without Stripe checkout
+export const bookEventDirect = async (eventId: string) => {
+  try {
+    const { userId } = await auth();
+    if (!userId) {
+      return { error: "Unauthorized", status: 401 };
+    }
+
+    if (!eventId) {
+      return { error: "Event ID is required", status: 400 };
+    }
+
+    // Get the event details
+    const event = await db.query.langClubTable.findFirst({
+      where: eq(langClubTable.id, Number(eventId)),
+    });
+
+    if (!event) {
+      return { error: "Event not found", status: 404 };
+    }
+
+    if (event.peopleBooked >= event.maxBooked) {
+      return { error: "Event is full", status: 400 };
+    }
+
+    // Check if user already has a booking for this specific event
+    const existingBooking = await db.query.langClubBookingsTable.findFirst({
+      where: and(
+        eq(langClubBookingsTable.userId, userId), 
+        eq(langClubBookingsTable.eventId, Number(eventId)),
+        or(
+          eq(langClubBookingsTable.status, "paid"),
+          eq(langClubBookingsTable.status, "booked")
+        )
+      ),
+    });
+
+    if (existingBooking) {
+      return { 
+        error: "You already have a booking for this event", 
+        status: 400 
+      };
+    }
+
+    // Create booking record directly with paid status
+    const booking = await db.insert(langClubBookingsTable).values({
+      eventId: Number(eventId),
+      userId: userId,
+      status: "booked",
+      amount: event.price,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }).returning();
+
+    // Update the event to increase people booked
+    await db
+      .update(langClubTable)
+      .set({
+        peopleBooked: event.peopleBooked + 1,
+      })
+      .where(eq(langClubTable.id, Number(eventId)));
+
+    return { 
+      success: true, 
+      bookingId: booking[0].id,
+      event: {
+        id: event.id,
+        theme: event.theme,
+        date: event.date,
+        tutor: event.tutor,
+        location: event.location,
+        duration: event.duration,
+        description: event.description,
+        level: event.level,
+      }
+    };
+
+  } catch (error) {
+    console.error("Error booking event directly:", error);
+    return { error: "Internal server error", status: 500 };
+  }
+};
 
 export const createCheckoutSession = async (eventId: string, locale: "en" | "it" | "sl" | "ru") => {
     try {
@@ -109,7 +192,10 @@ export const rescheduleBooking = async (bookingId: string, newEventId: string) =
       where: and(
         eq(langClubBookingsTable.id, Number(bookingId)),
         eq(langClubBookingsTable.userId, userId),
-        eq(langClubBookingsTable.status, "paid")
+        or(
+          eq(langClubBookingsTable.status, "paid"),
+          eq(langClubBookingsTable.status, "booked")
+        ),
       ),
     });
 
@@ -151,7 +237,10 @@ export const rescheduleBooking = async (bookingId: string, newEventId: string) =
       where: and(
         eq(langClubBookingsTable.userId, userId),
         eq(langClubBookingsTable.eventId, Number(newEventId)),
-        eq(langClubBookingsTable.status, "paid")
+        or(
+          eq(langClubBookingsTable.status, "paid"),
+          eq(langClubBookingsTable.status, "booked")
+        )
       ),
     });
 
@@ -273,7 +362,10 @@ export const cancelBooking = async (bookingId: number) => {
       where: and(
         eq(langClubBookingsTable.id, bookingId),
         eq(langClubBookingsTable.userId, userId),
-        eq(langClubBookingsTable.status, "paid")
+        or(
+          eq(langClubBookingsTable.status, "paid"),
+          eq(langClubBookingsTable.status, "booked")
+        )
       ),
     });
 
@@ -296,6 +388,8 @@ export const cancelBooking = async (bookingId: number) => {
       return { error: "Cannot cancel past events", status: 400 };
     }
 
+    if (booking.status === "paid") {
+
     // Process Stripe refund
     let refund;
     try {
@@ -308,15 +402,7 @@ export const cancelBooking = async (bookingId: number) => {
       return { error: "Failed to process refund", status: 500 };
     }
 
-
-    // Update booking status to cancelled
-    await db
-      .update(langClubBookingsTable)
-      .set({
-        status: "cancelled",
-        updatedAt: new Date(),
-      })
-      .where(eq(langClubBookingsTable.id, bookingId));
+    // Update booking status to refunded is managed by webhook
 
     // Decrease the number of people booked for the event
     await db
@@ -329,8 +415,23 @@ export const cancelBooking = async (bookingId: number) => {
     return { 
       success: true, 
       refundId: refund.id,
+      message: "Booking cancelled successfully. Refund will be processed." 
+    };
+  } else {
+    // Update booking status to cancelled
+    await db
+      .update(langClubBookingsTable)
+      .set({
+        status: "cancelled",
+        updatedAt: new Date(),
+      })
+      .where(eq(langClubBookingsTable.id, bookingId));
+
+    return { 
+      success: true, 
       message: "Booking cancelled successfully" 
     };
+  }
 
   } catch (error) {
     console.error("Cancel booking error:", error);

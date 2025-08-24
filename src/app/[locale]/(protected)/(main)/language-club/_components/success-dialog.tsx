@@ -14,12 +14,14 @@ interface SuccessDialogProps {
   locale: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  type?: "stripe" | "direct";
 }
 
 const SuccessDialog = ({
   event,
   locale,
   open,
+  type = "stripe",
   onOpenChange,
 }: SuccessDialogProps) => {
   return (
@@ -27,7 +29,7 @@ const SuccessDialog = ({
       open={open}
       onOpenChange={(open) => {
         onOpenChange(open);
-        if (!open) {
+        if (!open && type === "stripe") {
           // Remove ?success and any query params, redirect to clean /language-club
           window.location.replace(`/${locale}/language-club`);
         }
