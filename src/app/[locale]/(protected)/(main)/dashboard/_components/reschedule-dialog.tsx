@@ -60,7 +60,6 @@ const RescheduleDialog = ({
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingEvents, setIsLoadingEvents] = useState(false);
   const t = useTranslations("dashboard.reschedule-dialog");
-  const d = useTranslations("dashboard.events");
   const router = useRouter();
   // Fetch available events for rescheduling
   useEffect(() => {
