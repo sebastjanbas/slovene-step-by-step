@@ -10,7 +10,7 @@ const MainProtectedLayout = async ({ params, children }) => {
     redirect({ href: "/admin", locale });
     return null;
   }
-  return <div>{children}</div>;
+  return <div className="h-full w-full">{children}</div>;
 };
 
 export default MainProtectedLayout;

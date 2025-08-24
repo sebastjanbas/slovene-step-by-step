@@ -20,13 +20,11 @@ export function ThemButton({
       className={cn("mr-5 cursor-pointer !p-2 h-fit", className)}
       {...props}
     >
-      {/* moon */}
-      <IconMoonStars className={theme === "dark" ? "block" : "hidden"} />
-
-      {/* sun */}
-      <IconSunHighFilled
-        className={theme === "dark" ? "hidden" : "block hover:text-foreground"}
-      />
+      {theme === "light" ? (
+        <IconSunHighFilled className="block hover:text-foreground" />
+      ) : (
+        <IconMoonStars className="block hover:text-foreground" />
+      )}
     </Button>
   );
 }

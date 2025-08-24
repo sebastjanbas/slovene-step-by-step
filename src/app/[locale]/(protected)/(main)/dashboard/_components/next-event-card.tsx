@@ -111,7 +111,7 @@ const NextEventCard = ({ event, locale }) => {
                 {tC("cancel-booking")}
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent className="bg-white dark:bg-background border-red-500 dark:border-red-500/30 border-2">
+            <AlertDialogContent className="bg-white dark:bg-background border-red-500 dark:border-red-500/30 border-2 rounded-2xl">
               <AlertDialogHeader>
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                 <AlertDialogDescription>

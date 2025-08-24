@@ -18,6 +18,7 @@ const DashboardPage = async ({ params }) => {
       description: langClubTable.description,
       date: langClubTable.date,
       tutor: langClubTable.tutor,
+      level: langClubTable.level,
       location: langClubTable.location,
       duration: langClubTable.duration,
       theme: langClubTable.theme,
@@ -40,23 +41,14 @@ const DashboardPage = async ({ params }) => {
     )
     .orderBy(asc(langClubTable.date));
 
-  // Transform events for calendar display
-  const calendarEvents = events.map((event) => ({
-    id: event.id.toString(),
-    description: event.description,
-    date: event.date, // Format as YYYY-MM-DD
-    title: event.theme,
-    color: "bg-pink-200", // You can customize colors based on level or other criteria
-  }));
-
   return (
     <main className="w-full h-full flex flex-col md:flex-row">
-      <div className="flex-3/4 p-5 flex flex-col gap-4 justify-start items-start">
+      <div className="flex-3/4 p-5 flex flex-col gap-4 justify-start items-start h-full">
         <Greeting />
         <DashboardClient events={events} locale={locale} />
       </div>
-      <div className="flex-1/4 bg-[#F9F8FC] dark:bg-foreground/5 flex justify-center items-start">
-        <CalendarDashboard events={calendarEvents} locale={locale} />
+      <div className="flex-1/4 bg-[#F9F8FC] dark:bg-foreground/5 flex justify-center items-start h-full">
+        <CalendarDashboard events={events} locale={locale} />
       </div>
     </main>
   );

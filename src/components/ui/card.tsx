@@ -20,7 +20,7 @@ function Card({
       {...restProps}
     >
       {disabled && (
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/80 dark:bg-black/70 rounded-lg">
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/80 dark:bg-black/70 rounded-lg h-full w-full">
           <span className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">
             Coming Soon
           </span>

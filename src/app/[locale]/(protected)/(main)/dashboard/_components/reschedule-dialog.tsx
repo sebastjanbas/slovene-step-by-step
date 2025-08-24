@@ -6,6 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -119,9 +120,12 @@ const RescheduleDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-5xl max-h-[80vh] overflow-y-auto w-full">
+      <DialogContent className="!max-w-2xl max-h-[80vh] overflow-y-auto w-full bg-white dark:bg-background rounded-2xl">
         <DialogHeader>
           <DialogTitle>Reschedule Booking</DialogTitle>
+          <DialogDescription>
+            Select a new event to reschedule your booking to.
+          </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4">
