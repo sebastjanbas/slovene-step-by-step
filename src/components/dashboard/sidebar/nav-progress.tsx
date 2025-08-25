@@ -9,7 +9,7 @@ import {
   useSidebar,
   // useSidebar,
 } from "@/components/ui/sidebar";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { Icon } from "@tabler/icons-react";
 import { useTranslations } from "next-intl";
@@ -38,7 +38,7 @@ export function NavMyProgress({
             <SidebarMenuButton asChild>
               <Link
                 // href={item.url}
-                href={item.disabled ? "#" : item.url}
+                href={item.disabled ? "#" : (item.url as any)}
                 onClick={(e) => {
                   if (item.disabled) {
                     e.preventDefault();

@@ -11,10 +11,9 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
-import { usePathname } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/routing";
 
 export function NavMain({
   items,
@@ -62,7 +61,7 @@ export function NavMain({
               <SidebarMenuButton tooltip={item.title} asChild>
                 <Link
                   // href={item.url}
-                  href={item.disabled ? "#" : item.url}
+                  href={item.disabled ? "#" : (item.url as any)}
                   onClick={(e) => {
                     if (item.disabled) {
                       e.preventDefault();

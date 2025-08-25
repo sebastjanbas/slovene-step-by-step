@@ -11,11 +11,11 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import Link from "next/link";
 import { ThemButton } from "@/components/ui/appearance-switch-button";
 import LanguageSwitcher from "@/components/content/navbar/language-switcher";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
+import { Link } from "@/i18n/routing";
 
 export function NavSecondary({
   items,
@@ -48,7 +48,7 @@ export function NavSecondary({
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
                 <Link
-                  href={item.disabled ? "#" : item.url}
+                  href={item.disabled ? "#" : (item.url as any)}
                   onClick={(e) => {
                     if (item.disabled) {
                       e.preventDefault();

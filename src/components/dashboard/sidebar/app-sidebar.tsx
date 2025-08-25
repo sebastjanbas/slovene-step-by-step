@@ -60,7 +60,7 @@ const data = {
       title: "tutors",
       url: "/tutors",
       icon: IconUsers,
-      disabled: false,
+      disabled: true,
     },
     {
       title: "dayly-practice",
@@ -162,7 +162,7 @@ export function AppSidebar({
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5 hover:bg-white/5 hover:text-white dark:text-foreground"
             >
-              <a href="#">
+              <a href="/">
                 <IconLogo
                   className="!size-6"
                   fillColor="fill-white dark:fill-foreground"
