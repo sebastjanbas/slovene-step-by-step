@@ -48,6 +48,7 @@ export function NavSecondary({
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
                 <Link
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   href={item.disabled ? "#" : (item.url as any)}
                   onClick={(e) => {
                     if (item.disabled) {

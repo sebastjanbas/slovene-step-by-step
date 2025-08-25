@@ -37,7 +37,7 @@ export function NavMyProgress({
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <Link
-                // href={item.url}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 href={item.disabled ? "#" : (item.url as any)}
                 onClick={(e) => {
                   if (item.disabled) {

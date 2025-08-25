@@ -60,7 +60,7 @@ export function NavMain({
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton tooltip={item.title} asChild>
                 <Link
-                  // href={item.url}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   href={item.disabled ? "#" : (item.url as any)}
                   onClick={(e) => {
                     if (item.disabled) {

@@ -28,7 +28,7 @@ import { NavMain } from "./nav-main";
 import { NavMyProgress } from "./nav-progress";
 import { NavSecondary } from "./nav-secondary";
 import { IconLogo } from "@/components/icons/icon-logo";
-import { usePathname } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/routing";
 
 const data = {
   navMain: [
@@ -131,13 +131,13 @@ export function AppSidebar({
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <a href="#">
+                <Link href="/">
                   <IconLogo
                     className="!size-6"
                     fillColor="fill-white dark:fill-foreground"
                   />
                   <span className="text-base font-semibold">Admin</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -162,7 +162,7 @@ export function AppSidebar({
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5 hover:bg-white/5 hover:text-white dark:text-foreground"
             >
-              <a href="/">
+              <Link href="/">
                 <IconLogo
                   className="!size-6"
                   fillColor="fill-white dark:fill-foreground"
@@ -170,7 +170,7 @@ export function AppSidebar({
                 <span className="text-base font-semibold">
                   Slovenščina Korak za Korakom
                 </span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
