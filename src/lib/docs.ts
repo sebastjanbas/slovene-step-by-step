@@ -1,4 +1,19 @@
 
+import {
+  IconBrandParsinta,
+  IconCalendarCheck,
+  IconCalendarWeek,
+  IconClubs,
+  IconDashboard,
+  IconFlask,
+  IconHelp,
+  IconProgressCheck,
+  IconSettings,
+  IconTrophy,
+  IconUserCog,
+  IconUsers,
+} from "@tabler/icons-react";
+
 export const webNavigation = [
   { name: "pricing", href: "/pricing" },
   // { name: "features", href: "/features" },
@@ -189,3 +204,93 @@ export const offers = [
       featured: false,
   },
 ]
+
+
+export const SidebarNavigationData = {
+  navMain: [
+    {
+      title: "dashboard",
+      url: "/dashboard",
+      icon: IconDashboard,
+      disabled: false,
+    },
+    {
+      title: "courses",
+      url: "#",
+      icon: IconBrandParsinta,
+      disabled: true,
+    },
+    {
+      title: "calendar",
+      url: "/calendar",
+      icon: IconCalendarWeek,
+      disabled: true,
+    },
+    {
+      title: "language-club",
+      url: "/language-club",
+      icon: IconClubs,
+      disabled: false,
+    },
+    {
+      title: "tutors",
+      url: "/tutors",
+      icon: IconUsers,
+      disabled: true,
+    },
+    {
+      title: "dayly-practice",
+      url: "#",
+      icon: IconFlask,
+      disabled: true,
+    },
+  ],
+  navSecondary: [
+    {
+      title: "settings",
+      url: "/settings",
+      icon: IconSettings,
+      disabled: false,
+    },
+    {
+      title: "get-help",
+      url: "#",
+      icon: IconHelp,
+      disabled: true,
+    },
+  ],
+  myProgress: [
+    {
+      name: "my-lessons",
+      url: "#",
+      icon: IconCalendarCheck,
+      disabled: true,
+    },
+    {
+      name: "achievements",
+      url: "#",
+      icon: IconTrophy,
+      disabled: true,
+    },
+    {
+      name: "progress",
+      url: "#",
+      icon: IconProgressCheck,
+      disabled: true,
+    },
+  ],
+  admin: [
+    {
+      title: "dashboard",
+      url: "/admin",
+      icon: IconUserCog,
+      disabled: false,
+    },
+    {
+      title: "language-club",
+      url: "/admin/language-club-admin",
+      icon: IconClubs,
+      disabled: false,
+    },
+  ],
+};

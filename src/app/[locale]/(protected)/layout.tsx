@@ -5,7 +5,7 @@ import BackgroundUpdater from "@/components/ui/background-updater";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 
 interface ProtectedLayoutProps {
   children: ReactNode;
@@ -32,7 +32,9 @@ const ProtectedLayout = async ({ children, params }: ProtectedLayoutProps) => {
             } as React.CSSProperties
           }
         >
-          <AppSidebar variant="inset" locale={locale} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <AppSidebar variant="inset" locale={locale} />
+          </Suspense>
           <SidebarInset className="overflow-hidden bg-white dark:bg-background">
             <SiteHeader />
             <main className="bg-white dark:bg-background h-[90vh] overflow-y-scroll">

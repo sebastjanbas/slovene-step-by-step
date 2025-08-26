@@ -10,7 +10,7 @@ const AdminLayout = async ({ children, params }) => {
     redirect({ href: "/", locale });
     return null;
   }
-  return <div className="flex flex-col gap-2">{children}</div>;
+  return <div className="flex flex-col gap-2 w-full h-full">{children}</div>;
 };
 
 export default AdminLayout;
