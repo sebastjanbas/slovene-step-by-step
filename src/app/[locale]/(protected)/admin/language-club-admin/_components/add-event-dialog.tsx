@@ -1,0 +1,37 @@
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogHeader,
+  DialogTrigger,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { IconPlus } from "@tabler/icons-react";
+import React from "react";
+import AddEventForm from "./add-event-form";
+
+const AddEventDialog = () => {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">
+          <IconPlus className="w-4 h-4" />
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="!max-w-lg">
+        <DialogHeader>
+          <DialogTitle className="text-center">Add Event</DialogTitle>
+          <DialogDescription className="text-center">
+            Add a new event to the language club.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="w-full">
+          <AddEventForm />
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+export default AddEventDialog;

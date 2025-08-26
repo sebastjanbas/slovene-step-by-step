@@ -1,7 +1,11 @@
 'use server'
 
+import { eventSchema } from '@/app/[locale]/(protected)/admin/language-club-admin/_components/add-event-form'
+import { db } from '@/db'
+import { langClubTable } from '@/db/schema'
 import { checkRole } from '@/utils/roles'
 import { clerkClient } from '@clerk/nextjs/server'
+import z from 'zod'
 
 export async function setRole(formData: FormData) {
   const client = await clerkClient()
@@ -52,4 +56,28 @@ export async function getUsers(search: string | null) {
       role: user.publicMetadata.role,
     })),
   };
+}
+
+export async function addEvent(values:z.infer<typeof eventSchema>) {
+
+  try {
+    await db.insert(langClubTable).values({
+      theme: values.theme,
+      tutor: values.tutor,
+      date: new Date(values.date + ' ' + values.time),
+      description: values.description,
+      price: values.price,
+      level: values.level,
+      duration: Number(values.duration),
+      location: values.location,
+      peopleBooked: 0,
+      maxBooked: Number(values.spots),
+      stripeProductId: null,
+      stripePriceId: null,
+    });
+    return { message: 'Event added', success: true }
+  } catch (error) {
+    console.error(error);
+    return { message: 'Error adding event', success: false }
+  }
 }

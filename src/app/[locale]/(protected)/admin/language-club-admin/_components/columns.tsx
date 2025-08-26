@@ -1,0 +1,164 @@
+"use client";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { langClubTable } from "@/db/schema";
+import { ColumnDef } from "@tanstack/react-table";
+import { toZonedTime } from "date-fns-tz";
+import { Checkbox } from "@/components/ui/checkbox";
+import { CheckedState } from "@radix-ui/react-checkbox";
+
+// This type is used to define the shape of our data.
+// You can use a Zod schema here if you want.
+export type Payment = typeof langClubTable.$inferSelect;
+export const columns: ColumnDef<Payment>[] = [
+  {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          ((table.getIsSomePageRowsSelected() &&
+            "indeterminate") as CheckedState)
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
+    accessorKey: "theme",
+    header: "Theme",
+  },
+  {
+    accessorKey: "tutor",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Tutor
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: "date",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Date
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const date = row.getValue("date") as Date;
+      const formatted = toZonedTime(
+        date,
+        "Europe/Ljubljana"
+      ).toLocaleDateString("en-UK", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      return <div className="text-left font-medium">{formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "location",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Location
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+  },
+  {
+    accessorKey: "maxBooked",
+    header: "Max Booked",
+  },
+  {
+    accessorKey: "peopleBooked",
+    header: "People Booked",
+  },
+  {
+    accessorKey: "duration",
+    header: "Duration",
+  },
+  {
+    accessorKey: "price",
+    header: () => <div className="text-right">Price</div>,
+    cell: ({ row }) => {
+      const amount = parseFloat(row.getValue("price"));
+      const formatted = new Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "EUR",
+      }).format(amount);
+
+      return <div className="text-right font-medium">{formatted}</div>;
+    },
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      const event = row.original;
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0 cursor-pointer">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem
+              className="cursor-pointer"
+              onClick={() => navigator.clipboard.writeText(event.id.toString())}
+            >
+              Copy event ID
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem className="cursor-pointer">
+              Edit event
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              View bookings
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    },
+  },
+];
