@@ -9,10 +9,15 @@ import { useTranslations } from "next-intl";
 const LangComponents = ({ events, calendarEvents, locale, bookedEvent }) => {
   const [date, setDate] = useState<Date | undefined>(new Date());
   const filteredEvents = events.filter((event) => {
-    return (
-      event.date.toLocaleDateString("sv-SE") ===
-      date.toLocaleDateString("sv-SE")
-    );
+    if (!date) return false;
+    // Convert both dates to Europe/Ljubljana timezone for comparison
+    const eventDateInLjubljana = event.date.toLocaleDateString("en-CA", {
+      timeZone: "Europe/Ljubljana",
+    });
+    const selectedDateInLjubljana = date.toLocaleDateString("en-CA", {
+      timeZone: "Europe/Ljubljana",
+    });
+    return eventDateInLjubljana === selectedDateInLjubljana;
   });
 
   const [showSuccessDialog, setShowSuccessDialog] = useState(!!bookedEvent);

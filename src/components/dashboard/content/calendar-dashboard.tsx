@@ -50,9 +50,17 @@ const CalendarDashboard = ({ locale, events }) => {
   const t = useTranslations("dashboard.events");
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const eventsOnSelectedDay = events.filter((event) =>
-    date ? isSameDay(new Date(event.date), date) : false
-  );
+  const eventsOnSelectedDay = events.filter((event) => {
+    if (!date) return false;
+    // Convert both dates to Europe/Ljubljana timezone for comparison
+    const eventDateInLjubljana = new Date(
+      event.date.toLocaleDateString("en-CA", { timeZone: "Europe/Ljubljana" })
+    );
+    const selectedDateInLjubljana = new Date(
+      date.toLocaleDateString("en-CA", { timeZone: "Europe/Ljubljana" })
+    );
+    return isSameDay(eventDateInLjubljana, selectedDateInLjubljana);
+  });
 
   const handleDayClick = (date: Date) => {
     setDate(date);
@@ -68,7 +76,15 @@ const CalendarDashboard = ({ locale, events }) => {
         events={events}
         locale={dateFnsLocale}
         modifiers={{
-          hasEvent: events.map((e) => new Date(e.date)),
+          hasEvent: events.map((e) => {
+            // Convert event date to Europe/Ljubljana timezone for consistent display
+            const eventDateInLjubljana = new Date(
+              e.date.toLocaleDateString("en-CA", {
+                timeZone: "Europe/Ljubljana",
+              })
+            );
+            return eventDateInLjubljana;
+          }),
           weekend: (date) => {
             const day = date.getDay();
             return day === 0 || day === 6; // Sunday (0) or Saturday (6)
@@ -76,9 +92,6 @@ const CalendarDashboard = ({ locale, events }) => {
         }}
         modifiersClassNames={{
           hasEvent: "relative has-event",
-        }}
-        classNames={{
-          day: "h-full w-full !aspect-square",
         }}
         className="rounded-2xl bg-transparent p-4 w-full h-fit pb-14"
       />

@@ -25,7 +25,9 @@ const LangCalendar = ({ locale, events, date, setDate }) => {
 
   const eventMap: Record<string, CalendarEvent[]> = events.reduce(
     (acc, event) => {
-      const dateKey = event.date.toLocaleDateString("en-CA");
+      const dateKey = event.date.toLocaleDateString("en-CA", {
+        timeZone: "Europe/Ljubljana",
+      });
       if (!acc[dateKey]) acc[dateKey] = [];
       acc[dateKey].push(event);
       return acc;
@@ -45,7 +47,15 @@ const LangCalendar = ({ locale, events, date, setDate }) => {
           onMonthChange={setCurrentMonth}
           mode="single"
           modifiers={{
-            hasEvent: events.map((e) => new Date(e.date)),
+            hasEvent: events.map((e) => {
+              // Convert event date to Europe/Ljubljana timezone for consistent display
+              const eventDateInLjubljana = new Date(
+                e.date.toLocaleDateString("en-CA", {
+                  timeZone: "Europe/Ljubljana",
+                })
+              );
+              return eventDateInLjubljana;
+            }),
             weekend: (date) => {
               const day = date.getDay();
               return day === 0 || day === 6; // Sunday (0) or Saturday (6)

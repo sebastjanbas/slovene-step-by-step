@@ -111,11 +111,14 @@ const LangCard = ({ locale, event }) => {
           <CardAction>
             <div className="flex flex-col gap-1 items-end">
               <span>
-                {new Date(event.date).toLocaleDateString(locale, {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+                {toZonedTime(event.date, "Europe/Ljubljana").toLocaleDateString(
+                  locale,
+                  {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  }
+                )}
               </span>
               <span className="text-sm text-muted-foreground">
                 {toZonedTime(event.date, "Europe/Ljubljana").toLocaleTimeString(

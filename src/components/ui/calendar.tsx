@@ -34,11 +34,13 @@ function Calendar({
 }) {
   const defaultClassNames = getDefaultClassNames();
 
-  // Group events by date in user's timezone (e.g. "2025-07-22")
+  // Group events by date in Europe/Ljubljana timezone (e.g. "2025-07-22")
   const eventMap: Record<string, CalendarEvent[]> = events.reduce(
     (acc, event) => {
-      // Use user's local timezone for consistent date grouping
-      const dateKey = event.date.toLocaleDateString("en-CA"); // YYYY-MM-DD format in local timezone
+      // Use Europe/Ljubljana timezone for consistent date grouping
+      const dateKey = event.date.toLocaleDateString("en-CA", {
+        timeZone: "Europe/Ljubljana",
+      }); // YYYY-MM-DD format in Ljubljana timezone
       if (!acc[dateKey]) acc[dateKey] = [];
       acc[dateKey].push(event);
       return acc;
@@ -214,8 +216,9 @@ function CalendarDayButton({
     if (modifiers.focused) ref.current?.focus();
   }, [modifiers.focused]);
 
-  const dateKey = day.date.toLocaleDateString("en-CA");
-
+  const dateKey = day.date.toLocaleDateString("en-CA", {
+    timeZone: "Europe/Ljubljana",
+  });
   const events = eventMap[dateKey] || [];
 
   const weekendClass = modifiers.weekend
@@ -228,7 +231,7 @@ function CalendarDayButton({
         ref={ref}
         variant="ghost"
         size={size}
-        data-day={day.date.toLocaleDateString()}
+        data-day={day.date}
         data-selected-single={
           modifiers.selected &&
           !modifiers.range_start &&
