@@ -42,7 +42,10 @@ const LangCalendar = ({ locale, events, date, setDate }) => {
           locale={dateFnsLocale}
           events={events}
           selected={date}
-          onSelect={setDate}
+          onSelect={(newDate) => {
+            // Ensure we always have a valid date, fallback to today if undefined
+            setDate(newDate || new Date());
+          }}
           month={currentMonth}
           onMonthChange={setCurrentMonth}
           mode="single"

@@ -45,7 +45,7 @@ const LangComponents = ({ events, calendarEvents, locale, bookedEvent }) => {
         ) : (
           <p>
             {t("no-events", {
-              date: date.toLocaleDateString(locale, {
+              date: (date || new Date()).toLocaleDateString(locale, {
                 year: "numeric",
                 month: "long",
                 day: "numeric",

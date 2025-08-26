@@ -62,8 +62,10 @@ const CalendarDashboard = ({ locale, events }) => {
     return isSameDay(eventDateInLjubljana, selectedDateInLjubljana);
   });
 
-  const handleDayClick = (date: Date) => {
-    setDate(date);
+  const handleDayClick = (date: Date | undefined) => {
+    // Always ensure we have a valid date, fallback to today if undefined
+    const validDate = date || new Date();
+    setDate(validDate);
     setModalOpen(true);
   };
 
@@ -104,7 +106,7 @@ const CalendarDashboard = ({ locale, events }) => {
           <DialogHeader>
             <DialogTitle>
               {t("event-on", {
-                date: date.toLocaleDateString(locale, {
+                date: (date || new Date()).toLocaleDateString(locale, {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
@@ -119,7 +121,7 @@ const CalendarDashboard = ({ locale, events }) => {
           {eventsOnSelectedDay.length === 0 ? (
             <p className="text-center text-sm text-foreground/50">
               {t("no-events", {
-                date: date.toLocaleDateString(locale, {
+                date: (date || new Date()).toLocaleDateString(locale, {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
