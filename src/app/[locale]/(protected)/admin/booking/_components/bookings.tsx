@@ -237,7 +237,7 @@ const Bookings = ({ locale }: { locale: string }) => {
               onClick={() => {
                 setOpen(false);
                 if (selectedEventId) {
-                  router.push(`/admin/bookings?id=${selectedEventId}` as any);
+                  router.push(`/admin/booking?id=${selectedEventId}` as any);
                 } else {
                   toast.error("Please select an event");
                 }

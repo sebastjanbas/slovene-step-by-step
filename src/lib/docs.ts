@@ -295,7 +295,7 @@ export const SidebarNavigationData = {
     },
     {
       title: "bookings",
-      url: "/admin/bookings",
+      url: "/admin/booking",
       icon: IconCalendar,
       disabled: false,
     },
