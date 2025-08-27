@@ -1,7 +1,6 @@
 import { UserProvider } from "@/components/dashboard/auth/user-context";
 import { SiteHeader } from "@/components/dashboard/sidebar/app-header";
 import { AppSidebar } from "@/components/dashboard/sidebar/app-sidebar";
-import BackgroundUpdater from "@/components/ui/background-updater";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";

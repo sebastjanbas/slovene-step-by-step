@@ -22,10 +22,7 @@ const AdminSidebar = ({ locale, ...props }) => {
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
               <Link href="/">
-                <IconLogo
-                  className="!size-6"
-                  fillColor="fill-white dark:fill-foreground"
-                />
+                <IconLogo className="!size-6" />
                 <span className="text-base font-semibold">Admin</span>
               </Link>
             </SidebarMenuButton>
