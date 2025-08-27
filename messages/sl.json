@@ -290,7 +290,8 @@
         "tutors": "Mentorji",
         "dayly-practice": "Dnevne naloge",
         "admin": "Admin Dashboard",
-        "language-club-admin": "Admin Pogovorni klub"
+        "language-club-admin": "Admin Pogovorni klub",
+        "bookings": "Rezervacije"
       },
       "secondary": {
         "settings": "Nastavitve",

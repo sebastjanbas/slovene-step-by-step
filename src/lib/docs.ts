@@ -1,6 +1,7 @@
 
 import {
   IconBrandParsinta,
+  IconCalendar,
   IconCalendarCheck,
   IconCalendarWeek,
   IconClubs,
@@ -290,6 +291,12 @@ export const SidebarNavigationData = {
       title: "language-club",
       url: "/admin/language-club-admin",
       icon: IconClubs,
+      disabled: false,
+    },
+    {
+      title: "bookings",
+      url: "/admin/bookings",
+      icon: IconCalendar,
       disabled: false,
     },
   ],

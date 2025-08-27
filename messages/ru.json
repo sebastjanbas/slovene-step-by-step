@@ -291,7 +291,8 @@
         "tutors": "Учителя",
         "dayly-practice": "Ежедневные занятия",
         "admin": "Admin Dashboard",
-        "language-club-admin": "Admin Языкового клуба"
+        "language-club-admin": "Admin Языкового клуба",
+        "bookings": "Бронирования"
       },
       "secondary": {
         "settings": "Настройки",

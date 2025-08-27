@@ -292,7 +292,8 @@
         "tutors": "Tutors",
         "dayly-practice": "Dayly Practice",
         "admin": "Admin Dashboard",
-        "language-club-admin": "Language Club Admin"
+        "language-club-admin": "Language Club Admin",
+        "bookings": "Bookings"
       },
       "secondary": {
         "settings": "Settings",

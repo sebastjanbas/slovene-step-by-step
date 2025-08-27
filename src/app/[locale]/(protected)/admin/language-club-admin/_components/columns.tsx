@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
@@ -15,6 +16,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { toZonedTime } from "date-fns-tz";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CheckedState } from "@radix-ui/react-checkbox";
+import { Link } from "@/i18n/routing";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -153,8 +155,10 @@ export const columns: ColumnDef<Payment>[] = [
             <DropdownMenuItem className="cursor-pointer">
               Edit event
             </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              View bookings
+            <DropdownMenuItem className="cursor-pointer" asChild>
+              <Link href={`/admin/booking?id=${event.id}` as any}>
+                View booking details
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
