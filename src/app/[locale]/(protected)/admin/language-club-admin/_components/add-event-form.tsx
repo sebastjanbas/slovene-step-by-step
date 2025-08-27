@@ -30,6 +30,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { addEvent } from "@/actions/admin-actions";
 import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { toZonedTime } from "date-fns-tz";
 
 export const eventSchema = z.object({
   theme: z.string().min(2, {
@@ -38,37 +41,40 @@ export const eventSchema = z.object({
   tutor: z.string().min(2, {
     message: "Tutor must be at least 2 characters.",
   }),
-  date: z.string().min(2, {
-    message: "Date must be at least 2 characters.",
+  date: z.string().min(1, {
+    message: "Date is required.",
   }),
-  time: z.string().min(2, {
-    message: "Time must be at least 2 characters.",
+  time: z.string().min(1, {
+    message: "Time is required.",
   }),
-  description: z.string().min(2, {
-    message: "Description must be at least 2 characters.",
+  description: z.string().min(1, {
+    message: "Description is required.",
   }),
-  price: z.string().min(2, {
-    message: "Price must be at least 2 characters.",
+  price: z.string().min(1, {
+    message: "Price is required.",
   }),
-  level: z.string().min(2, {
-    message: "Level must be at least 2 characters.",
+  level: z.string().min(1, {
+    message: "Level is required.",
   }),
-  duration: z.string().min(2, {
-    message: "Duration must be at least 2 characters.",
+  duration: z.string().min(1, {
+    message: "Duration is required.",
   }),
-  spots: z.string().min(2, {
-    message: "Spots must be at least 2 characters.",
+  spots: z.string().min(1, {
+    message: "Spots is required.",
   }),
-  location: z.string().min(2, {
-    message: "Location must be at least 2 characters.",
+  location: z.string().min(1, {
+    message: "Location is required.",
   }),
 });
 
-const AddEventForm = () => {
-  // FIX: Add a loading state
-  // FIX: UX
+const AddEventForm = ({
+  setIsOpen,
+}: {
+  setIsOpen: (isOpen: boolean) => void;
+}) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [editingField, setEditingField] = useState<string | null>(null);
-
+  const router = useRouter();
   const form = useForm<z.infer<typeof eventSchema>>({
     resolver: zodResolver(eventSchema),
     defaultValues: {
@@ -100,12 +106,16 @@ const AddEventForm = () => {
   };
 
   const onSubmit = async (values: z.infer<typeof eventSchema>) => {
+    setIsLoading(true);
     const response = await addEvent(values);
     if (response.success) {
       toast.success(response.message);
+      router.refresh();
+      setIsOpen(false);
     } else {
       toast.error(response.message);
     }
+    setIsLoading(false);
   };
 
   const renderEditableField = (
@@ -167,10 +177,13 @@ const AddEventForm = () => {
                 {renderEditableField(
                   "date",
                   form.watch("date")
-                    ? new Date(form.watch("date")).toLocaleDateString("sl-SI", {
-                        day: "2-digit",
-                        month: "2-digit",
+                    ? toZonedTime(
+                        new Date(form.watch("date")),
+                        "Europe/Ljubljana"
+                      ).toLocaleDateString("sl-SI", {
                         year: "numeric",
+                        month: "long",
+                        day: "numeric",
                       })
                     : "",
                   "DD/MM/YYYY",
@@ -329,8 +342,12 @@ const AddEventForm = () => {
                 </Badge>
               </div>
             </div>
-            <Button type="submit" className="w-full">
-              Add Event
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                "Add Event"
+              )}
             </Button>
           </CardFooter>
         </Card>

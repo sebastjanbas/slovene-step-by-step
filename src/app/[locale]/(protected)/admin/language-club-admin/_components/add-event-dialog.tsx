@@ -8,12 +8,13 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { IconPlus } from "@tabler/icons-react";
-import React from "react";
+import React, { useState } from "react";
 import AddEventForm from "./add-event-form";
 
 const AddEventDialog = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">
           <IconPlus className="w-4 h-4" />
@@ -27,7 +28,7 @@ const AddEventDialog = () => {
           </DialogDescription>
         </DialogHeader>
         <div className="w-full">
-          <AddEventForm />
+          <AddEventForm setIsOpen={setIsOpen} />
         </div>
       </DialogContent>
     </Dialog>
