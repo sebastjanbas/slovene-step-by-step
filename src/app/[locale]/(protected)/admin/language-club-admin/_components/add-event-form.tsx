@@ -144,7 +144,7 @@ const AddEventForm = () => {
     return (
       <div
         onDoubleClick={() => handleDoubleClick(fieldName)}
-        className="cursor-pointer hover:bg-muted/50 p-1 rounded transition-colors"
+        className="cursor-pointer hover:bg-muted/50 p-1 rounded-lg transition-colors"
       >
         {displayValue || placeholder}
       </div>
@@ -163,7 +163,7 @@ const AddEventForm = () => {
               {renderEditableField("tutor", form.watch("tutor"), "Tutor Name")}
             </CardDescription>
             <CardAction>
-              <div className="flex flex-col gap-1 items-end">
+              <div className="flex flex-col gap-1 items-end text-foreground">
                 {renderEditableField(
                   "date",
                   form.watch("date")

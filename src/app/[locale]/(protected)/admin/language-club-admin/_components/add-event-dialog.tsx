@@ -19,7 +19,7 @@ const AddEventDialog = () => {
           <IconPlus className="w-4 h-4" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="!max-w-lg">
+      <DialogContent className="!max-w-lg bg-white dark:bg-background">
         <DialogHeader>
           <DialogTitle className="text-center">Add Event</DialogTitle>
           <DialogDescription className="text-center">

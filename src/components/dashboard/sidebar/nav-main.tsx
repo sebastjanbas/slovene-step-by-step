@@ -1,6 +1,10 @@
 "use client";
 
-import { IconCirclePlusFilled, IconMail, type Icon } from "@tabler/icons-react";
+import {
+  IconCalendarEvent,
+  IconCirclePlusFilled,
+  type Icon,
+} from "@tabler/icons-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -36,20 +40,17 @@ export function NavMain({
         <SidebarMenu>
           {!isAdmin && (
             <SidebarMenuItem className="flex items-center gap-2">
-              <SidebarMenuButton
-                disabled
-                tooltip="Create an appointment"
-                className="bg-white cursor-pointer text-foreground dark:text-background hover:bg-background/80 active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
-              >
-                <IconCirclePlusFilled />
+              <div className="bg-foreground text-background min-w-8 w-full rounded-lg px-2 py-1.5 inline-flex items-center gap-2 font-medium opacity-50">
+                <IconCirclePlusFilled className="size-4" />
                 <span>{t("book-lesson")}</span>
-              </SidebarMenuButton>
+              </div>
               <Button
                 size="icon"
+                disabled
                 className="size-8 bg-white cursor-pointer group-data-[collapsible=icon]:opacity-0"
                 variant="outline"
               >
-                <IconMail className="text-foreground" />
+                <IconCalendarEvent className="text-foreground" />
                 <span className="sr-only">Inbox</span>
               </Button>
             </SidebarMenuItem>

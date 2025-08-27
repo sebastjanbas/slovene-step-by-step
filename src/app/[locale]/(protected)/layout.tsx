@@ -22,7 +22,6 @@ const ProtectedLayout = async ({ children, params }: ProtectedLayoutProps) => {
 
   return (
     <>
-      <BackgroundUpdater />
       <UserProvider>
         <SidebarProvider
           style={

@@ -23,13 +23,10 @@ const UserSidebar = ({ locale, ...props }) => {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5 hover:bg-white/5 hover:text-white dark:text-foreground"
+              className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <Link href="/">
-                <IconLogo
-                  className="!size-6"
-                  fillColor="fill-white dark:fill-foreground"
-                />
+                <IconLogo className="!size-6" />
                 <span className="text-base font-semibold">
                   Slovenščina Korak za Korakom
                 </span>
