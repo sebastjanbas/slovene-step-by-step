@@ -181,7 +181,7 @@ export const columns: ColumnDef<Payment>[] = [
             </DropdownMenuItem>
             <DropdownMenuItem className="cursor-pointer" asChild>
               <Link href={`/admin/booking?id=${event.id}` as any}>
-                View booking details
+                View booking
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>

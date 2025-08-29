@@ -262,7 +262,8 @@
         "description": "Here you can see all your scheduled events.",
         "status": "{status, select, paid {Paid} booked {Booked} other {Unknown}}",
         "card-description": "With {name}"
-      },
+      }
+    },
       "reschedule-dialog": {
         "title": "Reschedule Booking",
         "description": "Select a new event to reschedule your booking to.",
@@ -274,8 +275,7 @@
         "loading": "Loading available events...",
         "select-new": "Select new event",
         "no-available-events": "No available events found for rescheduling."
-      }
-    },
+      },
     "user-navigation": {
       "account": "Account",
       "billing": "Billing",

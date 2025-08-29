@@ -36,6 +36,7 @@ export default function SigninPage() {
           }}
           unsafeMetadata={{
             locale: locale,
+            welcome: true,
           }}
         />
       </div>

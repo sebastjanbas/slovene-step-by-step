@@ -78,14 +78,12 @@ const BookingList = () => {
                 </AvatarFallback>
               </Avatar>
               <div className="ml-4">
-                <div className="font-medium text-gray-900">
-                  {user.name || "Unknown"}
-                </div>
-                <div className="text-sm text-gray-500">
+                <div className="font-medium">{user.name || "Unknown"}</div>
+                <div className="text-sm text-muted-foreground">
                   {user.email || "No email"}
                 </div>
               </div>
-              <div className="text-sm text-gray-500 ml-auto">
+              <div className="text-sm text-muted-foreground ml-auto">
                 <Badge variant={user.status === "paid" ? "paid" : "success"}>
                   {user.status || "No status"}
                 </Badge>

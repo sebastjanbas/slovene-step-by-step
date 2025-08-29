@@ -8,17 +8,26 @@ import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   IconBrush,
   IconCalendar,
-  IconExternalLink,
+  IconClock,
+  IconLanguage,
   IconMapPin,
+  IconMoneybag,
   IconSearch,
   IconUser,
+  IconUsers,
+  IconWorldPin,
 } from "@tabler/icons-react";
 import { toZonedTime } from "date-fns-tz";
-import { useTranslations } from "next-intl";
 import {
   Dialog,
   DialogContent,
@@ -55,7 +64,6 @@ const Bookings = ({ locale }: { locale: string }) => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [booking, setBooking] = useState<Booking | null>(null);
   const [loading, setLoading] = useState(true);
-  const t = useTranslations("dashboard.events");
 
   useEffect(() => {
     if (!bookingId) {
@@ -130,46 +138,65 @@ const Bookings = ({ locale }: { locale: string }) => {
           <>
             <Card className="w-full max-w-md mx-auto min-w-sm">
               <CardHeader className="text-center text-2xl font-medium tracking-tight">
-                <CardTitle>Booking Details</CardTitle>
+                <CardTitle>{booking.theme}</CardTitle>
+                <CardDescription>
+                  <p className="text-base text-muted-foreground text-center">
+                    {booking.tutor}
+                  </p>
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="text-center space-y-2">
-                  <div className="flex items-center justify-center gap-2 text-sm">
-                    <IconCalendar className="w-4 h-4" />
-                    <span>
-                      {toZonedTime(
-                        booking.date,
-                        "Europe/Ljubljana"
-                      ).toLocaleDateString(locale, {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </span>
-                  </div>
-                  <p className="font-medium">{booking.theme}</p>
-                  <p className="text-sm text-muted-foreground">
-                    {t("event-tutor", { tutor: booking.tutor })}
+                <div className="text-start text-sm text-muted-foreground flex flex-col gap-2">
+                  <p className="text-sm text-muted-foreground text-center mb-2">
+                    {booking.description}
                   </p>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="flex flex-col gap-2">
+                      <p className="inline-flex items-center gap-2">
+                        <IconWorldPin className="w-6 h-6 text-green-700/80 dark:text-green-500/80" />
+                        <a
+                          href={`https://www.google.com/maps/search/?api=1&query=${booking.location}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {booking.location}
+                        </a>
+                      </p>
+                      <p className="inline-flex items-center gap-2">
+                        <IconClock className="w-6 h-6 text-red-700/80 dark:text-red-500/80" />
+                        {booking.duration} min
+                      </p>
+                      <p className="inline-flex items-center gap-2">
+                        <IconUsers className="w-6 h-6 text-indigo-700/80 dark:text-indigo-400/80" />
+                        {booking.peopleBooked} / {booking.maxBooked} booked
+                      </p>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <p className="inline-flex items-center gap-2">
+                        <IconLanguage className="w-6 h-6 text-blue-700/80 dark:text-blue-500/80" />
+                        {booking.level} level
+                      </p>
+                      <p className="inline-flex items-center gap-2">
+                        <IconMoneybag className="w-6 h-6 text-yellow-600 dark:text-yellow-500/80" />
+                        {booking.price} EUR
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-start text-sm text-muted-foreground">
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${booking.location}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t("event-location")}
-                    <span className="inline-flex items-center gap-1">
-                      {booking.location}{" "}
-                      <IconExternalLink className="w-4 h-4" />
-                    </span>
-                  </a>
-                  <p>{t("event-duration", { duration: booking.duration })}</p>
-                  <p>level: {booking.level}</p>
-                  <p>price: {booking.price}</p>
-                  <p>maxBooked: {booking.maxBooked}</p>
+                <div className="flex items-center justify-center gap-2 text-sm">
+                  <IconCalendar className="w-4 h-4" />
+                  <span>
+                    {toZonedTime(
+                      booking.date,
+                      "Europe/Ljubljana"
+                    ).toLocaleDateString(locale, {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </span>
                 </div>
               </CardContent>
             </Card>
