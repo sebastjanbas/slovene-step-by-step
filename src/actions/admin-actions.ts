@@ -112,13 +112,15 @@ export const getPeopleBooked = async (bookingId: number) => {
   const client = await clerkClient();
   try {
     const users = await db.select({
+      status: langClubBookingsTable.status,
       userId: langClubBookingsTable.userId,
     }).from(langClubBookingsTable).innerJoin(langClubTable, eq(langClubBookingsTable.eventId, langClubTable.id))
     .where(eq(langClubTable.id, bookingId));
-    const usersWithNames = await Promise.all(users.map(async (user: { userId: string }) => {
+    const usersWithNames = await Promise.all(users.map(async (user: { userId: string, status: string }) => {
       const userData = await client.users.getUser(user.userId);
       return {
         ...user,
+        status: user.status,
         coverImage: userData.imageUrl,
         name: userData.fullName,
         email: userData.emailAddresses[0].emailAddress,

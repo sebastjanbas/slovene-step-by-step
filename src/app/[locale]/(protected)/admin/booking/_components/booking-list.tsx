@@ -1,6 +1,7 @@
 "use client";
 import { getPeopleBooked } from "@/actions/admin-actions";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -10,6 +11,7 @@ type User = {
   coverImage: string;
   name: string;
   email: string;
+  status: string;
 };
 
 const BookingList = () => {
@@ -82,6 +84,11 @@ const BookingList = () => {
                 <div className="text-sm text-gray-500">
                   {user.email || "No email"}
                 </div>
+              </div>
+              <div className="text-sm text-gray-500 ml-auto">
+                <Badge variant={user.status === "paid" ? "paid" : "success"}>
+                  {user.status || "No status"}
+                </Badge>
               </div>
             </li>
           ))}
