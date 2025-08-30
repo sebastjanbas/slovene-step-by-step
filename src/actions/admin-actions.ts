@@ -58,14 +58,13 @@ export async function getUsers(search: string | null) {
     })),
   };
 }
-
 export async function addEvent(values:z.infer<typeof eventSchema>) {
-
+  const formattedDate = values.date.split('T')[0] + 'T' + values.time + ':00.000+02:00'
   try {
     await db.insert(langClubTable).values({
       theme: values.theme,
       tutor: values.tutor,
-      date: new Date(values.date + ' ' + values.time),
+      date: new Date(formattedDate),
       description: values.description,
       price: values.price,
       level: values.level,
@@ -83,6 +82,27 @@ export async function addEvent(values:z.infer<typeof eventSchema>) {
   }
 }
 
+export async function editEvent(values:z.infer<typeof eventSchema>, id: number) {
+  const formattedDate = values.date.split('T')[0] + 'T' + values.time + ':00.000+02:00'
+  try {
+    await db.update(langClubTable).set({
+      theme: values.theme,
+      tutor: values.tutor,
+      date: new Date(formattedDate),
+      description: values.description,
+      price: values.price,
+      level: values.level,
+      duration: Number(values.duration),
+      location: values.location,
+      maxBooked: Number(values.spots),
+    }).where(eq(langClubTable.id, id));
+    return { message: 'Event edited', success: true }
+  } catch (error) {
+    console.error(error);
+    return { message: 'Error editing event', success: false }
+  }
+}
+
 export async function getBookingById(id: number) {
   try {
     const booking = await db.query.langClubTable.findFirst({
@@ -91,7 +111,7 @@ export async function getBookingById(id: number) {
     return booking;
   } catch (error) {
     console.error(error);
-    return []
+    return null
   }
 }
 
@@ -132,5 +152,18 @@ export const getPeopleBooked = async (bookingId: number) => {
   } catch (error) {
     console.error(error);
     return []
+  }
+}
+
+export const deleteEvent = async (id: number) => {
+  try {
+    await db.delete(langClubTable).where(eq(langClubTable.id, id));
+    return { message: 'Event deleted', success: true }
+  } catch (error) {
+    console.error(error);
+    if (error?.cause?.code === "23503") {
+      return { message: 'Event is associated with a booking', success: false }
+    }
+    return { message: 'Error deleting event', success: false }
   }
 }

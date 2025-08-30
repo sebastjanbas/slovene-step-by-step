@@ -28,11 +28,12 @@ import {
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { addEvent } from "@/actions/admin-actions";
+import { addEvent, editEvent } from "@/actions/admin-actions";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toZonedTime } from "date-fns-tz";
+import { Booking } from "../../booking/_components/bookings";
 
 export const eventSchema = z.object({
   theme: z.string().min(2, {
@@ -69,8 +70,10 @@ export const eventSchema = z.object({
 
 const AddEventForm = ({
   setIsOpen,
+  booking,
 }: {
   setIsOpen: (isOpen: boolean) => void;
+  booking?: Booking | null;
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [editingField, setEditingField] = useState<string | null>(null);
@@ -78,16 +81,16 @@ const AddEventForm = ({
   const form = useForm<z.infer<typeof eventSchema>>({
     resolver: zodResolver(eventSchema),
     defaultValues: {
-      theme: "Event Theme",
-      tutor: "Tutor Name",
-      date: "",
-      time: "",
-      description: "Event description goes here...",
-      price: "25.00",
-      level: "A1",
-      duration: "60",
-      spots: "10",
-      location: "Ljubljana",
+      theme: booking?.theme || "Event Theme",
+      tutor: booking?.tutor || "Tutor Name",
+      date: booking ? new Date(booking.date).toISOString() : "",
+      time: booking ? new Date(booking.date).toISOString() : "",
+      description: booking?.description || "Event description goes here...",
+      price: booking?.price.toString() || "25.00",
+      level: booking?.level || "A1",
+      duration: booking?.duration?.toString() || "60",
+      spots: booking?.maxBooked?.toString() || "10",
+      location: booking?.location || "Ljubljana",
     },
   });
 
@@ -107,7 +110,9 @@ const AddEventForm = ({
 
   const onSubmit = async (values: z.infer<typeof eventSchema>) => {
     setIsLoading(true);
-    const response = await addEvent(values);
+    const response = booking
+      ? await editEvent(values, booking.id)
+      : await addEvent(values);
     if (response.success) {
       toast.success(response.message);
       router.refresh();
@@ -191,8 +196,32 @@ const AddEventForm = ({
                 )}
                 {renderEditableField(
                   "time",
-                  form.watch("time"),
-                  "Time",
+                  (() => {
+                    const timeValue = form.watch("time");
+                    if (!timeValue) return "";
+                    // If the value is an ISO string, parse and format it
+                    // If the value is already in "HH:MM" format, just show it
+                    // Try to detect if it's an ISO string (contains "T")
+                    if (
+                      typeof timeValue === "string" &&
+                      timeValue.includes("T")
+                    ) {
+                      // Parse as date and format as HH:MM
+                      const date = new Date(timeValue);
+                      // If invalid date, fallback to raw value
+                      if (isNaN(date.getTime())) return timeValue;
+                      return toZonedTime(
+                        date,
+                        "Europe/Ljubljana"
+                      ).toLocaleTimeString("sl-SI", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      });
+                    }
+                    // If it's already in "HH:MM" format, just return it
+                    return timeValue;
+                  })(),
+                  "HH:MM",
                   "time"
                 )}
               </div>
@@ -345,6 +374,8 @@ const AddEventForm = ({
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
+              ) : booking ? (
+                "Edit Event"
               ) : (
                 "Add Event"
               )}

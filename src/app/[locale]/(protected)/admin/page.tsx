@@ -97,7 +97,7 @@ const ComingSoonOverlay = () => {
 
 const AdminManagementCards = () => {
   return (
-    <div className="flex w-full max-w-6xl flex-col-reverse md:flex-row gap-6 justify-center items-stretch mx-auto">
+    <div className="flex w-full max-w-6xl flex-col-reverse xl:flex-row gap-6 justify-center items-stretch mx-auto">
       <Card
         className="w-full rounded-2xl shadow-xl relative overflow-hidden"
         aria-disabled={true}

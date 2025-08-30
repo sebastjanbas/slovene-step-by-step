@@ -17,11 +17,26 @@ import { toZonedTime } from "date-fns-tz";
 import { Checkbox } from "@/components/ui/checkbox";
 import { CheckedState } from "@radix-ui/react-checkbox";
 import { Link } from "@/i18n/routing";
+import { toast } from "sonner";
+import { deleteEvent } from "@/actions/admin-actions";
+import { IconCalendarEvent, IconEdit, IconTrash } from "@tabler/icons-react";
+import { useEditDialog } from "./edit-dialog-context";
+
+const handleDeleteEvent = async (id: number, router: any) => {
+  const res = await deleteEvent(id);
+  if (res.success) {
+    toast.success(res.message);
+    router.refresh();
+  } else {
+    toast.error(res.message);
+  }
+};
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Payment = typeof langClubTable.$inferSelect;
-export const columns: ColumnDef<Payment>[] = [
+export type Event = typeof langClubTable.$inferSelect;
+
+export const createColumns = (router: any): ColumnDef<Event>[] => [
   {
     id: "select",
     header: ({ table }) => (
@@ -157,36 +172,58 @@ export const columns: ColumnDef<Payment>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const event = row.original;
+      // Move the cell content to a React component to use hooks safely
+      function ActionsCell({ event }: { event: any }) {
+        const { openDialog } = useEditDialog();
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0 cursor-pointer">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="space-y-1">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() =>
+                  navigator.clipboard.writeText(event.id.toString())
+                }
+              >
+                Copy event ID
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                className="cursor-pointer inline-flex items-center gap-2"
+                onClick={() => openDialog(event.id)}
+              >
+                <IconEdit className="w-4 h-4" />
+                Edit booking
+              </DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer" asChild>
+                <Link
+                  href={`/admin/booking?id=${event.id}` as any}
+                  className="inline-flex items-center gap-2"
+                >
+                  <IconCalendarEvent className="w-4 h-4" /> View booking
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="cursor-pointer bg-red-100 hover:!bg-red-200 text-destructive hover:!text-destructive"
+                onClick={() => handleDeleteEvent(event.id, router)}
+              >
+                <IconTrash className="w-4 h-4 text-destructive" /> Delete
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      }
 
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0 cursor-pointer">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              className="cursor-pointer"
-              onClick={() => navigator.clipboard.writeText(event.id.toString())}
-            >
-              Copy event ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer">
-              Edit event
-            </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer" asChild>
-              <Link href={`/admin/booking?id=${event.id}` as any}>
-                View booking
-              </Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+      return <ActionsCell event={row.original} />;
     },
   },
 ];
+
+// Keep the old export for backward compatibility
+export const columns = createColumns(null);

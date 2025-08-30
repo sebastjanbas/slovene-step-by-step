@@ -1,11 +1,8 @@
-import { db } from "@/db";
-import { langClubTable } from "@/db/schema";
-import React from "react";
-import { DataTable } from "./_components/data-table";
-import { columns } from "./_components/columns";
+import React, { Suspense } from "react";
+import LangDataTable from "./_components/lang-data-table";
+import { IconLoader2 } from "@tabler/icons-react";
 
-const LanguageClubAdmin = async () => {
-  const events = await db.select().from(langClubTable);
+const LanguageClubAdmin = () => {
   return (
     <div className="flex flex-col gap-4 w-full justify-center items-center mt-10 p-5">
       <h1 className="text-2xl font-bold text-center">
@@ -16,7 +13,11 @@ const LanguageClubAdmin = async () => {
       </p>
       <div className="w-full mt-10">
         <h2 className="text-xl font-bold text-start">Language Club Events</h2>
-        <DataTable columns={columns} data={events} />
+        <Suspense
+          fallback={<IconLoader2 className="h-8 w-8 animate-spin mx-auto" />}
+        >
+          <LangDataTable />
+        </Suspense>
       </div>
     </div>
   );

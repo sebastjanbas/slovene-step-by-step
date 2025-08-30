@@ -38,7 +38,7 @@ import {
 } from "@/components/ui/dialog";
 
 // Define the type for the booking based on the schema
-type Booking = {
+export type Booking = {
   id: number;
   tutor: string;
   date: Date | string;

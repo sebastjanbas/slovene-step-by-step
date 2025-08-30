@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  ColumnDef,
   ColumnFiltersState,
   flexRender,
   getCoreRowModel,
@@ -36,22 +35,27 @@ import {
   IconChevronRight,
 } from "@tabler/icons-react";
 import AddEventDialog from "./add-event-dialog";
+import { useRouter } from "@/i18n/routing";
+import { createColumns, Event } from "./columns";
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+interface DataTableProps {
+  data: Event[];
+  filteredEvents: Event[];
 }
 
-export function DataTable<TData, TValue>({
-  columns,
-  data,
-}: DataTableProps<TData, TValue>) {
+export function DataTable({ data, filteredEvents }: DataTableProps) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
+  const [showAllEvents, setShowAllEvents] = useState(false);
+  const router = useRouter();
+
+  // Create columns with router access
+  const columns = createColumns(router);
+
   const table = useReactTable({
-    data,
+    data: showAllEvents ? data : filteredEvents,
     columns,
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
@@ -82,6 +86,12 @@ export function DataTable<TData, TValue>({
         />
         <div className="flex items-center gap-2">
           <AddEventDialog />
+          <Button
+            variant="outline"
+            onClick={() => setShowAllEvents(!showAllEvents)}
+          >
+            {showAllEvents ? "Show relevant" : "Show all"}
+          </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline">
@@ -140,7 +150,6 @@ export function DataTable<TData, TValue>({
                 let isPast = false;
                 if (dateCell) {
                   // The value may be a Date or a string, try to parse
-                  // @ts-expect-error: we expect row.original to have a date property for this table
                   const dateValue = row.original.date;
                   let eventDate: Date | null = null;
                   if (dateValue instanceof Date) {
@@ -159,7 +168,9 @@ export function DataTable<TData, TValue>({
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
-                    className={isPast ? "bg-red-500/10" : ""}
+                    className={
+                      isPast ? "bg-red-500/10 hover:bg-red-500/20" : ""
+                    }
                   >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
