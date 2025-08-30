@@ -7,6 +7,7 @@ import { routing } from "../../i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "sonner";
+import { WelcomeRedirectProvider } from "@/components/providers/welcome-redirect-provider";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -38,7 +39,9 @@ export default async function LocaleLayout({ children, params }) {
             enableSystem
             disableTransitionOnChange
           >
-            <main>{children}</main>
+            <WelcomeRedirectProvider>
+              <main>{children}</main>
+            </WelcomeRedirectProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

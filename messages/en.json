@@ -1,4 +1,35 @@
 {
+  "welcome": {
+    "title": "Welcome to",
+    "description": "Let's personalize your learning journey.",
+    "progress": {
+      "steps": "Step {step} of {total}",
+      "complete": "{percentage}% Complete"
+    },
+    "navigation": {
+      "back": "Back",
+      "next": "Next",
+      "complete": "Complete",
+      "completing": "Setting up..."
+    },
+    "par1": {
+      "title": "What's your current Slovene level?",
+      "description": "This helps us match you with the right lessons and materials."
+    },
+    "par2": {
+      "title": "Choose your preferred tutor",
+      "description": "Select a tutor that matches your learning goals and style.",
+      "info-message": "You can change your tutor later."
+    },
+    "par3": {
+      "title": "What are your learning goals?",
+      "description": "Select all that apply - this helps us personalize your experience."
+    },
+    "par4": {
+      "title": "When do you prefer to study?",
+      "description": "We will try to schedule your lessons during these times."
+    }
+  },
   "common": {
     "buttons": {
       "get-started": "Get started",

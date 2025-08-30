@@ -1,13 +1,44 @@
 {
+  "welcome": {
+    "title": "Benvenuto in",
+    "description": "Personalizza il tuo percorso di apprendimento.",
+    "progress": {
+      "steps": "Passo {step} di {total}",
+      "complete": "{percentage}% Completato"
+    },
+    "navigation": {
+      "back": "Indietro",
+      "next": "Avanti",
+      "complete": "Completato",
+      "completing": "Configurazione..."
+    },
+    "par1": {
+      "title": "Qual è il tuo livello attuale di sloveno?",
+      "description": "Questo ci aiuta a trovare le lezioni e i materiali giusti per te."
+    },
+    "par2": {
+      "title": "Scegli il tuo insegnante preferito",
+      "description": "Seleziona un insegnante che corrisponda ai tuoi obiettivi di apprendimento e stile.",
+      "info-message": "Puoi cambiare il tuo insegnante in seguito."
+    },
+    "par3": {
+      "title": "Quali sono i tuoi obiettivi di apprendimento?",
+      "description": "Seleziona tutti quelli che si applicano - questo ci aiuta a personalizzare la tua esperienza."
+    },
+    "par4": {
+      "title": "Quando preferisci studiare?",
+      "description": "Proveremo a programmare le tue lezioni durante queste ore."
+    }
+  },
   "common": {
     "buttons": {
       "get-started": "Iniziare",
-      "learn-more": "Learn more",
+      "learn-more": "Scopri di più",
       "contact-us": "Contattaci",
-      "log-in": "Log in",
-      "sign-up": "Creare un account",
+      "log-in": "Accedi",
+      "sign-up": "Crea un account",
       "back-to-home": "Torna alla home page",
-      "start": "Inizia il tuo viaggio!",
+      "start": "Inizia oggi stesso!",
       "pricing": "Visualizza i prezzi",
       "cancel": "Annulla",
       "cancel-booking": "Annulla prenotazione",

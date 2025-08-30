@@ -2,7 +2,8 @@ import { UserProvider } from "@/components/dashboard/auth/user-context";
 import { SiteHeader } from "@/components/dashboard/sidebar/app-header";
 import { AppSidebar } from "@/components/dashboard/sidebar/app-sidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { auth } from "@clerk/nextjs/server";
+import { redirect as redirectI18n } from "@/i18n/routing";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { ReactNode, Suspense } from "react";
 
@@ -17,6 +18,12 @@ const ProtectedLayout = async ({ children, params }: ProtectedLayoutProps) => {
 
   if (!userId) {
     redirect(`/sign-in?locale=${locale}`);
+  }
+  const user = await currentUser();
+
+  const hasCompletedOnboarding = user.unsafeMetadata?.onboardingCompleted;
+  if (!hasCompletedOnboarding) {
+    redirectI18n({ href: "/welcome", locale: locale });
   }
 
   return (

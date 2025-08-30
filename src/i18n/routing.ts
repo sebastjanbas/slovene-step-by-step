@@ -107,6 +107,12 @@ export const routing = defineRouting({
       sl: '/mentorji',
       ru: '/учителя',
       it: '/tutori'
+    },
+    "/welcome": {
+      en: '/welcome',
+      sl: '/dobrodosli',
+      ru: '/добро-пожаловать',
+      it: '/benvenuto'
     }
   },
 

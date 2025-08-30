@@ -1,4 +1,35 @@
 {
+  "welcome": {
+    "title": "Dobrodošli pri",
+    "description": "Ustvarite svojo učno pot.",
+    "progress": {
+      "steps": "Korak {step} od {total}",
+      "complete": "{percentage}% Dokončano"
+    },
+    "navigation": {
+      "back": "Nazaj",
+      "next": "Naprej",
+      "complete": "Dokončaj",
+      "completing": "Shranjevanje..."
+    },
+    "par1": {
+      "title": "Kakšen je vaš trenutni slovenščinski nivo?",
+      "description": "To nam pomaga, da vam zagotovimo prave lekcije in gradiva."
+    },
+    "par2": {
+      "title": "Izberite svojega učitelja",
+      "description": "Izberite učitelja, ki ustreza vašim ciljem in stilu učenja.",
+      "info-message": "Tutorja lahko spremenite kasneje."
+    },
+    "par3": {
+      "title": "Kakšni so vaši cilji učenja?",
+      "description": "Izberite vse, kar ustreza - to nam pomaga prilagoditi vašo izkušnjo."
+    },
+    "par4": {
+      "title": "Kdaj bi radučili učiti?",
+      "description": "Poskusili bomo najbolje urediti vaše ure v teh časih."
+    }
+  },
   "common": {
     "buttons": {
       "get-started": "Začni zdaj",

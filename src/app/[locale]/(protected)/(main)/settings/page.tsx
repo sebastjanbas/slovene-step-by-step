@@ -3,6 +3,7 @@ import AccountCard from "./_components/account-card";
 import EmailCard from "./_components/email-card";
 import PasswordCard from "./_components/password-card";
 import DevicesCard from "./_components/devices-card";
+import PreferencesForm from "./_components/preferences-form";
 
 const SettingsPage = ({ params }) => {
   const { locale } = params;
@@ -38,6 +39,7 @@ const SettingsPage = ({ params }) => {
             <AccountCard />
             <EmailCard locale={locale} />
             <PasswordCard />
+            <PreferencesForm />
             <DevicesCard />
           </div>
         </TabsContent>

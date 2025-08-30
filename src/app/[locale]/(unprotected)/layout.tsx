@@ -9,7 +9,6 @@ const UnprotectedLayout = ({ children, params }) => {
   return (
     <>
       <AnimatedLayout>
-        {/* <Banner textColor={"text-[#DC770A]"} bgColor={"bg-[#FFFFD0]"} /> */}
         <div className="sticky top-0 z-50">
           <NavBar locale={locale} />
         </div>
