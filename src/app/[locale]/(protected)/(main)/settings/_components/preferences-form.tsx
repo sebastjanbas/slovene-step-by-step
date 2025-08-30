@@ -12,15 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  IconBook,
-  IconUsers,
-  IconCalendar,
-  IconTrophy,
-  IconUser,
-  IconCheck,
-  IconEdit,
-} from "@tabler/icons-react";
+import { IconCheck, IconEdit } from "@tabler/icons-react";
 import { toast } from "sonner";
 import {
   getUserPreferences,
