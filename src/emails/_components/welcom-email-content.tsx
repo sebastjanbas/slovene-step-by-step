@@ -66,11 +66,9 @@ const getEmailTranslations = (locale: string) => {
 const WelcomeEmailContent = ({
   name,
   locale,
-  url,
 }: {
   name: string;
   locale: string;
-  url: string;
 }) => {
   const year = new Date().getFullYear();
   const t = getEmailTranslations(locale);
@@ -83,7 +81,7 @@ const WelcomeEmailContent = ({
           <Row>
             <Column align="center">
               <Img
-                src={`${url}/logo-image.png`}
+                src={`https://www.slovenscinakzk.com/logo-image.png`}
                 alt="Slovenščina Korak za Korakom"
                 width={80}
                 height={80}
@@ -105,7 +103,7 @@ const WelcomeEmailContent = ({
             </Text>
             <Button
               className="mt-[16px] rounded-xl bg-brand px-[24px] py-[12px] font-semibold text-white"
-              href={`${url}/${locale}/dashboard`}
+              href={`https://www.slovenscinakzk.com/${locale}/dashboard`}
             >
               {t.getStarted}
             </Button>
@@ -122,7 +120,7 @@ const WelcomeEmailContent = ({
                 <td className="px-[10px]">
                   <Link
                     className="text-slate-700 [text-decoration:none] font-medium"
-                    href={`${url}/${locale}/dashboard`}
+                    href={`https://www.slovenscinakzk.com/${locale}/dashboard`}
                   >
                     {t.dashboard}
                   </Link>
@@ -130,7 +128,7 @@ const WelcomeEmailContent = ({
                 <td className="px-[10px]">
                   <Link
                     className="text-slate-700 [text-decoration:none] font-medium"
-                    href={`${url}/${locale}/about-us`}
+                    href={`https://www.slovenscinakzk.com/${locale}/about-us`}
                   >
                     {t.about}
                   </Link>
@@ -138,7 +136,7 @@ const WelcomeEmailContent = ({
                 <td className="px-[10px]">
                   <Link
                     className="text-slate-700 [text-decoration:none] font-medium"
-                    href={`${url}/${locale}/pricing`}
+                    href={`https://www.slovenscinakzk.com/${locale}/pricing`}
                   >
                     {t.pricing}
                   </Link>

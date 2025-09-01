@@ -1,10 +1,14 @@
 "use server";
-import { auth } from "@clerk/nextjs/server";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 import { db } from "@/db";
 import { langClubBookingsTable, langClubTable } from "@/db/schema";
 import { and, eq, gt, ne, or } from "drizzle-orm";
 import Stripe from "stripe";
+import BookingConfEmail from "@/emails/booking-conf-email";
+import { Resend } from "resend";
+import { toZonedTime } from "date-fns-tz";
 
+const resend = new Resend(process.env.RESEND_API_KEY);
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-07-30.basil",
 });
@@ -13,9 +17,11 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 export const bookEventDirect = async (eventId: string) => {
   try {
     const { userId } = await auth();
+    const client = await clerkClient();
     if (!userId) {
       return { error: "Unauthorized", status: 401 };
     }
+    const user = await client.users.getUser(userId);
 
     if (!eventId) {
       return { error: "Event ID is required", status: 400 };
@@ -79,6 +85,34 @@ export const bookEventDirect = async (eventId: string) => {
       })
       .where(eq(langClubTable.id, Number(eventId)));
 
+    // Send email confirmation
+    const { data: emailData, error: emailError } = await resend.emails.send({
+      from: "Slovenščina Korak za Korakom <notifications@slovenscinakzk.com>",
+      to: [user.emailAddresses[0].emailAddress],
+      subject: "Booking Confirmation",
+      react: BookingConfEmail({
+        name: user.firstName,
+        locale: user.unsafeMetadata.locale as string,
+        lessonDate: toZonedTime(event.date, "Europe/Ljubljana").toLocaleDateString(user.unsafeMetadata.locale as string, {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        lessonDuration: event.duration,
+        teacherName: event.tutor,
+        lessonTheme: event.theme,
+        lessonLocation: event.location,
+        lessonDescription: event.description,
+        lessonLevel: event.level,
+      }),
+    });
+
+    if (emailError) {
+      return { error: "Email could not be send" };
+    }
+
     return {
       success: true,
       bookingId: booking[0].id,
@@ -92,6 +126,7 @@ export const bookEventDirect = async (eventId: string) => {
         description: event.description,
         level: event.level,
       },
+      emailData: emailData,
     };
   } catch (error) {
     console.error("Error booking event directly:", error);
@@ -400,9 +435,13 @@ export const cancelBooking = async (bookingId: number) => {
     // Check if the event is more than 48 hours in the future (allow cancellation only if more than 48 hours remain)
     const now = new Date();
     const eventDate = new Date(event.date);
-    const hoursUntilEvent = (eventDate.getTime() - now.getTime()) / (1000 * 60 * 60);
+    const hoursUntilEvent =
+      (eventDate.getTime() - now.getTime()) / (1000 * 60 * 60);
     if (hoursUntilEvent <= 48) {
-      return { error: "Cannot cancel events within 48 hours of the start time", status: 400 };
+      return {
+        error: "Cannot cancel events within 48 hours of the start time",
+        status: 400,
+      };
     }
 
     if (booking.status === "paid") {
