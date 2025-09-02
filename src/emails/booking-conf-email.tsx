@@ -12,7 +12,7 @@ import BookingConfEmailContent from "./_components/booking-conf-email-content";
 interface BookingConfEmailProps {
   name: string;
   locale: string;
-  lessonDate: string;
+  lessonDate: Date;
   lessonDuration: number;
   teacherName: string;
   lessonTheme: string;
@@ -97,7 +97,7 @@ export default BookingConfEmail;
 BookingConfEmail.PreviewProps = {
   name: "Sebastjan Bas",
   locale: "sl",
-  lessonDate: "2024-12-25 at 14:00",
+  lessonDate: new Date(),
   lessonDuration: 60,
   teacherName: "Anna Novak",
   lessonTheme: "Culture",

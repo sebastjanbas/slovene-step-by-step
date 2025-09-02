@@ -6,7 +6,6 @@ import { and, eq, gt, ne, or } from "drizzle-orm";
 import Stripe from "stripe";
 import BookingConfEmail from "@/emails/booking-conf-email";
 import { Resend } from "resend";
-import { toZonedTime } from "date-fns-tz";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -85,6 +84,18 @@ export const bookEventDirect = async (eventId: string) => {
       })
       .where(eq(langClubTable.id, Number(eventId)));
 
+    // Generate ICS file
+    const icsContent = generateICSFile(
+      booking[0].id.toString(),
+      user.unsafeMetadata.locale as string,
+      event.date,
+      event.duration,
+      new Date(),
+      event.description,
+      event.location,
+      event.theme
+    );
+
     // Send email confirmation
     const { data: emailData, error: emailError } = await resend.emails.send({
       from: "Slovenščina Korak za Korakom <notifications@slovenscinakzk.com>",
@@ -93,13 +104,7 @@ export const bookEventDirect = async (eventId: string) => {
       react: BookingConfEmail({
         name: user.firstName,
         locale: user.unsafeMetadata.locale as string,
-        lessonDate: toZonedTime(event.date, "Europe/Ljubljana").toLocaleDateString(user.unsafeMetadata.locale as string, {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
+        lessonDate: event.date,
         lessonDuration: event.duration,
         teacherName: event.tutor,
         lessonTheme: event.theme,
@@ -107,6 +112,13 @@ export const bookEventDirect = async (eventId: string) => {
         lessonDescription: event.description,
         lessonLevel: event.level,
       }),
+      attachments: [
+        {
+          filename: "event.ics",
+          content: Buffer.from(icsContent),
+          contentType: "text/calendar; method=REQUEST; charset=UTF-8",
+        },
+      ],
     });
 
     if (emailError) {
@@ -491,4 +503,46 @@ export const cancelBooking = async (bookingId: number) => {
     console.error("Cancel booking error:", error);
     return { error: "Internal server error", status: 500 };
   }
+};
+
+// Generate ICS file for calendar invite
+const generateICSFile = (
+  bookingId: string,
+  locale: string = "en",
+  date: Date,
+  duration: number,
+  createdAt: Date,
+  description: string,
+  location: string,
+  theme: string
+) => {
+  const startDate = date
+    .toISOString()
+    .replaceAll("-", "")
+    .replaceAll(":", "")
+    .replaceAll(".", "");
+  const endDate = new Date(date.getTime() + duration * 60000)
+    .toISOString()
+    .replaceAll("-", "")
+    .replaceAll(":", "")
+    .replaceAll(".", "");
+  const dtstamp = createdAt
+    .toISOString()
+    .replaceAll("-", "")
+    .replaceAll(":", "")
+    .replaceAll(".", "");
+  const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//slovenscinakzk.com//Calendar Invite//${locale.toUpperCase()}
+BEGIN:VEVENT
+UID:${bookingId}@slovenscinakzk.com
+DTSTAMP:${dtstamp}
+DTSTART:${startDate}
+DTEND:${endDate}
+SUMMARY:Pogovorni klub - ${theme}
+DESCRIPTION:${description}
+LOCATION:${location}
+END:VEVENT
+END:VCALENDAR`;
+  return icsContent;
 };

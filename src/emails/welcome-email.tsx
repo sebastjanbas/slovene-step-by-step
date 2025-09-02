@@ -14,8 +14,6 @@ interface WelcomeEmailProps {
   locale: string;
 }
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL_IMAGE || "";
-
 export const WelcomeEmail = ({ name, locale = "en" }: WelcomeEmailProps) => {
   const translations = {
     sl: {
@@ -61,7 +59,7 @@ export const WelcomeEmail = ({ name, locale = "en" }: WelcomeEmailProps) => {
           {translations[locale as keyof typeof translations].preview}
         </Preview>
         <Body className="bg-offwhite font-sans text-base">
-          <WelcomeEmailContent name={name} locale={locale} url={baseUrl} />
+          <WelcomeEmailContent name={name} locale={locale} />
         </Body>
       </Tailwind>
     </Html>

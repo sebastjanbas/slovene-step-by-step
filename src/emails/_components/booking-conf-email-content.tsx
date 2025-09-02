@@ -5,10 +5,10 @@ import {
   Row,
   Section,
   Heading,
-  Button,
   Text,
   Link,
 } from "@react-email/components";
+import { toZonedTime } from "date-fns-tz";
 import React from "react";
 
 // Simple translation function for emails
@@ -128,7 +128,7 @@ const BookingConfEmailContent = ({
 }: {
   name: string;
   locale: string;
-  lessonDate: string;
+  lessonDate: Date;
   lessonDuration: number;
   teacherName: string;
   lessonTheme: string;
@@ -138,17 +138,6 @@ const BookingConfEmailContent = ({
 }) => {
   const year = new Date().getFullYear();
   const t = getEmailTranslations(locale);
-
-  // Create calendar event details
-  // const eventTitle = `Slovene Lesson with ${teacherName}`;
-  // const eventDescription = `${lessonTheme} lesson with ${teacherName} - ${lessonDescription} - ${lessonLevel}`;
-
-  // Google Calendar URL
-  // const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&details=${encodeURIComponent(eventDescription)}&dates=${encodeURIComponent(lessonDate.replace(/-/g, ""))}T${encodeURIComponent(lessonTime.replace(":", ""))}00Z/${encodeURIComponent(lessonDate.replace(/-/g, ""))}T${encodeURIComponent((parseInt(lessonTime.split(":")[0]) + lessonDuration).toString().padStart(2, "0") + lessonTime.split(":")[1])}00Z`;
-
-  // Apple Calendar URL (ics file)
-  // const appleCalendarUrl = `data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:${lessonDate.replace(/-/g, "")}T${lessonTime.replace(":", "")}00Z%0ADTEND:${lessonDate.replace(/-/g, "")}T${(parseInt(lessonTime.split(":")[0]) + lessonDuration).toString().padStart(2, "0") + lessonTime.split(":")[1]}00Z%0ASUMMARY:${encodeURIComponent(eventTitle)}%0ADESCRIPTION:${encodeURIComponent(eventDescription)}%0AEND:VEVENT%0AEND:VCALENDAR`;
-
   return (
     <>
       {/* Header with Logo */}
@@ -216,7 +205,18 @@ const BookingConfEmailContent = ({
               <Text className="font-medium text-gray-700">{t.date}:</Text>
             </Column>
             <Column>
-              <Text className="text-gray-900">{lessonDate}</Text>
+              <Text className="text-gray-900">
+                {toZonedTime(lessonDate, "Europe/Ljubljana").toLocaleDateString(
+                  locale,
+                  {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  }
+                )}
+              </Text>
             </Column>
           </Row>
 
@@ -266,7 +266,7 @@ const BookingConfEmailContent = ({
         </Section>
 
         {/* Calendar Integration */}
-        <Section className="mt-[32px]">
+        {/* <Section className="mt-[32px]">
           <Heading
             as="h3"
             className="text-[20px] font-semibold text-gray-900 mb-[16px] text-center"
@@ -278,7 +278,7 @@ const BookingConfEmailContent = ({
             <Column className="w-1/2 pr-[8px]">
               <Button
                 className="w-full rounded-xl bg-blue-600 px-[20px] py-[12px] font-semibold text-white"
-                // href={googleCalendarUrl}
+                href={googleCalendarUrl}
               >
                 {t.googleCalendar}
               </Button>
@@ -292,7 +292,7 @@ const BookingConfEmailContent = ({
               </Button>
             </Column>
           </Row>
-        </Section>
+        </Section> */}
 
         {/* Personal Message */}
         <Section className="mt-[32px] text-center">
