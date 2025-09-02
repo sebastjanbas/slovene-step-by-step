@@ -7,7 +7,7 @@ const AdminLayout = async ({ children, params }) => {
   const isModerator = await checkRole("moderator");
   const { locale } = await params;
   if (!isAdmin && !isModerator) {
-    redirect({ href: "/", locale });
+    redirect({ href: "/dashboard", locale });
     return null;
   }
   return <div className="flex flex-col gap-2 w-full h-full">{children}</div>;

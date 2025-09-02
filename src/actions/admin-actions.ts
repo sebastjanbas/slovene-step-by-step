@@ -83,7 +83,14 @@ export async function addEvent(values:z.infer<typeof eventSchema>) {
 }
 
 export async function editEvent(values:z.infer<typeof eventSchema>, id: number) {
-  const formattedDate = values.date.split('T')[0] + 'T' + values.time + ':00.000+02:00'
+  let time = '';
+  // If the time is an ISO string, parse and format it
+  if (values.time.includes('T')) {
+    time = values.time.split('T')[1];
+  } else {
+    time = values.time + ":00.000+02:00";
+  }
+  const formattedDate = values.date.split('T')[0] + 'T' + time 
   try {
     await db.update(langClubTable).set({
       theme: values.theme,
