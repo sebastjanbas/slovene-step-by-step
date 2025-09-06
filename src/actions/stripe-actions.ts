@@ -14,7 +14,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 // Direct booking without Stripe checkout
 export const bookEventDirect = async (eventId: string) => {
-  try {
     const { userId } = await auth();
     const client = await clerkClient();
     if (!userId) {
@@ -26,6 +25,7 @@ export const bookEventDirect = async (eventId: string) => {
       return { error: "Event ID is required", status: 400 };
     }
 
+  try {
     // Get the event details
     const event = await db.query.langClubTable.findFirst({
       where: eq(langClubTable.id, Number(eventId)),
@@ -150,7 +150,6 @@ export const createCheckoutSession = async (
   eventId: string,
   locale: "en" | "it" | "sl" | "ru"
 ) => {
-  try {
     const { userId } = await auth();
     if (!userId) {
       return { error: "Unauthorized", status: 401 };
@@ -158,8 +157,10 @@ export const createCheckoutSession = async (
 
     if (!eventId) {
       return { error: "Event ID is required", status: 400 };
+
     }
 
+  try {
     // Get the event details
     const event = await db.query.langClubTable.findFirst({
       where: eq(langClubTable.id, Number(eventId)),
@@ -241,7 +242,6 @@ export const rescheduleBooking = async (
   bookingId: string,
   newEventId: string
 ) => {
-  try {
     const { userId } = await auth();
     if (!userId) {
       return { error: "Unauthorized", status: 401 };
@@ -250,7 +250,7 @@ export const rescheduleBooking = async (
     if (!bookingId || !newEventId) {
       return { error: "Booking ID and new event ID are required", status: 400 };
     }
-
+  try {
     // Get the current booking details
     const currentBooking = await db.query.langClubBookingsTable.findFirst({
       where: and(
@@ -361,7 +361,6 @@ export const rescheduleBooking = async (
 };
 
 export const getAvailableEvents = async (currentEventId: number) => {
-  try {
     const { userId } = await auth();
     if (!userId) {
       return { error: "Unauthorized", status: 401 };
@@ -370,7 +369,7 @@ export const getAvailableEvents = async (currentEventId: number) => {
     if (!currentEventId) {
       return { error: "Current event ID is required", status: 400 };
     }
-
+  try {
     // Get all future events that are not the current event
     const now = new Date();
     const events = await db.query.langClubTable.findMany({
@@ -409,6 +408,7 @@ export const getAvailableEvents = async (currentEventId: number) => {
 };
 
 export const cancelBooking = async (bookingId: number) => {
+
   try {
     const { userId } = await auth();
     if (!userId) {
