@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+#editor settings
+.editorconfig
+
 # next.js
 /.next/
 /out/

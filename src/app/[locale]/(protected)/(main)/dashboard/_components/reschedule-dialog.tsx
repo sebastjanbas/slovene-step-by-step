@@ -47,6 +47,53 @@ interface RescheduleDialogProps {
   bookingId: number;
   locale: string;
 }
+const translations = {
+  en: {
+    errors: {
+      "failed-to-load-events": "Failed to load available events",
+      "failed-to-reschedule": "Failed to reschedule booking",
+      "please-select-event": "Please select an event to reschedule to",
+    },
+    success: {
+      "booking-rescheduled": "Booking rescheduled successfully",
+    },
+  },
+  sl: {
+    errors: {
+      "failed-to-load-events": "Napaka pri nalaganju dostopnih dogodkov",
+      "failed-to-reschedule": "Napaka pri ponovni rezervaciji dogodka",
+      "please-select-event": "Prosimo izberite dogodek za ponovno rezervacijo",
+    },
+    success: {
+      "booking-rescheduled": "Nov dogodek uspešno rezerviran",
+    },
+  },
+  it: {
+    errors: {
+      "failed-to-load-events": "Impossibile caricare gli eventi disponibili",
+      "failed-to-reschedule": "Impossibile ripetere la prenotazione",
+      "please-select-event": "Prosimo selezionare un evento per la ripetizione",
+    },
+    success: {
+      "booking-rescheduled": "Prenotazione ripetuta con successo",
+    },
+  },
+  ru: {
+    errors: {
+      "failed-to-load-events": "Не удалось загрузить доступные события",
+      "failed-to-reschedule": "Не удалось повторно забронировать",
+      "please-select-event":
+        "Пожалуйста, выберите событие для повторной бронирования",
+    },
+    success: {
+      "booking-rescheduled": "Бронь успешно повторно забронирована",
+    },
+  },
+};
+
+const getTranslations = (locale: string) => {
+  return translations[locale as keyof typeof translations] || translations.en;
+};
 
 const RescheduleDialog = ({
   open,
@@ -76,11 +123,11 @@ const RescheduleDialog = ({
       if (response.success) {
         setEvents(response.events);
       } else {
-        toast.error("Failed to load available events");
+        toast.error(getTranslations(locale).errors["failed-to-load-events"]);
       }
     } catch (error) {
       console.error("Error fetching events:", error);
-      toast.error("Failed to load available events");
+      toast.error(getTranslations(locale).errors["failed-to-load-events"]);
     } finally {
       setIsLoadingEvents(false);
     }
@@ -88,7 +135,7 @@ const RescheduleDialog = ({
 
   const handleReschedule = async () => {
     if (!selectedEventId) {
-      toast.error("Please select an event to reschedule to");
+      toast.error(getTranslations(locale).errors["please-select-event"]);
       return;
     }
 
@@ -100,15 +147,18 @@ const RescheduleDialog = ({
       );
 
       if (response.success) {
-        toast.success("Booking rescheduled successfully");
+        toast.success(getTranslations(locale).success["booking-rescheduled"]);
         onOpenChange(false);
         router.refresh();
       } else {
-        toast.error(response.error || "Failed to reschedule booking");
+        toast.error(
+          response.error ||
+            getTranslations(locale).errors["failed-to-reschedule"]
+        );
       }
     } catch (error) {
       console.error("Reschedule error:", error);
-      toast.error("Failed to reschedule booking");
+      toast.error(getTranslations(locale).errors["failed-to-reschedule"]);
     } finally {
       setIsLoading(false);
     }
