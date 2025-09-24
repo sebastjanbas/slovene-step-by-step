@@ -1,10 +1,10 @@
 "use client";
 
+import { SignInPoster } from "@/components/icons/sign-in-poster";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/contexts/locale-context";
 import { SignIn } from "@clerk/nextjs";
 import { IconChevronLeft } from "@tabler/icons-react";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function SigninPage() {
@@ -16,8 +16,18 @@ export default function SigninPage() {
           <IconChevronLeft className="size-8" />
         </Link>
       </Button>
-      <div className="flex flex-1/2 justify-center items-center">
+      <div className="h-full flex flex-row w-full max-w-6xl justify-between items-center mx-auto p-10">
         <SignIn
+          fallback={
+            <div className="w-[450px] h-[350px] bg-foreground/5 animate-pulse rounded-3xl p-5">
+              <div className="w-[150px] h-[20px] mx-auto mt-8 bg-foreground/10 animate-pulse rounded-full" />
+              <div className="w-[350px] h-[30px] mx-auto mt-8 bg-foreground/15 animate-pulse rounded-full" />
+              <div className="w-[350px] h-[2px] mx-auto mt-8 bg-foreground/10 animate-pulse rounded-full" />
+              <div className="w-[150px] h-[15px] ml-8 mt-8 bg-foreground/10 animate-pulse rounded-full" />
+              <div className="w-[350px] h-[30px] mx-auto mt-2 bg-foreground/15 animate-pulse rounded-full" />
+              <div className="w-[350px] h-[35px] mx-auto mt-8 bg-foreground/20 animate-pulse rounded-full" />
+            </div>
+          }
           appearance={{
             elements: {
               cardBox: {
@@ -39,17 +49,7 @@ export default function SigninPage() {
             welcome: true,
           }}
         />
-      </div>
-      <div className="hidden md:flex h-full flex-1/2">
-        <Image
-          className="object-cover"
-          src={
-            "https://placehold.co/1280x1920/EEE/31343C/png/?text=Placeholder&font=nato-sans"
-          }
-          alt="Placeholder image"
-          width={1280}
-          height={1920}
-        />
+        <SignInPoster />
       </div>
     </div>
   );
