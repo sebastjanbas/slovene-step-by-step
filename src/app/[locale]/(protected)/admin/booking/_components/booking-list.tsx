@@ -84,7 +84,15 @@ const BookingList = () => {
                 </div>
               </div>
               <div className="text-sm text-muted-foreground ml-auto">
-                <Badge variant={user.status === "paid" ? "paid" : "success"}>
+                <Badge
+                  variant={
+                    user.status === "paid"
+                      ? "paid"
+                      : user.status === "cancelled"
+                        ? "destructive"
+                        : "success"
+                  }
+                >
                   {user.status || "No status"}
                 </Badge>
               </div>

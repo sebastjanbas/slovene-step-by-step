@@ -14,16 +14,16 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 // Direct booking without Stripe checkout
 export const bookEventDirect = async (eventId: string) => {
-    const { userId } = await auth();
-    const client = await clerkClient();
-    if (!userId) {
-      return { error: "Unauthorized", status: 401 };
-    }
-    const user = await client.users.getUser(userId);
+  const { userId } = await auth();
+  const client = await clerkClient();
+  if (!userId) {
+    return { error: "Unauthorized", status: 401 };
+  }
+  const user = await client.users.getUser(userId);
 
-    if (!eventId) {
-      return { error: "Event ID is required", status: 400 };
-    }
+  if (!eventId) {
+    return { error: "Event ID is required", status: 400 };
+  }
 
   try {
     // Get the event details
@@ -150,15 +150,14 @@ export const createCheckoutSession = async (
   eventId: string,
   locale: "en" | "it" | "sl" | "ru"
 ) => {
-    const { userId } = await auth();
-    if (!userId) {
-      return { error: "Unauthorized", status: 401 };
-    }
+  const { userId } = await auth();
+  if (!userId) {
+    return { error: "Unauthorized", status: 401 };
+  }
 
-    if (!eventId) {
-      return { error: "Event ID is required", status: 400 };
-
-    }
+  if (!eventId) {
+    return { error: "Event ID is required", status: 400 };
+  }
 
   try {
     // Get the event details
@@ -242,14 +241,14 @@ export const rescheduleBooking = async (
   bookingId: string,
   newEventId: string
 ) => {
-    const { userId } = await auth();
-    if (!userId) {
-      return { error: "Unauthorized", status: 401 };
-    }
+  const { userId } = await auth();
+  if (!userId) {
+    return { error: "Unauthorized", status: 401 };
+  }
 
-    if (!bookingId || !newEventId) {
-      return { error: "Booking ID and new event ID are required", status: 400 };
-    }
+  if (!bookingId || !newEventId) {
+    return { error: "Booking ID and new event ID are required", status: 400 };
+  }
   try {
     // Get the current booking details
     const currentBooking = await db.query.langClubBookingsTable.findFirst({
@@ -361,14 +360,14 @@ export const rescheduleBooking = async (
 };
 
 export const getAvailableEvents = async (currentEventId: number) => {
-    const { userId } = await auth();
-    if (!userId) {
-      return { error: "Unauthorized", status: 401 };
-    }
+  const { userId } = await auth();
+  if (!userId) {
+    return { error: "Unauthorized", status: 401 };
+  }
 
-    if (!currentEventId) {
-      return { error: "Current event ID is required", status: 400 };
-    }
+  if (!currentEventId) {
+    return { error: "Current event ID is required", status: 400 };
+  }
   try {
     // Get all future events that are not the current event
     const now = new Date();
@@ -408,7 +407,6 @@ export const getAvailableEvents = async (currentEventId: number) => {
 };
 
 export const cancelBooking = async (bookingId: number) => {
-
   try {
     const { userId } = await auth();
     if (!userId) {
@@ -449,9 +447,9 @@ export const cancelBooking = async (bookingId: number) => {
     const eventDate = new Date(event.date);
     const hoursUntilEvent =
       (eventDate.getTime() - now.getTime()) / (1000 * 60 * 60);
-    if (hoursUntilEvent <= 48) {
+    if (hoursUntilEvent <= 24) {
       return {
-        error: "Cannot cancel events within 48 hours of the start time",
+        error: "Cannot cancel events within 24 hours of the start time",
         status: 400,
       };
     }
@@ -493,6 +491,14 @@ export const cancelBooking = async (bookingId: number) => {
           updatedAt: new Date(),
         })
         .where(eq(langClubBookingsTable.id, bookingId));
+
+      // Decrease the number of people booked for the event
+      await db
+        .update(langClubTable)
+        .set({
+          peopleBooked: event.peopleBooked - 1,
+        })
+        .where(eq(langClubTable.id, booking.eventId));
 
       return {
         success: true,
