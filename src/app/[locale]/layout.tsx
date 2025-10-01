@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "sonner";
 import { WelcomeRedirectProvider } from "@/components/providers/welcome-redirect-provider";
 import { Analytics } from "@vercel/analytics/next";
+import HreflangLinks from "@/components/seo/hreflang-links";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -31,6 +32,9 @@ export default async function LocaleLayout({ children, params }) {
 
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <HreflangLinks />
+      </head>
       <body>
         <Toaster richColors position="top-center" />
         <NextIntlClientProvider messages={messages}>
