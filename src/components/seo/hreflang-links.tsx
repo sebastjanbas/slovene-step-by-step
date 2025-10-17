@@ -21,7 +21,7 @@ export default async function HreflangLinks({
           key={loc}
           rel="alternate"
           hrefLang={loc}
-          href={`https://slovenscinakzk.com/${loc}${pathname}`}
+          href={`https://slovenscinakzk.com/${loc}/${pathname}`}
         />
       ))}
       <link
