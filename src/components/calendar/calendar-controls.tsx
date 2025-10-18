@@ -46,7 +46,7 @@ export const CalendarControls = (props: CalendarControlsProps) => {
         </h2>
       </div>
 
-      <div className="flex items-center gap-2 justify-between w-full">
+      <div className="flex flex-col-reverse md:flex-row items-center gap-2 md:justify-between w-full">
         <div className="flex items-center gap-2">
           <Button onClick={props.goToPrev} variant="outline" size="sm">
             <IconChevronLeft className="h-4 w-4" />

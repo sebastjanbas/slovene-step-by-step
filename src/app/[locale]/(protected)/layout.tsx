@@ -40,11 +40,9 @@ const ProtectedLayout = async ({ children, params }: ProtectedLayoutProps) => {
           <Suspense fallback={<div>Loading...</div>}>
             <AppSidebar variant="inset" locale={locale} />
           </Suspense>
-          <SidebarInset className="overflow-hidden bg-white dark:bg-background">
+          <SidebarInset>
             <SiteHeader />
-            <main className="bg-white dark:bg-background h-[90vh] overflow-y-scroll">
-              {children}
-            </main>
+            <main className="bg-white dark:bg-background">{children}</main>
           </SidebarInset>
         </SidebarProvider>
       </UserProvider>

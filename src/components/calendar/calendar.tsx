@@ -60,14 +60,14 @@ export default function Calendar() {
     setSelectedTutorId(tutorId);
   };
 
-  const changeView = (viewName: string) => {
+  const changeView = useCallback((viewName: string) => {
     const calendarApi = calendarRef.current?.getApi();
     if (calendarApi) {
       calendarApi.changeView(viewName);
       setCurrentView(viewName);
       updateCalendarTitle();
     }
-  };
+  }, []);
 
   const handleMoreEventsClick = useCallback(
     (date: Date) => {
@@ -207,7 +207,7 @@ export default function Calendar() {
   };
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-full flex flex-col">
       <div className="flex-shrink-0">
         <CalendarControls
           calendarTitle={calendarTitle}
@@ -228,7 +228,7 @@ export default function Calendar() {
       </div>
 
       {/* FullCalendar Component */}
-      <div className="flex-1 min-h-0">
+      <div className="flex-1 min-h-0 h-screen">
         <FullCalendar
           locale={locale}
           ref={calendarRef}

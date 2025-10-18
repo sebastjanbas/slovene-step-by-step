@@ -11,7 +11,6 @@ import {
   IconSettings,
   IconTrophy,
   IconUserCog,
-  IconUsers,
 } from "@tabler/icons-react";
 
 export const webNavigation = [
