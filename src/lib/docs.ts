@@ -1,4 +1,3 @@
-
 import {
   IconBrandParsinta,
   IconCalendar,
@@ -19,7 +18,6 @@ export const webNavigation = [
   { name: "pricing", href: "/pricing" },
   // { name: "features", href: "/features" },
   { name: "about", href: "/about-us" },
-
 ];
 
 export const stats = [
@@ -69,8 +67,7 @@ export const people = [
 export const reviews = [
   {
     id: 1,
-    image:
-      "/foto-vlad.png",
+    image: "/foto-vlad.png",
     name: "Vlad Lisin",
     role: "student",
     text: "vlad-lisin",
@@ -78,8 +75,7 @@ export const reviews = [
   },
   {
     id: 2,
-    image:
-      "/foto-anna.png",
+    image: "/foto-anna.png",
     name: "Anna Kotelnikova",
     role: "student",
     text: "anna-kotelnikova",
@@ -87,8 +83,7 @@ export const reviews = [
   },
   {
     id: 3,
-    image:
-      "/foto-oleksiy.png",
+    image: "/foto-oleksiy.png",
     name: "Oleksiy Molchanov",
     role: "student",
     text: "alexander-molchanov",
@@ -96,8 +91,7 @@ export const reviews = [
   },
   {
     id: 4,
-    image:
-      "/foto-evgenia.png",
+    image: "/foto-evgenia.png",
     name: "Evgenia Rudakova",
     role: "student",
     text: "evgenia-rudakova",
@@ -105,8 +99,7 @@ export const reviews = [
   },
   {
     id: 5,
-    image:
-      "/foto-violeta.png",
+    image: "/foto-violeta.png",
     name: "Violeta Lisin",
     role: "student",
     text: "violeta-lisin",
@@ -114,8 +107,7 @@ export const reviews = [
   },
   {
     id: 6,
-    image:
-      "/foto-oleg.png",
+    image: "/foto-oleg.png",
     name: "Oleg Kotelnikov",
     role: "student",
     text: "oleg-kotelnikov",
@@ -136,7 +128,10 @@ export const footerLinks = {
   ],
   Company: [
     { name: "about", href: "/about-us" },
-    { name: "contact", href: "mailto:sebastjan.bas@gmail.com?cc=almn140803@gmail.com&subject=[Slovene Step By Step] - Support&body=<Enter your message here.>" },
+    {
+      name: "contact",
+      href: "mailto:sebastjan.bas@gmail.com?cc=almn140803@gmail.com&subject=[Slovene Step By Step] - Support&body=<Enter your message here.>",
+    },
     { name: "faq", href: "/pricing#FAQ" },
   ],
   Legal: [
@@ -148,64 +143,63 @@ export const footerLinks = {
 
 export const offers = [
   {
-      name: 'Duo Plan',
-      id: 'tier-duo',
-      href: '/dashboard',
-      priceMonthly: '€12.50',
-      description: 'plan1-desc',
-      features: [
-        "plan1-feature1",
-        "plan1-feature2",
-        "plan1-feature3",
-        "plan1-feature4",
-        "plan1-feature5",
-        "plan1-feature6",
-        "plan1-feature7",
-        "plan1-feature8",
-        "plan1-feature9",
-      ],
-      featured: false,
-    },
-    {
-      name: 'Individual',
-      id: 'tier-individual',
-      href: 'dashboard',
-      priceMonthly: '€16',
-      description: "plan2-desc",
-      features: [
-        "plan2-feature1",
-        "plan2-feature2",
-        "plan2-feature3",
-        "plan2-feature4",
-        "plan2-feature5",
-        "plan2-feature6",
-        "plan2-feature7",
-        "plan2-feature8",
-        "plan2-feature9",
-      ],
-      featured: true,
-    },
-    {
-      name: 'Family Plan',
-      id: 'tier-family',
-      href: '/dashboard',
-      priceMonthly: '€11',
-      description: "plan3-desc",
-      features: [
-        "plan3-feature1",
-        "plan3-feature2",
-        "plan3-feature3",
-        "plan3-feature4",
-        "plan3-feature5",
-        "plan3-feature6",
-        "plan3-feature7",
-        "plan3-feature8",
-        "plan3-feature9",
-      ],
-      featured: false,
+    name: "Duo Plan",
+    id: "tier-duo",
+    href: "/dashboard",
+    priceMonthly: "€12.50",
+    description: "plan1-desc",
+    features: [
+      "plan1-feature1",
+      "plan1-feature2",
+      "plan1-feature3",
+      "plan1-feature4",
+      "plan1-feature5",
+      "plan1-feature6",
+      "plan1-feature7",
+      "plan1-feature8",
+      "plan1-feature9",
+    ],
+    featured: false,
   },
-]
-
+  {
+    name: "Individual",
+    id: "tier-individual",
+    href: "dashboard",
+    priceMonthly: "€16",
+    description: "plan2-desc",
+    features: [
+      "plan2-feature1",
+      "plan2-feature2",
+      "plan2-feature3",
+      "plan2-feature4",
+      "plan2-feature5",
+      "plan2-feature6",
+      "plan2-feature7",
+      "plan2-feature8",
+      "plan2-feature9",
+    ],
+    featured: true,
+  },
+  {
+    name: "Family Plan",
+    id: "tier-family",
+    href: "/dashboard",
+    priceMonthly: "€11",
+    description: "plan3-desc",
+    features: [
+      "plan3-feature1",
+      "plan3-feature2",
+      "plan3-feature3",
+      "plan3-feature4",
+      "plan3-feature5",
+      "plan3-feature6",
+      "plan3-feature7",
+      "plan3-feature8",
+      "plan3-feature9",
+    ],
+    featured: false,
+  },
+];
 
 export const SidebarNavigationData = {
   navMain: [
@@ -225,19 +219,13 @@ export const SidebarNavigationData = {
       title: "calendar",
       url: "/calendar",
       icon: IconCalendarWeek,
-      disabled: true,
+      disabled: false,
     },
     {
       title: "language-club",
       url: "/language-club",
       icon: IconClubs,
       disabled: false,
-    },
-    {
-      title: "tutors",
-      url: "/tutors",
-      icon: IconUsers,
-      disabled: true,
     },
     {
       title: "dayly-practice",
@@ -302,272 +290,272 @@ export const SidebarNavigationData = {
   ],
 };
 
-  export const languageLevels = [
-    {
-      value: "A1",
-      label: {
-        ru: "A1 - Начальный",
-        en: "A1 - Beginner",
-        it: "A1 - Principiante",
-        sl: "A1 - Začetnik",
-      },
-      description: {
-        ru: "Нет предыдущих знаний словенского языка.",
-        en: "No prior knowledge of Slovenian.",
-        it: "Nessuna conoscenza pregressa di sloveno.",
-        sl: "Nič predhodnega znanja slovenščine.",
-      },
-      icon: "👶🏻",
+export const languageLevels = [
+  {
+    value: "A1",
+    label: {
+      ru: "A1 - Начальный",
+      en: "A1 - Beginner",
+      it: "A1 - Principiante",
+      sl: "A1 - Začetnik",
     },
-    {
-      value: "A2",
-      label: {
-        ru: "A2 - Средний",
-        en: "A2 - Elementary",
-        it: "A2 - Elementare",
-        sl: "A2 - Začetnik plus",
-      },
-      description: {
-        ru: "Базовое понимание и простые разговоры.",
-        en: "Basic understanding and simple conversations.",
-        it: "Comprendere e conversare in modo semplice.",
-        sl: "Osnovno razumevanje, preprosti pogovori.",
-      },
-      icon: "👦🏻",
+    description: {
+      ru: "Нет предыдущих знаний словенского языка.",
+      en: "No prior knowledge of Slovenian.",
+      it: "Nessuna conoscenza pregressa di sloveno.",
+      sl: "Nič predhodnega znanja slovenščine.",
     },
-    {
-      value: "B1",
-      label: {
-        ru: "B1 - Средний",
-        en: "B1 - Intermediate",
-        it: "B1 - Intermedio",
-        sl: "B1 - Srednji nivo",
-      },
-      description: {
-        ru: "Может обрабатывать большинство повседневных разговоров.",
-        en: "Can handle most everyday conversations.",
-        it: "Capire e conversare in modo fluente.",
-        sl: "Dobro razumevanje osnovnih pogovorov.",
-      },
-      icon: "👨🏻",
+    icon: "👶🏻",
+  },
+  {
+    value: "A2",
+    label: {
+      ru: "A2 - Средний",
+      en: "A2 - Elementary",
+      it: "A2 - Elementare",
+      sl: "A2 - Začetnik plus",
     },
-    {
-      value: "B2",
-      label: {
-        ru: "B2 - Продвинутый",
-        en: "B2 - Advanced",
-        it: "B2 - Avanzato",
-        sl: "B2 - Visok nivo",
-      },
-      description: {
-        ru: "Хорошее понимание в большинстве разговоров.",
-        en: "Good understanding and fluency in specific conversations.",
-        it: "Comprendere e conversare in modo fluente.",
-        sl: "Dobro razumevanje in uporaba jezika.",
-      },
-      icon: "🧔🏻‍♂️",
+    description: {
+      ru: "Базовое понимание и простые разговоры.",
+      en: "Basic understanding and simple conversations.",
+      it: "Comprendere e conversare in modo semplice.",
+      sl: "Osnovno razumevanje, preprosti pogovori.",
     },
-    {
-      value: "C1",
-      label: {
-        ru: "C1 - Мастер",
-        en: "C1 - Master",
-        it: "C1 - Maestro",
-        sl: "C1 - Master",
-      },
-      description: {
-        ru: "Беглое и стильное использование языка.",
-        en: "Fluent and sophisticated use of the language.",
-        it: "Padroneggiare la lingua in modo fluente e sofisticato.",
-        sl: "Odlično razumevanje in uporaba jezika.",
-      },
-      icon: "🎅🏻",
+    icon: "👦🏻",
+  },
+  {
+    value: "B1",
+    label: {
+      ru: "B1 - Средний",
+      en: "B1 - Intermediate",
+      it: "B1 - Intermedio",
+      sl: "B1 - Srednji nivo",
     },
-  ];
+    description: {
+      ru: "Может обрабатывать большинство повседневных разговоров.",
+      en: "Can handle most everyday conversations.",
+      it: "Capire e conversare in modo fluente.",
+      sl: "Dobro razumevanje osnovnih pogovorov.",
+    },
+    icon: "👨🏻",
+  },
+  {
+    value: "B2",
+    label: {
+      ru: "B2 - Продвинутый",
+      en: "B2 - Advanced",
+      it: "B2 - Avanzato",
+      sl: "B2 - Visok nivo",
+    },
+    description: {
+      ru: "Хорошее понимание в большинстве разговоров.",
+      en: "Good understanding and fluency in specific conversations.",
+      it: "Comprendere e conversare in modo fluente.",
+      sl: "Dobro razumevanje in uporaba jezika.",
+    },
+    icon: "🧔🏻‍♂️",
+  },
+  {
+    value: "C1",
+    label: {
+      ru: "C1 - Мастер",
+      en: "C1 - Master",
+      it: "C1 - Maestro",
+      sl: "C1 - Master",
+    },
+    description: {
+      ru: "Беглое и стильное использование языка.",
+      en: "Fluent and sophisticated use of the language.",
+      it: "Padroneggiare la lingua in modo fluente e sofisticato.",
+      sl: "Odlično razumevanje in uporaba jezika.",
+    },
+    icon: "🎅🏻",
+  },
+];
 
-  export const tutors = [
-    {
-      id: 1,
-      name: "Ela Remic",
-      description: {
-        ru: "Русскоязычный преподаватель, опытный с A1-B2",
-        en: "Russian-speaking tutor, experienced with A1-B2",
-        it: "Insegnante russo, esperto con A1-B2",
-        sl: "Rusko govoreči tutor, izkušen s A1-B2",
-      },
-      avatar: "/foto-ela.jpg",
+export const tutors = [
+  {
+    id: 1,
+    name: "Ela Remic",
+    description: {
+      ru: "Русскоязычный преподаватель, опытный с A1-B2",
+      en: "Russian-speaking tutor, experienced with A1-B2",
+      it: "Insegnante russo, esperto con A1-B2",
+      sl: "Rusko govoreči tutor, izkušen s A1-B2",
     },
-    {
-      id: 2,
-      name: "Oleksandr Tyutyunnyk",
-      description: {
-        ru: "Опытный преподаватель, терпелив к начинающим, высокий уровень знаний",
-        en: "Native Russian tutor, Patient with beginners, High level of knowledge",
-        it: "Insegnante esperto, paziente con principianti, alto livello di conoscenza",
-        sl: "Ruski tutor, Potrpljiv z začetniki, Visok nivo znanja",
-      },
-      avatar: "/foto-oleksandr3.jpg",
+    avatar: "/foto-ela.jpg",
+  },
+  {
+    id: 2,
+    name: "Oleksandr Tyutyunnyk",
+    description: {
+      ru: "Опытный преподаватель, терпелив к начинающим, высокий уровень знаний",
+      en: "Native Russian tutor, Patient with beginners, High level of knowledge",
+      it: "Insegnante esperto, paziente con principianti, alto livello di conoscenza",
+      sl: "Ruski tutor, Potrpljiv z začetniki, Visok nivo znanja",
     },
-    {
-      id: 3,
-      name: "Manca Levašič",
-      description: {
-        ru: "Родной язык",
-        en: "Russian-speaking tutor",
-        it: "Insegnante russo",
-        sl: "Rusko govoreči tutor",
-      },
-      avatar: "/foto-manca.png",
+    avatar: "/foto-oleksandr3.jpg",
+  },
+  {
+    id: 3,
+    name: "Manca Levašič",
+    description: {
+      ru: "Родной язык",
+      en: "Russian-speaking tutor",
+      it: "Insegnante russo",
+      sl: "Rusko govoreči tutor",
     },
-  ];
+    avatar: "/foto-manca.png",
+  },
+];
 
-  export const learningGoals = [
-    {
-      value: "travel",
-      label: {
-        ru: "Путешествия и туризм",
-        en: "Travel & Tourism",
-        it: "Viaggi & Turismo",
-        sl: "Potovanje in Turizem",
-      },
-      description: {
-        ru: "Планируете поездку в Словению?",
-        en: "Planning a trip to Slovenia?",
-        it: "Pianificando un viaggio in Slovenia?",
-        sl: "Planirate potovanje v Slovenijo?",
-      },
-      icon: "✈️",
+export const learningGoals = [
+  {
+    value: "travel",
+    label: {
+      ru: "Путешествия и туризм",
+      en: "Travel & Tourism",
+      it: "Viaggi & Turismo",
+      sl: "Potovanje in Turizem",
     },
-    {
-      value: "work",
-      label: {
-        ru: "Работа и карьера",
-        en: "Work & Career",
-        it: "Lavoro & Carriera",
-        sl: "Delo in Kariera",
-      },
-      description: {
-        ru: "Хотите улучшить свои шансы на трудоустройство?",
-        en: "Looking to improve your job prospects?",
-        it: "Vuoi migliorare le tue opportunità di lavoro?",
-        sl: "Želite izboljšati svoje zaposlitvene možnosti?",
-      },
-      icon: "💼",
+    description: {
+      ru: "Планируете поездку в Словению?",
+      en: "Planning a trip to Slovenia?",
+      it: "Pianificando un viaggio in Slovenia?",
+      sl: "Planirate potovanje v Slovenijo?",
     },
-    {
-      value: "relocation",
-      label: {
-        ru: "Переезд и интеграция",
-        en: "Relocation & Integration",
-        it: "Trasferimento & Integrazione",
-        sl: "Prehod in Integracija",
-      },
-      description: {
-        ru: "Хотите переехать в Словению?",
-        en: "Moving to Slovenia?",
-        it: "Trasferimento in Slovenia?",
-        sl: "Se želite preseliti v Slovenijo?",
-      },
-      icon: "🏠",
+    icon: "✈️",
+  },
+  {
+    value: "work",
+    label: {
+      ru: "Работа и карьера",
+      en: "Work & Career",
+      it: "Lavoro & Carriera",
+      sl: "Delo in Kariera",
     },
-    {
-      value: "academic",
-      label: {
-        ru: "Образование и личный рост",
-        en: "Education & Personal Growth",
-        it: "Istruzione & Crescita Personale",
-        sl: "Izobraževanje in Osebna Rast",
-      },
-      description: {
-        ru: "Хотите улучшить свои навыки для личных или академических целей?",
-        en: "Want to improve your skills for personal or academic purposes?",
-        it: "Vuoi migliorare le tue abilità per scopi personali o accademici?",
-        sl: "Želite izboljšati svoje sposobnosti za osebne ali akademske namene?",
-      },
-      icon: "🎓",
+    description: {
+      ru: "Хотите улучшить свои шансы на трудоустройство?",
+      en: "Looking to improve your job prospects?",
+      it: "Vuoi migliorare le tue opportunità di lavoro?",
+      sl: "Želite izboljšati svoje zaposlitvene možnosti?",
     },
-    {
-      value: "fun",
-      label: {
-        ru: "Развлечения и развлечения",
-        en: "Fun & Entertainment",
-        it: "Divertimento & Intrattenimento",
-        sl: "Zabava",
-      },
-      description: {
-        ru: "Хотите улучшить свои навыки для развлечений или развлечений?",
-        en: "Want to improve your skills for fun or entertainment?",
-        it: "Vuoi migliorare le tue abilità per divertimento o intrattenimento?",
-        sl: "Želite izboljšati svoje sposobnosti za zabavo?",
-      },
-      icon: "🎮",
+    icon: "💼",
+  },
+  {
+    value: "relocation",
+    label: {
+      ru: "Переезд и интеграция",
+      en: "Relocation & Integration",
+      it: "Trasferimento & Integrazione",
+      sl: "Prehod in Integracija",
     },
-    {
-      value: "family",
-      label: {
-        ru: "Семья и отношения",
-        en: "Family & Relationships",
-        it: "Famiglia & Relazioni",
-        sl: "Družina in Odnosi",
-      },
-      description: {
-        ru: "Хотите улучшить свои навыки для семьи или личных отношений?",
-        en: "Want to improve your skills for family or personal relationships?",
-        it: "Vuoi migliorare le tue abilità per famiglia o relazioni personali?",
-        sl: "Želite izboljšati svoje znanje za družinske ali osebne odnose?",
-      },
-      icon: "🤍",
+    description: {
+      ru: "Хотите переехать в Словению?",
+      en: "Moving to Slovenia?",
+      it: "Trasferimento in Slovenia?",
+      sl: "Se želite preseliti v Slovenijo?",
     },
-  ];
+    icon: "🏠",
+  },
+  {
+    value: "academic",
+    label: {
+      ru: "Образование и личный рост",
+      en: "Education & Personal Growth",
+      it: "Istruzione & Crescita Personale",
+      sl: "Izobraževanje in Osebna Rast",
+    },
+    description: {
+      ru: "Хотите улучшить свои навыки для личных или академических целей?",
+      en: "Want to improve your skills for personal or academic purposes?",
+      it: "Vuoi migliorare le tue abilità per scopi personali o accademici?",
+      sl: "Želite izboljšati svoje sposobnosti za osebne ali akademske namene?",
+    },
+    icon: "🎓",
+  },
+  {
+    value: "fun",
+    label: {
+      ru: "Развлечения и развлечения",
+      en: "Fun & Entertainment",
+      it: "Divertimento & Intrattenimento",
+      sl: "Zabava",
+    },
+    description: {
+      ru: "Хотите улучшить свои навыки для развлечений или развлечений?",
+      en: "Want to improve your skills for fun or entertainment?",
+      it: "Vuoi migliorare le tue abilità per divertimento o intrattenimento?",
+      sl: "Želite izboljšati svoje sposobnosti za zabavo?",
+    },
+    icon: "🎮",
+  },
+  {
+    value: "family",
+    label: {
+      ru: "Семья и отношения",
+      en: "Family & Relationships",
+      it: "Famiglia & Relazioni",
+      sl: "Družina in Odnosi",
+    },
+    description: {
+      ru: "Хотите улучшить свои навыки для семьи или личных отношений?",
+      en: "Want to improve your skills for family or personal relationships?",
+      it: "Vuoi migliorare le tue abilità per famiglia o relazioni personali?",
+      sl: "Želite izboljšati svoje znanje za družinske ali osebne odnose?",
+    },
+    icon: "🤍",
+  },
+];
 
-  export const scheduleOptions = [
-    {
-      value: "morning",
-      label: {
-        en: "Morning",
-        ru: "Утро",
-        it: "Mattina",
-        sl: "Zjutraj",
-      },
-      time: "8:00 - 12:00",
-      icon: "🌞",
+export const scheduleOptions = [
+  {
+    value: "morning",
+    label: {
+      en: "Morning",
+      ru: "Утро",
+      it: "Mattina",
+      sl: "Zjutraj",
     },
-    {
-      value: "afternoon",
-      label: {
-        en: "Afternoon",
-        ru: "Полдень",
-        it: "Pomeriggio",
-        sl: "Popoldne",
-      },
-      time: "12:00 - 17:00",
-      icon: "🌆",
+    time: "8:00 - 12:00",
+    icon: "🌞",
+  },
+  {
+    value: "afternoon",
+    label: {
+      en: "Afternoon",
+      ru: "Полдень",
+      it: "Pomeriggio",
+      sl: "Popoldne",
     },
-    {
-      value: "evening",
-      label: {
-        en: "Evening",
-        ru: "Вечер",
-        it: "Sera",
-        sl: "Večer",
-      },
-      time: "17:00 - 22:00",
-      icon: "🌃",
+    time: "12:00 - 17:00",
+    icon: "🌆",
+  },
+  {
+    value: "evening",
+    label: {
+      en: "Evening",
+      ru: "Вечер",
+      it: "Sera",
+      sl: "Večer",
     },
-    {
-      value: "flexible",
-      label: {
-        en: "Flexible",
-        ru: "Гибкий",
-        it: "Flessibile",
-        sl: "Flexibilen",
-      },
-      time: {
-        en: "Anytime",
-        ru: "В любое время",
-        it: "In qualsiasi momento",
-        sl: "Kadarkoli",
-      },
-      icon: "🕒",
+    time: "17:00 - 22:00",
+    icon: "🌃",
+  },
+  {
+    value: "flexible",
+    label: {
+      en: "Flexible",
+      ru: "Гибкий",
+      it: "Flessibile",
+      sl: "Flexibilen",
     },
-  ];
+    time: {
+      en: "Anytime",
+      ru: "В любое время",
+      it: "In qualsiasi momento",
+      sl: "Kadarkoli",
+    },
+    icon: "🕒",
+  },
+];

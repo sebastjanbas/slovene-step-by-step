@@ -40,18 +40,19 @@ export function NavMain({
         <SidebarMenu>
           {!isAdmin && (
             <SidebarMenuItem className="flex items-center gap-2">
-              <div className="bg-foreground text-background min-w-8 w-full rounded-lg px-2 py-1.5 inline-flex items-center gap-2 font-medium opacity-50">
+              <div className="bg-foreground text-background min-w-8 w-full rounded-lg px-2 py-1.5 inline-flex items-center gap-2 font-medium">
                 <IconCirclePlusFilled className="size-4" />
                 <span>{t("book-lesson")}</span>
               </div>
               <Button
                 size="icon"
-                disabled
                 className="size-8 bg-white cursor-pointer group-data-[collapsible=icon]:opacity-0"
                 variant="outline"
+                asChild
               >
-                <IconCalendarEvent className="text-foreground" />
-                <span className="sr-only">Inbox</span>
+                <Link href="/calendar">
+                  <IconCalendarEvent className="text-foreground" />
+                </Link>
               </Button>
             </SidebarMenuItem>
           )}

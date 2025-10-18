@@ -92,6 +92,17 @@
   --sl-secondary: oklch(40.688% 0.07454 285.625);
   --sl-accent: oklch(76.607% 0.10373 49.043);
   --sl-accent-hover: oklch(63.662% 0.11472 47.799);
+
+  /* Calendar Colors */
+  --calendar-today-bg: #ebf5ff;
+  --calendar-today-text: rgb(0, 0, 0);
+  --calendar-today-border: #6089cb;
+  --calendar-weekend-bg: rgba(0, 0, 0, 0.02);
+  --calendar-weekend-bg-hover: rgba(0, 0, 0, 0.02);
+  --calendar-hover-border: rgba(0, 0, 0, 0.1);
+  --calendar-cell-gap: 4px;
+  --calendar-cell-radius: 12px;
+  --calendar-header-radius: 6px;
 }
 
 .dark {
@@ -132,6 +143,17 @@
   --sl-secondary: oklch(73.531% 0.1076 286.481);
   --sl-accent: oklch(76.607% 0.10373 49.043);
   --sl-accent-hover: oklch(63.662% 0.11472 47.799);
+
+  /* Calendar Colors - Dark Mode */
+  --calendar-today-bg: #1a2531;
+  --calendar-today-text: #ffffff;
+  --calendar-today-border: #60a5fa;
+  --calendar-weekend-bg: rgba(255, 255, 255, 0.02);
+  --calendar-weekend-bg-hover: rgba(255, 255, 255, 0.05);
+  --calendar-hover-border: rgba(255, 255, 255, 0.1);
+  --calendar-cell-gap: 4px;
+  --calendar-cell-radius: 12px;
+  --calendar-header-radius: 6px;
 }
 
 @layer base {
