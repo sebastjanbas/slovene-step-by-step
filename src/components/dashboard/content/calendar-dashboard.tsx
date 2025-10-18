@@ -11,7 +11,7 @@ import { isSameDay } from "date-fns";
 import { enUS, it, Locale, ru, sl } from "date-fns/locale";
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
-import EventViewCalendar from "@/app/[locale]/(protected)/(main)/dashboard/_components/event-view-card";
+import EventViewCalendar from "@/app/[locale]/(protected)/dashboard/_components/event-view-card";
 
 export const localeMap: Record<string, Locale> = {
   en: {
