@@ -1,4 +1,21 @@
-import { integer, pgTable, text, timestamp, varchar, decimal } from "drizzle-orm/pg-core";
+import {
+  integer,
+  pgTable,
+  text,
+  timestamp,
+  varchar,
+  decimal,
+  // pgEnum,
+  jsonb,
+} from "drizzle-orm/pg-core";
+
+// export const sessionStatus = pgEnum("session_status", [
+//   "available",
+//   "booked",
+//   "cancelled",
+//   "completed",
+//   "no-show",
+// ]);
 
 export const langClubTable = pgTable("lang_club", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -18,12 +35,46 @@ export const langClubTable = pgTable("lang_club", {
 
 export const langClubBookingsTable = pgTable("lang_club_bookings", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  eventId: integer().notNull().references(() => langClubTable.id),
+  eventId: integer()
+    .notNull()
+    .references(() => langClubTable.id),
   userId: varchar({ length: 255 }).notNull(),
   stripeSessionId: varchar({ length: 255 }),
   stripePaymentIntentId: varchar({ length: 255 }),
   status: varchar({ length: 50 }).notNull().default("pending"), // pending, paid, cancelled, refunded
   amount: decimal({ precision: 10, scale: 2 }).notNull(),
+  createdAt: timestamp().notNull().defaultNow(),
+  updatedAt: timestamp().notNull().defaultNow(),
+});
+
+export const timeblocksTable = pgTable("timeblocks", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  tutorId: integer()
+    .notNull()
+    .references(() => tutorsTable.id),
+  startTime: timestamp({ withTimezone: true }).notNull(),
+  duration: integer().notNull(),
+  status: varchar({ length: 255 }).notNull(),
+  sessionType: varchar({ length: 255 }).notNull(),
+  location: varchar({ length: 255 }).notNull(),
+  studentId: integer().notNull(),
+});
+
+export const tutorsTable = pgTable("tutors", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  name: varchar({ length: 255 }).notNull(),
+  email: varchar({ length: 255 }).notNull().unique(),
+  phone: varchar({ length: 255 }).notNull(),
+  bio: text().notNull(),
+  avatar: varchar({ length: 255 }).notNull(),
+  color: varchar({ length: 255 }).notNull(),
+  clerkId: varchar({ length: 255 }).notNull().unique(),
+});
+
+export const schedulesTable = pgTable("schedules", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  ownerId: varchar({ length: 255 }).notNull(),
+  schedule: jsonb().notNull(),
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow(),
 });

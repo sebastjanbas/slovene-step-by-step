@@ -18,15 +18,10 @@ export interface TutoringSession {
   startTime: Date;
   endTime: Date;
   duration: number; // in minutes
-  isAvailable: boolean;
   sessionType: string;
-  level: string;
-  price: number;
   location: string;
+  status: string;
   description: string;
-  preparationNotes?: string;
-  maxStudents?: number;
-  currentStudents?: number;
 }
 
 // More flexible type for sessions array

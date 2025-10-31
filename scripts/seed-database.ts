@@ -1,5 +1,5 @@
-import { db } from "../src/db";
-import { langClubTable } from "../src/db/schema";
+import { db } from "@/db";
+import { langClubTable } from "@/db/schema";
 
 const sampleEvents = [
   {

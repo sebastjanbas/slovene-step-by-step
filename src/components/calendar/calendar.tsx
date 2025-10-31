@@ -1,29 +1,203 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
-import { sampleSessions, tutors } from "@/components/calendar/placeholder-data";
-import {
-  TutoringSession,
-  TutoringSessionArray,
-  EventClickArg,
-  EventDropArg,
-  EventResizeArg,
-} from "@/components/calendar/types";
+import { TutoringSession, EventClickArg } from "@/components/calendar/types";
 import { CalendarControls } from "@/components/calendar/calendar-controls";
 import { EventSheet } from "@/components/calendar/event-sheet";
 import "@/components/calendar/calendar-styles.css";
 import { useLocale } from "next-intl";
 
-export default function Calendar() {
+// Transform database tutors to the format expected by the calendar
+const transformTutors = (tutorsData: any[]) => {
+  return tutorsData.map((tutor) => ({
+    id: tutor.id.toString(),
+    name: tutor.name,
+    avatar: tutor.avatar,
+    color: tutor.color,
+    email: tutor.email,
+    phone: tutor.phone,
+    bio: tutor.bio,
+    specializations: [], // Add this field if you have it in your database
+  }));
+};
+
+// Generate available time slots from tutor schedules
+const generateAvailableSlots = (
+  schedulesData: any[],
+  tutorsData: any[],
+  timeblocksData: any[]
+) => {
+  const availableSlots: TutoringSession[] = [];
+  const now = new Date();
+  const fourWeeksFromNow = new Date(
+    now.getTime() + 4 * 7 * 24 * 60 * 60 * 1000
+  );
+
+  // Get all booked timeblocks for the next 4 weeks
+  const bookedTimeblocks = timeblocksData.filter((timeblock) => {
+    const startTime = new Date(timeblock.startTime);
+    return startTime >= now && startTime <= fourWeeksFromNow;
+  });
+
+  schedulesData.forEach((schedule) => {
+    const tutor = tutorsData.find((t) => t.clerkId === schedule.ownerId);
+    if (!tutor) return;
+
+    try {
+      const scheduleData =
+        typeof schedule.schedule === "string"
+          ? JSON.parse(schedule.schedule)
+          : schedule.schedule;
+
+
+      // Get the day of the week for the current date (0 = Sunday, 1 = Monday, etc.)
+      let dayOfTheWeek = new Date(now).getDay();
+
+      // Generate slots for each day of the week for the next 4 weeks
+      for (let week = 0; week < 4; week++) {
+        for (let day = 0; day < 7; day++) {
+          const currentDate = new Date(now);
+          currentDate.setDate(currentDate.getDate() + week * 7 + day);
+
+          // Skip past dates
+          if (currentDate < now) continue;
+
+          // Find the schedule for this day (0 = Sunday, 1 = Monday, etc.)
+          const daySchedule = scheduleData.find(
+            (scheduleDay: any) => scheduleDay.day === dayOfTheWeek%7
+          );
+          dayOfTheWeek++; // Move to the next day of the week
+
+          if (
+            daySchedule &&
+            daySchedule.timeSlots &&
+            daySchedule.timeSlots.length > 0
+          ) {
+            daySchedule.timeSlots.forEach((timeSlot: any) => {
+              const [startHour, startMinute] = timeSlot.startTime
+                .split(":")
+                .map(Number);
+
+              // Calculate end time using duration (in minutes)
+              const slotStart = new Date(currentDate);
+              slotStart.setHours(startHour, startMinute, 0, 0);
+
+              const slotEnd = new Date(
+                slotStart.getTime() + timeSlot.duration * 60000
+              );
+
+              // Skip if this slot is in the past
+              if (slotStart < now) return;
+
+              // Check if this time slot is already booked
+              const isBooked = bookedTimeblocks.some((booked) => {
+                const bookedStart = new Date(booked.startTime);
+                const bookedEnd = new Date(
+                  bookedStart.getTime() + booked.duration * 60000
+                );
+
+                return (
+                  booked.tutorId === tutor.id &&
+                  ((slotStart >= bookedStart && slotStart < bookedEnd) ||
+                    (slotEnd > bookedStart && slotEnd <= bookedEnd) ||
+                    (slotStart <= bookedStart && slotEnd >= bookedEnd))
+                );
+              });
+
+              if (!isBooked) {
+                const duration =
+                  (slotEnd.getTime() - slotStart.getTime()) / 60000; // in minutes
+
+                availableSlots.push({
+                  id: `available-${tutor.id}-${slotStart.getTime()}`,
+                  tutorId: tutor.id.toString(),
+                  tutorName: tutor.name,
+                  startTime: slotStart,
+                  endTime: slotEnd,
+                  duration: duration,
+                  status: "available",
+                  sessionType: "Available Slot",
+                  location: "Online", // Default location
+                  description: "Available for booking",
+                });
+              }
+            });
+          }
+        }
+      }
+    } catch {
+      // Handle schedule parsing errors silently
+    }
+  });
+
+  return availableSlots;
+};
+
+// Transform database timeblocks to TutoringSession format (for booked sessions)
+const transformTimeblocksToSessions = (
+  timeblocksData: any[],
+  tutorsData: any[]
+) => {
+  return timeblocksData.map((timeblock) => {
+    const tutor = tutorsData.find((t) => t.id === timeblock.tutorId);
+    const startTime = new Date(timeblock.startTime);
+    const endTime = new Date(startTime.getTime() + timeblock.duration * 60000); // duration in minutes
+
+    return {
+      id: timeblock.id.toString(),
+      tutorId: timeblock.tutorId.toString(),
+      tutorName: tutor?.name || "Unknown Tutor",
+      startTime: startTime,
+      endTime: endTime,
+      duration: timeblock.duration,
+      sessionType: timeblock.sessionType,
+      location: timeblock.location,
+      status: timeblock.status,
+      description: timeblock.description,
+    };
+  });
+};
+
+interface CalendarProps {
+  scheduleData: any;
+  timeblocksData: any;
+  tutorsData: any;
+}
+
+export default function Calendar({
+  scheduleData,
+  timeblocksData,
+  tutorsData,
+}: CalendarProps) {
   const locale = useLocale();
-  const [allEvents, setAllEvents] =
-    useState<TutoringSessionArray>(sampleSessions);
-  const [events, setEvents] = useState<TutoringSessionArray>(sampleSessions);
+
+  // Transform the data from a database
+  const transformedTutors = transformTutors(tutorsData);
+
+  // Generate available slots from schedules
+  const availableSlots = generateAvailableSlots(
+    scheduleData,
+    tutorsData,
+    timeblocksData
+  );
+
+  // Get booked sessions (only future ones)
+  const bookedSessions = transformTimeblocksToSessions(
+    timeblocksData,
+    tutorsData
+  ).filter((session) => session.startTime >= new Date());
+
+  // Combine available slots and booked sessions
+  const allSessions = useMemo(
+    () => [...availableSlots, ...bookedSessions],
+    [availableSlots, bookedSessions]
+  );
+
   const [selectedEvent, setSelectedEvent] = useState<TutoringSession | null>(
     null
   );
@@ -33,6 +207,15 @@ export default function Calendar() {
   const [currentView, setCurrentView] = useState("dayGridMonth");
   const [showWeekends, setShowWeekends] = useState(true);
   const [selectedTutorId, setSelectedTutorId] = useState<string | null>(null);
+
+  // Filter events based on the selected tutor
+  const events = useMemo(() => {
+    if (selectedTutorId === null) {
+      return allSessions;
+    } else {
+      return allSessions.filter((event) => event.tutorId === selectedTutorId);
+    }
+  }, [allSessions, selectedTutorId]);
   const calendarRef = useRef<FullCalendar>(null);
 
   // Initialize calendar title
@@ -43,18 +226,6 @@ export default function Calendar() {
 
     return () => clearTimeout(timer);
   }, []);
-
-  // Filter events based on selected tutor
-  useEffect(() => {
-    if (selectedTutorId === null) {
-      setEvents(allEvents);
-    } else {
-      const filteredEvents = allEvents.filter(
-        (event) => event.tutorId === selectedTutorId
-      );
-      setEvents(filteredEvents);
-    }
-  }, [selectedTutorId, allEvents]);
 
   const handleTutorSelect = (tutorId: string | null) => {
     setSelectedTutorId(tutorId);
@@ -90,12 +261,12 @@ export default function Calendar() {
         daysToSubtract
       );
 
-      // Set the calendar to week view and navigate to that week
+      // Set the calendar-to-week view and navigate to that week
       if (calendarRef.current) {
         const calendarApi = calendarRef.current.getApi();
         // Navigate to the specific date first
         calendarApi.gotoDate(startOfWeek);
-        // Use the existing changeView function to properly update state
+        // Use the existing changeView function to properly update the state
         changeView("timeGridWeek");
       }
     },
@@ -125,7 +296,7 @@ export default function Calendar() {
       }
     };
 
-    // Add event listener to the calendar container
+    // Add an event listener to the calendar container
     const calendarApi = calendarRef.current?.getApi();
     if (calendarApi) {
       const calendarEl = (calendarApi as any).el;
@@ -137,9 +308,9 @@ export default function Calendar() {
       }
     }
   }, [handleMoreEventsClick]);
-
-  const handleEventCreate = (newSession: TutoringSession) => {
-    setAllEvents([...allEvents, newSession]);
+  const handleEventCreate = () => {
+    // Event creation is handled by the parent component
+    // This is a placeholder for future functionality
   };
 
   const handleEventClick = (arg: EventClickArg) => {
@@ -151,33 +322,13 @@ export default function Calendar() {
       startTime: new Date(arg.event.start!),
       endTime: new Date(arg.event.end!),
       duration: arg.event.extendedProps.duration,
-      isAvailable: arg.event.extendedProps.isAvailable,
       sessionType: arg.event.extendedProps.sessionType,
-      level: arg.event.extendedProps.level,
-      price: arg.event.extendedProps.price,
       location: arg.event.extendedProps.location,
+      status: arg.event.extendedProps.status,
       description: arg.event.extendedProps.description,
-      preparationNotes: arg.event.extendedProps.preparationNotes,
-      maxStudents: arg.event.extendedProps.maxStudents,
-      currentStudents: arg.event.extendedProps.currentStudents,
     };
     setSelectedEvent(session);
     setIsEventSheetOpen(true);
-  };
-
-  const handleEventDrop = (arg: EventDropArg) => {
-    console.log("Event moved:", arg.event.tutor, "to", arg.event.date);
-    // Here you would update the event in your database
-  };
-
-  const handleEventResize = (arg: EventResizeArg) => {
-    console.log(
-      "Event resized:",
-      arg.event.title,
-      "new duration:",
-      arg.event.end - arg.event.start
-    );
-    // Here you would update the event duration in your database
   };
 
   const goToToday = () => {
@@ -221,7 +372,7 @@ export default function Calendar() {
           changeView={changeView}
           showWeekends={showWeekends}
           handleEventCreate={handleEventCreate}
-          tutors={tutors}
+          tutors={transformedTutors}
           selectedTutorId={selectedTutorId}
           onTutorSelect={handleTutorSelect}
         />
@@ -280,28 +431,20 @@ export default function Calendar() {
             extendedProps: {
               tutorId: session.tutorId,
               tutor: session.tutorName,
-              isAvailable: session.isAvailable,
               duration: session.duration,
               sessionType: session.sessionType,
-              level: session.level,
-              price: session.price,
               location: session.location,
+              status: session.status,
               description: session.description,
-              preparationNotes: session.preparationNotes,
-              maxStudents: session.maxStudents,
-              currentStudents: session.currentStudents,
             },
           }))}
           eventClick={handleEventClick}
-          eventDrop={handleEventDrop}
-          eventResize={handleEventResize}
-          editable={true}
+          editable={false}
           selectable={false}
           selectMirror={false}
           dayMaxEvents={1}
           moreLinkClick="none"
           moreLinkContent={(arg: any) => {
-            console.log("More link content arg:", arg);
 
             // Try different ways to get the hidden count
             const hiddenCount =
@@ -309,8 +452,6 @@ export default function Calendar() {
               arg.hiddenEvents?.length ||
               arg.num ||
               0;
-
-            console.log("Hidden count:", hiddenCount);
 
             if (hiddenCount > 0) {
               return `+${hiddenCount} more`;
@@ -371,19 +512,20 @@ export default function Calendar() {
               .padStart(2, "0")}`;
 
             // Get tutor color
-            const tutor = tutors.find(
+            const tutor = transformedTutors.find(
               (t) => t.id === eventInfo.event.extendedProps?.tutorId
             );
             const tutorColor = tutor?.color || "#3B82F6";
-            const isBooked = eventInfo.event.extendedProps?.booked === 1;
+            const status = eventInfo.event.extendedProps?.status;
+            const isAvailable = status === "available";
 
             return (
               <div
                 className={`text-white text-sm font-medium w-full ${
-                  isBooked ? "opacity-75" : ""
+                  isAvailable ? "opacity-90" : "opacity-75"
                 }`}
                 style={{
-                  backgroundColor: tutorColor,
+                  backgroundColor: isAvailable ? tutorColor : "#6B7280", // Gray for booked sessions
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
@@ -427,6 +569,7 @@ export default function Calendar() {
         isEventSheetOpen={isEventSheetOpen}
         setIsEventSheetOpen={setIsEventSheetOpen}
         selectedSession={selectedEvent}
+        tutorsData={tutorsData}
       />
     </div>
   );

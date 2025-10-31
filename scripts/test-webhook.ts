@@ -1,5 +1,5 @@
-import { db } from "../src/db";
-import { langClubBookingsTable } from "../src/db/schema";
+import { db } from "@/db";
+import { langClubBookingsTable } from "@/db/schema";
 
 // Test data for webhook simulation
 const testSessionData = {

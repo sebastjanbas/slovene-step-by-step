@@ -4,8 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
-import { TutoringSession } from "./types";
-import { tutors } from "./placeholder-data";
+import { Tutor, TutoringSession } from "./types";
+// import { tutors } from "./placeholder-data";
 import {
   IconCalendar,
   IconMapPin,
@@ -15,15 +15,13 @@ import {
   IconCalendarEvent,
   IconX,
   IconClock,
-  IconCurrencyEuro,
-  IconBook,
-  IconUsers,
 } from "@tabler/icons-react";
 
 type EventSheetProps = {
   isEventSheetOpen: boolean;
   setIsEventSheetOpen: (isEventSheetOpen: boolean) => void;
   selectedSession: TutoringSession | null;
+  tutorsData: Tutor[];
 };
 
 export const EventSheet = (props: EventSheetProps) => {
@@ -52,7 +50,9 @@ export const EventSheet = (props: EventSheetProps) => {
       .toUpperCase();
   };
 
-  const tutor = tutors.find((t) => t.id === props.selectedSession?.tutorId);
+  const tutor = props.tutorsData.find(
+    (t) => t.id.toString() === props.selectedSession?.tutorId
+  );
 
   return (
     <Sheet
@@ -82,12 +82,14 @@ export const EventSheet = (props: EventSheetProps) => {
                 </div>
                 <Badge
                   className={`${
-                    props.selectedSession.isAvailable
+                    props.selectedSession.status === "available"
                       ? "bg-green-100 text-green-800"
                       : "bg-red-100 text-red-800"
                   } text-xs font-medium px-2 py-1`}
                 >
-                  {props.selectedSession.isAvailable ? "Available" : "Booked"}
+                  {props.selectedSession.status === "available"
+                    ? "Available"
+                    : "Booked"}
                 </Badge>
               </div>
             </div>
@@ -110,18 +112,6 @@ export const EventSheet = (props: EventSheetProps) => {
                       <IconClock className="h-4 w-4 text-gray-500" />
                       <span className="text-gray-600">
                         {props.selectedSession.duration} min
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-0">
-                      <IconCurrencyEuro className="h-4 w-4 text-gray-500" />
-                      <span className="text-gray-600">
-                        {props.selectedSession.price}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <IconBook className="h-4 w-4 text-gray-500" />
-                      <span className="text-gray-600">
-                        {props.selectedSession.level}
                       </span>
                     </div>
                   </div>
@@ -168,27 +158,37 @@ export const EventSheet = (props: EventSheetProps) => {
                       <p className="text-sm font-medium text-gray-900">
                         {props.selectedSession.tutorName}
                       </p>
-                      <p className="text-xs text-gray-600">{tutor?.bio}</p>
+                      {tutor?.bio && (
+                        <p className="text-xs text-gray-600">{tutor.bio}</p>
+                      )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-green-100 rounded-lg">
-                      <IconMail className="h-4 w-4 text-green-600" />
+                  {tutor?.email && (
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-green-100 rounded-lg">
+                        <IconMail className="h-4 w-4 text-green-600" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-gray-900">
+                          Email
+                        </p>
+                        <p className="text-sm text-gray-600">{tutor.email}</p>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-gray-900">Email</p>
-                      <p className="text-sm text-gray-600">{tutor?.email}</p>
+                  )}
+                  {tutor?.phone && (
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-blue-100 rounded-lg">
+                        <IconPhone className="h-4 w-4 text-blue-600" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-gray-900">
+                          Phone
+                        </p>
+                        <p className="text-sm text-gray-600">{tutor.phone}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-blue-100 rounded-lg">
-                      <IconPhone className="h-4 w-4 text-blue-600" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium text-gray-900">Phone</p>
-                      <p className="text-sm text-gray-600">{tutor?.phone}</p>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
 
@@ -211,39 +211,8 @@ export const EventSheet = (props: EventSheetProps) => {
                       </p>
                     </div>
                   </div>
-                  {props.selectedSession.maxStudents &&
-                    props.selectedSession.maxStudents > 1 && (
-                      <div className="flex items-center gap-3">
-                        <div className="p-2 bg-orange-100 rounded-lg">
-                          <IconUsers className="h-4 w-4 text-orange-600" />
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-gray-900">
-                            Group Size
-                          </p>
-                          <p className="text-sm text-gray-600">
-                            {props.selectedSession.currentStudents || 0} /{" "}
-                            {props.selectedSession.maxStudents} students
-                          </p>
-                        </div>
-                      </div>
-                    )}
                 </div>
               </div>
-
-              {/* Preparation Notes */}
-              {props.selectedSession.preparationNotes && (
-                <div className="space-y-3">
-                  <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                    Preparation
-                  </h3>
-                  <div className="p-3 bg-blue-50 rounded-lg">
-                    <p className="text-sm text-gray-700">
-                      {props.selectedSession.preparationNotes}
-                    </p>
-                  </div>
-                </div>
-              )}
             </div>
 
             <Separator />
@@ -251,7 +220,7 @@ export const EventSheet = (props: EventSheetProps) => {
             {/* Action Buttons */}
             <div className="p-6">
               <div className="flex gap-3">
-                {props.selectedSession.isAvailable ? (
+                {props.selectedSession.status === "available" ? (
                   <Button className="flex-1" size="sm">
                     <IconCalendarEvent className="h-4 w-4 mr-2" />
                     Book Session
