@@ -15,7 +15,7 @@ import { useLocale } from "next-intl";
 // Transform database tutors to the format expected by the calendar
 const transformTutors = (tutorsData: any[]) => {
   return tutorsData.map((tutor) => ({
-    id: tutor.id.toString(),
+    id: tutor.id,
     name: tutor.name,
     avatar: tutor.avatar,
     color: tutor.color,
@@ -115,14 +115,14 @@ const generateAvailableSlots = (
 
                 availableSlots.push({
                   id: `available-${tutor.id}-${slotStart.getTime()}`,
-                  tutorId: tutor.id.toString(),
+                  tutorId: tutor.id,
                   tutorName: tutor.name,
                   startTime: slotStart,
                   endTime: slotEnd,
                   duration: duration,
                   status: "available",
-                  sessionType: "Available Slot",
-                  location: "Online", // Default location
+                  sessionType: timeSlot.sessionType,
+                  location: timeSlot.location ?? "Online", // Default location
                   description: "Available for booking",
                 });
               }

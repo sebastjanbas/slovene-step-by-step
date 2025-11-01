@@ -57,7 +57,7 @@ export const timeblocksTable = pgTable("timeblocks", {
   status: varchar({ length: 255 }).notNull(),
   sessionType: varchar({ length: 255 }).notNull(),
   location: varchar({ length: 255 }).notNull(),
-  studentId: integer().notNull(),
+  studentId: varchar({length: 128}).notNull(),
 });
 
 export const tutorsTable = pgTable("tutors", {

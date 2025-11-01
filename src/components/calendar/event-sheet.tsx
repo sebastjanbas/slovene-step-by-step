@@ -16,6 +16,8 @@ import {
   IconX,
   IconClock,
 } from "@tabler/icons-react";
+import {bookSession} from "@/actions/timeblocks";
+import {toast} from "sonner";
 
 type EventSheetProps = {
   isEventSheetOpen: boolean;
@@ -51,8 +53,19 @@ export const EventSheet = (props: EventSheetProps) => {
   };
 
   const tutor = props.tutorsData.find(
-    (t) => t.id.toString() === props.selectedSession?.tutorId
+    (t) => t.id === props.selectedSession?.tutorId
   );
+
+  const onBookSesson = async (session: TutoringSession) =>{
+
+    const response = await bookSession(session);
+    if (response.status === 200) {
+      toast.success(response.message);
+      props.setIsEventSheetOpen(false);
+    } else {
+     toast.error(response.message);
+    }
+  }
 
   return (
     <Sheet
@@ -221,7 +234,7 @@ export const EventSheet = (props: EventSheetProps) => {
             <div className="p-6">
               <div className="flex gap-3">
                 {props.selectedSession.status === "available" ? (
-                  <Button className="flex-1" size="sm">
+                  <Button className="flex-1" size="sm" onClick={() => onBookSesson(props.selectedSession)}>
                     <IconCalendarEvent className="h-4 w-4 mr-2" />
                     Book Session
                   </Button>

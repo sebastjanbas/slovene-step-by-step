@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // Types
 export interface Tutor {
-  id: string;
+  id: number;
   name: string;
   avatar: string;
   color: string;
@@ -13,7 +13,7 @@ export interface Tutor {
 
 export interface TutoringSession {
   id: string;
-  tutorId: string;
+  tutorId: number;
   tutorName: string;
   startTime: Date;
   endTime: Date;
@@ -24,7 +24,7 @@ export interface TutoringSession {
   description: string;
 }
 
-// More flexible type for sessions array
+// More flexible type for session array
 export type TutoringSessionArray = TutoringSession[];
 
 export interface DateClickArg {

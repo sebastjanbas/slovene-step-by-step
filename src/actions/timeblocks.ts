@@ -3,6 +3,7 @@
 import { db } from "@/db";
 import { schedulesTable, timeblocksTable, tutorsTable } from "@/db/schema";
 import { auth } from "@clerk/nextjs/server";
+import {TutoringSession} from "@/components/calendar/types";
 
 export const getSchedule = async () => {
   const { userId } = await auth();
@@ -45,3 +46,28 @@ export const getTutors = async () => {
     return { error: "Internal server error", status: 500 };
   }
 };
+
+
+export const bookSession = async (data: TutoringSession) => {
+  const {userId} = await auth();
+
+  if (!userId){
+    return {message: "Unauthorized", status: 401};
+  }
+
+  try {
+    const response = await db.insert(timeblocksTable).values({
+      tutorId: data.tutorId,
+      startTime: data.startTime,
+      duration: data.duration,
+      status: "booked",
+      sessionType: data.sessionType,
+      location: data.location,
+      studentId: userId
+    })
+    return {message: "Session booked successfully", status: 200, response: response};
+  }catch (error) {
+    console.error("Error booking session:", error);
+    return {message: "Error booking session", status: 500};
+  }
+}
