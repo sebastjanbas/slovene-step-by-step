@@ -1,16 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import {useState, useRef, useEffect, useCallback, useMemo} from "react";
+import {useSearchParams, useRouter, usePathname} from "next/navigation";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
-import { TutoringSession, EventClickArg } from "@/components/calendar/types";
-import { CalendarControls } from "@/components/calendar/calendar-controls";
-import { EventSheet } from "@/components/calendar/event-sheet";
+import {TutoringSession, EventClickArg} from "@/components/calendar/types";
+import {CalendarControls} from "@/components/calendar/calendar-controls";
+import {EventSheet} from "@/components/calendar/event-sheet";
 import "@/components/calendar/calendar-styles.css";
-import { useLocale } from "next-intl";
+import {useLocale} from "next-intl";
 
 // Transform database tutors to the format expected by the calendar
 const transformTutors = (tutorsData: any[]) => {
@@ -30,12 +30,12 @@ const transformTutors = (tutorsData: any[]) => {
 const generateAvailableSlots = (
   schedulesData: any[],
   tutorsData: any[],
-  timeblocksData: any[]
+  timeblocksData: any[],
 ) => {
   const availableSlots: TutoringSession[] = [];
   const now = new Date();
   const fourWeeksFromNow = new Date(
-    now.getTime() + 4 * 7 * 24 * 60 * 60 * 1000
+    now.getTime() + 4 * 7 * 24 * 60 * 60 * 1000,
   );
 
   // Get all booked timeblocks for the next 4 weeks
@@ -54,7 +54,6 @@ const generateAvailableSlots = (
           ? JSON.parse(schedule.schedule)
           : schedule.schedule;
 
-
       // Get the day of the week for the current date (0 = Sunday, 1 = Monday, etc.)
       let dayOfTheWeek = new Date(now).getDay();
 
@@ -69,7 +68,7 @@ const generateAvailableSlots = (
 
           // Find the schedule for this day (0 = Sunday, 1 = Monday, etc.)
           const daySchedule = scheduleData.find(
-            (scheduleDay: any) => scheduleDay.day === dayOfTheWeek%7
+            (scheduleDay: any) => scheduleDay.day === dayOfTheWeek % 7,
           );
           dayOfTheWeek++; // Move to the next day of the week
 
@@ -88,7 +87,7 @@ const generateAvailableSlots = (
               slotStart.setHours(startHour, startMinute, 0, 0);
 
               const slotEnd = new Date(
-                slotStart.getTime() + timeSlot.duration * 60000
+                slotStart.getTime() + timeSlot.duration * 60000,
               );
 
               // Skip if this slot is in the past
@@ -98,7 +97,7 @@ const generateAvailableSlots = (
               const isBooked = bookedTimeblocks.some((booked) => {
                 const bookedStart = new Date(booked.startTime);
                 const bookedEnd = new Date(
-                  bookedStart.getTime() + booked.duration * 60000
+                  bookedStart.getTime() + booked.duration * 60000,
                 );
 
                 return (
@@ -141,7 +140,7 @@ const generateAvailableSlots = (
 // Transform database timeblocks to TutoringSession format (for booked sessions)
 const transformTimeblocksToSessions = (
   timeblocksData: any[],
-  tutorsData: any[]
+  tutorsData: any[],
 ) => {
   return timeblocksData.map((timeblock) => {
     const tutor = tutorsData.find((t) => t.id === timeblock.tutorId);
@@ -159,22 +158,54 @@ const transformTimeblocksToSessions = (
       location: timeblock.location,
       status: timeblock.status,
       description: timeblock.description,
+      studentId: timeblock.studentId,
     };
   });
 };
 
 interface CalendarProps {
-  scheduleData: any;
-  timeblocksData: any;
-  tutorsData: any;
+  scheduleData: any,
+  timeblocksData: any,
+  tutorsData: any,
+  studentId: string
 }
 
+// Map FullCalendar view names to URL-friendly names
+const viewNameToUrl = (viewName: string): string => {
+  const mapping: Record<string, string> = {
+    dayGridMonth: "month",
+    timeGridWeek: "week",
+    timeGridDay: "day",
+    timeGrid2Day: "2days",
+    timeGrid3Day: "3days",
+    listWeek: "list",
+  };
+  return mapping[viewName] || "month";
+};
+
+// Map URL-friendly names back to FullCalendar view names
+const urlToViewName = (urlView: string | null): string => {
+  const mapping: Record<string, string> = {
+    month: "dayGridMonth",
+    week: "timeGridWeek",
+    day: "timeGridDay",
+    "2days": "timeGrid2Day",
+    "3days": "timeGrid3Day",
+    list: "listWeek",
+  };
+  return mapping[urlView || ""] || "dayGridMonth";
+};
+
 export default function Calendar({
-  scheduleData,
-  timeblocksData,
-  tutorsData,
-}: CalendarProps) {
+                                   scheduleData,
+                                   timeblocksData,
+                                   tutorsData,
+                                   studentId
+                                 }: CalendarProps) {
   const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   // Transform the data from a database
   const transformedTutors = transformTutors(tutorsData);
@@ -183,62 +214,112 @@ export default function Calendar({
   const availableSlots = generateAvailableSlots(
     scheduleData,
     tutorsData,
-    timeblocksData
+    timeblocksData,
   );
 
   // Get booked sessions (only future ones)
   const bookedSessions = transformTimeblocksToSessions(
     timeblocksData,
-    tutorsData
+    tutorsData,
   ).filter((session) => session.startTime >= new Date());
 
-  // Combine available slots and booked sessions
-  const allSessions = useMemo(
-    () => [...availableSlots, ...bookedSessions],
-    [availableSlots, bookedSessions]
-  );
-
   const [selectedEvent, setSelectedEvent] = useState<TutoringSession | null>(
-    null
+    null,
   );
   const [isEventSheetOpen, setIsEventSheetOpen] = useState(false);
   const [isViewDropdownOpen, setIsViewDropdownOpen] = useState(false);
   const [calendarTitle, setCalendarTitle] = useState("Calendar");
-  const [currentView, setCurrentView] = useState("dayGridMonth");
+
+  // Initialize view from URL or default to month
+  const urlView = searchParams.get("view");
+  const initialView = urlToViewName(urlView);
+  const [currentView, setCurrentView] = useState(initialView);
+
   const [showWeekends, setShowWeekends] = useState(true);
-  const [selectedTutorId, setSelectedTutorId] = useState<string | null>(null);
+  const [selectedTutorId, setSelectedTutorId] = useState<number | null>(null);
+  const [showBookedSessions, setShowBookedSessions] = useState(false);
 
-  // Filter events based on the selected tutor
+  // Filter events based on the selected tutor or booked events
   const events = useMemo(() => {
-    if (selectedTutorId === null) {
-      return allSessions;
-    } else {
-      return allSessions.filter((event) => event.tutorId === selectedTutorId);
+    // Get booked events for the student
+    if (showBookedSessions) {
+      return bookedSessions.filter((event) => event.studentId === studentId);
     }
-  }, [allSessions, selectedTutorId]);
+    if (selectedTutorId === null) {
+      return availableSlots;
+    } else {
+      return availableSlots.filter((event: TutoringSession) => event.tutorId === selectedTutorId);
+    }
+  }, [selectedTutorId, availableSlots, showBookedSessions, bookedSessions, studentId]);
   const calendarRef = useRef<FullCalendar>(null);
+  const isUpdatingViewRef = useRef(false);
 
-  // Initialize calendar title
+  // Update URL parameters when view or other state changes
+  const updateURLParams = useCallback(
+    (updates: { view?: string }) => {
+      const params = new URLSearchParams(searchParams.toString());
+
+      if (updates.view !== undefined) {
+        const urlViewName = viewNameToUrl(updates.view);
+        params.set("view", urlViewName);
+      }
+
+      router.push(`${pathname}?${params.toString()}`, {scroll: false});
+    },
+    [searchParams, router, pathname],
+  );
+
+  // Initialize the calendar from URL on mount and sync with URL changes
   useEffect(() => {
-    const timer = setTimeout(() => {
-      updateCalendarTitle();
-    }, 100);
+    // Don't update if we're in the middle of a programmatic view change
+    if (isUpdatingViewRef.current) return;
 
-    return () => clearTimeout(timer);
-  }, []);
+    const urlView = searchParams.get("view");
+    const viewName = urlToViewName(urlView);
 
-  const handleTutorSelect = (tutorId: string | null) => {
+    const calendarApi = calendarRef.current?.getApi();
+    if (!calendarApi) return;
+
+    // Only update if different from the current view
+    if (viewName !== currentView) {
+      // Small delay to ensure the calendar is fully mounted
+      const timer = setTimeout(() => {
+        calendarApi.changeView(viewName);
+        setCurrentView(viewName);
+        updateCalendarTitle();
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      // Even if the view matches, update title
+      const timer = setTimeout(() => {
+        updateCalendarTitle();
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams, currentView]); // React to URL changes (including initial mount)
+
+  const handleTutorSelect = (tutorId: number | null) => {
     setSelectedTutorId(tutorId);
   };
 
-  const changeView = useCallback((viewName: string) => {
-    const calendarApi = calendarRef.current?.getApi();
-    if (calendarApi) {
-      calendarApi.changeView(viewName);
-      setCurrentView(viewName);
-      updateCalendarTitle();
-    }
-  }, []);
+  const changeView = useCallback(
+    (viewName: string) => {
+      const calendarApi = calendarRef.current?.getApi();
+      if (calendarApi) {
+        isUpdatingViewRef.current = true;
+        calendarApi.changeView(viewName);
+        setCurrentView(viewName);
+        updateCalendarTitle();
+        // Update URL parameter
+        updateURLParams({view: viewName});
+        // Reset flag after a brief delay
+        setTimeout(() => {
+          isUpdatingViewRef.current = false;
+        }, 200);
+      }
+    },
+    [updateURLParams],
+  );
 
   const handleMoreEventsClick = useCallback(
     (date: Date) => {
@@ -258,7 +339,7 @@ export default function Calendar({
         "Day of week was:",
         dayOfWeek,
         "Days to subtract:",
-        daysToSubtract
+        daysToSubtract,
       );
 
       // Set the calendar-to-week view and navigate to that week
@@ -270,7 +351,7 @@ export default function Calendar({
         changeView("timeGridWeek");
       }
     },
-    [changeView]
+    [changeView],
   );
 
   // Handle more events clicks
@@ -375,6 +456,8 @@ export default function Calendar({
           tutors={transformedTutors}
           selectedTutorId={selectedTutorId}
           onTutorSelect={handleTutorSelect}
+          showBookedSessions={showBookedSessions}
+          setBookedSessions={setShowBookedSessions}
         />
       </div>
 
@@ -389,37 +472,37 @@ export default function Calendar({
             listPlugin,
             interactionPlugin,
           ]}
-          initialView="dayGridMonth"
+          initialView={initialView}
           headerToolbar={false}
           height="100%"
           views={{
             timeGridWeek: {
               type: "timeGrid",
-              duration: { weeks: 1 },
+              duration: {weeks: 1},
               buttonText: "Week",
               allDaySlot: false,
-              dayHeaderFormat: { weekday: "short" },
+              dayHeaderFormat: {weekday: "short"},
             },
             timeGrid2Day: {
               type: "timeGrid",
-              duration: { days: 2 },
+              duration: {days: 2},
               buttonText: "2 days",
               allDaySlot: false,
-              dayHeaderFormat: { weekday: "long", day: "numeric" },
+              dayHeaderFormat: {weekday: "long", day: "numeric"},
             },
             timeGrid3Day: {
               type: "timeGrid",
-              duration: { days: 3 },
+              duration: {days: 3},
               buttonText: "3 days",
               allDaySlot: false,
-              dayHeaderFormat: { weekday: "long", day: "numeric" },
+              dayHeaderFormat: {weekday: "long", day: "numeric"},
             },
             timeGridDay: {
               type: "timeGrid",
-              duration: { days: 1 },
+              duration: {days: 1},
               buttonText: "Day",
               allDaySlot: false,
-              dayHeaderFormat: { weekday: "long", day: "numeric" },
+              dayHeaderFormat: {weekday: "long", day: "numeric"},
             },
           }}
           allDaySlot={false}
@@ -445,7 +528,6 @@ export default function Calendar({
           dayMaxEvents={1}
           moreLinkClick="none"
           moreLinkContent={(arg: any) => {
-
             // Try different ways to get the hidden count
             const hiddenCount =
               arg.hiddenSegs?.length ||
@@ -461,11 +543,6 @@ export default function Calendar({
             const totalEvents = arg.allSegs?.length || 0;
             if (totalEvents > 1) {
               return `+${totalEvents - 1} more`;
-            }
-
-            // Temporary debug: always show a more link for testing
-            if (arg.allSegs && arg.allSegs.length > 0) {
-              return "+2 more (debug)";
             }
 
             return "";
@@ -513,7 +590,7 @@ export default function Calendar({
 
             // Get tutor color
             const tutor = transformedTutors.find(
-              (t) => t.id === eventInfo.event.extendedProps?.tutorId
+              (t) => t.id === eventInfo.event.extendedProps?.tutorId,
             );
             const tutorColor = tutor?.color || "#3B82F6";
             const status = eventInfo.event.extendedProps?.status;

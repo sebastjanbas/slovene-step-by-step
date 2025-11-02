@@ -1,55 +1,54 @@
 import React from "react";
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
+  DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-  DropdownMenuCheckboxItem,
-  DropdownMenuPortal,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "../ui/button";
-import {
-  IconChevronDown,
-  IconChevronLeft,
-  IconChevronRight,
-} from "@tabler/icons-react";
-import { TutoringSession, Tutor } from "@/components/calendar/types";
-import { TutorAvatars } from "@/components/calendar/tutor-avatars";
+import {Button} from "../ui/button";
+import {IconChevronDown, IconChevronLeft, IconChevronRight,} from "@tabler/icons-react";
+import {Tutor, TutoringSession} from "@/components/calendar/types";
+import {TutorAvatars} from "@/components/calendar/tutor-avatars";
+import {cn} from "@/lib/utils";
 
 type CalendarControlsProps = {
-  calendarTitle: string;
-  setShowWeekends: (showWeekends: boolean) => void;
-  goToPrev: () => void;
-  goToNext: () => void;
-  goToToday: () => void;
-  isViewDropdownOpen: boolean;
-  setIsViewDropdownOpen: (isViewDropdownOpen: boolean) => void;
-  currentView: string;
-  changeView: (view: string) => void;
-  showWeekends: boolean;
-  handleEventCreate: (session: TutoringSession) => void;
-  tutors: Tutor[];
-  selectedTutorId: string | null;
-  onTutorSelect: (tutorId: string | null) => void;
+  calendarTitle: string,
+  setShowWeekends: (showWeekends: boolean) => void,
+  goToPrev: () => void,
+  goToNext: () => void,
+  goToToday: () => void,
+  isViewDropdownOpen: boolean,
+  setIsViewDropdownOpen: (isViewDropdownOpen: boolean) => void,
+  currentView: string,
+  changeView: (view: string) => void,
+  showWeekends: boolean,
+  handleEventCreate: (session: TutoringSession) => void,
+  tutors: Tutor[],
+  selectedTutorId: number | null,
+  onTutorSelect: (tutorId: number | null) => void,
+  showBookedSessions?: boolean,
+  setBookedSessions?: (showBookedSessions: boolean) => void
 };
 
 export const CalendarControls = (props: CalendarControlsProps) => {
   return (
-    <div className="flex flex-wrap gap-4 mb-4 items-center">
+    <div className="relative flex flex-wrap gap-4 mb-6 items-end border-b border-border pb-4">
       <div className="flex items-center gap-2 mx-auto">
         <h2 className="text-4xl tracking-tighter font-semibold">
           {props.calendarTitle}
         </h2>
       </div>
 
-      <div className="flex flex-col-reverse md:flex-row items-center gap-2 md:justify-between w-full">
+      <div className="flex flex-col-reverse md:flex-row items-end gap-2 md:justify-between w-full">
         <div className="flex items-center gap-2">
           <Button onClick={props.goToPrev} variant="outline" size="sm">
-            <IconChevronLeft className="h-4 w-4" />
+            <IconChevronLeft className="h-4 w-4"/>
           </Button>
 
           <DropdownMenu
@@ -64,7 +63,7 @@ export const CalendarControls = (props: CalendarControlsProps) => {
                 {props.currentView === "timeGrid2Day" && "2 Days"}
                 {props.currentView === "timeGrid3Day" && "3 Days"}
                 {props.currentView === "listWeek" && "List"}
-                <IconChevronDown className="h-4 w-4" />
+                <IconChevronDown className="h-4 w-4"/>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-64">
@@ -84,7 +83,7 @@ export const CalendarControls = (props: CalendarControlsProps) => {
                 Month
               </DropdownMenuItem>
 
-              <DropdownMenuSeparator />
+              <DropdownMenuSeparator/>
 
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger>Number of Days</DropdownMenuSubTrigger>
@@ -112,7 +111,7 @@ export const CalendarControls = (props: CalendarControlsProps) => {
                 </DropdownMenuPortal>
               </DropdownMenuSub>
 
-              <DropdownMenuSeparator />
+              <DropdownMenuSeparator/>
 
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger>View Options</DropdownMenuSubTrigger>
@@ -131,20 +130,38 @@ export const CalendarControls = (props: CalendarControlsProps) => {
           </DropdownMenu>
 
           <Button onClick={props.goToNext} variant="outline" size="sm">
-            <IconChevronRight className="h-4 w-4" />
+            <IconChevronRight className="h-4 w-4"/>
           </Button>
 
           <Button onClick={props.goToToday} variant="outline" size="sm">
             Today
           </Button>
         </div>
+        <div className={"flex flex-row items-center gap-2"}>
+          {/* Toggle to show booked sessions */}
+          <Button onClick={() => props.setBookedSessions(!props.showBookedSessions)} variant={"link"} size="sm"
+                  className={"p-0 text-sm flex items-end hover:no-underline cursor-pointer w-24"}>
+            <span className={cn(
+              "text-sm text-muted-foreground text-center max-w-32 truncate",
+              props.showBookedSessions && "text-indigo-500 font-semibold"
+            )}>
+              My Bookings
+            </span>
+            <div className={cn(
+              "w-full max-w-24 translate-y-[1px] h-[2px] bg-indigo-500 absolute bottom-0 opacity-0 transition-opacity duration-300",
+              props.showBookedSessions && "opacity-100",
+            )}/>
+          </Button>
 
-        {/* Tutor Selection */}
-        <TutorAvatars
-          tutors={props.tutors}
-          selectedTutorId={props.selectedTutorId}
-          onTutorSelect={props.onTutorSelect}
-        />
+          {/* Tutor Selection */}
+          <TutorAvatars
+            tutors={props.tutors}
+            selectedTutorId={props.selectedTutorId}
+            onTutorSelect={props.onTutorSelect}
+            disabled={props.showBookedSessions}
+            setBooked={props.setBookedSessions}
+          />
+        </div>
       </div>
     </div>
   );

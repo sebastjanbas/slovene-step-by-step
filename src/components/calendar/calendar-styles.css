@@ -269,6 +269,16 @@
   white-space: nowrap;
   max-width: 100%;
   box-sizing: border-box;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+  transform-origin: center;
+}
+
+.fc-theme-standard .fc-event:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
 }
 
 .fc-theme-standard .fc-event .fc-event-main {
@@ -285,10 +295,6 @@
   white-space: nowrap;
   max-width: 100%;
   box-sizing: border-box;
-}
-
-.fc-theme-standard .fc-event:hover {
-  opacity: 0.8;
 }
 
 .fc-theme-standard .fc-event-title {
