@@ -222,6 +222,32 @@
     "cta": {
       "button": "Začni zdaj!"
     },
+    "language-club": {
+      "badge": "Jezikovni klub",
+      "title": "Pridružite se našemu jezikovnemu klubu",
+      "description": "Izkušite potopne skupinske učne seje, kjer učitelj vodi tematske pogovore z majhno skupino približno 8 ljudi. Vadite slovenščino v resničnih situacijah z vključujočimi razpravami v podpornem, interaktivnem okolju.",
+      "price-label": "na osebo na dogodek",
+      "group-size": "oseb v skupini",
+      "features": {
+        "1": {
+          "title": "Tematski pogovori",
+          "description": "Vsaka seja se osredotoča na specifično temo, ki jo izbere učitelj, kar ustvarja osredotočene in privlačne razprave."
+        },
+        "2": {
+          "title": "Učenje v majhnih skupinah",
+          "description": "Učite se v intimnem okolju s približno 8 udeleženci, kar zagotavlja, da ima vsak dovolj časa za govorjenje."
+        },
+        "3": {
+          "title": "Naravna vadba",
+          "description": "Vadite konverzacijsko slovenščino v sproščenem vzdušju, ki posnema resnične jezikovne situacije."
+        },
+        "4": {
+          "title": "Strokovno vodstvo",
+          "description": "Izkoristite prednosti naših izkušenih učiteljev, ki vodijo pogovore in nudijo koristne povratne informacije."
+        }
+      },
+      "cta": "Pridruži se jezikovnemu klubu"
+    },
     "faq": {
       "title": "Pogosta vprašanja",
       "subtitle": "Poiščite odgovore na pogosta vprašanja o naših načrtih in storitvah. Če ne najdete, kar iščete, se obrnite na nas",

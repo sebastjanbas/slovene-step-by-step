@@ -6,6 +6,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { Button } from "../ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,7 +22,7 @@ export default function Hero() {
     const title = titleRef.current;
 
     const fullText = `${t("title.part1")} ${t("title.strong")} ${t(
-      "title.part2"
+      "title.part2",
     )}`;
     const strongWord = t("title.strong").trim();
     title.innerHTML = "";
@@ -74,7 +75,7 @@ export default function Hero() {
           duration: 1,
           ease: "power3.out",
         },
-        "-=0.5"
+        "-=0.5",
       )
       .from(
         buttonRef.current,
@@ -84,72 +85,82 @@ export default function Hero() {
           duration: 0.8,
           ease: "back.out(1.7)",
         },
-        "-=0.5"
+        "-=0.5",
       );
   });
 
   return (
     <>
-      <div className="flex sm:hidden absolute h-screen bg-accent w-full flex-col-reverse">
-        <div>
-          <Image
-            width={1080}
-            height={1080}
-            className="aspect-[9/16] w-full h-[70vh] object-cover sm:rounded-full bg-accent"
-            src="/herro-picture.png"
-            alt=""
-          />
-        </div>
-      </div>
-      <div className="flex justify-center items-center">
-        <div className="relative h-screen sm:h-fit flex flex-row-reverse mx-8 gap-x-5 lg:gap-x-20 lg:max-w-7xl">
-          <div className="hidden sm:block relative aspect-square sm:h-48 sm:mt-60 md:h-56 lg:h-96 lg:mt-40">
+      <div className="relative isolate overflow-visible py-24 min-h-screen">
+        {/* Background gradient */}
+        <div className="absolute inset-0 -z-10 gradient-primary-subtle opacity-60 dark:opacity-40" />
+        <div className="absolute inset-0 -z-10 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+
+        <div className="flex sm:hidden absolute h-screen w-full flex-col-reverse">
+          <div>
             <Image
-              height={400}
-              width={400}
-              className="aspect-square w-auto sm:h-48 md:h-56 lg:h-96 object-cover rounded-full bg-accent"
+              width={1080}
+              height={1080}
+              className="aspect-[9/16] w-full h-[70vh] object-cover sm:rounded-full"
               src="/herro-picture.png"
               alt=""
             />
           </div>
-          <div className="w-full py-[calc(100vh-90vh)] sm:py-48 lg:py-56">
-            <div className="mb-8 flex justify-center">
-              <div className="hidden">
-                {t("announcement")}{" "}
-                <Link href={"#"} className="font-semibold text-">
-                  <span aria-hidden="true" className="absolute inset-0" />
-                  {t.has("announcement-link") && t("announcement-link")}{" "}
-                  <span aria-hidden="true">&rarr;</span>
-                </Link>
-              </div>
+        </div>
+
+        <div className="flex justify-center items-center">
+          <div className="relative h-screen sm:h-fit flex flex-row-reverse mx-8 gap-x-8 lg:gap-x-24 lg:max-w-7xl">
+            <div className="hidden sm:block relative aspect-square sm:h-56 sm:mt-60 md:h-64 lg:h-[32rem] lg:mt-40">
+              <div className="absolute inset-0 gradient-primary rounded-3xl blur-2xl opacity-30 animate-pulse" />
+              <Image
+                height={400}
+                width={400}
+                className="relative aspect-square w-auto sm:h-56 md:h-64 lg:h-[32rem] object-cover rounded-3xl bg-gradient-primary-subtle shadow-2xl ring-1 ring-border/50"
+                src="/herro-picture.png"
+                alt=""
+              />
             </div>
-            <div className="text-center sm:text-start">
-              <h1
-                ref={titleRef}
-                className="text-balance text-5xl font-semibold tracking-tight text-sl-primary md:text-6xl lg:text-7xl"
-              >
-                <div>
-                  {t("title.part1")}{" "}
-                  <strong className="text-accent">{t("title.strong")}</strong>
-                  {t("title.part2")}
+            <div className="w-full py-[calc(100vh-90vh)] sm:py-32 lg:py-40">
+              <div className="mb-8 flex justify-center sm:justify-start">
+                <div className="hidden">
+                  {t("announcement")}{" "}
+                  <Link href={"#"} className="font-semibold">
+                    <span aria-hidden="true" className="absolute inset-0" />
+                    {t.has("announcement-link") && t("announcement-link")}{" "}
+                    <span aria-hidden="true">&rarr;</span>
+                  </Link>
                 </div>
-              </h1>
-              <p
-                ref={subtitleRef}
-                className="mt-8 text-pretty text-lg font-medium text-sl-secondary sm:text-xl/8"
-              >
-                {t("subtitle")}
-              </p>
-              <div
-                ref={buttonRef}
-                className="mt-10 flex items-center justify-center sm:justify-start gap-x-6"
-              >
-                <a
-                  href={"/dashboard"}
-                  className="rounded-2xl bg-sl-accent hover:bg-sl-accent-hover px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors duration-200 ease-in-out"
+              </div>
+              <div className="text-center sm:text-start">
+                <h1
+                  ref={titleRef}
+                  className="text-balance text-5xl font-bold tracking-tight text-sl-primary md:text-6xl lg:text-7xl"
                 >
-                  {t("cta.primary")}
-                </a>
+                  <div>
+                    {t("title.part1")}{" "}
+                    <strong className="gradient-text">
+                      {t("title.strong")}
+                    </strong>
+                    {t("title.part2")}
+                  </div>
+                </h1>
+                <p
+                  ref={subtitleRef}
+                  className="mt-6 text-pretty text-lg font-normal text-sl-secondary sm:text-xl lg:text-2xl max-w-2xl mx-auto sm:mx-0"
+                >
+                  {t("subtitle")}
+                </p>
+                <div
+                  ref={buttonRef}
+                  className="mt-10 flex items-center justify-center sm:justify-start gap-x-4"
+                >
+                  <Button variant={"mine"} asChild>
+                    <a href={"/dashboard"}>
+                      <span className="relative z-10">{t("cta.primary")}</span>
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-primary opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300" />
+                    </a>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

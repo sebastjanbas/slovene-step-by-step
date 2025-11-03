@@ -5,7 +5,7 @@
   opacity: 0.7;
 }
 .splide__track--nav > .splide__list > .splide__slide.is-active {
-  border: 3px solid #e99f77;
+  border: 3px solid var(--sl-accent);
   opacity: 1;
 }
 .splide__arrows--ttb .splide__arrow {
@@ -60,19 +60,19 @@
   z-index: 1;
 }
 .splide__arrow svg {
-  fill: #e99f77;
+  fill: var(--sl-accent);
   height: 2.5em;
   transition: fill 0.2s linear;
   width: 2.5em;
 }
 .splide__arrow:hover:not(:disabled) svg {
-  fill: #ba7651;
+  fill: var(--sl-accent-hover);
 }
 .splide__arrow:disabled {
   opacity: 0.3;
 }
 .splide__arrow:focus-visible {
-  outline: 3px solid #e99f77;
+  outline: 3px solid var(--sl-accent);
   outline-offset: 3px;
 }
 .splide__arrow--prev {
@@ -85,7 +85,7 @@
   right: 1em;
 }
 .splide.is-focus-in .splide__arrow:focus {
-  outline: 3px solid #e99f77;
+  outline: 3px solid var(--sl-accent);
   outline-offset: 3px;
 }
 .splide__pagination {
@@ -97,7 +97,7 @@
   z-index: 1;
 }
 .splide__pagination__page {
-  background: #ccc;
+  background: var(--sl-secondary);
   border: 0;
   border-radius: 2.5px;
   display: inline-block;
@@ -107,22 +107,24 @@
   position: relative;
   transition: background-color 0.2s linear;
   width: 20px;
+  opacity: 0.4;
 }
 .splide__pagination__page.is-active {
-  background: #e99f77;
+  background: var(--sl-accent);
+  opacity: 1;
   z-index: 1;
 }
 .splide__pagination__page:hover {
-  background: #ba7651;
+  background: var(--sl-accent-hover);
   cursor: pointer;
-  opacity: 0.9;
+  opacity: 0.8;
 }
 .splide__pagination__page:focus-visible {
-  outline: 3px solid #e99f77;
+  outline: 3px solid var(--sl-accent);
   outline-offset: 3px;
 }
 .splide.is-focus-in .splide__pagination__page:focus {
-  outline: 3px solid #e99f77;
+  outline: 3px solid var(--sl-accent);
   outline-offset: 3px;
 }
 .splide__slide {
@@ -134,27 +136,27 @@
 }
 @supports (outline-offset: -3px) {
   .splide__slide:focus-visible {
-    outline: 3px solid #e99f77;
+    outline: 3px solid var(--sl-accent);
     outline-offset: -3px;
   }
 }
 @media screen and (-ms-high-contrast: none) {
   .splide__slide:focus-visible {
-    border: 3px solid #e99f77;
+    border: 3px solid var(--sl-accent);
   }
 }
 @supports (outline-offset: -3px) {
   .splide.is-focus-in .splide__slide:focus {
-    outline: 3px solid #e99f77;
+    outline: 3px solid var(--sl-accent);
     outline-offset: -3px;
   }
 }
 @media screen and (-ms-high-contrast: none) {
   .splide.is-focus-in .splide__slide:focus {
-    border: 3px solid #e99f77;
+    border: 3px solid var(--sl-accent);
   }
   .splide.is-focus-in .splide__track > .splide__list > .splide__slide:focus {
-    border-color: #e99f77;
+    border-color: var(--sl-accent);
   }
 }
 .splide__container {
@@ -219,7 +221,7 @@
 }
 .splide__spinner {
   animation: splide-loading 1s linear infinite;
-  border: 2px solid #e99f77;
+  border: 2px solid var(--sl-accent);
   border-left-color: transparent;
   border-radius: 50%;
   bottom: 0;
@@ -285,18 +287,19 @@
   display: block;
 }
 .splide__progress__bar {
-  background: #ccc;
+  background: var(--sl-secondary);
   height: 3px;
+  opacity: 0.4;
 }
 .splide__toggle {
   cursor: pointer;
 }
 .splide__toggle:focus-visible {
-  outline: 3px solid #e99f77;
+  outline: 3px solid var(--sl-accent);
   outline-offset: 3px;
 }
 .splide.is-focus-in .splide__toggle:focus {
-  outline: 3px solid #e99f77;
+  outline: 3px solid var(--sl-accent);
   outline-offset: 3px;
 }
 .splide__arrows--rtl .splide__arrow--prev {

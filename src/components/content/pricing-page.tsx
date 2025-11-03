@@ -11,27 +11,25 @@ export default function PricingContent() {
   const t = useTranslations("pricing.plans");
   const t2 = useTranslations("pricing.cta");
   return (
-    <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 md:max-w-4xl md:grid-cols-3">
+    <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-6 sm:mt-20 sm:gap-y-0 md:max-w-5xl md:grid-cols-3">
       {offers.map((tier, tierIdx) => (
         <div
           key={tier.id}
           className={classNames(
             tier.featured
-              ? "relative bg-sl-secondary dark:bg-[#1E1E1E] shadow-2xl"
-              : "bg-white/60 dark:bg-[#171717] sm:mx-8 md:mx-0",
-            tier.featured
-              ? ""
-              : tierIdx === 0
-              ? "rounded-t-3xl sm:rounded-b-none md:rounded-bl-3xl md:rounded-tr-none"
-              : "sm:rounded-t-none md:rounded-bl-none md:rounded-tr-3xl",
-            "rounded-3xl p-8 ring-1 ring-gray-900/10 sm:p-10"
+              ? "relative bg-gradient-primary shadow-2xl ring-2 ring-sl-accent/50 scale-105"
+              : "bg-gradient-primary-subtle border border-border/50 sm:mx-0 md:mx-0",
+            "rounded-3xl p-8 sm:p-10 transition-all duration-300 hover:shadow-xl hover:shadow-sl-accent/20",
+            tier.featured ? "z-10" : "hover:scale-[1.01]",
           )}
         >
+          {tier.featured && (
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-primary rounded-t-3xl" />
+          )}
           <h3
             id={tier.id}
             className={classNames(
-              tier.featured ? "text-[#ffa756]" : "text-sl-accent",
-              "text-base/7 font-semibold"
+              "text-sm font-semibold uppercase tracking-wider mb-2 text-sl-accent",
             )}
           >
             {tier.name}
@@ -39,8 +37,7 @@ export default function PricingContent() {
           <p className="mt-4 flex items-baseline gap-x-2">
             <span
               className={classNames(
-                tier.featured ? "text-white" : "text-sl-primary",
-                "text-5xl font-semibold tracking-tight"
+                "text-5xl font-bold tracking-tight text-sl-primary",
               )}
             >
               {tier.priceMonthly.split(".")[0]}
@@ -51,10 +48,8 @@ export default function PricingContent() {
             </span>
             <span
               className={classNames(
-                tier.featured
-                  ? "text-neutral-200 dark:text-foreground/60"
-                  : "text-foreground/50",
-                "text-base"
+                tier.featured ? "text-foreground" : "text-sl-secondary",
+                "text-base font-medium",
               )}
             >
               /{t("session")}
@@ -62,29 +57,39 @@ export default function PricingContent() {
           </p>
           <p
             className={classNames(
-              tier.featured ? "text-white" : "text-sl-primary",
-              "mt-6 text-base/7"
+              tier.featured
+                ? "text-sl-secondary dark:text-foreground"
+                : "text-sl-secondary",
+              "mt-6 text-base/7",
             )}
           >
             {t(`plan${tierIdx + 1}.description`)}
           </p>
           <ul
             role="list"
-            className={classNames(
-              tier.featured ? "text-white pb-10" : "text-sl-primary",
-              "mt-8 space-y-3 text-sm/6 sm:mt-10"
-            )}
+            className={classNames("mt-8 space-y-4 text-sm/6 sm:mt-10")}
           >
             {tier.features.map((feature, i) => (
-              <li key={i} className="flex gap-x-3">
-                <CheckIcon
-                  aria-hidden="true"
+              <li key={i} className="flex items-start gap-x-3">
+                <div
                   className={classNames(
-                    tier.featured ? "text-sl-accent" : "text-sl-accent",
-                    "h-6 w-5 flex-none"
+                    "flex-shrink-0 mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-sl-accent/40",
                   )}
-                />
-                {t(`plan${tierIdx + 1}.features.${i}`)}
+                >
+                  <CheckIcon
+                    aria-hidden="true"
+                    className={classNames("text-white", "h-3.5 w-3.5")}
+                  />
+                </div>
+                <span
+                  className={classNames(
+                    tier.featured
+                      ? "text-sl-secondary dark:text-foreground"
+                      : "text-sl-secondary",
+                  )}
+                >
+                  {t(`plan${tierIdx + 1}.features.${i}`)}
+                </span>
               </li>
             ))}
           </ul>
@@ -93,9 +98,9 @@ export default function PricingContent() {
             aria-describedby={tier.id}
             className={classNames(
               tier.featured
-                ? "bg-sl-accent transition-colors duration-200 ease-in-out text-white shadow-sm hover:bg-sl-accent-hover focus-visible:outline-button"
-                : "text-sl-accent ring-1 ring-inset ring-sl-accent-hover hover:ring-sl-accent focus-visible:outline-sl-accent",
-              "mt-8 block rounded-xl px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-offset-2 sm:mt-10"
+                ? "bg-background text-sl-accent dark:text-foreground hover:bg-background/90 shadow-lg hover:shadow-xl transition-all duration-300 dark:shadow-sl-accent/20 dark:shadow-xl"
+                : "bg-gradient-primary text-sl-secondary hover:opacity-90 shadow-lg shadow-sl-accent/20 hover:shadow-xl hover:shadow-sl-accent/30 transition-all duration-300",
+              "mt-8 block rounded-xl px-4 py-3 text-center text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sl-accent sm:mt-10 border-sl-accent/50 border-[1px]",
             )}
           >
             {t2("button")}

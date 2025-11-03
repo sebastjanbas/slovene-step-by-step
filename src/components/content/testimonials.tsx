@@ -42,7 +42,7 @@ const Carousel = ({ data, stars = false }) => {
               className="bg-transparent p-10 px-2 md:px-4"
               key={review.id}
             >
-              <div className="flex md:flex-row flex-col items-center justify-center md:justify-between bg-white shadow-lg dark:bg-[#121212] dark:border-[1px] dark:border-gray-700 px-4 py-10 lg:px-10 rounded-3xl gap-8">
+              <div className="flex md:flex-row flex-col items-center justify-center md:justify-between bg-gradient-primary-subtle border border-border/50 shadow-lg hover:shadow-xl hover:shadow-sl-accent/10 transition-all duration-300 px-4 py-10 lg:px-10 rounded-3xl gap-8">
                 <Image
                   height={150}
                   width={150}
@@ -74,7 +74,7 @@ const Carousel = ({ data, stars = false }) => {
                             <span key={index} className="p-[2px]">
                               &#9734;
                             </span>
-                          )
+                          ),
                         )}
                       </div>
                     )}

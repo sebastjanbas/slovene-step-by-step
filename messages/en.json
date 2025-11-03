@@ -222,6 +222,32 @@
     "cta": {
       "button": "Get started today"
     },
+    "language-club": {
+      "badge": "Language Club",
+      "title": "Join our Language Club",
+      "description": "Experience immersive group learning sessions where a teacher guides themed conversations with a small group of around 8 people. Practice real-world Slovene through engaging discussions in a supportive, interactive environment.",
+      "price-label": "per person per event",
+      "group-size": "people per group",
+      "features": {
+        "1": {
+          "title": "Themed Conversations",
+          "description": "Each session focuses on a specific theme chosen by the teacher, creating focused and engaging discussions."
+        },
+        "2": {
+          "title": "Small Group Learning",
+          "description": "Learn in an intimate setting with approximately 8 participants, ensuring everyone gets ample speaking time."
+        },
+        "3": {
+          "title": "Natural Practice",
+          "description": "Practice conversational Slovene in a relaxed atmosphere that mimics real-world language situations."
+        },
+        "4": {
+          "title": "Expert Guidance",
+          "description": "Benefit from our experienced teachers who facilitate conversations and provide helpful feedback."
+        }
+      },
+      "cta": "Join the Language Club"
+    },
     "faq": {
       "title": "Frequently asked questions",
       "subtitle": "Find answers to common questions about our plans and services. If you can’t find what you’re looking for, feel free to contact",

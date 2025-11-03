@@ -45,20 +45,20 @@ export default function Stats({
     <div className="flex justify-center items-center lg:w-full px-6 lg:px-8">
       <dl
         className={`flex ${
-          vertical ? "flex-col" : "flex-col  md:flex-row"
-        } gap-5 justify-center items-stretch text-center w-full`}
+          vertical ? "flex-col" : "flex-col md:flex-row"
+        } gap-6 justify-center items-stretch text-center w-full`}
       >
         {stats.map((stat, index) => (
           <div
             key={stat.id}
-            className={`bg-[#f4f4f6] max-w-[300px] xl:max-w-[500px] w-full dark:bg-[#171717] shadow-md ${size.space} rounded-2xl w-full flex flex-col gap-y-2`}
+            className={`relative group bg-gradient-primary-subtle max-w-[300px] xl:max-w-[500px] w-full dark:bg-gradient-primary-subtle border border-border/50 hover:border-sl-accent/50 shadow-lg hover:shadow-xl hover:shadow-sl-accent/20 ${size.space} rounded-3xl w-full flex flex-col gap-y-3 transition-all duration-300 hover:scale-105`}
           >
-            <div className="flex-grow-0 mx-[15%] md:mx-0 border-t border-[8px] -translate-y-5 border-sl-accent/70 rounded-[3px]"></div>
-            <dt className="text-base/6 text-sl-primary">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-primary rounded-t-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <dt className="text-base/6 text-sl-secondary font-medium">
               {t(`metrics.${stat.title}`)}
             </dt>
             <dd
-              className={`order-first font-semibold ${size.text} tracking-tight text-sl-secondary`}
+              className={`order-first font-bold ${size.text} tracking-tight gradient-text`}
             >
               <span
                 ref={(el) => {
@@ -67,7 +67,7 @@ export default function Stats({
               >
                 {stat.value}
               </span>
-              <span> {stat.symbol}</span>
+              <span className="text-sl-secondary"> {stat.symbol}</span>
             </dd>
           </div>
         ))}

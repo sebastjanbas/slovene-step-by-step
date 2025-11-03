@@ -222,6 +222,32 @@
     "cta": {
       "button": "Inizia oggi"
     },
+    "language-club": {
+      "badge": "Language Club",
+      "title": "Unisciti al nostro Language Club",
+      "description": "Vivi sessioni di apprendimento di gruppo immersive dove un insegnante guida conversazioni tematiche con un piccolo gruppo di circa 8 persone. Pratica lo sloveno reale attraverso discussioni coinvolgenti in un ambiente di supporto e interattivo.",
+      "price-label": "a persona per evento",
+      "group-size": "persone per gruppo",
+      "features": {
+        "1": {
+          "title": "Conversazioni tematiche",
+          "description": "Ogni sessione si concentra su un tema specifico scelto dall'insegnante, creando discussioni focalizzate e coinvolgenti."
+        },
+        "2": {
+          "title": "Apprendimento in piccoli gruppi",
+          "description": "Impara in un ambiente intimo con circa 8 partecipanti, garantendo a tutti tempo sufficiente per parlare."
+        },
+        "3": {
+          "title": "Pratica naturale",
+          "description": "Pratica lo sloveno conversazionale in un'atmosfera rilassata che imita situazioni linguistiche del mondo reale."
+        },
+        "4": {
+          "title": "Guida esperta",
+          "description": "Beneficia dei nostri insegnanti esperti che facilitano le conversazioni e forniscono feedback utili."
+        }
+      },
+      "cta": "Unisciti al Language Club"
+    },
     "faq": {
       "title": "Domande frequenti",
       "subtitle": "Trova le risposte alle domande più comuni sui nostri piani e servizi. Se non riesci a trovare ciò che stai cercando, non esitare a contattare",

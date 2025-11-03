@@ -9,9 +9,7 @@ const UnprotectedLayout = ({ children, params }) => {
   return (
     <>
       <AnimatedLayout>
-        <div className="sticky top-0 z-50">
           <NavBar locale={locale} />
-        </div>
         <main>{children}</main>
         <Footer />
       </AnimatedLayout>

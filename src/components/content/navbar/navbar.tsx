@@ -11,6 +11,7 @@ import MobileNavigationDialog from "./mobile-navigation-dialog";
 import { IconLogo } from "@/components/icons/icon-logo";
 import { ThemButton } from "@/components/ui/appearance-switch-button";
 import { Link } from "@/i18n/routing";
+import { Button } from "@/components/ui/button";
 
 export default function NavBar({ locale }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -23,7 +24,7 @@ export default function NavBar({ locale }) {
   }
 
   return (
-    <header className="relative bg-white/80 dark:bg-[#121212]/80 py-1 lg:py-2 border-b-[1px] border-gray-300 dark:border-gray-700 backdrop-blur-md inset-x-0 top-0 z-40">
+    <header className="fixed dark:glass glass py-2 lg:py-3 border-b border-border/50 dark:border-border/30 inset-x-0 top-0 z-50 transition-all duration-300">
       <nav
         aria-label="Global"
         className="relative flex justify-between items-center h-16 mx-auto lg:container lg:px-16 xl:px-20"
@@ -47,11 +48,11 @@ export default function NavBar({ locale }) {
                   <li className="text-sm font-medium" key={item.name}>
                     <Link
                       href={item.href as any}
-                      className="group/menu-item flex items-center text-sm hover:text-accent select-none gap-3 rounded-md p-2 leading-none no-underline outline-none focus-visible:ring-2 focus-visible:ring-foreground-lighter group-hover:bg-transparent text-foreground focus-visible:text-brand-link"
+                      className="group/menu-item flex items-center text-sm font-medium select-none gap-3 rounded-lg px-3 py-2 leading-none no-underline outline-none focus-visible:ring-2 focus-visible:ring-sl-accent/50 transition-all duration-200 text-foreground/80 hover:text-sl-accent hover:bg-gradient-primary-subtle"
                     >
                       <div className="flex flex-col justify-center">
                         <div className="flex items-center gap-1">
-                          <p className="leading-snug text-foreground group-hover/menu-item:text-brand-link">
+                          <p className="leading-snug">
                             {t(`navigation.${item.name}`)}
                           </p>
                         </div>
@@ -71,20 +72,18 @@ export default function NavBar({ locale }) {
             {user ? (
               <>
                 {/* <UserButton dialog={false} /> */}
-                <Link
-                  href="/dashboard"
-                  className="relative dark:border-gray-700 justify-center cursor-pointer items-center space-x-2 text-center font-regular ease-out duration-200 rounded-[8px] outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-400 dark:bg-brand-500 hover:bg-brand/80 dark:hover:bg-brand/50 text-foreground border-brand-500/75 dark:border-brand/30 hover:border-brand-600 dark:hover:border-brand focus-visible:outline-brand-600 data-[state=open]:bg-brand-400/80 dark:data-[state=open]:bg-brand-500/80 data-[state=open]:outline-brand-600 text-xs px-2.5 py-1 lg:px-4 lg:py-[15px] lg:rounded-xl h-[26px] hidden lg:flex lg:justify-center lg:items-center"
-                >
-                  <p className="truncate">{t("navigation.dashboard")}</p>
-                </Link>
+                <Button variant={"mine"} asChild>
+                  <Link href="/dashboard">
+                    <p className="truncate">{t("navigation.dashboard")}</p>
+                  </Link>
+                </Button>
               </>
             ) : (
-              <a
-                href={`/sign-in?locale=${locale}`}
-                className="relative dark:border-gray-700 justify-center cursor-pointer items-center space-x-2 text-center font-regular ease-out duration-200 rounded-[8px] outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-brand-400 dark:bg-brand-500 hover:bg-brand/80 dark:hover:bg-brand/50 text-foreground border-brand-500/75 dark:border-brand/30 hover:border-brand-600 dark:hover:border-brand focus-visible:outline-brand-600 data-[state=open]:bg-brand-400/80 dark:data-[state=open]:bg-brand-500/80 data-[state=open]:outline-brand-600 text-xs px-2.5 py-1 h-[26px] hidden lg:block"
-              >
-                <p className="truncate">{t("buttons.log-in")}</p>
-              </a>
+              <Button variant={"mine"} asChild>
+                <a href={`/sign-in?locale=${locale}`}>
+                  <p className="truncate">{t("buttons.log-in")}</p>
+                </a>
+              </Button>
             )}
           </div>
         </div>

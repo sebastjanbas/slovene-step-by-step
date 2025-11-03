@@ -1,16 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import {useState, useRef, useEffect, useCallback, useMemo} from "react";
-import {useSearchParams, useRouter, usePathname} from "next/navigation";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
-import {TutoringSession, EventClickArg} from "@/components/calendar/types";
-import {CalendarControls} from "@/components/calendar/calendar-controls";
-import {EventSheet} from "@/components/calendar/event-sheet";
+import { TutoringSession, EventClickArg } from "@/components/calendar/types";
+import { CalendarControls } from "@/components/calendar/calendar-controls";
+import { EventSheet } from "@/components/calendar/event-sheet";
 import "@/components/calendar/calendar-styles.css";
-import {useLocale} from "next-intl";
+import { useLocale } from "next-intl";
 
 // Transform database tutors to the format expected by the calendar
 const transformTutors = (tutorsData: any[]) => {
@@ -164,10 +165,10 @@ const transformTimeblocksToSessions = (
 };
 
 interface CalendarProps {
-  scheduleData: any,
-  timeblocksData: any,
-  tutorsData: any,
-  studentId: string
+  scheduleData: any;
+  timeblocksData: any;
+  tutorsData: any;
+  studentId: string;
 }
 
 // Map FullCalendar view names to URL-friendly names
@@ -197,11 +198,11 @@ const urlToViewName = (urlView: string | null): string => {
 };
 
 export default function Calendar({
-                                   scheduleData,
-                                   timeblocksData,
-                                   tutorsData,
-                                   studentId
-                                 }: CalendarProps) {
+  scheduleData,
+  timeblocksData,
+  tutorsData,
+  studentId,
+}: CalendarProps) {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -248,9 +249,17 @@ export default function Calendar({
     if (selectedTutorId === null) {
       return availableSlots;
     } else {
-      return availableSlots.filter((event: TutoringSession) => event.tutorId === selectedTutorId);
+      return availableSlots.filter(
+        (event: TutoringSession) => event.tutorId === selectedTutorId,
+      );
     }
-  }, [selectedTutorId, availableSlots, showBookedSessions, bookedSessions, studentId]);
+  }, [
+    selectedTutorId,
+    availableSlots,
+    showBookedSessions,
+    bookedSessions,
+    studentId,
+  ]);
   const calendarRef = useRef<FullCalendar>(null);
   const isUpdatingViewRef = useRef(false);
 
@@ -264,7 +273,7 @@ export default function Calendar({
         params.set("view", urlViewName);
       }
 
-      router.push(`${pathname}?${params.toString()}`, {scroll: false});
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
     },
     [searchParams, router, pathname],
   );
@@ -311,7 +320,7 @@ export default function Calendar({
         setCurrentView(viewName);
         updateCalendarTitle();
         // Update URL parameter
-        updateURLParams({view: viewName});
+        updateURLParams({ view: viewName });
         // Reset flag after a brief delay
         setTimeout(() => {
           isUpdatingViewRef.current = false;
@@ -478,31 +487,31 @@ export default function Calendar({
           views={{
             timeGridWeek: {
               type: "timeGrid",
-              duration: {weeks: 1},
+              duration: { weeks: 1 },
               buttonText: "Week",
               allDaySlot: false,
-              dayHeaderFormat: {weekday: "short"},
+              dayHeaderFormat: { weekday: "short" },
             },
             timeGrid2Day: {
               type: "timeGrid",
-              duration: {days: 2},
+              duration: { days: 2 },
               buttonText: "2 days",
               allDaySlot: false,
-              dayHeaderFormat: {weekday: "long", day: "numeric"},
+              dayHeaderFormat: { weekday: "long", day: "numeric" },
             },
             timeGrid3Day: {
               type: "timeGrid",
-              duration: {days: 3},
+              duration: { days: 3 },
               buttonText: "3 days",
               allDaySlot: false,
-              dayHeaderFormat: {weekday: "long", day: "numeric"},
+              dayHeaderFormat: { weekday: "long", day: "numeric" },
             },
             timeGridDay: {
               type: "timeGrid",
-              duration: {days: 1},
+              duration: { days: 1 },
               buttonText: "Day",
               allDaySlot: false,
-              dayHeaderFormat: {weekday: "long", day: "numeric"},
+              dayHeaderFormat: { weekday: "long", day: "numeric" },
             },
           }}
           allDaySlot={false}

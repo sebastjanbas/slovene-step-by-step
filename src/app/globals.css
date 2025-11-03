@@ -45,11 +45,13 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   /* custom colors  */
-  /* FIX COLORS - move the dark theme to the .dark section and rename them */
   --color-sl-primary: var(--sl-primary);
   --color-sl-secondary: var(--sl-secondary);
   --color-sl-accent: var(--sl-accent);
   --color-sl-accent-hover: var(--sl-accent-hover);
+  --color-sl-blue: var(--sl-blue);
+  --color-sl-purple: var(--sl-purple);
+  --color-sl-pink: var(--sl-pink);
 }
 
 :root {
@@ -87,11 +89,17 @@
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
 
-  /* Custom Colors  */
-  --sl-primary: oklch(29.121% 0.05397 287.127);
-  --sl-secondary: oklch(40.688% 0.07454 285.625);
-  --sl-accent: oklch(76.607% 0.10373 49.043);
-  --sl-accent-hover: oklch(63.662% 0.11472 47.799);
+  /* Custom Colors - Modern Blue, Purple, Pink Palette */
+  --sl-primary: oklch(25% 0.06 260); /* Deep blue-purple */
+  --sl-secondary: oklch(50% 0.08 280); /* Medium purple */
+  --sl-accent: oklch(65% 0.15 320); /* Vibrant purple-pink */
+  --sl-accent-hover: oklch(55% 0.18 315); /* Deeper purple-pink */
+  --sl-blue: oklch(55% 0.18 240); /* Modern blue */
+  --sl-purple: oklch(60% 0.16 290); /* Soft purple */
+  --sl-pink: oklch(75% 0.12 340); /* Light pink */
+  --sl-gradient-start: oklch(55% 0.18 240); /* Blue */
+  --sl-gradient-mid: oklch(60% 0.16 290); /* Purple */
+  --sl-gradient-end: oklch(75% 0.12 340); /* Pink */
 
   /* Calendar Colors */
   --calendar-today-bg: #ebf5ff;
@@ -138,11 +146,17 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 
-  /* Custom colors   */
-  --sl-primary: oklch(100% 0.00011 271.152);
-  --sl-secondary: oklch(73.531% 0.1076 286.481);
-  --sl-accent: oklch(76.607% 0.10373 49.043);
-  --sl-accent-hover: oklch(63.662% 0.11472 47.799);
+  /* Custom colors - Dark Mode */
+  --sl-primary: oklch(95% 0.02 260); /* Light blue-purple */
+  --sl-secondary: oklch(75% 0.1 280); /* Medium purple */
+  --sl-accent: oklch(70% 0.18 320); /* Vibrant purple-pink */
+  --sl-accent-hover: oklch(65% 0.2 315); /* Deeper purple-pink */
+  --sl-blue: oklch(60% 0.2 240); /* Modern blue */
+  --sl-purple: oklch(65% 0.18 290); /* Soft purple */
+  --sl-pink: oklch(75% 0.15 340); /* Light pink */
+  --sl-gradient-start: oklch(60% 0.2 240); /* Blue */
+  --sl-gradient-mid: oklch(65% 0.18 290); /* Purple */
+  --sl-gradient-end: oklch(75% 0.15 340); /* Pink */
 
   /* Calendar Colors - Dark Mode */
   --calendar-today-bg: #1a2531;
@@ -161,6 +175,78 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
   }
+}
+
+/* Modern gradient utilities */
+@layer utilities {
+  .gradient-primary {
+    background: linear-gradient(
+      135deg,
+      oklch(55% 0.18 240) 0%,
+      oklch(60% 0.16 290) 50%,
+      oklch(75% 0.12 340) 100%
+    );
+  }
+
+  .gradient-primary-subtle {
+    background: linear-gradient(
+      135deg,
+      oklch(97% 0.02 240) 0%,
+      oklch(98% 0.015 290) 50%,
+      oklch(99% 0.01 340) 100%
+    );
+  }
+
+  .gradient-primary-subtle-reversed {
+    background: linear-gradient(
+      225deg,
+      oklch(99% 0.01 340) 0%,
+      oklch(98% 0.015 290) 50%,
+      oklch(97% 0.02 240) 100%
+    );
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      oklch(55% 0.18 240) 0%,
+      oklch(60% 0.16 290) 50%,
+      oklch(75% 0.12 340) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+  }
+
+  .dark .glass {
+    background: transparent;
+    backdrop-filter: brightness(0.8) blur(10px) saturate(180%);
+    -webkit-backdrop-filter: brightness(0.8) blur(10px) saturate(180%);
+  }
+}
+
+.dark .gradient-primary-subtle {
+  background: linear-gradient(
+    135deg,
+    oklch(20% 0.03 240) 0%,
+    oklch(22% 0.025 290) 50%,
+    oklch(24% 0.02 340) 100%
+  );
+}
+
+.dark .gradient-primary-subtle-reversed {
+  background: linear-gradient(
+    225deg,
+    oklch(24% 0.02 340) 0%,
+    oklch(22% 0.025 290) 50%,
+    oklch(20% 0.03 240) 100%
+  );
 }

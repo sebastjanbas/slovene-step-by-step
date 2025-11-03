@@ -13,6 +13,9 @@ import { IconLogo } from "../icons/icon-logo";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const clamp = (v: number, min: number, max: number) =>
+  Math.max(min, Math.min(max, v));
+
 export default function BentoGrid() {
   const teacherA = useRef<any>(null);
   const personalizedA = useRef<any>(null);
@@ -62,93 +65,211 @@ export default function BentoGrid() {
   });
 
   const t = useTranslations("homepage.features.cards");
+
+  // 3D Card Effect Hook
+  const use3DCard = () => {
+    const rootRef = useRef<HTMLDivElement>(null);
+    const cardRef = useRef<HTMLDivElement>(null);
+    const shineRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+      const root = rootRef.current;
+      const card = cardRef.current;
+      const shine = shineRef.current;
+
+      if (!root || !card || !shine) return;
+
+      gsap.set(card, {
+        transformStyle: "preserve-3d",
+        transformPerspective: 900,
+      });
+
+      const setRX = gsap.quickSetter(card, "rotationX", "deg");
+      const setRY = gsap.quickSetter(card, "rotationY", "deg");
+      const setShineOpacity = gsap.quickSetter(shine, "opacity");
+
+      const setShineBg = (x: number, y: number) => {
+        shine.style.background = `radial-gradient(400px circle at ${x}px ${y}px, rgba(255,255,255,0.25), rgba(255,255,255,0.0) 40%)`;
+      };
+
+      let raf = 0;
+      let targetRX = 0,
+        targetRY = 0;
+      const maxRot = 1.5;
+
+      const animate = () => {
+        const currentRX = (gsap.getProperty(card, "rotationX") as number) || 0;
+        const currentRY = (gsap.getProperty(card, "rotationY") as number) || 0;
+        const nextRX = currentRX + (targetRX - currentRX) * 0.12;
+        const nextRY = currentRY + (targetRY - currentRY) * 0.12;
+        setRX(nextRX);
+        setRY(nextRY);
+        raf = requestAnimationFrame(animate);
+      };
+
+      const onEnter = () => {
+        cancelAnimationFrame(raf);
+        setShineOpacity(1);
+        raf = requestAnimationFrame(animate);
+      };
+
+      const onMove = (e: MouseEvent) => {
+        const rect = root.getBoundingClientRect();
+        const px = clamp((e.clientX - rect.left) / rect.width, 0, 1);
+        const py = clamp((e.clientY - rect.top) / rect.height, 0, 1);
+        targetRY = gsap.utils.mapRange(0, 1, -maxRot, maxRot)(px);
+        targetRX = gsap.utils.mapRange(0, 1, maxRot, -maxRot)(py);
+        setShineBg(e.clientX - rect.left, e.clientY - rect.top);
+      };
+
+      const onLeave = () => {
+        targetRX = 0;
+        targetRY = 0;
+        setShineOpacity(0);
+        cancelAnimationFrame(raf);
+        gsap.to(card, {
+          rotationX: 0,
+          rotationY: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        });
+      };
+
+      root.addEventListener("mouseenter", onEnter);
+      root.addEventListener("mousemove", onMove);
+      root.addEventListener("mouseleave", onLeave);
+
+      return () => {
+        root.removeEventListener("mouseenter", onEnter);
+        root.removeEventListener("mousemove", onMove);
+        root.removeEventListener("mouseleave", onLeave);
+        cancelAnimationFrame(raf);
+      };
+    }, []);
+
+    return { rootRef, cardRef, shineRef };
+  };
+
+  const card1Refs = use3DCard();
+  const card2Refs = use3DCard();
+  const card3Refs = use3DCard();
+  const card4Refs = use3DCard();
+
   return (
     <>
       <div className="mt-10 flex flex-col lg:grid gap-8 sm:mt-16 lg:grid-cols-10 lg:grid-rows-5">
         <div
           id="card1"
-          className="px-8 py-8 gap-8 lg:col-span-6 lg:row-span-3 flex flex-col justify-around items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl"
-          style={{
-            background:
-              "linear-gradient(300deg, rgba(42,39,69,1) 0%, rgba(139,100,95,1) 71%, rgba(233,159,119,1) 100%)",
-          }}
+          ref={card1Refs.rootRef}
+          className="relative group lg:col-span-6 lg:row-span-3 [perspective:1000px]"
         >
-          <div className="w-full flex flex-col lg:flex-row items-center">
-            <div>
-              <h2
-                id="card2-start"
-                className="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center"
-              >
-                {t("online-lessons.title")}
-              </h2>
-              <p className="mt-2 max-w-lg text-sm/6 text-white max-lg:text-center">
-                {t("online-lessons.description")}
-              </p>
-            </div>
-            <Lottie
-              className="hidden lg:flex"
-              lottieRef={videoCallA}
-              animationData={videoCallAnimation}
-              loop={false}
-            />
-          </div>
           <div
-            id="card1-start"
-            className="flex flex-col lg:flex-row items-center gap-5"
+            ref={card1Refs.cardRef}
+            className="relative h-full px-8 py-8 gap-8 flex flex-col justify-around items-center rounded-3xl will-change-transform transition-[box-shadow] duration-300 shadow-2xl hover:shadow-[0_25px_50px_-12px] hover:shadow-sl-blue/50 bg-gradient-primary border border-border/50 dark:border-border/30 backdrop-blur-xl overflow-hidden"
           >
-            <Lottie lottieRef={teacherA} animationData={teacherAnimation} />
-            <div>
-              <h2 className="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center">
-                {t("trial-lesson.title")}
-              </h2>
-              <p className="mt-2 max-w-lg text-sm/6 text-white max-lg:text-center">
-                {t("trial-lesson.description")}
-              </p>
+            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-sl-blue/30 via-sl-purple/20 to-transparent opacity-60" />
+            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10 dark:ring-white/5" />
+            <div
+              ref={card1Refs.shineRef}
+              className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 mix-blend-screen"
+            />
+            <div className="relative z-10 w-full flex flex-col lg:flex-row items-center">
+              <div>
+                <h2
+                  id="card2-start"
+                  className="mt-2 text-lg font-semibold tracking-tight text-sl-primary dark:text-white max-lg:text-center"
+                >
+                  {t("online-lessons.title")}
+                </h2>
+                <p className="mt-2 max-w-lg text-sm/6 text-sl-secondary dark:text-white/90 max-lg:text-center">
+                  {t("online-lessons.description")}
+                </p>
+              </div>
+              <Lottie
+                className="hidden lg:flex"
+                lottieRef={videoCallA}
+                animationData={videoCallAnimation}
+                loop={false}
+              />
+            </div>
+            <div
+              id="card1-start"
+              className="relative z-10 flex flex-col lg:flex-row items-center gap-5"
+            >
+              <Lottie lottieRef={teacherA} animationData={teacherAnimation} />
+              <div>
+                <h2 className="mt-2 text-lg font-semibold tracking-tight text-sl-primary dark:text-white max-lg:text-center">
+                  {t("trial-lesson.title")}
+                </h2>
+                <p className="mt-2 max-w-lg text-sm/6 text-sl-secondary dark:text-white/90 max-lg:text-center">
+                  {t("trial-lesson.description")}
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
         <div
           id="card2"
-          className="px-8 py-8 lg:col-span-4 lg:row-span-3 flex flex-col justify-center items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl"
-          style={{
-            background:
-              "linear-gradient(0deg, rgba(70,67,112,1) 0%, rgba(125,123,155,1) 60%, rgba(255,255,255,1) 100%)",
-          }}
+          ref={card2Refs.rootRef}
+          className="relative group lg:col-span-4 lg:row-span-3 [perspective:1000px]"
         >
-          <h2 className="mt-2 text-lg font-medium tracking-tight text-black max-lg:text-center">
-            {t("community.title")}
-          </h2>
-          <p className="mt-2 max-w-lg text-sm/6 text-black max-lg:text-center">
-            {t("community.description")}
-          </p>
-          <div className="relative min-h-[20rem] w-full grow [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
-            <div className="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 dark:border-gray-800 bg-gray-900 shadow-2xl">
-              <Image
-                width={720}
-                height={1280}
-                className="size-full object-cover object-top"
-                src={`/phone.png`}
-                alt="phone demo"
-              />
+          <div
+            ref={card2Refs.cardRef}
+            className="relative h-full px-8 py-8 flex flex-col justify-center items-center rounded-3xl will-change-transform transition-[box-shadow] duration-300 shadow-2xl hover:shadow-[0_25px_50px_-12px] hover:shadow-sl-purple/50 bg-gradient-primary-subtle border border-border/50 dark:border-border/30 backdrop-blur-xl overflow-hidden"
+          >
+            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-b from-sl-purple/30 via-sl-pink/20 to-transparent opacity-60" />
+            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10 dark:ring-white/5" />
+            <div
+              ref={card2Refs.shineRef}
+              className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 mix-blend-screen"
+            />
+            <div className="relative z-10 w-full">
+              <h2 className="mt-2 text-lg font-semibold tracking-tight text-sl-primary dark:text-white max-lg:text-center">
+                {t("community.title")}
+              </h2>
+              <p className="mt-2 max-w-lg text-sm/6 text-sl-secondary dark:text-white/90 max-lg:text-center">
+                {t("community.description")}
+              </p>
+              <div className="relative min-h-[20rem] w-full grow mt-6 [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
+                <div className="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-border/30 bg-background shadow-2xl ring-1 ring-border/20">
+                  <Image
+                    width={720}
+                    height={1280}
+                    className="size-full object-cover object-top"
+                    src={`/phone.png`}
+                    alt="phone demo"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div
           id="card3"
-          className="px-8 py-8 h-96 lg:col-span-4 lg:row-span-2 flex flex-col justify-center items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl"
-          style={{
-            background:
-              "linear-gradient(25deg, rgba(42,39,69,1) 0%, rgba(70,67,112,1) 43%, rgba(187,170,184,1) 100%)",
-          }}
+          ref={card3Refs.rootRef}
+          className="relative group lg:col-span-4 lg:row-span-2 [perspective:1000px]"
         >
-          <h2 className="mt-2 text-lg font-medium tracking-tight text-white text-center">
-            {t("support.title")}
-          </h2>
-          <p className="mt-2 max-w-lg text-sm/6 text-white text-center">
-            {t("support.description")}
-          </p>
+          <div
+            ref={card3Refs.cardRef}
+            className="relative h-full px-8 py-8 flex flex-col justify-center items-center rounded-3xl will-change-transform transition-[box-shadow] duration-300 shadow-2xl hover:shadow-[0_25px_50px_-12px] hover:shadow-sl-pink/50 bg-gradient-primary border border-border/50 dark:border-border/30 backdrop-blur-xl overflow-hidden"
+          >
+            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-r from-sl-pink/30 via-sl-blue/20 to-transparent opacity-60" />
+            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10 dark:ring-white/5" />
+            <div
+              ref={card3Refs.shineRef}
+              className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 mix-blend-screen"
+            />
+            <div className="relative z-10 text-center">
+              <h2 className="mt-2 text-lg font-semibold tracking-tight text-sl-primary dark:text-white">
+                {t("support.title")}
+              </h2>
+              <p className="mt-2 max-w-lg text-sm/6 text-sl-secondary dark:text-white/90 mx-auto">
+                {t("support.description")}
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* <div className="hidden lg:gap-3 lg:px-8 lg:py-8 lg:col-span-2 lg:row-span-1 lg:flex flex-col justify-center items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl"> */}
@@ -161,32 +282,42 @@ export default function BentoGrid() {
 
         <div
           id="card4"
-          className="px-8 py-8 col-span-6 row-span-2 flex flex-col lg:flex-row justify-center items-center shadow-lg dark:border-[1px] dark:border-gray-700 border rounded-3xl"
-          style={{
-            background:
-              "linear-gradient(120deg, rgba(70,67,112,1) 0%, rgba(158,117,116,1) 49%, rgba(233,159,119,1) 100%)",
-          }}
+          ref={card4Refs.rootRef}
+          className="relative group lg:col-span-6 lg:row-span-2 [perspective:1000px]"
         >
-          <div>
-            <h2 className="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center">
-              {t("personalized.title")}
-            </h2>
-            <p
-              id="card3-start"
-              className="mt-2 max-w-lg text-sm/6 text-white max-lg:text-center"
-            >
-              {t("personalized.description")}
-            </p>
+          <div
+            ref={card4Refs.cardRef}
+            className="relative h-full px-8 py-8 flex flex-col lg:flex-row justify-center items-center rounded-3xl will-change-transform transition-[box-shadow] duration-300 shadow-2xl hover:shadow-[0_25px_50px_-12px] hover:shadow-sl-accent/50 bg-gradient-primary-subtle border border-border/50 dark:border-border/30 backdrop-blur-xl overflow-hidden"
+          >
+            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-bl from-sl-purple/30 via-sl-blue/20 to-transparent opacity-60" />
+            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10 dark:ring-white/5" />
+            <div
+              ref={card4Refs.shineRef}
+              className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 mix-blend-screen"
+            />
+            <div className="relative z-10 flex flex-col lg:flex-row items-center gap-6 lg:gap-8 w-full">
+              <div>
+                <h2 className="mt-2 text-lg font-semibold tracking-tight text-sl-primary dark:text-white max-lg:text-center">
+                  {t("personalized.title")}
+                </h2>
+                <p
+                  id="card3-start"
+                  className="mt-2 max-w-lg text-sm/6 text-sl-secondary dark:text-white/90 max-lg:text-center"
+                >
+                  {t("personalized.description")}
+                </p>
+              </div>
+              <Lottie
+                className="size-7/12 lg:size-auto"
+                lottieRef={personalizedA}
+                animationData={personalizedLearningAnimation}
+                onComplete={() => {
+                  personalizedA.current.playSegments([25, 75], false);
+                }}
+                loop={false}
+              />
+            </div>
           </div>
-          <Lottie
-            className="size-7/12 lg:size-auto"
-            lottieRef={personalizedA}
-            animationData={personalizedLearningAnimation}
-            onComplete={() => {
-              personalizedA.current.playSegments([25, 75], false);
-            }}
-            loop={false}
-          />
         </div>
       </div>
       <div id="card4-start"></div>
