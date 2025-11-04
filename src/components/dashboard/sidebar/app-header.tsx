@@ -1,45 +1,44 @@
 "use client";
+import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { useUserInfo } from "../auth/user-context";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  IconCreditCard,
-  IconLogout,
-  IconNotification,
-  IconUserCircle,
-} from "@tabler/icons-react";
-import { SignOutButton } from "@clerk/nextjs";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { usePathname } from "next/navigation";
+import {
+  IconUserCircle,
+  IconCreditCard,
+  IconNotification,
+  IconLogout,
+} from "@tabler/icons-react";
+import { SignOutButton, useUser } from "@clerk/nextjs";
 import { useTranslations } from "next-intl";
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const user = useUserInfo();
+  const { user } = useUser();
   const t = useTranslations("dashboard.user-navigation");
+
   return (
-    <header className="flex h-(--header-height) bg-background sticky top-0 left-0 z-30 w-full shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
+    <header className="flex h-(--header-height) sticky top-0 z-30 left-0 bg-background shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
-        <SidebarTrigger className="-ml-1 cursor-pointer" />
+        <SidebarTrigger className="-ml-1" />
         <Separator
           orientation="vertical"
           className="mx-2 data-[orientation=vertical]:h-4"
         />
         <h1 className="text-base font-medium capitalize">
-          {/* decodeURIComponent is used to decode the url encoded string (crilic symbols are now shown) */}
-          {decodeURIComponent(pathname.split("/").pop().replaceAll("-", " "))}
+          {pathname.split("/").pop()}
         </h1>
         <div className="ml-auto flex items-center gap-2">
           {!user ? (
@@ -59,14 +58,8 @@ export function SiteHeader() {
                   variant="ghost"
                   className="hover:bg-transparent gap-5 !focus:outline-none outline-none focus-visible:outline-none border-none focus:border-none focus-visible:border-none focus:ring-0 focus-visible:ring-0"
                 >
-                  <div className="hidden md:grid flex-1 text-right text-sm leading-tight">
-                    <span className="truncate font-medium">{user.name}</span>
-                    <span className="text-muted-foreground truncate text-xs">
-                      {user.email}
-                    </span>
-                  </div>
-                  <Avatar className="h-11 w-11 rounded-full">
-                    <AvatarImage src={user.avatar} alt={user.name} />
+                  <Avatar className="h-9 w-9 rounded-full">
+                    <AvatarImage src={user?.imageUrl} alt={user?.fullName} />
                     <AvatarFallback className="rounded-full"></AvatarFallback>
                   </Avatar>
                 </Button>
@@ -80,13 +73,15 @@ export function SiteHeader() {
                 <DropdownMenuLabel className="p-0 font-normal">
                   <div className="flex flex-col justify-center items-center gap-2 px-1 py-1.5 text-left text-sm">
                     <Avatar className="h-16 w-16 rounded-full">
-                      <AvatarImage src={user.avatar} alt={user.name} />
+                      <AvatarImage src={user?.imageUrl} alt={user?.fullName} />
                       <AvatarFallback className="rounded-full"></AvatarFallback>
                     </Avatar>
                     <div className="grid flex-1 text-center text-sm leading-tight">
-                      <span className="truncate font-medium">{user.name}</span>
+                      <span className="truncate font-medium">
+                        {user?.fullName}
+                      </span>
                       <span className="text-muted-foreground truncate text-xs">
-                        {user.email}
+                        {user?.emailAddresses[0].emailAddress}
                       </span>
                     </div>
                   </div>

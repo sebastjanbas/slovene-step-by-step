@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "@clerk/themes/shadcn.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -86,6 +87,15 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-accent-hover: oklch(0.95 0 0);
+  --sidebar-accent-active: oklch(0.93 0 0);
+  --sidebar-indicator: oklch(0.488 0.243 264.376);
+  --sidebar-icon-gradient: linear-gradient(
+    135deg,
+    oklch(55% 0.18 240) 0%,
+    oklch(60% 0.16 290) 50%,
+    oklch(75% 0.12 340) 100%
+  );
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
 
@@ -145,6 +155,15 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-accent-hover: oklch(0.3 0 0);
+  --sidebar-accent-active: oklch(0.32 0 0);
+  --sidebar-indicator: oklch(72% 0.18 290);
+  --sidebar-icon-gradient: linear-gradient(
+    135deg,
+    oklch(60% 0.2 240) 0%,
+    oklch(65% 0.18 290) 50%,
+    oklch(75% 0.15 340) 100%
+  );
 
   /* Custom colors - Dark Mode */
   --sl-primary: oklch(95% 0.02 260); /* Light blue-purple */

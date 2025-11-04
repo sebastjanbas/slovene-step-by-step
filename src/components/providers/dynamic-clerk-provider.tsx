@@ -5,6 +5,7 @@ import { enUS, itIT, ruRU } from "@clerk/localizations";
 import { ReactNode } from "react";
 import { useLocale } from "@/contexts/locale-context";
 import { slSL } from "@/clerk-localizations/slSL";
+import {shadcn} from "@clerk/themes";
 
 interface DynamicClerkProviderProps {
   children: ReactNode;
@@ -32,6 +33,7 @@ export function DynamicClerkProvider({ children }: DynamicClerkProviderProps) {
   const clerkLocalization = clerkLocales[locale] || enUS;
 
   return (
-    <ClerkProvider localization={clerkLocalization}>{children}</ClerkProvider>
+    // @ts-expect-error - ClerkProvider doesn't have a type definition for the appearance prop'
+    <ClerkProvider appearance={{theme: shadcn}} localization={clerkLocalization}>{children}</ClerkProvider>
   );
 }

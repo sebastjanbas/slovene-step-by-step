@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import { useUserInfo } from "../auth/user-context";
 import { useTranslations } from "next-intl";
+import {useUser} from "@clerk/nextjs";
 
 const Greeting = () => {
-  const user = useUserInfo();
+  const {user} = useUser();
   const t = useTranslations("dashboard");
   if (!user) {
     return (
@@ -20,7 +20,7 @@ const Greeting = () => {
           important: (chunks) => `
           <strong style="font-weight: 500;">${chunks}</strong>
           `,
-          name: user.name.split(" ")?.[0],
+          name: user.fullName.split(" ")?.[0],
         }),
       }}
       className="block text-2xl md:text-4xl tracking-tight"

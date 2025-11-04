@@ -1,9 +1,8 @@
+import { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
-import {NextConfig} from 'next';
-import createNextIntlPlugin from 'next-intl/plugin';
- 
 const nextConfig: NextConfig = {
-experimental: {
+  experimental: {
     serverActions: {
       bodySizeLimit: "2mb",
     },
@@ -16,6 +15,10 @@ experimental: {
       },
       {
         protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
         hostname: "ucarecdn.com",
       },
       {
@@ -25,6 +28,6 @@ experimental: {
     ],
   },
 };
- 
+
 const withNextIntl = createNextIntlPlugin();
 export default withNextIntl(nextConfig);
