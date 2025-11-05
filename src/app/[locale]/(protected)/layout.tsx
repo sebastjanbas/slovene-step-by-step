@@ -7,12 +7,12 @@ import { redirect } from "next/navigation";
 
 interface ProtectedLayoutProps {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
 const ProtectedLayout = async ({ children, params }: ProtectedLayoutProps) => {
   const { userId } = await auth();
-  const { locale } = params;
+  const { locale } = await params;
 
   if (!userId) {
     redirect(`/sign-in?locale=${locale}`);

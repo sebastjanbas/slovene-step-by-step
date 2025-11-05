@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Dialog,
   DialogContent,
@@ -108,14 +108,8 @@ const RescheduleDialog = ({
   const [isLoadingEvents, setIsLoadingEvents] = useState(false);
   const t = useTranslations("dashboard.reschedule-dialog");
   const router = useRouter();
-  // Fetch available events for rescheduling
-  useEffect(() => {
-    if (open) {
-      fetchAvailableEvents();
-    }
-  }, [open]);
 
-  const fetchAvailableEvents = async () => {
+  const fetchAvailableEvents = useCallback(async () => {
     setIsLoadingEvents(true);
     try {
       const response = await getAvailableEvents(currentEvent.id);
@@ -131,7 +125,14 @@ const RescheduleDialog = ({
     } finally {
       setIsLoadingEvents(false);
     }
-  };
+  }, [currentEvent.id, locale]);
+
+  // Fetch available events for rescheduling
+  useEffect(() => {
+    if (open) {
+      fetchAvailableEvents();
+    }
+  }, [open, fetchAvailableEvents]);
 
   const handleReschedule = async () => {
     if (!selectedEventId) {
@@ -143,7 +144,7 @@ const RescheduleDialog = ({
     try {
       const response = await rescheduleBooking(
         bookingId.toString(),
-        selectedEventId.toString()
+        selectedEventId.toString(),
       );
 
       if (response.success) {
@@ -153,7 +154,7 @@ const RescheduleDialog = ({
       } else {
         toast.error(
           response.error ||
-            getTranslations(locale).errors["failed-to-reschedule"]
+            getTranslations(locale).errors["failed-to-reschedule"],
         );
       }
     } catch (error) {
@@ -189,7 +190,7 @@ const RescheduleDialog = ({
             <p className="text-sm text-muted-foreground">
               {toZonedTime(
                 currentEvent.date,
-                "Europe/Ljubljana"
+                "Europe/Ljubljana",
               ).toLocaleDateString(locale, {
                 year: "numeric",
                 month: "long",
@@ -236,7 +237,7 @@ const RescheduleDialog = ({
                               <span className="text-sm">
                                 {toZonedTime(
                                   event.date,
-                                  "Europe/Ljubljana"
+                                  "Europe/Ljubljana",
                                 ).toLocaleDateString(locale, {
                                   year: "numeric",
                                   month: "long",

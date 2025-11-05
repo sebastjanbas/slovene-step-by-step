@@ -3,8 +3,8 @@ import NavBar from "@/components/content/navbar/navbar";
 import AnimatedLayout from "@/components/ui/animated-layout";
 import React from "react";
 
-const UnprotectedLayout = ({ children, params }) => {
-  const { locale } = params;
+const UnprotectedLayout = async ({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) => {
+  const { locale } = await params;
 
   return (
     <>
