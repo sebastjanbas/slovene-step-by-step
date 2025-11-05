@@ -364,6 +364,18 @@
     "calendar": {
       "today-button": "Danes"
     },
+    "stats": {
+      "total-upcoming": "Skupaj prihajajočih",
+      "language-club": "Dogodki pogovornega kluba",
+      "personal-sessions": "Osebne seje",
+      "completed": "Zaključene seje",
+      "description": {
+        "upcoming": "Načrtovani dogodki",
+        "language-club": "Skupinske seje",
+        "personal-sessions": "Individualne lekcije",
+        "completed": "Pretekle seje"
+      }
+    },
     "events": {
       "next-event": "Vaš naslednji dogodek",
       "no-events": "Ni dogodkov za {date}",
@@ -371,6 +383,10 @@
       "event-tutor": "izvaja {tutor}",
       "event-location": "Lokacija: ",
       "event-duration": "Trajanje: {duration} minut",
+      "calendar-title": "Vaš koledar",
+      "calendar-description": "Oglejte si svoje dogodke za ta dan",
+      "language-club": "Pogovorni klub",
+      "personal-session": "Osebna seja",
       "tooltip": {
         "level": "Priporočen nivo {level}",
         "duration": "{duration} minut",

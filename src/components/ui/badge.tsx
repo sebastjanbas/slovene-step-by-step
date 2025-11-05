@@ -20,6 +20,9 @@ const badgeVariants = cva(
         success:
           "border-transparent bg-green-500 text-white [a&]:hover:bg-green-500/90 focus-visible:ring-green-500/20 dark:focus-visible:ring-green-500/40 dark:bg-green-500/60",
         paid: "border-transparent bg-blue-500 text-white [a&]:hover:bg-blue-500/90 focus-visible:ring-blue-500/20 dark:focus-visible:ring-blue-500/40 dark:bg-blue-500/60",
+        booked: "border-transparent bg-emerald-500 text-white [a&]:hover:bg-emerald-500/90 focus-visible:ring-emerald-500/20 dark:focus-visible:ring-emerald-500/40 dark:bg-emerald-500/60",
+        available: "border-transparent bg-indigo-500 text-white [a&]:hover:bg-indigo-500/90 focus-visible:ring-indigo-500/20 dark:focus-visible:ring-indigo-500/40 dark:bg-indigo-500/60",
+        cancelled: "border-transparent bg-red-500 text-white [a&]:hover:bg-red-500/90 focus-visible:ring-red-500/20 dark:focus-visible:ring-red-500/40 dark:bg-red-500/60",
       },
     },
     defaultVariants: {

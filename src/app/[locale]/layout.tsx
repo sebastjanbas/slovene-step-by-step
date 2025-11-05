@@ -3,7 +3,7 @@ import "../globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { routing } from "../../i18n/routing";
+import { routing } from "@/i18n/routing";
 import { setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "sonner";
@@ -34,9 +34,10 @@ export default async function LocaleLayout({ children, params }) {
     <html lang={locale} suppressHydrationWarning>
       <head>
         <HreflangLinks />
+        <title></title>
       </head>
       <body>
-        <Toaster richColors position="top-center" />
+        <Toaster richColors position="bottom-right" />
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"

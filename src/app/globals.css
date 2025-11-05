@@ -269,3 +269,78 @@
     oklch(20% 0.03 240) 100%
   );
 }
+
+/* Calendar Event Indicators */
+.has-event::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--sl-blue),
+    var(--sl-purple),
+    var(--sl-pink)
+  );
+}
+
+.has-lang-club::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 30%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--sl-purple), var(--sl-blue));
+}
+
+.has-personal::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 70%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--sl-pink);
+}
+
+/* If both types exist on same day */
+.has-lang-club.has-personal::before {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 30%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--sl-purple), var(--sl-blue));
+}
+
+.has-lang-club.has-personal::after {
+  left: 70%;
+  background: var(--sl-pink);
+}
+
+/* Calendar event background colors */
+.fc-event.lang-club-event {
+  background: linear-gradient(
+    135deg,
+    var(--sl-purple),
+    var(--sl-blue)
+  ) !important;
+  border-color: var(--sl-blue) !important;
+}
+
+.fc-event.personal-event {
+  background: var(--sl-pink) !important;
+  border-color: var(--sl-pink) !important;
+}

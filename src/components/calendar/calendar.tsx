@@ -42,7 +42,7 @@ const generateAvailableSlots = (
   // Get all booked timeblocks for the next 4 weeks
   const bookedTimeblocks = timeblocksData.filter((timeblock) => {
     const startTime = new Date(timeblock.startTime);
-    return startTime >= now && startTime <= fourWeeksFromNow;
+    return startTime >= now && startTime <= fourWeeksFromNow && timeblock.status === "booked";
   });
 
   schedulesData.forEach((schedule) => {
@@ -222,7 +222,8 @@ export default function Calendar({
   const bookedSessions = transformTimeblocksToSessions(
     timeblocksData,
     tutorsData,
-  ).filter((session) => session.startTime >= new Date());
+  // ).filter((session) => (session.startTime >= new Date() && session.status === "booked" ));
+).filter((session) => (session.startTime >= new Date()));
 
   const [selectedEvent, setSelectedEvent] = useState<TutoringSession | null>(
     null,
@@ -611,7 +612,7 @@ export default function Calendar({
                   isAvailable ? "opacity-90" : "opacity-75"
                 }`}
                 style={{
-                  backgroundColor: isAvailable ? tutorColor : "#6B7280", // Gray for booked sessions
+                  backgroundColor: isAvailable ? tutorColor : status === "booked" ? "var(--color-indigo-600)" : "#6B7280", // Gray for booked sessions
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",

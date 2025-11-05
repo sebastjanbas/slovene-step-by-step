@@ -11,7 +11,6 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { NavMain } from "./nav-main";
-import { NavMyProgress } from "./nav-progress";
 import { NavSecondary } from "./nav-secondary";
 import { IconLogo } from "@/components/icons/icon-logo";
 import { SidebarNavigationData as data } from "@/lib/docs";
@@ -51,7 +50,7 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent className="px-2 py-4">
         <NavMain items={data.navMain} />
-        <NavMyProgress items={data.myProgress} />
+        <NavMain items={data.myProgress} />
       </SidebarContent>
       <SidebarFooter className="border-t border-sidebar-border/50 px-2 py-3">
         <NavSecondary items={data.navSecondary} locale={locale} />

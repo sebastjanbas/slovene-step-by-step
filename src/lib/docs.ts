@@ -249,19 +249,19 @@ export const SidebarNavigationData = {
   ],
   myProgress: [
     {
-      name: "my-lessons",
+      title: "my-lessons",
       url: "#",
       icon: IconCalendarCheck,
       disabled: true,
     },
     {
-      name: "achievements",
+      title: "achievements",
       url: "#",
       icon: IconTrophy,
       disabled: true,
     },
     {
-      name: "progress",
+      title: "progress",
       url: "#",
       icon: IconProgressCheck,
       disabled: true,

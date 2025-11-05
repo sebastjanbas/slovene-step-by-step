@@ -94,15 +94,11 @@ export const EventSheet = (props: EventSheetProps) => {
                   </div>
                 </div>
                 <Badge
-                  className={`${
-                    props.selectedSession.status === "available"
-                      ? "bg-green-100 text-green-800"
-                      : "bg-red-100 text-red-800"
-                  } text-xs font-medium px-2 py-1`}
+                  variant={props.selectedSession.status as "booked" || "available" || "cancelled"}
                 >
-                  {props.selectedSession.status === "available"
-                    ? "Available"
-                    : "Booked"}
+                  <span className="capitalize">
+                  {props.selectedSession.status}
+                  </span>
                 </Badge>
               </div>
             </div>

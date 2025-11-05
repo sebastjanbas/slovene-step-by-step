@@ -366,6 +366,18 @@
     "calendar": {
       "today-button": "Today"
     },
+    "stats": {
+      "total-upcoming": "Total Upcoming",
+      "language-club": "Language Club Events",
+      "personal-sessions": "Personal Sessions",
+      "completed": "Completed Sessions",
+      "description": {
+        "upcoming": "Scheduled events",
+        "language-club": "Group sessions",
+        "personal-sessions": "One-on-one lessons",
+        "completed": "Past sessions"
+      }
+    },
     "events": {
       "next-event": "Your next event",
       "no-events": "No events scheduled on {date}",
@@ -373,6 +385,10 @@
       "event-tutor": "with {tutor}",
       "event-location": "Location: ",
       "event-duration": "Duration: {duration} minutes",
+      "calendar-title": "Your Calendar",
+      "calendar-description": "View your events for this day",
+      "language-club": "Language Club",
+      "personal-session": "Personal Session",
       "tooltip": {
         "level": "Required knowledge: {level} level",
         "duration": "{duration} minutes long",

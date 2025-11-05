@@ -1,6 +1,7 @@
 "use client";
 import { useTranslations } from "next-intl";
 import { CheckIcon } from "@heroicons/react/20/solid";
+import {Link} from "@/i18n/routing";
 
 export default function LanguageClub() {
   const t = useTranslations("pricing.language-club");
@@ -79,12 +80,12 @@ export default function LanguageClub() {
 
           {/* CTA Button */}
           <div className="mt-12 text-center">
-            <a
-              href="#contact"
+            <Link
+              href="/dashboard"
               className="inline-flex items-center justify-center rounded-xl bg-gradient-primary px-8 py-4 text-base font-semibold text-sl-secondary dark:text-white shadow-lg shadow-sl-accent/20 hover:shadow-xl hover:shadow-sl-accent/30 transition-all duration-300 border border-sl-accent/50 hover:scale-105"
             >
               {t("cta")}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

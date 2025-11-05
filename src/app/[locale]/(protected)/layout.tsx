@@ -12,7 +12,7 @@ interface ProtectedLayoutProps {
 
 const ProtectedLayout = async ({ children, params }: ProtectedLayoutProps) => {
   const { userId } = await auth();
-  const { locale } = await params;
+  const { locale } = params;
 
   if (!userId) {
     redirect(`/sign-in?locale=${locale}`);
@@ -37,7 +37,7 @@ const ProtectedLayout = async ({ children, params }: ProtectedLayoutProps) => {
         <AppSidebar variant="inset" locale={locale} />
         <SidebarInset>
           <SiteHeader />
-          <main className="bg-white dark:bg-background">{children}</main>
+          <main className="h-full">{children}</main>
         </SidebarInset>
       </SidebarProvider>
     </>

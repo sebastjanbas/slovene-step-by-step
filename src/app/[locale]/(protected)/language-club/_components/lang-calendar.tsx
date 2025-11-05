@@ -1,14 +1,10 @@
 "use client";
-import { localeMap } from "@/components/dashboard/content/calendar-dashboard";
-import { Button } from "@/components/ui/button";
-import {
-  Calendar,
-  CalendarDayButton,
-  CalendarEvent,
-} from "@/components/ui/calendar";
-import React, { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
-import { IconHome } from "@tabler/icons-react";
+import {localeMap} from "@/components/dashboard/content/calendar-dashboard";
+import {Button} from "@/components/ui/button";
+import {Calendar, CalendarDayButton, CalendarEvent,} from "@/components/ui/calendar";
+import React, {useEffect, useState} from "react";
+import {useTranslations} from "next-intl";
+import {IconHome} from "@tabler/icons-react";
 
 const LangCalendar = ({ locale, events, date, setDate }) => {
   const dateFnsLocale = localeMap[locale] ?? localeMap["en"]; // fallback to English
@@ -37,7 +33,6 @@ const LangCalendar = ({ locale, events, date, setDate }) => {
   return (
     <div className="relative w-full h-full">
       <>
-        {/*   FIX THE BUG WHERE IF YOU DOUBLE CLICK ON THE BUTTON YOU GET AN UNDEFINED     */}
         <Calendar
           locale={dateFnsLocale}
           events={events}
@@ -51,13 +46,12 @@ const LangCalendar = ({ locale, events, date, setDate }) => {
           mode="single"
           modifiers={{
             hasEvent: events.map((e) => {
-              // Convert event date to Europe/Ljubljana timezone for consistent display
-              const eventDateInLjubljana = new Date(
+              // Convert event date to Europe/Ljubljana timezone for a consistent display
+              return new Date(
                 e.date.toLocaleDateString("en-CA", {
                   timeZone: "Europe/Ljubljana",
                 })
               );
-              return eventDateInLjubljana;
             }),
             weekend: (date) => {
               const day = date.getDay();

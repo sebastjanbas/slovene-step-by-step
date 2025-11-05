@@ -9,6 +9,7 @@ const CalendarPage = async () => {
   const tutors = await getTutors();
   const {userId} = await auth();
 
+
   if (!schedule.success || !timeblocks.success || !tutors.success || !userId) {
     return (
       <div className="text-red-500">
