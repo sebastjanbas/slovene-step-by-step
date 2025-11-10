@@ -410,11 +410,11 @@ export const cancelBooking = async (bookingId: number) => {
   try {
     const { userId } = await auth();
     if (!userId) {
-      return { error: "Unauthorized", status: 401 };
+      return { message: "Unauthorized", status: 401 };
     }
 
     if (!bookingId) {
-      return { error: "Booking ID is required", status: 400 };
+      return { message: "Booking ID is required", status: 400 };
     }
 
     // Get the booking details
@@ -430,7 +430,7 @@ export const cancelBooking = async (bookingId: number) => {
     });
 
     if (!booking) {
-      return { error: "Booking not found or already cancelled", status: 404 };
+      return { message: "Booking not found or already cancelled", status: 404 };
     }
 
     // Get the event details
@@ -439,7 +439,7 @@ export const cancelBooking = async (bookingId: number) => {
     });
 
     if (!event) {
-      return { error: "Event not found", status: 404 };
+      return { message: "Event not found", status: 404 };
     }
 
     // Check if the event is more than 48 hours in the future (allow cancellation only if more than 48 hours remain)
@@ -449,7 +449,7 @@ export const cancelBooking = async (bookingId: number) => {
       (eventDate.getTime() - now.getTime()) / (1000 * 60 * 60);
     if (hoursUntilEvent <= 24) {
       return {
-        error: "Cannot cancel events within 24 hours of the start time",
+        message: "Cannot cancel events within 24 hours of the start time",
         status: 400,
       };
     }
@@ -464,7 +464,7 @@ export const cancelBooking = async (bookingId: number) => {
         });
       } catch (stripeError) {
         console.error("Stripe refund error:", stripeError);
-        return { error: "Failed to process refund", status: 500 };
+        return { message: "Failed to process refund", status: 500 };
       }
 
       // Update booking status to refunded is managed by webhook
@@ -478,7 +478,7 @@ export const cancelBooking = async (bookingId: number) => {
         .where(eq(langClubTable.id, booking.eventId));
 
       return {
-        success: true,
+        status: 200,
         refundId: refund.id,
         message: "Booking cancelled successfully. Refund will be processed.",
       };
@@ -501,17 +501,17 @@ export const cancelBooking = async (bookingId: number) => {
         .where(eq(langClubTable.id, booking.eventId));
 
       return {
-        success: true,
+        status: 200,
         message: "Booking cancelled successfully",
       };
     }
   } catch (error) {
     console.error("Cancel booking error:", error);
-    return { error: "Internal server error", status: 500 };
+    return { message: "Internal server error", status: 500 };
   }
 };
 
-// Generate ICS file for calendar invite
+// Generate an ICS file for calendar invite
 const generateICSFile = (
   bookingId: string,
   locale: string = "en",

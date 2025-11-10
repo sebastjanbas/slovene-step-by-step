@@ -7,17 +7,18 @@ import {useTranslations} from "next-intl";
 import {IconHome} from "@tabler/icons-react";
 
 const LangCalendar = ({ locale, events, date, setDate }) => {
-  const dateFnsLocale = localeMap[locale] ?? localeMap["en"]; // fallback to English
+  const dateFnsLocale = localeMap[locale] ?? localeMap["en"];
   const [screenWidth, setScreenWidth] = useState(0);
-  const [screenHeight, setScreenHeight] = useState(0);
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today);
   const t = useTranslations("dashboard.calendar");
 
   useEffect(() => {
-    setScreenWidth(window.innerWidth);
-    setScreenHeight(window.innerHeight);
-  }, [screenWidth]);
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const eventMap: Record<string, CalendarEvent[]> = events.reduce(
     (acc, event) => {
@@ -30,6 +31,7 @@ const LangCalendar = ({ locale, events, date, setDate }) => {
     },
     {} as Record<string, CalendarEvent[]>
   );
+
   return (
     <div className="relative w-full h-full">
       <>
@@ -67,7 +69,6 @@ const LangCalendar = ({ locale, events, date, setDate }) => {
                 style={{
                   width: "100%",
                   height: "100%",
-                  maxHeight: screenHeight * 0.11,
                 }}
               />
             ),

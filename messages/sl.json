@@ -304,6 +304,7 @@
   "dashboard": {
     "greeting": "Pozdravljeni nazaj <important>{name}!</important>",
     "greeting-placeholder": "Pozdravljeni",
+    "greeting-subheading": "Tukaj je, kaj se dogaja danes",
     "cancel-booking-dialog": {
       "title": "Ste prepričani?",
       "description": "Ste prepričani, da želite preklicati svojo rezervacijo? To dejanje ni mogoče razveljaviti."
@@ -348,21 +349,28 @@
         "dayly-practice": "Dnevne naloge",
         "admin": "Admin Dashboard",
         "language-club-admin": "Admin Pogovorni klub",
-        "bookings": "Rezervacije"
+        "bookings": "Rezervacije",
+        "my-lessons": "Moje lekcije",
+        "achievements": "Dosežki",
+        "progress": "Napredek"
       },
       "secondary": {
         "settings": "Nastavitve",
         "get-help": "Pomoč"
-      },
-      "my-progress": {
-        "title": "Moje napredek",
-        "my-lessons": "Moje lekcije",
-        "achievements": "Dosežki",
-        "progress": "Napredek"
       }
     },
     "calendar": {
       "today-button": "Danes"
+    },
+    "language-club": {
+      "title": "Jezikovni klub",
+      "subtitle": "Načrtuj in upravljaj svoje jezikovne ure",
+      "calendar-title": "Koledar dogodkov",
+      "no-events-scheduled": "Ni načrtovanih dogodkov",
+      "no-events-description": "Kliknite na poljuben datum za ogled razpoložljivih ur",
+      "events-for-date": "Dogodki za {date}",
+      "view-details": "Poglej podrobnosti"
+
     },
     "stats": {
       "total-upcoming": "Skupaj prihajajočih",

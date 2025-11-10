@@ -155,10 +155,13 @@
 /* Month view day cells with rounded corners */
 .fc-dayGridMonth-view .fc-daygrid-day {
   border-radius: var(--calendar-cell-radius);
-  border: 2px solid var(--background);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   margin: 0;
-  padding: 0.25rem 0.35rem;
-  font-size: 0.7rem;
+  padding: 0.5rem 0.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: var(--background);
 }
 
 /* Month view header cells with smaller rounded corners */
@@ -197,8 +200,9 @@
 
 .fc-theme-standard .fc-daygrid-day-number {
   color: var(--foreground);
-  font-weight: 500;
-  font-size: 0.7rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 0.125rem;
 }
 
 .fc-theme-standard .fc-col-header-cell-cushion {
@@ -253,15 +257,17 @@
 
 /* Today day cell styling */
 .fc-theme-standard .fc-daygrid-day.fc-day-today {
-  background-color: var(--calendar-today-bg);
-  border: 2px solid var(--calendar-today-border);
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%);
+  border: 1.5px solid var(--calendar-today-border);
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.1);
 }
 
 /* Month view today cell with rounded corners */
 .fc-dayGridMonth-view .fc-daygrid-day.fc-day-today {
-  background-color: var(--calendar-today-bg);
-  border: 2px solid var(--calendar-today-border);
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%);
+  border: 1.5px solid var(--calendar-today-border);
   border-radius: var(--calendar-cell-radius);
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.1);
 }
 
 .fc-theme-standard .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
@@ -499,8 +505,11 @@
 
 /* Month view hover effect with rounded corners */
 .fc-dayGridMonth-view .fc-daygrid-day:hover {
-  border: 2px solid var(--calendar-hover-border) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
   border-radius: var(--calendar-cell-radius);
+  transform: scale(1.02);
+  background-color: rgba(0, 0, 0, 0.02) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 /* Dark mode weekend day cell dimming */
@@ -523,6 +532,15 @@
 
 /* Dark mode month view hover effect with rounded corners */
 .dark .fc-dayGridMonth-view .fc-daygrid-day:hover {
-  border: 2px solid var(--calendar-hover-border) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: var(--calendar-cell-radius);
+  transform: scale(1.02);
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode day cells */
+.dark .fc-dayGridMonth-view .fc-daygrid-day {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: var(--background);
 }

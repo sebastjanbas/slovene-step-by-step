@@ -34,46 +34,35 @@ export const BookingConfEmail = ({
 }: BookingConfEmailProps) => {
   const translations = {
     sl: {
-      preview: "Potrditev rezervacije - Vaša lekcija slovenščine je potrjena!",
+      preview: "Potrditev rezervacije - Pogovorni klub",
     },
     en: {
-      preview: "Booking Confirmation - Your Slovene Lesson is Confirmed!",
+      preview: "Booking Confirmation - Language club",
     },
     it: {
       preview:
-        "Conferma Prenotazione - La tua lezione di sloveno è confermata!",
+        "Conferma Prenotazione - Club della lingua",
     },
     ru: {
       preview:
-        "Подтверждение бронирования - Ваш урок словенского языка подтвержден!",
+        "Подтверждение бронирования - языковой-клуб",
     },
   };
 
   return (
     <Html>
       <Head />
-      <Tailwind
-        config={{
-          presets: [pixelBasedPreset],
-          theme: {
-            extend: {
-              colors: {
-                brand: "#e99f77",
-                offwhite: "#fafbfb",
-              },
-              spacing: {
-                0: "0px",
-                20: "20px",
-                45: "45px",
-              },
-            },
-          },
-        }}
-      >
+      <Tailwind config={{ presets: [pixelBasedPreset] }}>
         <Preview>
           {translations[locale as keyof typeof translations].preview}
         </Preview>
-        <Body className="bg-offwhite font-sans text-base">
+        <Body
+          className="bg-gray-50 font-sans text-base"
+          style={{
+            fontFamily:
+              '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+          }}
+        >
           <BookingConfEmailContent
             name={name}
             locale={locale}

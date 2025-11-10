@@ -18,6 +18,7 @@ import {
 } from "@tabler/icons-react";
 import {bookSession} from "@/actions/timeblocks";
 import {toast} from "sonner";
+import {useRouter} from "@/i18n/routing";
 
 type EventSheetProps = {
   isEventSheetOpen: boolean;
@@ -27,6 +28,7 @@ type EventSheetProps = {
 };
 
 export const EventSheet = (props: EventSheetProps) => {
+  const router = useRouter();
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString("default", {
       hour: "numeric",
@@ -60,6 +62,7 @@ export const EventSheet = (props: EventSheetProps) => {
 
     const response = await bookSession(session);
     if (response.status === 200) {
+      router.refresh();
       toast.success(response.message);
       props.setIsEventSheetOpen(false);
     } else {

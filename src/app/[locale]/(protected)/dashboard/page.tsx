@@ -72,11 +72,8 @@ const DashboardPage = async ({ params }) => {
     .innerJoin(tutorsTable, eq(timeblocksTable.tutorId, tutorsTable.id))
     .orderBy(asc(timeblocksTable.startTime));
 
-  console.log("Personal: ", personalSessions);
-  console.log("Lang club: ", langClubEvents);
-
   return (
-    <main className="w-full h-full flex flex-col gap-6 p-10">
+    <main className="w-full h-full flex flex-col gap-8 p-8 md:p-10 lg:p-12">
       <div className="flex-shrink-0">
         <Greeting />
       </div>
@@ -88,7 +85,7 @@ const DashboardPage = async ({ params }) => {
       />
 
       {/* Main Content: Calendar and Events */}
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 min-h-0">
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 min-h-0">
         <div className="lg:col-span-2">
           <UnifiedCalendar
             langClubEvents={langClubEvents}

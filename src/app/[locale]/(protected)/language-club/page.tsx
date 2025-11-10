@@ -74,7 +74,7 @@ const LanguageClubPage = async ({ params, searchParams }) => {
   }
 
   return (
-    <div className="p-5 flex flex-col md:flex-row h-full w-full md:overflow-hidden justify-center items-center md:items-start gap-5 mb-20">
+    <div className="flex flex-col h-full w-full">
       <BookingToast canceled={canceled} />
       <LangComponents
         events={transformedEvents}

@@ -15,137 +15,150 @@ import React from "react";
 const getEmailTranslations = (locale: string) => {
   const translations = {
     sl: {
-      confirmation: "Potrditev rezervacije",
-      subtitle: "Vaša lekcija slovenščine je uspešno rezervirana!",
+      reschedule: "Ponovna rezervacija",
+      subtitle: "Vaša rezervacija za pogovorni klub je bila uspešno spremenjena!",
+      oldBooking: "Prejšnja rezervacija",
+      newBooking: "Nova rezervacija",
       lessonDetails: "Podrobnosti lekcije",
-      type: "Pogovorni klub",
       date: "Datum",
       time: "Čas",
       duration: "Trajanje",
       teacher: "Tutor",
       lessonTheme: "Tip lekcije",
-      addToCalendar: "Dodaj v koledar",
-      googleCalendar: "Google Koledar",
-      appleCalendar: "Apple Koledar",
-      meetingInfo: "Informacije o sestanku",
-      joinMeeting: "Pridruži se sestanku",
+      location: "Lokacija",
+      description: "Opis",
+      level: "Nivo",
+      type: "Pogovorni klub",
+      seeYouSoon: "Vidimo se kmalu",
       dashboard: "Dashboard",
       about: "O nas",
       pricing: "Cenik",
       contact: "Kontakt",
       allRightsReserved: "Vse pravice pridržane",
-      seeYouSoon: "Vidimo se kmalu",
-      location: "Lokacija",
-      description: "Opis",
-      level: "Nivo",
     },
     en: {
-      confirmation: "Booking Confirmation",
-      subtitle: "Your Slovene lesson has been successfully booked!",
+      reschedule: "Reschedule Confirmation",
+      subtitle: "Your language club booking has been successfully rescheduled!",
+      oldBooking: "Previous Booking",
+      newBooking: "New Booking",
       lessonDetails: "Lesson Details",
-      type: "Language club",
       date: "Date",
       time: "Time",
       duration: "Duration",
       teacher: "Teacher",
       lessonTheme: "Lesson Type",
-      addToCalendar: "Add to Calendar",
-      googleCalendar: "Google Calendar",
-      appleCalendar: "Apple Calendar",
-      meetingInfo: "Meeting Information",
-      joinMeeting: "Join Meeting",
+      location: "Location",
+      description: "Description",
+      level: "Level",
+      type: "Language club",
+      seeYouSoon: "See you soon",
       dashboard: "Dashboard",
       about: "About",
       pricing: "Pricing",
       contact: "Contact",
       allRightsReserved: "All Rights Reserved",
-      seeYouSoon: "See you soon",
-      location: "Location",
-      description: "Description",
-      level: "Level",
     },
     it: {
-      confirmation: "Conferma Prenotazione",
-      subtitle: "La tua lezione di sloveno è stata prenotata con successo!",
+      reschedule: "Conferma Riprogrammazione",
+      subtitle: "La tua prenotazione per il club della lingua è stata riprogrammata con successo!",
+      oldBooking: "Prenotazione Precedente",
+      newBooking: "Nuova Prenotazione",
       lessonDetails: "Dettagli Lezione",
-      type: "Club della Lingua",
       date: "Data",
       time: "Ora",
       duration: "Durata",
       teacher: "Insegnante",
       lessonTheme: "Tipo di Lezione",
-      addToCalendar: "Aggiungi al Calendario",
-      googleCalendar: "Google Calendario",
-      appleCalendar: "Apple Calendario",
-      meetingInfo: "Informazioni Riunione",
-      joinMeeting: "Partecipa alla Riunione",
+      location: "Luogo",
+      description: "Descrizione",
+      level: "Livello",
+      type: "Club della Lingua",
+      seeYouSoon: "A presto",
       dashboard: "Dashboard",
       about: "Chi siamo",
       pricing: "Prezzi",
       contact: "Contatto",
       allRightsReserved: "Tutti i diritti riservati",
-      seeYouSoon: "A presto",
-      location: "Luogo",
-      description: "Descrizione",
-      level: "Livello",
     },
     ru: {
-      confirmation: "Подтверждение бронирования",
-      subtitle: "Ваш урок словенского языка успешно забронирован!",
+      reschedule: "Подтверждение переноса",
+      subtitle: "Ваше бронирование языкового клуба успешно перенесено!",
+      oldBooking: "Предыдущее бронирование",
+      newBooking: "Новое бронирование",
       lessonDetails: "Детали урока",
-      type:  "языковой-клуб",
       date: "Дата",
       time: "Время",
       duration: "Продолжительность",
       teacher: "Учитель",
       lessonTheme: "Тип урока",
-      addToCalendar: "Добавить в календарь",
-      googleCalendar: "Google Календарь",
-      appleCalendar: "Apple Календарь",
-      meetingInfo: "Информация о встрече",
-      joinMeeting: "Присоединиться к встрече",
+      location: "Место",
+      description: "Описание",
+      level: "Уровень",
+      type: "языковой-клуб",
+      seeYouSoon: "До скорой встречи",
       dashboard: "Dashboard",
       about: "О нас",
       pricing: "Цены",
       contact: "Контакты",
       allRightsReserved: "Все права защищены",
-      seeYouSoon: "До скорой встречи",
-      location: "Место",
-      description: "Описание",
-      level: "Уровень",
     },
   };
 
   return translations[locale as keyof typeof translations] || translations.en;
 };
 
-const BookingConfEmailContent = ({
+const RescheduleConfEmailContent = ({
   name,
   locale,
-  lessonDate,
-  lessonDuration,
-  teacherName,
-  lessonTheme,
-  lessonLocation,
-  lessonDescription,
-  lessonLevel,
+  oldLessonDate,
+  oldLessonDuration,
+  oldTeacherName,
+  oldLessonTheme,
+  oldLessonLocation,
+  oldLessonDescription,
+  oldLessonLevel,
+  newLessonDate,
+  newLessonDuration,
+  newTeacherName,
+  newLessonTheme,
+  newLessonLocation,
+  newLessonDescription,
+  newLessonLevel,
 }: {
   name: string;
   locale: string;
-  lessonDate: Date;
-  lessonDuration: number;
-  teacherName: string;
-  lessonTheme: string;
-  lessonLocation: string;
-  lessonDescription: string;
-  lessonLevel: string;
+  oldLessonDate: Date;
+  oldLessonDuration: number;
+  oldTeacherName: string;
+  oldLessonTheme: string;
+  oldLessonLocation: string;
+  oldLessonDescription?: string;
+  oldLessonLevel?: string;
+  newLessonDate: Date;
+  newLessonDuration: number;
+  newTeacherName: string;
+  newLessonTheme: string;
+  newLessonLocation: string;
+  newLessonDescription?: string;
+  newLessonLevel?: string;
 }) => {
   const year = new Date().getFullYear();
   const t = getEmailTranslations(locale);
 
-  // Format date for display
-  const formattedDate = toZonedTime(
-    lessonDate,
+  // Format dates for display
+  const formattedOldDate = toZonedTime(
+    oldLessonDate,
+    "Europe/Ljubljana",
+  ).toLocaleDateString(locale, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  const formattedNewDate = toZonedTime(
+    newLessonDate,
     "Europe/Ljubljana",
   ).toLocaleDateString(locale, {
     year: "numeric",
@@ -218,7 +231,7 @@ const BookingConfEmailContent = ({
                   letterSpacing: "-0.5px",
                 }}
               >
-                {t.confirmation}
+                {t.reschedule}
               </Heading>
               <Text
                 style={{
@@ -244,14 +257,273 @@ const BookingConfEmailContent = ({
             }}
           />
 
-          {/* Lesson Details Card */}
+          {/* Old Booking Details Card */}
+          <Section
+            style={{
+              backgroundColor: "#FAFAFA",
+              borderRadius: "16px",
+              padding: "32px",
+              marginBottom: "24px",
+              border: "1px solid #F3F4F6",
+            }}
+          >
+            <Heading
+              as="h2"
+              style={{
+                fontSize: "18px",
+                lineHeight: "24px",
+                fontWeight: "600",
+                color: "#6B7280",
+                margin: "0 0 24px 0",
+                letterSpacing: "-0.2px",
+              }}
+            >
+              {t.oldBooking}
+            </Heading>
+
+            {/* Lesson Type */}
+            <Section style={{ marginBottom: "20px" }}>
+              <Text
+                style={{
+                  fontSize: "12px",
+                  lineHeight: "16px",
+                  color: "#6B7280",
+                  fontWeight: "500",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                  marginBottom: "6px",
+                }}
+              >
+                {t.lessonTheme} - {t.type}
+              </Text>
+              <Text
+                style={{
+                  fontSize: "16px",
+                  lineHeight: "24px",
+                  color: "#111827",
+                  fontWeight: "600",
+                  margin: "0",
+                }}
+              >
+                {oldLessonTheme}
+              </Text>
+            </Section>
+
+            {/* Description */}
+            {oldLessonDescription && (
+              <Section
+                style={{
+                  marginBottom: "20px",
+                  paddingBottom: "20px",
+                  borderBottom: "1px solid #E5E7EB",
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: "12px",
+                    lineHeight: "16px",
+                    color: "#6B7280",
+                    fontWeight: "500",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.5px",
+                    marginBottom: "6px",
+                  }}
+                >
+                  {t.description}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: "14px",
+                    lineHeight: "20px",
+                    color: "#374151",
+                    margin: "0",
+                  }}
+                >
+                  {oldLessonDescription}
+                </Text>
+              </Section>
+            )}
+
+            {/* Details Grid */}
+            <Section>
+              <Row style={{ marginBottom: "12px" }}>
+                <Column style={{ width: "40%" }}>
+                  <Text
+                    style={{
+                      fontSize: "12px",
+                      lineHeight: "18px",
+                      color: "#6B7280",
+                      fontWeight: "500",
+                      margin: "0",
+                    }}
+                  >
+                    {t.date}
+                  </Text>
+                </Column>
+                <Column style={{ width: "60%" }}>
+                  <Text
+                    style={{
+                      fontSize: "14px",
+                      lineHeight: "20px",
+                      color: "#111827",
+                      fontWeight: "500",
+                      margin: "0",
+                    }}
+                  >
+                    {formattedOldDate}
+                  </Text>
+                </Column>
+              </Row>
+
+              <Row style={{ marginBottom: "12px" }}>
+                <Column style={{ width: "40%" }}>
+                  <Text
+                    style={{
+                      fontSize: "12px",
+                      lineHeight: "18px",
+                      color: "#6B7280",
+                      fontWeight: "500",
+                      margin: "0",
+                    }}
+                  >
+                    {t.duration}
+                  </Text>
+                </Column>
+                <Column style={{ width: "60%" }}>
+                  <Text
+                    style={{
+                      fontSize: "14px",
+                      lineHeight: "20px",
+                      color: "#111827",
+                      fontWeight: "500",
+                      margin: "0",
+                    }}
+                  >
+                    {oldLessonDuration}{" "}
+                    {locale === "sl"
+                      ? "minut"
+                      : locale === "it"
+                        ? "minuti"
+                        : locale === "ru"
+                          ? "минут"
+                          : "minutes"}
+                  </Text>
+                </Column>
+              </Row>
+
+              <Row style={{ marginBottom: "12px" }}>
+                <Column style={{ width: "40%" }}>
+                  <Text
+                    style={{
+                      fontSize: "12px",
+                      lineHeight: "18px",
+                      color: "#6B7280",
+                      fontWeight: "500",
+                      margin: "0",
+                    }}
+                  >
+                    {t.teacher}
+                  </Text>
+                </Column>
+                <Column style={{ width: "60%" }}>
+                  <Text
+                    style={{
+                      fontSize: "14px",
+                      lineHeight: "20px",
+                      color: "#111827",
+                      fontWeight: "500",
+                      margin: "0",
+                    }}
+                  >
+                    {oldTeacherName}
+                  </Text>
+                </Column>
+              </Row>
+
+              <Row style={{ marginBottom: "12px" }}>
+                <Column style={{ width: "40%" }}>
+                  <Text
+                    style={{
+                      fontSize: "12px",
+                      lineHeight: "18px",
+                      color: "#6B7280",
+                      fontWeight: "500",
+                      margin: "0",
+                    }}
+                  >
+                    {t.location}
+                  </Text>
+                </Column>
+                <Column style={{ width: "60%" }}>
+                  <Text
+                    style={{
+                      fontSize: "14px",
+                      lineHeight: "20px",
+                      color: "#111827",
+                      fontWeight: "500",
+                      margin: "0",
+                    }}
+                  >
+                    {oldLessonLocation}
+                  </Text>
+                </Column>
+              </Row>
+
+              {oldLessonLevel && (
+                <Row>
+                  <Column style={{ width: "40%" }}>
+                    <Text
+                      style={{
+                        fontSize: "12px",
+                        lineHeight: "18px",
+                        color: "#6B7280",
+                        fontWeight: "500",
+                        margin: "0",
+                      }}
+                    >
+                      {t.level}
+                    </Text>
+                  </Column>
+                  <Column style={{ width: "60%" }}>
+                    <Text
+                      style={{
+                        fontSize: "14px",
+                        lineHeight: "20px",
+                        color: "#111827",
+                        fontWeight: "500",
+                        margin: "0",
+                      }}
+                    >
+                      {oldLessonLevel}
+                    </Text>
+                  </Column>
+                </Row>
+              )}
+            </Section>
+          </Section>
+
+          {/* Arrow/Divider */}
+          <Section style={{ textAlign: "center", marginBottom: "24px" }}>
+            <Text
+              style={{
+                fontSize: "24px",
+                lineHeight: "32px",
+                color: "#A855F7",
+                margin: "0",
+              }}
+            >
+              ↓
+            </Text>
+          </Section>
+
+          {/* New Booking Details Card */}
           <Section
             style={{
               backgroundColor: "#FAFAFA",
               borderRadius: "16px",
               padding: "32px",
               marginBottom: "32px",
-              border: "1px solid #F3F4F6",
+              border: "2px solid #A855F7",
             }}
           >
             <Heading
@@ -265,7 +537,7 @@ const BookingConfEmailContent = ({
                 letterSpacing: "-0.3px",
               }}
             >
-              {t.lessonDetails}
+              {t.newBooking}
             </Heading>
 
             {/* Lesson Type - Highlighted */}
@@ -292,12 +564,12 @@ const BookingConfEmailContent = ({
                   margin: "0",
                 }}
               >
-                {lessonTheme}
+                {newLessonTheme}
               </Text>
             </Section>
 
             {/* Description */}
-            {lessonDescription && (
+            {newLessonDescription && (
               <Section
                 style={{
                   marginBottom: "20px",
@@ -326,7 +598,7 @@ const BookingConfEmailContent = ({
                     margin: "0",
                   }}
                 >
-                  {lessonDescription}
+                  {newLessonDescription}
                 </Text>
               </Section>
             )}
@@ -357,7 +629,7 @@ const BookingConfEmailContent = ({
                       margin: "0",
                     }}
                   >
-                    {formattedDate}
+                    {formattedNewDate}
                   </Text>
                 </Column>
               </Row>
@@ -386,7 +658,7 @@ const BookingConfEmailContent = ({
                       margin: "0",
                     }}
                   >
-                    {lessonDuration}{" "}
+                    {newLessonDuration}{" "}
                     {locale === "sl"
                       ? "minut"
                       : locale === "it"
@@ -422,7 +694,7 @@ const BookingConfEmailContent = ({
                       margin: "0",
                     }}
                   >
-                    {teacherName}
+                    {newTeacherName}
                   </Text>
                 </Column>
               </Row>
@@ -451,39 +723,41 @@ const BookingConfEmailContent = ({
                       margin: "0",
                     }}
                   >
-                    {lessonLocation}
+                    {newLessonLocation}
                   </Text>
                 </Column>
               </Row>
 
-              <Row>
-                <Column style={{ width: "40%" }}>
-                  <Text
-                    style={{
-                      fontSize: "13px",
-                      lineHeight: "20px",
-                      color: "#6B7280",
-                      fontWeight: "500",
-                      margin: "0",
-                    }}
-                  >
-                    {t.level}
-                  </Text>
-                </Column>
-                <Column style={{ width: "60%" }}>
-                  <Text
-                    style={{
-                      fontSize: "15px",
-                      lineHeight: "24px",
-                      color: "#111827",
-                      fontWeight: "500",
-                      margin: "0",
-                    }}
-                  >
-                    {lessonLevel}
-                  </Text>
-                </Column>
-              </Row>
+              {newLessonLevel && (
+                <Row>
+                  <Column style={{ width: "40%" }}>
+                    <Text
+                      style={{
+                        fontSize: "13px",
+                        lineHeight: "20px",
+                        color: "#6B7280",
+                        fontWeight: "500",
+                        margin: "0",
+                      }}
+                    >
+                      {t.level}
+                    </Text>
+                  </Column>
+                  <Column style={{ width: "60%" }}>
+                    <Text
+                      style={{
+                        fontSize: "15px",
+                        lineHeight: "24px",
+                        color: "#111827",
+                        fontWeight: "500",
+                        margin: "0",
+                      }}
+                    >
+                      {newLessonLevel}
+                    </Text>
+                  </Column>
+                </Row>
+              )}
             </Section>
           </Section>
 
@@ -592,4 +866,5 @@ const BookingConfEmailContent = ({
   );
 };
 
-export default BookingConfEmailContent;
+export default RescheduleConfEmailContent;
+

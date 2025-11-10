@@ -89,7 +89,7 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
         return;
       }
 
-      if (response?.success) {
+      if (response?.status === 200) {
         router.refresh();
         toast.success(response.message || "Event cancelled successfully");
       } else {
@@ -148,41 +148,43 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
 
   return (
     <>
-      <div className="w-full rounded-2xl p-[2px] bg-gradient-to-br from-[var(--sl-blue)]/30 via-[var(--sl-purple)]/30 to-[var(--sl-pink)]/30">
-        <Card className="w-full bg-card dark:bg-background rounded-2xl border-0 shadow-sm">
-          <CardHeader>
-            <div className="relative">
+      <Card className="w-full bg-white dark:bg-[#1a1a1a] rounded-2xl border border-border/40 dark:border-white/10 shadow-[0_1px_3px_rgba(0,0,0,0.05),0_1px_2px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.08),0_2px_6px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden">
+          <CardHeader className="flex flex-row justify-between items-center gap-2">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div
+                  className={`bg-gradient-to-br ${gradientColor} p-2.5 rounded-xl`}
+                >
+                  {isLanguageClub ? (
+                    <IconUsers className="h-5 w-5 text-foreground" />
+                  ) : (
+                    <IconUser className="h-5 w-5 text-foreground" />
+                  )}
+                </div>
+                <CardTitle className="text-xl tracking-tight font-semibold text-foreground">
+                  {t("next-event")}
+                </CardTitle>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <IconClock className="h-4 w-4 text-muted-foreground" />
               <p
                 key={timeLeft}
-                className="text-sm font-semibold text-foreground/50 tabular-nums transition-all duration-500 ease-in-out animate-in fade-in slide-in-from-bottom-2"
+                className="text-sm font-medium text-muted-foreground tabular-nums transition-all duration-500 ease-in-out animate-in fade-in slide-in-from-bottom-2"
               >
                 {timeLeft}
               </p>
             </div>
-            <div className="ml-auto flex items-center gap-2">
-              <CardTitle className="text-lg tracking-tight font-semibold">
-                {t("next-event")}
-              </CardTitle>
-              <div
-                className={`bg-gradient-to-br ${gradientColor} p-2 rounded-lg`}
-              >
-                {isLanguageClub ? (
-                  <IconUsers className="h-5 w-5" />
-                ) : (
-                  <IconUser className="h-5 w-5" />
-                )}
-              </div>
-            </div>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-5 pt-2">
             {/* Event Type Badge */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <Badge
                 variant="outline"
                 className={
                   isLanguageClub
-                    ? "border-[var(--sl-purple)] text-[var(--sl-purple)] bg-[var(--sl-purple)]/5"
-                    : "border-[var(--sl-pink)] text-[var(--sl-pink)] bg-[var(--sl-pink)]/5"
+                    ? "border-[var(--sl-purple)]/50 text-[var(--sl-purple)] bg-[var(--sl-purple)]/10"
+                    : "border-[var(--sl-pink)]/50 text-[var(--sl-pink)] bg-[var(--sl-pink)]/10"
                 }
               >
                 {isLanguageClub
@@ -190,7 +192,7 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
                   : t("personal-session") || "Personal Session"}
               </Badge>
               {event.level && (
-                <Badge variant="secondary" className="text-xs">
+                <Badge variant="secondary" className="text-xs bg-muted/50">
                   {event.level}
                 </Badge>
               )}
@@ -198,7 +200,7 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
 
             {/* Event Title */}
             <div>
-              <h3 className="font-semibold text-lg text-foreground mb-1">
+              <h3 className="font-semibold text-xl text-foreground mb-2 tracking-tight">
                 {event.theme}
               </h3>
               <p className="text-sm text-muted-foreground">
@@ -207,9 +209,9 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
             </div>
 
             {/* Event Details */}
-            <div className="space-y-2.5">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <IconCalendar className="h-4 w-4 flex-shrink-0" />
+            <div className="space-y-3 pt-2">
+              <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                <IconCalendar className="h-4 w-4 flex-shrink-0 text-muted-foreground/70" />
                 <span>
                   {toZonedTime(
                     event.date,
@@ -223,30 +225,22 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
                   })}
                 </span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <IconClock className="h-4 w-4 flex-shrink-0" />
+              <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                <IconClock className="h-4 w-4 flex-shrink-0 text-muted-foreground/70" />
                 <span>{t("event-duration", { duration: event.duration })}</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <IconMapPin className="h-4 w-4 flex-shrink-0" />
-                {/*<a*/}
-                {/*  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`}*/}
-                {/*  target="_blank"*/}
-                {/*  rel="noopener noreferrer"*/}
-                {/*  className="inline-flex items-center gap-1 hover:underline"*/}
-                {/*>*/}
+              <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                <IconMapPin className="h-4 w-4 flex-shrink-0 text-muted-foreground/70" />
                 <span className="truncate">{event.location}</span>
-                {/*  <IconExternalLink className="w-3.5 h-3.5" />*/}
-                {/*</a>*/}
               </div>
             </div>
           </CardContent>
-          <CardFooter className="flex flex-row gap-3 pt-4">
+          <CardFooter className="flex flex-row gap-3 pt-6 border-t border-border/30">
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button
                   variant="outline"
-                  className="flex-1 border-red-500/50 text-red-500 hover:text-red-700 hover:bg-red-50 dark:border-destructive/50 dark:text-foreground dark:hover:bg-red-400/10"
+                  className="flex-1 border-red-500/40 text-red-500 hover:text-red-700 hover:bg-red-50 dark:border-red-500/40 dark:text-red-400 dark:hover:bg-red-400/10 transition-all duration-200 h-11"
                   disabled={isCancelling}
                 >
                   {isCancelling ? (
@@ -259,7 +253,7 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
                   )}
                 </Button>
               </AlertDialogTrigger>
-              <AlertDialogContent className="bg-white dark:bg-background border-red-500 dark:border-red-500/30 border-2 rounded-2xl">
+              <AlertDialogContent className="bg-white dark:bg-[#1a1a1a] border-red-500 dark:border-red-500/30 border-2 rounded-2xl">
                 <AlertDialogHeader>
                   <AlertDialogTitle>{d("title")}</AlertDialogTitle>
                   <AlertDialogDescription>
@@ -293,14 +287,13 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
               <Button
                 onClick={handleReschedule}
                 variant="outline"
-                className="flex-1 border-[var(--sl-purple)] text-[var(--sl-purple)] bg-[var(--sl-purple)]/5 hover:bg-[var(--sl-purple)]/10"
+                className="flex-1 border-[var(--sl-purple)]/40 text-[var(--sl-purple)] bg-[var(--sl-purple)]/10 hover:bg-[var(--sl-purple)]/20 transition-all duration-200 h-11 font-medium"
               >
                 {tC("reschedule")}
               </Button>
             )}
           </CardFooter>
         </Card>
-      </div>
 
       {isLanguageClub && event.bookingId && (
         <RescheduleDialog

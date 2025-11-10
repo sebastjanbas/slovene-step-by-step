@@ -10,6 +10,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetClose,
 } from "@/components/ui/sheet";
 import {
   IconUsers,
@@ -20,6 +21,7 @@ import {
   IconTrash,
   IconCalendarSearch,
   IconLoader2,
+  IconX,
 } from "@tabler/icons-react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -144,13 +146,30 @@ const DashboardClient = ({
   const nextEvent = allEvents.length > 0 ? allEvents[0] : null;
 
   return (
-    <>
+    <div className="h-full flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
       {nextEvent ? (
         <div className="flex flex-col gap-4">
           <NextEventCard event={nextEvent} locale={locale} />
         </div>
       ) : (
-        <p>{t("no-future-events")}</p>
+        <div className="flex flex-col items-center justify-center p-8 rounded-2xl border border-border/40 dark:border-white/10 bg-white dark:bg-[#1a1a1a] shadow-[0_1px_3px_rgba(0,0,0,0.05),0_1px_2px_rgba(0,0,0,0.1)]">
+          <div className="w-16 h-16 mb-4 rounded-full bg-muted/30 flex items-center justify-center">
+            <IconCalendar className="h-8 w-8 text-muted-foreground/40" />
+          </div>
+          <h3 className="text-lg font-semibold text-foreground mb-2">
+            {t("no-future-events")}
+          </h3>
+          <p className="text-sm text-muted-foreground text-center mb-6 max-w-[280px]">
+            You have no upcoming sessions. Book a session to get started!
+          </p>
+          <Button
+            onClick={() => window.location.href = '/language-club'}
+            variant="outline"
+            className="border-[var(--sl-purple)]/50 text-[var(--sl-purple)] hover:bg-[var(--sl-purple)]/10 transition-all duration-200"
+          >
+            Browse Sessions
+          </Button>
+        </div>
       )}
       <div className="inline-flex gap-2 w-full items-center overflow-hidden">
         <p className="text-sm text-muted-foreground w-full flex-1 text-nowrap">
@@ -165,7 +184,7 @@ const DashboardClient = ({
 
         <Separator />
       </div>
-    </>
+    </div>
   );
 };
 
@@ -246,54 +265,66 @@ function ViewAllScheduledDialog({
         </SheetTrigger>
         <SheetContent
           side="right"
-          className="w-full lg:min-w-[600px] p-0 overflow-hidden bg-white dark:bg-background"
+          className="w-full sm:max-w-[440px] p-0 overflow-hidden bg-white dark:bg-[#1e1e1e] shadow-[-4px_0_24px_rgba(0,0,0,0.15)]"
         >
           <div className="flex flex-col h-full">
             {/* Header */}
-            <SheetHeader className="px-6 pt-6 pb-5 border-b border-border/50 bg-white dark:bg-background">
-              <SheetTitle className="text-2xl font-bold text-foreground">
-                {t("event-view-card.title") || "All Scheduled Events"}
-              </SheetTitle>
-              <SheetDescription className="text-sm text-muted-foreground pt-2">
-                {t("event-view-card.description") ||
-                  `View all your upcoming events`}
-              </SheetDescription>
+            <SheetHeader className="relative px-8 pt-8 pb-6 border-b border-border/10">
+              <SheetClose className="absolute right-6 top-6 rounded-full opacity-70 ring-offset-background transition-all hover:opacity-100 hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-muted p-2">
+                <IconX className="h-5 w-5" />
+                <span className="sr-only">Close</span>
+              </SheetClose>
+
+              <div className="pr-10">
+                <SheetTitle className="text-[28px] font-semibold text-foreground leading-tight tracking-tight">
+                  {t("event-view-card.title") || "All Scheduled Events"}
+                </SheetTitle>
+                <SheetDescription className="text-[14px] text-muted-foreground mt-3 leading-relaxed">
+                  {t("event-view-card.description") ||
+                    "View and manage all your upcoming events"}
+                </SheetDescription>
+              </div>
             </SheetHeader>
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto bg-gray-50/50 dark:bg-background/50">
+            <div className="flex-1 overflow-y-auto bg-gray-50/30 dark:bg-[#1a1a1a]/30 smooth-scroll">
               {sortedEvents.length === 0 ? (
-                <div className="flex flex-col items-center justify-center py-16 px-6">
-                  <IconCalendar className="h-12 w-12 text-muted-foreground/40 mb-4" />
-                  <p className="text-center text-sm text-muted-foreground">
-                    {t("no-future-events")}
+                <div className="flex flex-col items-center justify-center px-8 py-20">
+                  <div className="w-20 h-20 rounded-full bg-muted/20 flex items-center justify-center mb-5">
+                    <IconCalendar className="h-10 w-10 text-muted-foreground/30" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                    No events scheduled yet
+                  </h3>
+                  <p className="text-sm text-muted-foreground text-center max-w-[280px] leading-relaxed">
+                    Your scheduled events will appear here
                   </p>
                 </div>
               ) : (
-                <div className="p-6 space-y-6">
+                <div className="px-6 py-6 space-y-6">
                   {/* Summary Cards */}
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-white dark:bg-background rounded-xl p-4 border border-border/30 shadow-sm">
-                      <div className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+                    <div className="bg-white dark:bg-[#252525] rounded-xl px-5 py-4 border border-border/10 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow duration-200">
+                      <div className="text-[11px] font-medium text-muted-foreground/80 mb-2.5 uppercase tracking-[0.5px]">
                         Total Events
                       </div>
-                      <div className="text-3xl font-bold text-foreground">
+                      <div className="text-[36px] font-bold text-foreground leading-none">
                         {sortedEvents.length}
                       </div>
                     </div>
-                    <div className="bg-white dark:bg-background rounded-xl p-4 border border-border/30 shadow-sm">
-                      <div className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+                    <div className="bg-white dark:bg-[#252525] rounded-xl px-5 py-4 border border-border/10 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow duration-200">
+                      <div className="text-[11px] font-medium text-muted-foreground/80 mb-2.5 uppercase tracking-[0.5px]">
                         Language Club
                       </div>
-                      <div className="text-3xl font-bold text-foreground">
+                      <div className="text-[36px] font-bold text-foreground leading-none">
                         {langClubCount}
                       </div>
                     </div>
                   </div>
 
                   {/* Events List */}
-                  <div className="space-y-4">
-                    <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                  <div className="space-y-4 pt-2">
+                    <div className="text-[11px] font-semibold text-muted-foreground/70 uppercase tracking-[0.5px] px-1">
                       Events
                     </div>
                     {sortedEvents.map((event) => {
@@ -305,49 +336,47 @@ function ViewAllScheduledDialog({
                       return (
                         <div
                           key={`${event.type}-${event.id}`}
-                          className="bg-white dark:bg-background rounded-xl border border-border/30 p-5 shadow-md"
+                          className="group relative bg-white dark:bg-[#252525] rounded-xl border border-border/10 dark:border-white/5 p-5 shadow-sm hover:shadow-md hover:-translate-y-[1px] transition-all duration-200"
                         >
-                          <div className="flex items-start justify-between gap-4">
-                            <div className="flex-1 space-y-3 min-w-0">
-                              <div className="flex items-start gap-3">
-                                <div
-                                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                                  style={iconContainerStyle}
-                                >
-                                  {isLanguageClub ? (
-                                    <IconUsers className="h-5 w-5 text-white" />
-                                  ) : (
-                                    <IconUser className="h-5 w-5 text-white" />
-                                  )}
+                          <div className="flex items-start gap-4">
+                            <div
+                              className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"
+                              style={iconContainerStyle}
+                            >
+                              {isLanguageClub ? (
+                                <IconUsers className="h-5 w-5 text-white" />
+                              ) : (
+                                <IconUser className="h-5 w-5 text-white" />
+                              )}
+                            </div>
+
+                            <div className="flex-1 min-w-0 space-y-3">
+                              <div className="space-y-1.5">
+                                <div className="flex items-center gap-2.5 flex-wrap">
+                                  <h4 className="font-semibold text-[15px] text-foreground leading-tight">
+                                    {event.theme}
+                                  </h4>
+                                  <Badge
+                                    variant="outline"
+                                    className={
+                                      isLanguageClub
+                                        ? "border-[var(--sl-purple)]/30 text-[var(--sl-purple)] bg-[var(--sl-purple)]/5 text-[11px] px-2 py-0.5 rounded-full font-medium"
+                                        : "border-[var(--sl-pink)]/30 text-[var(--sl-pink)] bg-[var(--sl-pink)]/5 text-[11px] px-2 py-0.5 rounded-full font-medium"
+                                    }
+                                  >
+                                    {isLanguageClub
+                                      ? tE("language-club") || "Language Club"
+                                      : tE("personal-session") || "Personal Session"}
+                                  </Badge>
                                 </div>
-                                <div className="flex-1 min-w-0">
-                                  <div className="flex items-center gap-2 mb-1">
-                                    <h4 className="font-semibold text-base text-foreground">
-                                      {event.theme}
-                                    </h4>
-                                    <Badge
-                                      variant="outline"
-                                      className={
-                                        isLanguageClub
-                                          ? "border-[var(--sl-purple)] text-[var(--sl-purple)] bg-[var(--sl-purple)]/5"
-                                          : "border-[var(--sl-pink)] text-[var(--sl-pink)] bg-[var(--sl-pink)]/5"
-                                      }
-                                    >
-                                      {isLanguageClub
-                                        ? tE("language-club") || "Language Club"
-                                        : tE("personal-session") ||
-                                          "Personal Session"}
-                                    </Badge>
-                                  </div>
-                                  <p className="text-sm text-muted-foreground">
-                                    {tE("event-tutor", { tutor: event.tutor })}
-                                  </p>
-                                </div>
+                                <p className="text-[13px] text-muted-foreground/80">
+                                  {tE("event-tutor", { tutor: event.tutor })}
+                                </p>
                               </div>
 
-                              <div className="space-y-2 text-sm pl-[52px]">
+                              <div className="space-y-2 text-[13px]">
                                 <div className="flex items-center gap-2 text-muted-foreground">
-                                  <IconCalendar className="h-4 w-4 flex-shrink-0" />
+                                  <IconCalendar className="h-4 w-4 flex-shrink-0 opacity-60" />
                                   <span>
                                     {toZonedTime(
                                       event.date,
@@ -362,7 +391,7 @@ function ViewAllScheduledDialog({
                                   </span>
                                 </div>
                                 <div className="flex items-center gap-2 text-muted-foreground">
-                                  <IconClock className="h-4 w-4 flex-shrink-0" />
+                                  <IconClock className="h-4 w-4 flex-shrink-0 opacity-60" />
                                   <span>
                                     {tE("event-duration", {
                                       duration: event.duration,
@@ -370,7 +399,7 @@ function ViewAllScheduledDialog({
                                   </span>
                                 </div>
                                 <div className="flex items-center gap-2 text-muted-foreground">
-                                  <IconMapPin className="h-4 w-4 flex-shrink-0" />
+                                  <IconMapPin className="h-4 w-4 flex-shrink-0 opacity-60" />
                                   <span className="truncate">
                                     {event.location}
                                   </span>
@@ -378,7 +407,7 @@ function ViewAllScheduledDialog({
                                 {isLanguageClub && event.level && (
                                   <Badge
                                     variant="secondary"
-                                    className="w-fit mt-2"
+                                    className="w-fit mt-1 text-[11px] px-2.5 py-0.5"
                                   >
                                     {event.level}
                                   </Badge>
@@ -390,8 +419,8 @@ function ViewAllScheduledDialog({
                               {isLanguageClub && event.bookingId && (
                                 <Button
                                   variant="outline"
-                                  size="sm"
-                                  className="cursor-pointer"
+                                  size="icon"
+                                  className="h-8 w-8 rounded-lg border-border/50 hover:bg-muted/50 hover:border-border transition-all"
                                   disabled={isCancelling === event.id}
                                   onClick={() => handleReschedule(event)}
                                 >
@@ -401,9 +430,9 @@ function ViewAllScheduledDialog({
                               <AlertDialog>
                                 <AlertDialogTrigger asChild>
                                   <Button
-                                    variant="destructive"
-                                    size="sm"
-                                    className="cursor-pointer"
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-8 w-8 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-700 dark:hover:text-red-300 transition-all"
                                     disabled={isCancelling === event.id}
                                   >
                                     {isCancelling === event.id ? (
@@ -413,7 +442,7 @@ function ViewAllScheduledDialog({
                                     )}
                                   </Button>
                                 </AlertDialogTrigger>
-                                <AlertDialogContent className="bg-white dark:bg-background border-red-500 dark:border-red-500/30 border-2 rounded-2xl">
+                                <AlertDialogContent className="bg-white dark:bg-[#1e1e1e] border-red-500 dark:border-red-500/30 border-2 rounded-2xl">
                                   <AlertDialogHeader>
                                     <AlertDialogTitle>
                                       {tCancel("title")}

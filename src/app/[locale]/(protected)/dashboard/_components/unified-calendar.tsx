@@ -4,7 +4,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { useTranslations, useLocale } from "next-intl";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   IconCalendar,
   IconUsers,
@@ -13,7 +13,10 @@ import {
   IconCalendarSearch,
   IconLoader2,
   IconMapPin,
-  IconClock, IconChevronLeft, IconChevronRight,
+  IconClock,
+  IconChevronLeft,
+  IconChevronRight,
+  IconX,
 } from "@tabler/icons-react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -22,6 +25,7 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
+  SheetClose,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import {
@@ -230,12 +234,12 @@ const UnifiedCalendar = ({
         return;
       }
 
-      if (response?.success) {
+      if (response?.status === 200) {
         router.refresh();
         toast.success(response.message || "Event cancelled successfully");
         setIsSheetOpen(false);
       } else {
-        toast.error(response?.error || "Failed to cancel event");
+        toast.error(response?.message || "Failed to cancel event");
       }
     } catch (error) {
       console.error("Cancel error:", error);
@@ -304,46 +308,39 @@ const UnifiedCalendar = ({
   }, [updateCalendarTitle]);
 
   return (
-    <div className="h-full rounded-2xl p-[2px] bg-gradient-to-br from-[var(--sl-blue)]/30 via-[var(--sl-purple)]/30 to-[var(--sl-pink)]/30">
-      <Card className="h-full flex flex-col overflow-hidden bg-card dark:bg-background">
-        <CardHeader className="flex-shrink-0">
-          <CardTitle className="flex items-center gap-2">
-            <span className="bg-gradient-to-r from-[var(--sl-blue)] to-[var(--sl-purple)] bg-clip-text text-transparent font-bold">
-              {t("calendar-title") || "Your Calendar"}
-            </span>
-          </CardTitle>
-        </CardHeader>
+    <div className="h-full rounded-2xl animate-in fade-in slide-in-from-bottom-5 duration-700 delay-150">
+      <Card className="h-full flex flex-col overflow-hidden p-1 py-4 min-h-[500px] bg-white dark:bg-[#1a1a1a] border border-border/40 dark:border-white/10 shadow-[0_1px_3px_rgba(0,0,0,0.05),0_1px_2px_rgba(0,0,0,0.1)]">
         <CardContent className="flex-1 min-h-0 overflow-hidden flex flex-col p-0">
           <div className="h-full flex flex-col">
             {/* Calendar Controls */}
-            <div className="flex-shrink-0 px-4 pt-2 pb-1.5 flex items-center justify-between">
-              <div className="flex items-center gap-1.5">
+            <div className="flex-shrink-0 px-6 pt-2 pb-3 flex items-center justify-between border-b border-border/30">
+              <h3 className="text-lg md:text-xl font-semibold text-foreground">
+                {calendarTitle}
+              </h3>
+              <div className="flex items-center gap-2">
                 <button
                   onClick={goToPrev}
-                  className="p-1.5 hover:bg-gradient-to-br hover:from-[var(--sl-blue)]/20 hover:to-[var(--sl-purple)]/20 rounded-lg transition-colors"
+                  className="p-2 hover:bg-muted/50 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95"
                   aria-label="Previous month"
                 >
-                  <IconChevronLeft className="w-4 h-4 text-[var(--sl-purple)]" />
+                  <IconChevronLeft className="w-4 h-4 text-muted-foreground" />
                 </button>
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={goToToday}
-                  className="border-[var(--sl-purple)] text-[var(--sl-purple)] bg-[var(--sl-purple)]/5 hover:bg-[var(--sl-purple)]/10"
+                  className="border-border/50 text-foreground bg-background hover:bg-muted/50 transition-all duration-200 font-medium"
                 >
                   {tD("today-button") || "Today"}
                 </Button>
                 <button
                   onClick={goToNext}
-                  className="p-1.5 hover:bg-gradient-to-br hover:from-[var(--sl-purple)]/20 hover:to-[var(--sl-pink)]/20 rounded-lg transition-colors"
+                  className="p-2 hover:bg-muted/50 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95"
                   aria-label="Next month"
                 >
-                  <IconChevronRight className="w-4 h-4 text-[var(--sl-purple)]" />
+                  <IconChevronRight className="w-4 h-4 text-muted-foreground" />
                 </button>
               </div>
-              <h3 className="text-2xl font-semibold text-[var(--sl-purple)]">
-                {calendarTitle}
-              </h3>
             </div>
 
             {/* FullCalendar Component */}
@@ -397,13 +394,18 @@ const UnifiedCalendar = ({
         >
           <SheetContent
             side="right"
-            className="w-full lg:min-w-[600px] p-0 overflow-hidden bg-white dark:bg-background"
+            className="w-full sm:max-w-[440px] p-0 overflow-hidden bg-white dark:bg-[#1e1e1e] shadow-[-4px_0_24px_rgba(0,0,0,0.15)]"
           >
             <div className="flex flex-col h-full">
               {/* Header */}
-              <SheetHeader className="px-6 pt-6 pb-5 border-b border-border/50 bg-white dark:bg-background">
-                <div className="flex items-center justify-between">
-                  <SheetTitle className="text-2xl font-bold text-foreground">
+              <SheetHeader className="relative px-8 pt-8 pb-6 border-b border-border/10">
+                <SheetClose className="absolute right-6 top-6 rounded-full opacity-70 ring-offset-background transition-all hover:opacity-100 hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-muted p-2">
+                  <IconX className="h-5 w-5" />
+                  <span className="sr-only">Close</span>
+                </SheetClose>
+
+                <div className="pr-10">
+                  <SheetTitle className="text-[28px] font-semibold text-foreground leading-tight tracking-tight">
                     {t("event-on", {
                       date: (selectedDate || new Date()).toLocaleDateString(
                         locale,
@@ -415,26 +417,30 @@ const UnifiedCalendar = ({
                       ),
                     })}
                   </SheetTitle>
+                  <SheetDescription className="text-[14px] text-muted-foreground mt-3 leading-relaxed">
+                    {eventsOnSelectedDay.length > 0
+                      ? `${eventsOnSelectedDay.length} ${eventsOnSelectedDay.length === 1 ? "event" : "events"} scheduled`
+                      : t("calendar-description") ||
+                        "View your events for this day"}
+                  </SheetDescription>
                 </div>
-                <SheetDescription className="text-sm text-muted-foreground pt-2">
-                  {eventsOnSelectedDay.length > 0
-                    ? `${eventsOnSelectedDay.length} ${eventsOnSelectedDay.length === 1 ? "event" : "events"} scheduled`
-                    : t("calendar-description") ||
-                      "View your events for this day"}
-                </SheetDescription>
               </SheetHeader>
 
               {/* Content */}
-              <div className="flex-1 overflow-y-auto bg-gray-50/50 dark:bg-background/50">
+              <div className="flex-1 overflow-y-auto bg-gray-50/30 dark:bg-[#1a1a1a]/30 smooth-scroll">
                 {eventsOnSelectedDay.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center py-16 px-6">
-                    <IconCalendar className="h-12 w-12 text-muted-foreground/40 mb-4" />
-                    <p className="text-center text-sm text-muted-foreground">
+                  <div className="flex flex-col items-center justify-center px-8 py-20">
+                    <div className="w-20 h-20 rounded-full bg-muted/20 flex items-center justify-center mb-5">
+                      <IconCalendar className="h-10 w-10 text-muted-foreground/30" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                      No events on this day
+                    </h3>
+                    <p className="text-sm text-muted-foreground text-center max-w-[280px] leading-relaxed">
                       {t("no-events", {
                         date: (selectedDate || new Date()).toLocaleDateString(
                           locale,
                           {
-                            year: "numeric",
                             month: "long",
                             day: "numeric",
                           },
@@ -443,22 +449,22 @@ const UnifiedCalendar = ({
                     </p>
                   </div>
                 ) : (
-                  <div className="p-6 space-y-6">
+                  <div className="px-6 py-6 space-y-6">
                     {/* Summary Cards */}
                     <div className="grid grid-cols-2 gap-3">
-                      <div className="bg-white dark:bg-background rounded-xl p-4 border border-border/30 shadow-sm">
-                        <div className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+                      <div className="bg-white dark:bg-[#252525] rounded-xl px-5 py-4 border border-border/10 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div className="text-[11px] font-medium text-muted-foreground/80 mb-2.5 uppercase tracking-[0.5px]">
                           Total Events
                         </div>
-                        <div className="text-3xl font-bold text-foreground">
+                        <div className="text-[36px] font-bold text-foreground leading-none">
                           {eventsOnSelectedDay.length}
                         </div>
                       </div>
-                      <div className="bg-white dark:bg-background rounded-xl p-4 border border-border/30 shadow-sm">
-                        <div className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+                      <div className="bg-white dark:bg-[#252525] rounded-xl px-5 py-4 border border-border/10 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow duration-200">
+                        <div className="text-[11px] font-medium text-muted-foreground/80 mb-2.5 uppercase tracking-[0.5px]">
                           Language Club
                         </div>
-                        <div className="text-3xl font-bold text-foreground">
+                        <div className="text-[36px] font-bold text-foreground leading-none">
                           {
                             eventsOnSelectedDay.filter(
                               (e) => e.type === "language-club",
@@ -469,55 +475,58 @@ const UnifiedCalendar = ({
                     </div>
 
                     {/* Events List */}
-                    <div className="space-y-4">
-                      <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+                    <div className="space-y-4 pt-2">
+                      <div className="text-[11px] font-semibold text-muted-foreground/70 uppercase tracking-[0.5px] px-1">
                         Events
                       </div>
                       {eventsOnSelectedDay.map((event) => (
                         <div
                           key={`${event.type}-${event.id}`}
-                          className="bg-white dark:bg-background rounded-xl border border-border/30 p-5 shadow-md"
+                          className="group relative bg-white dark:bg-[#252525] rounded-xl border border-border/10 dark:border-white/5 p-5 shadow-sm hover:shadow-md hover:-translate-y-[1px] transition-all duration-200"
                         >
-                          <div className="flex items-start justify-between gap-4">
-                            <div className="flex-1 space-y-3 min-w-0">
-                              <div className="flex items-start gap-3">
-                                {event.type === "language-club" ? (
-                                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--sl-purple)] to-[var(--sl-blue)] flex items-center justify-center flex-shrink-0">
-                                    <IconUsers className="h-5 w-5 text-white" />
-                                  </div>
-                                ) : (
-                                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--sl-blue)] to-[var(--sl-pink)] flex items-center justify-center flex-shrink-0">
-                                    <IconUser className="h-5 w-5 text-white" />
-                                  </div>
-                                )}
-                                <div className="flex-1 min-w-0">
-                                  <div className="flex items-center gap-2 mb-1">
-                                    <h4 className="font-semibold text-base text-foreground">
-                                      {event.theme}
-                                    </h4>
-                                    <Badge
-                                      variant="outline"
-                                      className={
-                                        event.type === "language-club"
-                                          ? "border-[var(--sl-purple)] text-[var(--sl-purple)] bg-[var(--sl-purple)]/5"
-                                          : "border-[var(--sl-pink)] text-[var(--sl-pink)] bg-[var(--sl-pink)]/5"
-                                      }
-                                    >
-                                      {event.type === "language-club"
-                                        ? t("language-club") || "Language Club"
-                                        : t("personal-session") ||
-                                          "Personal Session"}
-                                    </Badge>
-                                  </div>
-                                  <p className="text-sm text-muted-foreground">
-                                    {t("event-tutor", { tutor: event.tutor })}
-                                  </p>
+                          <div className="flex items-start gap-4">
+                            <div
+                              className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"
+                              style={
+                                event.type === "language-club"
+                                  ? {background: "linear-gradient(to bottom right, var(--sl-purple), var(--sl-blue))"}
+                                  : {background: "linear-gradient(to bottom right, var(--sl-blue), var(--sl-pink))"}
+                              }
+                            >
+                              {event.type === "language-club" ? (
+                                <IconUsers className="h-5 w-5 text-white" />
+                              ) : (
+                                <IconUser className="h-5 w-5 text-white" />
+                              )}
+                            </div>
+
+                            <div className="flex-1 min-w-0 space-y-3">
+                              <div className="space-y-1.5">
+                                <div className="flex items-center gap-2.5 flex-wrap">
+                                  <h4 className="font-semibold text-[15px] text-foreground leading-tight">
+                                    {event.theme}
+                                  </h4>
+                                  <Badge
+                                    variant="outline"
+                                    className={
+                                      event.type === "language-club"
+                                        ? "border-[var(--sl-purple)]/30 text-[var(--sl-purple)] bg-[var(--sl-purple)]/5 text-[11px] px-2 py-0.5 rounded-full font-medium"
+                                        : "border-[var(--sl-pink)]/30 text-[var(--sl-pink)] bg-[var(--sl-pink)]/5 text-[11px] px-2 py-0.5 rounded-full font-medium"
+                                    }
+                                  >
+                                    {event.type === "language-club"
+                                      ? t("language-club") || "Language Club"
+                                      : t("personal-session") || "Personal Session"}
+                                  </Badge>
                                 </div>
+                                <p className="text-[13px] text-muted-foreground/80">
+                                  {t("event-tutor", { tutor: event.tutor })}
+                                </p>
                               </div>
 
-                              <div className="space-y-2 text-sm pl-[52px]">
+                              <div className="space-y-2 text-[13px]">
                                 <div className="flex items-center gap-2 text-muted-foreground">
-                                  <IconClock className="h-4 w-4 flex-shrink-0" />
+                                  <IconClock className="h-4 w-4 flex-shrink-0 opacity-60" />
                                   <span>
                                     {toZonedTime(
                                       event.date,
@@ -527,7 +536,7 @@ const UnifiedCalendar = ({
                                       minute: "2-digit",
                                     })}
                                   </span>
-                                  <span className="mx-1">•</span>
+                                  <span className="mx-1 opacity-40">•</span>
                                   <span>
                                     {t("event-duration", {
                                       duration: event.duration,
@@ -535,7 +544,7 @@ const UnifiedCalendar = ({
                                   </span>
                                 </div>
                                 <div className="flex items-center gap-2 text-muted-foreground">
-                                  <IconMapPin className="h-4 w-4 flex-shrink-0" />
+                                  <IconMapPin className="h-4 w-4 flex-shrink-0 opacity-60" />
                                   <span className="truncate">
                                     {event.location}
                                   </span>
@@ -544,7 +553,7 @@ const UnifiedCalendar = ({
                                   event.level && (
                                     <Badge
                                       variant="secondary"
-                                      className="w-fit mt-2"
+                                      className="w-fit mt-1 text-[11px] px-2.5 py-0.5"
                                     >
                                       {event.level}
                                     </Badge>
@@ -557,8 +566,8 @@ const UnifiedCalendar = ({
                                 event.bookingId && (
                                   <Button
                                     variant="outline"
-                                    size="sm"
-                                    className="cursor-pointer"
+                                    size="icon"
+                                    className="h-8 w-8 rounded-lg border-border/50 hover:bg-muted/50 hover:border-border transition-all"
                                     disabled={isCancelling === event.id}
                                     onClick={() => handleReschedule(event)}
                                   >
@@ -568,9 +577,9 @@ const UnifiedCalendar = ({
                               <AlertDialog>
                                 <AlertDialogTrigger asChild>
                                   <Button
-                                    variant="destructive"
-                                    size="sm"
-                                    className="cursor-pointer"
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-8 w-8 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-700 dark:hover:text-red-300 transition-all"
                                     disabled={isCancelling === event.id}
                                   >
                                     {isCancelling === event.id ? (
@@ -580,7 +589,7 @@ const UnifiedCalendar = ({
                                     )}
                                   </Button>
                                 </AlertDialogTrigger>
-                                <AlertDialogContent className="bg-white dark:bg-background border-red-500 dark:border-red-500/30 border-2">
+                                <AlertDialogContent className="bg-white dark:bg-[#1e1e1e] border-red-500 dark:border-red-500/30 border-2 rounded-2xl">
                                   <AlertDialogHeader>
                                     <AlertDialogTitle>
                                       {tCancel("title")}
@@ -638,7 +647,7 @@ const UnifiedCalendar = ({
             );
             if (!event || event.type !== "language-club") return null;
 
-            // Create event object matching RescheduleDialog's Event interface
+            // Create an event object matching RescheduleDialog's Event interface
             const currentEvent = {
               id: event.id,
               theme: event.theme || "",

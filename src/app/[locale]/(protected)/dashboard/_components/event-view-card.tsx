@@ -50,11 +50,11 @@ const EventViewCalendar = ({ event, locale }) => {
     try {
       const response = await cancelBooking(event.bookingId);
 
-      if (response.success) {
+      if (response.status === 200) {
         router.refresh();
         toast.success(response.message || "Booking cancelled successfully");
       } else {
-        toast.error(response.error || "Failed to cancel booking");
+        toast.error(response.message || "Failed to cancel booking");
       }
     } catch (error) {
       console.error("Cancel error:", error);

@@ -7,6 +7,7 @@ import {
   Heading,
   Text,
   Link,
+  Button,
 } from "@react-email/components";
 import { toZonedTime } from "date-fns-tz";
 import React from "react";
@@ -15,137 +16,125 @@ import React from "react";
 const getEmailTranslations = (locale: string) => {
   const translations = {
     sl: {
-      confirmation: "Potrditev rezervacije",
-      subtitle: "Vaša lekcija slovenščine je uspešno rezervirana!",
-      lessonDetails: "Podrobnosti lekcije",
-      type: "Pogovorni klub",
+      confirmation: "Potrditev osebne seje",
+      subtitle: "Vaša osebna lekcija slovenščine je uspešno rezervirana!",
+      sessionDetails: "Podrobnosti seje",
       date: "Datum",
       time: "Čas",
       duration: "Trajanje",
       teacher: "Tutor",
-      lessonTheme: "Tip lekcije",
-      addToCalendar: "Dodaj v koledar",
-      googleCalendar: "Google Koledar",
-      appleCalendar: "Apple Koledar",
-      meetingInfo: "Informacije o sestanku",
-      joinMeeting: "Pridruži se sestanku",
+      topic: "Tema lekcije",
+      level: "Nivo",
+      joinSession: "Pridruži se seji",
+      videoCall: "Video klic",
+      preparationNotes: "Pripravljalne opombe",
+      preparationNotesDesc:
+        "Prosimo, da si preberete naslednje opombe pred začetkom seje:",
+      seeYouSoon: "Vidimo se kmalu",
       dashboard: "Dashboard",
       about: "O nas",
       pricing: "Cenik",
       contact: "Kontakt",
       allRightsReserved: "Vse pravice pridržane",
-      seeYouSoon: "Vidimo se kmalu",
-      location: "Lokacija",
-      description: "Opis",
-      level: "Nivo",
+      minutes: "minut",
     },
     en: {
-      confirmation: "Booking Confirmation",
-      subtitle: "Your Slovene lesson has been successfully booked!",
-      lessonDetails: "Lesson Details",
-      type: "Language club",
+      confirmation: "Personal Session Confirmation",
+      subtitle: "Your personal Slovene lesson has been successfully booked!",
+      sessionDetails: "Session Details",
       date: "Date",
       time: "Time",
       duration: "Duration",
       teacher: "Teacher",
-      lessonTheme: "Lesson Type",
-      addToCalendar: "Add to Calendar",
-      googleCalendar: "Google Calendar",
-      appleCalendar: "Apple Calendar",
-      meetingInfo: "Meeting Information",
-      joinMeeting: "Join Meeting",
+      topic: "Lesson Topic",
+      level: "Level",
+      joinSession: "Join Session",
+      videoCall: "Video Call",
+      preparationNotes: "Preparation Notes",
+      preparationNotesDesc:
+        "Please review the following notes before your session:",
+      seeYouSoon: "See you soon",
       dashboard: "Dashboard",
       about: "About",
       pricing: "Pricing",
       contact: "Contact",
       allRightsReserved: "All Rights Reserved",
-      seeYouSoon: "See you soon",
-      location: "Location",
-      description: "Description",
-      level: "Level",
+      minutes: "minutes",
     },
     it: {
-      confirmation: "Conferma Prenotazione",
-      subtitle: "La tua lezione di sloveno è stata prenotata con successo!",
-      lessonDetails: "Dettagli Lezione",
-      type: "Club della Lingua",
+      confirmation: "Conferma Sessione Personale",
+      subtitle: "La tua lezione personale di sloveno è stata prenotata con successo!",
+      sessionDetails: "Dettagli Sessione",
       date: "Data",
       time: "Ora",
       duration: "Durata",
       teacher: "Insegnante",
-      lessonTheme: "Tipo di Lezione",
-      addToCalendar: "Aggiungi al Calendario",
-      googleCalendar: "Google Calendario",
-      appleCalendar: "Apple Calendario",
-      meetingInfo: "Informazioni Riunione",
-      joinMeeting: "Partecipa alla Riunione",
+      topic: "Argomento Lezione",
+      level: "Livello",
+      joinSession: "Partecipa alla Sessione",
+      videoCall: "Videochiamata",
+      preparationNotes: "Note di Preparazione",
+      preparationNotesDesc:
+        "Ti preghiamo di rivedere le seguenti note prima della tua sessione:",
+      seeYouSoon: "A presto",
       dashboard: "Dashboard",
       about: "Chi siamo",
       pricing: "Prezzi",
       contact: "Contatto",
       allRightsReserved: "Tutti i diritti riservati",
-      seeYouSoon: "A presto",
-      location: "Luogo",
-      description: "Descrizione",
-      level: "Livello",
+      minutes: "minuti",
     },
     ru: {
-      confirmation: "Подтверждение бронирования",
-      subtitle: "Ваш урок словенского языка успешно забронирован!",
-      lessonDetails: "Детали урока",
-      type:  "языковой-клуб",
+      confirmation: "Подтверждение персональной сессии",
+      subtitle: "Ваш персональный урок словенского языка успешно забронирован!",
+      sessionDetails: "Детали сессии",
       date: "Дата",
       time: "Время",
       duration: "Продолжительность",
       teacher: "Учитель",
-      lessonTheme: "Тип урока",
-      addToCalendar: "Добавить в календарь",
-      googleCalendar: "Google Календарь",
-      appleCalendar: "Apple Календарь",
-      meetingInfo: "Информация о встрече",
-      joinMeeting: "Присоединиться к встрече",
+      topic: "Тема урока",
+      level: "Уровень",
+      joinSession: "Присоединиться к сессии",
+      videoCall: "Видеозвонок",
+      preparationNotes: "Заметки для подготовки",
+      preparationNotesDesc:
+        "Пожалуйста, ознакомьтесь со следующими заметками перед вашей сессией:",
+      seeYouSoon: "До скорой встречи",
       dashboard: "Dashboard",
       about: "О нас",
       pricing: "Цены",
       contact: "Контакты",
       allRightsReserved: "Все права защищены",
-      seeYouSoon: "До скорой встречи",
-      location: "Место",
-      description: "Описание",
-      level: "Уровень",
+      minutes: "минут",
     },
   };
 
   return translations[locale as keyof typeof translations] || translations.en;
 };
 
-const BookingConfEmailContent = ({
+const SessionConfEmailContent = ({
   name,
   locale,
-  lessonDate,
-  lessonDuration,
-  teacherName,
-  lessonTheme,
-  lessonLocation,
-  lessonDescription,
-  lessonLevel,
+  startTime,
+  duration,
+  tutorName,
+  sessionType,
+  location,
 }: {
   name: string;
   locale: string;
-  lessonDate: Date;
-  lessonDuration: number;
-  teacherName: string;
-  lessonTheme: string;
-  lessonLocation: string;
-  lessonDescription: string;
-  lessonLevel: string;
+  startTime: Date;
+  duration: number;
+  tutorName: string;
+  sessionType: string;
+  location: string;
 }) => {
   const year = new Date().getFullYear();
   const t = getEmailTranslations(locale);
 
   // Format date for display
   const formattedDate = toZonedTime(
-    lessonDate,
+    startTime,
     "Europe/Ljubljana",
   ).toLocaleDateString(locale, {
     year: "numeric",
@@ -244,7 +233,7 @@ const BookingConfEmailContent = ({
             }}
           />
 
-          {/* Lesson Details Card */}
+          {/* Session Details Card */}
           <Section
             style={{
               backgroundColor: "#FAFAFA",
@@ -265,10 +254,10 @@ const BookingConfEmailContent = ({
                 letterSpacing: "-0.3px",
               }}
             >
-              {t.lessonDetails}
+              {t.sessionDetails}
             </Heading>
 
-            {/* Lesson Type - Highlighted */}
+            {/* Lesson Topic - Highlighted */}
             <Section style={{ marginBottom: "20px" }}>
               <Text
                 style={{
@@ -281,7 +270,7 @@ const BookingConfEmailContent = ({
                   marginBottom: "6px",
                 }}
               >
-                {t.lessonTheme} - {t.type}
+                {t.topic}
               </Text>
               <Text
                 style={{
@@ -292,44 +281,9 @@ const BookingConfEmailContent = ({
                   margin: "0",
                 }}
               >
-                {lessonTheme}
+                {sessionType}
               </Text>
             </Section>
-
-            {/* Description */}
-            {lessonDescription && (
-              <Section
-                style={{
-                  marginBottom: "20px",
-                  paddingBottom: "20px",
-                  borderBottom: "1px solid #E5E7EB",
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: "12px",
-                    lineHeight: "16px",
-                    color: "#6B7280",
-                    fontWeight: "500",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.5px",
-                    marginBottom: "6px",
-                  }}
-                >
-                  {t.description}
-                </Text>
-                <Text
-                  style={{
-                    fontSize: "15px",
-                    lineHeight: "24px",
-                    color: "#374151",
-                    margin: "0",
-                  }}
-                >
-                  {lessonDescription}
-                </Text>
-              </Section>
-            )}
 
             {/* Details Grid */}
             <Section>
@@ -386,19 +340,12 @@ const BookingConfEmailContent = ({
                       margin: "0",
                     }}
                   >
-                    {lessonDuration}{" "}
-                    {locale === "sl"
-                      ? "minut"
-                      : locale === "it"
-                        ? "minuti"
-                        : locale === "ru"
-                          ? "минут"
-                          : "minutes"}
+                    {duration} {t.minutes}
                   </Text>
                 </Column>
               </Row>
 
-              <Row style={{ marginBottom: "16px" }}>
+              <Row>
                 <Column style={{ width: "40%" }}>
                   <Text
                     style={{
@@ -422,69 +369,74 @@ const BookingConfEmailContent = ({
                       margin: "0",
                     }}
                   >
-                    {teacherName}
-                  </Text>
-                </Column>
-              </Row>
-
-              <Row style={{ marginBottom: "16px" }}>
-                <Column style={{ width: "40%" }}>
-                  <Text
-                    style={{
-                      fontSize: "13px",
-                      lineHeight: "20px",
-                      color: "#6B7280",
-                      fontWeight: "500",
-                      margin: "0",
-                    }}
-                  >
-                    {t.location}
-                  </Text>
-                </Column>
-                <Column style={{ width: "60%" }}>
-                  <Text
-                    style={{
-                      fontSize: "15px",
-                      lineHeight: "24px",
-                      color: "#111827",
-                      fontWeight: "500",
-                      margin: "0",
-                    }}
-                  >
-                    {lessonLocation}
-                  </Text>
-                </Column>
-              </Row>
-
-              <Row>
-                <Column style={{ width: "40%" }}>
-                  <Text
-                    style={{
-                      fontSize: "13px",
-                      lineHeight: "20px",
-                      color: "#6B7280",
-                      fontWeight: "500",
-                      margin: "0",
-                    }}
-                  >
-                    {t.level}
-                  </Text>
-                </Column>
-                <Column style={{ width: "60%" }}>
-                  <Text
-                    style={{
-                      fontSize: "15px",
-                      lineHeight: "24px",
-                      color: "#111827",
-                      fontWeight: "500",
-                      margin: "0",
-                    }}
-                  >
-                    {lessonLevel}
+                    {tutorName}
                   </Text>
                 </Column>
               </Row>
             </Section>
+          </Section>
+
+          {/* Video Call Section */}
+          <Section
+            style={{
+              backgroundColor: "#FAFAFA",
+              borderRadius: "16px",
+              padding: "32px",
+              marginBottom: "32px",
+              border: "1px solid #F3F4F6",
+              textAlign: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: "16px",
+                lineHeight: "24px",
+                fontWeight: "600",
+                color: "#111827",
+                margin: "0 0 16px 0",
+              }}
+            >
+              {t.videoCall}
+            </Text>
+            <Button
+              href={location}
+              style={{
+                background:
+                  "linear-gradient(135deg, #6089CB 0%, #A855F7 100%)",
+                color: "#FFFFFF",
+                padding: "14px 32px",
+                borderRadius: "12px",
+                fontSize: "16px",
+                fontWeight: "600",
+                textDecoration: "none",
+                display: "inline-block",
+                border: "none",
+                cursor: "pointer",
+                fontFamily:
+                  '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                WebkitTextFillColor: "#FFFFFF",
+              }}
+            >
+              {t.joinSession}
+            </Button>
+            <Text
+              style={{
+                fontSize: "13px",
+                lineHeight: "20px",
+                color: "#6B7280",
+                margin: "16px 0 0 0",
+              }}
+            >
+              <Link
+                href={location}
+                style={{
+                  color: "#6B7280",
+                  textDecoration: "underline",
+                }}
+              >
+                {location}
+              </Link>
+            </Text>
           </Section>
 
           {/* Personal Message */}
@@ -592,4 +544,5 @@ const BookingConfEmailContent = ({
   );
 };
 
-export default BookingConfEmailContent;
+export default SessionConfEmailContent;
+

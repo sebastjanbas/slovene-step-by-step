@@ -9,7 +9,11 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+
+# editor settings
 .idea
+.claude
+CLAUDE.md
 
 # testing
 /coverage

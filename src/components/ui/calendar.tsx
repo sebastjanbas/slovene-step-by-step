@@ -221,32 +221,53 @@ function CalendarDayButton({
   });
   const events = eventMap[dateKey] || [];
 
-  const weekendClass = modifiers.weekend
-    ? "bg-[#EAE9F7]/40 dark:bg-foreground/10"
-    : "";
+  const isWeekend = modifiers.weekend;
+  const isToday = modifiers.today;
+  const isSelected = modifiers.selected && !modifiers.range_start && !modifiers.range_end && !modifiers.range_middle;
+  const isOutside = modifiers.outside;
+
+  // Display up to 3 events, show +N indicator for additional events
+  const displayEvents = events.slice(0, 3);
+  const additionalEvents = events.length > 3 ? events.length - 3 : 0;
 
   return (
-    <>
+    <div className="relative w-full h-full group/cell">
       <Button
         ref={ref}
         variant="ghost"
         size={size}
         data-day={day.date}
-        data-selected-single={
-          modifiers.selected &&
-          !modifiers.range_start &&
-          !modifiers.range_end &&
-          !modifiers.range_middle
-        }
+        data-selected-single={isSelected}
         data-range-start={modifiers.range_start}
         data-range-end={modifiers.range_end}
         data-range-middle={modifiers.range_middle}
         className={cn(
-          "size-auto cursor-pointer relative rounded-xl data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-ring/50 dark:hover:text-accent-foreground flex aspect-square  w-full min-w-(--cell-size) flex-col gap-1 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-[3px] data-[range-end=true]:rounded-xl data-[range-end=true]:rounded-r-md data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-xl data-[range-start=true]:rounded-l-md [&>span]:text-xs [&>span]:opacity-70",
-          size === "calendarFullScreen"
-            ? "sm:justify-start sm:items-start p-3 sm:p-5 data-[selected-single=true]:bg-primary/70 dark:data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground"
-            : "",
-          weekendClass,
+          "size-auto cursor-pointer relative rounded-xl transition-all duration-200 ease-in-out",
+          "flex aspect-square w-full flex-col items-center justify-center",
+          "text-sm md:text-base font-medium leading-none",
+          "hover:bg-accent/60 hover:scale-[1.02] hover:shadow-sm",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+          "disabled:pointer-events-none disabled:opacity-50",
+          // Selected state
+          isSelected && [
+            "bg-primary text-primary-foreground shadow-md",
+            "hover:bg-primary/90 dark:hover:bg-primary/80",
+          ],
+          // Today state (when not selected)
+          !isSelected && isToday && [
+            "bg-accent/50 dark:bg-accent/30 font-semibold",
+            "ring-2 ring-primary/30 dark:ring-primary/20",
+          ],
+          // Weekend state
+          !isSelected && !isToday && isWeekend && "bg-muted/30 dark:bg-muted/20",
+          // Outside month
+          isOutside && "text-muted-foreground/40",
+          // Range states
+          modifiers.range_middle && "bg-accent/50 text-accent-foreground rounded-none",
+          modifiers.range_start && "bg-primary text-primary-foreground rounded-l-xl",
+          modifiers.range_end && "bg-primary text-primary-foreground rounded-r-xl",
+          // Size variations
+          size === "calendarFullScreen" && "p-2 md:p-3 lg:p-4",
           defaultClassNames.day,
           className
         )}
@@ -255,25 +276,37 @@ function CalendarDayButton({
       {events.length > 0 && (
         <div
           className={cn(
-            "absolute bottom-0 left-1/2 -translate-x-1/2 flex mt-1 cursor-pointer z-10",
-            size === "calendarFullScreen" ? "gap-1" : "gap-0.5"
+            "absolute left-1/2 -translate-x-1/2 flex items-center gap-1 pointer-events-none z-10",
+            size === "calendarFullScreen" ? "bottom-1 md:bottom-2" : "bottom-0.5"
           )}
         >
-          {events.map((event, idx) => (
+          {displayEvents.map((event, idx) => (
             <span
               key={idx}
+              title={event.title}
               className={cn(
-                "h-1.5 w-4 rounded-full",
-                event.color ?? "bg-pink-200",
+                "rounded-full transition-all duration-200 shadow-sm",
+                "group-hover/cell:scale-110",
+                event.color ?? "bg-pink-500 dark:bg-pink-400",
                 size === "calendarFullScreen"
-                  ? "h-1.5 w-4 md:w-8 md:h-3"
-                  : "h-1.5 w-4"
+                  ? "h-1.5 w-1.5 md:h-2 md:w-2"
+                  : "h-1 w-1"
               )}
             />
           ))}
+          {additionalEvents > 0 && (
+            <span
+              className={cn(
+                "text-[8px] md:text-[9px] font-medium text-muted-foreground ml-0.5",
+                isSelected && "text-primary-foreground/80"
+              )}
+            >
+              +{additionalEvents}
+            </span>
+          )}
         </div>
       )}
-    </>
+    </div>
   );
 }
 

@@ -15,145 +15,200 @@ import React from "react";
 const getEmailTranslations = (locale: string) => {
   const translations = {
     sl: {
-      confirmation: "Potrditev rezervacije",
-      subtitle: "Vaša lekcija slovenščine je uspešno rezervirana!",
+      cancellation: "Potrditev preklica",
+      subtitleLanguageClub: "Vaša rezervacija za pogovorni klub je preklicana.",
+      subtitlePersonalSession: "Vaša osebna lekcija je preklicana.",
+      cancelledDetails: "Podrobnosti preklicane rezervacije",
       lessonDetails: "Podrobnosti lekcije",
-      type: "Pogovorni klub",
+      sessionDetails: "Podrobnosti seje",
       date: "Datum",
       time: "Čas",
       duration: "Trajanje",
       teacher: "Tutor",
+      tutor: "Tutor",
       lessonTheme: "Tip lekcije",
-      addToCalendar: "Dodaj v koledar",
-      googleCalendar: "Google Koledar",
-      appleCalendar: "Apple Koledar",
-      meetingInfo: "Informacije o sestanku",
-      joinMeeting: "Pridruži se sestanku",
+      topic: "Tema lekcije",
+      location: "Lokacija",
+      description: "Opis",
+      level: "Nivo",
+      type: "Pogovorni klub",
+      weUnderstand: "Razumemo",
+      cancellationMessage:
+        "Razumemo, da se načrti spremenijo. Upamo, da se boste kmalu spet pridružili nam!",
+      thankYou: "Hvala",
+      bookAnother: "Rezervirajte drugo lekcijo",
       dashboard: "Dashboard",
       about: "O nas",
       pricing: "Cenik",
       contact: "Kontakt",
       allRightsReserved: "Vse pravice pridržane",
-      seeYouSoon: "Vidimo se kmalu",
-      location: "Lokacija",
-      description: "Opis",
-      level: "Nivo",
+      minutes: "minut",
     },
     en: {
-      confirmation: "Booking Confirmation",
-      subtitle: "Your Slovene lesson has been successfully booked!",
+      cancellation: "Cancellation Confirmation",
+      subtitleLanguageClub: "Your language club booking has been cancelled.",
+      subtitlePersonalSession: "Your personal session has been cancelled.",
+      cancelledDetails: "Cancelled Booking Details",
       lessonDetails: "Lesson Details",
-      type: "Language club",
+      sessionDetails: "Session Details",
       date: "Date",
       time: "Time",
       duration: "Duration",
       teacher: "Teacher",
+      tutor: "Tutor",
       lessonTheme: "Lesson Type",
-      addToCalendar: "Add to Calendar",
-      googleCalendar: "Google Calendar",
-      appleCalendar: "Apple Calendar",
-      meetingInfo: "Meeting Information",
-      joinMeeting: "Join Meeting",
+      topic: "Lesson Topic",
+      location: "Location",
+      description: "Description",
+      level: "Level",
+      type: "Language club",
+      weUnderstand: "We Understand",
+      cancellationMessage:
+        "We understand that plans change. We hope to see you again soon!",
+      thankYou: "Thank you",
+      bookAnother: "Book Another Session",
       dashboard: "Dashboard",
       about: "About",
       pricing: "Pricing",
       contact: "Contact",
       allRightsReserved: "All Rights Reserved",
-      seeYouSoon: "See you soon",
-      location: "Location",
-      description: "Description",
-      level: "Level",
+      minutes: "minutes",
     },
     it: {
-      confirmation: "Conferma Prenotazione",
-      subtitle: "La tua lezione di sloveno è stata prenotata con successo!",
+      cancellation: "Conferma Cancellazione",
+      subtitleLanguageClub: "La tua prenotazione per il club della lingua è stata cancellata.",
+      subtitlePersonalSession: "La tua sessione personale è stata cancellata.",
+      cancelledDetails: "Dettagli Prenotazione Cancellata",
       lessonDetails: "Dettagli Lezione",
-      type: "Club della Lingua",
+      sessionDetails: "Dettagli Sessione",
       date: "Data",
       time: "Ora",
       duration: "Durata",
       teacher: "Insegnante",
+      tutor: "Tutor",
       lessonTheme: "Tipo di Lezione",
-      addToCalendar: "Aggiungi al Calendario",
-      googleCalendar: "Google Calendario",
-      appleCalendar: "Apple Calendario",
-      meetingInfo: "Informazioni Riunione",
-      joinMeeting: "Partecipa alla Riunione",
+      topic: "Argomento Lezione",
+      location: "Luogo",
+      description: "Descrizione",
+      level: "Livello",
+      type: "Club della Lingua",
+      weUnderstand: "Capiamo",
+      cancellationMessage:
+        "Capiamo che i piani cambiano. Speriamo di rivederti presto!",
+      thankYou: "Grazie",
+      bookAnother: "Prenota un'altra Sessione",
       dashboard: "Dashboard",
       about: "Chi siamo",
       pricing: "Prezzi",
       contact: "Contatto",
       allRightsReserved: "Tutti i diritti riservati",
-      seeYouSoon: "A presto",
-      location: "Luogo",
-      description: "Descrizione",
-      level: "Livello",
+      minutes: "minuti",
     },
     ru: {
-      confirmation: "Подтверждение бронирования",
-      subtitle: "Ваш урок словенского языка успешно забронирован!",
+      cancellation: "Подтверждение отмены",
+      subtitleLanguageClub: "Ваше бронирование языкового клуба отменено.",
+      subtitlePersonalSession: "Ваша персональная сессия отменена.",
+      cancelledDetails: "Детали отмененного бронирования",
       lessonDetails: "Детали урока",
-      type:  "языковой-клуб",
+      sessionDetails: "Детали сессии",
       date: "Дата",
       time: "Время",
       duration: "Продолжительность",
       teacher: "Учитель",
+      tutor: "Учитель",
       lessonTheme: "Тип урока",
-      addToCalendar: "Добавить в календарь",
-      googleCalendar: "Google Календарь",
-      appleCalendar: "Apple Календарь",
-      meetingInfo: "Информация о встрече",
-      joinMeeting: "Присоединиться к встрече",
+      topic: "Тема урока",
+      location: "Место",
+      description: "Описание",
+      level: "Уровень",
+      type: "языковой-клуб",
+      weUnderstand: "Мы понимаем",
+      cancellationMessage:
+        "Мы понимаем, что планы меняются. Надеемся увидеть вас снова в ближайшее время!",
+      thankYou: "Спасибо",
+      bookAnother: "Забронировать другую сессию",
       dashboard: "Dashboard",
       about: "О нас",
       pricing: "Цены",
       contact: "Контакты",
       allRightsReserved: "Все права защищены",
-      seeYouSoon: "До скорой встречи",
-      location: "Место",
-      description: "Описание",
-      level: "Уровень",
+      minutes: "минут",
     },
   };
 
   return translations[locale as keyof typeof translations] || translations.en;
 };
 
-const BookingConfEmailContent = ({
+const CancellationConfEmailContent = ({
   name,
   locale,
+  eventType,
+  // Language Club
   lessonDate,
   lessonDuration,
   teacherName,
   lessonTheme,
-  lessonLocation,
+  // lessonLocation,
   lessonDescription,
   lessonLevel,
+  // Personal Session
+  startTime,
+  duration,
+  tutorName,
+  sessionType,
+  // location,
 }: {
   name: string;
   locale: string;
-  lessonDate: Date;
-  lessonDuration: number;
-  teacherName: string;
-  lessonTheme: string;
-  lessonLocation: string;
-  lessonDescription: string;
-  lessonLevel: string;
+  eventType: "language-club" | "personal-session";
+  lessonDate?: Date;
+  lessonDuration?: number;
+  teacherName?: string;
+  lessonTheme?: string;
+  lessonLocation?: string;
+  lessonDescription?: string;
+  lessonLevel?: string;
+  startTime?: Date;
+  duration?: number;
+  tutorName?: string;
+  sessionType?: string;
+  location?: string;
 }) => {
   const year = new Date().getFullYear();
   const t = getEmailTranslations(locale);
 
-  // Format date for display
-  const formattedDate = toZonedTime(
-    lessonDate,
-    "Europe/Ljubljana",
-  ).toLocaleDateString(locale, {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+  // Format date based on event type
+  const formattedDate = eventType === "language-club" && lessonDate
+    ? toZonedTime(lessonDate, "Europe/Ljubljana").toLocaleDateString(
+        locale,
+        {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        }
+      )
+    : startTime
+      ? toZonedTime(startTime, "Europe/Ljubljana").toLocaleDateString(
+          locale,
+          {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          }
+        )
+      : "";
+
+  const displayDuration =
+    eventType === "language-club"
+      ? lessonDuration
+      : duration;
+
+  const displayTeacher =
+    eventType === "language-club" ? teacherName : tutorName;
 
   return (
     <>
@@ -218,7 +273,7 @@ const BookingConfEmailContent = ({
                   letterSpacing: "-0.5px",
                 }}
               >
-                {t.confirmation}
+                {t.cancellation}
               </Heading>
               <Text
                 style={{
@@ -228,7 +283,9 @@ const BookingConfEmailContent = ({
                   margin: "0",
                 }}
               >
-                {t.subtitle}
+                {eventType === "language-club"
+                  ? t.subtitleLanguageClub
+                  : t.subtitlePersonalSession}
               </Text>
             </Section>
           </Section>
@@ -244,7 +301,7 @@ const BookingConfEmailContent = ({
             }}
           />
 
-          {/* Lesson Details Card */}
+          {/* Cancelled Details Card */}
           <Section
             style={{
               backgroundColor: "#FAFAFA",
@@ -265,10 +322,10 @@ const BookingConfEmailContent = ({
                 letterSpacing: "-0.3px",
               }}
             >
-              {t.lessonDetails}
+              {t.cancelledDetails}
             </Heading>
 
-            {/* Lesson Type - Highlighted */}
+            {/* Event Type - Highlighted */}
             <Section style={{ marginBottom: "20px" }}>
               <Text
                 style={{
@@ -281,7 +338,10 @@ const BookingConfEmailContent = ({
                   marginBottom: "6px",
                 }}
               >
-                {t.lessonTheme} - {t.type}
+                {eventType === "language-club"
+                  ? t.lessonTheme
+                  : t.topic}
+                {eventType === "language-club" && ` - ${t.type}`}
               </Text>
               <Text
                 style={{
@@ -292,12 +352,14 @@ const BookingConfEmailContent = ({
                   margin: "0",
                 }}
               >
-                {lessonTheme}
+                {eventType === "language-club"
+                  ? lessonTheme
+                  : sessionType}
               </Text>
             </Section>
 
-            {/* Description */}
-            {lessonDescription && (
+            {/* Description for Language Club */}
+            {eventType === "language-club" && lessonDescription && (
               <Section
                 style={{
                   marginBottom: "20px",
@@ -386,7 +448,7 @@ const BookingConfEmailContent = ({
                       margin: "0",
                     }}
                   >
-                    {lessonDuration}{" "}
+                    {displayDuration}{" "}
                     {locale === "sl"
                       ? "minut"
                       : locale === "it"
@@ -409,7 +471,7 @@ const BookingConfEmailContent = ({
                       margin: "0",
                     }}
                   >
-                    {t.teacher}
+                    {eventType === "language-club" ? t.teacher : t.tutor}
                   </Text>
                 </Column>
                 <Column style={{ width: "60%" }}>
@@ -422,76 +484,106 @@ const BookingConfEmailContent = ({
                       margin: "0",
                     }}
                   >
-                    {teacherName}
+                    {displayTeacher}
                   </Text>
                 </Column>
               </Row>
 
-              <Row style={{ marginBottom: "16px" }}>
-                <Column style={{ width: "40%" }}>
-                  <Text
-                    style={{
-                      fontSize: "13px",
-                      lineHeight: "20px",
-                      color: "#6B7280",
-                      fontWeight: "500",
-                      margin: "0",
-                    }}
-                  >
-                    {t.location}
-                  </Text>
-                </Column>
-                <Column style={{ width: "60%" }}>
-                  <Text
-                    style={{
-                      fontSize: "15px",
-                      lineHeight: "24px",
-                      color: "#111827",
-                      fontWeight: "500",
-                      margin: "0",
-                    }}
-                  >
-                    {lessonLocation}
-                  </Text>
-                </Column>
-              </Row>
-
-              <Row>
-                <Column style={{ width: "40%" }}>
-                  <Text
-                    style={{
-                      fontSize: "13px",
-                      lineHeight: "20px",
-                      color: "#6B7280",
-                      fontWeight: "500",
-                      margin: "0",
-                    }}
-                  >
-                    {t.level}
-                  </Text>
-                </Column>
-                <Column style={{ width: "60%" }}>
-                  <Text
-                    style={{
-                      fontSize: "15px",
-                      lineHeight: "24px",
-                      color: "#111827",
-                      fontWeight: "500",
-                      margin: "0",
-                    }}
-                  >
-                    {lessonLevel}
-                  </Text>
-                </Column>
-              </Row>
+              {/* Level for Language Club only */}
+              {eventType === "language-club" && lessonLevel && (
+                <Row>
+                  <Column style={{ width: "40%" }}>
+                    <Text
+                      style={{
+                        fontSize: "13px",
+                        lineHeight: "20px",
+                        color: "#6B7280",
+                        fontWeight: "500",
+                        margin: "0",
+                      }}
+                    >
+                      {t.level}
+                    </Text>
+                  </Column>
+                  <Column style={{ width: "60%" }}>
+                    <Text
+                      style={{
+                        fontSize: "15px",
+                        lineHeight: "24px",
+                        color: "#111827",
+                        fontWeight: "500",
+                        margin: "0",
+                      }}
+                    >
+                      {lessonLevel}
+                    </Text>
+                  </Column>
+                </Row>
+              )}
             </Section>
+          </Section>
+
+          {/* Understanding Message */}
+          <Section
+            style={{
+              backgroundColor: "#F9FAFB",
+              borderRadius: "16px",
+              padding: "24px",
+              marginBottom: "32px",
+              borderLeft: "4px solid #A855F7",
+              textAlign: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: "18px",
+                lineHeight: "28px",
+                fontWeight: "600",
+                color: "#111827",
+                margin: "0 0 8px 0",
+              }}
+            >
+              {t.weUnderstand}
+            </Text>
+            <Text
+              style={{
+                fontSize: "15px",
+                lineHeight: "24px",
+                color: "#6B7280",
+                margin: "0",
+              }}
+            >
+              {t.cancellationMessage}
+            </Text>
+          </Section>
+
+          {/* CTA Button */}
+          <Section style={{ textAlign: "center", marginBottom: "32px" }}>
+            <Link
+              href={`https://www.slovenscinakzk.com/${locale}/dashboard`}
+              style={{
+                background:
+                  "linear-gradient(135deg, #6089CB 0%, #A855F7 100%)",
+                color: "#FFFFFF",
+                padding: "14px 32px",
+                borderRadius: "12px",
+                fontSize: "16px",
+                fontWeight: "600",
+                textDecoration: "none",
+                display: "inline-block",
+                fontFamily:
+                  '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+                WebkitTextFillColor: "#FFFFFF",
+              }}
+            >
+              {t.bookAnother}
+            </Link>
           </Section>
 
           {/* Personal Message */}
           <Section
             style={{
               textAlign: "center",
-              marginTop: "40px",
               paddingTop: "32px",
               borderTop: "1px solid #F3F4F6",
             }}
@@ -505,7 +597,7 @@ const BookingConfEmailContent = ({
                 margin: "0",
               }}
             >
-              {t.seeYouSoon}, {name}! ✨
+              {t.thankYou}, {name}! ✨
             </Text>
           </Section>
         </Container>
@@ -592,4 +684,5 @@ const BookingConfEmailContent = ({
   );
 };
 
-export default BookingConfEmailContent;
+export default CancellationConfEmailContent;
+

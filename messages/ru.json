@@ -305,6 +305,7 @@
   "dashboard": {
     "greeting": "Добро пожаловать <important>{name}!</important>",
     "greeting-placeholder": "Добро пожаловать",
+    "greeting-subheading": "Вот что происходит сегодня",
     "cancel-booking-dialog": {
       "title": "Вы уверены?",
       "description": "Вы уверены, что хотите отменить ваше бронирование? Это действие не может быть отменено."
@@ -349,21 +350,28 @@
         "dayly-practice": "Ежедневные занятия",
         "admin": "Admin Dashboard",
         "language-club-admin": "Admin Языкового клуба",
-        "bookings": "Бронирования"
+        "bookings": "Бронирования",
+        "my-lessons": "Мои занятия",
+        "achievements": "Достижения",
+        "progress": "Прогресс"
       },
       "secondary": {
         "settings": "Настройки",
         "get-help": "Помощь"
-      },
-      "my-progress": {
-        "title": "Мой прогресс",
-        "my-lessons": "Мои занятия",
-        "achievements": "Достижения",
-        "progress": "Прогресс"
       }
     },
     "calendar": {
       "today-button": "Сегодня"
+    },
+    "language-club": {
+      "title": "Языковой клуб",
+      "subtitle": "Планируйте и управляйте своими языковыми занятиями",
+      "calendar-title": "Календарь событий",
+      "no-events-scheduled": "Нет запланированных событий",
+      "no-events-description": "Нажмите на любую дату, чтобы просмотреть доступные занятия",
+      "events-for-date": "События на {date}",
+      "view-details": "Подробнее"
+
     },
     "stats": {
       "total-upcoming": "Всего предстоящих",

@@ -1,6 +1,7 @@
 import "../legal.css";
+import {Metadata} from "next";
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
   // const { locale } = await params
   // const t = await getTranslations({ locale, namespace: "Metadata" });
   return {

@@ -94,36 +94,32 @@ const DashboardStats = ({
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-75">
       {stats.map((stat, index) => {
         const Icon = stat.icon;
         return (
           <Card
             key={index}
-            className={`bg-white dark:bg-background border-0 shadow-sm hover:shadow-md transition-shadow rounded-xl ${stat.borderColor} border-l-4`}
+            className="group bg-white p-2 dark:bg-[#1a1a1a] border border-border/40 dark:border-white/10 shadow-[0_1px_3px_rgba(0,0,0,0.05),0_1px_2px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.08),0_2px_6px_rgba(0,0,0,0.12)] hover:-translate-y-0.5 transition-all duration-300 ease-out rounded-xl overflow-hidden"
           >
-            <CardContent className="p-5">
-              <div className="flex flex-row items-start justify-between mb-4">
-                <h3
-                  className={`text-sm font-medium ${stat.textColor} opacity-90 dark:opacity-80`}
-                >
+            <CardContent className="px-5 py-4">
+              <div className="flex flex-row items-start justify-between mb-5">
+                <h3 className="text-xs md:text-sm font-medium text-muted-foreground uppercase tracking-wide">
                   {stat.title}
                 </h3>
                 <div
-                  className={`${stat.iconBgColor} p-2.5 rounded-lg flex-shrink-0`}
+                  className={`${stat.iconBgColor}/10 p-0 rounded-lg flex-shrink-0 opacity-60 group-hover:opacity-80 transition-opacity duration-300`}
                 >
-                  <Icon className="h-5 w-5 text-white" />
+                  <Icon className={`h-4 w-4 ${stat.textColor}`} />
                 </div>
               </div>
-              <div className="space-y-1">
+              <div className="space-y-2">
                 <div
-                  className={`text-3xl font-bold ${stat.textColor} opacity-100 dark:opacity-90`}
+                  className={`text-4xl md:text-5xl font-bold ${stat.textColor} tabular-nums`}
                 >
                   {stat.value}
                 </div>
-                <p
-                  className={`text-sm ${stat.textColor} opacity-70 dark:opacity-60`}
-                >
+                <p className="text-sm text-muted-foreground/80">
                   {stat.description}
                 </p>
               </div>

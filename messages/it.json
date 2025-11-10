@@ -304,6 +304,7 @@
   "dashboard": {
     "greeting": "Benvenuto <important>{name}!</important>",
     "greeting-placeholder": "Benvenuto",
+    "greeting-subheading": "Ecco cosa succede oggi",
     "cancel-booking-dialog": {
       "title": "Sei sicuro?",
       "description": "Sei sicuro di voler annullare la tua prenotazione? Questa azione non può essere annullata."
@@ -348,21 +349,28 @@
         "dayly-practice": "Pratica quotidiana",
         "admin": "Admin Dashboard",
         "language-club-admin": "Admin Club della lingua",
-        "bookings": "Prenotazioni"
+        "bookings": "Prenotazioni",
+        "my-lessons": "Le mie lezioni",
+        "achievements": "Risultati",
+        "progress": "Progresso"
       },
       "secondary": {
         "settings": "Impostazioni",
         "get-help": "Aiuto"
-      },
-      "my-progress": {
-        "title": "Il mio progresso",
-        "my-lessons": "Le mie lezioni",
-        "achievements": "Risultati",
-        "progress": "Progresso"
       }
     },
     "calendar": {
       "today-button": "Oggi"
+    },
+    "language-club": {
+      "title": "Club linguistico",
+      "subtitle": "Pianifica e gestisci le tue sessioni di apprendimento linguistico",
+      "calendar-title": "Calendario eventi",
+      "no-events-scheduled": "Nessun evento programmato",
+      "no-events-description": "Clicca su qualsiasi data per visualizzare le sessioni disponibili",
+      "events-for-date": "Eventi per {date}",
+      "view-details": "Visualizza dettagli"
+
     },
     "stats": {
       "total-upcoming": "Totale in arrivo",

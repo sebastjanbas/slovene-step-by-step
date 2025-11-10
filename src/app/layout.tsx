@@ -2,8 +2,9 @@ import "./globals.css";
 import { LocaleProvider } from "@/contexts/locale-context";
 import { DynamicClerkProvider } from "@/components/providers/dynamic-clerk-provider";
 import { Suspense } from "react";
+import {Metadata} from "next";
 
-export const metadata = {
+export const metadata : Metadata = {
   title: {
     default: "Slovene Step by Step | Become fluent in Slovene",
     template: "%s | Slovene Step By Step",
