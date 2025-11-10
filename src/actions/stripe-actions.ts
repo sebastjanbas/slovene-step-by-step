@@ -5,6 +5,8 @@ import { langClubBookingsTable, langClubTable } from "@/db/schema";
 import { and, eq, gt, ne, or } from "drizzle-orm";
 import Stripe from "stripe";
 import BookingConfEmail from "@/emails/booking-conf-email";
+import RescheduleConfEmail from "@/emails/reschedule-conf-email";
+import CancellationConfEmail from "@/emails/cancellation-conf-email";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -242,9 +244,11 @@ export const rescheduleBooking = async (
   newEventId: string
 ) => {
   const { userId } = await auth();
+  const client = await clerkClient();
   if (!userId) {
     return { error: "Unauthorized", status: 401 };
   }
+  const user = await client.users.getUser(userId);
 
   if (!bookingId || !newEventId) {
     return { error: "Booking ID and new event ID are required", status: 400 };
@@ -342,6 +346,58 @@ export const rescheduleBooking = async (
         .where(eq(langClubTable.id, Number(newEventId)));
     });
 
+    // Generate ICS file for the new event
+    const icsContent = generateICSFile(
+      bookingId,
+      user.unsafeMetadata.locale as string,
+      newEvent.date,
+      newEvent.duration,
+      new Date(),
+      newEvent.description,
+      newEvent.location,
+      newEvent.theme
+    );
+
+    // Send a reschedule confirmation email
+    const { data: emailData, error: emailError } = await resend.emails.send({
+      from: "Slovenščina Korak za Korakom <notifications@slovenscinakzk.com>",
+      to: [user.emailAddresses[0].emailAddress],
+      subject: "Reschedule Confirmation",
+      react: RescheduleConfEmail({
+        name: user.firstName,
+        locale: user.unsafeMetadata.locale as string,
+        // Old event details
+        oldLessonDate: currentEvent.date,
+        oldLessonDuration: currentEvent.duration,
+        oldTeacherName: currentEvent.tutor,
+        oldLessonTheme: currentEvent.theme,
+        oldLessonLocation: currentEvent.location,
+        oldLessonDescription: currentEvent.description,
+        oldLessonLevel: currentEvent.level,
+        // New event details
+        newLessonDate: newEvent.date,
+        newLessonDuration: newEvent.duration,
+        newTeacherName: newEvent.tutor,
+        newLessonTheme: newEvent.theme,
+        newLessonLocation: newEvent.location,
+        newLessonDescription: newEvent.description,
+        newLessonLevel: newEvent.level,
+      }),
+      attachments: [
+        {
+          filename: "event.ics",
+          content: Buffer.from(icsContent),
+          contentType: "text/calendar; method=REQUEST; charset=UTF-8",
+        },
+      ],
+    });
+
+    if (emailError) {
+      console.error("Error sending reschedule email:", emailError);
+      // Don't return error here - the booking is already updated
+      // Just log the error and continue
+    }
+
     return {
       success: true,
       message: "Booking rescheduled successfully",
@@ -352,6 +408,7 @@ export const rescheduleBooking = async (
         tutor: newEvent.tutor,
         location: newEvent.location,
       },
+      emailData: emailError ? null : emailData,
     };
   } catch (error) {
     console.error("Reschedule booking error:", error);
@@ -409,9 +466,11 @@ export const getAvailableEvents = async (currentEventId: number) => {
 export const cancelBooking = async (bookingId: number) => {
   try {
     const { userId } = await auth();
+    const client = await clerkClient();
     if (!userId) {
       return { message: "Unauthorized", status: 401 };
     }
+    const user = await client.users.getUser(userId);
 
     if (!bookingId) {
       return { message: "Booking ID is required", status: 400 };
@@ -499,6 +558,31 @@ export const cancelBooking = async (bookingId: number) => {
           peopleBooked: event.peopleBooked - 1,
         })
         .where(eq(langClubTable.id, booking.eventId));
+
+      // Send cancellation confirmation email
+      const { error: emailError } = await resend.emails.send({
+        from: "Slovenščina Korak za Korakom <notifications@slovenscinakzk.com>",
+        to: [user.emailAddresses[0].emailAddress],
+        subject: "Cancellation Confirmation",
+        react: CancellationConfEmail({
+          name: user.firstName,
+          locale: user.unsafeMetadata.locale as string,
+          eventType: "language-club",
+          lessonDate: event.date,
+          lessonDuration: event.duration,
+          teacherName: event.tutor,
+          lessonTheme: event.theme,
+          lessonLocation: event.location,
+          lessonDescription: event.description,
+          lessonLevel: event.level,
+        }),
+      });
+
+      if (emailError) {
+        console.error("Error sending cancellation email:", emailError);
+        // Don't return error here - the booking is already cancelled
+        // Just log the error and continue
+      }
 
       return {
         status: 200,

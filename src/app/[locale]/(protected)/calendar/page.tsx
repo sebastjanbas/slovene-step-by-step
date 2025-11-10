@@ -10,7 +10,7 @@ const CalendarPage = async () => {
   const {userId} = await auth();
 
 
-  if (!schedule.success || !timeblocks.success || !tutors.success || !userId) {
+  if (schedule.status !== 200 || timeblocks.status !== 200 || tutors.status !== 200 || !userId) {
     return (
       <div className="text-red-500">
         Error: {schedule.error || timeblocks.error || tutors.error}
