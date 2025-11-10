@@ -13,8 +13,21 @@
       "completing": "Configurazione..."
     },
     "par1": {
-      "title": "Qual è il tuo livello attuale di sloveno?",
-      "description": "Questo ci aiuta a trovare le lezioni e i materiali giusti per te."
+      "title": "Determiniamo il tuo livello di sloveno",
+      "description": "Fai il nostro rapido test di livello per aiutarci a trovare le lezioni e i materiali giusti per te."
+    },
+    "placementTest": {
+      "levelProgress": "Livello: {level} ({current}/{total})",
+      "questionProgress": "Domanda {current} di {total}",
+      "checkAnswer": "Controlla risposta",
+      "correctFeedback": "Corretto! Ben fatto!",
+      "incorrectFeedback": "Non del tutto giusto, ma continua!",
+      "testComplete": "Test completato!",
+      "testCompleteDescription": "Il tuo livello linguistico è stato determinato",
+      "yourLevel": "Il tuo livello",
+      "levelDescription": "In base alle tue risposte, ti abbiamo collocato al livello {level}",
+      "continue": "Continua",
+      "correctAnswers": "{correct}/{total} corrette"
     },
     "par2": {
       "title": "Scegli il tuo insegnante preferito",

@@ -44,3 +44,24 @@ export const getUserPreferences = async () => {
     return error;
   }
 };
+
+export const updateLanguageLevel = async (languageLevel: string) => {
+  const client = await clerkClient();
+  const { userId } = await auth();
+  if (!userId) {
+    return new Error("User not found");
+  }
+
+  try {
+    await client.users.updateUserMetadata(userId, {
+      privateMetadata: {
+        languageLevel,
+      },
+    });
+
+    return null;
+  } catch (error) {
+    console.error("Error saving language level:", error);
+    return error;
+  }
+};

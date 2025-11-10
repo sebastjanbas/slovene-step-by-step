@@ -9,9 +9,10 @@ import {IconCheck, IconCircleDashedCheck, IconInfoCircle, IconLoader2, IconUser,
 import {redirect} from "@/i18n/routing";
 import {useLocale, useTranslations} from "next-intl";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
-import {updateUserPreferences, UserPreferences} from "@/actions/user-actions";
+import {updateUserPreferences, updateLanguageLevel, UserPreferences} from "@/actions/user-actions";
 import {toast} from "sonner";
-import {languageLevels, learningGoals, scheduleOptions, tutors,} from "@/lib/docs";
+import {learningGoals, scheduleOptions, tutors,} from "@/lib/docs";
+import {PlacementTest} from "@/components/welcome/PlacementTest";
 
 const WelcomePage = () => {
   const {user, isLoaded} = useUser();
@@ -28,16 +29,6 @@ const WelcomePage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const totalSteps = 4;
-
-  // Helpers (place near the top of your component)
-  const activeIndex = Math.max(
-    0,
-    languageLevels.findIndex(l => l.value === preferences.languageLevel)
-  );
-  const pct =
-    languageLevels.length > 1
-      ? (activeIndex / (languageLevels.length - 1)) * 100
-      : 0;
 
   useEffect(() => {
     if (isLoaded && user) {
@@ -100,7 +91,11 @@ const WelcomePage = () => {
 
     setIsSubmitting(true);
     try {
+      // Save preferences and language level
       await updateUserPreferences(preferences);
+      await updateLanguageLevel(preferences.languageLevel);
+
+      // Mark onboarding as completed
       await user.update({
         unsafeMetadata: {
           ...user.unsafeMetadata,
@@ -115,150 +110,30 @@ const WelcomePage = () => {
     setIsSubmitting(false);
   };
 
+  const handlePlacementTestComplete = (level: string) => {
+    setPreferences((prev) => ({
+      ...prev,
+      languageLevel: level,
+    }));
+    // Auto-advance to next step
+    setTimeout(() => {
+      setCurrentStep(2);
+    }, 500);
+  };
+
   const renderStepContent = () => {
     switch (currentStep) {
       case 1:
         return (
           <div className="space-y-6">
             {/* Title */}
-            <div className="text-center space-y-2">
+            <div className="text-center space-y-2 mb-6">
               <h2 className="text-2xl font-bold">{t("par1.title")}</h2>
               <p className="text-muted-foreground">{t("par1.description")}</p>
             </div>
 
-            {/* ===== Mobile: Vertical timeline ===== */}
-            <div className="md:hidden relative mx-auto w-full max-w-xl">
-              {/* Base vertical line */}
-              <div
-                className="absolute left-5 top-0 bottom-0 w-[2px] bg-muted rounded-full"
-                aria-hidden
-              />
-              {/* Progress fill */}
-              <div
-                className="absolute left-5 top-0 w-[2px] bg-primary rounded-full transition-[height] duration-500"
-                style={{height: `${pct}%`}}
-                aria-hidden
-              />
-
-              <ol className="space-y-6 pt-1">
-                {languageLevels.map((level, idx) => {
-                  const isActive = preferences.languageLevel === level.value;
-                  const isCompleted = idx <= activeIndex;
-
-                  return (
-                    <li key={level.value} className="relative pl-12">
-                      {/* Node */}
-                      <button
-                        type="button"
-                        onClick={() =>
-                          handlePreferenceChange("languageLevel", level.value)
-                        }
-                        className={[
-                          "absolute left-[1.25rem] top-0 -translate-x-1/2 grid place-items-center",
-                          "h-9 w-9 rounded-full shadow-sm outline-none transition-all",
-                          "ring-offset-background focus-visible:ring-2 focus-visible:ring-ring",
-                          isActive
-                            ? "bg-primary text-primary-foreground ring-2 ring-primary"
-                            : isCompleted
-                              ? "bg-primary text-primary-foreground"
-                              : "bg-muted text-muted-foreground hover:bg-accent",
-                        ].join(" ")}
-                        aria-pressed={isActive}
-                        aria-current={isActive ? "step" : undefined}
-                        title={level.label[locale]}
-                      >
-                <span className="text-[10px] font-bold leading-none">
-                  {level.value}
-                </span>
-                      </button>
-
-                      {/* Content card */}
-                      <div
-                        className={[
-                          "rounded-xl border p-3 pr-4 transition-all",
-                          isActive ? "border-primary ring-1 ring-primary/30" : "border-border",
-                        ].join(" ")}
-                      >
-                        <div className="flex items-start gap-3">
-                          {/*<div className="text-3xl leading-none">{level.icon}</div>*/}
-                          <div className="flex-1">
-                            <h3 className="font-semibold">{level.label[locale]}</h3>
-                            <p className="text-sm text-muted-foreground">
-                              {level.description[locale]}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ol>
-            </div>
-
-            {/* ===== Desktop/Tablet: Horizontal timeline ===== */}
-            <div className="hidden md:block">
-              <div className="relative mx-auto w-full max-w-[850px] pt-10">
-                {/* Base horizontal line */}
-                <div className="absolute -bottom-5 h-[2px] bg-muted rounded-full w-full"
-                     aria-hidden/>
-                {/* Progress fill */}
-                <div
-                  className="absolute -bottom-5 mx-auto h-[2px] bg-primary rounded-full transition-[width] duration-500"
-                  style={{width: `${pct}%`}}
-                  aria-hidden
-                />
-
-              </div>
-              <div className="relative mx-auto w-full max-w-5xl pb-2">
-                <ol className="relative z-10 flex items-start justify-between">
-                  {languageLevels.map((level, idx) => {
-                    const isActive = preferences.languageLevel === level.value;
-                    const isCompleted = idx <= activeIndex;
-
-                    return (
-                      <li key={level.value} className="flex flex-col items-center w-full">
-                        {/* Node */}
-                        <button
-                          type="button"
-                          onClick={() =>
-                            handlePreferenceChange("languageLevel", level.value)
-                          }
-                          className={[
-                            "relative grid place-items-center h-10 w-10 rounded-full transition-all outline-none cursor-pointer",
-                            "ring-offset-background focus-visible:ring-2 focus-visible:ring-ring",
-                            isActive
-                              ? "bg-primary text-primary-foreground shadow ring-2 ring-primary"
-                              : isCompleted
-                                ? "bg-primary text-primary-foreground"
-                                : "bg-muted text-muted-foreground hover:bg-accent",
-                          ].join(" ")}
-                          aria-pressed={isActive}
-                          aria-current={isActive ? "step" : undefined}
-                          title={level.label[locale]}
-                        >
-                  <span className="text-[10px] font-bold">
-                    {level.value}
-                  </span>
-                          {isActive && (
-                            <span className="absolute -z-10 h-14 w-14 rounded-full bg-primary/20 blur-sm"/>
-                          )}
-                        </button>
-
-                        {/* Label & description */}
-                        <div className="mt-3 w-[9rem] text-center select-none">
-                          <p className="text-sm font-semibold leading-tight">
-                            {level.label[locale]}
-                          </p>
-                          <p className="mt-1 text-xs text-muted-foreground leading-snug line-clamp-2">
-                            {level.description[locale]}
-                          </p>
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ol>
-              </div>
-            </div>
+            {/* Placement Test */}
+            <PlacementTest onComplete={handlePlacementTestComplete} />
           </div>
         );
 

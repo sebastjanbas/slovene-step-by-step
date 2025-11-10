@@ -13,8 +13,21 @@
       "completing": "Настройка..."
     },
     "par1": {
-      "title": "Какой у вас уровень словенского языка?",
-      "description": "Это поможет нам подобрать вам правильные уроки и материалы."
+      "title": "Давайте определим ваш уровень словенского",
+      "description": "Пройдите наш быстрый тест на определение уровня, чтобы мы могли подобрать вам правильные уроки и материалы."
+    },
+    "placementTest": {
+      "levelProgress": "Уровень: {level} ({current}/{total})",
+      "questionProgress": "Вопрос {current} из {total}",
+      "checkAnswer": "Проверить ответ",
+      "correctFeedback": "Правильно! Отлично!",
+      "incorrectFeedback": "Не совсем правильно, но продолжайте!",
+      "testComplete": "Тест завершён!",
+      "testCompleteDescription": "Ваш языковой уровень определён",
+      "yourLevel": "Ваш уровень",
+      "levelDescription": "На основе ваших ответов мы определили, что ваш уровень {level}",
+      "continue": "Продолжить",
+      "correctAnswers": "{correct}/{total} правильных"
     },
     "par2": {
       "title": "Выберите своего преподавателя",

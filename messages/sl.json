@@ -13,8 +13,21 @@
       "completing": "Shranjevanje..."
     },
     "par1": {
-      "title": "Kakšen je vaš trenutni slovenščinski nivo?",
-      "description": "To nam pomaga, da vam zagotovimo prave lekcije in gradiva."
+      "title": "Ugotovimo vašo raven slovenščine",
+      "description": "Opravite naš hiter razvrstilni test, ki nam bo pomagal izbrati prave lekcije in gradiva."
+    },
+    "placementTest": {
+      "levelProgress": "Raven: {level} ({current}/{total})",
+      "questionProgress": "Vprašanje {current} od {total}",
+      "checkAnswer": "Preveri odgovor",
+      "correctFeedback": "Pravilno! Odlično!",
+      "incorrectFeedback": "Ni popolnoma pravilno, a nadaljuj!",
+      "testComplete": "Test zaključen!",
+      "testCompleteDescription": "Vaša jezikovna raven je določena",
+      "yourLevel": "Vaša raven",
+      "levelDescription": "Na podlagi vaših odgovorov smo vas uvrstili na raven {level}",
+      "continue": "Nadaljuj",
+      "correctAnswers": "{correct}/{total} pravilnih"
     },
     "par2": {
       "title": "Izberite svojega učitelja",
