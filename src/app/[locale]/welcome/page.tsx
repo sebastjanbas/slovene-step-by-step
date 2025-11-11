@@ -2,17 +2,23 @@
 
 import React, {useEffect, useState} from "react";
 import {useUser} from "@clerk/nextjs";
-import {Card, CardContent} from "@/components/ui/card";
 import {Button} from "@/components/ui/button";
-import {Progress} from "@/components/ui/progress";
-import {IconCheck, IconCircleDashedCheck, IconInfoCircle, IconLoader2, IconUser,} from "@tabler/icons-react";
+import {
+  IconCheck,
+  IconChevronRight,
+  IconCircleDashedCheck,
+  IconInfoCircle,
+  IconLoader2,
+  IconUser,
+} from "@tabler/icons-react";
 import {redirect} from "@/i18n/routing";
 import {useLocale, useTranslations} from "next-intl";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
-import {updateUserPreferences, updateLanguageLevel, UserPreferences} from "@/actions/user-actions";
+import {updateLanguageLevel, updateUserPreferences, UserPreferences} from "@/actions/user-actions";
 import {toast} from "sonner";
 import {learningGoals, scheduleOptions, tutors,} from "@/lib/docs";
-import {PlacementTest} from "@/components/welcome/PlacementTest";
+import {clearPlacementTestState, PlacementTest} from "@/components/welcome/PlacementTest";
+import {cn} from "@/lib/utils";
 
 const WelcomePage = () => {
   const {user, isLoaded} = useUser();
@@ -103,6 +109,10 @@ const WelcomePage = () => {
           welcome: false,
         },
       });
+
+      // Clear placement test state from localStorage
+      clearPlacementTestState();
+
       redirect({href: "/dashboard", locale: locale});
     } catch (error) {
       toast.error("Error saving preferences: " + error);
@@ -115,7 +125,8 @@ const WelcomePage = () => {
       ...prev,
       languageLevel: level,
     }));
-    // Auto-advance to next step
+
+    // Auto-advance to the next step
     setTimeout(() => {
       setCurrentStep(2);
     }, 500);
@@ -124,156 +135,192 @@ const WelcomePage = () => {
   const renderStepContent = () => {
     switch (currentStep) {
       case 1:
-        return (
-          <div className="space-y-6">
-            {/* Title */}
-            <div className="text-center space-y-2 mb-6">
-              <h2 className="text-2xl font-bold">{t("par1.title")}</h2>
-              <p className="text-muted-foreground">{t("par1.description")}</p>
-            </div>
-
-            {/* Placement Test */}
-            <PlacementTest onComplete={handlePlacementTestComplete} />
-          </div>
-        );
+        return <PlacementTest onComplete={handlePlacementTestComplete}/>;
 
 
       case 2:
         return (
-          <div className="space-y-1">
-            <div className="text-center space-y-2 mb-6">
-              <h2 className="text-2xl font-bold">{t("par2.title")}</h2>
-              <p className="text-muted-foreground">{t("par2.description")}</p>
-            </div>
-            <div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:flex flex-row gap-4 justify-center items-center">
-              {tutors.map((tutor) => (
-                <Card
-                  key={tutor.id}
-                  className={`cursor-pointer transition-all shadow-none border-1 border-transparent hover:shadow-md hover:border-foreground/15 w-full max-w-auto rounded-2xl p-4 items-center gap-4 ${
-                    preferences.preferredTutor === tutor.id
-                      ? "ring-2 ring-primary border-primary"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    handlePreferenceChange("preferredTutor", tutor.id)
-                  }
-                >
-                  <CardContent className="p-4 text-center">
-                    <div className="flex flex-col items-center justify-center gap-4">
-                      <Avatar className="w-32 h-32">
-                        <AvatarImage src={tutor.avatar}/>
-                        <AvatarFallback>
-                          <IconUser className="h-10 w-10 text-foreground/40"/>
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="flex-1 flex flex-col justify-center items-center gap-2">
-                        <h3 className="font-semibold text-xl">{tutor.name}</h3>
-                        <ul
-                          className="text-base text-center text-muted-foreground flex flex-col gap-1 justify-center items-center">
-                          {tutor.description[locale].split(",").map((item) => (
-                            <li
-                              className="inline-flex items-center gap-2"
-                              key={item}
-                            >
-                              <IconCircleDashedCheck className="h-4 w-4 text-primary"/>
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      {preferences.preferredTutor === tutor.id && (
-                        <IconCheck className="h-5 w-5 text-primary"/>
+          <div className="flex flex-col h-full w-full justify-between">
+            {/* Header */}
+            <div className="space-y-10">
+              <div className="text-center space-y-3 mb-8">
+                <h2 className="text-3xl font-semibold tracking-tight">{t("par2.title")}</h2>
+                <p className="text-base text-muted-foreground">{t("par2.description")}</p>
+              </div>
+
+              {/* Tutor Grid - Clean Minimal Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl mx-auto">
+                {tutors.map((tutor) => {
+                  const isSelected = preferences.preferredTutor === tutor.id;
+                  return (
+                    <button
+                      key={tutor.id}
+                      onClick={() => handlePreferenceChange("preferredTutor", tutor.id)}
+                      className={cn(
+                        "relative w-full p-6 rounded-xl border transition-all duration-200",
+                        "hover:border-foreground/20 hover:bg-foreground/[0.02]",
+                        "dark:hover:bg-foreground/[0.05] text-left",
+                        isSelected
+                          ? "border-primary bg-primary/5 dark:bg-primary/10"
+                          : "border-border/50"
                       )}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                    >
+                      <div className="flex flex-col items-center gap-4">
+                        {/* Avatar */}
+                        <Avatar className="w-24 h-24">
+                          <AvatarImage src={tutor.avatar} alt={tutor.name}/>
+                          <AvatarFallback>
+                            <IconUser className="h-12 w-12 text-foreground/40"/>
+                          </AvatarFallback>
+                        </Avatar>
+
+                        {/* Name & Features */}
+                        <div className="flex flex-col items-center gap-3 w-full">
+                          <h3 className="font-semibold text-lg">{tutor.name}</h3>
+                          <ul className="text-sm text-muted-foreground space-y-2 w-full">
+                            {tutor.description[locale].split(",").map((item, idx) => (
+                              <li
+                                key={idx}
+                                className="flex items-center gap-2 justify-center"
+                              >
+                                <IconCircleDashedCheck className="h-4 w-4 text-primary shrink-0"/>
+                                <span>{item.trim()}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Selection Indicator */}
+                        {isSelected && (
+                          <div className="absolute top-5 right-5">
+                            <IconCheck className="h-5 w-5 text-primary"/>
+                          </div>
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-            <p className="text-muted-foreground text-center inline-flex justify-center items-center gap-2 w-full mt-2">
-              <IconInfoCircle className="h-4 w-4 text-primary"/>
-              {t("par2.info-message")}
-            </p>
+
+            {/* Info Message */}
+            <div className="mt-8 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+              <IconInfoCircle className="h-4 w-4 text-primary shrink-0"/>
+              <p>{t("par2.info-message")}</p>
+            </div>
           </div>
         );
 
       case 3:
         return (
-          <div className="space-y-6">
-            <div className="text-center space-y-2">
-              <h2 className="text-2xl font-bold">{t("par3.title")}</h2>
-              <p className="text-muted-foreground">{t("par3.description")}</p>
-            </div>
-            <div className="grid grid-cols-3 gap-4">
-              {learningGoals.map((goal) => (
-                <Card
-                  key={goal.value}
-                  className={`cursor-pointer transition-all border-1 border-transparent hover:border-foreground/15 shadow-none hover:shadow-md ${
-                    preferences.learningGoals.includes(goal.value)
-                      ? "ring-2 ring-primary border-primary"
-                      : ""
-                  }`}
-                  onClick={() => handleGoalToggle(goal.value)}
-                >
-                  <CardContent className="p-4 text-center">
-                    <div className="text-4xl mb-4">{goal.icon}</div>
-                    <h3 className="font-semibold text-base">
-                      {goal.label[locale]}
-                    </h3>
-                    <p className="text-muted-foreground text-sm">
-                      {goal.description[locale]}
-                    </p>
-                    {preferences.learningGoals.includes(goal.value) && (
-                      <IconCheck className="h-4 w-4 text-primary mx-auto mt-2"/>
-                    )}
-                  </CardContent>
-                </Card>
-              ))}
+          <div className="flex flex-col h-full w-full justify-between">
+            {/* Header */}
+            <div className="space-y-10">
+              <div className="text-center space-y-3 mb-8">
+                <h2 className="text-3xl font-semibold tracking-tight">{t("par3.title")}</h2>
+                <p className="text-base text-muted-foreground">{t("par3.description")}</p>
+              </div>
+
+              {/* Learning Goals Grid - Clean Minimal Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl mx-auto">
+                {learningGoals.map((goal) => {
+                  const isSelected = preferences.learningGoals.includes(goal.value);
+                  return (
+                    <button
+                      key={goal.value}
+                      onClick={() => handleGoalToggle(goal.value)}
+                      className={cn(
+                        "relative w-full p-6 rounded-xl border transition-all duration-200",
+                        "hover:border-foreground/20 hover:bg-foreground/[0.02]",
+                        "dark:hover:bg-foreground/[0.05] text-center",
+                        isSelected
+                          ? "border-primary bg-primary/5 dark:bg-primary/10"
+                          : "border-border/50"
+                      )}
+                    >
+                      <div className="flex flex-col items-center gap-3">
+                        {/* Icon */}
+                        <div className="text-4xl mb-2">{goal.icon}</div>
+
+                        {/* Label & Description */}
+                        <h3 className="font-semibold text-base">
+                          {goal.label[locale]}
+                        </h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
+                          {goal.description[locale]}
+                        </p>
+
+                        {/* Selection Indicator */}
+                        {isSelected && (
+                          <div className="absolute top-5 right-5">
+                            <IconCheck className="h-4 w-4 text-primary"/>
+                          </div>
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         );
 
       case 4:
         return (
-          <div className="space-y-6">
-            <div className="text-center space-y-2">
-              <h2 className="text-2xl font-bold">{t("par4.title")}</h2>
-              <p className="text-muted-foreground">{t("par4.description")}</p>
-            </div>
-            <div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:flex flex-row gap-4 justify-center items-center w-full">
-              {scheduleOptions.map((schedule) => (
-                <Card
-                  key={schedule.value}
-                  className={`cursor-pointer transition-all shadow-none border-1 border-transparent hover:shadow-md hover:border-foreground/15 w-full ${
-                    preferences.preferredSchedule === schedule.value
-                      ? "ring-2 ring-primary border-primary"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    handlePreferenceChange("preferredSchedule", schedule.value)
-                  }
-                >
-                  <CardContent className="px-8 py-4">
-                    <div className="flex flex-col gap-4 items-center justify-center">
-                      <h3 className="font-semibold text-4xl">
-                        {schedule.icon}
-                      </h3>
-                      <h3 className="font-semibold">
-                        {schedule.label[locale]}
-                      </h3>
-                      <p className="text-muted-foreground text-sm">
-                        {schedule.value === "flexible"
-                          ? schedule.time[locale]
-                          : schedule.time}
-                      </p>
-                      {preferences.preferredSchedule === schedule.value && (
-                        <IconCheck className="h-5 w-5 text-primary"/>
+          <div className="flex flex-col h-full w-full justify-between">
+            {/* Header */}
+            <div className="space-y-10">
+              <div className="text-center space-y-3 mb-8">
+                <h2 className="text-3xl font-semibold tracking-tight">{t("par4.title")}</h2>
+                <p className="text-base text-muted-foreground">{t("par4.description")}</p>
+              </div>
+
+              {/* Schedule Options - Clean Minimal Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-3xl mx-auto">
+                {scheduleOptions.map((schedule) => {
+                  const isSelected = preferences.preferredSchedule === schedule.value;
+                  return (
+                    <button
+                      key={schedule.value}
+                      onClick={() => handlePreferenceChange("preferredSchedule", schedule.value)}
+                      className={cn(
+                        "relative w-full p-6 rounded-xl border transition-all duration-200",
+                        "hover:border-foreground/20 hover:bg-foreground/[0.02]",
+                        "dark:hover:bg-foreground/[0.05] text-center",
+                        isSelected
+                          ? "border-primary bg-primary/5 dark:bg-primary/10"
+                          : "border-border/50"
                       )}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                    >
+                      <div className="flex flex-col items-center gap-4">
+                        {/* Icon */}
+                        <div className="text-5xl">
+                          {schedule.icon}
+                        </div>
+
+                        {/* Label & Time */}
+                        <div className="space-y-2">
+                          <h3 className="font-semibold text-base">
+                            {schedule.label[locale]}
+                          </h3>
+                          <p className="text-sm text-muted-foreground">
+                            {schedule.value === "flexible"
+                              ? schedule.time[locale]
+                              : schedule.time}
+                          </p>
+                        </div>
+
+                        {/* Selection Indicator */}
+                        {isSelected && (
+                          <div className="absolute top-5 right-5">
+                            <IconCheck className="h-5 w-5 text-primary"/>
+                          </div>
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         );
@@ -286,7 +333,7 @@ const WelcomePage = () => {
   if (!isLoaded) {
     return (
       <div
-        className="flex items-center justify-center min-h-screen w-full h-full  bg-gradient-to-br from-indigo-300/40 via-background to-sl-accent/40 dark:from-indigo-300/30 dark:to-sl-accent/30 ">
+        className="flex items-center justify-center min-h-screen w-full h-full">
         <div className="text-center space-y-4">
           <IconLoader2 className="h-8 w-8 animate-spin mx-auto"/>
           <p>{t1("loading")}</p>
@@ -301,75 +348,90 @@ const WelcomePage = () => {
   }
 
   return (
-    <div
-      className="w-full h-full min-h-screen py-20 m-0 px-4 bg-gradient-to-br from-indigo-300/40 via-background to-sl-accent/40 dark:from-indigo-300/30 dark:to-sl-accent/30 overflow-hidden">
-      <div className="h-full w-full overflow-y-scroll">
-        {/* Header */}
-        <div className="text-center mb-8 mt-10">
-          <h1 className="text-center text-5xl font-bold text-gray-900 dark:text-white mb-2">
-            {t("title")} <br/>
-            <span className="font-semibold text-4xl">
-              Slovenščina Korak za Korakom!
-            </span>
+    <div className="relative w-full min-h-screen">
+      {/* Subtle Background Gradient */}
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-950"/>
+
+      {/* Main Container - No Scroll on Desktop */}
+      <div className="relative h-full flex flex-col max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        {/* Clean Header */}
+        <div className="text-center mb-6 lg:mb-8">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground mb-2">
+            {t("title")} <span className="text-primary">Slovenščina Korak za Korakom</span>
           </h1>
-          <p className="text-lg text-muted-foreground">{t("description")}</p>
+          <p className="text-base lg:text-lg text-muted-foreground">{t("description")}</p>
         </div>
 
-        {/* Progress Bar */}
-        <div className="max-w-2xl mx-auto mb-8">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              {t("progress.steps", {
-                step: currentStep,
-                total: totalSteps,
-              })}
+        {/* Minimal Progress Indicator */}
+        {currentStep > 1 && (
+          <div className="mb-6 lg:mb-8">
+            <div className="flex items-center justify-between mb-3 text-sm">
+            <span className="font-medium text-foreground">
+              Step {currentStep} of {totalSteps}
             </span>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              {t("progress.complete", {
-                percentage: (((currentStep - 1) / totalSteps) * 100).toFixed(0),
-              })}
+              <span className="text-muted-foreground">
+              {(((currentStep - 1) / totalSteps) * 100).toFixed(0)}% Complete
             </span>
+            </div>
+            {/* Clean Progress Bar */}
+            <div className="relative h-[2px] bg-black/5 dark:bg-white/10 rounded-full overflow-hidden">
+              <div
+                className="absolute inset-y-0 left-0 bg-primary rounded-full transition-all duration-500 ease-out"
+                style={{width: `${((currentStep - 1) / totalSteps) * 100}%`}}
+              />
+            </div>
           </div>
-          <Progress
-            value={((currentStep - 1) / totalSteps) * 100}
-            className="h-1"
-          />
+        )}
+
+        {/* Main Content Area - Flex Grows to Fill Space */}
+        <div className="flex-1 flex flex-col min-h-0 mb-6 lg:mb-8">
+          {/* All Steps - No Card, Direct Full Width Layout */}
+          <div className="flex-1 flex flex-col">
+            {renderStepContent()}
+          </div>
         </div>
 
-        {/* Main Content */}
-        <div className="max-w-6xl mx-auto">
-          <Card className="shadow-lg">
-            <CardContent className="p-8">{renderStepContent()}</CardContent>
-          </Card>
-
-          {/* Navigation */}
-          <div className="flex justify-between items-center mt-8">
+        {/* Clean Navigation Footer */}
+        {currentStep > 1 && (
+          <div className="flex items-center justify-between gap-4">
             <Button
-              variant="outline"
+              variant="ghost"
               onClick={handleBack}
               disabled={currentStep === 1}
+              className="hover:bg-foreground/5 disabled:opacity-30"
+              size="lg"
             >
               {t("navigation.back")}
             </Button>
 
-            <div className="flex space-x-4">
+            <div className="flex gap-3">
               {currentStep < totalSteps ? (
-                <Button onClick={handleNext} disabled={!canProceed()}>
+                <Button
+                  onClick={handleNext}
+                  disabled={!canProceed()}
+                  size="lg"
+                  className="bg-primary hover:bg-primary/90 disabled:opacity-40 shadow-sm"
+                >
                   {t("navigation.next")}
+                  <IconChevronRight className="w-4 h-4 ml-1"/>
                 </Button>
               ) : (
                 <Button
                   onClick={handleComplete}
                   disabled={!canProceed() || isSubmitting}
+                  size="lg"
+                  className="bg-primary hover:bg-primary/90 disabled:opacity-40 shadow-sm"
                 >
                   {isSubmitting
                     ? t("navigation.completing")
                     : t("navigation.complete")}
+                  {!isSubmitting && <IconCheck className="w-4 h-4 ml-1"/>}
                 </Button>
               )}
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
