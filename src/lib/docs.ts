@@ -36,21 +36,21 @@ export const people = [
   {
     id: 2,
     name: ["Sebastjan", "Bas"],
-    role: "Executive Developer",
+    role: "Software Engineer",
     fluentIn: [""],
     imageUrl: `/foto-me.jpg`,
   },
   {
     id: 3,
     name: ["Sofiya", "Tyutyunnyk"],
-    role: "Social Media Manager",
+    role: "Professional Teacher/Tutor",
     fluentIn: ["Slovene", "English", "Russian"],
     imageUrl: `/foto-sofia.jpg`,
   },
   {
     id: 4,
     name: ["Manca", "Levašič"],
-    role: "Professional Teacher/Tutor",
+    role: "Social Media Manager",
     fluentIn: ["Slovene", "English"],
     imageUrl: `/foto-manca.png`,
   },
@@ -58,7 +58,7 @@ export const people = [
     id: 5,
     name: ["Ela", "Remic"],
     role: "Professional Teacher/Tutor",
-    fluentIn: ["Slovene", "Polish", "English"],
+    fluentIn: ["Slovene", "Russian", "English"],
     imageUrl: "/foto-ela.jpg",
   },
 ];
@@ -123,7 +123,7 @@ export const footerLinks = {
   QuickLinks: [
     { name: "home", href: "/", server: false },
     { name: "pricing", href: "/pricing", server: false },
-    { name: "lang-club", href: "/lang-club", server: true },
+    { name: "lang-club", href: "/pricing#lang-club", server: true },
   ],
   Company: [
     { name: "about", href: "/about-us" },
@@ -210,9 +210,9 @@ export const SidebarNavigationData = {
     },
     {
       title: "courses",
-      url: "#",
+      url: "/courses",
       icon: IconBrandParsinta,
-      disabled: true,
+      disabled: false,
     },
     {
       title: "calendar",
@@ -227,10 +227,10 @@ export const SidebarNavigationData = {
       disabled: false,
     },
     {
-      title: "dayly-practice",
-      url: "#",
+      title: "daily-practice",
+      url: "daily-practice",
       icon: IconFlask,
-      disabled: true,
+      disabled: false,
     },
   ],
   navSecondary: [
@@ -242,9 +242,9 @@ export const SidebarNavigationData = {
     },
     {
       title: "get-help",
-      url: "#",
+      url: "mailto:almn140803@gmail.com?cc=sebastjan.bas@gmail.com&subject=[Slovene Step By Step] - Support&body=<Enter your message here.>",
       icon: IconHelp,
-      disabled: true,
+      disabled: false,
     },
   ],
   myProgress: [

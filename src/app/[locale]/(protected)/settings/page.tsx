@@ -40,7 +40,7 @@ const SettingsPage = ({ params }) => {
             <EmailCard locale={locale} />
             <PasswordCard />
             <PreferencesForm />
-            <DevicesCard />
+            {/*<DevicesCard />*/}
           </div>
         </TabsContent>
         <TabsContent className="w-full" value="billing">

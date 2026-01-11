@@ -7,7 +7,7 @@ export default function LanguageClub() {
   const t = useTranslations("pricing.language-club");
 
   return (
-    <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-24">
+    <div id={"lang-club"} className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-24">
       <div className="relative overflow-hidden bg-gradient-to-br from-sl-purple/10 via-sl-blue/8 to-sl-pink/10 border-y border-sl-accent/30 shadow-2xl shadow-sl-accent/20 dark:shadow-sl-accent/10">
         {/* Background pattern overlay */}
         <div className="absolute inset-0 opacity-5 dark:opacity-10">

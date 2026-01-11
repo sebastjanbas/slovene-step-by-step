@@ -15,25 +15,13 @@ export const routing = defineRouting({
 
     // If locales use different paths, you can
     // specify each external path per locale
+
+    // PUBLIC
     "/about-us": {
       en: "/about-us",
       sl: "/o-nas",
       ru: "/o-нас",
       it: "/chi-siamo",
-    },
-
-    "/courses": {
-      en: "/courses",
-      sl: "/tecaji",
-      ru: "/продукты",
-      it: "/corsi",
-    },
-
-    "/features": {
-      en: "/features",
-      sl: "/izvedite-vec",
-      ru: "/функции",
-      it: "/caratteristiche",
     },
 
     "/pricing": {
@@ -43,32 +31,55 @@ export const routing = defineRouting({
       it: "/prezzi",
     },
 
-    "/info/contact-us": {
-      en: "/info/contact-us",
-      sl: "/info/kontakti",
-      ru: "/info/kontakti",
-      it: "/info/contattaci",
-    },
-
+    // LEGAL
     "/legal/terms-of-service": {
       en: "/legal/terms-of-service",
-      sl: "/pravne/pogoji",
+      sl: "/legal/terms-of-service",
       ru: "/legal/terms-of-service",
       it: "/legale/termini-di-servizio",
     },
 
     "/legal/privacy-policy": {
       en: "/legal/privacy-policy",
-      sl: "/pravne/zasebnost",
+      sl: "/legal/privacy-policy",
       ru: "/legal/privacy-policy",
       it: "/legale/informativa-sulla-privacy",
     },
 
     "/legal/license": {
       en: "/legal/license",
-      sl: "/pravne/licenca",
+      sl: "/legal/license",
       ru: "/legal/license",
       it: "/legale/licenza",
+    },
+
+    "/welcome": {
+      en: "/welcome",
+      sl: "/dobrodosli",
+      ru: "/добро-пожаловать",
+      it: "/benvenuto",
+    },
+
+    // PROTECTED
+    "/dashboard": {
+      en: "/dashboard",
+      sl: "/dashboard",
+      ru: "/dashboard",
+      it: "/dashboard",
+    },
+
+    "/courses": {
+      en: "/courses",
+      sl: "/tecaji",
+      ru: "/продукты",
+      it: "/corsi",
+    },
+
+    "/calendar": {
+      en: "/calendar",
+      sl: "/koledar",
+      ru: "/календарь",
+      it: "/calendario",
     },
 
     "/settings": {
@@ -77,47 +88,19 @@ export const routing = defineRouting({
       ru: "/настройки",
       it: "/impostazioni",
     },
-    "/dashboard": {
-      en: "/dashboard",
-      sl: "/dashboard",
-      ru: "/dashboard",
-      it: "/dashboard",
-    },
-    "/calendar": {
-      en: "/calendar",
-      sl: "/koledar",
-      ru: "/календарь",
-      it: "/calendario",
-    },
-    "/admin": {
-      en: "/admin",
-      sl: "/admin",
-      ru: "/admin",
-      it: "/admin",
-    },
-    "/admin/language-club-admin": {
-      en: "/admin/language-club-admin",
-      sl: "/admin/pogovorni-klub-admin",
-      ru: "/admin/языковой-клуб-admin",
-      it: "/admin/club-linguistico-admin",
-    },
+
     "/language-club": {
       en: "/language-club",
       sl: "/pogovorni-klub",
       ru: "/языковой-клуб",
       it: "/club-linguistico",
     },
-    "/tutors": {
-      en: "/tutors",
-      sl: "/mentorji",
-      ru: "/учителя",
-      it: "/tutori",
-    },
-    "/welcome": {
-      en: "/welcome",
-      sl: "/dobrodosli",
-      ru: "/добро-пожаловать",
-      it: "/benvenuto",
+
+    "/daily-practice": {
+      en: "/daily-practice",
+      sl: "/dnevne-naloge",
+      ru: "/daily-practice",
+      it: "/daily-practice",
     },
   },
 });

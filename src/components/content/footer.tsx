@@ -215,7 +215,7 @@ export default function Footer() {
         </div>
         <div className="mt-12 pt-8 border-t border-border/50">
           <p className="text-sl-secondary text-sm">
-            &copy; {new Date().getFullYear()}{" "}
+            &copy;
             {t("copyright", { year: new Date().getFullYear() })}
           </p>
         </div>
