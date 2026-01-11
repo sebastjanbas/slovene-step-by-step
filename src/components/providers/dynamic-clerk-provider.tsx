@@ -33,7 +33,6 @@ export function DynamicClerkProvider({ children }: DynamicClerkProviderProps) {
   const clerkLocalization = clerkLocales[locale] || enUS;
 
   return (
-    // @ts-expect-error - ClerkProvider doesn't have a type definition for the appearance prop'
     <ClerkProvider appearance={{theme: shadcn}} localization={clerkLocalization}>{children}</ClerkProvider>
   );
 }
