@@ -1,6 +1,6 @@
 import createMiddleware from "next-intl/middleware";
-import { routing } from "./i18n/routing";
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import {routing} from "./i18n/routing";
+import {clerkMiddleware} from "@clerk/nextjs/server";
 
 // export async function middleware(request) {
 //   return await updateSession(request)
@@ -25,9 +25,7 @@ export default clerkMiddleware(async (auth, req) => {
   }
 
   const i18nMiddleware = createMiddleware(routing);
-  const response = await i18nMiddleware(req);
-
-  return response;
+  return await i18nMiddleware(req);
 });
 
 export const config = {
