@@ -236,8 +236,8 @@ const LicenseePage = () => {
             support@slovene-step-by-step.com
           </a>{" "}
           <br /> Website:{" "}
-          <a href="https://slovene-step-by-step.vercel.app/">
-            slovene-step-by-step.vercel.app
+          <a href="https://slovenscinakzk.com/">
+            slovenscinakzk.com
           </a>
         </p>
       </section>
