@@ -94,10 +94,7 @@ export default function DetailsPageHero() {
         <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-12 lg:px-8">
           <div className="lg:pr-4 lg:block sm:flex sm:justify-center">
             <div className="max-w-xl text-base/7 text-primary lg:max-w-lg">
-              <p id="text2" className="text-lg text-sl-secondary">
-                {t("text")}
-              </p>
-              <ul role="list" className="mt-10 space-y-6">
+              <ul role="list" className="space-y-6">
                 <li
                   id="point1"
                   className="group relative flex gap-x-4 p-5 rounded-2xl bg-gradient-primary-subtle border border-border/50 hover:border-sl-accent/30 transition-all duration-300"

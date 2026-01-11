@@ -78,12 +78,12 @@
   },
   "metadata": {
     "home": {
-      "title": "Postani velemojster Slovenskega jezika",
-      "description": "Slovenščina Korak za korakom prilagojene ure slovenščine, prilagojene vašim ciljem. Učite se na spletu, ko vam ustreza, z izkušenimi učitelji in se pridružite podporni skupnosti z več kot 1200 člani. Začnite danes in dosegajte svoje jezikovne cilje s slovenščino Korak za korakom!"
+      "title": "Postani mojster slovenskega jezika",
+      "description": "Slovenščina korak za korakom nudi prilagojene ure slovenščine, v skladu z vašimi cilji. Učite se na spletu, ko vam ustreza, z izkušenimi učitelji in se pridružite podporni skupnosti z več kot 1200 člani. Začnite danes in osvojite svoje jezikovne cilje s Slovenščina korak za korakom!"
     },
     "about": {
       "title": "O nas",
-      "description": "Pri Slovenski korak za korakom smo predani zagotavljanju personaliziranih izkušenj učenja slovenskega jezika. Naša ekipa izkušenih učiteljev v kombinaciji s prilagodljivim urnikom zagotavlja, da se lahko učite v svojem tempu."
+      "description": "Pri Slovenščina korak za korakom smo predani zagotavljanju personaliziranih izkušenj učenja slovenskega jezika. Naša ekipa izkušenih učiteljev v kombinaciji s prilagodljivim urnikom zagotavlja, da se lahko učite v svojem tempu."
     },
     "pricing": {
       "title": "Cenik",
@@ -99,10 +99,10 @@
       "announcement": "Obvestilo",
       "title": {
         "part1": "Postani",
-        "strong": "Velemojster",
+        "strong": "mojster",
         "part2": "Slovenskega jezika"
       },
-      "subtitle": "Najboljša platforma za učenje Slovenščine",
+      "subtitle": "Najboljša platforma za učenje slovenščine",
       "cta": {
         "primary": "Začni zdaj",
         "secondary": "Izvedi več"
@@ -110,48 +110,47 @@
     },
     "why-slovene": {
       "title": "Zakaj bi se morali učiti slovenščino?",
-      "subtitle": "Znanje je moč",
-      "intro": "Obvladovanje slovenščine je ključ do odklepanja neprimerljivih priložnosti in resničnega vključevanja v to živahno družbo.",
-      "text": "Ne glede na to, ali se preselite, študirate ali delate, učenje slovenščine olajša vsakodnevno življenje. Od vzpostavljanja povezav do izpolnjevanja zahtev glede stalnega prebivališča je ključ do integracije. Naj vas jezikovne ovire ne zadržijo. Učenje slovenščine je vaša vstopnica za uspešno, obogateno in izpolnjujoče življenje v Sloveniji.",
+      "subtitle": "Slovenščina – srce slovenije",
+      "intro": "Jezik je več kot le besede. Je vaš ključ do pripadnosti. Izkoristite ves potencial življenja v osrčju Evrope.",
       "benefits": {
         "career": {
-          "title": "Dvigni svojo kariero.",
-          "description": "Obvladanje slovenščine je nujno za napredovanje v vaši karieri v Sloveniji. Izboljšajte svoje zaposlitvene možnosti tako, da začnete tekoče govoriti lokalni jezik."
+          "title": "Nadgradite svojo kariero.",
+          "description": "Znanje jezika odpira vrata do zahtevnejših delovnih mest in delodajalcem sporoča, da ste resno predani svoji prihodnosti tukaj."
         },
         "integration": {
-          "title": "Brezhibna socialna integracija.",
-          "description": "Učenje slovenščine vam omogoča popolno vključitev v slovensko družbo, socialno povezovanje pa postane lažje in bolj smiselno."
+          "title": "Pripadajte, ne le obiskujte",
+          "description": "Doživite lahkotnost vsakdana. Od tržnice do pisarne, slovenščina osmisli vsako vašo interakcijo."
         },
         "education": {
           "title": "Izobraževanje in osebna rast.",
-          "description": "Ne glede na to, ali gre za osebno obogatitev ali za akademske namene, vam bo tekoče znanje slovenščine odprlo nova vrata za učenje in samorazvoj."
+          "description": "Razširite svoja obzorja z akademsko odličnostjo. Slovenščina je dragoceno darilo, ki vas bo bogatilo celo življenje"
         }
       },
-      "conclusion": "Slovenščina odpira bogato slovensko tradicijo, ikonična dela, kot je delo pesnika Franceta Prešerna, in pristne povezave z domačini. Izboljša vašo izkušnjo osupljivih pokrajin, kot je Blejsko jezero, hkrati pa odpira poklicne priložnosti v rastočem gospodarstvu. Slovenščina je s svojo edinstveno slovnico hvaležen izziv in način ohranjanja redke jezikovne dediščine."
+      "conclusion": "Slovenija je dežela bogate tradicije in dih jemajoče lepote. Z učenjem jezika ne obiskujete le pokrajine, temveč postajate del njene zgodbe. Pridružite se živahni družbi in pustite svoj pečat v tej redki in čudoviti jezikovni dediščini."
     },
     "features": {
       "title": "Zakaj izbrati nas  ",
-      "subtitle": "Hitro učeneje",
+      "subtitle": "Do znanja slovenščine še hitreje",
       "cards": {
         "online-lessons": {
-          "title": "Spletno poučevanje",
-          "description": "Učenje na voljo iz udobja svojega doma! Naše lekcije potekajo preko Skypa, kar ponuja prilagodljivost in udobje, ne glede na to, kje ste. Povežite se z izkušenimi učitelji in se potopite v privlačne, interaktivne ure, prilagojene vašim ciljem."
+          "title": "Prilagodljiva spletna predavanja",
+          "description": "Učite se iz udobja lastnega doma preko platforme Microsoft Teams. Povežite se z izkušenimi učitelji na interaktivnih srečanjih, ki so popolnoma prilagojena vašim specifičnim ciljem."
         },
         "trial-lesson": {
           "title": "Prva ura je na nas",
-          "description": "Med to lekcijo se boste seznanili z našo metodologijo, izvedeli podrobnosti programa in dobili odgovore na vsa vaša vprašanja."
+          "description": "Spoznajte našo edinstveno metodologijo, podrobno raziščite program in prejmite odgovore na vsa vaša vprašanja, še preden se odločite."
         },
         "community": {
-          "title": "Postani član",
-          "description": "Postani član hitro rastoče skupnosti več kot 1200 učencev na Telegramu! Delite izkušnje, postavljajte vprašanja in vadite slovenščino s součenci v spodbujajočem in perspektivnem okolju."
+          "title": "Postanite član",
+          "description": "Pridružite se spodbudni mreži več kot 1200 učencev v naši Telegram skupini! Delite izkušnje, postavljajte vprašanja in vadite slovenščino s sošolci, saj je učenje v družbi lažje."
         },
         "support": {
           "title": "Podpora na vsakem koraku",
-          "description": "Ostanite na pravi poti s pomočjo našega predanega kustosa tečaja. Od odgovorov na vaša vprašanja do zagotavljanja dragocenih povratnih informacij, tukaj smo, da naredimo vaše učenje gladko in uspešno."
+          "description": "Ostanite na pravi poti s pomočjo osebnega kuratorja tečaja. Od strokovnih povratnih informacij do vodenja – poskrbeli bomo, da bo vaša pot do znanja tekoča in uspešna."
         },
         "personalized": {
-          "title": "Vam prilagojen program",
-          "description": "Hitreje dosegajte svoje cilje s programom, ki je zasnovan samo za vas. Ne glede na to, ali se učite za potovanje, delo ali selitev, naš prilagojeni pristop zagotavlja, da je vsaka lekcija zanimiva in učinkovita ..."
+          "title": "Personalizirani učni načrti",
+          "description": "Hitreje dosežite svoje cilje s programom, zasnovanim samo za vas. Ne glede na to, ali gre za potovanja, delo ali selitev, naš prilagojen pristop zagotavlja učinkovitost vsake ure."
         }
       }
     },
