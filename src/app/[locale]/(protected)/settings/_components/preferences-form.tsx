@@ -150,43 +150,16 @@ const PreferencesForm = () => {
         {/* Language Level */}
         <div>
           <h3 className="font-semibold mb-3">Current Language Level</h3>
-          {isEditing ? (
-            <div className="grid gap-2">
-              {languageLevels.map((level) => (
-                <div
-                  key={level.value}
-                  className={`p-3 border rounded-lg cursor-pointer transition-all ${
-                    preferences.languageLevel === level.value
-                      ? "border-primary bg-primary/5"
-                      : "border-gray-200 hover:border-gray-300"
-                  }`}
-                  onClick={() =>
-                    handlePreferenceChange("languageLevel", level.value)
-                  }
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-medium">{level.label[locale]}</p>
-                      <p className="text-sm text-muted-foreground">
-                        {level.description.sl}
-                      </p>
-                    </div>
-                    {preferences.languageLevel === level.value && (
-                      <IconCheck className="h-5 w-5 text-primary" />
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="p-3 rounded-lg">
-              <p className="font-medium">
-                {languageLevels.find(
-                  (l) => l.value === preferences.languageLevel
-                )?.label[locale] || "Not set"}
-              </p>
-            </div>
-          )}
+          <div className="p-3 rounded-lg bg-muted/30">
+            <p className="font-medium">
+              {languageLevels.find(
+                (l) => l.value === preferences.languageLevel
+              )?.label[locale] || "Not set"}
+            </p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Language level cannot be changed here
+            </p>
+          </div>
         </div>
 
         <Separator />
