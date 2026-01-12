@@ -476,6 +476,12 @@
           "error": "Niste še nastavili svojih učnih nastavitev. Za začetek dokončajte uvajanje."
         }
       }
+    },
+    "courses": {
+      "coming-soon": "Kmalu na voljo",
+      "title": "Več kot le video tečaj",
+      "subtitle": "Ustvarjamo nov način za mojstrsko znanje slovenščine: filmske lekcije v kombinaciji z inteligentnim ekosistemom in pametno AI tehnologijo za optimizacijo vašega napredka. Sledite personalizirani poti, prilagojeni vašim ciljem ob podpori obsežne knjižnice virov in ekskluzivnih srečanj v živo.",
+      "join-waitlist": "Pridružite se čakalnemu seznamu"
     }
   },
   "errors": {

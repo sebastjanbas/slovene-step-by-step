@@ -476,6 +476,12 @@
           "error": "Non hai ancora impostato le tue preferenze di apprendimento. Completa l'onboarding per iniziare."
         }
       }
+    },
+    "courses": {
+      "coming-soon": "Prossimamente",
+      "title": "Molto più di un semplice corso video",
+      "subtitle": "Stiamo creando un nuovo modo per padroneggiare lo sloveno: lezioni cinematografiche abbinate a un ecosistema intelligente e strumenti AI progettati per ottimizzare i tuoi progressi. Segui un percorso personalizzato in base ai tuoi obiettivi supportato da una vasta libreria di risorse e sessioni live di Q&A.",
+      "join-waitlist": "Iscriviti alla lista d'attesa"
     }
   },
   "errors": {

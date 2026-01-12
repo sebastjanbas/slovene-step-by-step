@@ -477,6 +477,12 @@
           "error": "You haven't set your learning preferences yet. Complete the onboarding to get started."
         }
       }
+    },
+    "courses": {
+      "coming-soon": "Coming soon",
+      "title": "More Than Just a Video Course",
+      "subtitle": "We’re building a new way to master Slovene: cinematic lessons paired with an intelligent ecosystem and smart AI tools designed to optimize your progress. Navigate a personalized path tailored to your goals supported by an extensive library of resources and exclusive live Q&A sessions.",
+      "join-waitlist": "Join the waitlist"
     }
   },
 
