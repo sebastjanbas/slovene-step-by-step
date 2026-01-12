@@ -15,21 +15,24 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { useReverification, useUser } from "@clerk/nextjs";
+import {useReverification, useUser} from "@clerk/nextjs";
 import { LoaderCircle } from "lucide-react";
 import { VerificationComponent } from "./verification-component";
 import { SessionVerificationLevel } from "@clerk/types";
+import {useTranslations} from "next-intl";
 
 const formSchema = z.object({
-  currentPassword: z.string().min(8).max(50),
   password: z.string().min(8).max(50),
   confirmPassword: z.string().min(8).max(50),
 });
 
-const PasswordForm = () => {
+const PasswordForm = ({setOpen}) => {
   const { user } = useUser();
+  const t = useTranslations("dashboard.settings.account.password.dialog")
+  const t2 = useTranslations("common.buttons")
   const [error, setError] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // Temporarily mock reverification for development - set to null when done
   const [needsReverification, setNeedsReverification] = useState<{
     complete: () => void;
     cancel: () => void;
@@ -39,17 +42,16 @@ const PasswordForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      currentPassword: "",
       password: "",
       confirmPassword: "",
     },
   });
 
   const changePassword = useReverification(
-    async (vals: { currentPassword: string; newPassword: string }) => {
+    async (vals: { newPassword: string }) => {
       return await user.updatePassword({
-        currentPassword: vals.currentPassword,
         newPassword: vals.newPassword,
+        signOutOfOtherSessions: true,
       });
     },
     {
@@ -58,18 +60,6 @@ const PasswordForm = () => {
       },
     }
   );
-
-  const handleEscapeClick = () => {
-    const event = new KeyboardEvent("keydown", {
-      key: "Escape",
-      code: "Escape",
-      keyCode: 27, // legacy
-      which: 27, // legacy
-      bubbles: true,
-    });
-
-    document.dispatchEvent(event);
-  };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
@@ -81,12 +71,12 @@ const PasswordForm = () => {
 
     try {
       await changePassword({
-        currentPassword: values.currentPassword,
         newPassword: values.password,
       });
       toast.success("Password updated successfully");
-      handleEscapeClick();
+      setOpen(false)
     } catch (err: any) {
+      console.error(err);
       toast.error(err.errors?.[0]?.message || "Update failed");
     } finally {
       setIsSubmitting(false);
@@ -111,10 +101,10 @@ const PasswordForm = () => {
       ) : (
         <>
           <h1 className="text-lg font-semibold tracking-[-0.001rem] pb-1">
-            Change Password
+            {t("title")}
           </h1>
           <p className="text-sm text-foreground/60 pb-6">
-            Enter your current and new passwords
+            {t("subtitle")}
           </p>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -122,34 +112,15 @@ const PasswordForm = () => {
           >
             <FormField
               control={form.control}
-              name="currentPassword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Current password</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={isSubmitting}
-                      type="password"
-                      placeholder="Enter your current password"
-                      className="focus-visible:ring-0 py-0"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>New password</FormLabel>
+                  <FormLabel>{t("new")}</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
                       type="password"
-                      placeholder="Enter new password"
+                      placeholder={t("new-placeholder")}
                       className="focus-visible:ring-0 py-0"
                       {...field}
                     />
@@ -163,13 +134,13 @@ const PasswordForm = () => {
               name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Confirm password</FormLabel>
+                  <FormLabel>{t("confirm")}</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
                       type="password"
                       className="focus-visible:ring-0"
-                      placeholder="Enter confirm new password"
+                      placeholder={t("confirm")}
                       {...field}
                     />
                   </FormControl>
@@ -181,18 +152,16 @@ const PasswordForm = () => {
               <Button disabled={isSubmitting} type="submit" className="w-full">
                 {isSubmitting ? (
                   <LoaderCircle className="animate-spin" />
-                ) : (
-                  "Submit"
-                )}
+                ) : t2("submit")}
               </Button>
               <Button
                 disabled={isSubmitting}
                 type="button"
-                onClick={handleEscapeClick}
+                onClick={() => setOpen(false)}
                 variant="outline"
                 className="w-full"
               >
-                Close
+                {t2("cancel")}
               </Button>
             </div>
           </form>

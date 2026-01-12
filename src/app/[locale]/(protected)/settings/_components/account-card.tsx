@@ -9,11 +9,14 @@ import { Input } from "@/components/ui/input";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import {useTranslations} from "next-intl";
 
 const AccountCard = () => {
   const { user, isLoaded } = useUser();
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const t = useTranslations("dashboard.settings.account")
+  const t2 = useTranslations("common.buttons")
 
   const MAX_FILE_SIZE_MB = 2;
 
@@ -54,7 +57,7 @@ const AccountCard = () => {
     <>
       <Card className="w-full max-w-4xl rounded-2xl p-1 bg-accent border-none">
         <CardHeader className="pt-5">
-          <CardTitle>Personal Information</CardTitle>
+          <CardTitle className={"capitalize"}>{t("personal-info.title")}</CardTitle>
         </CardHeader>
         <CardContent className="bg-white dark:bg-background border-1 border-foreground/10 rounded-2xl">
           <div className="my-8">
@@ -73,7 +76,7 @@ const AccountCard = () => {
               <Input
                 type="file"
                 ref={fileInputRef}
-                placeholder="Update Avatar"
+                placeholder={t("personal-info.update-avatar")}
                 className="hidden"
                 accept="image/*"
                 onChange={handleImageChange}
@@ -86,11 +89,11 @@ const AccountCard = () => {
                     type="button"
                     variant="outline"
                     size="sm"
-                    className="cursor-pointer w-fit bg-white dark:bg-background"
+                    className="cursor-pointer w-fit bg-white dark:bg-background capitalize"
                     onClick={handleFileClick}
                     disabled={isUploading}
                   >
-                    {isUploading ? "Uploading..." : "Update Avatar"}
+                    {isUploading ? t2("uploading") : t("personal-info.update-avatar")}
                   </Button>
                   <Button
                     variant="link"
@@ -117,11 +120,11 @@ const AccountCard = () => {
                     }}
                     disabled={isUploading}
                   >
-                    Clear
+                    {t2("clear")}
                   </Button>
                 </div>
                 <span className="text-xs text-foreground/50">
-                  Recommend size 1:1, up to 2mb
+                  {t("personal-info.image-text")}
                 </span>
               </div>
             </div>

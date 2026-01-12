@@ -26,6 +26,7 @@ import { useTranslations } from "next-intl";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const title = decodeURIComponent(pathname.split("/").pop())
   const { user } = useUser();
   const t = useTranslations("dashboard.user-navigation");
 
@@ -38,7 +39,7 @@ export function SiteHeader() {
           className="mx-2 data-[orientation=vertical]:h-4"
         />
         <h1 className="text-base font-medium capitalize">
-          {pathname.split("/").pop()}
+          {title.replaceAll("-", " ")}
         </h1>
         <div className="ml-auto flex items-center gap-2">
           {!user ? (

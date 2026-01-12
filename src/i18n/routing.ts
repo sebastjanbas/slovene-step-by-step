@@ -99,7 +99,7 @@ export const routing = defineRouting({
     "/daily-practice": {
       en: "/daily-practice",
       sl: "/dnevne-naloge",
-      ru: "/daily-practice",
+      ru: "/ежедневная-практика",
       it: "/daily-practice",
     },
   },

@@ -10,7 +10,7 @@ const Greeting = () => {
   if (!user) {
     return (
       <div className="space-y-2 animate-in fade-in slide-in-from-bottom-3 duration-700">
-        <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-foreground">
+        <h1 className="text-3xl md:text-5xl font-semibold tracking-tighter text-foreground">
           {t("greeting-placeholder")}
         </h1>
         <p className="text-base md:text-lg text-muted-foreground font-normal">

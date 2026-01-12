@@ -57,7 +57,15 @@
       "cancel-booking": "Cancel booking",
       "reschedule": "Reschedule",
       "loading": "Loading...",
-      "cancelling": "Cancelling..."
+      "uploading": "Uploading...",
+      "clear": "Clear",
+      "cancelling": "Cancelling...",
+      "submit": "Submit",
+      "resend": "Resend",
+      "verifying": "Verifying...",
+      "complete": "Complete",
+      "edit": "Edit",
+      "save": "Save"
     },
     "forms": {
       "email": "Email",
@@ -142,7 +150,7 @@
         },
         "community": {
           "title": "Join a vibrant community ",
-          "description": "Become part of a supportive network of over 1,200 learners on Telegram! Share experiences, ask questions, and practice Slovene with fellow students because learning is better together."
+          "description": "Become part of a supportive network of over {members} learners on Telegram! Share experiences, ask questions, and practice Slovene with fellow students because learning is better together."
         },
         "support": {
           "title": "Support every step of the way",
@@ -326,6 +334,8 @@
     "all-scheduled-events": {
       "message": "You have {count, plural, =1 {1 event} other {# events}} coming up.",
       "no-future-events": "No future events",
+      "upcoming-events": "You have no upcoming sessions. Book a session to get started!",
+      "browse-events": "Browse Events",
       "link": "View all",
       "event-view-card": {
         "title": "All Scheduled Events",
@@ -418,6 +428,55 @@
       },
       "processing": "Processing...",
       "book-now": "Book Now"
+    },
+    "settings" : {
+      "tabs": {
+        "account": "Account",
+        "billing": "Billing",
+        "notifications": "Notifications"
+      },
+      "account" : {
+        "personal-info" : {
+          "title": "Personal Information",
+          "update-avatar" : "Update Avatar",
+          "image-text" : "Recommend size 1:1, up to 2mb",
+          "first-name": "First name",
+          "last-name": "Last name"
+        },
+        "email-address" : {
+          "title": "Email Addresses",
+          "verified-text": "This email is verified",
+          "unverified-badge": "Unverified",
+          "primary-badge": "Primary",
+          "added-text": "Added on {date}"
+        },
+        "password": {
+          "title": "Password",
+          "change-password": "Change password",
+          "dialog": {
+            "title": "Change password",
+            "subtitle": "Enter your new passwords",
+            "new": "New password",
+            "new-placeholder": "Enter new password",
+            "confirm": "Confirm password",
+            "verification": {
+              "title": "Verify your email",
+              "subtitle": "Enter verification code sent to your email",
+              "no-code": "Did't receice a code?"
+            }
+          }
+        },
+        "learning-preferences": {
+          "title": "Learning Preferences",
+          "text": "Customize your learning experience and goals",
+          "current-lang-level": "Current Language Level",
+          "warning-level": "Language level cannot be changed",
+          "tutor": "Preferred Tutor",
+          "learning-goals": "Learning goals",
+          "preferred-time": "Preferred study time",
+          "error": "You haven't set your learning preferences yet. Complete the onboarding to get started."
+        }
+      }
     }
   },
 

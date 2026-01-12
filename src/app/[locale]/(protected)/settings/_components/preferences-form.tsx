@@ -1,38 +1,25 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useUser } from "@clerk/nextjs";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { IconCheck, IconEdit } from "@tabler/icons-react";
-import { toast } from "sonner";
-import {
-  getUserPreferences,
-  updateUserPreferences,
-  UserPreferences,
-} from "@/actions/user-actions";
-import { Skeleton } from "@/components/ui/skeleton";
-import {
-  languageLevels,
-  tutors,
-  learningGoals,
-  scheduleOptions,
-} from "@/lib/docs";
-import { useLocale } from "next-intl";
+import React, {useEffect, useState} from "react";
+import {useUser} from "@clerk/nextjs";
+import {Card, CardContent, CardDescription, CardHeader, CardTitle,} from "@/components/ui/card";
+import {Button} from "@/components/ui/button";
+import {Badge} from "@/components/ui/badge";
+import {Separator} from "@/components/ui/separator";
+import {IconCheck, IconChecks, IconEdit, IconX} from "@tabler/icons-react";
+import {toast} from "sonner";
+import {getUserPreferences, updateUserPreferences, UserPreferences,} from "@/actions/user-actions";
+import {Skeleton} from "@/components/ui/skeleton";
+import {languageLevels, learningGoals, scheduleOptions, tutors,} from "@/lib/docs";
+import {useLocale, useTranslations} from "next-intl";
+
 const PreferencesForm = () => {
-  const { user, isLoaded } = useUser();
+  const {user, isLoaded} = useUser();
   const locale = useLocale();
   const [preferences, setPreferences] = useState<UserPreferences | null>(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const t = useTranslations("dashboard.settings.account.learning-preferences")
+  const t2 = useTranslations("common.buttons")
 
   useEffect(() => {
     const fetchPreferences = async () => {
@@ -72,7 +59,6 @@ const PreferencesForm = () => {
   const handleSave = async () => {
     if (!user || !preferences) return;
 
-    setIsSubmitting(true);
     try {
       await updateUserPreferences(preferences);
       toast.success("Preferences updated successfully!");
@@ -80,8 +66,6 @@ const PreferencesForm = () => {
     } catch (error) {
       console.error("Error updating preferences:", error);
       toast.error("Failed to update preferences");
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -104,7 +88,7 @@ const PreferencesForm = () => {
           <CardTitle>Learning Preferences</CardTitle>
         </CardHeader>
         <CardContent className="bg-white dark:bg-background border border-foreground/10 rounded-2xl p-4">
-          <Skeleton className="h-10 w-full" />
+          <Skeleton className="h-10 w-full"/>
         </CardContent>
       </Card>
     );
@@ -114,12 +98,11 @@ const PreferencesForm = () => {
     return (
       <Card className="w-full max-w-4xl rounded-2xl p-1 bg-accent border-none">
         <CardHeader className="pt-5">
-          <CardTitle>Learning Preferences</CardTitle>
+          <CardTitle>{t("title")}</CardTitle>
         </CardHeader>
         <CardContent className="bg-white dark:bg-background border border-foreground/10 rounded-2xl p-4">
           <p className="text-sm text-muted-foreground">
-            You haven&apos;t set your learning preferences yet. Complete the
-            onboarding to get started.
+            {t("error")}
           </p>
         </CardContent>
       </Card>
@@ -131,42 +114,55 @@ const PreferencesForm = () => {
       <CardHeader className="pt-5">
         <div className="flex items-center justify-between">
           <div>
-            <CardTitle>Learning Preferences</CardTitle>
+            <CardTitle>{t("title")}</CardTitle>
             <CardDescription>
-              Customize your learning experience and goals
+              {t("text")}
             </CardDescription>
           </div>
-          <Button
-            variant={isEditing ? "outline" : "default"}
-            size="sm"
-            onClick={() => setIsEditing(!isEditing)}
-          >
-            <IconEdit className="h-4 w-4 mr-2" />
-            {isEditing ? "Cancel" : "Edit"}
-          </Button>
+          <div className="flex items-center justify-center gap-2">
+            {isEditing && (
+              <Button
+                variant={"outline"}
+                size="sm"
+                className="py-4"
+                onClick={() => setIsEditing(false)}
+              >
+                <IconX className="h-4 w-4"/>
+                {t2("cancel")}
+              </Button>
+            )}
+            <Button
+              variant={"default"}
+              size="sm"
+              onClick={() => isEditing ? handleSave() : setIsEditing(!isEditing)}
+            >
+              {isEditing ? (<IconChecks className="h-4 w-4 mr-2"/>) : (<IconEdit className="h-4 w-4 mr-2"/>)}
+              {isEditing ? t2("save") : t2("edit")}
+            </Button>
+          </div>
         </div>
       </CardHeader>
       <CardContent className="bg-white dark:bg-background border border-foreground/10 rounded-2xl p-4 space-y-6">
         {/* Language Level */}
         <div>
-          <h3 className="font-semibold mb-3">Current Language Level</h3>
+          <h3 className="font-semibold mb-3">{t("current-lang-level")}</h3>
           <div className="p-3 rounded-lg bg-muted/30">
             <p className="font-medium">
               {languageLevels.find(
                 (l) => l.value === preferences.languageLevel
-              )?.label[locale] || "Not set"}
+              )?.label[locale] || "-"}
             </p>
             <p className="text-xs text-muted-foreground mt-1">
-              Language level cannot be changed here
+              {t("warning-level")}
             </p>
           </div>
         </div>
 
-        <Separator />
+        <Separator/>
 
         {/* Preferred Tutor */}
         <div>
-          <h3 className="font-semibold mb-3">Preferred Tutor</h3>
+          <h3 className="font-semibold mb-3">{t("tutor")}</h3>
           {isEditing ? (
             <div className="grid gap-2">
               {tutors.map((tutor) => (
@@ -189,7 +185,7 @@ const PreferencesForm = () => {
                       </p>
                     </div>
                     {preferences.preferredTutor === tutor.id && (
-                      <IconCheck className="h-5 w-5 text-primary" />
+                      <IconCheck className="h-5 w-5 text-primary"/>
                     )}
                   </div>
                 </div>
@@ -204,11 +200,11 @@ const PreferencesForm = () => {
           )}
         </div>
 
-        <Separator />
+        <Separator/>
 
         {/* Learning Goals */}
         <div>
-          <h3 className="font-semibold mb-3">Learning Goals</h3>
+          <h3 className="font-semibold mb-3">{t("learning-goals")}</h3>
           {isEditing ? (
             <div className="grid grid-cols-2 gap-2">
               {learningGoals.map((goal) => (
@@ -224,7 +220,7 @@ const PreferencesForm = () => {
                   <div className="text-2xl mb-1">{goal.icon}</div>
                   <p className="text-sm font-medium">{goal.label[locale]}</p>
                   {preferences.learningGoals.includes(goal.value) && (
-                    <IconCheck className="h-4 w-4 text-primary mx-auto mt-1" />
+                    <IconCheck className="h-4 w-4 text-primary mx-auto mt-1"/>
                   )}
                 </div>
               ))}
@@ -240,11 +236,11 @@ const PreferencesForm = () => {
           )}
         </div>
 
-        <Separator />
+        <Separator/>
 
         {/* Preferred Schedule */}
         <div>
-          <h3 className="font-semibold mb-3">Preferred Study Time</h3>
+          <h3 className="font-semibold mb-3">{t("preferred-time")}</h3>
           {isEditing ? (
             <div className="grid gap-2">
               {scheduleOptions.map((schedule) => (
@@ -262,7 +258,7 @@ const PreferencesForm = () => {
                   <div className="flex items-center justify-between">
                     <p className="font-medium">{schedule.label[locale]}</p>
                     {preferences.preferredSchedule === schedule.value && (
-                      <IconCheck className="h-5 w-5 text-primary" />
+                      <IconCheck className="h-5 w-5 text-primary"/>
                     )}
                   </div>
                 </div>
@@ -278,17 +274,6 @@ const PreferencesForm = () => {
             </div>
           )}
         </div>
-
-        {isEditing && (
-          <div className="flex justify-end space-x-2 pt-4">
-            <Button variant="outline" onClick={() => setIsEditing(false)}>
-              Cancel
-            </Button>
-            <Button onClick={handleSave} disabled={isSubmitting}>
-              {isSubmitting ? "Saving..." : "Save Changes"}
-            </Button>
-          </div>
-        )}
       </CardContent>
     </Card>
   );

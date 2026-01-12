@@ -10,6 +10,7 @@ import { useGSAP } from "@gsap/react";
 import gsap, { ScrollTrigger } from "gsap/all";
 import Image from "next/image";
 import { IconLogo } from "../icons/icon-logo";
+import {useTheme} from "next-themes";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,6 +21,7 @@ export default function BentoGrid() {
   const teacherA = useRef<any>(null);
   const personalizedA = useRef<any>(null);
   const videoCallA = useRef<any>(null);
+  const {theme} = useTheme()
 
   useGSAP(() => {
     gsap.from("#card1", {
@@ -229,15 +231,15 @@ export default function BentoGrid() {
                 {t("community.title")}
               </h2>
               <p className="mt-2 max-w-lg text-sm/6 text-sl-secondary dark:text-white/90 max-lg:text-center">
-                {t("community.description")}
+                {t("community.description", {members: 1700})}
               </p>
               <div className="relative min-h-[20rem] w-full grow mt-6 [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
-                <div className="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-border/30 bg-black shadow-2xl ring-1 ring-border/20">
+                <div className="absolute inset-x-1 sm:inset-x-4 md:inset-x-8">
                   <Image
                     width={720}
                     height={1280}
-                    className="size-full object-cover object-top"
-                    src={`/phone.png`}
+                    className="size-full object-cover bg-transparent object-top"
+                    src={theme === "light" ? "/telegram-phone-mockup-light.png" : "/telegram-phone-mockup.png"}
                     alt="phone demo"
                   />
                 </div>

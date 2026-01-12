@@ -13,6 +13,7 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
+import {useTranslations} from "next-intl";
 
 export function VerificationComponent({
   level = "first_factor",
@@ -24,6 +25,8 @@ export function VerificationComponent({
   onCancel: () => void;
 }) {
   const { session } = useSession();
+  const t = useTranslations("dashboard.settings.account.password.dialog.verification")
+  const t2 = useTranslations("common.buttons")
   const [code, setCode] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const reverificationRef = useRef<SessionVerificationResource | undefined>(
@@ -90,10 +93,10 @@ export function VerificationComponent({
   return (
     <div className="flex flex-col justify-center items-center text-center">
       <h1 className="text-lg font-semibold tracking-[-0.001rem] pb-1">
-        Verify you email
+        {t("title")}
       </h1>
       <p className="text-sm text-foreground/60 pb-6">
-        Enter verification code sent to your email <br />{" "}
+        {t("subtitle")}<br />{" "}
         {determinedStartingFirstFactor.safeIdentifier || ""}
       </p>
       <InputOTP
@@ -113,13 +116,13 @@ export function VerificationComponent({
       </InputOTP>
       <div className="inline-flex gap-1 items-center pb-5">
         <p className="text-sm text-foreground/80">
-          Didn&apos;t receive a code?
+          {t("no-code")}
         </p>
         <Button
           variant="link"
           className="p-0 text-foreground/80 cursor-pointer"
         >
-          Resend
+          {t2("resend")}
         </Button>
       </div>
       <div className="space-y-2 w-10/12">
@@ -132,14 +135,14 @@ export function VerificationComponent({
           className="w-full"
           disabled={isLoading}
         >
-          {isLoading ? "Verifying..." : "Complete"}
+          {isLoading ? t2("verifying") : t2("complete")}
         </Button>
         <Button
           onClick={() => onCancel()}
           variant="outline"
           className="w-full rounded-lg cursor-pointer transition-colors duration-200 ease-linear"
         >
-          Cancel
+          {t2("cancel")}
         </Button>
       </div>
     </div>

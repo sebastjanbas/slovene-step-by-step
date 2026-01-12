@@ -11,14 +11,17 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {useLocale, useTranslations} from "next-intl";
 
-const EmailCard = ({ locale }) => {
+const EmailCard = () => {
   const { user, isLoaded } = useUser();
+  const locale = useLocale()
+  const t = useTranslations("dashboard.settings.account.email-address");
 
   return (
     <Card className="w-full max-w-4xl rounded-2xl p-1 bg-accent border-none">
       <CardHeader className="pt-5">
-        <CardTitle>Email Addresses</CardTitle>
+        <CardTitle>{t("title")}</CardTitle>
       </CardHeader>
       <CardContent className="bg-white dark:bg-background border border-foreground/10 rounded-2xl p-4">
         {!isLoaded ? (
@@ -46,12 +49,12 @@ const EmailCard = ({ locale }) => {
                           />
                         </TooltipTrigger>
                         <TooltipContent>
-                          This email address is verified.
+                          {t("verified-text")}
                         </TooltipContent>
                       </Tooltip>
                     ) : (
                       <Badge variant="secondary" className="text-xs">
-                        Unverified
+                        {t("unverified-badge")}
                       </Badge>
                     )}
                     {isPrimary && (
@@ -59,17 +62,17 @@ const EmailCard = ({ locale }) => {
                         variant="outline"
                         className="text-emerald-500 text-xs"
                       >
-                        Primary
+                        {t("primary-badge")}
                       </Badge>
                     )}
                   </div>
                   <span className="text-xs text-foreground/50 text-nowrap">
-                    Added on{" "}
-                    {new Date(user.createdAt).toLocaleDateString(locale, {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
+                    {t("added-text",{ date : new Date(user.createdAt).toLocaleDateString(locale, {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    )}
                   </span>
                 </li>
               );

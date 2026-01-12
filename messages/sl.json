@@ -57,7 +57,15 @@
       "cancel-booking": "Prekliči rezervacijo",
       "reschedule": "Menjava termina",
       "loading": "Nalaganje...",
-      "cancelling": "Preklic v teku..."
+      "uploading": "Nalaganje...",
+      "clear": "Počisti",
+      "cancelling": "Preklic v teku...",
+      "submit": "Potrdi",
+      "resend": "Pošlji ponovno",
+      "verifying": "Preverjanje...",
+      "complete": "Končano",
+      "edit": "Uredi",
+      "save": "Shrani"
     },
     "forms": {
       "email": "Email",
@@ -142,7 +150,7 @@
         },
         "community": {
           "title": "Postanite član",
-          "description": "Pridružite se spodbudni mreži več kot 1200 učencev v naši Telegram skupini! Delite izkušnje, postavljajte vprašanja in vadite slovenščino s sošolci, saj je učenje v družbi lažje."
+          "description": "Pridružite se spodbudni mreži več kot {members} učencev v naši Telegram skupini! Delite izkušnje, postavljajte vprašanja in vadite slovenščino s sošolci, saj je učenje v družbi lažje."
         },
         "support": {
           "title": "Podpora na vsakem koraku",
@@ -324,6 +332,8 @@
     "all-scheduled-events": {
       "message": "Prijavljeni ste na {count, plural, =1 {1 dogodek} =2 {2 dogodka} few {# dogodke} other {# dogodkov}}.",
       "no-future-events": "Ni rezerviranih dogodkov",
+      "upcoming-events": "You have no upcoming sessions. Book a session to get started!",
+      "browse-events": "Browse Events",
       "link": "Poglej vse",
       "event-view-card": {
         "title": "Vsi dogodki",
@@ -417,6 +427,55 @@
       },
       "processing": "Rezervacija v teku...",
       "book-now": "Rezerviraj zdaj"
+    },
+    "settings" : {
+      "tabs": {
+        "account": "Račun",
+        "billing": "Plačila",
+        "notifications": "Obvestila"
+      },
+      "account": {
+        "personal-info": {
+          "title": "osebni podatki",
+          "update-avatar": "Posodobi avatar",
+          "image-text": "Priporočena velikost 1:1, do 2 MB",
+          "first-name": "Ime",
+          "last-name": "Priimek"
+        },
+        "email-address": {
+          "title": "Email Nastavitve",
+          "verified-text": "Ta email je preverjen",
+          "unverified-badge": "Ni potrjen",
+          "primary-badge": "Primarni",
+          "added-text": "Dodan dne {date}"
+        },
+        "password": {
+          "title": "Geslo",
+          "change-password": "Zamenjaj geslo",
+          "dialog": {
+            "title": "Zamenjaj geslo",
+            "subtitle": "Vnesi novo geslo",
+            "new": "Novo geslo",
+            "new-placeholder": "Vnesi novo geslo",
+            "confirm": "Potrdi geslo",
+            "verification": {
+              "title": "Potrdi email",
+              "subtitle": "Vnesite potrditveno kodo, ki vam je bila poslana na vaš e-poštni naslov",
+              "no-code": "Niste prejeli kode?"
+            }
+          }
+        },
+        "learning-preferences": {
+          "title": "Učne preference",
+          "text": "Prilagodite svojo učno izkušnjo in cilje",
+          "current-lang-level": "Trenutna stopnja znanja",
+          "warning-level": "Stopnje znanja ni mogoče spremeniti",
+          "tutor": "Moj tutor",
+          "learning-goals": "Moji Cilji",
+          "preferred-time": "Želeni čas učenja",
+          "error": "Niste še nastavili svojih učnih nastavitev. Za začetek dokončajte uvajanje."
+        }
+      }
     }
   },
   "errors": {

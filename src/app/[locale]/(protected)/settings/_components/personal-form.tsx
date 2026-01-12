@@ -16,6 +16,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import {useTranslations} from "next-intl";
 
 const formSchema = z.object({
   firstName: z.string().min(2).max(50),
@@ -23,6 +24,7 @@ const formSchema = z.object({
 });
 
 const PersonalForm = ({ user, isLoaded }: { user: any; isLoaded: boolean }) => {
+  const t = useTranslations("dashboard.settings.account.personal-info")
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -55,7 +57,7 @@ const PersonalForm = ({ user, isLoaded }: { user: any; isLoaded: boolean }) => {
             name="firstName"
             render={({ field }) => (
               <FormItem className="flex-1/2">
-                <FormLabel>First Name</FormLabel>
+                <FormLabel>{t("first-name")}</FormLabel>
                 <FormControl>
                   {isLoaded ? (
                     <Input {...field} />
@@ -74,7 +76,7 @@ const PersonalForm = ({ user, isLoaded }: { user: any; isLoaded: boolean }) => {
             name="lastName"
             render={({ field }) => (
               <FormItem className="flex-1/2">
-                <FormLabel>Last Name</FormLabel>
+                <FormLabel>{t("last-name")}</FormLabel>
                 <FormControl>
                   {isLoaded ? (
                     <Input {...field} />

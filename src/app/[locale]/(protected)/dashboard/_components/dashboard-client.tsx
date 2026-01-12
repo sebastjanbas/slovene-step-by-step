@@ -160,14 +160,14 @@ const DashboardClient = ({
             {t("no-future-events")}
           </h3>
           <p className="text-sm text-muted-foreground text-center mb-6 max-w-[280px]">
-            You have no upcoming sessions. Book a session to get started!
+            {t("upcoming-events")}
           </p>
           <Button
             onClick={() => window.location.href = '/language-club'}
             variant="outline"
             className="border-[var(--sl-purple)]/50 text-[var(--sl-purple)] hover:bg-[var(--sl-purple)]/10 transition-all duration-200"
           >
-            Browse Sessions
+            {t("browse-events")}
           </Button>
         </div>
       )}
