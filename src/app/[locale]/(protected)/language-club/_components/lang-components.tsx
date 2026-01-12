@@ -28,7 +28,7 @@ const LangComponents = ({ events, calendarEvents, locale, bookedEvent }) => {
       {/* Page Header */}
       <div className="px-6 sm:px-8 lg:px-12 pt-8 sm:pt-10 lg:pt-12 pb-6 sm:pb-8">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl font-semibold text-foreground mb-2">
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-tighter text-foreground mb-2">
             {t("title")}
           </h1>
           <p className="text-sm sm:text-base text-muted-foreground">

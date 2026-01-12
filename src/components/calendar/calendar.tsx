@@ -12,7 +12,7 @@ import { CalendarControls } from "@/components/calendar/calendar-controls";
 import { EventSheet } from "@/components/calendar/event-sheet";
 import { NoSlotsOverlay } from "@/components/calendar/no-slots-overlay";
 import "@/components/calendar/calendar-styles.css";
-import { useLocale } from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 
 // Transform database tutors to the format expected by the calendar
 const transformTutors = (tutorsData: any[]) => {
@@ -208,6 +208,7 @@ export default function Calendar({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const t = useTranslations("calendar.event-type")
 
   // Transform the data from a database
   const transformedTutors = transformTutors(tutorsData);
@@ -274,16 +275,16 @@ export default function Calendar({
     if (selectedTutorId !== null && events.length === 0) {
       const tutor = transformedTutors.find((t) => t.id === selectedTutorId);
       return {
-        message: `${tutor?.name || "This tutor"} is fully booked`,
-        submessage: "Try selecting another tutor or check back later for new availability.",
+        type: "tutor",
+        tutor: tutor?.name
       };
     }
 
     // Check if no tutors have any available slots
     if (selectedTutorId === null && availableSlots.length === 0) {
       return {
-        message: "All tutors are fully booked",
-        submessage: "We're currently at capacity. Please check back soon for new time slots.",
+        type: "all",
+        tutor: null
       };
     }
 
@@ -367,7 +368,6 @@ export default function Calendar({
 
   const handleMoreEventsClick = useCallback(
     (date: Date) => {
-      console.log("Clicked date:", date);
 
       // Find the start of the week (Monday) for the clicked date
       // FullCalendar typically uses Monday as the start of the week
@@ -377,14 +377,6 @@ export default function Calendar({
       // Adjust to Monday start (if Sunday, go back 6 days; otherwise go back to Monday)
       const daysToSubtract = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
       startOfWeek.setDate(startOfWeek.getDate() - daysToSubtract);
-
-      console.log("Calculated start of week:", startOfWeek);
-      console.log(
-        "Day of week was:",
-        dayOfWeek,
-        "Days to subtract:",
-        daysToSubtract,
-      );
 
       // Set the calendar-to-week view and navigate to that week
       if (calendarRef.current) {
@@ -410,11 +402,9 @@ export default function Calendar({
         const dayEl = target.closest(".fc-daygrid-day");
         if (dayEl) {
           const dateStr = dayEl.getAttribute("data-date");
-          console.log("Date string from element:", dateStr);
           if (dateStr) {
             // Parse the date string and create a proper Date object
             const date = new Date(dateStr + "T00:00:00");
-            console.log("Parsed date:", date);
             handleMoreEventsClick(date);
           }
         }
@@ -509,8 +499,8 @@ export default function Calendar({
       <div className="flex-1 min-h-0 h-screen relative">
         {noSlotsOverlay && (
           <NoSlotsOverlay
-            message={noSlotsOverlay.message}
-            submessage={noSlotsOverlay.submessage}
+            type={noSlotsOverlay.type}
+            tutor={noSlotsOverlay.tutor}
           />
         )}
         <FullCalendar
@@ -670,9 +660,11 @@ export default function Calendar({
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap",
                     marginBottom: "0px",
+                    paddingLeft: "2px",
+                    paddingRight: "8px",
                   }}
                 >
-                  {eventInfo.event.title}
+                  {t(eventInfo.event.title === "regulars" ? "individual" : eventInfo.event.title)}
                 </div>
                 <div
                   className="text-xs opacity-80 truncate"
@@ -681,6 +673,8 @@ export default function Calendar({
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap",
                     marginTop: "0px",
+                    paddingBottom: "4px",
+                    paddingRight: "8px",
                   }}
                 >
                   {timeString}

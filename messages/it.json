@@ -392,7 +392,6 @@
       "no-events-description": "Clicca su qualsiasi data per visualizzare le sessioni disponibili",
       "events-for-date": "Eventi per {date}",
       "view-details": "Visualizza dettagli"
-
     },
     "stats": {
       "total-upcoming": "Totale in arrivo",
@@ -428,7 +427,7 @@
       "processing": "In corso...",
       "book-now": "Prenota ora"
     },
-    "settings" : {
+    "settings": {
       "tabs": {
         "account": "Profilo",
         "billing": "Fatturazione",
@@ -482,6 +481,59 @@
       "title": "Molto più di un semplice corso video",
       "subtitle": "Stiamo creando un nuovo modo per padroneggiare lo sloveno: lezioni cinematografiche abbinate a un ecosistema intelligente e strumenti AI progettati per ottimizzare i tuoi progressi. Segui un percorso personalizzato in base ai tuoi obiettivi supportato da una vasta libreria di risorse e sessioni live di Q&A.",
       "join-waitlist": "Iscriviti alla lista d'attesa"
+    }
+  },
+  "calendar": {
+    "controls": {
+      "month": "Mese",
+      "today": "Oggi",
+      "day": "Giorno",
+      "week": "Settimana",
+      "num-of-days": "Numero di giorni",
+      "days": "{num} giorni",
+      "view-options": "Opzioni di visualizzazione",
+      "weekend": "Mostra weekend",
+      "my-bookings": "Le mie prenotazioni",
+      "show-all": "Mostra tutto"
+    },
+    "event-type": {
+      "individual": "Individuale",
+      "group": "Di gruppo"
+    },
+    "event-place": {
+      "classroom": "In aula",
+      "online": "Online"
+    },
+    "sheet": {
+      "status": {
+        "booked": "Prenotato",
+        "available": "Disponibile",
+        "cancelled": "Annullato"
+      },
+      "title": "Sessione individuale",
+      "subtitle": "con {name}",
+      "session": "Panoramica della sessione",
+      "session-status": "Disponibile per la prenotazione",
+      "session-duration": "{time} min",
+      "session-details": "Dettagli della sessione",
+      "when": "Quando",
+      "phone": "Telefono",
+      "location": "Luogo",
+      "buttons": {
+        "book": "Prenota sessione",
+        "contact": "Contatta il tutor"
+      }
+    },
+    "booked-message": {
+      "badge": "Nessuna disponibilità",
+      "all": {
+        "title": "Tutti i tutor sono al completo",
+        "subtitle": "Al momento siamo al massimo della capacità. Torna a controllare presto per nuovi orari disponibili."
+      },
+      "tutor": {
+        "title": "{tutor} è al completo",
+        "subtitle": "Prova a selezionare un altro tutor o ricontrolla più tardi per nuove disponibilità."
+      }
     }
   },
   "errors": {

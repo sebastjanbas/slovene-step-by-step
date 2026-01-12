@@ -19,6 +19,7 @@ import {
 import {bookSession} from "@/actions/timeblocks";
 import {toast} from "sonner";
 import {useRouter} from "@/i18n/routing";
+import {useLocale, useTranslations} from "next-intl";
 
 type EventSheetProps = {
   isEventSheetOpen: boolean;
@@ -29,16 +30,21 @@ type EventSheetProps = {
 
 export const EventSheet = (props: EventSheetProps) => {
   const router = useRouter();
+  const locale = useLocale();
+  const t = useTranslations("calendar.sheet")
+  const t2 = useTranslations("calendar.event-place")
+  const t3 = useTranslations("common.buttons")
+
   const formatTime = (date: Date) => {
-    return date.toLocaleTimeString("default", {
+    return date.toLocaleTimeString(locale, {
       hour: "numeric",
       minute: "2-digit",
-      hour12: true,
+      hour12: locale === "en",
     });
   };
 
   const formatDate = (date: Date) => {
-    return date.toLocaleDateString("default", {
+    return date.toLocaleDateString(locale, {
       weekday: "long",
       year: "numeric",
       month: "long",
@@ -89,10 +95,11 @@ export const EventSheet = (props: EventSheetProps) => {
                 <div className="flex items-center gap-3">
                   <div>
                     <h2 className="text-lg font-semibold text-gray-900">
-                      {props.selectedSession.sessionType}
+                      {t("title")}
                     </h2>
                     <p className="text-sm text-gray-600">
-                      with {props.selectedSession.tutorName}
+
+                      {t("subtitle", {name: props.selectedSession.tutorName})}
                     </p>
                   </div>
                 </div>
@@ -100,7 +107,7 @@ export const EventSheet = (props: EventSheetProps) => {
                   variant={props.selectedSession.status as "booked" || "available" || "cancelled"}
                 >
                   <span className="capitalize">
-                  {props.selectedSession.status}
+                  {t(`status.${props.selectedSession.status}`)}
                   </span>
                 </Badge>
               </div>
@@ -113,17 +120,18 @@ export const EventSheet = (props: EventSheetProps) => {
               {/* Session Overview */}
               <div className="space-y-3">
                 <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                  Session Overview
+                  {t("session")}
                 </h3>
                 <div className="bg-gray-50 rounded-lg p-4 space-y-3">
                   <p className="text-sm text-gray-700">
-                    {props.selectedSession.description}
+                    {t("session-status")}
                   </p>
                   <div className="flex items-center gap-4 text-sm">
                     <div className="flex items-center gap-2">
                       <IconClock className="h-4 w-4 text-gray-500" />
                       <span className="text-gray-600">
-                        {props.selectedSession.duration} min
+
+                        {t("session-duration", {time: props.selectedSession.duration})}
                       </span>
                     </div>
                   </div>
@@ -133,7 +141,7 @@ export const EventSheet = (props: EventSheetProps) => {
               {/* Date & Time */}
               <div className="space-y-3">
                 <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                  When
+                  {t("when")}
                 </h3>
                 <div className="bg-gray-50 rounded-lg p-4">
                   <div className="flex items-center gap-3">
@@ -156,7 +164,7 @@ export const EventSheet = (props: EventSheetProps) => {
               {/* Tutor Information */}
               <div className="space-y-3">
                 <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                  Your Tutor
+                  Tutor
                 </h3>
                 <div className="bg-gray-50 rounded-lg p-4 space-y-3">
                   <div className="flex items-center gap-3">
@@ -195,7 +203,7 @@ export const EventSheet = (props: EventSheetProps) => {
                       </div>
                       <div className="flex-1">
                         <p className="text-sm font-medium text-gray-900">
-                          Phone
+                          {t("phone")}
                         </p>
                         <p className="text-sm text-gray-600">{tutor.phone}</p>
                       </div>
@@ -207,7 +215,7 @@ export const EventSheet = (props: EventSheetProps) => {
               {/* Session Details */}
               <div className="space-y-3">
                 <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                  Session Details
+                  {t("session-details")}
                 </h3>
                 <div className="bg-gray-50 rounded-lg p-4 space-y-3">
                   <div className="flex items-center gap-3">
@@ -216,10 +224,10 @@ export const EventSheet = (props: EventSheetProps) => {
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-medium text-gray-900">
-                        Location
+                        {t("location")}
                       </p>
                       <p className="text-sm text-gray-600">
-                        {props.selectedSession.location}
+                        {t2(props.selectedSession.location)}
                       </p>
                     </div>
                   </div>
@@ -235,17 +243,17 @@ export const EventSheet = (props: EventSheetProps) => {
                 {props.selectedSession.status === "available" ? (
                   <Button className="flex-1" size="sm" onClick={() => onBookSesson(props.selectedSession)}>
                     <IconCalendarEvent className="h-4 w-4 mr-2" />
-                    Book Session
+                    {t("buttons.book")}
                   </Button>
                 ) : (
                   <>
                     <Button variant="outline" size="sm" className="flex-1">
                       <IconEdit className="h-4 w-4 mr-2" />
-                      Contact Tutor
+                      {t("buttons.contact")}
                     </Button>
                     <Button variant="destructive" size="sm" className="flex-1">
                       <IconX className="h-4 w-4 mr-2" />
-                      Cancel
+                      {t3("cancel")}
                     </Button>
                   </>
                 )}

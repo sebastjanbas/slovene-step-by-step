@@ -392,7 +392,6 @@
       "no-events-description": "Kliknite na poljuben datum za ogled razpoložljivih ur",
       "events-for-date": "Dogodki za {date}",
       "view-details": "Poglej podrobnosti"
-
     },
     "stats": {
       "total-upcoming": "Skupaj prihajajočih",
@@ -428,7 +427,7 @@
       "processing": "Rezervacija v teku...",
       "book-now": "Rezerviraj zdaj"
     },
-    "settings" : {
+    "settings": {
       "tabs": {
         "account": "Račun",
         "billing": "Plačila",
@@ -482,6 +481,59 @@
       "title": "Več kot le video tečaj",
       "subtitle": "Ustvarjamo nov način za mojstrsko znanje slovenščine: filmske lekcije v kombinaciji z inteligentnim ekosistemom in pametno AI tehnologijo za optimizacijo vašega napredka. Sledite personalizirani poti, prilagojeni vašim ciljem ob podpori obsežne knjižnice virov in ekskluzivnih srečanj v živo.",
       "join-waitlist": "Pridružite se čakalnemu seznamu"
+    }
+  },
+  "calendar": {
+    "controls": {
+      "month": "Mesec",
+      "today": "Danes",
+      "day": "Dan",
+      "week": "Teden",
+      "num-of-days": "Poljubno število dni",
+      "days": "{num} dni",
+      "view-options": "Možnosti",
+      "weekend": "Prikaži vikend",
+      "my-bookings": "Moji termini",
+      "show-all": "Prikaži vse"
+    },
+    "event-type": {
+      "individual": "Individualna ura",
+      "group": "Skupinska ura"
+    },
+    "event-place": {
+      "classroom": "Učilnica",
+      "online": "Po spletu"
+    },
+    "sheet": {
+      "status": {
+        "booked": "Rezerviran",
+        "available": "Na voljo",
+        "cancelled": "Odpovedan"
+      },
+      "title": "Individualna ura",
+      "subtitle": "z {name}",
+      "session": "Podatki o terminu",
+      "session-status": "Na voljo za razervacijo",
+      "session-duration": "{time} min",
+      "session-details": "Dodatne informacije",
+      "when": "Kdaj",
+      "phone": "Telefon",
+      "location": "Lokacija",
+      "buttons": {
+        "book": "Rezerviraj termin",
+        "contact": "Kontaktiraj tutorja"
+      }
+    },
+    "booked-message": {
+      "badge": "Ni prostih terminov",
+      "all": {
+        "title": "Vsi tutorji so zasedeni",
+        "subtitle": "Trenutno smo zasedeni. Prosimo, preverite kmalu za nove termine."
+      },
+      "tutor": {
+        "title": "{tutor} nima prostih terminov",
+        "subtitle": "Poskusite izbrati drugega tutorja ali preverite pozneje, ali so na voljo novi razpoložljivi termini."
+      }
     }
   },
   "errors": {

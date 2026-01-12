@@ -3,6 +3,7 @@ import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {Button} from "@/components/ui/button";
 import {Tutor} from "@/components/calendar/types";
 import {cn} from "@/lib/utils";
+import {useTranslations} from "next-intl";
 
 interface TutorAvatarsProps {
   tutors: Tutor[],
@@ -19,6 +20,7 @@ export const TutorAvatars: React.FC<TutorAvatarsProps> = ({
                                                             disabled,
                                                            setBooked
                                                           }) => {
+  const t = useTranslations("calendar.controls")
   return (
     <div className="flex items-center">
       <div className="flex items-end gap-2">
@@ -33,7 +35,7 @@ export const TutorAvatars: React.FC<TutorAvatarsProps> = ({
               "text-sm text-muted-foreground text-center max-w-32 truncate",
               selectedTutorId === null && !disabled && "text-indigo-500 font-semibold"
             )}>
-            Show all
+              {t("show-all")}
             </span>
           <div className={cn(
             "w-full max-w-24 translate-y-[1px] h-[2px] bg-indigo-500 absolute bottom-0 opacity-0 transition-opacity duration-300",

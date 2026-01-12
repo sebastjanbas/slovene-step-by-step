@@ -48,7 +48,7 @@ const CoursePage = () => {
             <Badge variant={"outline"} className={"bg-gradient-to-r from-sl-purple to-sl-pink text-white uppercase font-black tracking-wide"}>
               {t("coming-soon")}
             </Badge>
-            <h2 className="text-3xl font-bold text-foreground">
+            <h2 className="text-3xl font-semibold tracking-tighter text-foreground">
               {t("title")}
             </h2>
             <p className="text-base text-muted-foreground leading-relaxed">

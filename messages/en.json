@@ -485,6 +485,59 @@
       "join-waitlist": "Join the waitlist"
     }
   },
+  "calendar": {
+    "controls": {
+      "month": "Month",
+      "today": "Today",
+      "day": "Day",
+      "week": "Week",
+      "num-of-days": "Number of Days",
+      "days": "{num} days",
+      "view-options": "View options",
+      "weekend": "Show weekends",
+      "my-bookings": "My bookings",
+      "show-all": "Show all"
+    },
+    "event-type": {
+      "individual": "Individual",
+      "group": "Group"
+    },
+    "event-place": {
+      "classroom": "Classroom",
+      "online": "online"
+    },
+    "sheet": {
+      "status": {
+        "booked": "Booked",
+        "available": "Available",
+        "cancelled": "Cancelled"
+      },
+      "title": "Individual session",
+      "subtitle": "with {name}",
+      "session": "Session Overview",
+      "session-status": "Available for booking",
+      "session-duration": "{time} min",
+      "session-details": "Session details",
+      "when": "When",
+      "phone": "Phone",
+      "location": "Location",
+      "buttons": {
+        "book": "Book Session",
+        "contact": "Contact tutor"
+      }
+    },
+    "booked-message": {
+      "badge": "No Availability",
+      "all": {
+        "title": "All tutors are fully booked",
+        "subtitle": "We're currently at the capacity. Please check back soon for new time slots."
+      },
+      "tutor": {
+        "title": "{tutor} is fully booked",
+        "subtitle": "Try selecting another tutor or check back later for new availability"
+      }
+    }
+  },
 
   "errors": {
     "not-found": {

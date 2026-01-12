@@ -16,6 +16,7 @@ import {IconChevronDown, IconChevronLeft, IconChevronRight,} from "@tabler/icons
 import {Tutor, TutoringSession} from "@/components/calendar/types";
 import {TutorAvatars} from "@/components/calendar/tutor-avatars";
 import {cn} from "@/lib/utils";
+import {useTranslations} from "next-intl";
 
 type CalendarControlsProps = {
   calendarTitle: string,
@@ -37,6 +38,7 @@ type CalendarControlsProps = {
 };
 
 export const CalendarControls = (props: CalendarControlsProps) => {
+  const t = useTranslations("calendar.controls")
   return (
     <div className="relative flex flex-wrap gap-4 mb-6 items-end border-b border-border pb-4">
       <div className="flex items-center gap-2 mx-auto">
@@ -57,11 +59,11 @@ export const CalendarControls = (props: CalendarControlsProps) => {
           >
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="w-32 justify-between">
-                {props.currentView === "dayGridMonth" && "Month"}
-                {props.currentView === "timeGridWeek" && "Week"}
-                {props.currentView === "timeGridDay" && "Day"}
-                {props.currentView === "timeGrid2Day" && "2 Days"}
-                {props.currentView === "timeGrid3Day" && "3 Days"}
+                {props.currentView === "dayGridMonth" && t("month")}
+                {props.currentView === "timeGridWeek" && t("week")}
+                {props.currentView === "timeGridDay" && t("day")}
+                {props.currentView === "timeGrid2Day" && t("days", {num:2})}
+                {props.currentView === "timeGrid3Day" && t("days", {num:3})}
                 {props.currentView === "listWeek" && "List"}
                 <IconChevronDown className="h-4 w-4"/>
               </Button>
@@ -70,23 +72,23 @@ export const CalendarControls = (props: CalendarControlsProps) => {
               <DropdownMenuItem
                 onSelect={() => props.changeView("timeGridDay")}
               >
-                Day
+                {t("day")}
               </DropdownMenuItem>
               <DropdownMenuItem
                 onSelect={() => props.changeView("timeGridWeek")}
               >
-                Week
+                {t("week")}
               </DropdownMenuItem>
               <DropdownMenuItem
                 onSelect={() => props.changeView("dayGridMonth")}
               >
-                Month
+                {t("month")}
               </DropdownMenuItem>
 
               <DropdownMenuSeparator/>
 
               <DropdownMenuSub>
-                <DropdownMenuSubTrigger>Number of Days</DropdownMenuSubTrigger>
+                <DropdownMenuSubTrigger>{t("num-of-days")}</DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent>
                     <DropdownMenuItem
@@ -96,7 +98,7 @@ export const CalendarControls = (props: CalendarControlsProps) => {
                         props.setIsViewDropdownOpen(false);
                       }}
                     >
-                      2 Days
+                      {t("days", {num:2})}
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       onSelect={(e) => {
@@ -105,7 +107,7 @@ export const CalendarControls = (props: CalendarControlsProps) => {
                         props.setIsViewDropdownOpen(false);
                       }}
                     >
-                      3 Days
+                      {t("days", {num:3})}
                     </DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
@@ -114,14 +116,14 @@ export const CalendarControls = (props: CalendarControlsProps) => {
               <DropdownMenuSeparator/>
 
               <DropdownMenuSub>
-                <DropdownMenuSubTrigger>View Options</DropdownMenuSubTrigger>
+                <DropdownMenuSubTrigger>{t("view-options")}</DropdownMenuSubTrigger>
                 <DropdownMenuPortal>
                   <DropdownMenuSubContent>
                     <DropdownMenuCheckboxItem
                       checked={props.showWeekends}
                       onCheckedChange={props.setShowWeekends}
                     >
-                      Weekends
+                      {t("weekend")}
                     </DropdownMenuCheckboxItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuPortal>
@@ -134,7 +136,7 @@ export const CalendarControls = (props: CalendarControlsProps) => {
           </Button>
 
           <Button onClick={props.goToToday} variant="outline" size="sm">
-            Today
+            {t("today")}
           </Button>
         </div>
         <div className={"flex flex-row items-center gap-2"}>
@@ -145,7 +147,7 @@ export const CalendarControls = (props: CalendarControlsProps) => {
               "text-sm text-muted-foreground text-center max-w-32 truncate",
               props.showBookedSessions && "text-indigo-500 font-semibold"
             )}>
-              My Bookings
+              {t("my-bookings")}
             </span>
             <div className={cn(
               "w-full max-w-24 translate-y-[1px] h-[2px] bg-indigo-500 absolute bottom-0 opacity-0 transition-opacity duration-300",
