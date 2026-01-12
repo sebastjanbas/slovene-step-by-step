@@ -60,13 +60,13 @@ export default function DetailsPageHero() {
             <div className="lg:max-w-lg">
               <p
                 id="subtitle"
-                className="text-sm font-semibold uppercase tracking-wider text-sl-accent mb-4"
+                className="text-sm font-bold uppercase tracking-wider text-sl-accent mb-4"
               >
                 {t("subtitle")}
               </p>
               <h1
                 id="title"
-                className="mt-2 text-pretty text-4xl font-bold tracking-tight text-sl-primary sm:text-4xl lg:text-5xl"
+                className="mt-2 text-pretty text-4xl font-bold tracking-tighter text-sl-primary sm:text-4xl lg:text-5xl"
               >
                 {t("title")}
               </h1>

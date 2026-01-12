@@ -10,6 +10,19 @@ import { Toaster } from "sonner";
 import { WelcomeRedirectProvider } from "@/components/providers/welcome-redirect-provider";
 import { Analytics } from "@vercel/analytics/next";
 import HreflangLinks from "@/components/seo/hreflang-links";
+import { Manrope } from "next/font/google";
+import localFont from "next/font/local";
+
+const manropeFont = Manrope({
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"],
+  variable: "--font-manrope"
+});
+
+const tankerFont = localFont({
+  src: "../fonts/tanker-regular.woff2",
+  variable: "--font-tanker"
+});
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -31,12 +44,12 @@ export default async function LocaleLayout({ children, params }) {
   await setRequestLocale(locale);
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning className={`${manropeFont.variable} ${tankerFont.variable}`}>
       <head>
         <HreflangLinks />
         <title></title>
       </head>
-      <body>
+      <body className={"font-manrope font-medium"}>
         <Toaster richColors position="bottom-right" />
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider

@@ -41,22 +41,22 @@ const SectionTitle = ({
   return (
     <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
       <div id={id} className="w-full mb-10 mt-40">
-        <h2
+        <p
           className={cn(
-            "text-base/7 font-semibold text-sl-accent",
+            "uppercase text-sm tracking-wider font-bold text-sl-accent",
             textOrientation
           )}
         >
           {translations ? t(header) : header}
-        </h2>
-        <p
+        </p>
+        <h1
           className={cn(
-            "mt-2 text-balance text-4xl font-semibold tracking-tight text-sl-primary sm:text-5xl",
+            "mt-2 text-balance text-4xl font-bold tracking-tighter text-sl-primary sm:text-5xl",
             textOrientation
           )}
         >
           {translations ? t(paragraph) : paragraph}
-        </p>
+        </h1>
       </div>
       {children}
     </div>

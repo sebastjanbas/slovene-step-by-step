@@ -134,7 +134,7 @@ export default function Hero() {
               <div className="text-center sm:text-start">
                 <h1
                   ref={titleRef}
-                  className="text-balance text-5xl font-bold tracking-tight text-sl-primary md:text-6xl lg:text-7xl"
+                  className="text-balance text-5xl font-bold tracking-[-0.06em] text-sl-primary md:text-6xl lg:text-7xl"
                 >
                   <div>
                     {t("title.part1")}{" "}
@@ -146,7 +146,7 @@ export default function Hero() {
                 </h1>
                 <p
                   ref={subtitleRef}
-                  className="mt-6 text-pretty text-lg font-normal text-sl-secondary sm:text-xl lg:text-2xl max-w-2xl mx-auto sm:mx-0"
+                  className="mt-6 text-pretty text-lg font-medium tracking-tight text-sl-secondary sm:text-xl lg:text-2xl max-w-2xl mx-auto sm:mx-0"
                 >
                   {t("subtitle")}
                 </p>

@@ -29,10 +29,10 @@ export default function MeetTheTeamPage() {
       <div className="py-32 md:py-48 lg:pt-20 lg:pb-20 px-5 lg:px-20">
         <div className="flex flex-col text-center lg:text-start lg:flex-row mx-auto w-full justify-center items-center gap-8 lg:gap-12 max-w-7xl">
           <div className="max-w-2xl mb-10 lg:mb-0">
-            <h1 className="text-balance text-5xl font-bold tracking-tight text-sl-primary sm:text-6xl lg:text-7xl">
+            <h1 className="text-balance text-5xl font-bold tracking-tighter text-sl-primary sm:text-6xl lg:text-7xl">
               {t("hero.title")}
             </h1>
-            <h2 className="mt-6 text-pretty text-lg font-normal text-sl-secondary sm:text-xl/8 lg:text-2xl">
+            <h2 className="mt-6 text-pretty text-lg font-medium tracking-tight text-sl-secondary sm:text-xl/8 lg:text-2xl">
               {t("hero.subtitle")}
             </h2>
             <div className="mt-8 text-sl-secondary text-base/7 space-y-4">

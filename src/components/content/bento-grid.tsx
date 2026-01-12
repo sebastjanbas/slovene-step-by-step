@@ -165,10 +165,10 @@ export default function BentoGrid() {
         >
           <div
             ref={card1Refs.cardRef}
-            className="relative h-full px-8 py-8 gap-8 flex flex-col justify-around items-center rounded-3xl will-change-transform transition-[box-shadow] duration-300 shadow-2xl hover:shadow-[0_25px_50px_-12px] hover:shadow-sl-blue/50 bg-gradient-primary border border-border/50 dark:border-border/30 backdrop-blur-xl overflow-hidden"
+            className="relative h-full px-8 py-8 gap-8 flex flex-col justify-around items-center rounded-3xl will-change-transform transition-[box-shadow] duration-300 shadow-2xl hover:shadow-[0_25px_50px_-12px] hover:shadow-indigo-300/50 bg-gradient-primary border border-border/50 dark:border-border/30 backdrop-blur-xl overflow-hidden"
           >
-            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-sl-blue/30 via-sl-purple/20 to-transparent opacity-60" />
-            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10 dark:ring-white/5" />
+            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-transparent" />
+            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-indigo-500 dark:ring-indigo-300" />
             <div
               ref={card1Refs.shineRef}
               className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 mix-blend-screen"
@@ -218,8 +218,8 @@ export default function BentoGrid() {
             ref={card2Refs.cardRef}
             className="relative h-full px-8 py-8 flex flex-col justify-center items-center rounded-3xl will-change-transform transition-[box-shadow] duration-300 shadow-2xl hover:shadow-[0_25px_50px_-12px] hover:shadow-sl-purple/50 bg-gradient-primary-subtle border border-border/50 dark:border-border/30 backdrop-blur-xl overflow-hidden"
           >
-            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-b from-sl-purple/30 via-sl-pink/20 to-transparent opacity-60" />
-            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10 dark:ring-white/5" />
+            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-transparent" />
+            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-indigo-500 dark:ring-indigo-300" />
             <div
               ref={card2Refs.shineRef}
               className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 mix-blend-screen"
@@ -232,7 +232,7 @@ export default function BentoGrid() {
                 {t("community.description")}
               </p>
               <div className="relative min-h-[20rem] w-full grow mt-6 [container-type:inline-size] max-lg:mx-auto max-lg:max-w-sm">
-                <div className="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-border/30 bg-background shadow-2xl ring-1 ring-border/20">
+                <div className="absolute inset-x-10 bottom-0 top-10 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-border/30 bg-black shadow-2xl ring-1 ring-border/20">
                   <Image
                     width={720}
                     height={1280}
@@ -255,8 +255,8 @@ export default function BentoGrid() {
             ref={card3Refs.cardRef}
             className="relative h-full px-8 py-8 flex flex-col justify-center items-center rounded-3xl will-change-transform transition-[box-shadow] duration-300 shadow-2xl hover:shadow-[0_25px_50px_-12px] hover:shadow-sl-pink/50 bg-gradient-primary border border-border/50 dark:border-border/30 backdrop-blur-xl overflow-hidden"
           >
-            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-r from-sl-pink/30 via-sl-blue/20 to-transparent opacity-60" />
-            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10 dark:ring-white/5" />
+            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-transparent" />
+            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-indigo-500 dark:ring-indigo-300" />
             <div
               ref={card3Refs.shineRef}
               className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 mix-blend-screen"
@@ -289,8 +289,8 @@ export default function BentoGrid() {
             ref={card4Refs.cardRef}
             className="relative h-full px-8 py-8 flex flex-col lg:flex-row justify-center items-center rounded-3xl will-change-transform transition-[box-shadow] duration-300 shadow-2xl hover:shadow-[0_25px_50px_-12px] hover:shadow-sl-accent/50 bg-gradient-primary-subtle border border-border/50 dark:border-border/30 backdrop-blur-xl overflow-hidden"
           >
-            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-bl from-sl-purple/30 via-sl-blue/20 to-transparent opacity-60" />
-            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10 dark:ring-white/5" />
+            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-transparent" />
+            <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-indigo-500 dark:ring-indigo-300" />
             <div
               ref={card4Refs.shineRef}
               className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 mix-blend-screen"

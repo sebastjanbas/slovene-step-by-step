@@ -29,7 +29,7 @@ export default function PricingContent() {
           <h3
             id={tier.id}
             className={classNames(
-              "text-sm font-semibold uppercase tracking-wider mb-2 text-sl-accent",
+              "text-sm font-bold uppercase tracking-wider mb-2 text-sl-accent",
             )}
           >
             {tier.name}
@@ -37,7 +37,7 @@ export default function PricingContent() {
           <p className="mt-4 flex items-baseline gap-x-2">
             <span
               className={classNames(
-                "text-5xl font-bold tracking-tight text-sl-primary",
+                "text-5xl font-bold font-sans tracking-tight text-sl-primary",
               )}
             >
               {tier.priceMonthly.split(".")[0]}

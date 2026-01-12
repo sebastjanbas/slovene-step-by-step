@@ -21,14 +21,14 @@ export default function PricingPage() {
     <section className="relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:px-8">
       <div className="absolute inset-0 -z-10 gradient-primary-subtle-reversed opacity-60 dark:opacity-40" />
       <div className="mx-auto max-w-4xl text-center">
-        <h2 className="text-sm font-semibold uppercase tracking-wider text-sl-accent mb-4">
+        <h2 className="text-sm font-bold uppercase tracking-wider text-sl-accent mb-4">
           {t("subtitle")}
         </h2>
-        <p className="mt-2 text-balance text-5xl font-bold tracking-tight text-sl-primary sm:text-6xl lg:text-7xl">
+        <p className="mt-2 text-balance text-5xl font-bold tracking-tighter text-sl-primary sm:text-6xl lg:text-7xl">
           {t("title")}
         </p>
       </div>
-      <p className="mx-auto mt-6 max-w-2xl text-pretty text-center text-lg font-normal text-sl-secondary sm:text-xl/8">
+      <p className="mx-auto mt-6 max-w-2xl text-pretty tracking-tight text-center text-lg font-medium text-sl-secondary sm:text-xl/8">
         {t("description")}
       </p>
 

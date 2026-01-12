@@ -1,10 +1,17 @@
 "use client";
-import { useTranslations } from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 import { CheckIcon } from "@heroicons/react/20/solid";
 import {Link} from "@/i18n/routing";
 
 export default function LanguageClub() {
+  const locale = useLocale()
   const t = useTranslations("pricing.language-club");
+  const t2 = {
+    en: "up to",
+    sl: "do",
+    ru: "до",
+    it: "fino a"
+  }
 
   return (
     <div id={"lang-club"} className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] mt-24">
@@ -18,14 +25,14 @@ export default function LanguageClub() {
           {/* Header */}
           <div className="text-center mb-12">
             <div className="mb-6">
-              <span className="text-sm font-semibold uppercase tracking-wider text-sl-accent">
+              <span className="text-sm font-bold uppercase tracking-wider text-sl-accent">
                 {t("badge")}
               </span>
             </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-sl-primary dark:text-white mb-4">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tighter text-sl-primary dark:text-white mb-4">
               {t("title")}
             </h2>
-            <p className="mx-auto max-w-2xl text-lg sm:text-xl text-sl-secondary dark:text-white/80 leading-relaxed">
+            <p className="mx-auto max-w-2xl text-lg sm:text-xl text-sl-secondary dark:text-white/80 tracking-tight leading-relaxed">
               {t("description")}
             </p>
           </div>
@@ -34,18 +41,22 @@ export default function LanguageClub() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 pb-12 border-b border-border/50">
             <div className="text-center sm:text-left">
               <div className="flex items-baseline gap-2 justify-center sm:justify-start">
-                <span className="text-5xl sm:text-6xl font-bold tracking-tight text-sl-primary dark:text-white">
+                <span className="text-5xl sm:text-6xl font-sans font-bold tracking-tight text-sl-primary dark:text-white">
                   €12.50
                 </span>
               </div>
-              <p className="mt-2 text-base sm:text-lg text-sl-secondary dark:text-white/70">
+              <p className="mt-2 text-base sm:text-lg tracking-tight text-sl-secondary dark:text-white/70">
                 {t("price-label")}
               </p>
             </div>
             <div className="hidden sm:block w-px h-16 bg-border/50" />
             <div className="text-center sm:text-left">
-              <div className="text-3xl sm:text-4xl font-bold text-sl-primary dark:text-white">
-                ~8
+              {/*<div className="text-3xl sm:text-4xl font-bold text-sl-primary dark:text-white">*/}
+              <div className="text-5xl sm:text-6xl font-bold tracking-tight text-sl-primary dark:text-white">
+                <span className={"text-3xl mr-2"}>
+                  {t2[locale]}
+                </span>
+               8
               </div>
               <p className="mt-2 text-base sm:text-lg text-sl-secondary dark:text-white/70">
                 {t("group-size")}
@@ -67,7 +78,7 @@ export default function LanguageClub() {
                   />
                 </div>
                 <div>
-                  <p className="text-base font-medium text-sl-primary dark:text-white mb-1">
+                  <p className="text-base font-semibold text-sl-primary dark:text-white mb-1">
                     {t(`features.${i}.title`)}
                   </p>
                   <p className="text-sm text-sl-secondary dark:text-white/70 leading-relaxed">
