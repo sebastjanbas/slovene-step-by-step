@@ -10,6 +10,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { TutoringSession, EventClickArg } from "@/components/calendar/types";
 import { CalendarControls } from "@/components/calendar/calendar-controls";
 import { EventSheet } from "@/components/calendar/event-sheet";
+import { NoSlotsOverlay } from "@/components/calendar/no-slots-overlay";
 import "@/components/calendar/calendar-styles.css";
 import { useLocale } from "next-intl";
 
@@ -261,6 +262,39 @@ export default function Calendar({
     bookedSessions,
     studentId,
   ]);
+
+  // Determine if we should show the no slots overlay and what message to display
+  const noSlotsOverlay = useMemo(() => {
+    // Don't show overlay when viewing booked sessions
+    if (showBookedSessions) {
+      return null;
+    }
+
+    // Check if a specific tutor is selected and has no available slots
+    if (selectedTutorId !== null && events.length === 0) {
+      const tutor = transformedTutors.find((t) => t.id === selectedTutorId);
+      return {
+        message: `${tutor?.name || "This tutor"} is fully booked`,
+        submessage: "Try selecting another tutor or check back later for new availability.",
+      };
+    }
+
+    // Check if no tutors have any available slots
+    if (selectedTutorId === null && availableSlots.length === 0) {
+      return {
+        message: "All tutors are fully booked",
+        submessage: "We're currently at capacity. Please check back soon for new time slots.",
+      };
+    }
+
+    return null;
+  }, [
+    showBookedSessions,
+    selectedTutorId,
+    events.length,
+    availableSlots.length,
+    transformedTutors,
+  ]);
   const calendarRef = useRef<FullCalendar>(null);
   const isUpdatingViewRef = useRef(false);
 
@@ -449,7 +483,7 @@ export default function Calendar({
   };
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col p-5">
       <div className="flex-shrink-0">
         <CalendarControls
           calendarTitle={calendarTitle}
@@ -472,7 +506,13 @@ export default function Calendar({
       </div>
 
       {/* FullCalendar Component */}
-      <div className="flex-1 min-h-0 h-screen">
+      <div className="flex-1 min-h-0 h-screen relative">
+        {noSlotsOverlay && (
+          <NoSlotsOverlay
+            message={noSlotsOverlay.message}
+            submessage={noSlotsOverlay.submessage}
+          />
+        )}
         <FullCalendar
           locale={locale}
           ref={calendarRef}

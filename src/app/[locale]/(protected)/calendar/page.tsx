@@ -19,7 +19,7 @@ const CalendarPage = async () => {
   }
 
   return (
-    <div className="p-5 h-[90vh] md:h-[calc(100vh-80px)] w-full overflow-hidden">
+    <div className="h-[90vh] md:h-[calc(100vh-80px)] w-full overflow-hidden">
       <Calendar
         studentId={userId}
         scheduleData={schedule.scheduleData}
