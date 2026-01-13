@@ -44,6 +44,10 @@
     }
   },
   "common": {
+    "badges": {
+      "coming-soon": "Kmalu na voljo",
+      "join-waitlist": "Pridružite se čakalnemu seznamu"
+    },
     "buttons": {
       "get-started": "Začni zdaj",
       "learn-more": "Izvedi več",
@@ -477,11 +481,13 @@
       }
     },
     "courses": {
-      "coming-soon": "Kmalu na voljo",
       "title": "Več kot le video tečaj",
-      "subtitle": "Ustvarjamo nov način za mojstrsko znanje slovenščine: filmske lekcije v kombinaciji z inteligentnim ekosistemom in pametno AI tehnologijo za optimizacijo vašega napredka. Sledite personalizirani poti, prilagojeni vašim ciljem ob podpori obsežne knjižnice virov in ekskluzivnih srečanj v živo.",
-      "join-waitlist": "Pridružite se čakalnemu seznamu"
+      "subtitle": "Ustvarjamo nov način za mojstrsko znanje slovenščine: filmske lekcije v kombinaciji z inteligentnim ekosistemom in pametno AI tehnologijo za optimizacijo vašega napredka. Sledite personalizirani poti, prilagojeni vašim ciljem ob podpori obsežne knjižnice virov in ekskluzivnih srečanj v živo."
     }
+  },
+  "daily-practice": {
+    "title": "Vaša vsakodnevna vaja slovenščine",
+    "text": "Ustvarjamo izkušnjo za oblikovanje vsakodnevnih navad: kratke, interaktivne vaje v kombinaciji s pametnim AI sledenjem, ki vas ohranja dosledne in motivirane. Izboljšajte svoje tekoče znanje z osebnimi dnevnimi izzivi – od urjenja besedišča do praktičnih slušnih nalog – prilagojenih vaši stopnji in ciljem. Spremljajte svoj napredek z analitiko in se pridružite naši globalni skupnosti pri doseganju dnevnih nizov, ki bodo učenje jezika spremenili v vaš najljubši del dneva."
   },
   "calendar": {
     "controls": {

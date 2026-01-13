@@ -44,6 +44,10 @@
     }
   },
   "common": {
+    "badges": {
+      "coming-soon": "Coming soon",
+      "join-waitlist": "Joing the waitlist"
+    },
     "buttons": {
       "get-started": "Get started",
       "learn-more": "Learn more",
@@ -479,11 +483,13 @@
       }
     },
     "courses": {
-      "coming-soon": "Coming soon",
       "title": "More Than Just a Video Course",
-      "subtitle": "We’re building a new way to master Slovene: cinematic lessons paired with an intelligent ecosystem and smart AI tools designed to optimize your progress. Navigate a personalized path tailored to your goals supported by an extensive library of resources and exclusive live Q&A sessions.",
-      "join-waitlist": "Join the waitlist"
+      "subtitle": "We’re building a new way to master Slovene: cinematic lessons paired with an intelligent ecosystem and smart AI tools designed to optimize your progress. Navigate a personalized path tailored to your goals supported by an extensive library of resources and exclusive live Q&A sessions."
     }
+  },
+  "daily-practice": {
+    "title": "Your Daily Slovene Practice",
+    "text": "We’re building a daily habit-forming experience: bite-sized, interactive exercises paired with smart AI tracking to keep you consistent and motivated. Build your fluency through personalized daily challenges—from vocabulary drills to real-world listening tasks—tailored to your current level and goals. Stay on track with progress analytics and join our global community for daily streaks that turn language learning into the best part of your routine."
   },
   "calendar": {
     "controls": {

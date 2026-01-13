@@ -7,6 +7,7 @@ import {useTranslations} from "next-intl";
 
 const CoursePage = () => {
   const t = useTranslations("dashboard.courses")
+  const t2 = useTranslations("common.badge")
   return (
   <div className="flex flex-col p-6 min-h-[calc(100vh-var(--header-height))]">
     {/* Main Content - Two Column Layout */}
@@ -32,7 +33,7 @@ const CoursePage = () => {
               {/* Coming Soon Badge */}
               <div className="absolute top-4 left-4 z-10">
                 <Badge className="bg-white text-gray-900 border-0 shadow-sm font-semibold tracking-tight px-3 py-1">
-                  {t("coming-soon")}
+                  {t2("coming-soon")}
                 </Badge>
               </div>
             </div>
@@ -46,7 +47,7 @@ const CoursePage = () => {
         <div className="w-full flex flex-col justify-center space-y-6 pt-10">
           <div className="space-y-4">
             <Badge variant={"outline"} className={"bg-gradient-to-r from-sl-purple to-sl-pink text-white uppercase font-black tracking-wide"}>
-              {t("coming-soon")}
+              {t2("coming-soon")}
             </Badge>
             <h2 className="text-3xl font-semibold tracking-tighter text-foreground">
               {t("title")}
@@ -60,7 +61,7 @@ const CoursePage = () => {
               variant={"outline"}
               disabled
             >
-              {t("join-waitlist")}
+              {t2("join-waitlist")}
             </Button>
           </div>
         </div>

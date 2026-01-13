@@ -44,6 +44,10 @@
     }
   },
   "common": {
+    "badges": {
+      "coming-soon": "Prossimamente",
+      "join-waitlist": "Iscriviti alla lista d'attesa"
+    },
     "buttons": {
       "get-started": "Iniziare",
       "learn-more": "Scopri di più",
@@ -477,11 +481,13 @@
       }
     },
     "courses": {
-      "coming-soon": "Prossimamente",
       "title": "Molto più di un semplice corso video",
-      "subtitle": "Stiamo creando un nuovo modo per padroneggiare lo sloveno: lezioni cinematografiche abbinate a un ecosistema intelligente e strumenti AI progettati per ottimizzare i tuoi progressi. Segui un percorso personalizzato in base ai tuoi obiettivi supportato da una vasta libreria di risorse e sessioni live di Q&A.",
-      "join-waitlist": "Iscriviti alla lista d'attesa"
+      "subtitle": "Stiamo creando un nuovo modo per padroneggiare lo sloveno: lezioni cinematografiche abbinate a un ecosistema intelligente e strumenti AI progettati per ottimizzare i tuoi progressi. Segui un percorso personalizzato in base ai tuoi obiettivi supportato da una vasta libreria di risorse e sessioni live di Q&A."
     }
+  },
+  "daily-practice": {
+    "title": "Ваша ежедневная практика словенского",
+    "text": "Мы создаем систему для формирования ежедневных привычек: короткие интерактивные упражнения в сочетании с умным ИИ-мониторингом для поддержания вашей регулярности и мотивации. Развивайте свободную речь с помощью персональных ежедневных заданий — от тренировки лексики до реальных упражнений на аудирование — адаптированных под ваш уровень и цели. Следите за своим прогрессом с помощью аналитики и присоединяйтесь к нашему глобальному сообществу, превращая изучение языка в лучшую часть вашего дня."
   },
   "calendar": {
     "controls": {
