@@ -184,6 +184,16 @@
         "learning-goals": "Moji Cilji",
         "preferred-time": "Želeni čas učenja",
         "error": "Niste še nastavili svojih učnih nastavitev. Za začetek dokončajte uvajanje."
+      },
+      "email-preferences": {
+        "title": "Izbira Jezik",
+        "description": "Izberite jezik za e-poštna obvestila in komunikacijo",
+        "languages": {
+          "en": "Angleščina",
+          "sl": "Slovenščina",
+          "ru": "Ruščina",
+          "it": "Italijanščina"
+        }
       }
     }
   },

@@ -65,3 +65,39 @@ export const updateLanguageLevel = async (languageLevel: string) => {
     return error;
   }
 };
+
+export const updateEmailLocale = async (locale: string) => {
+  const client = await clerkClient();
+  const { userId } = await auth();
+  if (!userId) {
+    return new Error("User not found");
+  }
+
+  try {
+    await client.users.updateUserMetadata(userId, {
+      unsafeMetadata: {
+        locale,
+      },
+    });
+
+    return null;
+  } catch (error) {
+    console.error("Error saving email locale:", error);
+    return error;
+  }
+};
+
+export const getEmailLocale = async () => {
+  const client = await clerkClient();
+  const { userId } = await auth();
+  if (!userId) {
+    return new Error("User not found");
+  }
+  try {
+    const user = await client.users.getUser(userId);
+    return (user.unsafeMetadata.locale as string) || "en";
+  } catch (error) {
+    console.error("Error getting email locale:", error);
+    return error;
+  }
+};

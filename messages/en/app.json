@@ -184,6 +184,16 @@
         "learning-goals": "Learning goals",
         "preferred-time": "Preferred study time",
         "error": "You haven't set your learning preferences yet. Complete the onboarding to get started."
+      },
+      "email-preferences": {
+        "title": "Email Language",
+        "description": "Select the language for email notifications and communications",
+        "languages": {
+          "en": "English",
+          "sl": "Slovenian",
+          "ru": "Russian",
+          "it": "Italian"
+        }
       }
     }
   },

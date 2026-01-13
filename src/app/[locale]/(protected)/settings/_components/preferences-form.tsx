@@ -8,7 +8,7 @@ import {Badge} from "@/components/ui/badge";
 import {Separator} from "@/components/ui/separator";
 import {IconCheck, IconChecks, IconEdit, IconX} from "@tabler/icons-react";
 import {toast} from "sonner";
-import {getUserPreferences, updateUserPreferences, UserPreferences,} from "@/actions/user-actions";
+import {getUserPreferences, updateUserPreferences, UserPreferences, getEmailLocale, updateEmailLocale,} from "@/actions/user-actions";
 import {Skeleton} from "@/components/ui/skeleton";
 import {languageLevels, learningGoals, scheduleOptions, tutors,} from "@/lib/docs";
 import {useLocale, useTranslations} from "next-intl";
@@ -17,9 +17,11 @@ const PreferencesForm = () => {
   const {user, isLoaded} = useUser();
   const locale = useLocale();
   const [preferences, setPreferences] = useState<UserPreferences | null>(null);
+  const [emailLocale, setEmailLocale] = useState<string>("en");
   const [isEditing, setIsEditing] = useState(false);
   const t = useTranslations("settings.account.learning-preferences")
   const t2 = useTranslations("common.buttons")
+  const t3 = useTranslations("settings.account.email-preferences")
 
   useEffect(() => {
     const fetchPreferences = async () => {
@@ -27,6 +29,10 @@ const PreferencesForm = () => {
         const userPrefs = await getUserPreferences();
         if (userPrefs) {
           setPreferences(userPrefs as UserPreferences);
+        }
+        const userEmailLocale = await getEmailLocale();
+        if (userEmailLocale && typeof userEmailLocale === "string") {
+          setEmailLocale(userEmailLocale);
         }
       }
     };
@@ -61,6 +67,7 @@ const PreferencesForm = () => {
 
     try {
       await updateUserPreferences(preferences);
+      await updateEmailLocale(emailLocale);
       toast.success("Preferences updated successfully!");
       setIsEditing(false);
     } catch (error) {
@@ -270,6 +277,50 @@ const PreferencesForm = () => {
                 {scheduleOptions.find(
                   (s) => s.value === preferences.preferredSchedule
                 )?.label[locale] || "Not set"}
+              </p>
+            </div>
+          )}
+        </div>
+
+        <Separator/>
+
+        {/* Email Language Preference */}
+        <div>
+          <h3 className="font-semibold mb-3">{t3("title")}</h3>
+          <p className="text-xs text-muted-foreground mb-3">{t3("description")}</p>
+          {isEditing ? (
+            <div className="grid grid-cols-2 gap-2">
+              {[
+                { code: "en", name: t3("languages.en") },
+                { code: "sl", name: t3("languages.sl") },
+                { code: "ru", name: t3("languages.ru") },
+                { code: "it", name: t3("languages.it") },
+              ].map((lang) => (
+                <div
+                  key={lang.code}
+                  className={`p-3 border rounded-lg cursor-pointer transition-all ${
+                    emailLocale === lang.code
+                      ? "border-primary bg-primary/5"
+                      : "border-gray-200 hover:border-gray-300"
+                  }`}
+                  onClick={() => setEmailLocale(lang.code)}
+                >
+                  <div className="flex items-center justify-between">
+                    <p className="font-medium">{lang.name}</p>
+                    {emailLocale === lang.code && (
+                      <IconCheck className="h-5 w-5 text-primary"/>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="p-3 rounded-lg">
+              <p className="font-medium">
+                {emailLocale === "en" && t3("languages.en")}
+                {emailLocale === "sl" && t3("languages.sl")}
+                {emailLocale === "ru" && t3("languages.ru")}
+                {emailLocale === "it" && t3("languages.it")}
               </p>
             </div>
           )}

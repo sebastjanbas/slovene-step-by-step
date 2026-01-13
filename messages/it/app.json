@@ -184,6 +184,16 @@
         "learning-goals": "Obiettivi di apprendimento",
         "preferred-time": "Orario di studio preferito",
         "error": "Non hai ancora impostato le tue preferenze di apprendimento. Completa l'onboarding per iniziare."
+      },
+      "email-preferences": {
+        "title": "Lingua email",
+        "description": "Seleziona la lingua per le notifiche e le comunicazioni via email",
+        "languages": {
+          "en": "Inglese",
+          "sl": "Sloveno",
+          "ru": "Russo",
+          "it": "Italiano"
+        }
       }
     }
   },
