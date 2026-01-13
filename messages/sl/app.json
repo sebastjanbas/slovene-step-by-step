@@ -103,7 +103,39 @@
         }
       },
       "processing": "Rezervacija v teku...",
-      "book-now": "Rezerviraj zdaj"
+      "book-now": "Rezerviraj zdaj",
+      "dialog": {
+        "title": "Izberite možnost rezervacije",
+        "subtitle": "Izberite način rezervacije za to srečanje jezikovnega kluba",
+        "free-card": {
+          "title": "Rezervirajte zdaj, plačajte na dogodku",
+          "desc": "Rezervirajte takoj in plačajte osebno ob prihodu.",
+          "l1": "Spletna rezervacija",
+          "l2": "Plačilo na samem dogodku",
+          "l2-add": "(brez vračila)",
+          "l3": "Odpoved možna 24 ur pred dogodkom",
+          "button": "Rezerviraj zdaj"
+        },
+        "pay-card": {
+          "title": "Plačajte prek spleta",
+          "desc": "Varno plačilo prek sistema Stripe",
+          "l1": "Varna obdelava plačil kadarkoli in kjerkoli",
+          "l2": "Možnost vračila denarja",
+          "l2-add": "({hours} ur pred dogodkom)",
+          "l3": "E-poštna potrditev in račun",
+          "button": "Plačaj {price} €"
+        },
+        "disabled-title": "Kmalu na voljo",
+        "disabled-text": "Spletno plačilo bo na voljo kmalu."
+      },
+      "success-dialog": {
+        "title": "Rezervacija uspela!",
+        "desc": "Uspešno ste rezervirali termin v jezikovnem klubu.",
+        "with": "z: {name}",
+        "email-message": "V kratkem boste prejeli potrditveno e-pošto.",
+        "location": "Lokacija: {loc}",
+        "duration": "Trajanje: {time} minut"
+      }
     }
   },
   "settings": {

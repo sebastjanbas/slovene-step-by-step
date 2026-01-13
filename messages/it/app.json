@@ -103,7 +103,39 @@
         }
       },
       "processing": "In corso...",
-      "book-now": "Prenota ora"
+      "book-now": "Prenota ora",
+      "dialog": {
+        "title": "Scegli l'opzione di prenotazione",
+        "subtitle": "Seleziona come desideri prenotare questa sessione del language club",
+        "free-card": {
+          "title": "Prenota ora, paga all'evento",
+          "desc": "Prenota ora e paga di persona all'arrivo.",
+          "l1": "Prenotazione online",
+          "l2": "Pagamento riscosso all'evento",
+          "l2-add": "(nessun rimborso)",
+          "l3": "Cancellazione entro 24 ore prima dell'evento",
+          "button": "Prenota ora"
+        },
+        "pay-card": {
+          "title": "Paga online",
+          "desc": "Pagamento sicuro tramite Stripe",
+          "l1": "Elaborazione sicura dei pagamenti sempre e ovunque",
+          "l2": "Rimborso disponibile",
+          "l2-add": "({hours} ore prima dell'evento)",
+          "l3": "Conferma e ricevuta via email",
+          "button": "Paga {price} €"
+        },
+        "disabled-title": "Prossimamente",
+        "disabled-text": "Il pagamento online sarà disponibile a breve."
+      },
+      "success-dialog": {
+        "title": "Prenotazione riuscita!",
+        "desc": "Hai prenotato con successo la tua sessione del language club.",
+        "with": "con {name}",
+        "email-message": "Riceverai a breve un'email di conferma.",
+        "location": "Luogo: {loc}",
+        "duration": "Durata: {time} minuti"
+      }
     }
   },
   "settings": {

@@ -8,6 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import BookingSuccess from "./booking-success";
+import {useTranslations} from "next-intl";
 
 interface SuccessDialogProps {
   event: any;
@@ -24,6 +25,7 @@ const SuccessDialog = ({
   type = "stripe",
   onOpenChange,
 }: SuccessDialogProps) => {
+  const t = useTranslations("dashboard.events.success-dialog")
   return (
     <Dialog
       open={open}
@@ -36,8 +38,8 @@ const SuccessDialog = ({
       }}
     >
       <DialogContent className="border-none m-0 w-fit p-0">
-        <DialogHeader className="hidden">
-          <DialogTitle>Booking Successful!</DialogTitle>
+        <DialogHeader className="sr-only">
+          <DialogTitle>{t("title")}</DialogTitle>
         </DialogHeader>
         <BookingSuccess event={event} locale={locale} />
       </DialogContent>

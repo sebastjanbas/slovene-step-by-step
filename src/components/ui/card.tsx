@@ -7,9 +7,10 @@ function Card({
   ...props
 }: React.ComponentProps<"div"> & {
   disabled?: boolean;
+  disabledTitle?: string;
   disabledText?: string;
 }) {
-  const { disabled, disabledText, ...restProps } = props;
+  const { disabled, disabledText, disabledTitle, ...restProps } = props;
   return (
     <div
       data-slot="card"
@@ -22,7 +23,7 @@ function Card({
       {disabled && (
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/80 dark:bg-black/70 rounded-lg h-full w-full">
           <span className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">
-            Coming Soon
+            {disabledTitle}
           </span>
           <span className="text-sm text-gray-500 dark:text-gray-400">
             {disabledText}

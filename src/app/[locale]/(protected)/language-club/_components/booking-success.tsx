@@ -4,6 +4,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { IconCheck, IconCalendar } from "@tabler/icons-react";
 import { toZonedTime } from "date-fns-tz";
+import {useTranslations} from "next-intl";
 
 interface BookingSuccessProps {
   event: any;
@@ -11,6 +12,7 @@ interface BookingSuccessProps {
 }
 
 const BookingSuccess = ({ event, locale }: BookingSuccessProps) => {
+  const t = useTranslations("dashboard.events.success-dialog")
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader className="text-center">
@@ -18,13 +20,13 @@ const BookingSuccess = ({ event, locale }: BookingSuccessProps) => {
           <IconCheck className="w-6 h-6 text-green-600 dark:text-green-400" />
         </div>
         <CardTitle className="text-green-600 dark:text-green-400">
-          Booking Successful!
+          {t("title")}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="text-center space-y-2">
           <p className="text-sm text-muted-foreground">
-            You have successfully booked your language club session.
+            {t("desc")}
           </p>
           <div className="flex items-center justify-center gap-2 text-sm">
             <IconCalendar className="w-4 h-4" />
@@ -40,12 +42,12 @@ const BookingSuccess = ({ event, locale }: BookingSuccessProps) => {
             </span>
           </div>
           <p className="font-medium">{event.theme}</p>
-          <p className="text-sm text-muted-foreground">with {event.tutor}</p>
+          <p className="text-sm text-muted-foreground">{t("with",{name: event.tutor})}</p>
         </div>
         <div className="text-center text-sm text-muted-foreground">
-          <p>You will receive a confirmation email shortly.</p>
-          <p>Location: {event.location}</p>
-          <p>Duration: {event.duration} minutes</p>
+          <p>{t("email-message")}</p>
+          <p>{t("location", {loc: event.location})}</p>
+          <p>{t("duration", {time: event.duration})}</p>
         </div>
       </CardContent>
     </Card>

@@ -217,10 +217,10 @@ const LangCard = ({ locale, event }) => {
         <DialogContent className="sm:max-w-4xl w-full bg-white dark:bg-background rounded-2xl flex flex-col items-center justify-center">
           <DialogHeader>
             <DialogTitle className="text-center">
-              Choose Booking Option
+              {t("dialog.title")}
             </DialogTitle>
             <DialogDescription className="text-center">
-              Select how you would like to book this language club session.
+              {t("dialog.subtitle")}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 flex flex-col md:flex-row gap-4 justify-center items-center md:items-stretch w-full">
@@ -230,9 +230,9 @@ const LangCard = ({ locale, event }) => {
                 <div className="w-10 h-10 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-2">
                   <IconRosetteDiscountCheck className="w-5 h-5 text-green-600 dark:text-green-400" />
                 </div>
-                <CardTitle>Reserve Now, Pay at Event</CardTitle>
+                <CardTitle>{t("dialog.free-card.title")}</CardTitle>
                 <CardDescription>
-                  Book instantly and pay in person when you arrive.
+                  {t("dialog.free-card.desc")}
                   {/* <span className="block text-xs text-muted-foreground mt-1">
                     No online payment required. Payment is collected at the
                     event.
@@ -242,19 +242,19 @@ const LangCard = ({ locale, event }) => {
               <CardContent className="w-full">
                 <div className="space-y-2 text-sm">
                   <p className="inline-flex items-center gap-2">
-                    <IconRosetteDiscountCheck className="h-4 w-4" /> Online
-                    Reservation
+                    <IconRosetteDiscountCheck className="h-4 w-4" />
+                    {t("dialog.free-card.l1")}
                   </p>
                   <p className="inline-flex items-center gap-2">
-                    <IconCoinEuro className="h-4 w-4" /> Payment collected at
-                    event{" "}
+                    <IconCoinEuro className="h-4 w-4" />
+                    {t("dialog.free-card.l2")}
                     <span className="text-xs text-muted-foreground italic">
-                      (no refund)
+                     {t("dialog.free-card.l2-add")}
                     </span>
                   </p>
                   <p className="inline-flex items-center gap-2">
-                    <IconCancel className="h-4 w-4" /> Cancelation 24 hours
-                    prior to the event
+                    <IconCancel className="h-4 w-4" />
+                    {t("dialog.free-card.l3")}
                   </p>
                 </div>
               </CardContent>
@@ -265,7 +265,7 @@ const LangCard = ({ locale, event }) => {
                   className="w-full"
                 >
                   <IconCalendar className="mr-2 h-4 w-4" />
-                  Reserve Now
+                  {t("dialog.free-card.button")}
                 </Button>
               </CardFooter>
             </Card>
@@ -273,31 +273,32 @@ const LangCard = ({ locale, event }) => {
             <Card
               className="border rounded-lg p-4 space-y-3 flex-1/2 h-full w-full flex flex-col items-center justify-center relative"
               disabled
-              disabledText="Online payment will be available soon."
+              disabledTitle={t("dialog.disabled-title")}
+              disabledText={t("dialog.disabled-text")}
             >
               <CardHeader className="w-full flex flex-col items-center justify-center text-center">
                 <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-2">
                   <IconCreditCard className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                 </div>
-                <CardTitle>Pay Online</CardTitle>
-                <CardDescription>Secure payment via Stripe.</CardDescription>
+                <CardTitle>{t("dialog.pay-card.title")}</CardTitle>
+                <CardDescription>{t("dialog.pay-card.desc")}</CardDescription>
               </CardHeader>
               <CardContent className="w-full">
                 <div className="space-y-2 text-sm">
                   <p className="inline-flex items-center gap-2">
-                    <IconWorld className="h-4 w-4" /> Secure payment processing
-                    anytime anywhere
+                    <IconWorld className="h-4 w-4" />
+                    {t("dialog.pay-card.l1")}
                   </p>
                   <p className="inline-flex items-center gap-2">
-                    <IconCreditCardRefund className="h-4 w-4" /> Refund
-                    available{" "}
+                    <IconCreditCardRefund className="h-4 w-4" />
+                    {t("dialog.pay-card.l2")}
                     <span className="text-xs text-muted-foreground italic">
-                      (48 hours prior to the event)
+                      {t("dialog.pay-card.l2-add", {hours: 48})}
                     </span>
                   </p>
                   <p className="inline-flex items-center gap-2">
-                    <IconReceiptRefund className="h-4 w-4" /> Email confirmation
-                    and receipt
+                    <IconReceiptRefund className="h-4 w-4" />
+                    {t("dialog.pay-card.l3")}
                   </p>
                 </div>
               </CardContent>
@@ -308,7 +309,7 @@ const LangCard = ({ locale, event }) => {
                   disabled
                 >
                   <IconCreditCard className="mr-2 h-4 w-4" />
-                  Pay €{event.price.toFixed(2)}
+                  {t("dialog.pay-card.button", {price: event.price.toFixed(2)})}
                 </Button>
               </CardFooter>
             </Card>
