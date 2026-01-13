@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useState, useRef, useCallback } from "react";
+import React, {useMemo, useState, useRef, useCallback, useEffect} from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -48,6 +48,7 @@ import { toast } from "sonner";
 import { useRouter } from "@/i18n/routing";
 import RescheduleDialog from "./reschedule-dialog";
 import "@/components/calendar/calendar-styles.css";
+import {useSidebar} from "@/components/ui/sidebar";
 
 interface LangClubEvent {
   id: number;
@@ -88,6 +89,7 @@ const UnifiedCalendar = ({
   locale,
 }: UnifiedCalendarProps) => {
   const fullLocale = useLocale();
+  const {state} = useSidebar();
   const t = useTranslations("dashboard.events");
   const tD = useTranslations("dashboard.calendar");
   const tButtons = useTranslations("common.buttons");
@@ -219,6 +221,18 @@ const UnifiedCalendar = ({
     setSelectedDate(clickedDate);
     setIsSheetOpen(true);
   };
+
+  // Update calendar dimensions when sidebar state changes
+  useEffect(() => {
+    const calendarApi = calendarRef.current?.getApi();
+    if (calendarApi) {
+      // Add a small delay to allow sidebar transition to complete
+      const timer = setTimeout(() => {
+        calendarApi.updateSize();
+      }, 300); // Match this with your sidebar transition duration
+      return () => clearTimeout(timer);
+    }
+  }, [state]);
 
   const handleCancel = async (event: (typeof eventsOnSelectedDay)[0]) => {
     setIsCancelling(event.id);
