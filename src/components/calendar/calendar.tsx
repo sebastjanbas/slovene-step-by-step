@@ -13,6 +13,7 @@ import { EventSheet } from "@/components/calendar/event-sheet";
 import { NoSlotsOverlay } from "@/components/calendar/no-slots-overlay";
 import "@/components/calendar/calendar-styles.css";
 import {useLocale, useTranslations} from "next-intl";
+import {useSidebar} from "@/components/ui/sidebar";
 
 // Transform database tutors to the format expected by the calendar
 const transformTutors = (tutorsData: any[]) => {
@@ -209,6 +210,7 @@ export default function Calendar({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const t = useTranslations("calendar.event-type")
+  const {state} = useSidebar();
 
   // Transform the data from a database
   const transformedTutors = transformTutors(tutorsData);
@@ -423,10 +425,19 @@ export default function Calendar({
       }
     }
   }, [handleMoreEventsClick]);
-  const handleEventCreate = () => {
-    // Event creation is handled by the parent component
-    // This is a placeholder for future functionality
-  };
+
+  // Update calendar dimensions when sidebar state changes
+  useEffect(() => {
+    const calendarApi = calendarRef.current?.getApi();
+    if (calendarApi) {
+      // Add a small delay to allow sidebar transition to complete
+      const timer = setTimeout(() => {
+        calendarApi.updateSize();
+      }, 300); // Match this with your sidebar transition duration
+      return () => clearTimeout(timer);
+    }
+  }, [state]);
+
 
   const handleEventClick = (arg: EventClickArg) => {
     // Convert FullCalendar event back to TutoringSession
@@ -486,7 +497,6 @@ export default function Calendar({
           currentView={currentView}
           changeView={changeView}
           showWeekends={showWeekends}
-          handleEventCreate={handleEventCreate}
           tutors={transformedTutors}
           selectedTutorId={selectedTutorId}
           onTutorSelect={handleTutorSelect}

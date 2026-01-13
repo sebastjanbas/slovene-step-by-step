@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {Button} from "../ui/button";
 import {IconChevronDown, IconChevronLeft, IconChevronRight,} from "@tabler/icons-react";
-import {Tutor, TutoringSession} from "@/components/calendar/types";
+import {Tutor} from "@/components/calendar/types";
 import {TutorAvatars} from "@/components/calendar/tutor-avatars";
 import {cn} from "@/lib/utils";
 import {useTranslations} from "next-intl";
@@ -29,7 +29,6 @@ type CalendarControlsProps = {
   currentView: string,
   changeView: (view: string) => void,
   showWeekends: boolean,
-  handleEventCreate: (session: TutoringSession) => void,
   tutors: Tutor[],
   selectedTutorId: number | null,
   onTutorSelect: (tutorId: number | null) => void,
