@@ -1,0 +1,219 @@
+{
+  "dashboard": {
+    "greeting": "Welcome back <important>{name}!</important>",
+    "greeting-placeholder": "Welcome",
+    "greeting-subheading": "Here's what's happening today",
+    "cancel-booking-dialog": {
+      "title": "Are you absolutely sure?",
+      "description": "Are you sure you want to cancel your booking? This action cannot be undone."
+    },
+    "all-scheduled-events": {
+      "message": "You have {count, plural, =1 {1 event} other {# events}} coming up.",
+      "no-future-events": "No future events",
+      "upcoming-events": "You have no upcoming sessions. Book a session to get started!",
+      "browse-events": "Browse Events",
+      "link": "View all",
+      "event-view-card": {
+        "title": "All Scheduled Events",
+        "description": "Here you can see all your scheduled events.",
+        "status": "{status, select, paid {Paid} booked {Booked} other {Unknown}}",
+        "card-description": "With {name}"
+      }
+    },
+    "reschedule-dialog": {
+      "title": "Reschedule Booking",
+      "description": "Select a new event to reschedule your booking to.",
+      "current-event": "Current Booking:",
+      "with": "{theme} with {tutor}",
+      "cancel": "Cancel",
+      "reschedule": "Reschedule Booking",
+      "rescheduling": "Rescheduling...",
+      "loading": "Loading available events...",
+      "select-new": "Select new event",
+      "no-available-events": "No available events found for rescheduling."
+    },
+    "user-navigation": {
+      "account": "Account",
+      "billing": "Billing",
+      "notifications": "Notifications",
+      "logout": "Log out"
+    },
+    "sidebar": {
+      "main": {
+        "book-lesson": "Book a Lesson",
+        "dashboard": "Dashboard",
+        "courses": "Courses",
+        "calendar": "Calendar",
+        "language-club": "Language Club",
+        "tutors": "Tutors",
+        "daily-practice": "Daily Practice",
+        "admin": "Admin Dashboard",
+        "language-club-admin": "Language Club Admin",
+        "bookings": "Bookings",
+        "my-lessons": "My Lessons",
+        "achievements": "Achievements",
+        "progress": "Progress"
+      },
+      "secondary": {
+        "settings": "Settings",
+        "get-help": "Get Help"
+      }
+    },
+    "calendar": {
+      "today-button": "Today"
+    },
+    "language-club": {
+      "title": "Language Club",
+      "subtitle": "Schedule and manage your language learning sessions",
+      "calendar-title": "Event Calendar",
+      "no-events-scheduled": "No events scheduled",
+      "no-events-description": "Click on any date to view available sessions",
+      "events-for-date": "Events for {date}",
+      "view-details": "View Details"
+    },
+    "stats": {
+      "total-upcoming": "Total Upcoming",
+      "language-club": "Language Club Events",
+      "personal-sessions": "Personal Sessions",
+      "completed": "Completed Sessions",
+      "description": {
+        "upcoming": "Scheduled events",
+        "language-club": "Group sessions",
+        "personal-sessions": "One-on-one lessons",
+        "completed": "Past sessions"
+      }
+    },
+    "events": {
+      "next-event": "Your next event",
+      "no-events": "No events scheduled on {date}",
+      "event-on": "Events on {date}",
+      "event-tutor": "with {tutor}",
+      "event-location": "Location: ",
+      "event-duration": "Duration: {duration} minutes",
+      "calendar-title": "Your Calendar",
+      "calendar-description": "View your events for this day",
+      "language-club": "Language Club",
+      "personal-session": "Personal Session",
+      "tooltip": {
+        "level": "Required knowledge: {level} level",
+        "duration": "{duration} minutes long",
+        "spots": {
+          "no-spots": "No spots left",
+          "spots-left": "{spots} spots left"
+        }
+      },
+      "processing": "Processing...",
+      "book-now": "Book Now"
+    }
+  },
+  "settings" : {
+    "tabs": {
+      "account": "Account",
+      "billing": "Billing",
+      "notifications": "Notifications"
+    },
+    "account": {
+      "personal-info": {
+        "title": "Personal Information",
+        "update-avatar": "Update Avatar",
+        "image-text": "Recommend size 1:1, up to 2mb",
+        "first-name": "First name",
+        "last-name": "Last name"
+      },
+      "email-address": {
+        "title": "Email Addresses",
+        "verified-text": "This email is verified",
+        "unverified-badge": "Unverified",
+        "primary-badge": "Primary",
+        "added-text": "Added on {date}"
+      },
+      "password": {
+        "title": "Password",
+        "change-password": "Change password",
+        "dialog": {
+          "title": "Change password",
+          "subtitle": "Enter your new passwords",
+          "new": "New password",
+          "new-placeholder": "Enter new password",
+          "confirm": "Confirm password",
+          "verification": {
+            "title": "Verify your email",
+            "subtitle": "Enter verification code sent to your email",
+            "no-code": "Did't receice a code?"
+          }
+        }
+      },
+      "learning-preferences": {
+        "title": "Learning Preferences",
+        "text": "Customize your learning experience and goals",
+        "current-lang-level": "Current Language Level",
+        "warning-level": "Language level cannot be changed",
+        "tutor": "Preferred Tutor",
+        "learning-goals": "Learning goals",
+        "preferred-time": "Preferred study time",
+        "error": "You haven't set your learning preferences yet. Complete the onboarding to get started."
+      }
+    }
+  },
+  "courses": {
+    "title": "More Than Just a Video Course",
+    "subtitle": "We’re building a new way to master Slovene: cinematic lessons paired with an intelligent ecosystem and smart AI tools designed to optimize your progress. Navigate a personalized path tailored to your goals supported by an extensive library of resources and exclusive live Q&A sessions."
+  },
+  "daily-practice": {
+    "title": "Your Daily Slovene Practice",
+    "text": "We’re building a daily habit-forming experience: bite-sized, interactive exercises paired with smart AI tracking to keep you consistent and motivated. Build your fluency through personalized daily challenges—from vocabulary drills to real-world listening tasks—tailored to your current level and goals. Stay on track with progress analytics and join our global community for daily streaks that turn language learning into the best part of your routine."
+  },
+  "calendar": {
+    "controls": {
+      "month": "Month",
+      "today": "Today",
+      "day": "Day",
+      "week": "Week",
+      "num-of-days": "Number of Days",
+      "days": "{num} days",
+      "view-options": "View options",
+      "weekend": "Show weekends",
+      "my-bookings": "My bookings",
+      "show-all": "Show all"
+    },
+    "event-type": {
+      "individual": "Individual",
+      "group": "Group"
+    },
+    "event-place": {
+      "classroom": "Classroom",
+      "online": "online"
+    },
+    "sheet": {
+      "status": {
+        "booked": "Booked",
+        "available": "Available",
+        "cancelled": "Cancelled"
+      },
+      "title": "Individual session",
+      "subtitle": "with {name}",
+      "session": "Session Overview",
+      "session-status": "Available for booking",
+      "session-duration": "{time} min",
+      "session-details": "Session details",
+      "when": "When",
+      "phone": "Phone",
+      "location": "Location",
+      "buttons": {
+        "book": "Book Session",
+        "contact": "Contact tutor"
+      }
+    },
+    "booked-message": {
+      "badge": "No Availability",
+      "all": {
+        "title": "All tutors are fully booked",
+        "subtitle": "We're currently at the capacity. Please check back soon for new time slots."
+      },
+      "tutor": {
+        "title": "{tutor} is fully booked",
+        "subtitle": "Try selecting another tutor or check back later for new availability"
+      }
+    }
+  }
+}

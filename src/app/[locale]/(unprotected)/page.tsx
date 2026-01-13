@@ -26,7 +26,7 @@ export default function Home() {
         <div className="relative isolate overflow-hidden flex py-24 sm:py-32 w-full items-center justify-center">
           <div className="absolute inset-0 -z-10 gradient-primary-subtle opacity-60 dark:opacity-40" />
           <SectionTitle
-            translations={"homepage.features"}
+            translations={"root.features"}
             id="why-us"
             header={"title"}
             paragraph={"subtitle"}
@@ -37,7 +37,7 @@ export default function Home() {
         <div className="relative isolate overflow-hidden py-24 sm:py-32">
           <div className="absolute inset-0 -z-10 gradient-primary-subtle-reversed opacity-60 dark:opacity-40" />
           <SectionTitle
-            translations={"homepage.stats"}
+            translations={"root.stats"}
             id="statistics"
             header={"subtitle"}
             paragraph={"title"}
@@ -50,7 +50,7 @@ export default function Home() {
         <div className="relative isolate overflow-hidden py-24 sm:py-32">
           <div className="absolute inset-0 -z-10 gradient-primary-subtle opacity-60 dark:opacity-40" />
           <SectionTitle
-            translations={"homepage.testimonials"}
+            translations={"root.testimonials"}
             id="testimonials"
             header={"subtitle"}
             paragraph={"title"}

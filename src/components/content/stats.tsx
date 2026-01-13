@@ -20,7 +20,7 @@ export default function Stats({
     space: "py-6 px-10  lg:py-10 lg:px-20",
   },
 }: StatsProps) {
-  const t = useTranslations("homepage.stats");
+  const t = useTranslations("root.stats");
   const numbersRef = useRef([]);
 
   useGSAP(() => {

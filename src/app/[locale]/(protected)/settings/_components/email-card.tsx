@@ -16,7 +16,7 @@ import {useLocale, useTranslations} from "next-intl";
 const EmailCard = () => {
   const { user, isLoaded } = useUser();
   const locale = useLocale()
-  const t = useTranslations("dashboard.settings.account.email-address");
+  const t = useTranslations("settings.account.email-address");
 
   return (
     <Card className="w-full max-w-4xl rounded-2xl p-1 bg-accent border-none">

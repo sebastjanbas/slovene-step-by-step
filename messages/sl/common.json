@@ -1,0 +1,65 @@
+{
+  "common": {
+    "badges": {
+      "coming-soon": "Kmalu na voljo",
+      "join-waitlist": "Pridružite se čakalnemu seznamu"
+    },
+    "buttons": {
+      "get-started": "Začni zdaj",
+      "learn-more": "Izvedi več",
+      "contact-us": "Kontaktiraj nas",
+      "log-in": "Prijava",
+      "sign-up": "Ustvari račun",
+      "back-to-home": "Nazaj domov",
+      "start": "Začnite zdaj!",
+      "pricing": "Cenik",
+      "cancel": "Prekliči",
+      "cancel-booking": "Prekliči rezervacijo",
+      "reschedule": "Menjava termina",
+      "loading": "Nalaganje...",
+      "uploading": "Nalaganje...",
+      "clear": "Počisti",
+      "cancelling": "Preklic v teku...",
+      "submit": "Potrdi",
+      "resend": "Pošlji ponovno",
+      "verifying": "Preverjanje...",
+      "complete": "Končano",
+      "edit": "Uredi",
+      "save": "Shrani"
+    },
+    "forms": {
+      "email": "Email",
+      "password": "Geslo",
+      "confirm-password": "Potrdi geslo",
+      "first-name": "Ime",
+      "last-name": "Priimek",
+      "forgot-password": "Pozabljeno geslo?"
+    },
+    "navigation": {
+      "home": "Domov",
+      "courses": "Tečaji",
+      "pricing": "Cenik",
+      "about": "O nas",
+      "features": "Drugo",
+      "dashboard": "Dashboard"
+    }
+  },
+  "metadata": {
+    "home": {
+      "title": "Postani mojster slovenskega jezika",
+      "description": "Slovenščina korak za korakom nudi prilagojene ure slovenščine, v skladu z vašimi cilji. Učite se na spletu, ko vam ustreza, z izkušenimi učitelji in se pridružite podporni skupnosti z več kot 1200 člani. Začnite danes in osvojite svoje jezikovne cilje s Slovenščina korak za korakom!"
+    },
+    "about": {
+      "title": "O nas",
+      "description": "Pri Slovenščina korak za korakom smo predani zagotavljanju personaliziranih izkušenj učenja slovenskega jezika. Naša ekipa izkušenih učiteljev v kombinaciji s prilagodljivim urnikom zagotavlja, da se lahko učite v svojem tempu."
+    },
+    "pricing": {
+      "title": "Cenik",
+      "description": ""
+    },
+    "not-found": {
+      "title": "Stran ne obstaja",
+      "description": ""
+    }
+  }
+}

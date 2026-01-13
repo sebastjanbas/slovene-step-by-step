@@ -15,7 +15,7 @@ const AccountCard = () => {
   const { user, isLoaded } = useUser();
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const t = useTranslations("dashboard.settings.account")
+  const t = useTranslations("settings.account")
   const t2 = useTranslations("common.buttons")
 
   const MAX_FILE_SIZE_MB = 2;

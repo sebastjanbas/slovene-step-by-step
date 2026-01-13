@@ -15,7 +15,7 @@ const PasswordCard = () => {
   const {isLoaded} = useUser();
   const [open, setOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const t = useTranslations("dashboard.settings.account.password")
+  const t = useTranslations("settings.account.password")
 
   const handleOpenDialog = () => {
     setDropdownOpen(false);

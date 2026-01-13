@@ -28,7 +28,7 @@ const formSchema = z.object({
 
 const PasswordForm = ({setOpen}) => {
   const { user } = useUser();
-  const t = useTranslations("dashboard.settings.account.password.dialog")
+  const t = useTranslations("settings.account.password.dialog")
   const t2 = useTranslations("common.buttons")
   const [error, setError] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);

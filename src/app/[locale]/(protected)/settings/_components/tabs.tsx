@@ -7,7 +7,7 @@ import PreferencesForm from "@/app/[locale]/(protected)/settings/_components/pre
 import {useTranslations} from "next-intl";
 
 export const SettingTabs = () => {
-  const t = useTranslations("dashboard.settings.tabs");
+  const t = useTranslations("settings.tabs");
   return (
   <Tabs defaultValue="account" className="w-full">
     <div className="flex justify-center items-center">

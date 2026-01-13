@@ -7,7 +7,7 @@ import { IconChevronLeft } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 
 const NotFound = () => {
-  const t = useTranslations("errors.not-found");
+  const t = useTranslations("not-found");
   const router = useRouter();
   return (
     <>

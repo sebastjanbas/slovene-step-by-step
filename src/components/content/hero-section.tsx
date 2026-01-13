@@ -11,7 +11,7 @@ import { Button } from "../ui/button";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
-  const t = useTranslations("homepage.hero");
+  const t = useTranslations("root.hero");
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   const buttonRef = useRef(null);

@@ -1,0 +1,219 @@
+{
+  "dashboard": {
+    "greeting": "Benvenuto <important>{name}!</important>",
+    "greeting-placeholder": "Benvenuto",
+    "greeting-subheading": "Ecco cosa succede oggi",
+    "cancel-booking-dialog": {
+      "title": "Sei sicuro?",
+      "description": "Sei sicuro di voler annullare la tua prenotazione? Questa azione non può essere annullata."
+    },
+    "all-scheduled-events": {
+      "message": "Hai {count, plural, =1 {1 evento} other {# eventi}} programmati.",
+      "no-future-events": "Nessun evento futuro",
+      "upcoming-events": "Non hai sessioni in programma. Prenota una sessione per iniziare!",
+      "browse-events": "Sfoglia gli eventi",
+      "link": "Visualizza tutti",
+      "event-view-card": {
+        "title": "Tutti gli eventi",
+        "description": "Qui puoi vedere tutti i tuoi eventi programmati.",
+        "status": "{status, select, paid {Pagato} booked {Prenotato} other {Unknown}}",
+        "card-description": "Con {name}"
+      }
+    },
+    "reschedule-dialog": {
+      "title": "Rischedulare",
+      "description": "Seleziona un nuovo termine per la tua prenotazione.",
+      "current-event": "Evento corrente",
+      "with": "{theme} con {tutor}",
+      "cancel": "Annulla",
+      "reschedule": "Rischedulare prenotazione",
+      "rescheduling": "Rischedulazione...",
+      "loading": "Caricamento eventi disponibili...",
+      "select-new": "Seleziona nuovo evento",
+      "no-available-events": "Nessun evento disponibile per la rischedulazione."
+    },
+    "user-navigation": {
+      "account": "Profilo",
+      "billing": "Fatture",
+      "notifications": "Notifiche",
+      "logout": "Esci"
+    },
+    "sidebar": {
+      "main": {
+        "book-lesson": "Prenota una lezione",
+        "dashboard": "Dashboard",
+        "courses": "Corsi",
+        "calendar": "Calendario",
+        "language-club": "Club della lingua",
+        "tutors": "Tutori",
+        "daily-practice": "Pratica quotidiana",
+        "admin": "Admin Dashboard",
+        "language-club-admin": "Admin Club della lingua",
+        "bookings": "Prenotazioni",
+        "my-lessons": "Le mie lezioni",
+        "achievements": "Risultati",
+        "progress": "Progresso"
+      },
+      "secondary": {
+        "settings": "Impostazioni",
+        "get-help": "Aiuto"
+      }
+    },
+    "calendar": {
+      "today-button": "Oggi"
+    },
+    "language-club": {
+      "title": "Club linguistico",
+      "subtitle": "Pianifica e gestisci le tue sessioni di apprendimento linguistico",
+      "calendar-title": "Calendario eventi",
+      "no-events-scheduled": "Nessun evento programmato",
+      "no-events-description": "Clicca su qualsiasi data per visualizzare le sessioni disponibili",
+      "events-for-date": "Eventi per {date}",
+      "view-details": "Visualizza dettagli"
+    },
+    "stats": {
+      "total-upcoming": "Totale in arrivo",
+      "language-club": "Eventi del club linguistico",
+      "personal-sessions": "Sessioni personali",
+      "completed": "Sessioni completate",
+      "description": {
+        "upcoming": "Eventi programmati",
+        "language-club": "Sessioni di gruppo",
+        "personal-sessions": "Lezioni individuali",
+        "completed": "Sessioni passate"
+      }
+    },
+    "events": {
+      "next-event": "Il tuo prossimo evento",
+      "no-events": "Nessun evento programmato per {date}",
+      "event-on": "Eventi per {date}",
+      "event-tutor": "con {tutor}",
+      "event-location": "Location: ",
+      "event-duration": "Durata: {duration} minuti",
+      "calendar-title": "Il tuo calendario",
+      "calendar-description": "Visualizza i tuoi eventi per questo giorno",
+      "language-club": "Club linguistico",
+      "personal-session": "Sessione personale",
+      "tooltip": {
+        "level": "Livello richiesto: {level} livello",
+        "duration": "{duration} minuti",
+        "spots": {
+          "no-spots": "Nessun posto disponibile",
+          "spots-left": "{spots} posti disponibili"
+        }
+      },
+      "processing": "In corso...",
+      "book-now": "Prenota ora"
+    }
+  },
+  "settings": {
+    "tabs": {
+      "account": "Profilo",
+      "billing": "Fatturazione",
+      "notifications": "Notifiche"
+    },
+    "account": {
+      "personal-info": {
+        "title": "Informazioni personali",
+        "update-avatar": "Aggiorna avatar",
+        "image-text": "Dimensione consigliata 1:1, fino a 2 MB",
+        "first-name": "Nome",
+        "last-name": "Cognome"
+      },
+      "email-address": {
+        "title": "Indirizzi email",
+        "verified-text": "Questa email è verificata",
+        "unverified-badge": "Non verificato",
+        "primary-badge": "Primary",
+        "added-text": "Aggiunto il {date}"
+      },
+      "password": {
+        "title": "Password",
+        "change-password": "cambiare la password",
+        "dialog": {
+          "title": "cambiare la password",
+          "subtitle": "Inserisci la tua nuova password",
+          "new": "nuova password",
+          "new-placeholder": "Inserisci la nuova password",
+          "confirm": "Conferma password",
+          "verification": {
+            "title": "Verifica la tua email",
+            "subtitle": "Inserisci il codice di verifica inviato alla tua email",
+            "no-code": "Non hai ricevuto il codice?"
+          }
+        }
+      },
+      "learning-preferences": {
+        "title": "Preferenze di apprendimento",
+        "text": "Personalizza la tua esperienza e i tuoi obiettivi di studio",
+        "current-lang-level": "Livello linguistico attuale",
+        "warning-level": "Il livello linguistico non può essere modificato",
+        "tutor": "Tutor preferito",
+        "learning-goals": "Obiettivi di apprendimento",
+        "preferred-time": "Orario di studio preferito",
+        "error": "Non hai ancora impostato le tue preferenze di apprendimento. Completa l'onboarding per iniziare."
+      }
+    }
+  },
+  "courses": {
+    "title": "Molto più di un semplice corso video",
+    "subtitle": "Stiamo creando un nuovo modo per padroneggiare lo sloveno: lezioni cinematografiche abbinate a un ecosistema intelligente e strumenti AI progettati per ottimizzare i tuoi progressi. Segui un percorso personalizzato in base ai tuoi obiettivi supportato da una vasta libreria di risorse e sessioni live di Q&A."
+  },
+  "daily-practice": {
+    "title": "Ваша ежедневная практика словенского",
+    "text": "Мы создаем систему для формирования ежедневных привычек: короткие интерактивные упражнения в сочетании с умным ИИ-мониторингом для поддержания вашей регулярности и мотивации. Развивайте свободную речь с помощью персональных ежедневных заданий — от тренировки лексики до реальных упражнений на аудирование — адаптированных под ваш уровень и цели. Следите за своим прогрессом с помощью аналитики и присоединяйтесь к нашему глобальному сообществу, превращая изучение языка в лучшую часть вашего дня."
+  },
+  "calendar": {
+    "controls": {
+      "month": "Mese",
+      "today": "Oggi",
+      "day": "Giorno",
+      "week": "Settimana",
+      "num-of-days": "Numero di giorni",
+      "days": "{num} giorni",
+      "view-options": "Opzioni di visualizzazione",
+      "weekend": "Mostra weekend",
+      "my-bookings": "Le mie prenotazioni",
+      "show-all": "Mostra tutto"
+    },
+    "event-type": {
+      "individual": "Individuale",
+      "group": "Di gruppo"
+    },
+    "event-place": {
+      "classroom": "In aula",
+      "online": "Online"
+    },
+    "sheet": {
+      "status": {
+        "booked": "Prenotato",
+        "available": "Disponibile",
+        "cancelled": "Annullato"
+      },
+      "title": "Sessione individuale",
+      "subtitle": "con {name}",
+      "session": "Panoramica della sessione",
+      "session-status": "Disponibile per la prenotazione",
+      "session-duration": "{time} min",
+      "session-details": "Dettagli della sessione",
+      "when": "Quando",
+      "phone": "Telefono",
+      "location": "Luogo",
+      "buttons": {
+        "book": "Prenota sessione",
+        "contact": "Contatta il tutor"
+      }
+    },
+    "booked-message": {
+      "badge": "Nessuna disponibilità",
+      "all": {
+        "title": "Tutti i tutor sono al completo",
+        "subtitle": "Al momento siamo al massimo della capacità. Torna a controllare presto per nuovi orari disponibili."
+      },
+      "tutor": {
+        "title": "{tutor} è al completo",
+        "subtitle": "Prova a selezionare un altro tutor o ricontrolla più tardi per nuove disponibilità."
+      }
+    }
+  }
+}

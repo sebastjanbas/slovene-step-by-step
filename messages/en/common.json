@@ -1,0 +1,65 @@
+{
+  "common": {
+    "badges": {
+      "coming-soon": "Coming soon",
+      "join-waitlist": "Joing the waitlist"
+    },
+    "buttons": {
+      "get-started": "Get started",
+      "learn-more": "Learn more",
+      "contact-us": "Contact us",
+      "log-in": "Log in",
+      "sign-up": "Create an account",
+      "back-to-home": "Back to home",
+      "start": "Start Your Journey",
+      "pricing": "View Pricing",
+      "cancel": "Cancel",
+      "cancel-booking": "Cancel booking",
+      "reschedule": "Reschedule",
+      "loading": "Loading...",
+      "uploading": "Uploading...",
+      "clear": "Clear",
+      "cancelling": "Cancelling...",
+      "submit": "Submit",
+      "resend": "Resend",
+      "verifying": "Verifying...",
+      "complete": "Complete",
+      "edit": "Edit",
+      "save": "Save"
+    },
+    "forms": {
+      "email": "Email",
+      "password": "Password",
+      "confirm-password": "Confirm Password",
+      "first-name": "First Name",
+      "last-name": "Last Name",
+      "forgot-password": "Forgot password?"
+    },
+    "navigation": {
+      "home": "Home",
+      "courses": "Courses",
+      "pricing": "Pricing",
+      "about": "About",
+      "features": "Features",
+      "dashboard": "Dashboard"
+    }
+  },
+  "metadata": {
+    "home": {
+      "title": "Become fluent in Slovene",
+      "description": "Slovene Step by Step personalized Slovene lessons tailored to your goals. Learn online at your convenience with experienced teachers and join a supportive community of over 1,200 members. Start today and achieve your language goals with Slovene Step by Step!"
+    },
+    "about": {
+      "title": "About us",
+      "description": "At Slovene Step by Step, we are dedicated to providing personalized Slovenian language learning experiences. Our team of experienced teachers, combined with a flexible schedule, ensures that you can learn at your own pace."
+    },
+    "pricing": {
+      "title": "Pricing",
+      "description": ""
+    },
+    "not-found": {
+      "title": "Not Found",
+      "description": ""
+    }
+  }
+}

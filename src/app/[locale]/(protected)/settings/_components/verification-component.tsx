@@ -25,7 +25,7 @@ export function VerificationComponent({
   onCancel: () => void;
 }) {
   const { session } = useSession();
-  const t = useTranslations("dashboard.settings.account.password.dialog.verification")
+  const t = useTranslations("settings.account.password.dialog.verification")
   const t2 = useTranslations("common.buttons")
   const [code, setCode] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);

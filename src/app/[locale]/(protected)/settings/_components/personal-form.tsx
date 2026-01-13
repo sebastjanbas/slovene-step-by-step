@@ -24,7 +24,7 @@ const formSchema = z.object({
 });
 
 const PersonalForm = ({ user, isLoaded }: { user: any; isLoaded: boolean }) => {
-  const t = useTranslations("dashboard.settings.account.personal-info")
+  const t = useTranslations("settings.account.personal-info")
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

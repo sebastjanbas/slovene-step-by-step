@@ -6,8 +6,8 @@ import {useTranslations} from "next-intl";
 
 
 const CoursePage = () => {
-  const t = useTranslations("dashboard.courses")
-  const t2 = useTranslations("common.badge")
+  const t = useTranslations("courses")
+  const t2 = useTranslations("common.badges")
   return (
   <div className="flex flex-col p-6 min-h-[calc(100vh-var(--header-height))]">
     {/* Main Content - Two Column Layout */}

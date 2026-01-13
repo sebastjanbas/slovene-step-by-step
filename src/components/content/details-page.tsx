@@ -49,7 +49,7 @@ export default function DetailsPageHero() {
     });
   });
 
-  const t = useTranslations("homepage.why-slovene");
+  const t = useTranslations("root.why-slovene");
 
   return (
     <div className="relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:px-8">

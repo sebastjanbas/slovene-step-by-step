@@ -1,0 +1,65 @@
+{
+  "common": {
+    "badges": {
+      "coming-soon": "Prossimamente",
+      "join-waitlist": "Iscriviti alla lista d'attesa"
+    },
+    "buttons": {
+      "get-started": "Iniziare",
+      "learn-more": "Scopri di più",
+      "contact-us": "Contattaci",
+      "log-in": "Accedi",
+      "sign-up": "Crea un account",
+      "back-to-home": "Torna alla home page",
+      "start": "Inizia oggi stesso!",
+      "pricing": "Visualizza i prezzi",
+      "cancel": "Annulla",
+      "cancel-booking": "Annulla prenotazione",
+      "reschedule": "Rischedulare",
+      "loading": "Caricamento...",
+      "uploading": "Caricamento...",
+      "clear": "Cancellare",
+      "cancelling": "Cancellazione...",
+      "submit": "Invia",
+      "resend": "Rinviare",
+      "verifying": "Verifica...",
+      "complete": "Completa",
+      "edit": "Modifica",
+      "save": "Salva"
+    },
+    "forms": {
+      "email": "Email",
+      "password": "Password",
+      "confirm-password": "Conferma password",
+      "first-name": "Nome di battesimo",
+      "last-name": "Cognome",
+      "forgot-password": "Ha dimenticato la password?"
+    },
+    "navigation": {
+      "home": "Home",
+      "courses": "Corsi",
+      "pricing": "Prezzi",
+      "about": "Chi siamo",
+      "features": "Features",
+      "dashboard": "Dashboard"
+    }
+  },
+  "metadata": {
+    "home": {
+      "title": "Diventa fluente in sloveno",
+      "description": "Lezioni di sloveno personalizzate passo dopo passo, su misura per i tuoi obiettivi. Impara online quando vuoi con insegnanti esperti e unisciti a una comunità di supporto di oltre 1.200 membri. Inizia oggi e raggiungi i tuoi obiettivi linguistici con Slovenščina Korak za Korakom!"
+    },
+    "about": {
+      "title": "Chi siamo",
+      "description": "In Slovenščina Korak za Korakom, ci dedichiamo a fornire esperienze di apprendimento della lingua slovena personalizzate. Il nostro team di insegnanti esperti, unito a un programma flessibile, garantisce che tu possa imparare al tuo ritmo."
+    },
+    "pricing": {
+      "title": "Pricing",
+      "description": ""
+    },
+    "not-found": {
+      "title": "Not Found",
+      "description": ""
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "welcome": {
+    "title": "Dobrodošli pri",
+    "description": "Ustvarite svojo učno pot.",
+    "progress": {
+      "steps": "Korak {step} od {total}",
+      "complete": "{percentage}% Dokončano"
+    },
+    "navigation": {
+      "back": "Nazaj",
+      "next": "Naprej",
+      "complete": "Dokončaj",
+      "completing": "Shranjevanje..."
+    },
+    "par1": {
+      "title": "Ugotovimo vašo raven slovenščine",
+      "description": "Opravite naš hiter razvrstilni test, ki nam bo pomagal izbrati prave lekcije in gradiva."
+    },
+    "placementTest": {
+      "levelProgress": "Raven: {level} ({current}/{total})",
+      "questionProgress": "Vprašanje {current} od {total}",
+      "checkAnswer": "Preveri odgovor",
+      "correctFeedback": "Pravilno! Odlično!",
+      "incorrectFeedback": "Ni popolnoma pravilno, a nadaljuj!",
+      "testComplete": "Test zaključen!",
+      "testCompleteDescription": "Vaša jezikovna raven je določena",
+      "yourLevel": "Vaša raven",
+      "levelDescription": "Na podlagi vaših odgovorov smo vas uvrstili na raven {level}",
+      "continue": "Nadaljuj",
+      "correctAnswers": "{correct}/{total} pravilnih"
+    },
+    "par2": {
+      "title": "Izberite svojega učitelja",
+      "description": "Izberite učitelja, ki ustreza vašim ciljem in stilu učenja.",
+      "info-message": "Tutorja lahko spremenite kasneje."
+    },
+    "par3": {
+      "title": "Kakšni so vaši cilji učenja?",
+      "description": "Izberite vse, kar ustreza - to nam pomaga prilagoditi vašo izkušnjo."
+    },
+    "par4": {
+      "title": "Kdaj bi radučili učiti?",
+      "description": "Poskusili bomo najbolje urediti vaše ure v teh časih."
+    }
+  }
+}

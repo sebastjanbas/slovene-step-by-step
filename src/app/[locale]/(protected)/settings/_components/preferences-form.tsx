@@ -18,7 +18,7 @@ const PreferencesForm = () => {
   const locale = useLocale();
   const [preferences, setPreferences] = useState<UserPreferences | null>(null);
   const [isEditing, setIsEditing] = useState(false);
-  const t = useTranslations("dashboard.settings.account.learning-preferences")
+  const t = useTranslations("settings.account.learning-preferences")
   const t2 = useTranslations("common.buttons")
 
   useEffect(() => {

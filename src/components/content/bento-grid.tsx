@@ -66,7 +66,7 @@ export default function BentoGrid() {
     });
   });
 
-  const t = useTranslations("homepage.features.cards");
+  const t = useTranslations("root.features.cards");
 
   // 3D Card Effect Hook
   const use3DCard = () => {

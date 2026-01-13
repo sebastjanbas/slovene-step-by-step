@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 const Carousel = ({ data, stars = false }) => {
-  const t = useTranslations("homepage.testimonials");
+  const t = useTranslations("root.testimonials");
   return (
     <>
       <div className="relative select-none lg:px-4">
