@@ -172,8 +172,8 @@
   --sl-secondary: oklch(75% 0.1 280); /* Medium purple */
   --sl-accent: oklch(70% 0.18 320); /* Vibrant purple-pink */
   --sl-accent-hover: oklch(65% 0.2 315); /* Deeper purple-pink */
-  /*--sl-blue: oklch(60% 0.2 240); !* Modern blue *!*/
-  --sl-blue: oklch(0.71 0.056 18.552); /* Modern blue */
+  /*--sl-blue: oklch(0.71 0.056 18.552); !* Modern blue *!*/
+  --sl-blue: oklch(60% 0.2 240); /* Modern blue */
   --sl-purple: oklch(65% 0.18 290); /* Soft purple */
   --sl-pink: oklch(75% 0.15 340); /* Light pink */
   --sl-gradient-start: oklch(60% 0.2 240); /* Blue */
@@ -199,4 +199,75 @@
   body {
     @apply bg-background text-foreground antialiased;
   }
+}
+/* Modern gradient utilities */
+@layer utilities {
+  .gradient-primary {
+    background: linear-gradient(
+      135deg,
+      oklch(55% 0.18 240) 0%,
+      oklch(60% 0.16 290) 50%,
+      oklch(75% 0.12 340) 100%
+    );
+  }
+
+  .gradient-primary-subtle {
+    background: linear-gradient(
+      135deg,
+      oklch(97% 0.02 240) 0%,
+      oklch(98% 0.015 290) 50%,
+      oklch(99% 0.01 340) 100%
+    );
+  }
+
+  .gradient-primary-subtle-reversed {
+    background: linear-gradient(
+      225deg,
+      oklch(99% 0.01 340) 0%,
+      oklch(98% 0.015 290) 50%,
+      oklch(97% 0.02 240) 100%
+    );
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      oklch(55% 0.18 240) 0%,
+      oklch(60% 0.16 290) 50%,
+      oklch(75% 0.12 340) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+  }
+
+  .dark .glass {
+    background: transparent;
+    backdrop-filter: brightness(0.8) blur(10px) saturate(180%);
+    -webkit-backdrop-filter: brightness(0.8) blur(10px) saturate(180%);
+  }
+}
+
+.dark .gradient-primary-subtle {
+  background: linear-gradient(
+    135deg,
+    oklch(20% 0.03 240) 0%,
+    oklch(22% 0.025 290) 50%,
+    oklch(24% 0.02 340) 100%
+  );
+}
+
+.dark .gradient-primary-subtle-reversed {
+  background: linear-gradient(
+    225deg,
+    oklch(24% 0.02 340) 0%,
+    oklch(22% 0.025 290) 50%,
+    oklch(20% 0.03 240) 100%
+  );
 }

@@ -145,7 +145,10 @@ export const offers = [
     name: "Duo Plan",
     id: "tier-duo",
     href: "/dashboard",
-    priceMonthly: "€12.50",
+    priceMonthly: {
+      senior: "€13.00",
+      junior: "€11.00"
+    },
     description: "plan1-desc",
     features: [
       "plan1-feature1",
@@ -161,10 +164,13 @@ export const offers = [
     featured: false,
   },
   {
-    name: "Individual",
+    name: "Individual 60",
     id: "tier-individual",
     href: "dashboard",
-    priceMonthly: "€16",
+    priceMonthly: {
+      senior: "€22.00",
+      junior: "€20.00"
+    },
     description: "plan2-desc",
     features: [
       "plan2-feature1",
@@ -180,10 +186,13 @@ export const offers = [
     featured: true,
   },
   {
-    name: "Family Plan",
+    name: "Individual 45",
     id: "tier-family",
     href: "/dashboard",
-    priceMonthly: "€11",
+    priceMonthly: {
+      senior: "€17.00",
+      junior: "€15.00"
+    },
     description: "plan3-desc",
     features: [
       "plan3-feature1",
