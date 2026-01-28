@@ -16,7 +16,7 @@ import {useLocale, useTranslations} from "next-intl";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {updateLanguageLevel, updateUserPreferences, UserPreferences} from "@/actions/user-actions";
 import {toast} from "sonner";
-import {learningGoals, scheduleOptions, tutors,} from "@/lib/docs";
+import {learningGoals, tutors,} from "@/lib/docs";
 import {clearPlacementTestState, PlacementTest} from "@/components/welcome/PlacementTest";
 import {cn} from "@/lib/utils";
 
@@ -34,7 +34,7 @@ const WelcomePage = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const totalSteps = 4;
+  const totalSteps = 3;
 
   useEffect(() => {
     if (isLoaded && user) {
@@ -73,8 +73,6 @@ const WelcomePage = () => {
         return preferences.preferredTutor !== 0;
       case 3:
         return preferences.learningGoals.length > 0;
-      case 4:
-        return preferences.preferredSchedule !== "";
       default:
         return false;
     }
@@ -178,7 +176,7 @@ const WelcomePage = () => {
                         <div className="flex flex-col items-center gap-3 w-full">
                           <h3 className="font-semibold text-lg">{tutor.name}</h3>
                           <ul className="text-sm text-muted-foreground space-y-2 w-full">
-                            {tutor.description[locale].split(",").map((item, idx) => (
+                            {tutor.description[locale].split(",").map((item: string, idx: React.Key) => (
                               <li
                                 key={idx}
                                 className="flex items-center gap-2 justify-center"
@@ -222,7 +220,7 @@ const WelcomePage = () => {
               </div>
 
               {/* Learning Goals Grid - Clean Minimal Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-4xl mx-auto">
                 {learningGoals.map((goal) => {
                   const isSelected = preferences.learningGoals.includes(goal.value);
                   return (
@@ -254,66 +252,6 @@ const WelcomePage = () => {
                         {isSelected && (
                           <div className="absolute top-5 right-5">
                             <IconCheck className="h-4 w-4 text-primary"/>
-                          </div>
-                        )}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        );
-
-      case 4:
-        return (
-          <div className="flex flex-col h-full w-full justify-between">
-            {/* Header */}
-            <div className="space-y-10">
-              <div className="text-center space-y-3 mb-8">
-                <h2 className="text-3xl font-semibold tracking-tight">{t("par4.title")}</h2>
-                <p className="text-base text-muted-foreground">{t("par4.description")}</p>
-              </div>
-
-              {/* Schedule Options - Clean Minimal Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-3xl mx-auto">
-                {scheduleOptions.map((schedule) => {
-                  const isSelected = preferences.preferredSchedule === schedule.value;
-                  return (
-                    <button
-                      key={schedule.value}
-                      onClick={() => handlePreferenceChange("preferredSchedule", schedule.value)}
-                      className={cn(
-                        "relative w-full p-6 rounded-xl border transition-all duration-200",
-                        "hover:border-foreground/20 hover:bg-foreground/[0.02]",
-                        "dark:hover:bg-foreground/[0.05] text-center",
-                        isSelected
-                          ? "border-primary bg-primary/5 dark:bg-primary/10"
-                          : "border-border/50"
-                      )}
-                    >
-                      <div className="flex flex-col items-center gap-4">
-                        {/* Icon */}
-                        <div className="text-5xl">
-                          {schedule.icon}
-                        </div>
-
-                        {/* Label & Time */}
-                        <div className="space-y-2">
-                          <h3 className="font-semibold text-base">
-                            {schedule.label[locale]}
-                          </h3>
-                          <p className="text-sm text-muted-foreground">
-                            {schedule.value === "flexible"
-                              ? schedule.time[locale]
-                              : schedule.time}
-                          </p>
-                        </div>
-
-                        {/* Selection Indicator */}
-                        {isSelected && (
-                          <div className="absolute top-5 right-5">
-                            <IconCheck className="h-5 w-5 text-primary"/>
                           </div>
                         )}
                       </div>

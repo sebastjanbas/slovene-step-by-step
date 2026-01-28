@@ -10,7 +10,7 @@ import {IconCheck, IconChecks, IconEdit, IconX} from "@tabler/icons-react";
 import {toast} from "sonner";
 import {getUserPreferences, updateUserPreferences, UserPreferences, getEmailLocale, updateEmailLocale,} from "@/actions/user-actions";
 import {Skeleton} from "@/components/ui/skeleton";
-import {languageLevels, learningGoals, scheduleOptions, tutors,} from "@/lib/docs";
+import {languageLevels, learningGoals, tutors,} from "@/lib/docs";
 import {useLocale, useTranslations} from "next-intl";
 
 const PreferencesForm = () => {
@@ -155,9 +155,9 @@ const PreferencesForm = () => {
           <h3 className="font-semibold mb-3">{t("current-lang-level")}</h3>
           <div className="p-3 rounded-lg bg-muted/30">
             <p className="font-medium">
-              {languageLevels.find(
+              {(languageLevels.find(
                 (l) => l.value === preferences.languageLevel
-              )?.label[locale] || "-"}
+              ) || languageLevels.find((l) => l.value === "A1"))?.label[locale]}
             </p>
             <p className="text-xs text-muted-foreground mt-1">
               {t("warning-level")}
@@ -239,45 +239,6 @@ const PreferencesForm = () => {
                   {goal[locale]}
                 </Badge>
               ))}
-            </div>
-          )}
-        </div>
-
-        <Separator/>
-
-        {/* Preferred Schedule */}
-        <div>
-          <h3 className="font-semibold mb-3">{t("preferred-time")}</h3>
-          {isEditing ? (
-            <div className="grid gap-2">
-              {scheduleOptions.map((schedule) => (
-                <div
-                  key={schedule.value}
-                  className={`p-3 border rounded-lg cursor-pointer transition-all ${
-                    preferences.preferredSchedule === schedule.value
-                      ? "border-primary bg-primary/5"
-                      : "border-gray-200 hover:border-gray-300"
-                  }`}
-                  onClick={() =>
-                    handlePreferenceChange("preferredSchedule", schedule.value)
-                  }
-                >
-                  <div className="flex items-center justify-between">
-                    <p className="font-medium">{schedule.label[locale]}</p>
-                    {preferences.preferredSchedule === schedule.value && (
-                      <IconCheck className="h-5 w-5 text-primary"/>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="p-3 rounded-lg">
-              <p className="font-medium">
-                {scheduleOptions.find(
-                  (s) => s.value === preferences.preferredSchedule
-                )?.label[locale] || "Not set"}
-              </p>
             </div>
           )}
         </div>
