@@ -607,6 +607,7 @@ const CancellationConfEmailContent = ({
           <Row>
             <Column align="center">
               <table style={{ margin: "0 auto" }}>
+                <tbody>
                 <tr>
                   <td style={{ padding: "0 12px" }}>
                     <Link
@@ -661,6 +662,7 @@ const CancellationConfEmailContent = ({
                     </Link>
                   </td>
                 </tr>
+                </tbody>
               </table>
             </Column>
           </Row>

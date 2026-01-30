@@ -9,7 +9,7 @@ import {
 import { auth } from "@clerk/nextjs/server";
 import {asc, eq, and, or, gt} from "drizzle-orm";
 import React from "react";
-import {generateRecurringSessions, getRegularInvitations} from "@/actions/regulars";
+import {getRegularSessions} from "@/actions/regulars";
 
 import DashboardClient from "./_components/dashboard-client";
 import DashboardStats from "./_components/dashboard-stats";
@@ -73,10 +73,8 @@ const DashboardPage = async ({ params }) => {
     .innerJoin(tutorsTable, eq(timeblocksTable.tutorId, tutorsTable.id))
     .orderBy(asc(timeblocksTable.startTime));
 
-  // Fetch accepted regular invitations
-  const regularInvitations = await getRegularInvitations()
-  // Generate recurring sessions from regular invitations
-  const regularSessions = await generateRecurringSessions(regularInvitations, userId);
+  // Fetch regular sessions (automatically filters out cancelled sessions)
+  const regularSessions = await getRegularSessions();
 
   return (
     <main className="w-full h-full flex flex-col gap-8 p-8 md:p-10 lg:p-12">

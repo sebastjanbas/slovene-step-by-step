@@ -4,7 +4,7 @@ import { db } from "@/db";
 import { schedulesTable, timeblocksTable, tutorsTable } from "@/db/schema";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { TutoringSession } from "@/components/calendar/types";
-import { and, eq } from "drizzle-orm";
+import { and, eq, gte, lt } from "drizzle-orm";
 import SessionConfEmail from "@/emails/session-conf-email";
 import CancellationConfEmail from "@/emails/cancellation-conf-email";
 import TutorSessionConfEmail from "@/emails/tutor-session-conf-email";
@@ -73,6 +73,39 @@ export const bookSession = async (data: TutoringSession) => {
 
     if (!tutor) {
       return { message: "Tutor not found", status: 404 };
+    }
+
+    // Check if slot is already booked (prevent double booking)
+    const newSlotStart = new Date(data.startTime);
+    const newSlotEnd = new Date(newSlotStart.getTime() + data.duration * 60000);
+
+    // Query for existing bookings for this tutor on the same day
+    const dayStart = new Date(newSlotStart);
+    dayStart.setHours(0, 0, 0, 0);
+    const dayEnd = new Date(newSlotStart);
+    dayEnd.setHours(23, 59, 59, 999);
+
+    const existingBookings = await db
+      .select()
+      .from(timeblocksTable)
+      .where(
+        and(
+          eq(timeblocksTable.tutorId, data.tutorId),
+          eq(timeblocksTable.status, "booked"),
+          gte(timeblocksTable.startTime, dayStart),
+          lt(timeblocksTable.startTime, dayEnd),
+        )
+      );
+
+    // Check for time overlap with existing bookings
+    for (const existing of existingBookings) {
+      const existingStart = new Date(existing.startTime);
+      const existingEnd = new Date(existingStart.getTime() + existing.duration * 60000);
+
+      // Overlap: new starts before existing ends AND new ends after existing starts
+      if (newSlotStart < existingEnd && newSlotEnd > existingStart) {
+        return { message: "This time slot is no longer available", status: 409 };
+      }
     }
 
     // Insert the session

@@ -40,6 +40,7 @@ export const EventSheet = (props: EventSheetProps) => {
   const tCancel = useTranslations("dashboard.cancel-regular-session-dialog")
 
   const [cancelDialogOpen, setCancelDialogOpen] = useState(false);
+  const [isBooking, setIsBooking] = useState(false);
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString(locale, {
@@ -71,14 +72,20 @@ export const EventSheet = (props: EventSheetProps) => {
   );
 
   const onBookSesson = async (session: TutoringSession) =>{
+    if (isBooking) return; // Prevent double-clicks
 
-    const response = await bookSession(session);
-    if (response.status === 200) {
-      router.refresh();
-      toast.success(response.message);
-      props.setIsEventSheetOpen(false);
-    } else {
-     toast.error(response.message);
+    setIsBooking(true);
+    try {
+      const response = await bookSession(session);
+      if (response.status === 200) {
+        router.refresh();
+        toast.success(response.message);
+        props.setIsEventSheetOpen(false);
+      } else {
+        toast.error(response.message);
+      }
+    } finally {
+      setIsBooking(false);
     }
   }
 
@@ -258,9 +265,14 @@ export const EventSheet = (props: EventSheetProps) => {
                     className="flex-1 shadow-sm hover:shadow-md transition-all duration-200"
                     size="sm"
                     onClick={() => onBookSesson(props.selectedSession)}
+                    disabled={isBooking}
                   >
-                    <IconCalendarEvent className="h-4 w-4 mr-2" />
-                    {t("buttons.book")}
+                    {isBooking ? (
+                      <span className="h-4 w-4 mr-2 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                    ) : (
+                      <IconCalendarEvent className="h-4 w-4 mr-2" />
+                    )}
+                    {isBooking ? t("buttons.booking") || "Booking..." : t("buttons.book")}
                   </Button>
                 ) : props.selectedSession.status === "regular" ? (
                   // Regular session actions

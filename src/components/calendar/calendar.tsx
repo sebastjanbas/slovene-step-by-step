@@ -249,10 +249,23 @@ export default function Calendar({
       // Combine personal booked sessions with regular sessions
       return [...personalBooked, ...regularSessions];
     }
+
+    // Filter out available slots that overlap with booked sessions
+    const filteredAvailableSlots = availableSlots.filter((slot) => {
+      // Check if this slot overlaps with any booked session for the same tutor
+      const isBooked = bookedSessions.some((booked) => {
+        const sameTutor = String(slot.tutorId) === String(booked.tutorId);
+        // Time overlap: slot starts before booked ends AND slot ends after booked starts
+        const timeOverlap = slot.startTime < booked.endTime && slot.endTime > booked.startTime;
+        return sameTutor && timeOverlap;
+      });
+      return !isBooked;
+    });
+
     if (selectedTutorId === null) {
-      return availableSlots;
+      return filteredAvailableSlots;
     } else {
-      return availableSlots.filter(
+      return filteredAvailableSlots.filter(
         (event: TutoringSession) => event.tutorId === selectedTutorId,
       );
     }
