@@ -1,5 +1,5 @@
 "use client";
-import React, {useMemo, useState, useRef, useCallback, useEffect} from "react";
+import {useMemo, useState, useRef, useCallback, useEffect} from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -88,7 +88,6 @@ const UnifiedCalendar = ({
     sessionDate: Date;
     tutorName: string;
   } | null>(null);
-  const tCancelRegular = useTranslations("dashboard.cancel-regular-session-dialog");
 
   // Transform events to FullCalendar format
   const calendarEvents = useMemo(() => {
@@ -338,7 +337,7 @@ const UnifiedCalendar = ({
     updateCalendarTitle();
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     updateCalendarTitle();
   }, [updateCalendarTitle]);
 
@@ -454,7 +453,7 @@ const UnifiedCalendar = ({
                   </SheetTitle>
                   <SheetDescription className="text-[14px] text-muted-foreground mt-3 leading-relaxed">
                     {eventsOnSelectedDay.length > 0
-                      ? `${eventsOnSelectedDay.length} ${eventsOnSelectedDay.length === 1 ? "event" : "events"} scheduled`
+                      ? t("events-scheduled", {events: eventsOnSelectedDay.length})
                       : t("calendar-description") ||
                         "View your events for this day"}
                   </SheetDescription>
@@ -468,9 +467,6 @@ const UnifiedCalendar = ({
                     <div className="w-20 h-20 rounded-full bg-muted/20 flex items-center justify-center mb-5">
                       <IconCalendar className="h-10 w-10 text-muted-foreground/30" />
                     </div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">
-                      No events on this day
-                    </h3>
                     <p className="text-sm text-muted-foreground text-center max-w-[280px] leading-relaxed">
                       {t("no-events", {
                         date: (selectedDate || new Date()).toLocaleDateString(
@@ -485,36 +481,21 @@ const UnifiedCalendar = ({
                   </div>
                 ) : (
                   <div className="px-6 py-6 space-y-6">
-                    {/* Summary Cards */}
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="bg-white dark:bg-[#252525] rounded-xl px-5 py-4 border border-border/10 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow duration-200">
-                        <div className="text-[11px] font-medium text-muted-foreground/80 mb-2.5 uppercase tracking-[0.5px]">
-                          Total Events
-                        </div>
-                        <div className="text-[36px] font-bold text-foreground leading-none">
-                          {eventsOnSelectedDay.length}
-                        </div>
-                      </div>
-                      <div className="bg-white dark:bg-[#252525] rounded-xl px-5 py-4 border border-border/10 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow duration-200">
-                        <div className="text-[11px] font-medium text-muted-foreground/80 mb-2.5 uppercase tracking-[0.5px]">
-                          Language Club
-                        </div>
-                        <div className="text-[36px] font-bold text-foreground leading-none">
-                          {
-                            eventsOnSelectedDay.filter(
-                              (e) => e.type === "language-club",
-                            ).length
-                          }
-                        </div>
-                      </div>
-                    </div>
-
                     {/* Events List */}
                     <div className="space-y-4 pt-2">
-                      <div className="text-[11px] font-semibold text-muted-foreground/70 uppercase tracking-[0.5px] px-1">
-                        Events
-                      </div>
-                      {eventsOnSelectedDay.map((event) => (
+                    <div className="text-[11px] font-semibold text-muted-foreground/70 uppercase tracking-[0.5px] px-1">
+                      {t("events")}
+                    </div>
+                    {eventsOnSelectedDay.map((event) => {
+                      const isLanguageClub = event.type === "language-club";
+                      const isRegular = event.type === "regulars";
+                      const iconContainerStyle = isLanguageClub
+                        ? {background: "linear-gradient(to bottom right, var(--sl-purple), var(--sl-blue))"}
+                        : isRegular
+                        ? {background: `linear-gradient(to bottom right, ${event.tutorColor || "var(--sl-green)"}, var(--sl-blue))`}
+                        : {background: "linear-gradient(to bottom right, var(--sl-blue), var(--sl-pink))"};
+
+                      return (
                         <div
                           key={`${event.type}-${event.id}`}
                           className="group relative bg-white dark:bg-[#252525] rounded-xl border border-border/10 dark:border-white/5 p-5 shadow-sm hover:shadow-md hover:-translate-y-[1px] transition-all duration-200"
@@ -522,15 +503,9 @@ const UnifiedCalendar = ({
                           <div className="flex items-start gap-4">
                             <div
                               className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"
-                              style={
-                                event.type === "language-club"
-                                  ? {background: "linear-gradient(to bottom right, var(--sl-purple), var(--sl-blue))"}
-                                  : event.type === "regulars"
-                                  ? {background: `linear-gradient(to bottom right, ${event.tutorColor || "var(--sl-green)"}, var(--sl-blue))`}
-                                  : {background: "linear-gradient(to bottom right, var(--sl-blue), var(--sl-pink))"}
-                              }
+                              style={iconContainerStyle}
                             >
-                              {event.type === "language-club" ? (
+                              {isLanguageClub ? (
                                 <IconUsers className="h-5 w-5 text-white" />
                               ) : (
                                 <IconUser className="h-5 w-5 text-white" />
@@ -541,21 +516,21 @@ const UnifiedCalendar = ({
                               <div className="space-y-1.5">
                                 <div className="flex items-center gap-2.5 flex-wrap">
                                   <h4 className="font-semibold text-[15px] text-foreground leading-tight">
-                                    {event.theme}
+                                    {isRegular ? t("regular-session"): event.theme}
                                   </h4>
                                   <Badge
                                     variant="outline"
                                     className={
-                                      event.type === "language-club"
+                                      isLanguageClub
                                         ? "border-[var(--sl-purple)]/30 text-[var(--sl-purple)] bg-[var(--sl-purple)]/5 text-[11px] px-2 py-0.5 rounded-full font-medium"
-                                        : event.type === "regulars"
+                                        : isRegular
                                         ? "border-[var(--sl-green)]/30 text-[var(--sl-green)] bg-[var(--sl-green)]/5 text-[11px] px-2 py-0.5 rounded-full font-medium"
                                         : "border-[var(--sl-pink)]/30 text-[var(--sl-pink)] bg-[var(--sl-pink)]/5 text-[11px] px-2 py-0.5 rounded-full font-medium"
                                     }
                                   >
-                                    {event.type === "language-club"
+                                    {isLanguageClub
                                       ? t("language-club") || "Language Club"
-                                      : event.type === "regulars"
+                                      : isRegular
                                       ? t("regular-session") || "Regular Session"
                                       : t("personal-session") || "Personal Session"}
                                   </Badge>
@@ -567,14 +542,17 @@ const UnifiedCalendar = ({
 
                               <div className="space-y-2 text-[13px]">
                                 <div className="flex items-center gap-2 text-muted-foreground">
-                                  <IconClock className="h-4 w-4 flex-shrink-0 opacity-60" />
+                                  <IconCalendar className="h-4 w-4 flex-shrink-0 opacity-60" />
                                   <span>
-                                    {new Date(event.date).toLocaleString(locale, {
+                                    {new Date(event.date).toLocaleTimeString(locale, {
+                                      hour12: locale === "en",
                                       hour: "2-digit",
-                                      minute: "2-digit",
+                                      minute: "2-digit"
                                     })}
                                   </span>
-                                  <span className="mx-1 opacity-40">•</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-muted-foreground">
+                                  <IconClock className="h-4 w-4 flex-shrink-0 opacity-60" />
                                   <span>
                                     {t("event-duration", {
                                       duration: event.duration,
@@ -587,20 +565,19 @@ const UnifiedCalendar = ({
                                     {event.location}
                                   </span>
                                 </div>
-                                {event.type === "language-club" &&
-                                  event.level && (
-                                    <Badge
-                                      variant="secondary"
-                                      className="w-fit mt-1 text-[11px] px-2.5 py-0.5"
-                                    >
-                                      {event.level}
-                                    </Badge>
-                                  )}
+                                {isLanguageClub && event.level && (
+                                  <Badge
+                                    variant="secondary"
+                                    className="w-fit mt-1 text-[11px] px-2.5 py-0.5"
+                                  >
+                                    {event.level}
+                                  </Badge>
+                                )}
                               </div>
                             </div>
 
                             <div className="flex flex-col gap-2 flex-shrink-0">
-                              {event.type === "regulars" ? (
+                              {isRegular ? (
                                 (() => {
                                   const hoursUntilSession = (event.date.getTime() - new Date().getTime()) / (1000 * 60 * 60);
                                   const canCancel = hoursUntilSession > 24;
@@ -614,9 +591,9 @@ const UnifiedCalendar = ({
                                         size="icon"
                                         className="h-8 w-8 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-700 dark:hover:text-red-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                                         disabled={!canCancel || isCancelling === event.id}
-                                        title={!canCancel ? tCancelRegular("unable-to-cancel") : "Cancel this session"}
+                                        title={!canCancel ? "Cannot cancel sessions within 24 hours" : "Cancel this session"}
                                         onClick={() => {
-                                          if (event.invitationId && event.tutor) {
+                                          if (event.invitationId) {
                                             setCancelRegularEvent({
                                               invitationId: event.invitationId,
                                               sessionDate: event.date,
@@ -631,28 +608,22 @@ const UnifiedCalendar = ({
                                           <IconTrash className="w-4 h-4" />
                                         )}
                                       </Button>
-                                      {!canCancel && (
-                                        <span className="text-[10px] text-muted-foreground/60 text-right">
-                                          {tCancelRegular("unable-to-cancel")}
-                                        </span>
-                                      )}
                                     </div>
                                   );
                                 })()
                               ) : (
                                 <>
-                                  {event.type === "language-club" &&
-                                    event.bookingId && (
-                                      <Button
-                                        variant="outline"
-                                        size="icon"
-                                        className="h-8 w-8 rounded-lg border-border/50 hover:bg-muted/50 hover:border-border transition-all"
-                                        disabled={isCancelling === event.id}
-                                        onClick={() => handleReschedule(event)}
-                                      >
-                                        <IconCalendarSearch className="w-4 h-4" />
-                                      </Button>
-                                    )}
+                                  {isLanguageClub && event.bookingId && (
+                                    <Button
+                                      variant="outline"
+                                      size="icon"
+                                      className="h-8 w-8 rounded-lg border-border/50 hover:bg-muted/50 hover:border-border transition-all"
+                                      disabled={isCancelling === event.id}
+                                      onClick={() => handleReschedule(event)}
+                                    >
+                                      <IconCalendarSearch className="w-4 h-4" />
+                                    </Button>
+                                  )}
                                   <AlertDialog>
                                     <AlertDialogTrigger asChild>
                                       <Button
@@ -709,7 +680,8 @@ const UnifiedCalendar = ({
                             </div>
                           </div>
                         </div>
-                      ))}
+                      );
+                    })}
                     </div>
                   </div>
                 )}

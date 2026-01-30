@@ -198,7 +198,7 @@ export const cancelSession = async (sessionId: number) => {
     });
 
     if (!session) {
-      return { message: "Session not found or already cancelled", status: 404 };
+      return { error: "Session not found or already cancelled", status: 404 };
     }
 
     // Get the tutor details
@@ -207,7 +207,7 @@ export const cancelSession = async (sessionId: number) => {
     });
 
     if (!tutor) {
-      return { message: "Tutor not found", status: 404 };
+      return { error: "Tutor not found", status: 404 };
     }
 
     // Check if the session is more than 24 hours in the future
@@ -216,8 +216,9 @@ export const cancelSession = async (sessionId: number) => {
     const hoursUntilSession =
       (sessionDate.getTime() - now.getTime()) / (1000 * 60 * 60);
     if (hoursUntilSession <= 24) {
+      console.log("CANNOT CANCEL WITHIN 24 hours")
       return {
-        message: "Cannot cancel sessions within 24 hours of the start time",
+        error: "Cannot cancel sessions within 24 hours of the start time",
         status: 400,
       };
     }
@@ -287,7 +288,7 @@ export const cancelSession = async (sessionId: number) => {
     };
   } catch (error) {
     console.error("Cancel session error:", error);
-    return { message: "Internal server error", status: 500 };
+    return { error: "Internal server error", status: 500 };
   }
 };
 

@@ -199,8 +199,6 @@ function ViewAllScheduledDialog({
     return [...events].sort((a, b) => a.date.getTime() - b.date.getTime());
   }, [events]);
 
-  const langClubCount = events.filter((e) => e.type === "language-club").length;
-
   const handleCancel = async (event: UnifiedEvent) => {
     setIsCancelling(event.id);
     try {
@@ -290,30 +288,10 @@ function ViewAllScheduledDialog({
                 </div>
               ) : (
                 <div className="px-6 py-6 space-y-6">
-                  {/* Summary Cards */}
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-white dark:bg-[#252525] rounded-xl px-5 py-4 border border-border/10 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow duration-200">
-                      <div className="text-[11px] font-medium text-muted-foreground/80 mb-2.5 uppercase tracking-[0.5px]">
-                        Total Events
-                      </div>
-                      <div className="text-[36px] font-bold text-foreground leading-none">
-                        {sortedEvents.length}
-                      </div>
-                    </div>
-                    <div className="bg-white dark:bg-[#252525] rounded-xl px-5 py-4 border border-border/10 dark:border-white/5 shadow-sm hover:shadow-md transition-shadow duration-200">
-                      <div className="text-[11px] font-medium text-muted-foreground/80 mb-2.5 uppercase tracking-[0.5px]">
-                        Language Club
-                      </div>
-                      <div className="text-[36px] font-bold text-foreground leading-none">
-                        {langClubCount}
-                      </div>
-                    </div>
-                  </div>
-
                   {/* Events List */}
                   <div className="space-y-4 pt-2">
                     <div className="text-[11px] font-semibold text-muted-foreground/70 uppercase tracking-[0.5px] px-1">
-                      Events
+                      {t("message", {count: sortedEvents.length})}
                     </div>
                     {sortedEvents.map((event) => {
                       const isLanguageClub = event.type === "language-club";
@@ -345,7 +323,7 @@ function ViewAllScheduledDialog({
                               <div className="space-y-1.5">
                                 <div className="flex items-center gap-2.5 flex-wrap">
                                   <h4 className="font-semibold text-[15px] text-foreground leading-tight">
-                                    {event.theme}
+                                    {isRegular ? tE("regular-session"): event.theme}
                                   </h4>
                                   <Badge
                                     variant="outline"

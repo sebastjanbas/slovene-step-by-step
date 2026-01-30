@@ -97,6 +97,7 @@
       }
     },
     "events": {
+      "events": "Events",
       "next-event": "Ваше ближайшее событие",
       "no-events": "Нет событий на {date}",
       "event-on": "События на {date}",

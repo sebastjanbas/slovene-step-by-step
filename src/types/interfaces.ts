@@ -1,5 +1,53 @@
 import {LanguageLevel} from "@/lib/placement-test";
 
+// Database tutor data (raw from database)
+export interface TutorData {
+  id: number;
+  name: string;
+  avatar: string;
+  color: string;
+  email: string;
+  phone: string;
+  bio: string;
+  clerkId: string;
+}
+
+// Schedule time slot within a day
+export interface ScheduleTimeSlot {
+  startTime: string;
+  duration: number;
+  sessionType: string;
+  location?: string;
+}
+
+// Schedule for a specific day of the week
+export interface DaySchedule {
+  day: number; // 0 = Sunday, 1 = Monday, etc.
+  timeSlots: ScheduleTimeSlot[];
+}
+
+// Schedule data from database
+export interface ScheduleData {
+  id: number;
+  ownerId: string;
+  schedule: unknown;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+// Timeblock data from database
+export interface TimeblockData {
+  id: number;
+  tutorId: number;
+  startTime: string | Date;
+  duration: number;
+  status: string;
+  sessionType: string;
+  location: string;
+  description?: string;
+  studentId: string;
+}
+
 export interface LangClubEvent {
   id: number;
   description: string;

@@ -75,10 +75,8 @@ const DashboardPage = async ({ params }) => {
 
   // Fetch accepted regular invitations
   const regularInvitations = await getRegularInvitations()
-  console.log("INVITATIONS: "+regularInvitations)
   // Generate recurring sessions from regular invitations
   const regularSessions = await generateRecurringSessions(regularInvitations, userId);
-  console.log("GENERATED SESSIONS: "+regularSessions)
 
   return (
     <main className="w-full h-full flex flex-col gap-8 p-8 md:p-10 lg:p-12">

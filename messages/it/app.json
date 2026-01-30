@@ -96,6 +96,7 @@
       }
     },
     "events": {
+      "events": "Events",
       "next-event": "Il tuo prossimo evento",
       "no-events": "Nessun evento programmato per {date}",
       "event-on": "Eventi per {date}",

@@ -96,6 +96,8 @@
       }
     },
     "events": {
+      "events": "Dogodki",
+      "events-scheduled": "Prijavljeni ste na {events, plural, =1 {1 dogodek} =2 {2 dogodka} =3 {3 dogodke} =4 {4 dogodke} other {# dogodkov}}",
       "next-event": "Vaš naslednji dogodek",
       "no-events": "Ni dogodkov za {date}",
       "event-on": "Dogodki na {date}",

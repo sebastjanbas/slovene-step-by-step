@@ -1,13 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import FullCalendar from "@fullcalendar/react";
+import { DayCellContentArg, EventContentArg, MoreLinkContentArg, CalendarApi } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 import { TutoringSession, EventClickArg } from "@/components/calendar/types";
+import { TutorData, ScheduleData, DaySchedule, ScheduleTimeSlot, TimeblockData, RegularSession } from "@/types/interfaces";
 import { CalendarControls } from "@/components/calendar/calendar-controls";
 import { EventSheet } from "@/components/calendar/event-sheet";
 import { NoSlotsOverlay } from "@/components/calendar/no-slots-overlay";
@@ -17,7 +18,7 @@ import {useSidebar} from "@/components/ui/sidebar";
 import {fromZonedTime} from "date-fns-tz";
 
 // Transform database tutors to the format expected by the calendar
-const transformTutors = (tutorsData: any[]) => {
+const transformTutors = (tutorsData: TutorData[]) => {
   return tutorsData.map((tutor) => ({
     id: tutor.id,
     name: tutor.name,
@@ -30,44 +31,20 @@ const transformTutors = (tutorsData: any[]) => {
   }));
 };
 
-// Helper to check if two time ranges overlap
-const doTimesOverlap = (
-  start1: Date,
-  end1: Date,
-  start2: Date,
-  end2: Date
-): boolean => {
-  return (
-    (start1 >= start2 && start1 < end2) ||
-    (end1 > start2 && end1 <= end2) ||
-    (start1 <= start2 && end1 >= end2)
-  );
-};
-
 // Generate available time slots from tutor schedules
 const generateAvailableSlots = (
-  schedulesData: any[],
-  tutorsData: any[],
-  timeblocksData: any[],
+  schedulesData: ScheduleData[],
+  tutorsData: TutorData[],
 ) => {
   const availableSlots: TutoringSession[] = [];
   const now = new Date();
-  const fourWeeksFromNow = new Date(
-    now.getTime() + 4 * 7 * 24 * 60 * 60 * 1000,
-  );
-
-  // Get all booked timeblocks for the next 4 weeks
-  const bookedTimeblocks = timeblocksData.filter((timeblock) => {
-    const startTime = new Date(timeblock.startTime);
-    return startTime >= now && startTime <= fourWeeksFromNow && timeblock.status === "booked";
-  });
 
   schedulesData.forEach((schedule) => {
     const tutor = tutorsData.find((t) => t.clerkId === schedule.ownerId);
     if (!tutor) return;
 
     try {
-      const scheduleData =
+      const scheduleData: DaySchedule[] =
         typeof schedule.schedule === "string"
           ? JSON.parse(schedule.schedule)
           : schedule.schedule;
@@ -86,7 +63,7 @@ const generateAvailableSlots = (
 
           // Find the schedule for this day (0 = Sunday, 1 = Monday, etc.)
           const daySchedule = scheduleData.find(
-            (scheduleDay: any) => scheduleDay.day === dayOfTheWeek % 7,
+            (scheduleDay: DaySchedule) => scheduleDay.day === dayOfTheWeek % 7,
           );
           dayOfTheWeek++; // Move to the next day of the week
 
@@ -95,7 +72,7 @@ const generateAvailableSlots = (
             daySchedule.timeSlots &&
             daySchedule.timeSlots.length > 0
           ) {
-            daySchedule.timeSlots.forEach((timeSlot: any) => {
+            daySchedule.timeSlots.forEach((timeSlot: ScheduleTimeSlot) => {
               // Skip "regular" session types - they are handled separately and never bookable
               if (timeSlot.sessionType === "regulars") return;
 
@@ -114,36 +91,21 @@ const generateAvailableSlots = (
               // Skip if this slot is in the past
               if (slotStart < now) return;
 
-              // Check if this time slot is already booked
-              const isBooked = bookedTimeblocks.some((booked) => {
-                const bookedStart = new Date(booked.startTime);
-                const bookedEnd = new Date(
-                  bookedStart.getTime() + booked.duration * 60000,
-                );
+              const duration =
+                (slotEnd.getTime() - slotStart.getTime()) / 60000; // in minutes
 
-                return (
-                  booked.tutorId === tutor.id &&
-                  doTimesOverlap(slotStart, slotEnd, bookedStart, bookedEnd)
-                );
+              availableSlots.push({
+                id: `available-${tutor.id}-${slotStart.getTime()}`,
+                tutorId: tutor.id,
+                tutorName: tutor.name,
+                startTime: slotStart,
+                endTime: slotEnd,
+                duration: duration,
+                status: "available",
+                sessionType: timeSlot.sessionType,
+                location: timeSlot.location ?? "Online", // Default location
+                description: "Available for booking",
               });
-
-              if (!isBooked) {
-                const duration =
-                  (slotEnd.getTime() - slotStart.getTime()) / 60000; // in minutes
-
-                availableSlots.push({
-                  id: `available-${tutor.id}-${slotStart.getTime()}`,
-                  tutorId: tutor.id,
-                  tutorName: tutor.name,
-                  startTime: slotStart,
-                  endTime: slotEnd,
-                  duration: duration,
-                  status: "available",
-                  sessionType: timeSlot.sessionType,
-                  location: timeSlot.location ?? "Online", // Default location
-                  description: "Available for booking",
-                });
-              }
             });
           }
         }
@@ -158,8 +120,8 @@ const generateAvailableSlots = (
 
 // Transform database timeblocks to TutoringSession format (for booked sessions)
 const transformTimeblocksToSessions = (
-  timeblocksData: any[],
-  tutorsData: any[],
+  timeblocksData: TimeblockData[],
+  tutorsData: TutorData[],
 ) => {
   return timeblocksData.map((timeblock) => {
     const tutor = tutorsData.find((t) => t.id === timeblock.tutorId);
@@ -182,30 +144,12 @@ const transformTimeblocksToSessions = (
   });
 };
 
-interface RegularSessionData {
-  id: string;
-  invitationId: number;
-  tutorId: number;
-  startTime: Date;
-  duration: number;
-  status: "booked";
-  sessionType: string;
-  location: string;
-  studentId: string;
-  tutorName: string;
-  tutorAvatar: string;
-  tutorColor: string;
-  description: string | null;
-  isRecurring: true;
-  dayOfWeek: number;
-}
-
 interface CalendarProps {
-  scheduleData: any;
-  timeblocksData: any;
-  tutorsData: any;
+  scheduleData: ScheduleData[];
+  timeblocksData: TimeblockData[];
+  tutorsData: TutorData[];
   studentId: string;
-  regularSessionsData?: RegularSessionData[];
+  regularSessionsData?: RegularSession[];
 }
 
 // Map FullCalendar view names to URL-friendly names
@@ -255,7 +199,6 @@ export default function Calendar({
   const availableSlots = generateAvailableSlots(
     scheduleData,
     tutorsData,
-    timeblocksData,
   );
 
   // Get booked sessions (only future ones)
@@ -472,7 +415,7 @@ export default function Calendar({
     // Add an event listener to the calendar container
     const calendarApi = calendarRef.current?.getApi();
     if (calendarApi) {
-      const calendarEl = (calendarApi as any).el;
+      const calendarEl = (calendarApi as CalendarApi & { el: HTMLElement }).el;
       if (calendarEl) {
         calendarEl.addEventListener("click", handleMoreEventsClickEvent);
         return () => {
@@ -641,22 +584,12 @@ export default function Calendar({
           selectMirror={false}
           dayMaxEvents={1}
           moreLinkClick="none"
-          moreLinkContent={(arg: any) => {
-            // Try different ways to get the hidden count
-            const hiddenCount =
-              arg.hiddenSegs?.length ||
-              arg.hiddenEvents?.length ||
-              arg.num ||
-              0;
+          moreLinkContent={(arg: MoreLinkContentArg) => {
+            // Use the num property which contains the count of hidden events
+            const hiddenCount = arg.num || 0;
 
             if (hiddenCount > 0) {
               return `+${hiddenCount} more`;
-            }
-
-            // Fallback: if we have more than 1 event total, show a generic more link
-            const totalEvents = arg.allSegs?.length || 0;
-            if (totalEvents > 1) {
-              return `+${totalEvents - 1} more`;
             }
 
             return "";
@@ -664,7 +597,7 @@ export default function Calendar({
           weekNumbers={false}
           weekends={showWeekends}
           firstDay={1} // Monday
-          dayCellContent={(dayInfo: any) => {
+          dayCellContent={(dayInfo: DayCellContentArg) => {
             const date = new Date(dayInfo.date);
             const dayNumber = date.getDate();
 
@@ -685,7 +618,7 @@ export default function Calendar({
 
             return dayNumber;
           }}
-          eventContent={(eventInfo: any) => {
+          eventContent={(eventInfo: EventContentArg) => {
             const startTime = new Date(eventInfo.event.start);
             const endTime = new Date(eventInfo.event.end);
             const timeString = `${startTime
@@ -712,11 +645,11 @@ export default function Calendar({
             const isRegular = status === "regular";
 
             // Determine background color based on status
-            let backgroundColor;
+            let backgroundColor: string;
             if (isAvailable) {
               backgroundColor = tutorColor;
             } else if (isRegular) {
-              backgroundColor = "var(--color-red-400)"; // Green for regular sessions
+              backgroundColor = "var(--color-red-400)"; // Red for regular sessions
             } else if (status === "booked") {
               backgroundColor = "var(--color-indigo-600)";
             } else {
@@ -777,7 +710,7 @@ export default function Calendar({
         isEventSheetOpen={isEventSheetOpen}
         setIsEventSheetOpen={setIsEventSheetOpen}
         selectedSession={selectedEvent}
-        tutorsData={tutorsData}
+        tutorsData={transformedTutors}
       />
     </div>
   );
