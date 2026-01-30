@@ -43,68 +43,8 @@ import { cancelBooking } from "@/actions/stripe-actions";
 import { cancelSession } from "@/actions/timeblocks";
 import RescheduleDialog from "./reschedule-dialog";
 import CancelRegularSessionDialog from "./cancel-regular-session-dialog";
+import {LangClubEvent, PersonalSession, RegularSession, UnifiedEvent} from "@/types/interfaces";
 
-interface LangClubEvent {
-  id: number;
-  description: string;
-  date: Date;
-  tutor: string;
-  location: string;
-  duration: number;
-  theme: string;
-  bookingId: number;
-  bookingStatus: string;
-  level?: string;
-}
-
-interface PersonalSession {
-  id: number;
-  tutorId: number;
-  startTime: Date;
-  duration: number;
-  status: string;
-  sessionType: string;
-  location: string;
-  studentId: string;
-  tutorName: string;
-  tutorAvatar: string;
-  tutorColor: string;
-}
-
-interface RegularSession {
-  id: string;
-  invitationId: number;
-  tutorId: number;
-  startTime: Date;
-  duration: number;
-  status: "booked";
-  sessionType: string;
-  location: string;
-  studentId: string;
-  tutorName: string;
-  tutorAvatar: string;
-  tutorColor: string;
-  description: string | null;
-  isRecurring: true;
-  dayOfWeek: number;
-}
-
-interface UnifiedEvent {
-  id: number | string;
-  type: "language-club" | "personal" | "regulars";
-  date: Date;
-  tutor: string;
-  location: string;
-  duration: number;
-  theme: string;
-  bookingId?: number;
-  bookingStatus?: string;
-  level?: string;
-  tutorColor?: string;
-  sessionType?: string;
-  isRecurring?: boolean;
-  invitationId?: number;
-}
 
 interface DashboardClientProps {
   langClubEvents: LangClubEvent[];

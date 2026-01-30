@@ -16,6 +16,7 @@ import {
   type LanguageLevel,
 } from "@/lib/placement-test";
 import { cn } from "@/lib/utils";
+import {PlacementTestState} from "@/types/interfaces";
 
 type PlacementTestProps = {
   onComplete: (level: string) => void;
@@ -26,14 +27,6 @@ type AnswerState = "idle" | "correct" | "incorrect";
 // localStorage key for placement test data
 const PLACEMENT_TEST_KEY = "placement_test_state";
 
-interface PlacementTestState {
-  currentQuestionIndex: number;
-  levelResults: Record<LanguageLevel, { correct: number; total: number }>;
-  currentLevelIndex: number;
-  isTestComplete: boolean;
-  finalLevel: string;
-  answeredQuestions: number[]; // Track which questions have been answered
-}
 
 // Utility function to clear the placement test state
 export const clearPlacementTestState = () => {

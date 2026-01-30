@@ -8,24 +8,8 @@ import {
   IconUser,
   IconRepeat,
 } from "@tabler/icons-react";
+import {LangClubEvent, PersonalSession, RegularSession} from "@/types/interfaces";
 
-interface LangClubEvent {
-  id: number;
-  date: Date;
-  bookingStatus: string;
-}
-
-interface PersonalSession {
-  id: number;
-  startTime: Date;
-  status: string;
-}
-
-interface RegularSession {
-  id: string;
-  startTime: Date;
-  invitationId: number;
-}
 
 interface DashboardStatsProps {
   langClubEvents: LangClubEvent[];

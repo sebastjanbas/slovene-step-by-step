@@ -25,19 +25,7 @@ import {
 } from "@/actions/stripe-actions";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
-
-interface Event {
-  id: number;
-  theme: string;
-  date: Date;
-  tutor: string;
-  location: string;
-  duration: number;
-  maxBooked: number;
-  peopleBooked: number;
-  level: string;
-  price: number;
-}
+import {Event} from "@/types/interfaces";
 
 interface RescheduleDialogProps {
   open: boolean;
@@ -46,6 +34,7 @@ interface RescheduleDialogProps {
   bookingId: number;
   locale: string;
 }
+
 const translations = {
   en: {
     errors: {

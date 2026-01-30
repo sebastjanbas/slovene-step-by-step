@@ -49,51 +49,7 @@ import RescheduleDialog from "./reschedule-dialog";
 import CancelRegularSessionDialog from "./cancel-regular-session-dialog";
 import "@/components/calendar/calendar-styles.css";
 import {useSidebar} from "@/components/ui/sidebar";
-
-interface LangClubEvent {
-  id: number;
-  description: string;
-  date: Date;
-  tutor: string;
-  level: string;
-  location: string;
-  duration: number;
-  theme: string;
-  bookingId: number;
-  bookingStatus: string;
-}
-
-interface PersonalSession {
-  id: number;
-  tutorId: number;
-  startTime: Date;
-  duration: number;
-  status: string;
-  sessionType: string;
-  location: string;
-  studentId: string;
-  tutorName: string;
-  tutorAvatar: string;
-  tutorColor: string;
-}
-
-interface RegularSession {
-  id: string;
-  invitationId: number;
-  tutorId: number;
-  startTime: Date;
-  duration: number;
-  status: "booked";
-  sessionType: string;
-  location: string;
-  studentId: string;
-  tutorName: string;
-  tutorAvatar: string;
-  tutorColor: string;
-  description: string | null;
-  isRecurring: true;
-  dayOfWeek: number;
-}
+import {LangClubEvent, PersonalSession, RegularSession} from "@/types/interfaces";
 
 interface UnifiedCalendarProps {
   langClubEvents: LangClubEvent[];

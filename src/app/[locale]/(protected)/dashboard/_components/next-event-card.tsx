@@ -35,28 +35,13 @@ import { useRouter } from "@/i18n/routing";
 import { toast } from "sonner";
 import { cancelBooking } from "@/actions/stripe-actions";
 import { cancelSession } from "@/actions/timeblocks";
-
-interface UnifiedEvent {
-  id: number | string;
-  type: "language-club" | "personal" | "regulars";
-  date: Date;
-  tutor: string;
-  location: string;
-  duration: number;
-  theme: string;
-  bookingId?: number;
-  bookingStatus?: string;
-  level?: string;
-  tutorColor?: string;
-  sessionType?: string;
-  isRecurring?: boolean;
-  invitationId?: number;
-}
+import {UnifiedEvent} from "@/types/interfaces";
 
 interface NextEventCardProps {
   event: UnifiedEvent;
   locale: string;
 }
+
 
 const NextEventCard = ({ event, locale }: NextEventCardProps) => {
   const t = useTranslations("dashboard.events");
@@ -215,8 +200,8 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
 
             {/* Event Title */}
             <div>
-              <h3 className="font-semibold text-xl text-foreground mb-2 tracking-tight">
-                {event.theme}
+              <h3 className="capitalize font-semibold text-xl text-foreground mb-2 tracking-tight">
+                {isRegular ? t("regular-session") || "Regular Session" : event.theme}
               </h3>
               <p className="text-sm text-muted-foreground">
                 {t("event-tutor", { tutor: event.tutor })}
