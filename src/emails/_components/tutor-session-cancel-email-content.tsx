@@ -7,7 +7,6 @@ import {
   Heading,
   Text,
   Link,
-  Button,
 } from "@react-email/components";
 import { toZonedTime } from "date-fns-tz";
 import React from "react";
@@ -482,6 +481,8 @@ const TutorSessionCancelEmailContent = ({
           </Section>
 
           {/* Time Slot Available Notice */}
+          {sessionType !== "Regular Session" && (
+
           <Section
             style={{
               backgroundColor: "#DCFCE7",
@@ -513,61 +514,7 @@ const TutorSessionCancelEmailContent = ({
               {t.timeSlotText}
             </Text>
           </Section>
-
-          {/* Action Buttons */}
-          <Section style={{ marginBottom: "32px" }}>
-            <Heading
-              as="h3"
-              style={{
-                fontSize: "18px",
-                lineHeight: "28px",
-                fontWeight: "600",
-                color: "#111827",
-                margin: "0 0 16px 0",
-              }}
-            >
-              {t.actions}
-            </Heading>
-            <Row>
-              <Column align="center">
-                <Button
-                  href={`https://www.slovenscinakzk.com/${locale}/dashboard`}
-                  style={{
-                    backgroundColor: "#A855F7",
-                    color: "#ffffff",
-                    padding: "12px 24px",
-                    borderRadius: "8px",
-                    textDecoration: "none",
-                    fontWeight: "600",
-                    fontSize: "14px",
-                    display: "inline-block",
-                    marginBottom: "12px",
-                  }}
-                >
-                  {t.viewAllBookings}
-                </Button>
-              </Column>
-            </Row>
-            <Row>
-              <Column align="center">
-                <Button
-                  href={`https://www.slovenscinakzk.com/${locale}/calendar`}
-                  style={{
-                    backgroundColor: "#6089CB",
-                    color: "#ffffff",
-                    padding: "12px 24px",
-                    borderRadius: "8px",
-                    textDecoration: "none",
-                    fontWeight: "600",
-                    fontSize: "14px",
-                    display: "inline-block",
-                  }}
-                >
-                  {t.manageCalendar}
-                </Button>
-              </Column>
-            </Row>
-          </Section>
+          )}
 
           {/* Personal Message */}
           <Section

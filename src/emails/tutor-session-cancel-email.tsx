@@ -84,7 +84,7 @@ TutorSessionCancelEmail.PreviewProps = {
   studentName: "Sebastjan Bas",
   sessionDate: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000), // 2 days from now
   sessionDuration: 60,
-  sessionType: "Conversational Practice",
+  sessionType: "Regular Session",
   location: "Online - Zoom",
   cancellationReason: "Personal emergency - need to reschedule",
 } satisfies TutorSessionCancelEmailProps;
