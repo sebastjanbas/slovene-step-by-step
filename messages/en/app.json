@@ -260,6 +260,7 @@
       "location": "Location",
       "buttons": {
         "book": "Book Session",
+        "booking": "Booking ...",
         "contact": "Contact tutor"
       }
     },

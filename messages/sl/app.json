@@ -261,6 +261,7 @@
       "location": "Lokacija",
       "buttons": {
         "book": "Rezerviraj termin",
+        "booking": "Rezervavija v teku ...",
         "contact": "Kontaktiraj tutorja"
       }
     },

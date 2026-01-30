@@ -39,6 +39,14 @@ export const EventSheet = (props: EventSheetProps) => {
   const tE = useTranslations("dashboard.events")
   const tCancel = useTranslations("dashboard.cancel-regular-session-dialog")
 
+  // TODO: add canceling functionality to event sheet
+  const cancelMessage = {
+    sl: "Prosimo prekličite dokodke preko dashboarda",
+    en: "Please cancel sessions through the dashboard",
+    it: "Si prega di annullare le sessioni tramite la dashboard",
+    ru: "Пожалуйста, отменяйте занятия через личный кабинет"
+  }
+
   const [cancelDialogOpen, setCancelDialogOpen] = useState(false);
   const [isBooking, setIsBooking] = useState(false);
 
@@ -262,8 +270,7 @@ export const EventSheet = (props: EventSheetProps) => {
               <div className="flex flex-col gap-3">
                 {props.selectedSession.status === "available" ? (
                   <Button
-                    className="flex-1 shadow-sm hover:shadow-md transition-all duration-200"
-                    size="sm"
+                    className="flex-1 shadow-sm hover:shadow-md transition-all duration-200 min-h-10 rounded-full"
                     onClick={() => onBookSesson(props.selectedSession)}
                     disabled={isBooking}
                   >
@@ -317,20 +324,13 @@ export const EventSheet = (props: EventSheetProps) => {
                   // Booked personal session actions
                   <div className="flex gap-3">
                     <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex-1 shadow-sm hover:shadow transition-all duration-200"
-                    >
-                      <IconEdit className="h-4 w-4 mr-2" />
-                      {t("buttons.contact")}
-                    </Button>
-                    <Button
+                      disabled
                       variant="destructive"
-                      size="sm"
-                      className="flex-1 shadow-sm hover:shadow transition-all duration-200"
+                      className="flex-1 shadow-sm hover:shadow transition-all duration-200 rounded-full text-xs"
                     >
-                      <IconX className="h-4 w-4 mr-2" />
-                      {t3("cancel")}
+                      {/*<IconX className="h-4 w-4 mr-2" />*/}
+                      {/*{t3("cancel")}*/}
+                      {cancelMessage[locale]}
                     </Button>
                   </div>
                 )}

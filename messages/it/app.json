@@ -260,6 +260,7 @@
       "location": "Luogo",
       "buttons": {
         "book": "Prenota sessione",
+        "booking": "Prenotazione in corso ...",
         "contact": "Contatta il tutor"
       }
     },
