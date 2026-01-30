@@ -7,6 +7,16 @@
       "title": "Are you absolutely sure?",
       "description": "Are you sure you want to cancel your booking? This action cannot be undone."
     },
+    "cancel-regular-session-dialog": {
+      "title": "Cancel this session?",
+      "description": "This will cancel only this specific occurrence of your regular session, not the entire recurring schedule.",
+      "with-tutor": "Session with {tutor}",
+      "reason-label": "Reason for cancellation (optional)",
+      "reason-placeholder": "Let your tutor know why you're cancelling...",
+      "reason-hint": "This helps your tutor understand and plan accordingly.",
+      "confirm-cancel": "Cancel Session",
+      "unable-to-cancel": "Cannot cancel sessions within 24 hours"
+    },
     "all-scheduled-events": {
       "message": "You have {count, plural, =1 {1 event} other {# events}} coming up.",
       "no-future-events": "No future events",
@@ -224,6 +234,7 @@
     },
     "event-type": {
       "individual": "Individual",
+      "regular": "Regular",
       "group": "Group"
     },
     "event-place": {
@@ -234,7 +245,8 @@
       "status": {
         "booked": "Booked",
         "available": "Available",
-        "cancelled": "Cancelled"
+        "cancelled": "Cancelled",
+        "regular": "Regular"
       },
       "title": "Individual session",
       "subtitle": "with {name}",

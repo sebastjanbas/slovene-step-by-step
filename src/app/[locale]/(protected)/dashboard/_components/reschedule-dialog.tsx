@@ -18,7 +18,6 @@ import {
   IconUsers,
   IconLoader2,
 } from "@tabler/icons-react";
-import { toZonedTime } from "date-fns-tz";
 import { useRouter } from "@/i18n/routing";
 import {
   getAvailableEvents,
@@ -188,10 +187,7 @@ const RescheduleDialog = ({
               })}
             </p>
             <p className="text-sm text-muted-foreground">
-              {toZonedTime(
-                currentEvent.date,
-                "Europe/Ljubljana",
-              ).toLocaleDateString(locale, {
+              {new Date(currentEvent.date).toLocaleDateString(locale, {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -235,10 +231,7 @@ const RescheduleDialog = ({
                             <div className="flex items-center gap-2 mt-2">
                               <IconCalendar className="w-4 h-4" />
                               <span className="text-sm">
-                                {toZonedTime(
-                                  event.date,
-                                  "Europe/Ljubljana",
-                                ).toLocaleDateString(locale, {
+                                {new Date(event.date).toLocaleDateString(locale, {
                                   year: "numeric",
                                   month: "long",
                                   day: "numeric",

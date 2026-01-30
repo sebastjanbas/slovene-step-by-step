@@ -5,7 +5,6 @@ import {
   langClubTable,
   timeblocksTable,
   tutorsTable,
-  regularInvitationsTable,
 } from "@/db/schema";
 import { auth } from "@clerk/nextjs/server";
 import {asc, eq, and, or, gt} from "drizzle-orm";

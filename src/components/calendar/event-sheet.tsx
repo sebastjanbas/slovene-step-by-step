@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -15,11 +15,13 @@ import {
   IconCalendarEvent,
   IconX,
   IconClock,
+  IconRepeat,
 } from "@tabler/icons-react";
 import {bookSession} from "@/actions/timeblocks";
 import {toast} from "sonner";
 import {useRouter} from "@/i18n/routing";
 import {useLocale, useTranslations} from "next-intl";
+import CancelRegularSessionDialog from "@/app/[locale]/(protected)/dashboard/_components/cancel-regular-session-dialog";
 
 type EventSheetProps = {
   isEventSheetOpen: boolean;
@@ -34,6 +36,10 @@ export const EventSheet = (props: EventSheetProps) => {
   const t = useTranslations("calendar.sheet")
   const t2 = useTranslations("calendar.event-place")
   const t3 = useTranslations("common.buttons")
+  const tE = useTranslations("dashboard.events")
+  const tCancel = useTranslations("dashboard.cancel-regular-session-dialog")
+
+  const [cancelDialogOpen, setCancelDialogOpen] = useState(false);
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString(locale, {
@@ -246,7 +252,7 @@ export const EventSheet = (props: EventSheetProps) => {
 
             {/* Action Buttons */}
             <div className="p-6 bg-muted/20">
-              <div className="flex gap-3">
+              <div className="flex flex-col gap-3">
                 {props.selectedSession.status === "available" ? (
                   <Button
                     className="flex-1 shadow-sm hover:shadow-md transition-all duration-200"
@@ -256,8 +262,48 @@ export const EventSheet = (props: EventSheetProps) => {
                     <IconCalendarEvent className="h-4 w-4 mr-2" />
                     {t("buttons.book")}
                   </Button>
+                ) : props.selectedSession.status === "regular" ? (
+                  // Regular session actions
+                  (() => {
+                    const hoursUntilSession = (new Date(props.selectedSession.startTime).getTime() - new Date().getTime()) / (1000 * 60 * 60);
+                    const canCancel = hoursUntilSession > 24;
+                    return (
+                      <>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
+                          <IconRepeat className="h-4 w-4" />
+                          <span>{tE("recurring-note")}</span>
+                        </div>
+                        <div className="flex gap-3">
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="flex-1 shadow-sm hover:shadow transition-all duration-200"
+                          >
+                            <IconEdit className="h-4 w-4 mr-2" />
+                            {t("buttons.contact")}
+                          </Button>
+                          <Button
+                            variant="destructive"
+                            size="sm"
+                            className="flex-1 shadow-sm hover:shadow transition-all duration-200"
+                            disabled={!canCancel}
+                            onClick={() => setCancelDialogOpen(true)}
+                          >
+                            <IconX className="h-4 w-4 mr-2" />
+                            {t3("cancel")}
+                          </Button>
+                        </div>
+                        {!canCancel && (
+                          <p className="text-xs text-muted-foreground text-center">
+                            {tCancel("unable-to-cancel") || "Cannot cancel sessions within 24 hours"}
+                          </p>
+                        )}
+                      </>
+                    );
+                  })()
                 ) : (
-                  <>
+                  // Booked personal session actions
+                  <div className="flex gap-3">
                     <Button
                       variant="outline"
                       size="sm"
@@ -274,11 +320,23 @@ export const EventSheet = (props: EventSheetProps) => {
                       <IconX className="h-4 w-4 mr-2" />
                       {t3("cancel")}
                     </Button>
-                  </>
+                  </div>
                 )}
               </div>
             </div>
           </div>
+        )}
+
+        {/* Cancel Regular Session Dialog */}
+        {props.selectedSession?.status === "regular" && props.selectedSession.invitationId && (
+          <CancelRegularSessionDialog
+            open={cancelDialogOpen}
+            onOpenChange={setCancelDialogOpen}
+            invitationId={props.selectedSession.invitationId}
+            sessionDate={new Date(props.selectedSession.startTime)}
+            tutorName={props.selectedSession.tutorName}
+            locale={locale}
+          />
         )}
       </SheetContent>
     </Sheet>

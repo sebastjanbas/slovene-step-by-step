@@ -41,12 +41,12 @@ import {
 } from "@/components/ui/alert-dialog";
 import { buttonVariants } from "@/components/ui/button";
 import { isSameDay } from "date-fns";
-import { toZonedTime } from "date-fns-tz";
 import { cancelBooking } from "@/actions/stripe-actions";
 import { cancelSession } from "@/actions/timeblocks";
 import { toast } from "sonner";
 import { useRouter } from "@/i18n/routing";
 import RescheduleDialog from "./reschedule-dialog";
+import CancelRegularSessionDialog from "./cancel-regular-session-dialog";
 import "@/components/calendar/calendar-styles.css";
 import {useSidebar} from "@/components/ui/sidebar";
 
@@ -127,6 +127,12 @@ const UnifiedCalendar = ({
     type: "language-club" | "personal" | "regulars";
     bookingId?: number;
   } | null>(null);
+  const [cancelRegularEvent, setCancelRegularEvent] = useState<{
+    invitationId: number;
+    sessionDate: Date;
+    tutorName: string;
+  } | null>(null);
+  const tCancelRegular = useTranslations("dashboard.cancel-regular-session-dialog");
 
   // Transform events to FullCalendar format
   const calendarEvents = useMemo(() => {
@@ -233,6 +239,7 @@ const UnifiedCalendar = ({
       bookingId?: number;
       bookingStatus?: string;
       isRecurring?: boolean;
+      invitationId?: number;
     }> = [];
 
     // Add language club events
@@ -271,6 +278,7 @@ const UnifiedCalendar = ({
         tutorColor: session.tutorColor,
         description: session.description,
         isRecurring: true,
+        invitationId: session.invitationId,
       });
     });
 
@@ -342,18 +350,9 @@ const UnifiedCalendar = ({
 
   const eventsOnSelectedDay = useMemo(() => {
     if (!selectedDate) return [];
+    // Compare dates in the client's local timezone (same as FullCalendar displays)
     return allEvents.filter((event) => {
-      const eventDateInLjubljana = new Date(
-        event.date.toLocaleDateString("en-CA", {
-          timeZone: "Europe/Ljubljana",
-        }),
-      );
-      const selectedDateInLjubljana = new Date(
-        selectedDate.toLocaleDateString("en-CA", {
-          timeZone: "Europe/Ljubljana",
-        }),
-      );
-      return isSameDay(eventDateInLjubljana, selectedDateInLjubljana);
+      return isSameDay(new Date(event.date), selectedDate);
     });
   }, [selectedDate, allEvents]);
 
@@ -614,10 +613,7 @@ const UnifiedCalendar = ({
                                 <div className="flex items-center gap-2 text-muted-foreground">
                                   <IconClock className="h-4 w-4 flex-shrink-0 opacity-60" />
                                   <span>
-                                    {toZonedTime(
-                                      event.date,
-                                      "Europe/Ljubljana",
-                                    ).toLocaleString(locale, {
+                                    {new Date(event.date).toLocaleString(locale, {
                                       hour: "2-digit",
                                       minute: "2-digit",
                                     })}
@@ -649,9 +645,44 @@ const UnifiedCalendar = ({
 
                             <div className="flex flex-col gap-2 flex-shrink-0">
                               {event.type === "regulars" ? (
-                                <div className="text-[11px] text-muted-foreground/70 text-right max-w-[80px]">
-                                  {t("recurring-note") || "Weekly recurring"}
-                                </div>
+                                (() => {
+                                  const hoursUntilSession = (event.date.getTime() - new Date().getTime()) / (1000 * 60 * 60);
+                                  const canCancel = hoursUntilSession > 24;
+                                  return (
+                                    <div className="flex flex-col items-end gap-1.5">
+                                      <div className="text-[11px] text-muted-foreground/70 text-right max-w-[80px]">
+                                        {t("recurring-note") || "Weekly recurring"}
+                                      </div>
+                                      <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="h-8 w-8 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-700 dark:hover:text-red-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                        disabled={!canCancel || isCancelling === event.id}
+                                        title={!canCancel ? tCancelRegular("unable-to-cancel") : "Cancel this session"}
+                                        onClick={() => {
+                                          if (event.invitationId && event.tutor) {
+                                            setCancelRegularEvent({
+                                              invitationId: event.invitationId,
+                                              sessionDate: event.date,
+                                              tutorName: event.tutor,
+                                            });
+                                          }
+                                        }}
+                                      >
+                                        {isCancelling === event.id ? (
+                                          <IconLoader2 className="w-4 h-4 animate-spin" />
+                                        ) : (
+                                          <IconTrash className="w-4 h-4" />
+                                        )}
+                                      </Button>
+                                      {!canCancel && (
+                                        <span className="text-[10px] text-muted-foreground/60 text-right">
+                                          {tCancelRegular("unable-to-cancel")}
+                                        </span>
+                                      )}
+                                    </div>
+                                  );
+                                })()
                               ) : (
                                 <>
                                   {event.type === "language-club" &&
@@ -769,6 +800,22 @@ const UnifiedCalendar = ({
               />
             );
           })()}
+
+        {/* Cancel Regular Session Dialog */}
+        {cancelRegularEvent && (
+          <CancelRegularSessionDialog
+            open={!!cancelRegularEvent}
+            onOpenChange={(open) => {
+              if (!open) {
+                setCancelRegularEvent(null);
+              }
+            }}
+            invitationId={cancelRegularEvent.invitationId}
+            sessionDate={cancelRegularEvent.sessionDate}
+            tutorName={cancelRegularEvent.tutorName}
+            locale={locale}
+          />
+        )}
       </Card>
     </div>
   );

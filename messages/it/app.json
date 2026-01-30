@@ -7,6 +7,16 @@
       "title": "Sei sicuro?",
       "description": "Sei sicuro di voler annullare la tua prenotazione? Questa azione non può essere annullata."
     },
+    "cancel-regular-session-dialog": {
+      "title": "Annullare questa sessione?",
+      "description": "Questo annullerà solo questa specifica sessione del tuo programma regolare, non l'intero programma ricorrente.",
+      "with-tutor": "Sessione con {tutor}",
+      "reason-label": "Motivo della cancellazione (opzionale)",
+      "reason-placeholder": "Fai sapere al tuo tutor perché stai annullando...",
+      "reason-hint": "Questo aiuta il tuo tutor a capire e pianificare di conseguenza.",
+      "confirm-cancel": "Annulla sessione",
+      "unable-to-cancel": "Impossibile annullare sessioni entro 24 ore"
+    },
     "all-scheduled-events": {
       "message": "Hai {count, plural, =1 {1 evento} other {# eventi}} programmati.",
       "no-future-events": "Nessun evento futuro",
@@ -224,6 +234,7 @@
     },
     "event-type": {
       "individual": "Individuale",
+      "regular": "Regolare",
       "group": "Di gruppo"
     },
     "event-place": {
@@ -234,7 +245,8 @@
       "status": {
         "booked": "Prenotato",
         "available": "Disponibile",
-        "cancelled": "Annullato"
+        "cancelled": "Annullato",
+        "regular": "Regolare"
       },
       "title": "Sessione individuale",
       "subtitle": "con {name}",

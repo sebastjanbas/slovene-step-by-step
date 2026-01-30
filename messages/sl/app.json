@@ -7,6 +7,16 @@
       "title": "Ste prepričani?",
       "description": "Ste prepričani, da želite preklicati svojo rezervacijo? To dejanje ni mogoče razveljaviti."
     },
+    "cancel-regular-session-dialog": {
+      "title": "Prekliči to uro?",
+      "description": "S tem boste preklicali samo to posamezno uro vašega rednega urnika, ne pa celotnega ponavljajočega se urnika.",
+      "with-tutor": "Ura s tutorjem {tutor}",
+      "reason-label": "Razlog za preklic (neobvezno)",
+      "reason-placeholder": "Sporočite svojemu tutorju, zakaj odpovedujete...",
+      "reason-hint": "To pomaga vašemu tutorju pri razumevanju in načrtovanju.",
+      "confirm-cancel": "Prekliči uro",
+      "unable-to-cancel": "Ur ni mogoče preklicati 24 ur pred začetkom"
+    },
     "all-scheduled-events": {
       "message": "Prijavljeni ste na {count, plural, =1 {1 dogodek} =2 {2 dogodka} few {# dogodke} other {# dogodkov}}.",
       "no-future-events": "Ni rezerviranih dogodkov",
@@ -224,6 +234,7 @@
     },
     "event-type": {
       "individual": "Individualna ura",
+      "regular": "Redna ura",
       "group": "Skupinska ura"
     },
     "event-place": {
@@ -234,7 +245,8 @@
       "status": {
         "booked": "Rezerviran",
         "available": "Na voljo",
-        "cancelled": "Odpovedan"
+        "cancelled": "Odpovedan",
+        "regular": "Redna ura"
       },
       "title": "Individualna ura",
       "subtitle": "z {name}",

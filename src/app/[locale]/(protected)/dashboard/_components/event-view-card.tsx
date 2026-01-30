@@ -35,7 +35,6 @@ import { buttonVariants } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { cancelBooking } from "@/actions/stripe-actions";
 import { useRouter } from "@/i18n/routing";
-import { toZonedTime } from "date-fns-tz";
 
 const EventViewCalendar = ({ event, locale }) => {
   const [showRescheduleDialog, setShowRescheduleDialog] = useState(false);
@@ -72,16 +71,13 @@ const EventViewCalendar = ({ event, locale }) => {
             {event.tutor}
           </CardDescription>
           <CardAction className="text-sm text-muted-foreground">
-            {toZonedTime(event.date, "Europe/Ljubljana").toLocaleDateString(
-              locale,
-              {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-              }
-            )}
+            {new Date(event.date).toLocaleDateString(locale, {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
           </CardAction>
         </CardHeader>
         <CardContent className="space-y-2">

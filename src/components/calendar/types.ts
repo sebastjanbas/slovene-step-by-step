@@ -22,6 +22,10 @@ export interface TutoringSession {
   location: string;
   status: string;
   description: string;
+  // Regular session specific fields
+  isRecurring?: boolean;
+  invitationId?: number;
+  studentId?: string;
 }
 
 // More flexible type for session array

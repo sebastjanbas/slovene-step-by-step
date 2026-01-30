@@ -14,6 +14,7 @@ import { NoSlotsOverlay } from "@/components/calendar/no-slots-overlay";
 import "@/components/calendar/calendar-styles.css";
 import {useLocale, useTranslations} from "next-intl";
 import {useSidebar} from "@/components/ui/sidebar";
+import {fromZonedTime} from "date-fns-tz";
 
 // Transform database tutors to the format expected by the calendar
 const transformTutors = (tutorsData: any[]) => {
@@ -29,11 +30,68 @@ const transformTutors = (tutorsData: any[]) => {
   }));
 };
 
+// Helper to check if two time ranges overlap
+const doTimesOverlap = (
+  start1: Date,
+  end1: Date,
+  start2: Date,
+  end2: Date
+): boolean => {
+  return (
+    (start1 >= start2 && start1 < end2) ||
+    (end1 > start2 && end1 <= end2) ||
+    (start1 <= start2 && end1 >= end2)
+  );
+};
+
+// Generate blocked times from regular invitations for a specific date range
+const generateRegularBlockedTimes = (
+  regularInvitations: any[],
+  startDate: Date,
+  endDate: Date
+): Array<{ tutorId: number; start: Date; end: Date }> => {
+  const blockedTimes: Array<{ tutorId: number; start: Date; end: Date }> = [];
+
+  regularInvitations.forEach((invitation) => {
+    // Generate blocked times for each occurrence within the date range
+    const currentDate = new Date(startDate);
+    // Find the first occurrence of this day of week
+    while (currentDate.getDay() !== invitation.dayOfWeek) {
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    while (currentDate <= endDate) {
+      // Create the datetime string and interpret it as CET timezone
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+      const day = String(currentDate.getDate()).padStart(2, '0');
+      const dateTimeStr = `${year}-${month}-${day} ${invitation.startTime}:00`;
+      // fromZonedTime converts a "local" time in a specific timezone to UTC
+      const blockStart = fromZonedTime(dateTimeStr, 'Europe/Ljubljana');
+      const blockEnd = new Date(blockStart.getTime() + invitation.duration * 60000);
+
+      if (blockStart >= startDate && blockStart <= endDate) {
+        blockedTimes.push({
+          tutorId: invitation.tutorId,
+          start: blockStart,
+          end: blockEnd,
+        });
+      }
+
+      // Move to next week
+      currentDate.setDate(currentDate.getDate() + 7);
+    }
+  });
+
+  return blockedTimes;
+};
+
 // Generate available time slots from tutor schedules
 const generateAvailableSlots = (
   schedulesData: any[],
   tutorsData: any[],
   timeblocksData: any[],
+  regularInvitations: any[] = [],
 ) => {
   const availableSlots: TutoringSession[] = [];
   const now = new Date();
@@ -46,6 +104,13 @@ const generateAvailableSlots = (
     const startTime = new Date(timeblock.startTime);
     return startTime >= now && startTime <= fourWeeksFromNow && timeblock.status === "booked";
   });
+
+  // Generate blocked times from regular sessions
+  const regularBlockedTimes = generateRegularBlockedTimes(
+    regularInvitations,
+    now,
+    fourWeeksFromNow
+  );
 
   schedulesData.forEach((schedule) => {
     const tutor = tutorsData.find((t) => t.clerkId === schedule.ownerId);
@@ -81,13 +146,13 @@ const generateAvailableSlots = (
             daySchedule.timeSlots.length > 0
           ) {
             daySchedule.timeSlots.forEach((timeSlot: any) => {
-              const [startHour, startMinute] = timeSlot.startTime
-                .split(":")
-                .map(Number);
-
-              // Calculate end time using duration (in minutes)
-              const slotStart = new Date(currentDate);
-              slotStart.setHours(startHour, startMinute, 0, 0);
+              // Create the datetime string and interpret it as CET timezone
+              const year = currentDate.getFullYear();
+              const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+              const dayNum = String(currentDate.getDate()).padStart(2, '0');
+              const dateTimeStr = `${year}-${month}-${dayNum} ${timeSlot.startTime}:00`;
+              // fromZonedTime converts a "local" time in a specific timezone to UTC
+              const slotStart = fromZonedTime(dateTimeStr, 'Europe/Ljubljana');
 
               const slotEnd = new Date(
                 slotStart.getTime() + timeSlot.duration * 60000,
@@ -105,13 +170,19 @@ const generateAvailableSlots = (
 
                 return (
                   booked.tutorId === tutor.id &&
-                  ((slotStart >= bookedStart && slotStart < bookedEnd) ||
-                    (slotEnd > bookedStart && slotEnd <= bookedEnd) ||
-                    (slotStart <= bookedStart && slotEnd >= bookedEnd))
+                  doTimesOverlap(slotStart, slotEnd, bookedStart, bookedEnd)
                 );
               });
 
-              if (!isBooked) {
+              // Check if this time slot overlaps with a regular session
+              const isBlockedByRegular = regularBlockedTimes.some((blocked) => {
+                return (
+                  blocked.tutorId === tutor.id &&
+                  doTimesOverlap(slotStart, slotEnd, blocked.start, blocked.end)
+                );
+              });
+
+              if (!isBooked && !isBlockedByRegular) {
                 const duration =
                   (slotEnd.getTime() - slotStart.getTime()) / 60000; // in minutes
 
@@ -166,11 +237,47 @@ const transformTimeblocksToSessions = (
   });
 };
 
+interface RegularSessionData {
+  id: string;
+  invitationId: number;
+  tutorId: number;
+  startTime: Date;
+  duration: number;
+  status: "booked";
+  sessionType: string;
+  location: string;
+  studentId: string;
+  tutorName: string;
+  tutorAvatar: string;
+  tutorColor: string;
+  description: string | null;
+  isRecurring: true;
+  dayOfWeek: number;
+}
+
+interface RegularInvitation {
+  id: number;
+  tutorId: number;
+  studentClerkId: string | null;
+  status: string;
+  dayOfWeek: number;
+  startTime: string;
+  duration: number;
+  location: string;
+  description: string | null;
+  color: string | null;
+  tutorName: string;
+  tutorAvatar: string;
+  tutorColor: string;
+}
+
 interface CalendarProps {
   scheduleData: any;
   timeblocksData: any;
   tutorsData: any;
   studentId: string;
+  regularSessionsData?: RegularSessionData[];
+  allRegularInvitations?: RegularInvitation[];
 }
 
 // Map FullCalendar view names to URL-friendly names
@@ -204,6 +311,8 @@ export default function Calendar({
   timeblocksData,
   tutorsData,
   studentId,
+  regularSessionsData = [],
+  allRegularInvitations = [],
 }: CalendarProps) {
   const locale = useLocale();
   const router = useRouter();
@@ -215,11 +324,12 @@ export default function Calendar({
   // Transform the data from a database
   const transformedTutors = transformTutors(tutorsData);
 
-  // Generate available slots from schedules
+  // Generate available slots from schedules (excluding times blocked by regular sessions)
   const availableSlots = generateAvailableSlots(
     scheduleData,
     tutorsData,
     timeblocksData,
+    allRegularInvitations,
   );
 
   // Get booked sessions (only future ones)
@@ -228,6 +338,23 @@ export default function Calendar({
     tutorsData,
   // ).filter((session) => (session.startTime >= new Date() && session.status === "booked" ));
 ).filter((session) => (session.startTime >= new Date()));
+
+  // Transform regular sessions to TutoringSession format
+  const regularSessions: TutoringSession[] = regularSessionsData.map((session) => ({
+    id: session.id,
+    tutorId: session.tutorId,
+    tutorName: session.tutorName,
+    startTime: new Date(session.startTime),
+    endTime: new Date(new Date(session.startTime).getTime() + session.duration * 60000),
+    duration: session.duration,
+    sessionType: "regular",
+    location: session.location,
+    status: "regular", // Use "regular" to distinguish from "booked"
+    description: session.description || "",
+    isRecurring: true,
+    invitationId: session.invitationId,
+    studentId: session.studentId,
+  }));
 
   const [selectedEvent, setSelectedEvent] = useState<TutoringSession | null>(
     null,
@@ -247,9 +374,11 @@ export default function Calendar({
 
   // Filter events based on the selected tutor or booked events
   const events = useMemo(() => {
-    // Get booked events for the student
+    // Get booked events for the student (including regular sessions)
     if (showBookedSessions) {
-      return bookedSessions.filter((event) => event.studentId === studentId);
+      const personalBooked = bookedSessions.filter((event) => event.studentId === studentId);
+      // Combine personal booked sessions with regular sessions
+      return [...personalBooked, ...regularSessions];
     }
     if (selectedTutorId === null) {
       return availableSlots;
@@ -264,6 +393,7 @@ export default function Calendar({
     showBookedSessions,
     bookedSessions,
     studentId,
+    regularSessions,
   ]);
 
   // Determine if we should show the no slots overlay and what message to display
@@ -452,6 +582,10 @@ export default function Calendar({
       location: arg.event.extendedProps.location,
       status: arg.event.extendedProps.status,
       description: arg.event.extendedProps.description,
+      // Regular session specific fields
+      isRecurring: arg.event.extendedProps.isRecurring,
+      invitationId: arg.event.extendedProps.invitationId,
+      studentId: arg.event.extendedProps.studentId,
     };
     setSelectedEvent(session);
     setIsEventSheetOpen(true);
@@ -569,6 +703,10 @@ export default function Calendar({
               location: session.location,
               status: session.status,
               description: session.description,
+              // Regular session specific fields (only for regular sessions)
+              isRecurring: (session as TutoringSession).isRecurring || false,
+              invitationId: (session as TutoringSession).invitationId,
+              studentId: (session as TutoringSession).studentId,
             },
           }))}
           eventClick={handleEventClick}
@@ -645,6 +783,19 @@ export default function Calendar({
             const tutorColor = tutor?.color || "#3B82F6";
             const status = eventInfo.event.extendedProps?.status;
             const isAvailable = status === "available";
+            const isRegular = status === "regular";
+
+            // Determine background color based on status
+            let backgroundColor;
+            if (isAvailable) {
+              backgroundColor = tutorColor;
+            } else if (isRegular) {
+              backgroundColor = "var(--color-red-400)"; // Green for regular sessions
+            } else if (status === "booked") {
+              backgroundColor = "var(--color-indigo-600)";
+            } else {
+              backgroundColor = "#6B7280"; // Gray fallback
+            }
 
             return (
               <div
@@ -652,7 +803,7 @@ export default function Calendar({
                   isAvailable ? "opacity-90" : "opacity-75"
                 }`}
                 style={{
-                  backgroundColor: isAvailable ? tutorColor : status === "booked" ? "var(--color-indigo-600)" : "#6B7280", // Gray for booked sessions
+                  backgroundColor,
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
@@ -674,7 +825,7 @@ export default function Calendar({
                     paddingRight: "8px",
                   }}
                 >
-                  {t(eventInfo.event.title === "regulars" ? "individual" : eventInfo.event.title)}
+                  {t(eventInfo.event.title)}
                 </div>
                 <div
                   className="text-xs opacity-80 truncate"

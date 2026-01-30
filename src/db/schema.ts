@@ -98,4 +98,13 @@ export const regularInvitationsTable = pgTable("regular_invitations", {
   updatedAt: timestamp({withTimezone: true}).notNull().defaultNow(),
 });
 
+export const cancelledRegularSessionsTable = pgTable("cancelled_regular_sessions", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  invitationId: integer()
+    .notNull()
+    .references(() => regularInvitationsTable.id),
+  cancelledDate: timestamp({withTimezone: true}).notNull(),
+  reason: text(),
+  createdAt: timestamp({withTimezone: true}).notNull().defaultNow(),
+});
 

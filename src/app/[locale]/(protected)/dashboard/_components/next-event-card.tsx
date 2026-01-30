@@ -14,7 +14,6 @@ import {
   IconClock,
   IconMapPin,
 } from "@tabler/icons-react";
-import { toZonedTime } from "date-fns-tz";
 import React, { useState, useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -31,6 +30,7 @@ import {
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog";
 import RescheduleDialog from "./reschedule-dialog";
+import CancelRegularSessionDialog from "./cancel-regular-session-dialog";
 import { useRouter } from "@/i18n/routing";
 import { toast } from "sonner";
 import { cancelBooking } from "@/actions/stripe-actions";
@@ -50,6 +50,7 @@ interface UnifiedEvent {
   tutorColor?: string;
   sessionType?: string;
   isRecurring?: boolean;
+  invitationId?: number;
 }
 
 interface NextEventCardProps {
@@ -61,8 +62,10 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
   const t = useTranslations("dashboard.events");
   const d = useTranslations("dashboard.cancel-booking-dialog");
   const tC = useTranslations("common.buttons");
+  const tCancelRegular = useTranslations("dashboard.cancel-regular-session-dialog");
   const [isCancelling, setIsCancelling] = useState(false);
   const [showRescheduleDialog, setShowRescheduleDialog] = useState(false);
+  const [showCancelRegularDialog, setShowCancelRegularDialog] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
   const router = useRouter();
 
@@ -225,10 +228,7 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
               <div className="flex items-center gap-3 text-sm text-muted-foreground">
                 <IconCalendar className="h-4 w-4 flex-shrink-0 text-muted-foreground/70" />
                 <span>
-                  {toZonedTime(
-                    event.date,
-                    "Europe/Ljubljana",
-                  ).toLocaleDateString(locale, {
+                  {new Date(event.date).toLocaleDateString(locale, {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
@@ -249,9 +249,37 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
           </CardContent>
           <CardFooter className="flex flex-row gap-3 pt-6 border-t border-border/30">
             {isRegular ? (
-              <div className="flex-1 text-center text-sm text-muted-foreground/70">
-                {t("recurring-note") || "Weekly recurring session"}
-              </div>
+              (() => {
+                const hoursUntilSession = (new Date(event.date).getTime() - currentTime.getTime()) / (1000 * 60 * 60);
+                const canCancel = hoursUntilSession > 24;
+                return (
+                  <div className="flex flex-col w-full gap-2">
+                    <div className="flex-1 text-center text-xs text-muted-foreground/70">
+                      {t("recurring-note") || "Weekly recurring session"}
+                    </div>
+                    <Button
+                      variant="outline"
+                      className="w-full border-red-500/40 text-red-500 hover:text-red-700 hover:bg-red-50 dark:border-red-500/40 dark:text-red-400 dark:hover:bg-red-400/10 transition-all duration-200 h-11 disabled:opacity-50"
+                      disabled={!canCancel || isCancelling}
+                      onClick={() => setShowCancelRegularDialog(true)}
+                    >
+                      {isCancelling ? (
+                        <>
+                          <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
+                          {tC("cancelling")}
+                        </>
+                      ) : (
+                        tC("cancel-booking")
+                      )}
+                    </Button>
+                    {!canCancel && (
+                      <p className="text-xs text-muted-foreground/60 text-center">
+                        {tCancelRegular("unable-to-cancel")}
+                      </p>
+                    )}
+                  </div>
+                );
+              })()
             ) : (
               <>
                 <AlertDialog>
@@ -332,6 +360,17 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
             price: 0, // Will be fetched by RescheduleDialog
           }}
           bookingId={event.bookingId}
+          locale={locale}
+        />
+      )}
+
+      {isRegular && event.invitationId && (
+        <CancelRegularSessionDialog
+          open={showCancelRegularDialog}
+          onOpenChange={setShowCancelRegularDialog}
+          invitationId={event.invitationId}
+          sessionDate={new Date(event.date)}
+          tutorName={event.tutor}
           locale={locale}
         />
       )}

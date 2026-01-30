@@ -37,12 +37,12 @@ import {
 } from "@/components/ui/alert-dialog";
 import { buttonVariants } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
-import { toZonedTime } from "date-fns-tz";
 import { useRouter } from "@/i18n/routing";
 import { toast } from "sonner";
 import { cancelBooking } from "@/actions/stripe-actions";
 import { cancelSession } from "@/actions/timeblocks";
 import RescheduleDialog from "./reschedule-dialog";
+import CancelRegularSessionDialog from "./cancel-regular-session-dialog";
 
 interface LangClubEvent {
   id: number;
@@ -103,6 +103,7 @@ interface UnifiedEvent {
   tutorColor?: string;
   sessionType?: string;
   isRecurring?: boolean;
+  invitationId?: number;
 }
 
 interface DashboardClientProps {
@@ -173,6 +174,7 @@ const DashboardClient = ({
         tutorColor: session.tutorColor,
         sessionType: session.sessionType,
         isRecurring: true,
+        invitationId: session.invitationId,
       });
     });
 
@@ -240,6 +242,11 @@ function ViewAllScheduledDialog({
     id: number | string;
     type: "language-club" | "personal" | "regulars";
     bookingId?: number;
+  } | null>(null);
+  const [cancelRegularEvent, setCancelRegularEvent] = useState<{
+    invitationId: number;
+    sessionDate: Date;
+    tutorName: string;
   } | null>(null);
   const t = useTranslations("dashboard.all-scheduled-events");
   const tE = useTranslations("dashboard.events");
@@ -426,10 +433,7 @@ function ViewAllScheduledDialog({
                                 <div className="flex items-center gap-2 text-muted-foreground">
                                   <IconCalendar className="h-4 w-4 flex-shrink-0 opacity-60" />
                                   <span>
-                                    {toZonedTime(
-                                      event.date,
-                                      "Europe/Ljubljana",
-                                    ).toLocaleDateString(locale, {
+                                    {new Date(event.date).toLocaleDateString(locale, {
                                       year: "numeric",
                                       month: "long",
                                       day: "numeric",
@@ -465,9 +469,39 @@ function ViewAllScheduledDialog({
 
                             <div className="flex flex-col gap-2 flex-shrink-0">
                               {isRegular ? (
-                                <div className="text-[11px] text-muted-foreground/70 text-right max-w-[80px]">
-                                  {tE("recurring-note") || "Weekly recurring"}
-                                </div>
+                                (() => {
+                                  const hoursUntilSession = (event.date.getTime() - new Date().getTime()) / (1000 * 60 * 60);
+                                  const canCancel = hoursUntilSession > 24;
+                                  return (
+                                    <div className="flex flex-col items-end gap-1.5">
+                                      <div className="text-[11px] text-muted-foreground/70 text-right max-w-[80px]">
+                                        {tE("recurring-note") || "Weekly recurring"}
+                                      </div>
+                                      <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="h-8 w-8 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-700 dark:hover:text-red-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                                        disabled={!canCancel || isCancelling === event.id}
+                                        title={!canCancel ? "Cannot cancel sessions within 24 hours" : "Cancel this session"}
+                                        onClick={() => {
+                                          if (event.invitationId) {
+                                            setCancelRegularEvent({
+                                              invitationId: event.invitationId,
+                                              sessionDate: event.date,
+                                              tutorName: event.tutor,
+                                            });
+                                          }
+                                        }}
+                                      >
+                                        {isCancelling === event.id ? (
+                                          <IconLoader2 className="w-4 h-4 animate-spin" />
+                                        ) : (
+                                          <IconTrash className="w-4 h-4" />
+                                        )}
+                                      </Button>
+                                    </div>
+                                  );
+                                })()
                               ) : (
                                 <>
                                   {isLanguageClub && event.bookingId && (
@@ -584,6 +618,22 @@ function ViewAllScheduledDialog({
             />
           );
         })()}
+
+      {/* Cancel Regular Session Dialog */}
+      {cancelRegularEvent && (
+        <CancelRegularSessionDialog
+          open={!!cancelRegularEvent}
+          onOpenChange={(open) => {
+            if (!open) {
+              setCancelRegularEvent(null);
+            }
+          }}
+          invitationId={cancelRegularEvent.invitationId}
+          sessionDate={cancelRegularEvent.sessionDate}
+          tutorName={cancelRegularEvent.tutorName}
+          locale={locale}
+        />
+      )}
     </>
   );
 }
