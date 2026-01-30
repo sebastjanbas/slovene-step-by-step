@@ -1,15 +1,15 @@
 "use server";
 
-import { db } from "@/db";
-import { schedulesTable, timeblocksTable, tutorsTable } from "@/db/schema";
-import { auth, clerkClient } from "@clerk/nextjs/server";
-import { TutoringSession } from "@/components/calendar/types";
-import { and, eq, gte, lt } from "drizzle-orm";
+import {db} from "@/db";
+import {schedulesTable, timeblocksTable, tutorsTable} from "@/db/schema";
+import {auth, clerkClient} from "@clerk/nextjs/server";
+import {TutoringSession} from "@/components/calendar/types";
+import {and, eq, gte, lt} from "drizzle-orm";
 import SessionConfEmail from "@/emails/session-conf-email";
 import CancellationConfEmail from "@/emails/cancellation-conf-email";
 import TutorSessionConfEmail from "@/emails/tutor-session-conf-email";
 import TutorSessionCancelEmail from "@/emails/tutor-session-cancel-email";
-import { Resend } from "resend";
+import {Resend} from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -351,7 +351,7 @@ const generateSessionICSFile = (
     .replaceAll("-", "")
     .replaceAll(":", "")
     .replaceAll(".", "");
-  const icsContent = `BEGIN:VCALENDAR
+  return `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//slovenscinakzk.com//Calendar Invite//${locale.toUpperCase()}
 BEGIN:VEVENT
@@ -364,5 +364,4 @@ DESCRIPTION:Personal Slovenian lesson with ${tutorName}
 LOCATION:${location}
 END:VEVENT
 END:VCALENDAR`;
-  return icsContent;
 };

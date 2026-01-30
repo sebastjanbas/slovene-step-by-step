@@ -257,6 +257,14 @@ export default function Calendar({
         const sameTutor = String(slot.tutorId) === String(booked.tutorId);
         // Time overlap: slot starts before booked ends AND slot ends after booked starts
         const timeOverlap = slot.startTime < booked.endTime && slot.endTime > booked.startTime;
+
+        // If the session is cancelled, only hide the slot from the student who cancelled it
+        // Everyone else should see it as available
+        if (booked.status === "cancelled") {
+          return sameTutor && timeOverlap && booked.studentId === studentId;
+        }
+
+        // For active booked sessions, hide the slot from everyone
         return sameTutor && timeOverlap;
       });
       return !isBooked;
