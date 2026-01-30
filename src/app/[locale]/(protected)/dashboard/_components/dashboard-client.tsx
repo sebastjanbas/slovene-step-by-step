@@ -71,9 +71,27 @@ interface PersonalSession {
   tutorColor: string;
 }
 
+interface RegularSession {
+  id: string;
+  invitationId: number;
+  tutorId: number;
+  startTime: Date;
+  duration: number;
+  status: "booked";
+  sessionType: string;
+  location: string;
+  studentId: string;
+  tutorName: string;
+  tutorAvatar: string;
+  tutorColor: string;
+  description: string | null;
+  isRecurring: true;
+  dayOfWeek: number;
+}
+
 interface UnifiedEvent {
-  id: number;
-  type: "language-club" | "personal";
+  id: number | string;
+  type: "language-club" | "personal" | "regulars";
   date: Date;
   tutor: string;
   location: string;
@@ -84,17 +102,20 @@ interface UnifiedEvent {
   level?: string;
   tutorColor?: string;
   sessionType?: string;
+  isRecurring?: boolean;
 }
 
 interface DashboardClientProps {
   langClubEvents: LangClubEvent[];
   personalSessions: PersonalSession[];
+  regularSessions: RegularSession[];
   locale: string;
 }
 
 const DashboardClient = ({
   langClubEvents,
   personalSessions,
+  regularSessions,
   locale,
 }: DashboardClientProps) => {
   const t = useTranslations("dashboard.all-scheduled-events");
@@ -139,9 +160,25 @@ const DashboardClient = ({
       }
     });
 
+    // Add regular sessions (they're already filtered to future dates in the server action)
+    regularSessions.forEach((session) => {
+      events.push({
+        id: session.id,
+        type: "regulars",
+        date: new Date(session.startTime),
+        tutor: session.tutorName,
+        location: session.location,
+        duration: session.duration,
+        theme: session.sessionType,
+        tutorColor: session.tutorColor,
+        sessionType: session.sessionType,
+        isRecurring: true,
+      });
+    });
+
     // Sort by date (earliest first)
     return events.sort((a, b) => a.date.getTime() - b.date.getTime());
-  }, [langClubEvents, personalSessions]);
+  }, [langClubEvents, personalSessions, regularSessions]);
 
   const nextEvent = allEvents.length > 0 ? allEvents[0] : null;
 
@@ -198,10 +235,10 @@ function ViewAllScheduledDialog({
   locale: string;
 }) {
   const [open, setOpen] = useState(false);
-  const [isCancelling, setIsCancelling] = useState<number | null>(null);
+  const [isCancelling, setIsCancelling] = useState<number | string | null>(null);
   const [rescheduleEvent, setRescheduleEvent] = useState<{
-    id: number;
-    type: "language-club" | "personal";
+    id: number | string;
+    type: "language-club" | "personal" | "regulars";
     bookingId?: number;
   } | null>(null);
   const t = useTranslations("dashboard.all-scheduled-events");
@@ -221,9 +258,13 @@ function ViewAllScheduledDialog({
     setIsCancelling(event.id);
     try {
       let response;
-      if (event.type === "language-club" && event.bookingId) {
+      if (event.type === "regulars") {
+        toast.error("Regular sessions cannot be cancelled individually");
+        setIsCancelling(null);
+        return;
+      } else if (event.type === "language-club" && event.bookingId) {
         response = await cancelBooking(event.bookingId);
-      } else if (event.type === "personal") {
+      } else if (event.type === "personal" && typeof event.id === "number") {
         response = await cancelSession(event.id);
       } else {
         toast.error("Cannot cancel this event");
@@ -329,9 +370,12 @@ function ViewAllScheduledDialog({
                     </div>
                     {sortedEvents.map((event) => {
                       const isLanguageClub = event.type === "language-club";
+                      const isRegular = event.type === "regulars";
                       const iconContainerStyle = isLanguageClub
-                        ? {background: "linear-gradient(to bottom right, var(--sl-purple), var(--sl-blue))",}
-                        : {background: "linear-gradient(to bottom right, var(--sl-blue), var(--sl-pink))",};
+                        ? {background: "linear-gradient(to bottom right, var(--sl-purple), var(--sl-blue))"}
+                        : isRegular
+                        ? {background: `linear-gradient(to bottom right, ${event.tutorColor || "var(--sl-green)"}, var(--sl-blue))`}
+                        : {background: "linear-gradient(to bottom right, var(--sl-blue), var(--sl-pink))"};
 
                       return (
                         <div
@@ -361,11 +405,15 @@ function ViewAllScheduledDialog({
                                     className={
                                       isLanguageClub
                                         ? "border-[var(--sl-purple)]/30 text-[var(--sl-purple)] bg-[var(--sl-purple)]/5 text-[11px] px-2 py-0.5 rounded-full font-medium"
+                                        : isRegular
+                                        ? "border-[var(--sl-green)]/30 text-[var(--sl-green)] bg-[var(--sl-green)]/5 text-[11px] px-2 py-0.5 rounded-full font-medium"
                                         : "border-[var(--sl-pink)]/30 text-[var(--sl-pink)] bg-[var(--sl-pink)]/5 text-[11px] px-2 py-0.5 rounded-full font-medium"
                                     }
                                   >
                                     {isLanguageClub
                                       ? tE("language-club") || "Language Club"
+                                      : isRegular
+                                      ? tE("regular-session") || "Regular Session"
                                       : tE("personal-session") || "Personal Session"}
                                   </Badge>
                                 </div>
@@ -416,68 +464,76 @@ function ViewAllScheduledDialog({
                             </div>
 
                             <div className="flex flex-col gap-2 flex-shrink-0">
-                              {isLanguageClub && event.bookingId && (
-                                <Button
-                                  variant="outline"
-                                  size="icon"
-                                  className="h-8 w-8 rounded-lg border-border/50 hover:bg-muted/50 hover:border-border transition-all"
-                                  disabled={isCancelling === event.id}
-                                  onClick={() => handleReschedule(event)}
-                                >
-                                  <IconCalendarSearch className="w-4 h-4" />
-                                </Button>
-                              )}
-                              <AlertDialog>
-                                <AlertDialogTrigger asChild>
-                                  <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="h-8 w-8 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-700 dark:hover:text-red-300 transition-all"
-                                    disabled={isCancelling === event.id}
-                                  >
-                                    {isCancelling === event.id ? (
-                                      <IconLoader2 className="w-4 h-4 animate-spin" />
-                                    ) : (
-                                      <IconTrash className="w-4 h-4" />
-                                    )}
-                                  </Button>
-                                </AlertDialogTrigger>
-                                <AlertDialogContent className="bg-white dark:bg-[#1e1e1e] border-red-500 dark:border-red-500/30 border-2 rounded-2xl">
-                                  <AlertDialogHeader>
-                                    <AlertDialogTitle>
-                                      {tCancel("title")}
-                                    </AlertDialogTitle>
-                                    <AlertDialogDescription>
-                                      {tCancel("description")}
-                                    </AlertDialogDescription>
-                                  </AlertDialogHeader>
-                                  <AlertDialogFooter>
-                                    <AlertDialogCancel>
-                                      {tButtons("cancel")}
-                                    </AlertDialogCancel>
-                                    <AlertDialogAction
-                                      onClick={() =>
-                                        toast.promise(handleCancel(event), {
-                                          loading: tButtons("cancelling"),
-                                        })
-                                      }
+                              {isRegular ? (
+                                <div className="text-[11px] text-muted-foreground/70 text-right max-w-[80px]">
+                                  {tE("recurring-note") || "Weekly recurring"}
+                                </div>
+                              ) : (
+                                <>
+                                  {isLanguageClub && event.bookingId && (
+                                    <Button
+                                      variant="outline"
+                                      size="icon"
+                                      className="h-8 w-8 rounded-lg border-border/50 hover:bg-muted/50 hover:border-border transition-all"
                                       disabled={isCancelling === event.id}
-                                      className={buttonVariants({
-                                        variant: "destructive",
-                                      })}
+                                      onClick={() => handleReschedule(event)}
                                     >
-                                      {isCancelling === event.id ? (
-                                        <>
-                                          <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
-                                          {tButtons("cancelling")}
-                                        </>
-                                      ) : (
-                                        tButtons("cancel-booking")
-                                      )}
-                                    </AlertDialogAction>
-                                  </AlertDialogFooter>
-                                </AlertDialogContent>
-                              </AlertDialog>
+                                      <IconCalendarSearch className="w-4 h-4" />
+                                    </Button>
+                                  )}
+                                  <AlertDialog>
+                                    <AlertDialogTrigger asChild>
+                                      <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="h-8 w-8 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-700 dark:hover:text-red-300 transition-all"
+                                        disabled={isCancelling === event.id}
+                                      >
+                                        {isCancelling === event.id ? (
+                                          <IconLoader2 className="w-4 h-4 animate-spin" />
+                                        ) : (
+                                          <IconTrash className="w-4 h-4" />
+                                        )}
+                                      </Button>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent className="bg-white dark:bg-[#1e1e1e] border-red-500 dark:border-red-500/30 border-2 rounded-2xl">
+                                      <AlertDialogHeader>
+                                        <AlertDialogTitle>
+                                          {tCancel("title")}
+                                        </AlertDialogTitle>
+                                        <AlertDialogDescription>
+                                          {tCancel("description")}
+                                        </AlertDialogDescription>
+                                      </AlertDialogHeader>
+                                      <AlertDialogFooter>
+                                        <AlertDialogCancel>
+                                          {tButtons("cancel")}
+                                        </AlertDialogCancel>
+                                        <AlertDialogAction
+                                          onClick={() =>
+                                            toast.promise(handleCancel(event), {
+                                              loading: tButtons("cancelling"),
+                                            })
+                                          }
+                                          disabled={isCancelling === event.id}
+                                          className={buttonVariants({
+                                            variant: "destructive",
+                                          })}
+                                        >
+                                          {isCancelling === event.id ? (
+                                            <>
+                                              <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
+                                              {tButtons("cancelling")}
+                                            </>
+                                          ) : (
+                                            tButtons("cancel-booking")
+                                          )}
+                                        </AlertDialogAction>
+                                      </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                  </AlertDialog>
+                                </>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -499,10 +555,10 @@ function ViewAllScheduledDialog({
           const event = sortedEvents.find(
             (e) => e.id === rescheduleEvent.id && e.type === "language-club",
           );
-          if (!event || event.type !== "language-club") return null;
+          if (!event || event.type !== "language-club" || typeof event.id !== "number") return null;
 
           const currentEvent = {
-            id: event.id,
+            id: event.id as number,
             theme: event.theme || "",
             date: event.date,
             tutor: event.tutor || "",

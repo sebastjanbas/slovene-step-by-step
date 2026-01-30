@@ -37,8 +37,8 @@ import { cancelBooking } from "@/actions/stripe-actions";
 import { cancelSession } from "@/actions/timeblocks";
 
 interface UnifiedEvent {
-  id: number;
-  type: "language-club" | "personal";
+  id: number | string;
+  type: "language-club" | "personal" | "regulars";
   date: Date;
   tutor: string;
   location: string;
@@ -49,6 +49,7 @@ interface UnifiedEvent {
   level?: string;
   tutorColor?: string;
   sessionType?: string;
+  isRecurring?: boolean;
 }
 
 interface NextEventCardProps {
@@ -79,9 +80,13 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
 
     try {
       let response;
-      if (event.type === "language-club" && event.bookingId) {
+      if (event.type === "regulars") {
+        toast.error("Regular sessions cannot be cancelled individually");
+        setIsCancelling(false);
+        return;
+      } else if (event.type === "language-club" && event.bookingId) {
         response = await cancelBooking(event.bookingId);
-      } else if (event.type === "personal") {
+      } else if (event.type === "personal" && typeof event.id === "number") {
         response = await cancelSession(event.id);
       } else {
         toast.error("Cannot cancel this event");
@@ -108,11 +113,14 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
   };
 
   const isLanguageClub = event.type === "language-club";
+  const isRegular = event.type === "regulars";
   const gradientColor = isLanguageClub
     ? "from-[var(--sl-purple)] to-[var(--sl-blue)]"
-    : event.tutorColor
-      ? `from-[${event.tutorColor}] to-[${event.tutorColor}]`
-      : "from-[var(--sl-pink)] to-[var(--sl-purple)]";
+    : isRegular
+      ? "from-[var(--sl-green)] to-[var(--sl-blue)]"
+      : event.tutorColor
+        ? `from-[${event.tutorColor}] to-[${event.tutorColor}]`
+        : "from-[var(--sl-pink)] to-[var(--sl-purple)]";
 
   // Calculate time remaining with seconds always displayed
   const timeLeft = useMemo(() => {
@@ -184,12 +192,16 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
                 className={
                   isLanguageClub
                     ? "border-[var(--sl-purple)]/50 text-[var(--sl-purple)] bg-[var(--sl-purple)]/10"
-                    : "border-[var(--sl-pink)]/50 text-[var(--sl-pink)] bg-[var(--sl-pink)]/10"
+                    : isRegular
+                      ? "border-[var(--sl-green)]/50 text-[var(--sl-green)] bg-[var(--sl-green)]/10"
+                      : "border-[var(--sl-pink)]/50 text-[var(--sl-pink)] bg-[var(--sl-pink)]/10"
                 }
               >
                 {isLanguageClub
                   ? t("language-club") || "Language Club"
-                  : t("personal-session") || "Personal Session"}
+                  : isRegular
+                    ? t("regular-session") || "Regular Session"
+                    : t("personal-session") || "Personal Session"}
               </Badge>
               {event.level && (
                 <Badge variant="secondary" className="text-xs bg-muted/50">
@@ -236,66 +248,74 @@ const NextEventCard = ({ event, locale }: NextEventCardProps) => {
             </div>
           </CardContent>
           <CardFooter className="flex flex-row gap-3 pt-6 border-t border-border/30">
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="flex-1 border-red-500/40 text-red-500 hover:text-red-700 hover:bg-red-50 dark:border-red-500/40 dark:text-red-400 dark:hover:bg-red-400/10 transition-all duration-200 h-11"
-                  disabled={isCancelling}
-                >
-                  {isCancelling ? (
-                    <>
-                      <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
-                      {tC("cancelling")}
-                    </>
-                  ) : (
-                    tC("cancel-booking")
-                  )}
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent className="bg-white dark:bg-[#1a1a1a] border-red-500 dark:border-red-500/30 border-2 rounded-2xl">
-                <AlertDialogHeader>
-                  <AlertDialogTitle>{d("title")}</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    {d("description")}
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>{tC("cancel")}</AlertDialogCancel>
-                  <AlertDialogAction
-                    onClick={() =>
-                      toast.promise(handleCancel, {
-                        loading: tC("cancelling"),
-                      })
-                    }
-                    disabled={isCancelling}
-                    className={buttonVariants({ variant: "destructive" })}
+            {isRegular ? (
+              <div className="flex-1 text-center text-sm text-muted-foreground/70">
+                {t("recurring-note") || "Weekly recurring session"}
+              </div>
+            ) : (
+              <>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className="flex-1 border-red-500/40 text-red-500 hover:text-red-700 hover:bg-red-50 dark:border-red-500/40 dark:text-red-400 dark:hover:bg-red-400/10 transition-all duration-200 h-11"
+                      disabled={isCancelling}
+                    >
+                      {isCancelling ? (
+                        <>
+                          <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
+                          {tC("cancelling")}
+                        </>
+                      ) : (
+                        tC("cancel-booking")
+                      )}
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent className="bg-white dark:bg-[#1a1a1a] border-red-500 dark:border-red-500/30 border-2 rounded-2xl">
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>{d("title")}</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        {d("description")}
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>{tC("cancel")}</AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={() =>
+                          toast.promise(handleCancel, {
+                            loading: tC("cancelling"),
+                          })
+                        }
+                        disabled={isCancelling}
+                        className={buttonVariants({ variant: "destructive" })}
+                      >
+                        {isCancelling ? (
+                          <>
+                            <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
+                            {tC("cancelling")}
+                          </>
+                        ) : (
+                          tC("cancel-booking")
+                        )}
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+                {isLanguageClub && event.bookingId && (
+                  <Button
+                    onClick={handleReschedule}
+                    variant="outline"
+                    className="flex-1 border-[var(--sl-purple)]/40 text-[var(--sl-purple)] bg-[var(--sl-purple)]/10 hover:bg-[var(--sl-purple)]/20 transition-all duration-200 h-11 font-medium"
                   >
-                    {isCancelling ? (
-                      <>
-                        <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
-                        {tC("cancelling")}
-                      </>
-                    ) : (
-                      tC("cancel-booking")
-                    )}
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-            {isLanguageClub && event.bookingId && (
-              <Button
-                onClick={handleReschedule}
-                variant="outline"
-                className="flex-1 border-[var(--sl-purple)]/40 text-[var(--sl-purple)] bg-[var(--sl-purple)]/10 hover:bg-[var(--sl-purple)]/20 transition-all duration-200 h-11 font-medium"
-              >
-                {tC("reschedule")}
-              </Button>
+                    {tC("reschedule")}
+                  </Button>
+                )}
+              </>
             )}
           </CardFooter>
         </Card>
 
-      {isLanguageClub && event.bookingId && (
+      {isLanguageClub && event.bookingId && typeof event.id === "number" && (
         <RescheduleDialog
           open={showRescheduleDialog}
           onOpenChange={setShowRescheduleDialog}

@@ -75,11 +75,13 @@
       "total-upcoming": "Skupaj prihajajočih",
       "language-club": "Dogodki pogovornega kluba",
       "personal-sessions": "Osebne seje",
+      "regular-sessions": "Redne ure",
       "completed": "Zaključene seje",
       "description": {
         "upcoming": "Načrtovani dogodki",
         "language-club": "Skupinske seje",
         "personal-sessions": "Individualne lekcije",
+        "regular-sessions": "Tedensko ponavljajoče",
         "completed": "Pretekle seje"
       }
     },
@@ -94,6 +96,8 @@
       "calendar-description": "Oglejte si svoje dogodke za ta dan",
       "language-club": "Pogovorni klub",
       "personal-session": "Osebna seja",
+      "regular-session": "Redna ura",
+      "recurring-note": "Tedensko ponavljajoče",
       "tooltip": {
         "level": "Priporočen nivo {level}",
         "duration": "{duration} minut",

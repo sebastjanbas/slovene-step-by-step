@@ -75,11 +75,13 @@
       "total-upcoming": "Total Upcoming",
       "language-club": "Language Club Events",
       "personal-sessions": "Personal Sessions",
+      "regular-sessions": "Regular Sessions",
       "completed": "Completed Sessions",
       "description": {
         "upcoming": "Scheduled events",
         "language-club": "Group sessions",
         "personal-sessions": "One-on-one lessons",
+        "regular-sessions": "Weekly recurring",
         "completed": "Past sessions"
       }
     },
@@ -94,6 +96,8 @@
       "calendar-description": "View your events for this day",
       "language-club": "Language Club",
       "personal-session": "Personal Session",
+      "regular-session": "Regular Session",
+      "recurring-note": "Weekly recurring",
       "tooltip": {
         "level": "Required knowledge: {level} level",
         "duration": "{duration} minutes long",

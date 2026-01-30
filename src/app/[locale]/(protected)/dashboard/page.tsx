@@ -5,10 +5,12 @@ import {
   langClubTable,
   timeblocksTable,
   tutorsTable,
+  regularInvitationsTable,
 } from "@/db/schema";
 import { auth } from "@clerk/nextjs/server";
 import {asc, eq, and, or, gt} from "drizzle-orm";
 import React from "react";
+import {generateRecurringSessions, getRegularInvitations} from "@/actions/regulars";
 
 import DashboardClient from "./_components/dashboard-client";
 import DashboardStats from "./_components/dashboard-stats";
@@ -72,6 +74,13 @@ const DashboardPage = async ({ params }) => {
     .innerJoin(tutorsTable, eq(timeblocksTable.tutorId, tutorsTable.id))
     .orderBy(asc(timeblocksTable.startTime));
 
+  // Fetch accepted regular invitations
+  const regularInvitations = await getRegularInvitations()
+  console.log("INVITATIONS: "+regularInvitations)
+  // Generate recurring sessions from regular invitations
+  const regularSessions = await generateRecurringSessions(regularInvitations, userId);
+  console.log("GENERATED SESSIONS: "+regularSessions)
+
   return (
     <main className="w-full h-full flex flex-col gap-8 p-8 md:p-10 lg:p-12">
       <div className="flex-shrink-0">
@@ -82,6 +91,7 @@ const DashboardPage = async ({ params }) => {
       <DashboardStats
         langClubEvents={langClubEvents}
         personalSessions={personalSessions}
+        regularSessions={regularSessions}
       />
 
       {/* Main Content: Calendar and Events */}
@@ -90,6 +100,7 @@ const DashboardPage = async ({ params }) => {
           <UnifiedCalendar
             langClubEvents={langClubEvents}
             personalSessions={personalSessions}
+            regularSessions={regularSessions}
             locale={locale}
           />
         </div>
@@ -97,6 +108,7 @@ const DashboardPage = async ({ params }) => {
           <DashboardClient
             langClubEvents={langClubEvents}
             personalSessions={personalSessions}
+            regularSessions={regularSessions}
             locale={locale}
           />
         </div>

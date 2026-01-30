@@ -7,6 +7,7 @@ import {
   IconUsers,
   IconUser,
   IconCheck,
+  IconRepeat,
 } from "@tabler/icons-react";
 
 interface LangClubEvent {
@@ -21,14 +22,22 @@ interface PersonalSession {
   status: string;
 }
 
+interface RegularSession {
+  id: string;
+  startTime: Date;
+  invitationId: number;
+}
+
 interface DashboardStatsProps {
   langClubEvents: LangClubEvent[];
   personalSessions: PersonalSession[];
+  regularSessions: RegularSession[];
 }
 
 const DashboardStats = ({
   langClubEvents,
   personalSessions,
+  regularSessions,
 }: DashboardStatsProps) => {
   const t = useTranslations("dashboard.stats");
   const now = new Date();
@@ -42,7 +51,17 @@ const DashboardStats = ({
     (session) => new Date(session.startTime) > now,
   ).length;
 
-  const totalUpcoming = upcomingLangClub + upcomingPersonal;
+  // Count unique regular invitations (not individual occurrences)
+  const uniqueRegularInvitations = new Set(
+    regularSessions.map((s) => s.invitationId)
+  ).size;
+
+  // Count upcoming regular sessions (individual occurrences)
+  const upcomingRegular = regularSessions.filter(
+    (session) => new Date(session.startTime) > now,
+  ).length;
+
+  const totalUpcoming = upcomingLangClub + upcomingPersonal + upcomingRegular;
 
   const completedLangClub = langClubEvents.filter(
     (event) => new Date(event.date) <= now,
@@ -60,7 +79,6 @@ const DashboardStats = ({
       value: totalUpcoming,
       icon: IconCalendar,
       borderColor: "border-l-[var(--sl-blue)]",
-      // textColor: "text-[var(--sl-blue)]",
       textColor: "text-foreground",
       iconBgColor: "bg-[var(--sl-blue)]",
       description: t("description.upcoming"),
@@ -70,7 +88,6 @@ const DashboardStats = ({
       value: upcomingLangClub,
       icon: IconUsers,
       borderColor: "border-l-[var(--sl-purple)]",
-      // textColor: "text-[var(--sl-purple)]",
       textColor: "text-foreground",
       iconBgColor: "bg-[var(--sl-purple)]",
       description: t("description.language-club"),
@@ -80,20 +97,18 @@ const DashboardStats = ({
       value: upcomingPersonal,
       icon: IconUser,
       borderColor: "border-l-[var(--sl-pink)]",
-      // textColor: "text-[var(--sl-pink)]",
       textColor: "text-foreground",
       iconBgColor: "bg-[var(--sl-pink)]",
       description: t("description.personal-sessions"),
     },
     {
-      title: t("completed"),
-      value: totalCompleted,
-      icon: IconCheck,
-      borderColor: "border-l-[var(--sl-purple)]",
-      // textColor: "text-[var(--sl-purple)]",
+      title: t("regular-sessions"),
+      value: uniqueRegularInvitations,
+      icon: IconRepeat,
+      borderColor: "border-l-[var(--sl-green)]",
       textColor: "text-foreground",
-      iconBgColor: "bg-[var(--sl-purple)]",
-      description: t("description.completed"),
+      iconBgColor: "bg-[var(--sl-green)]",
+      description: t("description.regular-sessions"),
     },
   ];
 

@@ -76,11 +76,13 @@
       "total-upcoming": "Всего предстоящих",
       "language-club": "События языкового клуба",
       "personal-sessions": "Личные сессии",
+      "regular-sessions": "Регулярные занятия",
       "completed": "Завершенные сессии",
       "description": {
         "upcoming": "Запланированные события",
         "language-club": "Групповые сессии",
         "personal-sessions": "Индивидуальные уроки",
+        "regular-sessions": "Еженедельные повторяющиеся",
         "completed": "Прошедшие сессии"
       }
     },
@@ -95,6 +97,8 @@
       "calendar-description": "Просмотрите свои события на этот день",
       "language-club": "Языковой клуб",
       "personal-session": "Личная сессия",
+      "regular-session": "Регулярное занятие",
+      "recurring-note": "Еженедельно повторяющееся",
       "tooltip": {
         "level": "Требуемые знания: {level} уровень",
         "duration": "{duration} минут",

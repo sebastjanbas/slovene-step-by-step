@@ -78,3 +78,24 @@ export const schedulesTable = pgTable("schedules", {
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow(),
 });
+
+export const regularInvitationsTable = pgTable("regular_invitations", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  token: varchar({length: 255}).notNull().unique(),
+  tutorId: integer()
+    .notNull()
+    .references(() => tutorsTable.id),
+  studentEmail: varchar({length: 255}).notNull(),
+  studentClerkId: varchar({length: 255}),
+  status: varchar({length: 50}).notNull().default("pending"),
+  dayOfWeek: integer().notNull(),
+  startTime: varchar({length: 10}).notNull(),
+  duration: integer().notNull(),
+  location: varchar({length: 255}).notNull(),
+  description: text(),
+  color: varchar({length: 50}),
+  createdAt: timestamp({withTimezone: true}).notNull().defaultNow(),
+  updatedAt: timestamp({withTimezone: true}).notNull().defaultNow(),
+});
+
+

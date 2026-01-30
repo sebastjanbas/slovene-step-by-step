@@ -77,15 +77,35 @@ interface PersonalSession {
   tutorColor: string;
 }
 
+interface RegularSession {
+  id: string;
+  invitationId: number;
+  tutorId: number;
+  startTime: Date;
+  duration: number;
+  status: "booked";
+  sessionType: string;
+  location: string;
+  studentId: string;
+  tutorName: string;
+  tutorAvatar: string;
+  tutorColor: string;
+  description: string | null;
+  isRecurring: true;
+  dayOfWeek: number;
+}
+
 interface UnifiedCalendarProps {
   langClubEvents: LangClubEvent[];
   personalSessions: PersonalSession[];
+  regularSessions: RegularSession[];
   locale: string;
 }
 
 const UnifiedCalendar = ({
   langClubEvents,
   personalSessions,
+  regularSessions,
   locale,
 }: UnifiedCalendarProps) => {
   const fullLocale = useLocale();
@@ -101,10 +121,10 @@ const UnifiedCalendar = ({
     new Date(),
   );
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [isCancelling, setIsCancelling] = useState<number | null>(null);
+  const [isCancelling, setIsCancelling] = useState<number | string | null>(null);
   const [rescheduleEvent, setRescheduleEvent] = useState<{
-    id: number;
-    type: "language-club" | "personal";
+    id: number | string;
+    type: "language-club" | "personal" | "regulars";
     bookingId?: number;
   } | null>(null);
 
@@ -169,14 +189,39 @@ const UnifiedCalendar = ({
       });
     });
 
+    // Add regular sessions
+    regularSessions.forEach((session) => {
+      const startTime = new Date(session.startTime);
+      const endTime = new Date(startTime.getTime() + session.duration * 60000);
+      events.push({
+        id: session.id,
+        title: session.sessionType,
+        start: startTime,
+        end: endTime,
+        extendedProps: {
+          type: "regulars",
+          session: session,
+          tutor: session.tutorName,
+          location: session.location,
+          duration: session.duration,
+          tutorColor: session.tutorColor,
+          isRecurring: true,
+        },
+        backgroundColor: session.tutorColor || "var(--sl-green)",
+        borderColor: session.tutorColor || "var(--sl-green)",
+        textColor: "#ffffff",
+        classNames: ["regular-event"],
+      });
+    });
+
     return events;
-  }, [langClubEvents, personalSessions]);
+  }, [langClubEvents, personalSessions, regularSessions]);
 
   // Combine all events for dialog display
   const allEvents = useMemo(() => {
     const events: Array<{
-      id: number;
-      type: "language-club" | "personal";
+      id: number | string;
+      type: "language-club" | "personal" | "regulars";
       date: Date;
       tutor?: string;
       theme?: string;
@@ -187,6 +232,7 @@ const UnifiedCalendar = ({
       level?: string;
       bookingId?: number;
       bookingStatus?: string;
+      isRecurring?: boolean;
     }> = [];
 
     // Add language club events
@@ -212,8 +258,24 @@ const UnifiedCalendar = ({
       });
     });
 
+    // Add regular sessions
+    regularSessions.forEach((session) => {
+      events.push({
+        id: session.id,
+        type: "regulars" as const,
+        date: new Date(session.startTime),
+        tutor: session.tutorName,
+        theme: session.sessionType,
+        location: session.location,
+        duration: session.duration,
+        tutorColor: session.tutorColor,
+        description: session.description,
+        isRecurring: true,
+      });
+    });
+
     return events;
-  }, [langClubEvents, personalSessions]);
+  }, [langClubEvents, personalSessions, regularSessions]);
 
   const handleDateClick = (arg: { date: Date | string }) => {
     const clickedDate =
@@ -238,9 +300,13 @@ const UnifiedCalendar = ({
     setIsCancelling(event.id);
     try {
       let response;
-      if (event.type === "language-club" && event.bookingId) {
+      if (event.type === "regulars") {
+        toast.error("Regular sessions cannot be cancelled individually");
+        setIsCancelling(null);
+        return;
+      } else if (event.type === "language-club" && event.bookingId) {
         response = await cancelBooking(event.bookingId);
-      } else if (event.type === "personal") {
+      } else if (event.type === "personal" && typeof event.id === "number") {
         response = await cancelSession(event.id);
       } else {
         toast.error("Cannot cancel this event");
@@ -504,6 +570,8 @@ const UnifiedCalendar = ({
                               style={
                                 event.type === "language-club"
                                   ? {background: "linear-gradient(to bottom right, var(--sl-purple), var(--sl-blue))"}
+                                  : event.type === "regulars"
+                                  ? {background: `linear-gradient(to bottom right, ${event.tutorColor || "var(--sl-green)"}, var(--sl-blue))`}
                                   : {background: "linear-gradient(to bottom right, var(--sl-blue), var(--sl-pink))"}
                               }
                             >
@@ -525,11 +593,15 @@ const UnifiedCalendar = ({
                                     className={
                                       event.type === "language-club"
                                         ? "border-[var(--sl-purple)]/30 text-[var(--sl-purple)] bg-[var(--sl-purple)]/5 text-[11px] px-2 py-0.5 rounded-full font-medium"
+                                        : event.type === "regulars"
+                                        ? "border-[var(--sl-green)]/30 text-[var(--sl-green)] bg-[var(--sl-green)]/5 text-[11px] px-2 py-0.5 rounded-full font-medium"
                                         : "border-[var(--sl-pink)]/30 text-[var(--sl-pink)] bg-[var(--sl-pink)]/5 text-[11px] px-2 py-0.5 rounded-full font-medium"
                                     }
                                   >
                                     {event.type === "language-club"
                                       ? t("language-club") || "Language Club"
+                                      : event.type === "regulars"
+                                      ? t("regular-session") || "Regular Session"
                                       : t("personal-session") || "Personal Session"}
                                   </Badge>
                                 </div>
@@ -576,69 +648,77 @@ const UnifiedCalendar = ({
                             </div>
 
                             <div className="flex flex-col gap-2 flex-shrink-0">
-                              {event.type === "language-club" &&
-                                event.bookingId && (
-                                  <Button
-                                    variant="outline"
-                                    size="icon"
-                                    className="h-8 w-8 rounded-lg border-border/50 hover:bg-muted/50 hover:border-border transition-all"
-                                    disabled={isCancelling === event.id}
-                                    onClick={() => handleReschedule(event)}
-                                  >
-                                    <IconCalendarSearch className="w-4 h-4" />
-                                  </Button>
-                                )}
-                              <AlertDialog>
-                                <AlertDialogTrigger asChild>
-                                  <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="h-8 w-8 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-700 dark:hover:text-red-300 transition-all"
-                                    disabled={isCancelling === event.id}
-                                  >
-                                    {isCancelling === event.id ? (
-                                      <IconLoader2 className="w-4 h-4 animate-spin" />
-                                    ) : (
-                                      <IconTrash className="w-4 h-4" />
+                              {event.type === "regulars" ? (
+                                <div className="text-[11px] text-muted-foreground/70 text-right max-w-[80px]">
+                                  {t("recurring-note") || "Weekly recurring"}
+                                </div>
+                              ) : (
+                                <>
+                                  {event.type === "language-club" &&
+                                    event.bookingId && (
+                                      <Button
+                                        variant="outline"
+                                        size="icon"
+                                        className="h-8 w-8 rounded-lg border-border/50 hover:bg-muted/50 hover:border-border transition-all"
+                                        disabled={isCancelling === event.id}
+                                        onClick={() => handleReschedule(event)}
+                                      >
+                                        <IconCalendarSearch className="w-4 h-4" />
+                                      </Button>
                                     )}
-                                  </Button>
-                                </AlertDialogTrigger>
-                                <AlertDialogContent className="bg-white dark:bg-[#1e1e1e] border-red-500 dark:border-red-500/30 border-2 rounded-2xl">
-                                  <AlertDialogHeader>
-                                    <AlertDialogTitle>
-                                      {tCancel("title")}
-                                    </AlertDialogTitle>
-                                    <AlertDialogDescription>
-                                      {tCancel("description")}
-                                    </AlertDialogDescription>
-                                  </AlertDialogHeader>
-                                  <AlertDialogFooter>
-                                    <AlertDialogCancel>
-                                      {tButtons("cancel")}
-                                    </AlertDialogCancel>
-                                    <AlertDialogAction
-                                      onClick={() =>
-                                        toast.promise(handleCancel(event), {
-                                          loading: tButtons("cancelling"),
-                                        })
-                                      }
-                                      disabled={isCancelling === event.id}
-                                      className={buttonVariants({
-                                        variant: "destructive",
-                                      })}
-                                    >
-                                      {isCancelling === event.id ? (
-                                        <>
-                                          <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
-                                          {tButtons("cancelling")}
-                                        </>
-                                      ) : (
-                                        tButtons("cancel-booking")
-                                      )}
-                                    </AlertDialogAction>
-                                  </AlertDialogFooter>
-                                </AlertDialogContent>
-                              </AlertDialog>
+                                  <AlertDialog>
+                                    <AlertDialogTrigger asChild>
+                                      <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="h-8 w-8 rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-700 dark:hover:text-red-300 transition-all"
+                                        disabled={isCancelling === event.id}
+                                      >
+                                        {isCancelling === event.id ? (
+                                          <IconLoader2 className="w-4 h-4 animate-spin" />
+                                        ) : (
+                                          <IconTrash className="w-4 h-4" />
+                                        )}
+                                      </Button>
+                                    </AlertDialogTrigger>
+                                    <AlertDialogContent className="bg-white dark:bg-[#1e1e1e] border-red-500 dark:border-red-500/30 border-2 rounded-2xl">
+                                      <AlertDialogHeader>
+                                        <AlertDialogTitle>
+                                          {tCancel("title")}
+                                        </AlertDialogTitle>
+                                        <AlertDialogDescription>
+                                          {tCancel("description")}
+                                        </AlertDialogDescription>
+                                      </AlertDialogHeader>
+                                      <AlertDialogFooter>
+                                        <AlertDialogCancel>
+                                          {tButtons("cancel")}
+                                        </AlertDialogCancel>
+                                        <AlertDialogAction
+                                          onClick={() =>
+                                            toast.promise(handleCancel(event), {
+                                              loading: tButtons("cancelling"),
+                                            })
+                                          }
+                                          disabled={isCancelling === event.id}
+                                          className={buttonVariants({
+                                            variant: "destructive",
+                                          })}
+                                        >
+                                          {isCancelling === event.id ? (
+                                            <>
+                                              <IconLoader2 className="mr-2 h-4 w-4 animate-spin" />
+                                              {tButtons("cancelling")}
+                                            </>
+                                          ) : (
+                                            tButtons("cancel-booking")
+                                          )}
+                                        </AlertDialogAction>
+                                      </AlertDialogFooter>
+                                    </AlertDialogContent>
+                                  </AlertDialog>
+                                </>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -659,11 +739,11 @@ const UnifiedCalendar = ({
             const event = eventsOnSelectedDay.find(
               (e) => e.id === rescheduleEvent.id && e.type === "language-club",
             );
-            if (!event || event.type !== "language-club") return null;
+            if (!event || event.type !== "language-club" || typeof event.id !== "number") return null;
 
             // Create an event object matching RescheduleDialog's Event interface
             const currentEvent = {
-              id: event.id,
+              id: event.id as number,
               theme: event.theme || "",
               date: event.date,
               tutor: event.tutor || "",
