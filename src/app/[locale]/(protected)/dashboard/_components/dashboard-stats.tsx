@@ -6,7 +6,6 @@ import {
   IconCalendar,
   IconUsers,
   IconUser,
-  IconCheck,
   IconRepeat,
 } from "@tabler/icons-react";
 
@@ -63,15 +62,15 @@ const DashboardStats = ({
 
   const totalUpcoming = upcomingLangClub + upcomingPersonal + upcomingRegular;
 
-  const completedLangClub = langClubEvents.filter(
-    (event) => new Date(event.date) <= now,
-  ).length;
+  // const completedLangClub = langClubEvents.filter(
+  //   (event) => new Date(event.date) <= now,
+  // ).length;
+  //
+  // const completedPersonal = personalSessions.filter(
+  //   (session) => new Date(session.startTime) <= now,
+  // ).length;
 
-  const completedPersonal = personalSessions.filter(
-    (session) => new Date(session.startTime) <= now,
-  ).length;
-
-  const totalCompleted = completedLangClub + completedPersonal;
+  // const totalCompleted = completedLangClub + completedPersonal;
 
   const stats = [
     {

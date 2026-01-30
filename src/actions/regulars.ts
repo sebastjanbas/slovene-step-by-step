@@ -1,12 +1,12 @@
 "use server";
 
 import {db} from "@/db";
-import {regularInvitationsTable, tutorsTable, cancelledRegularSessionsTable} from "@/db/schema";
+import {cancelledRegularSessionsTable, regularInvitationsTable, tutorsTable} from "@/db/schema";
 import {auth, clerkClient} from "@clerk/nextjs/server";
 import {and, eq} from "drizzle-orm";
-import {addMonths, addWeeks, isAfter, isBefore, setDay, startOfDay, format} from "date-fns";
+import {addMonths, addWeeks, format, isAfter, isBefore, setDay, startOfDay} from "date-fns";
 import {fromZonedTime} from "date-fns-tz";
-import { Resend } from "resend";
+import {Resend} from "resend";
 import TutorSessionCancelEmail from "@/emails/tutor-session-cancel-email";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -214,7 +214,7 @@ export async function getStudentCancelledSessions(): Promise<CancelledSession[]>
     return [];
   }
 
-  const results = await db
+  return db
     .select({
       id: cancelledRegularSessionsTable.id,
       invitationId: cancelledRegularSessionsTable.invitationId,
@@ -227,8 +227,6 @@ export async function getStudentCancelledSessions(): Promise<CancelledSession[]>
       eq(cancelledRegularSessionsTable.invitationId, regularInvitationsTable.id)
     )
     .where(eq(regularInvitationsTable.studentClerkId, userId));
-
-  return results;
 }
 
 /**

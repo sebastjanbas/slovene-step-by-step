@@ -1,5 +1,5 @@
 import { getSchedule, getTimeblocks, getTutors } from "@/actions/timeblocks";
-import { getRegularSessions, getAllAcceptedRegularInvitations } from "@/actions/regulars";
+import { getRegularSessions } from "@/actions/regulars";
 import Calendar from "@/components/calendar/calendar";
 import React from "react";
 import {auth} from "@clerk/nextjs/server";
@@ -9,9 +9,7 @@ const CalendarPage = async () => {
   const timeblocks = await getTimeblocks();
   const tutors = await getTutors();
   const regularSessions = await getRegularSessions();
-  const allRegularInvitations = await getAllAcceptedRegularInvitations();
   const {userId} = await auth();
-
 
   if (schedule.status !== 200 || timeblocks.status !== 200 || tutors.status !== 200 || !userId) {
     return (
@@ -29,7 +27,6 @@ const CalendarPage = async () => {
         timeblocksData={timeblocks.timeblocks}
         tutorsData={tutors.tutors}
         regularSessionsData={regularSessions}
-        allRegularInvitations={allRegularInvitations}
       />
     </div>
   );

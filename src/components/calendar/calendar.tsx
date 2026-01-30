@@ -44,54 +44,11 @@ const doTimesOverlap = (
   );
 };
 
-// Generate blocked times from regular invitations for a specific date range
-const generateRegularBlockedTimes = (
-  regularInvitations: any[],
-  startDate: Date,
-  endDate: Date
-): Array<{ tutorId: number; start: Date; end: Date }> => {
-  const blockedTimes: Array<{ tutorId: number; start: Date; end: Date }> = [];
-
-  regularInvitations.forEach((invitation) => {
-    // Generate blocked times for each occurrence within the date range
-    const currentDate = new Date(startDate);
-    // Find the first occurrence of this day of week
-    while (currentDate.getDay() !== invitation.dayOfWeek) {
-      currentDate.setDate(currentDate.getDate() + 1);
-    }
-
-    while (currentDate <= endDate) {
-      // Create the datetime string and interpret it as CET timezone
-      const year = currentDate.getFullYear();
-      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-      const day = String(currentDate.getDate()).padStart(2, '0');
-      const dateTimeStr = `${year}-${month}-${day} ${invitation.startTime}:00`;
-      // fromZonedTime converts a "local" time in a specific timezone to UTC
-      const blockStart = fromZonedTime(dateTimeStr, 'Europe/Ljubljana');
-      const blockEnd = new Date(blockStart.getTime() + invitation.duration * 60000);
-
-      if (blockStart >= startDate && blockStart <= endDate) {
-        blockedTimes.push({
-          tutorId: invitation.tutorId,
-          start: blockStart,
-          end: blockEnd,
-        });
-      }
-
-      // Move to next week
-      currentDate.setDate(currentDate.getDate() + 7);
-    }
-  });
-
-  return blockedTimes;
-};
-
 // Generate available time slots from tutor schedules
 const generateAvailableSlots = (
   schedulesData: any[],
   tutorsData: any[],
   timeblocksData: any[],
-  regularInvitations: any[] = [],
 ) => {
   const availableSlots: TutoringSession[] = [];
   const now = new Date();
@@ -104,13 +61,6 @@ const generateAvailableSlots = (
     const startTime = new Date(timeblock.startTime);
     return startTime >= now && startTime <= fourWeeksFromNow && timeblock.status === "booked";
   });
-
-  // Generate blocked times from regular sessions
-  const regularBlockedTimes = generateRegularBlockedTimes(
-    regularInvitations,
-    now,
-    fourWeeksFromNow
-  );
 
   schedulesData.forEach((schedule) => {
     const tutor = tutorsData.find((t) => t.clerkId === schedule.ownerId);
@@ -146,6 +96,9 @@ const generateAvailableSlots = (
             daySchedule.timeSlots.length > 0
           ) {
             daySchedule.timeSlots.forEach((timeSlot: any) => {
+              // Skip "regular" session types - they are handled separately and never bookable
+              if (timeSlot.sessionType === "regulars") return;
+
               // Create the datetime string and interpret it as CET timezone
               const year = currentDate.getFullYear();
               const month = String(currentDate.getMonth() + 1).padStart(2, '0');
@@ -174,15 +127,7 @@ const generateAvailableSlots = (
                 );
               });
 
-              // Check if this time slot overlaps with a regular session
-              const isBlockedByRegular = regularBlockedTimes.some((blocked) => {
-                return (
-                  blocked.tutorId === tutor.id &&
-                  doTimesOverlap(slotStart, slotEnd, blocked.start, blocked.end)
-                );
-              });
-
-              if (!isBooked && !isBlockedByRegular) {
+              if (!isBooked) {
                 const duration =
                   (slotEnd.getTime() - slotStart.getTime()) / 60000; // in minutes
 
@@ -255,29 +200,12 @@ interface RegularSessionData {
   dayOfWeek: number;
 }
 
-interface RegularInvitation {
-  id: number;
-  tutorId: number;
-  studentClerkId: string | null;
-  status: string;
-  dayOfWeek: number;
-  startTime: string;
-  duration: number;
-  location: string;
-  description: string | null;
-  color: string | null;
-  tutorName: string;
-  tutorAvatar: string;
-  tutorColor: string;
-}
-
 interface CalendarProps {
   scheduleData: any;
   timeblocksData: any;
   tutorsData: any;
   studentId: string;
   regularSessionsData?: RegularSessionData[];
-  allRegularInvitations?: RegularInvitation[];
 }
 
 // Map FullCalendar view names to URL-friendly names
@@ -312,7 +240,6 @@ export default function Calendar({
   tutorsData,
   studentId,
   regularSessionsData = [],
-  allRegularInvitations = [],
 }: CalendarProps) {
   const locale = useLocale();
   const router = useRouter();
@@ -324,12 +251,11 @@ export default function Calendar({
   // Transform the data from a database
   const transformedTutors = transformTutors(tutorsData);
 
-  // Generate available slots from schedules (excluding times blocked by regular sessions)
+  // Generate available slots from schedules (regular sessions are filtered out by sessionType)
   const availableSlots = generateAvailableSlots(
     scheduleData,
     tutorsData,
     timeblocksData,
-    allRegularInvitations,
   );
 
   // Get booked sessions (only future ones)
